@@ -276,7 +276,7 @@ async function sendMessage() {
       renderProducts(data.products);
       document.getElementById("resultsTitle").textContent = `${currentQuery} (${data.total || data.products.length})`;
       document.getElementById("resultsSection").style.display = "block";
-      const hasMore = (data.total || 0) > currentPage * 40;
+      const hasMore = (data.total || 0) > currentPage * 50;
       document.getElementById("loadMore").style.display = hasMore ? "block" : "none";
     } else {
       const msg = data.message || i18n[currentLang].noResults;
@@ -312,7 +312,7 @@ async function loadMore() {
     const data = await doSearch(currentQuery, currentPage);
     if (data.products && data.products.length > 0) {
       renderProducts(data.products, true);
-      const hasMore = (data.total || 0) > currentPage * 40;
+      const hasMore = (data.total || 0) > currentPage * 50;
       document.getElementById("loadMore").style.display = hasMore ? "block" : "none";
     } else {
       document.getElementById("loadMore").style.display = "none";
