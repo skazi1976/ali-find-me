@@ -211,7 +211,7 @@ function renderProducts(products, append = false) {
     return `
       <div class="product-card">
         <a href="${p.affiliate_url}" target="_blank" rel="noopener">
-          <img class="product-image" src="${p.image}" alt="${p.title}" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect fill=%22%23f0f0f0%22 width=%22100%22 height=%22100%22/><text x=%2250%22 y=%2255%22 text-anchor=%22middle%22 fill=%22%23ccc%22 font-size=%2214%22>No Image</text></svg>'">
+          <img class="product-image" src="${p.image}" alt="${p.title}" loading="lazy" onerror="this.closest('.product-card').style.display='none'">
         </a>
         <div class="product-info">
           <div class="product-title">${p.title}</div>
