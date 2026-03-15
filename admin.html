@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin | עלי תמצא לי</title>
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700&family=Assistant:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #6C5CE7;
+      --primary-dark: #5A4BD1;
+      --success: #00B894;
+      --danger: #D63031;
+      --warning: #FDCB6E;
+      --bg: #F8F9FD;
+      --card: #fff;
+      --text: #2D3436;
+      --text-light: #636E72;
+      --border: #E8ECF1;
+      --radius: 12px;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Assistant', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
+
+    /* Login */
+    .login-screen {
+      display: flex; align-items: center; justify-content: center;
+      min-height: 100vh; padding: 20px;
+    }
+    .login-box {
+      background: var(--card); padding: 40px; border-radius: var(--radius);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08); max-width: 400px; width: 100%; text-align: center;
+    }
+    .login-box h1 { font-family: 'Heebo', sans-serif; margin-bottom: 8px; color: var(--primary); }
+    .login-box p { color: var(--text-light); margin-bottom: 24px; }
+    .login-box input {
+      width: 100%; padding: 14px 18px; border: 2px solid var(--border); border-radius: 8px;
+      font-size: 1rem; margin-bottom: 16px; font-family: 'Assistant'; outline: none;
+    }
+    .login-box input:focus { border-color: var(--primary); }
+    .login-box .login-error { color: var(--danger); font-size: 0.9rem; margin-bottom: 12px; display: none; }
+
+    /* Buttons */
+    .btn {
+      padding: 12px 24px; border: none; border-radius: 8px; cursor: pointer;
+      font-size: 0.95rem; font-weight: 600; font-family: 'Assistant'; transition: all 0.2s;
+    }
+    .btn-primary { background: var(--primary); color: #fff; }
+    .btn-primary:hover { background: var(--primary-dark); }
+    .btn-success { background: var(--success); color: #fff; }
+    .btn-danger { background: var(--danger); color: #fff; }
+    .btn-outline { background: none; border: 2px solid var(--border); color: var(--text); }
+    .btn-outline:hover { border-color: var(--primary); color: var(--primary); }
+    .btn-sm { padding: 6px 14px; font-size: 0.85rem; }
+    .btn-block { width: 100%; }
+
+    /* Admin Panel */
+    .admin-panel { display: none; }
+    .admin-header {
+      background: var(--card); border-bottom: 1px solid var(--border);
+      padding: 16px 24px; display: flex; justify-content: space-between; align-items: center;
+    }
+    .admin-header h1 { font-family: 'Heebo'; font-size: 1.3rem; color: var(--primary); }
+    .admin-nav { display: flex; gap: 4px; padding: 0 24px; background: var(--card); border-bottom: 1px solid var(--border); overflow-x: auto; }
+    .admin-nav button {
+      padding: 14px 20px; border: none; background: none; cursor: pointer;
+      font-size: 0.95rem; font-weight: 600; color: var(--text-light); border-bottom: 3px solid transparent;
+      font-family: 'Assistant'; white-space: nowrap; transition: all 0.2s;
+    }
+    .admin-nav button.active { color: var(--primary); border-bottom-color: var(--primary); }
+    .admin-nav button:hover { color: var(--primary); }
+
+    .admin-content { max-width: 1000px; margin: 24px auto; padding: 0 24px; }
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
+
+    /* Cards */
+    .admin-card {
+      background: var(--card); border-radius: var(--radius); padding: 24px;
+      border: 1px solid var(--border); margin-bottom: 20px;
+    }
+    .admin-card h2 { font-family: 'Heebo'; font-size: 1.1rem; margin-bottom: 16px; }
+
+    /* Tables */
+    .admin-table { width: 100%; border-collapse: collapse; }
+    .admin-table th, .admin-table td {
+      padding: 12px 16px; text-align: right; border-bottom: 1px solid var(--border);
+    }
+    [dir="ltr"] .admin-table th, [dir="ltr"] .admin-table td { text-align: left; }
+    .admin-table th { font-weight: 600; color: var(--text-light); font-size: 0.85rem; text-transform: uppercase; }
+    .admin-table td { font-size: 0.95rem; }
+    .admin-table tr:hover { background: #f9f9ff; }
+
+    /* Forms */
+    .form-row { display: flex; gap: 12px; margin-bottom: 16px; align-items: end; }
+    .form-group { flex: 1; }
+    .form-group label { display: block; font-weight: 600; font-size: 0.85rem; margin-bottom: 6px; color: var(--text-light); }
+    .form-group input, .form-group textarea {
+      width: 100%; padding: 10px 14px; border: 2px solid var(--border); border-radius: 8px;
+      font-size: 0.95rem; font-family: 'Assistant'; outline: none;
+    }
+    .form-group input:focus, .form-group textarea:focus { border-color: var(--primary); }
+
+    /* Toggle switch */
+    .toggle { position: relative; width: 44px; height: 24px; cursor: pointer; }
+    .toggle input { display: none; }
+    .toggle-slider {
+      position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+      background: #ccc; border-radius: 24px; transition: 0.3s;
+    }
+    .toggle-slider::before {
+      content: ''; position: absolute; height: 18px; width: 18px; left: 3px; bottom: 3px;
+      background: white; border-radius: 50%; transition: 0.3s;
+    }
+    .toggle input:checked + .toggle-slider { background: var(--success); }
+    .toggle input:checked + .toggle-slider::before { transform: translateX(20px); }
+
+    /* Toast */
+    .toast {
+      position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%);
+      padding: 14px 28px; border-radius: 8px; color: #fff; font-weight: 600;
+      z-index: 1000; animation: toastIn 0.3s; display: none;
+    }
+    .toast.success { background: var(--success); }
+    .toast.error { background: var(--danger); }
+    @keyframes toastIn { from { opacity: 0; transform: translateX(-50%) translateY(20px); } to { opacity: 1; transform: translateX(-50%); } }
+
+    /* Stats */
+    .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 16px; margin-bottom: 24px; }
+    .stat-card {
+      background: var(--card); border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 20px; text-align: center;
+    }
+    .stat-number { font-size: 2rem; font-weight: 700; color: var(--primary); }
+    .stat-label { font-size: 0.85rem; color: var(--text-light); margin-top: 4px; }
+
+    /* Search/filter */
+    .filter-input {
+      padding: 10px 14px; border: 2px solid var(--border); border-radius: 8px;
+      font-size: 0.95rem; width: 250px; margin-bottom: 16px; font-family: 'Assistant'; outline: none;
+    }
+    .filter-input:focus { border-color: var(--primary); }
+
+    .toolbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; flex-wrap: wrap; gap: 12px; }
+
+    @media (max-width: 600px) {
+      .form-row { flex-direction: column; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .toolbar { flex-direction: column; align-items: stretch; }
+      .filter-input { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Login Screen -->
+  <div class="login-screen" id="loginScreen">
+    <div class="login-box">
+      <h1>🔐 Admin</h1>
+      <p>עלי תמצא לי - פאנל ניהול</p>
+      <div class="login-error" id="loginError">סיסמה שגויה</div>
+      <input type="password" id="loginPassword" placeholder="סיסמת מנהל" onkeydown="if(event.key==='Enter')doLogin()">
+      <button class="btn btn-primary btn-block" onclick="doLogin()">כניסה</button>
+    </div>
+  </div>
+
+  <!-- Admin Panel -->
+  <div class="admin-panel" id="adminPanel">
+    <div class="admin-header">
+      <h1>⚙️ עלי תמצא לי - ניהול</h1>
+      <div>
+        <a href="index.html" class="btn btn-outline btn-sm">← לאתר</a>
+        <button class="btn btn-outline btn-sm" onclick="doLogout()" style="margin-right:8px">יציאה</button>
+      </div>
+    </div>
+
+    <div class="admin-nav">
+      <button class="active" onclick="switchTab('keywords')">📝 מילות מפתח</button>
+      <button onclick="switchTab('stores')">🏪 חנויות</button>
+      <button onclick="switchTab('categories')">🏷️ קטגוריות</button>
+      <button onclick="switchTab('suggestions')">💡 הצעות</button>
+      <button onclick="switchTab('settings')">⚙️ הגדרות</button>
+    </div>
+
+    <div class="admin-content">
+      <!-- Stats -->
+      <div class="stats-grid" id="statsGrid"></div>
+
+      <!-- Keywords Tab -->
+      <div class="tab-panel active" id="tab-keywords">
+        <div class="admin-card">
+          <h2>הוספת מילת מפתח</h2>
+          <div class="form-row">
+            <div class="form-group">
+              <label>מילה בעברית</label>
+              <input type="text" id="kwHebrew" placeholder="למשל: שמלת ערב">
+            </div>
+            <div class="form-group">
+              <label>תרגום לאנגלית</label>
+              <input type="text" id="kwEnglish" placeholder="למשל: women evening dress">
+            </div>
+            <button class="btn btn-success" onclick="addKeyword()">הוסף</button>
+          </div>
+        </div>
+        <div class="admin-card">
+          <div class="toolbar">
+            <h2>מילות מפתח (<span id="kwCount">0</span>)</h2>
+            <input type="text" class="filter-input" placeholder="🔍 סנן..." oninput="filterKeywords(this.value)">
+          </div>
+          <table class="admin-table">
+            <thead><tr><th>עברית</th><th>אנגלית</th><th>פעולות</th></tr></thead>
+            <tbody id="kwTableBody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Stores Tab -->
+      <div class="tab-panel" id="tab-stores">
+        <div class="admin-card">
+          <h2>הוספת חנות</h2>
+          <div class="form-row">
+            <div class="form-group">
+              <label>שם החנות</label>
+              <input type="text" id="storeName" placeholder="למשל: Fashion Store">
+            </div>
+            <div class="form-group">
+              <label>Store ID</label>
+              <input type="text" id="storeId" placeholder="מזהה החנות באלי אקספרס">
+            </div>
+            <div class="form-group">
+              <label>URL (אופציונלי)</label>
+              <input type="text" id="storeUrl" placeholder="https://...">
+            </div>
+            <button class="btn btn-success" onclick="addStore()">הוסף</button>
+          </div>
+        </div>
+        <div class="admin-card">
+          <h2>חנויות (<span id="storeCount">0</span>)</h2>
+          <table class="admin-table">
+            <thead><tr><th>שם</th><th>ID</th><th>URL</th><th>פעיל</th><th>פעולות</th></tr></thead>
+            <tbody id="storeTableBody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Categories Tab -->
+      <div class="tab-panel" id="tab-categories">
+        <div class="admin-card">
+          <h2>הוספת קטגוריה</h2>
+          <div class="form-row">
+            <div class="form-group">
+              <label>שם בעברית</label>
+              <input type="text" id="catName" placeholder="למשל: שמלות">
+            </div>
+            <div class="form-group">
+              <label>שם באנגלית</label>
+              <input type="text" id="catNameEn" placeholder="למשל: Dresses">
+            </div>
+            <div class="form-group">
+              <label>אייקון (emoji)</label>
+              <input type="text" id="catIcon" placeholder="👗">
+            </div>
+            <button class="btn btn-success" onclick="addCategory()">הוסף</button>
+          </div>
+        </div>
+        <div class="admin-card">
+          <h2>קטגוריות (<span id="catCount">0</span>)</h2>
+          <table class="admin-table">
+            <thead><tr><th>אייקון</th><th>עברית</th><th>אנגלית</th><th>מילות מפתח</th><th>פעולות</th></tr></thead>
+            <tbody id="catTableBody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Suggestions Tab -->
+      <div class="tab-panel" id="tab-suggestions">
+        <div class="admin-card">
+          <h2>הצעות חיפוש</h2>
+          <p style="color:var(--text-light);margin-bottom:16px">ההצעות שמוצגות למשתמשים בדף הראשי (chips)</p>
+          <div class="form-row">
+            <div class="form-group">
+              <label>הצעה חדשה</label>
+              <input type="text" id="newSuggestion" placeholder="למשל: שמלת ערב">
+            </div>
+            <button class="btn btn-success" onclick="addSuggestion()">הוסף</button>
+          </div>
+          <div id="suggestionsList" style="margin-top:16px"></div>
+        </div>
+      </div>
+
+      <!-- Settings Tab -->
+      <div class="tab-panel" id="tab-settings">
+        <div class="admin-card">
+          <h2>הגדרות כלליות</h2>
+          <div class="form-row">
+            <div class="form-group">
+              <label>שם האתר</label>
+              <input type="text" id="settingSiteName" value="עלי תמצא לי">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Tracking ID</label>
+              <input type="text" id="settingTrackingId" value="kantina2018">
+            </div>
+          </div>
+          <button class="btn btn-primary" onclick="saveSettings()">שמור הגדרות</button>
+        </div>
+        <div class="admin-card">
+          <h2>שינוי סיסמה</h2>
+          <div class="form-row">
+            <div class="form-group">
+              <label>סיסמה חדשה</label>
+              <input type="password" id="newPassword">
+            </div>
+            <div class="form-group">
+              <label>אימות סיסמה</label>
+              <input type="password" id="confirmPassword">
+            </div>
+            <button class="btn btn-warning btn-primary" onclick="changePassword()">שנה סיסמה</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div class="toast" id="toast"></div>
+
+  <script src="js/admin.js"></script>
+</body>
+</html>
