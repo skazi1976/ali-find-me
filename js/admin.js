@@ -1,5 +1,6 @@
 /**
  * Ali Find Me - Admin Panel
+ * Supports keyword-to-store associations
  */
 
 const API_BASE = "https://ali-findme-api.ohadf1976.workers.dev";
@@ -8,6 +9,27 @@ let allKeywords = {};
 let allStores = [];
 let allCategories = [];
 let allSuggestions = [];
+
+// ============================================================
+//  Helpers for keyword format
+// ============================================================
+
+function kwTranslation(val) {
+  if (typeof val === "string") return val;
+  if (val && val.translation) return val.translation;
+  return "";
+}
+
+function kwStores(val) {
+  if (typeof val === "string") return [];
+  if (val && Array.isArray(val.stores)) return val.stores;
+  return [];
+}
+
+function storeNameById(id) {
+  const s = allStores.find(s => s.id === id);
+  return s ? s.name : id;
+}
 
 // ============================================================
 //  Auth
@@ -97,6 +119,7 @@ async function loadAll() {
   renderStats();
   renderKeywords();
   renderStores();
+  renderStoreCheckboxes();
   renderCategories();
   renderSuggestions();
 
@@ -120,6 +143,29 @@ function renderStats() {
 }
 
 // ============================================================
+//  Store checkboxes for keyword form
+// ============================================================
+
+function renderStoreCheckboxes() {
+  const container = document.getElementById("kwStoresCheckboxes");
+  if (!container) return;
+  if (allStores.length === 0) {
+    container.innerHTML = '<span style="color:var(--text-light);font-size:0.85rem">אין חנויות - הוסף חנויות קודם</span>';
+    return;
+  }
+  container.innerHTML = allStores.map(s => `
+    <label style="display:inline-flex;align-items:center;gap:6px;margin:4px 0 4px 16px;cursor:pointer;font-size:0.9rem">
+      <input type="checkbox" class="kw-store-cb" value="${s.id}"> ${s.name}
+    </label>
+  `).join("");
+}
+
+function getSelectedStores() {
+  const cbs = document.querySelectorAll(".kw-store-cb:checked");
+  return Array.from(cbs).map(cb => cb.value);
+}
+
+// ============================================================
 //  Keywords
 // ============================================================
 
@@ -127,18 +173,30 @@ function renderKeywords(filter = "") {
   const tbody = document.getElementById("kwTableBody");
   const entries = Object.entries(allKeywords);
   const filtered = filter
-    ? entries.filter(([k, v]) => k.includes(filter) || v.includes(filter))
+    ? entries.filter(([k, v]) => {
+        const trans = kwTranslation(v);
+        return k.toLowerCase().includes(filter) || trans.toLowerCase().includes(filter);
+      })
     : entries;
 
   document.getElementById("kwCount").textContent = entries.length;
 
-  tbody.innerHTML = filtered.map(([he, en]) => `
+  tbody.innerHTML = filtered.map(([he, val]) => {
+    const trans = kwTranslation(val);
+    const stores = kwStores(val);
+    const storeNames = stores.map(id => storeNameById(id));
+    const storesBadges = storeNames.length > 0
+      ? storeNames.map(n => `<span style="background:#e8f5e9;color:#2e7d32;padding:2px 8px;border-radius:10px;font-size:0.8rem;margin:2px">${n}</span>`).join(" ")
+      : '<span style="color:#999;font-size:0.8rem">כל החנויות</span>';
+    return `
     <tr>
       <td><strong>${he}</strong></td>
-      <td>${en}</td>
+      <td>${trans}</td>
+      <td>${storesBadges}</td>
       <td><button class="btn btn-danger btn-sm" onclick="deleteKeyword('${he.replace(/'/g, "\\'")}')">מחק</button></td>
     </tr>
-  `).join("");
+  `;
+  }).join("");
 }
 
 function filterKeywords(val) {
@@ -148,15 +206,19 @@ function filterKeywords(val) {
 async function addKeyword() {
   const he = document.getElementById("kwHebrew").value.trim();
   const en = document.getElementById("kwEnglish").value.trim();
+  const stores = getSelectedStores();
   if (!he || !en) return toast("יש למלא את שני השדות", "error");
+  if (stores.length === 0) return toast("יש לבחור לפחות חנות אחת", "error");
 
-  const data = await api("/admin/keywords", "POST", { keyword: he, translation: en });
+  const data = await api("/admin/keywords", "POST", { keyword: he, translation: en, stores });
   if (data?.success) {
     allKeywords = data.keywords;
     renderKeywords();
     renderStats();
     document.getElementById("kwHebrew").value = "";
     document.getElementById("kwEnglish").value = "";
+    // Uncheck all store checkboxes
+    document.querySelectorAll(".kw-store-cb").forEach(cb => cb.checked = false);
     toast("מילת מפתח נוספה!");
   }
 }
@@ -206,6 +268,7 @@ async function addStore() {
   if (data?.success) {
     allStores = data.stores;
     renderStores();
+    renderStoreCheckboxes();
     renderStats();
     document.getElementById("storeName").value = "";
     document.getElementById("storeId").value = "";
@@ -227,6 +290,7 @@ async function deleteStore(id) {
   if (data?.success) {
     allStores = data.stores;
     renderStores();
+    renderStoreCheckboxes();
     renderStats();
     toast("חנות נמחקה");
   }
@@ -242,7 +306,7 @@ function renderCategories() {
 
   tbody.innerHTML = allCategories.map((c, i) => `
     <tr>
-      <td style="font-size:1.5rem">${c.icon || "🏷️"}</td>
+      <td style="font-size:1.5rem">${c.icon || "\ud83c\udff7\ufe0f"}</td>
       <td><strong>${c.name}</strong></td>
       <td>${c.nameEn || "-"}</td>
       <td>${(c.keywords || []).join(", ")}</td>
@@ -359,7 +423,6 @@ function toast(msg, type = "success") {
 // ============================================================
 
 if (token) {
-  // Verify token by making a request
   api("/admin/keywords").then(data => {
     if (data) showPanel();
     else doLogout();
