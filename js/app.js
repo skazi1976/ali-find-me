@@ -211,7 +211,7 @@ function renderProducts(products, append = false) {
     return `
       <div class="product-card">
         <a href="${p.affiliate_url}" target="_blank" rel="noopener">
-          <img class="product-image" src="${p.image}" alt="${p.title}" loading="lazy" onerror="this.closest('.product-card').style.display='none'">
+          <img class="product-image" src="${p.image}" alt="${p.title}" loading="lazy" onerror="if(this.dataset.retry!=='1'&&'${p.image_alt||''}'){this.dataset.retry='1';this.src='${p.image_alt||''}';}else{this.closest('.product-card').style.display='none';}">
         </a>
         <div class="product-info">
           <div class="product-title">${p.title}</div>
