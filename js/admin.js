@@ -262,9 +262,10 @@ async function addStore() {
   const name = document.getElementById("storeName").value.trim();
   const id = document.getElementById("storeId").value.trim();
   const url = document.getElementById("storeUrl").value.trim();
+  const searchBoost = document.getElementById("storeSearchBoost")?.value.trim() || "";
   if (!name || !id) return toast("יש למלא שם ו-ID", "error");
 
-  const data = await api("/admin/stores", "POST", { name, id, url });
+  const data = await api("/admin/stores", "POST", { name, id, url, searchBoost });
   if (data?.success) {
     allStores = data.stores;
     renderStores();
@@ -273,6 +274,7 @@ async function addStore() {
     document.getElementById("storeName").value = "";
     document.getElementById("storeId").value = "";
     document.getElementById("storeUrl").value = "";
+    if (document.getElementById("storeSearchBoost")) document.getElementById("storeSearchBoost").value = "";
     toast("חנות נוספה!");
   }
 }
