@@ -176,6 +176,15 @@ const i18n = {
     pointsToday: "Today", pointsYesterday: "Yesterday",
     imgSearching: "Identifying product...", imgResult: "Found: {desc}", imgError: "Could not identify. Try another photo",
     imgTakePhoto: "Take Photo", imgUpload: "Upload",
+    nlTitle: "Get hot deals in your inbox!",
+    nlDesc: "Subscribe to our weekly newsletter and get the best deals delivered to your email",
+    nlPlaceholder: "Enter your email",
+    nlBtn: "Subscribe",
+    nlPrivacy: "No spam. Unsubscribe anytime.",
+    nlSuccess: "Subscribed! We will send you the best deals",
+    nlPopupTitle: "Don't miss deals!",
+    nlPopupDesc: "Join thousands of subscribers who get the hottest deals every week",
+    nlSkip: "Not now",
   },
   ar: {
     heroTitle: "\u2728 \u0627\u0639\u062b\u0631 \u0639\u0644\u0649 \u0627\u0644\u0645\u0646\u062a\u062c \u0627\u0644\u0645\u062b\u0627\u0644\u064a",
@@ -251,6 +260,15 @@ const i18n = {
     pointsToday: "\u0627\u0644\u064a\u0648\u0645", pointsYesterday: "\u0623\u0645\u0633",
     imgSearching: "\u062c\u0627\u0631\u064a \u0627\u0644\u062a\u0639\u0631\u0641...", imgResult: "\u062a\u0645 \u0627\u0644\u0639\u062b\u0648\u0631: {desc}", imgError: "\u0644\u0645 \u0623\u062a\u0645\u0643\u0646 \u0645\u0646 \u0627\u0644\u062a\u0639\u0631\u0641. \u062c\u0631\u0628 \u0635\u0648\u0631\u0629 \u0623\u062e\u0631\u0649",
     imgTakePhoto: "\u0627\u0644\u062a\u0642\u0637", imgUpload: "\u0631\u0641\u0639",
+    nlTitle: "احصل على عروض حصرية في بريدك!",
+    nlDesc: "اشترك في نشرتنا الأسبوعية واحصل على أفضل العروض",
+    nlPlaceholder: "أدخل بريدك الإلكتروني",
+    nlBtn: "اشتراك",
+    nlPrivacy: "بدون رسائل مزعجة. إلغاء في أي وقت.",
+    nlSuccess: "تم الاشتراك! سنرسل لك أفضل العروض",
+    nlPopupTitle: "لا تفوت العروض!",
+    nlPopupDesc: "انضم إلى آلاف المشتركين",
+    nlSkip: "ليس الآن",
   },
   ru: {
     heroTitle: "\u2728 \u041d\u0430\u0439\u0434\u0438 \u0438\u0434\u0435\u0430\u043b\u044c\u043d\u044b\u0439 \u0442\u043e\u0432\u0430\u0440",
@@ -303,6 +321,15 @@ const i18n = {
     pointsToday: "\u0421\u0435\u0433\u043e\u0434\u043d\u044f", pointsYesterday: "\u0412\u0447\u0435\u0440\u0430",
     imgSearching: "\u0420\u0430\u0441\u043f\u043e\u0437\u043d\u0430\u044e \u0442\u043e\u0432\u0430\u0440...", imgResult: "\u041d\u0430\u0448\u043b\u043e\u0441\u044c: {desc}", imgError: "\u041d\u0435 \u0443\u0434\u0430\u043b\u043e\u0441\u044c \u0440\u0430\u0441\u043f\u043e\u0437\u043d\u0430\u0442\u044c",
     imgTakePhoto: "\u0421\u0444\u043e\u0442\u043e", imgUpload: "\u0417\u0430\u0433\u0440\u0443\u0437\u0438\u0442\u044c",
+    nlTitle: "Получайте горячие скидки на почту!",
+    nlDesc: "Подпишитесь на еженедельную рассылку",
+    nlPlaceholder: "Введите ваш email",
+    nlBtn: "Подписаться",
+    nlPrivacy: "Без спама. Отписка в любой момент.",
+    nlSuccess: "Подписка оформлена!",
+    nlPopupTitle: "Не пропустите скидки!",
+    nlPopupDesc: "Присоединяйтесь к тысячам подписчиков",
+    nlSkip: "Не сейчас",
   },
   es: {
     heroTitle: "\u2728 Encuentra el producto perfecto",
@@ -351,6 +378,15 @@ const i18n = {
     pointsToday: "Hoy", pointsYesterday: "Ayer",
     imgSearching: "Identificando producto...", imgResult: "Encontrado: {desc}", imgError: "No se pudo identificar",
     imgTakePhoto: "Foto", imgUpload: "Subir",
+    nlTitle: "¡Recibe ofertas exclusivas en tu email!",
+    nlDesc: "Suscríbete a nuestro boletín semanal",
+    nlPlaceholder: "Ingresa tu email",
+    nlBtn: "Suscribirse",
+    nlPrivacy: "Sin spam. Cancela cuando quieras.",
+    nlSuccess: "¡Suscrito! Te enviaremos las mejores ofertas",
+    nlPopupTitle: "¡No te pierdas ofertas!",
+    nlPopupDesc: "Únete a miles de suscriptores",
+    nlSkip: "Ahora no",
   },
   pt: {
     heroTitle: "\u2728 Encontre o produto perfeito",
@@ -399,6 +435,15 @@ const i18n = {
     pointsToday: "Hoje", pointsYesterday: "Ontem",
     imgSearching: "Identificando produto...", imgResult: "Encontrado: {desc}", imgError: "N\u00e3o foi poss\u00edvel identificar",
     imgTakePhoto: "Foto", imgUpload: "Enviar",
+    nlTitle: "Receba ofertas quentes no seu email!",
+    nlDesc: "Assine nossa newsletter semanal",
+    nlPlaceholder: "Digite seu email",
+    nlBtn: "Assinar",
+    nlPrivacy: "Sem spam. Cancele quando quiser.",
+    nlSuccess: "Inscrito! Enviaremos as melhores ofertas",
+    nlPopupTitle: "Não perca ofertas!",
+    nlPopupDesc: "Junte-se a milhares de assinantes",
+    nlSkip: "Agora não",
   },
   tr: {
     heroTitle: "\u2728 M\u00fckemmel \u00fcr\u00fcn\u00fc bul",
@@ -447,6 +492,15 @@ const i18n = {
     pointsToday: "Bug\u00fcn", pointsYesterday: "D\u00fcn",
     imgSearching: "\u00dcr\u00fcn tan\u0131mlan\u0131yor...", imgResult: "Bulundu: {desc}", imgError: "Tan\u0131mlanamad\u0131",
     imgTakePhoto: "Foto", imgUpload: "Y\u00fckle",
+    nlTitle: "Sıcak fırsatları e-postana al!",
+    nlDesc: "Haftalık bültenimize abone ol",
+    nlPlaceholder: "E-posta adresinizi girin",
+    nlBtn: "Abone ol",
+    nlPrivacy: "Spam yok. İptal edin.",
+    nlSuccess: "Abone oldunuz!",
+    nlPopupTitle: "Fırsatları kaçırma!",
+    nlPopupDesc: "Binlerce aboneye katılın",
+    nlSkip: "Şimdi değil",
   },
   fr: {
     heroTitle: "\u2728 Trouvez le produit parfait",
@@ -495,6 +549,15 @@ const i18n = {
     pointsToday: "Aujourd'hui", pointsYesterday: "Hier",
     imgSearching: "Identification du produit...", imgResult: "Trouv\u00e9: {desc}", imgError: "Impossible d'identifier",
     imgTakePhoto: "Photo", imgUpload: "T\u00e9l\u00e9charger",
+    nlTitle: "Recevez les bons plans par email !",
+    nlDesc: "Abonnez-vous a notre newsletter hebdomadaire",
+    nlPlaceholder: "Entrez votre email",
+    nlBtn: "S'abonner",
+    nlPrivacy: "Pas de spam.",
+    nlSuccess: "Abonne !",
+    nlPopupTitle: "Ne ratez pas les offres !",
+    nlPopupDesc: "Rejoignez des milliers d'abonnes",
+    nlSkip: "Pas maintenant",
   }
 };
 
@@ -2329,3 +2392,55 @@ if ("serviceWorker" in navigator) {
     navigator.serviceWorker.register("/sw.js").catch(() => {});
   });
 }
+
+// ─── Newsletter ────────────────────────────
+function subscribeNewsletter(e, isPopup) {
+  e.preventDefault();
+  const emailEl = isPopup ? document.getElementById("nlPopupEmail") : document.getElementById("nlEmail");
+  const email = emailEl ? emailEl.value.trim() : "";
+  if (!email) return;
+
+  // Save subscriber to localStorage
+  const subs = JSON.parse(localStorage.getItem("nl_subscribers") || "[]");
+  if (!subs.includes(email)) subs.push(email);
+  localStorage.setItem("nl_subscribers", JSON.stringify(subs));
+  localStorage.setItem("nl_subscribed", "true");
+  localStorage.setItem("nl_email", email);
+
+  // Send to Google Sheets (Apps Script web app)
+  const sheetUrl = "https://script.google.com/macros/s/AKfycbyKsWkOorDYMOqGQiUDCxHUxGZMj1VLBJhxy3LbQRqOk8_tVVVlTJ0yZpU_9IzCXUMQ/exec";
+  fetch(sheetUrl, {
+    method: "POST",
+    mode: "no-cors",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ email: email, lang: currentLang, date: new Date().toISOString() })
+  }).catch(() => {});
+
+  // Track with GA
+  gtag?.("event", "newsletter_subscribe", { method: isPopup ? "popup" : "section" });
+
+  // Show success
+  if (isPopup) {
+    closeNlPopup();
+  }
+  const form = document.getElementById("newsletterForm");
+  const success = document.getElementById("nlSuccess");
+  if (form) form.style.display = "none";
+  if (success) success.style.display = "flex";
+
+  // Award points
+  if (typeof addPoints === "function") addPoints(15, "newsletter");
+}
+
+function closeNlPopup() {
+  const popup = document.getElementById("nlPopup");
+  if (popup) popup.style.display = "none";
+  localStorage.setItem("nl_popup_dismissed", "true");
+}
+
+// Show newsletter popup after 15s for non-subscribers
+setTimeout(() => {
+  if (localStorage.getItem("nl_subscribed") || localStorage.getItem("nl_popup_dismissed")) return;
+  const popup = document.getElementById("nlPopup");
+  if (popup) popup.style.display = "flex";
+}, 15000);

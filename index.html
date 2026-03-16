@@ -43,7 +43,7 @@
   <link rel="alternate" hreflang="x-default" href="https://alifindme.com/">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&family=Assistant:wght@300;400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=20260316s">
+  <link rel="stylesheet" href="css/style.css?v=20260316t">
 
   <script type="application/ld+json">
   {
@@ -290,6 +290,41 @@
     </div>
   </div>
 
+  <!-- Newsletter Section -->
+  <section class="newsletter-section" id="newsletterSection">
+    <div class="newsletter-content">
+      <div class="newsletter-icon">📬</div>
+      <h2 class="newsletter-title" data-i18n="nlTitle">קבלי דילים חמים לאימייל!</h2>
+      <p class="newsletter-desc" data-i18n="nlDesc">הירשמי לניוזלטר השבועי וקבלי את המבצעים הכי שווים ישירות למייל</p>
+      <form class="newsletter-form" id="newsletterForm" onsubmit="subscribeNewsletter(event)">
+        <div class="newsletter-input-wrap">
+          <input type="email" id="nlEmail" class="newsletter-input" placeholder="הכניסי את האימייל שלך" data-i18n-placeholder="nlPlaceholder" required>
+          <button type="submit" class="newsletter-btn" data-i18n="nlBtn">הרשמה</button>
+        </div>
+      </form>
+      <p class="newsletter-privacy" data-i18n="nlPrivacy">🔒 לא נשלח ספאם. ביטול בכל עת.</p>
+      <div class="newsletter-success" id="nlSuccess" style="display:none">
+        <span class="newsletter-success-icon">✅</span>
+        <span data-i18n="nlSuccess">נרשמת בהצלחה! נשלח לך את הדילים הכי טובים</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Newsletter Popup -->
+  <div class="nl-popup-overlay" id="nlPopup" style="display:none" onclick="if(event.target===this)closeNlPopup()">
+    <div class="nl-popup">
+      <button class="nl-popup-close" onclick="closeNlPopup()">&times;</button>
+      <div class="nl-popup-icon">🎁</div>
+      <h3 class="nl-popup-title" data-i18n="nlPopupTitle">אל תפספסי דילים!</h3>
+      <p class="nl-popup-desc" data-i18n="nlPopupDesc">הצטרפי לאלפי מנויים שמקבלים את המבצעים הכי חמים כל שבוע</p>
+      <form class="nl-popup-form" onsubmit="subscribeNewsletter(event, true)">
+        <input type="email" id="nlPopupEmail" class="newsletter-input" placeholder="הכניסי את האימייל" data-i18n-placeholder="nlPlaceholder" required>
+        <button type="submit" class="newsletter-btn nl-popup-btn" data-i18n="nlBtn">הרשמה</button>
+      </form>
+      <button class="nl-popup-skip" onclick="closeNlPopup()" data-i18n="nlSkip">לא עכשיו</button>
+    </div>
+  </div>
+
   <!-- Footer -->
   <footer class="footer">
     <div class="footer-content">
@@ -344,6 +379,6 @@
     </div>
   </div>
 
-  <script src="js/app.js?v=20260316q"></script>
+  <script src="js/app.js?v=20260316t"></script>
 </body>
 </html>

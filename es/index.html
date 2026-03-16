@@ -45,7 +45,7 @@
   <link rel="alternate" hreflang="x-default" href="https://alifindme.com/">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&family=Assistant:wght@300;400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../css/style.css?v=20260316s">
+  <link rel="stylesheet" href="../css/style.css?v=20260316t">
 
   <script type="application/ld+json">
   {
@@ -120,6 +120,9 @@
   <div class="modal-overlay" id="favModal" style="display:none" onclick="if(event.target===this)closeFavorites()"><div class="modal-content"><div class="modal-header"><h2>❤️ <span data-i18n="myFavorites">Mis favoritos</span></h2><button class="modal-close" onclick="closeFavorites()">✕</button></div><div class="modal-body" id="favModalBody"><p class="empty-fav" data-i18n="noFavorites">Aún no has añadido favoritos</p></div></div></div>
   <div class="modal-overlay" id="alertModal" style="display:none" onclick="if(event.target===this)closeAlerts()"><div class="modal-content"><div class="modal-header"><h2>🔔 <span data-i18n="myAlerts">Alertas de precio</span></h2><button class="modal-close" onclick="closeAlerts()">✕</button></div><div class="modal-body" id="alertModalBody"><p class="empty-fav" data-i18n="noAlerts">No hay alertas activas</p></div></div></div>
 
+  <section class="newsletter-section" id="newsletterSection"><div class="newsletter-content"><div class="newsletter-icon">📬</div><h2 class="newsletter-title" data-i18n="nlTitle">¡Recibe ofertas exclusivas en tu email!</h2><p class="newsletter-desc" data-i18n="nlDesc">Suscríbete a nuestro boletín semanal</p><form class="newsletter-form" id="newsletterForm" onsubmit="subscribeNewsletter(event)"><div class="newsletter-input-wrap"><input type="email" id="nlEmail" class="newsletter-input" placeholder="Ingresa tu email" data-i18n-placeholder="nlPlaceholder" required><button type="submit" class="newsletter-btn" data-i18n="nlBtn">Suscribirse</button></div></form><p class="newsletter-privacy" data-i18n="nlPrivacy">🔒 Sin spam. Cancela cuando quieras.</p><div class="newsletter-success" id="nlSuccess" style="display:none"><span class="newsletter-success-icon">✅</span><span data-i18n="nlSuccess">¡Suscrito!</span></div></div></section>
+  <div class="nl-popup-overlay" id="nlPopup" style="display:none" onclick="if(event.target===this)closeNlPopup()"><div class="nl-popup"><button class="nl-popup-close" onclick="closeNlPopup()">&times;</button><div class="nl-popup-icon">🎁</div><h3 class="nl-popup-title" data-i18n="nlPopupTitle">¡No te pierdas ofertas!</h3><p class="nl-popup-desc" data-i18n="nlPopupDesc">Únete a miles de suscriptores</p><form class="nl-popup-form" onsubmit="subscribeNewsletter(event, true)"><input type="email" id="nlPopupEmail" class="newsletter-input" placeholder="Ingresa tu email" data-i18n-placeholder="nlPlaceholder" required><button type="submit" class="newsletter-btn nl-popup-btn" data-i18n="nlBtn">Suscribirse</button></form><button class="nl-popup-skip" onclick="closeNlPopup()" data-i18n="nlSkip">Ahora no</button></div></div>
+
   <footer class="footer"><div class="footer-content"><p class="footer-brand">Ali Encuéntrame &copy; 2026</p><p class="footer-disclaimer" data-i18n="disclaimer">Este sitio usa enlaces de afiliado. Tu compra no será más cara, pero podemos recibir una pequeña comisión.</p></div></footer>
 
   <div class="install-banner" id="installBanner" style="display:none"><div class="install-banner-content"><span class="install-icon">📲</span><div class="install-text"><strong data-i18n="installTitle">¡Instala la app!</strong><span data-i18n="installDesc">Acceso rápido a ofertas desde tu pantalla</span></div><button class="install-btn" id="installBtn" onclick="installApp()" data-i18n="installBtn">Instalar</button><button class="install-dismiss" onclick="dismissInstall()">✕</button></div></div>
@@ -130,6 +133,6 @@
   <div class="points-toast" id="pointsToast"></div>
   <div class="modal-overlay" id="pointsModal" style="display:none" onclick="if(event.target===this)closePointsModal()"><div class="modal-content points-modal"><div class="modal-header"><h2 data-i18n="pointsTitle">Mis puntos</h2><button class="modal-close" onclick="closePointsModal()">&times;</button></div><div class="modal-body" id="pointsModalBody"></div></div></div>
 
-  <script src="../js/app.js?v=20260316q"></script>
+  <script src="../js/app.js?v=20260316t"></script>
 </body>
 </html>

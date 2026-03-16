@@ -45,7 +45,7 @@
   <link rel="alternate" hreflang="x-default" href="https://alifindme.com/">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&family=Assistant:wght@300;400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../css/style.css?v=20260316s">
+  <link rel="stylesheet" href="../css/style.css?v=20260316t">
 
   <script type="application/ld+json">
   {
@@ -279,6 +279,41 @@
     </div>
   </div>
 
+  <!-- Newsletter Section -->
+  <section class="newsletter-section" id="newsletterSection">
+    <div class="newsletter-content">
+      <div class="newsletter-icon">📬</div>
+      <h2 class="newsletter-title" data-i18n="nlTitle">Get hot deals in your inbox!</h2>
+      <p class="newsletter-desc" data-i18n="nlDesc">Subscribe to our weekly newsletter and get the best deals delivered to your email</p>
+      <form class="newsletter-form" id="newsletterForm" onsubmit="subscribeNewsletter(event)">
+        <div class="newsletter-input-wrap">
+          <input type="email" id="nlEmail" class="newsletter-input" placeholder="Enter your email" data-i18n-placeholder="nlPlaceholder" required>
+          <button type="submit" class="newsletter-btn" data-i18n="nlBtn">Subscribe</button>
+        </div>
+      </form>
+      <p class="newsletter-privacy" data-i18n="nlPrivacy">🔒 No spam. Unsubscribe anytime.</p>
+      <div class="newsletter-success" id="nlSuccess" style="display:none">
+        <span class="newsletter-success-icon">✅</span>
+        <span data-i18n="nlSuccess">Subscribed! We'll send you the best deals</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Newsletter Popup -->
+  <div class="nl-popup-overlay" id="nlPopup" style="display:none" onclick="if(event.target===this)closeNlPopup()">
+    <div class="nl-popup">
+      <button class="nl-popup-close" onclick="closeNlPopup()">&times;</button>
+      <div class="nl-popup-icon">🎁</div>
+      <h3 class="nl-popup-title" data-i18n="nlPopupTitle">Don't miss deals!</h3>
+      <p class="nl-popup-desc" data-i18n="nlPopupDesc">Join thousands of subscribers who get the hottest deals every week</p>
+      <form class="nl-popup-form" onsubmit="subscribeNewsletter(event, true)">
+        <input type="email" id="nlPopupEmail" class="newsletter-input" placeholder="Enter your email" data-i18n-placeholder="nlPlaceholder" required>
+        <button type="submit" class="newsletter-btn nl-popup-btn" data-i18n="nlBtn">Subscribe</button>
+      </form>
+      <button class="nl-popup-skip" onclick="closeNlPopup()" data-i18n="nlSkip">Not now</button>
+    </div>
+  </div>
+
   <footer class="footer">
     <div class="footer-content">
       <p class="footer-brand">Ali Find Me &copy; 2026</p>
@@ -327,6 +362,6 @@
     </div>
   </div>
 
-  <script src="../js/app.js?v=20260316q"></script>
+  <script src="../js/app.js?v=20260316t"></script>
 </body>
 </html>
