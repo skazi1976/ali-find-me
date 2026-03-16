@@ -1,0 +1,28 @@
+{
+  "name": "עלי תמצא לי - חיפוש מוצרים חכם",
+  "short_name": "עלי תמצא לי",
+  "description": "מנוע חיפוש חכם למוצרי אופנה ולייפסטייל באלי אקספרס",
+  "start_url": "/ali-find-me/",
+  "scope": "/ali-find-me/",
+  "display": "standalone",
+  "orientation": "any",
+  "theme_color": "#6C5CE7",
+  "background_color": "#F8F9FD",
+  "lang": "he",
+  "dir": "rtl",
+  "categories": ["shopping", "lifestyle"],
+  "icons": [
+    {
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

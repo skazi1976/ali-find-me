@@ -8,6 +8,12 @@
   <meta property="og:title" content="עלי תמצא לי - חיפוש מוצרים חכם">
   <meta property="og:description" content="מצאי את הדילים הכי טובים באלי אקספרס - אופנה, תיקים, נעליים, תכשיטים ועוד">
   <meta property="og:type" content="website">
+  <meta name="theme-color" content="#6C5CE7">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="icons/icon-192.png" type="image/png">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&family=Assistant:wght@300;400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
@@ -36,9 +42,16 @@
         <span class="logo-text">עלי תמצא לי</span>
       </a>
       <div class="nav-actions">
+        <button class="nav-icon-btn alert-nav-btn" id="alertNavBtn" onclick="showAlerts()" title="התראות מחיר">
+          <span>🔔</span>
+          <span class="alert-badge" id="alertBadge" style="display:none">0</span>
+        </button>
         <button class="nav-icon-btn" id="favNavBtn" onclick="showFavorites()" title="מועדפים">
           <span>❤️</span>
           <span class="fav-badge" id="favBadge" style="display:none">0</span>
+        </button>
+        <button class="theme-toggle-btn" id="themeToggle" onclick="toggleTheme()" title="מצב חשוך">
+          🌙
         </button>
         <div class="lang-toggle">
           <button class="lang-btn" id="langEn" onclick="setLang('en')">EN</button>
@@ -90,6 +103,7 @@
           <button id="sendBtn" class="send-btn" onclick="sendMessage()">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13"/><path d="M22 2L15 22L11 13L2 9L22 2Z"/></svg>
           </button>
+          <div class="autocomplete-dropdown" id="autocompleteDropdown"></div>
         </div>
       </div>
     </div>
@@ -135,6 +149,17 @@
         <button class="load-more-btn" onclick="loadMore()" data-i18n="loadMore">טען עוד מוצרים</button>
       </div>
     </div>
+  </section>
+
+  <!-- Recently Viewed Section -->
+  <section class="recently-viewed-section" id="recentlyViewed" style="display:none">
+    <div class="recently-viewed-header">
+      <h2 class="section-title" data-i18n="recentlyViewedTitle" style="margin-bottom:0">
+        <span>👁️</span> צפית לאחרונה
+      </h2>
+      <button class="rv-clear-btn" onclick="clearViewed()" data-i18n="clearViewed">נקה</button>
+    </div>
+    <div class="recently-viewed-grid" id="recentlyViewedGrid"></div>
   </section>
 
   <!-- Trending Section (shown on homepage) -->
@@ -190,6 +215,19 @@
     </div>
   </div>
 
+  <!-- Alerts Modal -->
+  <div class="modal-overlay" id="alertModal" style="display:none" onclick="if(event.target===this)closeAlerts()">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>🔔 <span data-i18n="myAlerts">התראות מחיר</span></h2>
+        <button class="modal-close" onclick="closeAlerts()">✕</button>
+      </div>
+      <div class="modal-body" id="alertModalBody">
+        <p class="empty-fav" data-i18n="noAlerts">אין התראות מחיר פעילות</p>
+      </div>
+    </div>
+  </div>
+
   <!-- Footer -->
   <footer class="footer">
     <div class="footer-content">
@@ -201,5 +239,11 @@
   </footer>
 
   <script src="js/app.js"></script>
+  <script>
+    // Register Service Worker
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('sw.js').catch(() => {});
+    }
+  </script>
 </body>
 </html>
