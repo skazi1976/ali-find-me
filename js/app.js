@@ -1170,7 +1170,10 @@ const SORT_API_MAP = {
 
 // Hebrew→English translation dictionary for common search terms
 const HE_EN_DICT = {
-  "תחתונים": "underwear", "תחתוני": "underwear", "תחתון": "underwear",
+  "תחתונים": "underwear panties", "תחתוני": "underwear panties", "תחתון": "underwear panties",
+  "תחתוני נשים": "women panties underwear", "תחתוני גברים": "men boxer underwear briefs",
+  "בוקסר": "boxer briefs", "בוקסרים": "boxer briefs", "תחתוני בוקסר": "boxer briefs men",
+  "טנגה": "thong", "תחרה": "lace",
   "גברים": "men", "נשים": "women", "ילדים": "kids", "ילדות": "girls", "בנים": "boys",
   "שמלה": "dress", "שמלת": "dress", "שמלות": "dresses",
   "ערב": "evening", "קיץ": "summer", "חורף": "winter",
