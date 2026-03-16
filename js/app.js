@@ -350,6 +350,12 @@ function setLang(lang) {
   const langDropdown = document.getElementById("langDropdown");
   if (langDropdown) langDropdown.classList.remove("open");
 
+  // Update site name
+  const logoText = document.querySelector(".logo-text");
+  if (logoText && SITE_NAMES[lang]) {
+    logoText.textContent = SITE_NAMES[lang];
+  }
+
   document.querySelectorAll("[data-i18n]").forEach(el => {
     const key = el.getAttribute("data-i18n");
     if (i18n[lang][key]) el.innerHTML = i18n[lang][key];
@@ -871,7 +877,37 @@ async function doSearch(query, page = 1) {
   return resp.json();
 }
 
+// Localized suggestions per language
+const LANG_SUGGESTIONS = {
+  he: ["שמלת ערב", "טייץ ספורט", "תיק יד", "אוזניות אלחוטיות", "שעון חכם", "קרם פנים", "נעלי סניקרס", "עגילים", "מכשיר למתיחת פנים", "פריירית אוויר", "שואב אבק רובוטי", "מחשב נייד"],
+  en: ["Evening dress", "Sport leggings", "Handbag", "Wireless earbuds", "Smartwatch", "Face cream", "Sneakers", "Earrings", "Face massager", "Air fryer", "Robot vacuum", "Laptop"],
+  ar: ["\u0641\u0633\u062a\u0627\u0646 \u0633\u0647\u0631\u0629", "\u062a\u0627\u064a\u062a\u0633 \u0631\u064a\u0627\u0636\u064a", "\u062d\u0642\u064a\u0628\u0629 \u064a\u062f", "\u0633\u0645\u0627\u0639\u0627\u062a \u0644\u0627\u0633\u0644\u0643\u064a\u0629", "\u0633\u0627\u0639\u0629 \u0630\u0643\u064a\u0629", "\u0643\u0631\u064a\u0645 \u0648\u062c\u0647", "\u0623\u062d\u0630\u064a\u0629 \u0631\u064a\u0627\u0636\u064a\u0629", "\u0623\u0642\u0631\u0627\u0637", "\u0645\u0642\u0644\u0627\u0629 \u0647\u0648\u0627\u0626\u064a\u0629", "\u0645\u0643\u0646\u0633\u0629 \u0631\u0648\u0628\u0648\u062a", "\u0644\u0627\u0628\u062a\u0648\u0628", "\u0639\u0637\u0631"],
+  ru: ["\u0412\u0435\u0447\u0435\u0440\u043d\u0435\u0435 \u043f\u043b\u0430\u0442\u044c\u0435", "\u0421\u043f\u043e\u0440\u0442\u0438\u0432\u043d\u044b\u0435 \u043b\u0435\u0433\u0433\u0438\u043d\u0441\u044b", "\u0421\u0443\u043c\u043a\u0430", "\u0411\u0435\u0441\u043f\u0440\u043e\u0432\u043e\u0434\u043d\u044b\u0435 \u043d\u0430\u0443\u0448\u043d\u0438\u043a\u0438", "\u0421\u043c\u0430\u0440\u0442-\u0447\u0430\u0441\u044b", "\u041a\u0440\u0435\u043c \u0434\u043b\u044f \u043b\u0438\u0446\u0430", "\u041a\u0440\u043e\u0441\u0441\u043e\u0432\u043a\u0438", "\u0421\u0435\u0440\u044c\u0433\u0438", "\u0424\u0440\u0438\u0442\u044e\u0440\u043d\u0438\u0446\u0430", "\u0420\u043e\u0431\u043e\u0442-\u043f\u044b\u043b\u0435\u0441\u043e\u0441", "\u041d\u043e\u0443\u0442\u0431\u0443\u043a", "\u041f\u0430\u0440\u0444\u044e\u043c"],
+  es: ["Vestido de noche", "Leggings deportivos", "Bolso de mano", "Auriculares inal\u00e1mbricos", "Reloj inteligente", "Crema facial", "Zapatillas", "Pendientes", "Freidora de aire", "Robot aspirador", "Port\u00e1til", "Perfume"],
+  pt: ["Vestido de festa", "Legging esportiva", "Bolsa de m\u00e3o", "Fone bluetooth", "Rel\u00f3gio inteligente", "Creme facial", "T\u00eanis", "Brincos", "Fritadeira air fryer", "Rob\u00f4 aspirador", "Notebook", "Perfume"],
+  tr: ["Gece elbisesi", "Spor tayt", "El \u00e7antas\u0131", "Kablosuz kulakl\u0131k", "Ak\u0131ll\u0131 saat", "Y\u00fcz kremi", "Spor ayakkab\u0131", "K\u00fcpe", "Airfryer", "Robot s\u00fcp\u00fcrge", "Laptop", "Parf\u00fcm"],
+  fr: ["Robe de soir\u00e9e", "Legging sport", "Sac \u00e0 main", "\u00c9couteurs sans fil", "Montre connect\u00e9e", "Cr\u00e8me visage", "Baskets", "Boucles d'oreilles", "Friteuse sans huile", "Robot aspirateur", "Ordinateur portable", "Parfum"],
+};
+
+// Localized site name
+const SITE_NAMES = {
+  he: "\u05e2\u05dc\u05d9 \u05ea\u05de\u05e6\u05d0 \u05dc\u05d9",
+  en: "Ali Find Me",
+  ar: "\u0639\u0644\u064a \u0627\u0628\u062d\u062b \u0644\u064a",
+  ru: "Ali \u041d\u0430\u0439\u0434\u0438 \u041c\u043d\u0435",
+  es: "Ali Encu\u00e9ntrame",
+  pt: "Ali Encontre-me",
+  tr: "Ali Bul Bana",
+  fr: "Ali Trouve-moi",
+};
+
 async function loadSuggestions() {
+  // Use localized suggestions for current language
+  if (LANG_SUGGESTIONS[currentLang]) {
+    cachedSuggestions = LANG_SUGGESTIONS[currentLang];
+    renderChips(cachedSuggestions);
+    return;
+  }
   try {
     const resp = await fetch(`${API_BASE}/suggestions`);
     const data = await resp.json();
