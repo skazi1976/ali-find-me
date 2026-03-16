@@ -1259,7 +1259,7 @@ const HE_EN_DICT = {
   "גרביים": "socks", "גרבי": "socks", "גרב": "socks",
   "חזייה": "bra", "חזיות": "bras", "חזיית": "bra",
   "בגד ים": "swimsuit", "ביקיני": "bikini",
-  "אביזרי סקס": "sex toys adult toys", "צעצועי סקס": "sex toys adult", "צעצועי מין": "sex toys adult", "ויברטור": "vibrator", "דילדו": "dildo", "טבעת רטט": "vibrating ring", "אזיקים": "handcuffs bondage", "לנז'רי": "sexy lingerie", "לנז'רי סקסי": "sexy lingerie women", "קוספליי": "cosplay costume", "תלבושת סקסית": "sexy costume lingerie", "פלאג": "butt plug anal plug", "פלאג לתחת": "butt plug anal plug", "פלאג אנאלי": "anal plug butt plug",
+  "אביזרי סקס": "adult toy massager vibrator", "צעצועי סקס": "adult toy massager women", "צעצועי מין": "adult toy massager", "סקס": "adult toy massager", "ויברטור": "vibrator massager women rechargeable", "דילדו": "silicone massager realistic women adult", "טבעת רטט": "vibrating ring men couple", "אזיקים": "handcuffs restraint set couple", "לנז'רי": "sexy lingerie", "לנז'רי סקסי": "sexy lingerie women erotic", "קוספליי": "cosplay costume sexy", "תלבושת סקסית": "sexy costume lingerie erotic", "פלאג": "anal plug silicone adult", "פלאג לתחת": "anal plug silicone adult", "פלאג אנאלי": "anal plug silicone beginner",
   "נעליים": "shoes", "נעלי": "shoes", "סניקרס": "sneakers", "סנדלים": "sandals",
   "מגפיים": "boots", "עקבים": "heels", "כפכפים": "slippers",
   "תיק": "bag", "תיקים": "bags", "תיק יד": "handbag", "תיק גב": "backpack",
