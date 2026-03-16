@@ -199,7 +199,7 @@ body {
   background: var(--card-bg);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
-  overflow: hidden;
+  overflow: visible;
   border: 1px solid var(--border);
 }
 
@@ -369,6 +369,7 @@ body {
   padding: 16px 24px;
   border-top: 1px solid var(--border);
   background: var(--bg);
+  border-radius: 0 0 var(--radius) var(--radius);
 }
 
 .input-wrapper {
