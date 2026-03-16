@@ -1,12 +1,12 @@
-const CACHE_NAME = 'ali-findme-v3';
+const CACHE_NAME = 'ali-findme-v4';
 const STATIC_ASSETS = [
-  '/ali-find-me/',
-  '/ali-find-me/index.html',
-  '/ali-find-me/css/style.css',
-  '/ali-find-me/js/app.js',
-  '/ali-find-me/manifest.json',
-  '/ali-find-me/icons/icon-192.png',
-  '/ali-find-me/icons/icon-512.png',
+  '/',
+  '/index.html',
+  '/css/style.css',
+  '/js/app.js',
+  '/manifest.json',
+  '/icons/icon-192.png',
+  '/icons/icon-512.png',
 ];
 
 // Install: cache static assets
@@ -70,7 +70,7 @@ self.addEventListener('fetch', event => {
     }).catch(() => {
       // Offline fallback
       if (event.request.mode === 'navigate') {
-        return caches.match('/ali-find-me/index.html');
+        return caches.match('/index.html');
       }
     })
   );
