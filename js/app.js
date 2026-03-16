@@ -185,6 +185,8 @@ const i18n = {
     nlPopupTitle: "Don't miss deals!",
     nlPopupDesc: "Join thousands of subscribers who get the hottest deals every week",
     nlSkip: "Not now",
+    shareTitle: "שתפי את הדיל!", shareCopied: "הקישור הועתק!",
+    shareNative: "שתף עוד...",
   },
   ar: {
     heroTitle: "\u2728 \u0627\u0639\u062b\u0631 \u0639\u0644\u0649 \u0627\u0644\u0645\u0646\u062a\u062c \u0627\u0644\u0645\u062b\u0627\u0644\u064a",
@@ -269,6 +271,8 @@ const i18n = {
     nlPopupTitle: "لا تفوت العروض!",
     nlPopupDesc: "انضم إلى آلاف المشتركين",
     nlSkip: "ليس الآن",
+    shareTitle: "Share this deal!", shareCopied: "Link copied!",
+    shareNative: "More...",
   },
   ru: {
     heroTitle: "\u2728 \u041d\u0430\u0439\u0434\u0438 \u0438\u0434\u0435\u0430\u043b\u044c\u043d\u044b\u0439 \u0442\u043e\u0432\u0430\u0440",
@@ -330,6 +334,8 @@ const i18n = {
     nlPopupTitle: "Не пропустите скидки!",
     nlPopupDesc: "Присоединяйтесь к тысячам подписчиков",
     nlSkip: "Не сейчас",
+    shareTitle: "شارك هذا العرض!", shareCopied: "تم نسخ الرابط!",
+    shareNative: "المزيد...",
   },
   es: {
     heroTitle: "\u2728 Encuentra el producto perfecto",
@@ -387,6 +393,8 @@ const i18n = {
     nlPopupTitle: "¡No te pierdas ofertas!",
     nlPopupDesc: "Únete a miles de suscriptores",
     nlSkip: "Ahora no",
+    shareTitle: "Поделитесь скидкой!", shareCopied: "Ссылка скопирована!",
+    shareNative: "Ещё...",
   },
   pt: {
     heroTitle: "\u2728 Encontre o produto perfeito",
@@ -444,6 +452,8 @@ const i18n = {
     nlPopupTitle: "Não perca ofertas!",
     nlPopupDesc: "Junte-se a milhares de assinantes",
     nlSkip: "Agora não",
+    shareTitle: "¡Comparte esta oferta!", shareCopied: "¡Enlace copiado!",
+    shareNative: "Más...",
   },
   tr: {
     heroTitle: "\u2728 M\u00fckemmel \u00fcr\u00fcn\u00fc bul",
@@ -501,6 +511,8 @@ const i18n = {
     nlPopupTitle: "Fırsatları kaçırma!",
     nlPopupDesc: "Binlerce aboneye katılın",
     nlSkip: "Şimdi değil",
+    shareTitle: "Compartilhe esta oferta!", shareCopied: "Link copiado!",
+    shareNative: "Mais...",
   },
   fr: {
     heroTitle: "\u2728 Trouvez le produit parfait",
@@ -558,6 +570,8 @@ const i18n = {
     nlPopupTitle: "Ne ratez pas les offres !",
     nlPopupDesc: "Rejoignez des milliers d'abonnes",
     nlSkip: "Pas maintenant",
+    shareTitle: "Partagez cette offre !", shareCopied: "Lien copié !",
+    shareNative: "Plus...",
   }
 };
 
@@ -1033,17 +1047,78 @@ function closeAlerts() { document.getElementById("alertModal").style.display = "
 // ============================================================
 
 function shareProduct(title, price, url) {
-  const text = `${i18n[currentLang].shareText}\n${title}\n${currentCurrencySymbol}${price}\n${url}`;
-  window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`, "_blank");
-  addPoints(5, "share");
+  const text = `${i18n[currentLang].shareText || "Check this deal!"}\n${title}\n${currentCurrencySymbol}${price}`;
+  showShareModal(text, url, title);
 }
 
 function shareSearch(query) {
   const url = `${SITE_URL}?q=${encodeURIComponent(query)}`;
   const text = currentLang === "he"
-    ? `\u05ea\u05e8\u05d0\u05d9 \u05de\u05d4 \u05de\u05e6\u05d0\u05ea\u05d9! \u05d7\u05e4\u05e9\u05d9 "${query}" \u05d1\u05d0\u05dc\u05d9 \u05d0\u05e7\u05e1\u05e4\u05e8\u05e1:\n${url}`
-    : `Check this out! Search "${query}" on AliExpress:\n${url}`;
-  window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`, "_blank");
+    ? `\u05ea\u05e8\u05d0\u05d9 \u05de\u05d4 \u05de\u05e6\u05d0\u05ea\u05d9! \u05d7\u05e4\u05e9\u05d9 "${query}" \u05d1\u05d0\u05dc\u05d9 \u05d0\u05e7\u05e1\u05e4\u05e8\u05e1:`
+    : `Check this out! Search "${query}" on AliExpress:`;
+  showShareModal(text, url, query);
+}
+
+function showShareModal(text, url, title) {
+  const fullText = text + "\n" + url;
+  const modal = document.getElementById("shareModal");
+  if (!modal) return;
+
+  // Set up share links
+  const encodedText = encodeURIComponent(fullText);
+  const encodedUrl = encodeURIComponent(url);
+  const encodedTitle = encodeURIComponent(title || "");
+
+  document.getElementById("shareWhatsApp").onclick = () => {
+    window.open(`https://api.whatsapp.com/send?text=${encodedText}`, "_blank");
+    addPoints(5, "share"); closeShareModal();
+    gtag?.("event", "share", { method: "whatsapp", content_type: "product" });
+  };
+  document.getElementById("shareTelegram").onclick = () => {
+    window.open(`https://t.me/share/url?url=${encodedUrl}&text=${encodeURIComponent(text)}`, "_blank");
+    addPoints(5, "share"); closeShareModal();
+    gtag?.("event", "share", { method: "telegram", content_type: "product" });
+  };
+  document.getElementById("shareFacebook").onclick = () => {
+    window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}&quote=${encodeURIComponent(text)}`, "_blank");
+    addPoints(5, "share"); closeShareModal();
+    gtag?.("event", "share", { method: "facebook", content_type: "product" });
+  };
+  document.getElementById("shareTwitter").onclick = () => {
+    window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodedUrl}`, "_blank");
+    addPoints(5, "share"); closeShareModal();
+    gtag?.("event", "share", { method: "twitter", content_type: "product" });
+  };
+  document.getElementById("shareCopy").onclick = () => {
+    navigator.clipboard.writeText(fullText).then(() => {
+      const btn = document.getElementById("shareCopy");
+      const origText = btn.innerHTML;
+      btn.innerHTML = "\u2705 " + (i18n[currentLang].shareCopied || "Copied!");
+      setTimeout(() => btn.innerHTML = origText, 2000);
+    });
+    addPoints(5, "share");
+    gtag?.("event", "share", { method: "copy", content_type: "product" });
+  };
+
+  // Native share API (mobile)
+  const nativeBtn = document.getElementById("shareNative");
+  if (navigator.share) {
+    nativeBtn.style.display = "flex";
+    nativeBtn.onclick = () => {
+      navigator.share({ title: title, text: text, url: url }).catch(() => {});
+      addPoints(5, "share"); closeShareModal();
+      gtag?.("event", "share", { method: "native", content_type: "product" });
+    };
+  } else {
+    nativeBtn.style.display = "none";
+  }
+
+  modal.style.display = "flex";
+}
+
+function closeShareModal() {
+  const modal = document.getElementById("shareModal");
+  if (modal) modal.style.display = "none";
 }
 
 // ============================================================

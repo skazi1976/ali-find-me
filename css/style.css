@@ -1167,6 +1167,56 @@ body {
 
 .fav-remove-btn:hover { background: rgba(214, 48, 49, 0.1); }
 
+/* ---- Share Modal ---- */
+.share-modal {
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  padding: 28px 24px;
+  max-width: 360px;
+  width: 100%;
+  position: relative;
+  text-align: center;
+}
+
+.share-modal-title {
+  font-family: var(--font-heading);
+  font-size: 1.3rem;
+  font-weight: 800;
+  margin-bottom: 20px;
+  color: var(--text);
+}
+
+.share-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.share-platform-btn {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 20px;
+  border: none;
+  border-radius: var(--radius-sm);
+  font-size: 1rem;
+  font-weight: 600;
+  font-family: var(--font-body);
+  cursor: pointer;
+  transition: transform 0.15s, opacity 0.15s;
+  color: #fff;
+}
+
+.share-platform-btn:hover { transform: scale(1.02); opacity: 0.9; }
+.share-icon { font-size: 1.3rem; }
+
+.whatsapp-btn { background: #25D366; }
+.telegram-btn { background: #0088cc; }
+.facebook-btn { background: #1877F2; }
+.twitter-btn { background: #1DA1F2; }
+.copy-btn { background: var(--text-light); }
+.native-btn { background: var(--primary); }
+
 /* ---- Newsletter Section ---- */
 .newsletter-section {
   background: linear-gradient(135deg, var(--primary) 0%, #764ba2 50%, var(--accent) 100%);
