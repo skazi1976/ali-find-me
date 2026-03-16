@@ -1,4 +1,4 @@
-const CACHE_NAME = 'ali-findme-v14';
+const CACHE_NAME = 'ali-findme-v15';
 const STATIC_ASSETS = [
   '/',
   '/index.html',
@@ -7,6 +7,13 @@ const STATIC_ASSETS = [
   '/manifest.json',
   '/icons/icon-192.png',
   '/icons/icon-512.png',
+  '/en/index.html',
+  '/ar/index.html',
+  '/ru/index.html',
+  '/es/index.html',
+  '/pt/index.html',
+  '/tr/index.html',
+  '/fr/index.html',
 ];
 
 // Install: cache static assets

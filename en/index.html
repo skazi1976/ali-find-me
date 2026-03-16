@@ -1,20 +1,22 @@
 <!DOCTYPE html>
-<html lang="he" dir="rtl">
+<html lang="en" dir="ltr">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=5">
-  <title>עלי תמצא לי | חיפוש מוצרים חכם באלי אקספרס</title>
-  <meta name="description" content="מנוע חיפוש חכם למוצרי אופנה ולייפסטייל באלי אקספרס. מחירים הכי טובים עם משלוח לישראל.">
-  <meta property="og:title" content="עלי תמצא לי - חיפוש מוצרים חכם">
-  <meta property="og:description" content="מצאי את הדילים הכי טובים באלי אקספרס - אופנה, תיקים, נעליים, תכשיטים ועוד">
+  <title>Ali Find Me | Smart AliExpress Product Search</title>
+  <meta name="description" content="Smart search engine for fashion & lifestyle products on AliExpress. Best prices with worldwide shipping.">
+  <meta property="og:title" content="Ali Find Me - Smart AliExpress Product Search">
+  <meta property="og:description" content="Find the best deals on AliExpress - fashion, bags, shoes, jewelry and more">
   <meta property="og:type" content="website">
+  <meta property="og:url" content="https://alifindme.com/en/">
+  <meta property="og:locale" content="en_US">
   <meta name="theme-color" content="#6C5CE7">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
-  <link rel="manifest" href="manifest.json">
-  <link rel="icon" href="icons/icon-192.png" type="image/png">
-  <link rel="apple-touch-icon" href="icons/icon-192.png">
-  <link rel="canonical" href="https://alifindme.com/">
+  <link rel="canonical" href="https://alifindme.com/en/">
+  <link rel="manifest" href="../manifest.json">
+  <link rel="icon" href="../icons/icon-192.png" type="image/png">
+  <link rel="apple-touch-icon" href="../icons/icon-192.png">
   <link rel="alternate" hreflang="he" href="https://alifindme.com/">
   <link rel="alternate" hreflang="en" href="https://alifindme.com/en/">
   <link rel="alternate" hreflang="ar" href="https://alifindme.com/ar/">
@@ -26,49 +28,51 @@
   <link rel="alternate" hreflang="x-default" href="https://alifindme.com/">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&family=Assistant:wght@300;400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=20260316k">
+  <link rel="stylesheet" href="../css/style.css?v=20260316k">
 
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    "name": "עלי תמצא לי",
-    "url": "https://alifindme.com/",
+    "name": "Ali Find Me",
+    "url": "https://alifindme.com/en/",
+    "inLanguage": "en",
     "potentialAction": {
       "@type": "SearchAction",
-      "target": "https://alifindme.com/?q={search_term_string}",
+      "target": "https://alifindme.com/en/?q={search_term_string}",
       "query-input": "required name=search_term_string"
     }
   }
   </script>
+  <script>localStorage.setItem("ali_lang","en");</script>
 </head>
 <body>
 
   <!-- Navbar -->
   <nav class="navbar">
     <div class="nav-container">
-      <a href="index.html" class="logo">
+      <a href="../index.html" class="logo">
         <span class="logo-icon">🔍</span>
-        <span class="logo-text">עלי תמצא לי</span>
+        <span class="logo-text">Ali Find Me</span>
       </a>
       <div class="nav-actions">
-        <button class="nav-icon-btn alert-nav-btn" id="alertNavBtn" onclick="showAlerts()" title="התראות מחיר">
+        <button class="nav-icon-btn alert-nav-btn" id="alertNavBtn" onclick="showAlerts()" title="Price Alerts">
           <span>🔔</span>
           <span class="alert-badge" id="alertBadge" style="display:none">0</span>
         </button>
-        <button class="nav-icon-btn" id="favNavBtn" onclick="showFavorites()" title="מועדפים">
+        <button class="nav-icon-btn" id="favNavBtn" onclick="showFavorites()" title="Favorites">
           <span>❤️</span>
           <span class="fav-badge" id="favBadge" style="display:none">0</span>
         </button>
-        <button class="nav-icon-btn points-nav-btn" id="pointsNavBtn" onclick="showPointsModal()" title="נקודות">
+        <button class="nav-icon-btn points-nav-btn" id="pointsNavBtn" onclick="showPointsModal()" title="Points">
           <span>⭐</span>
           <span class="points-badge" id="pointsBadge">0</span>
         </button>
-        <button class="theme-toggle-btn" id="themeToggle" onclick="toggleTheme()" title="מצב חשוך">
+        <button class="theme-toggle-btn" id="themeToggle" onclick="toggleTheme()" title="Dark mode">
           🌙
         </button>
         <div class="lang-dropdown-wrap" id="langDropdownWrap">
-          <button class="lang-flag-btn" id="langFlag" onclick="toggleLangDropdown()" title="Language">🇮🇱</button>
+          <button class="lang-flag-btn" id="langFlag" onclick="toggleLangDropdown()" title="Language">🇺🇸</button>
           <div class="lang-dropdown" id="langDropdown">
             <button class="lang-option" onclick="setLang('he')">🇮🇱 עברית</button>
             <button class="lang-option" onclick="setLang('en')">🇺🇸 English</button>
@@ -80,7 +84,7 @@
             <button class="lang-option" onclick="setLang('fr')">🇫🇷 Français</button>
           </div>
         </div>
-        <a href="admin.html" class="admin-link" title="ניהול">⚙️</a>
+        <a href="../admin.html" class="admin-link" title="Admin">⚙️</a>
       </div>
     </div>
   </nav>
@@ -90,47 +94,41 @@
     <div class="hero-content">
       <h1 class="hero-title" data-i18n="heroTitle">
         <span class="hero-icon">✨</span>
-        מצאי את המוצר המושלם
+        Find Your Perfect Product
       </h1>
-      <p class="hero-subtitle" data-i18n="heroSubtitle">חפשי מוצרי אופנה ולייפסטייל במחירים הכי טובים מאלי אקספרס</p>
+      <p class="hero-subtitle" data-i18n="heroSubtitle">Search fashion & lifestyle products at the best prices on AliExpress</p>
     </div>
   </section>
 
   <!-- Chat Section -->
   <section class="chat-section">
     <div class="chat-container">
-      <!-- Welcome message -->
       <div class="chat-messages" id="chatMessages">
         <div class="message bot-message">
           <div class="message-avatar">🤖</div>
           <div class="message-bubble" id="welcomeMsg" data-i18n="welcome">
-            היי! אני כאן לעזור לך למצוא מוצרים מדהימים באלי אקספרס.
-            ספרי לי מה את מחפשת ואני אמצא לך את הדילים הכי טובים! 🛍️
+            Hi! I'm here to help you find amazing products on AliExpress.
+            Tell me what you're looking for and I'll find you the best deals! 🛍️
           </div>
         </div>
       </div>
 
-      <!-- Search history chips -->
       <div class="history-container" id="historyContainer" style="display:none">
-        <div class="history-label">🕐 <span data-i18n="recentSearches">חיפושים אחרונים:</span></div>
+        <div class="history-label">🕐 <span data-i18n="recentSearches">Recent searches:</span></div>
         <div class="history-chips" id="historyChips"></div>
       </div>
 
-      <!-- Suggestion chips -->
       <div class="chips-container" id="chipsContainer"></div>
-
-      <!-- Quick replies -->
       <div class="quick-replies" id="quickReplies" style="display:none"></div>
 
-      <!-- Input area -->
       <div class="input-area">
         <div class="input-wrapper">
-          <input type="text" id="chatInput" data-i18n-placeholder="inputPlaceholder" placeholder="מה את מחפשת? (למשל: שמלת ערב, טייץ ספורט...)" autocomplete="off">
+          <input type="text" id="chatInput" data-i18n-placeholder="inputPlaceholder" placeholder="What are you looking for? (e.g., evening dress, sport leggings...)" autocomplete="off">
           <div class="image-search-wrap">
-            <button class="image-search-btn" id="imageSearchBtn" onclick="showImageOptions()" title="חפש בתמונה">📷</button>
+            <button class="image-search-btn" id="imageSearchBtn" onclick="showImageOptions()" title="Search by image">📷</button>
             <div class="image-options-dropdown" id="imageOptions" style="display:none">
-              <button onclick="document.getElementById('cameraInput').click();hideImageOptions()">📸 <span data-i18n="imgTakePhoto">צלם</span></button>
-              <button onclick="document.getElementById('imageInput').click();hideImageOptions()">📁 <span data-i18n="imgUpload">העלה</span></button>
+              <button onclick="document.getElementById('cameraInput').click();hideImageOptions()">📸 <span data-i18n="imgTakePhoto">Take photo</span></button>
+              <button onclick="document.getElementById('imageInput').click();hideImageOptions()">📁 <span data-i18n="imgUpload">Upload</span></button>
             </div>
           </div>
           <input type="file" id="imageInput" accept="image/*" style="display:none" onchange="handleImageFile(this)">
@@ -144,189 +142,172 @@
     </div>
   </section>
 
-  <!-- Results Section (hidden until search) -->
+  <!-- Results Section -->
   <section class="results-section" id="resultsSection" style="display:none">
     <div class="results-container">
       <div class="results-header">
         <h2 class="results-title" id="resultsTitle"></h2>
-        <button class="clear-btn" onclick="clearResults()" data-i18n="clearResults">נקה תוצאות</button>
+        <button class="clear-btn" onclick="clearResults()" data-i18n="clearResults">Clear results</button>
       </div>
-
-      <!-- Filters Bar -->
       <div class="filters-bar" id="filtersBar">
         <div class="filter-group">
-          <label data-i18n="sortBy">מיון:</label>
+          <label data-i18n="sortBy">Sort:</label>
           <select id="sortSelect" onchange="applySort()">
-            <option value="popular" data-i18n-option="sortPopular">הכי נמכר</option>
-            <option value="cheap" data-i18n-option="sortCheap">הכי זול</option>
-            <option value="expensive" data-i18n-option="sortExpensive">הכי יקר</option>
-            <option value="new" data-i18n-option="sortNew">חדש</option>
-            <option value="rating" data-i18n-option="sortRating">דירוג</option>
+            <option value="popular" data-i18n-option="sortPopular">Best selling</option>
+            <option value="cheap" data-i18n-option="sortCheap">Cheapest</option>
+            <option value="expensive" data-i18n-option="sortExpensive">Most expensive</option>
+            <option value="new" data-i18n-option="sortNew">New</option>
+            <option value="rating" data-i18n-option="sortRating">Rating</option>
           </select>
         </div>
         <div class="filter-group">
-          <label data-i18n="priceRange">מחיר:</label>
-          <input type="number" id="priceMin" placeholder="מ-" class="price-input" min="0">
+          <label data-i18n="priceRange">Price:</label>
+          <input type="number" id="priceMin" placeholder="From" class="price-input" min="0">
           <span>-</span>
-          <input type="number" id="priceMax" placeholder="עד" class="price-input" min="0">
-          <button class="filter-apply-btn" onclick="applyPriceFilter()" data-i18n="apply">סנן</button>
+          <input type="number" id="priceMax" placeholder="To" class="price-input" min="0">
+          <button class="filter-apply-btn" onclick="applyPriceFilter()" data-i18n="apply">Filter</button>
         </div>
       </div>
-
-      <!-- Related searches -->
       <div class="related-searches" id="relatedSearches" style="display:none">
-        <span class="related-label" data-i18n="alsoSearch">מחפשים גם:</span>
+        <span class="related-label" data-i18n="alsoSearch">Also searched:</span>
         <div class="related-chips" id="relatedChips"></div>
       </div>
-
       <div class="product-grid" id="productGrid"></div>
       <div class="load-more" id="loadMore" style="display:none">
-        <button class="load-more-btn" onclick="loadMore()" data-i18n="loadMore">טען עוד מוצרים</button>
+        <button class="load-more-btn" onclick="loadMore()" data-i18n="loadMore">Load more products</button>
       </div>
     </div>
   </section>
 
-  <!-- Recently Viewed Section -->
   <section class="recently-viewed-section" id="recentlyViewed" style="display:none">
     <div class="recently-viewed-header">
       <h2 class="section-title" data-i18n="recentlyViewedTitle" style="margin-bottom:0">
-        <span>👁️</span> צפית לאחרונה
+        <span>👁️</span> Recently Viewed
       </h2>
-      <button class="rv-clear-btn" onclick="clearViewed()" data-i18n="clearViewed">נקה</button>
+      <button class="rv-clear-btn" onclick="clearViewed()" data-i18n="clearViewed">Clear</button>
     </div>
     <div class="recently-viewed-grid" id="recentlyViewedGrid"></div>
   </section>
 
-  <!-- Trending Section (shown on homepage) -->
   <section class="trending-section" id="trendingSection">
     <h2 class="section-title" data-i18n="trendingTitle">
-      <span>🔥</span> מוצרים טרנדיים עכשיו
+      <span>🔥</span> Trending Products Now
     </h2>
     <div class="product-grid trending-grid" id="trendingGrid"></div>
   </section>
 
-  <!-- Daily Deals Section -->
   <section class="daily-deals-section" id="dailyDealsSection" style="display:none">
-    <h2 class="section-title" data-i18n="dailyDealsTitle">⏰ דילים יומיים</h2>
+    <h2 class="section-title" data-i18n="dailyDealsTitle">⏰ Daily Deals</h2>
     <div class="deals-countdown" id="dealsCountdown">
-      <span class="deals-ends-label" data-i18n="dealsEndsIn">מסתיים בעוד</span>
+      <span class="deals-ends-label" data-i18n="dealsEndsIn">Ends in</span>
       <span class="countdown-timer" id="countdownTimer">00:00:00</span>
     </div>
     <div class="product-grid deals-grid" id="dealsGrid"></div>
   </section>
 
-  <!-- Categories Section -->
   <section class="categories-section">
     <h2 class="section-title" data-i18n="categoriesTitle">
-      <span>🏷️</span> קטגוריות פופולריות
+      <span>🏷️</span> Popular Categories
     </h2>
     <div class="categories-grid" id="categoriesGrid"></div>
   </section>
 
-  <!-- How it works -->
   <section class="how-it-works">
     <h2 class="section-title" data-i18n="howTitle">
-      <span>💡</span> איך זה עובד?
+      <span>💡</span> How It Works
     </h2>
     <div class="steps-grid">
       <div class="step">
         <div class="step-number">1</div>
-        <h3 data-i18n="step1Title">חפשי מוצר</h3>
-        <p data-i18n="step1Desc">כתבי בעברית או אנגלית מה את מחפשת</p>
+        <h3 data-i18n="step1Title">Search a product</h3>
+        <p data-i18n="step1Desc">Type what you're looking for in any language</p>
       </div>
       <div class="step">
         <div class="step-number">2</div>
-        <h3 data-i18n="step2Title">קבלי תוצאות</h3>
-        <p data-i18n="step2Desc">המערכת מחפשת את הדילים הכי טובים</p>
+        <h3 data-i18n="step2Title">Get results</h3>
+        <p data-i18n="step2Desc">Our system finds the best deals for you</p>
       </div>
       <div class="step">
         <div class="step-number">3</div>
-        <h3 data-i18n="step3Title">קני בזול</h3>
-        <p data-i18n="step3Desc">לחצי על המוצר ותועברי ישירות לאלי אקספרס</p>
+        <h3 data-i18n="step3Title">Buy for less</h3>
+        <p data-i18n="step3Desc">Click the product and go directly to AliExpress</p>
       </div>
     </div>
   </section>
 
-  <!-- Favorites Modal -->
+  <!-- Modals -->
   <div class="modal-overlay" id="favModal" style="display:none" onclick="if(event.target===this)closeFavorites()">
     <div class="modal-content">
       <div class="modal-header">
-        <h2>❤️ <span data-i18n="myFavorites">המועדפים שלי</span></h2>
+        <h2>❤️ <span data-i18n="myFavorites">My Favorites</span></h2>
         <button class="modal-close" onclick="closeFavorites()">✕</button>
       </div>
       <div class="modal-body" id="favModalBody">
-        <p class="empty-fav" data-i18n="noFavorites">עדיין לא הוספת מוצרים למועדפים</p>
+        <p class="empty-fav" data-i18n="noFavorites">No favorites added yet</p>
       </div>
     </div>
   </div>
 
-  <!-- Alerts Modal -->
   <div class="modal-overlay" id="alertModal" style="display:none" onclick="if(event.target===this)closeAlerts()">
     <div class="modal-content">
       <div class="modal-header">
-        <h2>🔔 <span data-i18n="myAlerts">התראות מחיר</span></h2>
+        <h2>🔔 <span data-i18n="myAlerts">Price Alerts</span></h2>
         <button class="modal-close" onclick="closeAlerts()">✕</button>
       </div>
       <div class="modal-body" id="alertModalBody">
-        <p class="empty-fav" data-i18n="noAlerts">אין התראות מחיר פעילות</p>
+        <p class="empty-fav" data-i18n="noAlerts">No active price alerts</p>
       </div>
     </div>
   </div>
 
-  <!-- Footer -->
   <footer class="footer">
     <div class="footer-content">
-      <p class="footer-brand">עלי תמצא לי &copy; 2026</p>
+      <p class="footer-brand">Ali Find Me &copy; 2026</p>
       <p class="footer-disclaimer" data-i18n="disclaimer">
-        האתר משתמש בקישורי שותפים (affiliate). הרכישה שלך לא תהיה יקרה יותר, אך אנו עשויים לקבל עמלה קטנה.
+        This site uses affiliate links. Your purchase won't be more expensive, but we may receive a small commission.
       </p>
     </div>
   </footer>
 
-  <!-- PWA Install Banner -->
   <div class="install-banner" id="installBanner" style="display:none">
     <div class="install-banner-content">
       <span class="install-icon">📲</span>
       <div class="install-text">
-        <strong data-i18n="installTitle">התקיני את האפליקציה!</strong>
-        <span data-i18n="installDesc">גישה מהירה לדילים ישירות מהמסך</span>
+        <strong data-i18n="installTitle">Install the app!</strong>
+        <span data-i18n="installDesc">Quick access to deals from your home screen</span>
       </div>
-      <button class="install-btn" id="installBtn" onclick="installApp()" data-i18n="installBtn">התקן</button>
+      <button class="install-btn" id="installBtn" onclick="installApp()" data-i18n="installBtn">Install</button>
       <button class="install-dismiss" onclick="dismissInstall()">✕</button>
     </div>
   </div>
 
-  <!-- Spin & Win Float Button -->
   <button class="spin-float-btn" id="spinFloatBtn" onclick="showSpinWheel()" title="Spin & Win">🎰</button>
 
-  <!-- Spin & Win Modal -->
   <div class="spin-modal-overlay" id="spinModalOverlay" style="display:none" onclick="if(event.target===this)closeSpinModal()">
     <div class="spin-modal">
       <button class="spin-modal-close" onclick="closeSpinModal()">&times;</button>
-      <h2 class="spin-title" data-i18n="spinTitle">🎰 סובב וזכה!</h2>
+      <h2 class="spin-title" data-i18n="spinTitle">🎰 Spin & Win!</h2>
       <div class="spin-wheel-wrap">
         <div class="spin-pointer">▼</div>
         <canvas id="spinCanvas" width="300" height="300"></canvas>
       </div>
-      <button class="spin-btn" id="spinBtn" onclick="spinWheel()" data-i18n="spinBtn">סובב!</button>
+      <button class="spin-btn" id="spinBtn" onclick="spinWheel()" data-i18n="spinBtn">Spin!</button>
       <div class="spin-result" id="spinResult" style="display:none"></div>
     </div>
   </div>
 
-  <!-- Points Toast -->
   <div class="points-toast" id="pointsToast"></div>
 
-  <!-- Points Modal -->
   <div class="modal-overlay" id="pointsModal" style="display:none" onclick="if(event.target===this)closePointsModal()">
     <div class="modal-content points-modal">
       <div class="modal-header">
-        <h2 data-i18n="pointsTitle">הנקודות שלי</h2>
+        <h2 data-i18n="pointsTitle">My Points</h2>
         <button class="modal-close" onclick="closePointsModal()">&times;</button>
       </div>
       <div class="modal-body" id="pointsModalBody"></div>
     </div>
   </div>
 
-  <script src="js/app.js?v=20260316k"></script>
+  <script src="../js/app.js?v=20260316k"></script>
 </body>
 </html>

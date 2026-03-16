@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+
+  <!-- Hebrew (default) -->
+  <url>
+    <loc>https://alifindme.com/</loc>
+    <lastmod>2026-03-16</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="he" href="https://alifindme.com/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://alifindme.com/en/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://alifindme.com/ar/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://alifindme.com/ru/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://alifindme.com/es/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://alifindme.com/pt/"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://alifindme.com/tr/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://alifindme.com/fr/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://alifindme.com/"/>
+  </url>
+
+  <!-- English -->
+  <url>
+    <loc>https://alifindme.com/en/</loc>
+    <lastmod>2026-03-16</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="he" href="https://alifindme.com/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://alifindme.com/en/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://alifindme.com/ar/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://alifindme.com/ru/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://alifindme.com/es/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://alifindme.com/pt/"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://alifindme.com/tr/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://alifindme.com/fr/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://alifindme.com/"/>
+  </url>
+
+  <!-- Arabic -->
+  <url>
+    <loc>https://alifindme.com/ar/</loc>
+    <lastmod>2026-03-16</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="he" href="https://alifindme.com/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://alifindme.com/en/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://alifindme.com/ar/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://alifindme.com/ru/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://alifindme.com/es/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://alifindme.com/pt/"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://alifindme.com/tr/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://alifindme.com/fr/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://alifindme.com/"/>
+  </url>
+
+  <!-- Russian -->
+  <url>
+    <loc>https://alifindme.com/ru/</loc>
+    <lastmod>2026-03-16</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="he" href="https://alifindme.com/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://alifindme.com/en/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://alifindme.com/ar/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://alifindme.com/ru/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://alifindme.com/es/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://alifindme.com/pt/"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://alifindme.com/tr/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://alifindme.com/fr/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://alifindme.com/"/>
+  </url>
+
+  <!-- Spanish -->
+  <url>
+    <loc>https://alifindme.com/es/</loc>
+    <lastmod>2026-03-16</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="he" href="https://alifindme.com/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://alifindme.com/en/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://alifindme.com/ar/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://alifindme.com/ru/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://alifindme.com/es/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://alifindme.com/pt/"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://alifindme.com/tr/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://alifindme.com/fr/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://alifindme.com/"/>
+  </url>
+
+  <!-- Portuguese -->
+  <url>
+    <loc>https://alifindme.com/pt/</loc>
+    <lastmod>2026-03-16</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="he" href="https://alifindme.com/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://alifindme.com/en/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://alifindme.com/ar/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://alifindme.com/ru/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://alifindme.com/es/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://alifindme.com/pt/"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://alifindme.com/tr/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://alifindme.com/fr/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://alifindme.com/"/>
+  </url>
+
+  <!-- Turkish -->
+  <url>
+    <loc>https://alifindme.com/tr/</loc>
+    <lastmod>2026-03-16</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="he" href="https://alifindme.com/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://alifindme.com/en/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://alifindme.com/ar/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://alifindme.com/ru/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://alifindme.com/es/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://alifindme.com/pt/"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://alifindme.com/tr/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://alifindme.com/fr/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://alifindme.com/"/>
+  </url>
+
+  <!-- French -->
+  <url>
+    <loc>https://alifindme.com/fr/</loc>
+    <lastmod>2026-03-16</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="he" href="https://alifindme.com/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://alifindme.com/en/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://alifindme.com/ar/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://alifindme.com/ru/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://alifindme.com/es/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://alifindme.com/pt/"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://alifindme.com/tr/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://alifindme.com/fr/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://alifindme.com/"/>
+  </url>
+
+</urlset>

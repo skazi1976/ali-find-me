@@ -529,10 +529,29 @@ const LANG_COUNTRY_CURRENCY = {
 //  i18n application
 // ============================================================
 
-function setLang(lang) {
+function setLang(lang, skipNav) {
   if (!i18n[lang]) lang = "en";
   currentLang = lang;
   localStorage.setItem("ali_lang", lang);
+
+  // Navigate to locale path if user switched language (not during init)
+  if (!skipNav) {
+    const currentPath = window.location.pathname;
+    const basePath = currentPath.replace(/^\/(en|ar|ru|es|pt|tr|fr)\//, "/");
+    const isSubdir = /^\/(en|ar|ru|es|pt|tr|fr)\//.test(currentPath);
+    const isHebrew = lang === "he";
+    if (isHebrew && isSubdir) {
+      // Go to root
+      window.location.href = basePath + window.location.search;
+      return;
+    } else if (!isHebrew) {
+      const targetPath = "/" + lang + "/";
+      if (!currentPath.startsWith(targetPath)) {
+        window.location.href = targetPath + window.location.search;
+        return;
+      }
+    }
+  }
 
   // Update currency/country based on language
   const geo = LANG_COUNTRY_CURRENCY[lang] || LANG_COUNTRY_CURRENCY.en;
@@ -1990,14 +2009,17 @@ if (urlQuery) {
   setTimeout(() => sendMessage(), 500);
 }
 
-// Init language from URL param > localStorage > browser detect
+// Init language from path > URL param > localStorage > browser detect
+const pathLangMatch = window.location.pathname.match(/^\/(en|ar|ru|es|pt|tr|fr)\//);
 const urlLangParam = new URLSearchParams(window.location.search).get("lang");
-if (urlLangParam && i18n[urlLangParam]) {
+if (pathLangMatch && i18n[pathLangMatch[1]]) {
+  currentLang = pathLangMatch[1];
+} else if (urlLangParam && i18n[urlLangParam]) {
   currentLang = urlLangParam;
 } else {
   currentLang = detectLanguage();
 }
-setLang(currentLang);
+setLang(currentLang, true);
 updateFavBadge();
 updateAlertBadge();
 renderHistory();
