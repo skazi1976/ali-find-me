@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "ali-find-me",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["http-server", "D:\yupoo\ali-find-me", "-p", "8090", "-c-1"],
+      "port": 8090
+    }
+  ]
+}

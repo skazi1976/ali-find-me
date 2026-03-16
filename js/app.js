@@ -110,7 +110,216 @@ const i18n = {
     cancel: "Cancel",
     priceDropped: "Price dropped!",
     targetPrice: "Target price",
+  },
+  ar: {
+    heroTitle: "\u2728 \u0627\u0639\u062b\u0631 \u0639\u0644\u0649 \u0627\u0644\u0645\u0646\u062a\u062c \u0627\u0644\u0645\u062b\u0627\u0644\u064a",
+    heroSubtitle: "\u0627\u0628\u062d\u062b \u0639\u0646 \u0645\u0646\u062a\u062c\u0627\u062a \u0627\u0644\u0645\u0648\u0636\u0629 \u0648\u0627\u0644\u0644\u0627\u064a\u0641\u0633\u062a\u0627\u064a\u0644 \u0628\u0623\u0641\u0636\u0644 \u0627\u0644\u0623\u0633\u0639\u0627\u0631 \u0639\u0644\u0649 \u0639\u0644\u064a \u0625\u0643\u0633\u0628\u0631\u0633",
+    welcome: "\u0645\u0631\u062d\u0628\u0627! \u0623\u0646\u0627 \u0647\u0646\u0627 \u0644\u0645\u0633\u0627\u0639\u062f\u062a\u0643 \u0641\u064a \u0627\u0644\u0639\u062b\u0648\u0631 \u0639\u0644\u0649 \u0645\u0646\u062a\u062c\u0627\u062a \u0631\u0627\u0626\u0639\u0629 \u0639\u0644\u0649 \u0639\u0644\u064a \u0625\u0643\u0633\u0628\u0631\u0633.\n\u0623\u062e\u0628\u0631\u0646\u064a \u0645\u0627\u0630\u0627 \u062a\u0628\u062d\u062b \u0639\u0646\u0647 \u0648\u0633\u0623\u062c\u062f \u0644\u0643 \u0623\u0641\u0636\u0644 \u0627\u0644\u0639\u0631\u0648\u0636! \ud83d\udecd\ufe0f",
+    inputPlaceholder: "\u0639\u0646 \u0645\u0627\u0630\u0627 \u062a\u0628\u062d\u062b\u061f (\u0645\u062b\u0644\u0627: \u0641\u0633\u062a\u0627\u0646 \u0633\u0647\u0631\u0629\u060c \u062a\u0627\u064a\u062a\u0633 \u0631\u064a\u0627\u0636\u064a...)",
+    searching: "\u062c\u0627\u0631\u064a \u0627\u0644\u0628\u062d\u062b...",
+    foundResults: "\u0648\u062c\u062f\u062a {count} \u0645\u0646\u062a\u062c! \u0625\u0644\u064a\u0643 \u0623\u0641\u0636\u0644 \u0627\u0644\u0639\u0631\u0648\u0636:",
+    noResults: "\u0644\u0645 \u064a\u062a\u0645 \u0627\u0644\u0639\u062b\u0648\u0631 \u0639\u0644\u0649 \u0646\u062a\u0627\u0626\u062c. \u062c\u0631\u0628 \u0643\u0644\u0645\u0629 \u0623\u062e\u0631\u0649:",
+    viewProduct: "\u0639\u0631\u0636 \u0648\u0634\u0631\u0627\u0621 \u2192",
+    orders: "\u0637\u0644\u0628",
+    clearResults: "\u0645\u0633\u062d \u0627\u0644\u0646\u062a\u0627\u0626\u062c",
+    loadMore: "\u062a\u062d\u0645\u064a\u0644 \u0627\u0644\u0645\u0632\u064a\u062f",
+    categoriesTitle: "\ud83c\udff7\ufe0f \u0627\u0644\u0641\u0626\u0627\u062a \u0627\u0644\u0634\u0627\u0626\u0639\u0629",
+    trendingTitle: "\ud83d\udd25 \u0627\u0644\u0631\u0627\u0626\u062c \u0627\u0644\u0622\u0646",
+    howTitle: "\ud83d\udca1 \u0643\u064a\u0641 \u064a\u0639\u0645\u0644\u061f",
+    step1Title: "\u0627\u0628\u062d\u062b",
+    step1Desc: "\u0627\u0643\u062a\u0628 \u0645\u0627 \u062a\u0628\u062d\u062b \u0639\u0646\u0647 \u0628\u0644\u063a\u062a\u0643",
+    step2Title: "\u0627\u062d\u0635\u0644 \u0639\u0644\u0649 \u0627\u0644\u0646\u062a\u0627\u0626\u062c",
+    step2Desc: "\u0646\u0638\u0627\u0645\u0646\u0627 \u064a\u062c\u062f \u0644\u0643 \u0623\u0641\u0636\u0644 \u0627\u0644\u0639\u0631\u0648\u0636",
+    step3Title: "\u0627\u0634\u062a\u0631\u0650 \u0628\u0633\u0639\u0631 \u0645\u0646\u0627\u0633\u0628",
+    step3Desc: "\u0627\u0636\u063a\u0637 \u0639\u0644\u0649 \u0627\u0644\u0645\u0646\u062a\u062c \u0648\u0627\u0646\u062a\u0642\u0644 \u0645\u0628\u0627\u0634\u0631\u0629 \u0625\u0644\u0649 \u0639\u0644\u064a \u0625\u0643\u0633\u0628\u0631\u0633",
+    disclaimer: "\u0647\u0630\u0627 \u0627\u0644\u0645\u0648\u0642\u0639 \u064a\u0633\u062a\u062e\u062f\u0645 \u0631\u0648\u0627\u0628\u0637 \u062a\u0633\u0648\u064a\u0642\u064a\u0629. \u0644\u0646 \u062a\u062f\u0641\u0639 \u0623\u0643\u062b\u0631\u060c \u0644\u0643\u0646\u0646\u0627 \u0642\u062f \u0646\u062d\u0635\u0644 \u0639\u0644\u0649 \u0639\u0645\u0648\u0644\u0629 \u0628\u0633\u064a\u0637\u0629.",
+    recentSearches: "\u0627\u0644\u0628\u062d\u062b \u0627\u0644\u0623\u062e\u064a\u0631:",
+    alsoSearch: "\u064a\u0628\u062d\u062b\u0648\u0646 \u0623\u064a\u0636\u0627\u064b:",
+    sortBy: "\u062a\u0631\u062a\u064a\u0628:",
+    priceRange: "\u0627\u0644\u0633\u0639\u0631:",
+    apply: "\u062a\u0637\u0628\u064a\u0642",
+    sortPopular: "\u0627\u0644\u0623\u0643\u062b\u0631 \u0645\u0628\u064a\u0639\u0627\u064b",
+    sortCheap: "\u0627\u0644\u0623\u0631\u062e\u0635",
+    sortExpensive: "\u0627\u0644\u0623\u063a\u0644\u0649",
+    sortNew: "\u0627\u0644\u0623\u062d\u062f\u062b",
+    sortRating: "\u0627\u0644\u062a\u0642\u064a\u064a\u0645",
+    myFavorites: "\u0627\u0644\u0645\u0641\u0636\u0644\u0629",
+    noFavorites: "\u0644\u0627 \u062a\u0648\u062c\u062f \u0645\u0641\u0636\u0644\u0627\u062a \u0628\u0639\u062f",
+    shareText: "\u0634\u0627\u0647\u062f \u0645\u0627 \u0648\u062c\u062f\u062a\u0647 \u0639\u0644\u0649 \u0639\u0644\u064a \u0625\u0643\u0633\u0628\u0631\u0633!",
+    recentlyViewedTitle: "\ud83d\udc41\ufe0f \u0634\u0648\u0647\u062f \u0645\u0624\u062e\u0631\u0627\u064b",
+    clearViewed: "\u0645\u0633\u062d",
+    myAlerts: "\u062a\u0646\u0628\u064a\u0647\u0627\u062a \u0627\u0644\u0633\u0639\u0631",
+    noAlerts: "\u0644\u0627 \u062a\u0648\u062c\u062f \u062a\u0646\u0628\u064a\u0647\u0627\u062a",
+    setAlert: "\u062a\u0646\u0628\u064a\u0647 \u0639\u0646\u062f\u0645\u0627 \u064a\u0646\u062e\u0641\u0636 \u0627\u0644\u0633\u0639\u0631 \u0625\u0644\u0649:",
+    save: "\u062d\u0641\u0638",
+    cancel: "\u0625\u0644\u063a\u0627\u0621",
+    priceDropped: "\u0627\u0646\u062e\u0641\u0636 \u0627\u0644\u0633\u0639\u0631!",
+    targetPrice: "\u0627\u0644\u0633\u0639\u0631 \u0627\u0644\u0645\u0633\u062a\u0647\u062f\u0641",
+  },
+  ru: {
+    heroTitle: "\u2728 \u041d\u0430\u0439\u0434\u0438 \u0438\u0434\u0435\u0430\u043b\u044c\u043d\u044b\u0439 \u0442\u043e\u0432\u0430\u0440",
+    heroSubtitle: "\u041f\u043e\u0438\u0441\u043a \u043c\u043e\u0434\u043d\u044b\u0445 \u0442\u043e\u0432\u0430\u0440\u043e\u0432 \u043f\u043e \u043b\u0443\u0447\u0448\u0438\u043c \u0446\u0435\u043d\u0430\u043c \u043d\u0430 AliExpress",
+    welcome: "\u041f\u0440\u0438\u0432\u0435\u0442! \u042f \u043f\u043e\u043c\u043e\u0433\u0443 \u0442\u0435\u0431\u0435 \u043d\u0430\u0439\u0442\u0438 \u043b\u0443\u0447\u0448\u0438\u0435 \u0442\u043e\u0432\u0430\u0440\u044b \u043d\u0430 AliExpress.\n\u0420\u0430\u0441\u0441\u043a\u0430\u0436\u0438 \u0447\u0442\u043e \u0438\u0449\u0435\u0448\u044c \u0438 \u044f \u043d\u0430\u0439\u0434\u0443 \u043b\u0443\u0447\u0448\u0438\u0435 \u0441\u043a\u0438\u0434\u043a\u0438! \ud83d\udecd\ufe0f",
+    inputPlaceholder: "\u0427\u0442\u043e \u0438\u0449\u0435\u0448\u044c? (\u043d\u0430\u043f\u0440.: \u0432\u0435\u0447\u0435\u0440\u043d\u0435\u0435 \u043f\u043b\u0430\u0442\u044c\u0435, \u043a\u0440\u043e\u0441\u0441\u043e\u0432\u043a\u0438...)",
+    searching: "\u0418\u0449\u0443...",
+    foundResults: "\u041d\u0430\u0448\u043b\u043e\u0441\u044c {count} \u0442\u043e\u0432\u0430\u0440\u043e\u0432! \u041b\u0443\u0447\u0448\u0438\u0435 \u043f\u0440\u0435\u0434\u043b\u043e\u0436\u0435\u043d\u0438\u044f:",
+    noResults: "\u041d\u0438\u0447\u0435\u0433\u043e \u043d\u0435 \u043d\u0430\u0439\u0434\u0435\u043d\u043e. \u041f\u043e\u043f\u0440\u043e\u0431\u0443\u0439 \u0434\u0440\u0443\u0433\u043e\u0435 \u0441\u043b\u043e\u0432\u043e:",
+    viewProduct: "\u0421\u043c\u043e\u0442\u0440\u0435\u0442\u044c \u0438 \u043a\u0443\u043f\u0438\u0442\u044c \u2192",
+    orders: "\u0437\u0430\u043a\u0430\u0437\u043e\u0432",
+    clearResults: "\u041e\u0447\u0438\u0441\u0442\u0438\u0442\u044c",
+    loadMore: "\u0417\u0430\u0433\u0440\u0443\u0437\u0438\u0442\u044c \u0435\u0449\u0451",
+    categoriesTitle: "\ud83c\udff7\ufe0f \u041f\u043e\u043f\u0443\u043b\u044f\u0440\u043d\u044b\u0435 \u043a\u0430\u0442\u0435\u0433\u043e\u0440\u0438\u0438",
+    trendingTitle: "\ud83d\udd25 \u0422\u0440\u0435\u043d\u0434\u044b \u0441\u0435\u0439\u0447\u0430\u0441",
+    howTitle: "\ud83d\udca1 \u041a\u0430\u043a \u044d\u0442\u043e \u0440\u0430\u0431\u043e\u0442\u0430\u0435\u0442?",
+    step1Title: "\u041f\u043e\u0438\u0441\u043a",
+    step1Desc: "\u041d\u0430\u043f\u0438\u0448\u0438 \u0447\u0442\u043e \u0438\u0449\u0435\u0448\u044c \u043d\u0430 \u0441\u0432\u043e\u0451\u043c \u044f\u0437\u044b\u043a\u0435",
+    step2Title: "\u0420\u0435\u0437\u0443\u043b\u044c\u0442\u0430\u0442\u044b",
+    step2Desc: "\u041d\u0430\u0448\u0430 \u0441\u0438\u0441\u0442\u0435\u043c\u0430 \u043d\u0430\u0439\u0434\u0451\u0442 \u043b\u0443\u0447\u0448\u0438\u0435 \u0446\u0435\u043d\u044b",
+    step3Title: "\u041a\u0443\u043f\u0438 \u0432\u044b\u0433\u043e\u0434\u043d\u043e",
+    step3Desc: "\u041d\u0430\u0436\u043c\u0438 \u043d\u0430 \u0442\u043e\u0432\u0430\u0440 \u0438 \u043f\u0435\u0440\u0435\u0439\u0434\u0438 \u043d\u0430 AliExpress",
+    disclaimer: "\u0421\u0430\u0439\u0442 \u0438\u0441\u043f\u043e\u043b\u044c\u0437\u0443\u0435\u0442 \u043f\u0430\u0440\u0442\u043d\u0451\u0440\u0441\u043a\u0438\u0435 \u0441\u0441\u044b\u043b\u043a\u0438. \u0412\u0430\u0448\u0430 \u043f\u043e\u043a\u0443\u043f\u043a\u0430 \u043d\u0435 \u0431\u0443\u0434\u0435\u0442 \u0441\u0442\u043e\u0438\u0442\u044c \u0434\u043e\u0440\u043e\u0436\u0435.",
+    recentSearches: "\u041d\u0435\u0434\u0430\u0432\u043d\u0438\u0435 \u043f\u043e\u0438\u0441\u043a\u0438:",
+    alsoSearch: "\u0422\u0430\u043a\u0436\u0435 \u0438\u0449\u0443\u0442:",
+    sortBy: "\u0421\u043e\u0440\u0442\u0438\u0440\u043e\u0432\u043a\u0430:", priceRange: "\u0426\u0435\u043d\u0430:", apply: "\u041f\u0440\u0438\u043c\u0435\u043d\u0438\u0442\u044c",
+    sortPopular: "\u041f\u043e\u043f\u0443\u043b\u044f\u0440\u043d\u044b\u0435", sortCheap: "\u0414\u0435\u0448\u0435\u0432\u043b\u0435", sortExpensive: "\u0414\u043e\u0440\u043e\u0436\u0435", sortNew: "\u041d\u043e\u0432\u0438\u043d\u043a\u0438", sortRating: "\u0420\u0435\u0439\u0442\u0438\u043d\u0433",
+    myFavorites: "\u0418\u0437\u0431\u0440\u0430\u043d\u043d\u043e\u0435", noFavorites: "\u041d\u0435\u0442 \u0438\u0437\u0431\u0440\u0430\u043d\u043d\u044b\u0445",
+    shareText: "\u0421\u043c\u043e\u0442\u0440\u0438 \u0447\u0442\u043e \u044f \u043d\u0430\u0448\u0451\u043b \u043d\u0430 AliExpress!",
+    recentlyViewedTitle: "\ud83d\udc41\ufe0f \u041d\u0435\u0434\u0430\u0432\u043d\u043e \u043f\u0440\u043e\u0441\u043c\u043e\u0442\u0440\u0435\u043d\u043d\u044b\u0435", clearViewed: "\u041e\u0447\u0438\u0441\u0442\u0438\u0442\u044c",
+    myAlerts: "\u0423\u0432\u0435\u0434\u043e\u043c\u043b\u0435\u043d\u0438\u044f \u043e \u0446\u0435\u043d\u0435", noAlerts: "\u041d\u0435\u0442 \u0443\u0432\u0435\u0434\u043e\u043c\u043b\u0435\u043d\u0438\u0439",
+    setAlert: "\u0423\u0432\u0435\u0434\u043e\u043c\u0438\u0442\u044c \u043a\u043e\u0433\u0434\u0430 \u0446\u0435\u043d\u0430 \u0443\u043f\u0430\u0434\u0451\u0442 \u0434\u043e:",
+    save: "\u0421\u043e\u0445\u0440\u0430\u043d\u0438\u0442\u044c", cancel: "\u041e\u0442\u043c\u0435\u043d\u0430", priceDropped: "\u0426\u0435\u043d\u0430 \u0441\u043d\u0438\u0437\u0438\u043b\u0430\u0441\u044c!", targetPrice: "\u0426\u0435\u043b\u0435\u0432\u0430\u044f \u0446\u0435\u043d\u0430",
+  },
+  es: {
+    heroTitle: "\u2728 Encuentra el producto perfecto",
+    heroSubtitle: "Busca productos de moda y lifestyle a los mejores precios en AliExpress",
+    welcome: "\u00a1Hola! Estoy aqu\u00ed para ayudarte a encontrar productos incre\u00edbles en AliExpress.\nDime qu\u00e9 buscas y encontrar\u00e9 las mejores ofertas! \ud83d\udecd\ufe0f",
+    inputPlaceholder: "\u00bfQu\u00e9 buscas? (ej: vestido de noche, zapatillas deportivas...)",
+    searching: "Buscando...",
+    foundResults: "\u00a1Encontr\u00e9 {count} productos! Las mejores ofertas:",
+    noResults: "No se encontraron resultados. Prueba otra palabra:",
+    viewProduct: "Ver y comprar \u2192",
+    orders: "pedidos",
+    clearResults: "Limpiar",
+    loadMore: "Cargar m\u00e1s",
+    categoriesTitle: "\ud83c\udff7\ufe0f Categor\u00edas populares",
+    trendingTitle: "\ud83d\udd25 Tendencias ahora",
+    howTitle: "\ud83d\udca1 \u00bfC\u00f3mo funciona?",
+    step1Title: "Busca", step1Desc: "Escribe lo que buscas en tu idioma",
+    step2Title: "Resultados", step2Desc: "Nuestro sistema encuentra las mejores ofertas",
+    step3Title: "Compra barato", step3Desc: "Haz clic en el producto e ir\u00e1s a AliExpress",
+    disclaimer: "Este sitio usa enlaces de afiliados. Tu compra no costar\u00e1 m\u00e1s, pero podemos recibir una peque\u00f1a comisi\u00f3n.",
+    recentSearches: "B\u00fasquedas recientes:", alsoSearch: "Tambi\u00e9n buscan:",
+    sortBy: "Ordenar:", priceRange: "Precio:", apply: "Filtrar",
+    sortPopular: "M\u00e1s vendidos", sortCheap: "M\u00e1s baratos", sortExpensive: "M\u00e1s caros", sortNew: "Nuevos", sortRating: "Valoraci\u00f3n",
+    myFavorites: "Mis favoritos", noFavorites: "A\u00fan no hay favoritos",
+    shareText: "\u00a1Mira lo que encontr\u00e9 en AliExpress!",
+    recentlyViewedTitle: "\ud83d\udc41\ufe0f Vistos recientemente", clearViewed: "Limpiar",
+    myAlerts: "Alertas de precio", noAlerts: "Sin alertas activas",
+    setAlert: "Alertar cuando el precio baje a:", save: "Guardar", cancel: "Cancelar",
+    priceDropped: "\u00a1Baj\u00f3 el precio!", targetPrice: "Precio objetivo",
+  },
+  pt: {
+    heroTitle: "\u2728 Encontre o produto perfeito",
+    heroSubtitle: "Pesquise produtos de moda e lifestyle com os melhores pre\u00e7os no AliExpress",
+    welcome: "Oi! Estou aqui para te ajudar a encontrar produtos incr\u00edveis no AliExpress.\nMe diga o que voc\u00ea procura e vou encontrar as melhores ofertas! \ud83d\udecd\ufe0f",
+    inputPlaceholder: "O que voc\u00ea procura? (ex: vestido de festa, t\u00eanis esportivo...)",
+    searching: "Pesquisando...",
+    foundResults: "Encontrei {count} produtos! Melhores ofertas:",
+    noResults: "Nenhum resultado encontrado. Tente outra palavra:",
+    viewProduct: "Ver e comprar \u2192",
+    orders: "pedidos",
+    clearResults: "Limpar",
+    loadMore: "Carregar mais",
+    categoriesTitle: "\ud83c\udff7\ufe0f Categorias populares",
+    trendingTitle: "\ud83d\udd25 Em alta agora",
+    howTitle: "\ud83d\udca1 Como funciona?",
+    step1Title: "Pesquise", step1Desc: "Digite o que voc\u00ea procura no seu idioma",
+    step2Title: "Resultados", step2Desc: "Nosso sistema encontra as melhores ofertas",
+    step3Title: "Compre barato", step3Desc: "Clique no produto e v\u00e1 direto ao AliExpress",
+    disclaimer: "Este site usa links de afiliados. Sua compra n\u00e3o custar\u00e1 mais, mas podemos receber uma pequena comiss\u00e3o.",
+    recentSearches: "Pesquisas recentes:", alsoSearch: "Tamb\u00e9m pesquisam:",
+    sortBy: "Ordenar:", priceRange: "Pre\u00e7o:", apply: "Filtrar",
+    sortPopular: "Mais vendidos", sortCheap: "Mais baratos", sortExpensive: "Mais caros", sortNew: "Novos", sortRating: "Avalia\u00e7\u00e3o",
+    myFavorites: "Meus favoritos", noFavorites: "Ainda sem favoritos",
+    shareText: "Veja o que encontrei no AliExpress!",
+    recentlyViewedTitle: "\ud83d\udc41\ufe0f Vistos recentemente", clearViewed: "Limpar",
+    myAlerts: "Alertas de pre\u00e7o", noAlerts: "Sem alertas ativos",
+    setAlert: "Alertar quando o pre\u00e7o cair para:", save: "Salvar", cancel: "Cancelar",
+    priceDropped: "Pre\u00e7o caiu!", targetPrice: "Pre\u00e7o alvo",
+  },
+  tr: {
+    heroTitle: "\u2728 M\u00fckemmel \u00fcr\u00fcn\u00fc bul",
+    heroSubtitle: "AliExpress'te en iyi fiyatlarla moda ve ya\u015fam \u00fcr\u00fcnlerini ara",
+    welcome: "Merhaba! AliExpress'te harika \u00fcr\u00fcnler bulmana yard\u0131mc\u0131 olaca\u011f\u0131m.\nNe arad\u0131\u011f\u0131n\u0131 s\u00f6yle, en iyi f\u0131rsatlar\u0131 bulal\u0131m! \ud83d\udecd\ufe0f",
+    inputPlaceholder: "Ne ar\u0131yorsun? (\u00f6r: gece elbisesi, spor ayakkab\u0131...)",
+    searching: "Aran\u0131yor...",
+    foundResults: "{count} \u00fcr\u00fcn bulundu! En iyi f\u0131rsatlar:",
+    noResults: "Sonu\u00e7 bulunamad\u0131. Ba\u015fka bir kelime dene:",
+    viewProduct: "G\u00f6r\u00fcnt\u00fcle ve sat\u0131n al \u2192",
+    orders: "sipari\u015f",
+    clearResults: "Temizle",
+    loadMore: "Daha fazla y\u00fckle",
+    categoriesTitle: "\ud83c\udff7\ufe0f Pop\u00fcler kategoriler",
+    trendingTitle: "\ud83d\udd25 \u015eimdi trend",
+    howTitle: "\ud83d\udca1 Nas\u0131l \u00e7al\u0131\u015f\u0131r?",
+    step1Title: "Ara", step1Desc: "Arad\u0131\u011f\u0131n\u0131 kendi dilinde yaz",
+    step2Title: "Sonu\u00e7lar", step2Desc: "Sistemimiz en iyi fiyatlar\u0131 bulur",
+    step3Title: "Ucuza al", step3Desc: "\u00dcr\u00fcne t\u0131kla ve AliExpress'e git",
+    disclaimer: "Bu site ortakl\u0131k ba\u011flant\u0131lar\u0131 kullan\u0131r. Al\u0131\u015fveri\u015finiz daha pahal\u0131ya mal olmaz.",
+    recentSearches: "Son aramalar:", alsoSearch: "Ba\u015fkalar\u0131 da ar\u0131yor:",
+    sortBy: "S\u0131rala:", priceRange: "Fiyat:", apply: "Filtrele",
+    sortPopular: "En \u00e7ok satan", sortCheap: "En ucuz", sortExpensive: "En pahal\u0131", sortNew: "En yeni", sortRating: "Puan",
+    myFavorites: "Favorilerim", noFavorites: "Hen\u00fcz favori yok",
+    shareText: "AliExpress'te ne buldum bak!",
+    recentlyViewedTitle: "\ud83d\udc41\ufe0f Son g\u00f6r\u00fcnt\u00fclenenler", clearViewed: "Temizle",
+    myAlerts: "Fiyat uyar\u0131lar\u0131", noAlerts: "Aktif uyar\u0131 yok",
+    setAlert: "Fiyat d\u00fc\u015ft\u00fc\u011f\u00fcnde uyar:", save: "Kaydet", cancel: "\u0130ptal",
+    priceDropped: "Fiyat d\u00fc\u015ft\u00fc!", targetPrice: "Hedef fiyat",
+  },
+  fr: {
+    heroTitle: "\u2728 Trouvez le produit parfait",
+    heroSubtitle: "Recherchez des produits mode et lifestyle aux meilleurs prix sur AliExpress",
+    welcome: "Salut! Je suis l\u00e0 pour vous aider \u00e0 trouver des produits incroyables sur AliExpress.\nDites-moi ce que vous cherchez et je trouverai les meilleures offres! \ud83d\udecd\ufe0f",
+    inputPlaceholder: "Que cherchez-vous? (ex: robe de soir\u00e9e, baskets sport...)",
+    searching: "Recherche...",
+    foundResults: "{count} produits trouv\u00e9s! Meilleures offres:",
+    noResults: "Aucun r\u00e9sultat. Essayez un autre mot:",
+    viewProduct: "Voir et acheter \u2192",
+    orders: "commandes",
+    clearResults: "Effacer",
+    loadMore: "Charger plus",
+    categoriesTitle: "\ud83c\udff7\ufe0f Cat\u00e9gories populaires",
+    trendingTitle: "\ud83d\udd25 Tendances maintenant",
+    howTitle: "\ud83d\udca1 Comment \u00e7a marche?",
+    step1Title: "Cherchez", step1Desc: "\u00c9crivez ce que vous cherchez dans votre langue",
+    step2Title: "R\u00e9sultats", step2Desc: "Notre syst\u00e8me trouve les meilleures offres",
+    step3Title: "Achetez pas cher", step3Desc: "Cliquez sur le produit et allez sur AliExpress",
+    disclaimer: "Ce site utilise des liens d'affiliation. Votre achat ne co\u00fbtera pas plus cher.",
+    recentSearches: "Recherches r\u00e9centes:", alsoSearch: "Recherchent aussi:",
+    sortBy: "Trier:", priceRange: "Prix:", apply: "Filtrer",
+    sortPopular: "Plus vendus", sortCheap: "Moins cher", sortExpensive: "Plus cher", sortNew: "Nouveaux", sortRating: "Note",
+    myFavorites: "Mes favoris", noFavorites: "Pas encore de favoris",
+    shareText: "Regarde ce que j'ai trouv\u00e9 sur AliExpress!",
+    recentlyViewedTitle: "\ud83d\udc41\ufe0f Vus r\u00e9cemment", clearViewed: "Effacer",
+    myAlerts: "Alertes prix", noAlerts: "Pas d'alertes actives",
+    setAlert: "Alerter quand le prix descend \u00e0:", save: "Sauver", cancel: "Annuler",
+    priceDropped: "Prix en baisse!", targetPrice: "Prix cible",
   }
+};
+
+// RTL languages
+const RTL_LANGS = new Set(["he", "ar"]);
+
+// Language metadata for selector
+const LANG_META = {
+  he: { flag: "\ud83c\uddee\ud83c\uddf1", name: "\u05e2\u05d1\u05e8\u05d9\u05ea" },
+  en: { flag: "\ud83c\uddfa\ud83c\uddf8", name: "English" },
+  ar: { flag: "\ud83c\uddf8\ud83c\udde6", name: "\u0627\u0644\u0639\u0631\u0628\u064a\u0629" },
+  ru: { flag: "\ud83c\uddf7\ud83c\uddfa", name: "\u0420\u0443\u0441\u0441\u043a\u0438\u0439" },
+  es: { flag: "\ud83c\uddea\ud83c\uddf8", name: "Espa\u00f1ol" },
+  pt: { flag: "\ud83c\udde7\ud83c\uddf7", name: "Portugu\u00eas" },
+  tr: { flag: "\ud83c\uddf9\ud83c\uddf7", name: "T\u00fcrk\u00e7e" },
+  fr: { flag: "\ud83c\uddeb\ud83c\uddf7", name: "Fran\u00e7ais" },
 };
 
 // ============================================================
@@ -118,14 +327,28 @@ const i18n = {
 // ============================================================
 
 function setLang(lang) {
+  if (!i18n[lang]) lang = "en";
   currentLang = lang;
   localStorage.setItem("ali_lang", lang);
 
-  document.documentElement.lang = lang === "he" ? "he" : "en";
-  document.documentElement.dir = lang === "he" ? "rtl" : "ltr";
+  const isRTL = RTL_LANGS.has(lang);
+  document.documentElement.lang = lang;
+  document.documentElement.dir = isRTL ? "rtl" : "ltr";
 
-  document.getElementById("langHe").classList.toggle("active", lang === "he");
-  document.getElementById("langEn").classList.toggle("active", lang === "en");
+  // Update language selector
+  const langSelector = document.getElementById("langSelector");
+  if (langSelector) {
+    langSelector.value = lang;
+  }
+  // Update flag display
+  const langFlag = document.getElementById("langFlag");
+  if (langFlag && LANG_META[lang]) {
+    langFlag.textContent = LANG_META[lang].flag;
+  }
+
+  // Close language dropdown if open
+  const langDropdown = document.getElementById("langDropdown");
+  if (langDropdown) langDropdown.classList.remove("open");
 
   document.querySelectorAll("[data-i18n]").forEach(el => {
     const key = el.getAttribute("data-i18n");
@@ -151,6 +374,19 @@ function setLang(lang) {
   renderHistory();
   loadTrending();
   loadRecentlyViewed();
+}
+
+function toggleLangDropdown() {
+  const dd = document.getElementById("langDropdown");
+  if (dd) dd.classList.toggle("open");
+}
+
+// Auto-detect language from browser
+function detectLanguage() {
+  const saved = localStorage.getItem("ali_lang");
+  if (saved && i18n[saved]) return saved;
+  const browserLang = (navigator.language || navigator.userLanguage || "en").substring(0, 2).toLowerCase();
+  return i18n[browserLang] ? browserLang : "en";
 }
 
 // ============================================================
@@ -1003,9 +1239,24 @@ if (urlQuery) {
   setTimeout(() => sendMessage(), 500);
 }
 
-// Init language & features
+// Init language from URL param > localStorage > browser detect
+const urlLangParam = new URLSearchParams(window.location.search).get("lang");
+if (urlLangParam && i18n[urlLangParam]) {
+  currentLang = urlLangParam;
+} else {
+  currentLang = detectLanguage();
+}
 setLang(currentLang);
 updateFavBadge();
 updateAlertBadge();
 renderHistory();
 loadRecentlyViewed();
+
+// Close language dropdown on outside click
+document.addEventListener("click", (e) => {
+  const wrap = document.getElementById("langDropdownWrap");
+  if (wrap && !wrap.contains(e.target)) {
+    const dd = document.getElementById("langDropdown");
+    if (dd) dd.classList.remove("open");
+  }
+});

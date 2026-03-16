@@ -14,9 +14,18 @@
   <link rel="manifest" href="manifest.json">
   <link rel="icon" href="icons/icon-192.png" type="image/png">
   <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <link rel="alternate" hreflang="he" href="https://alifindme.com/">
+  <link rel="alternate" hreflang="en" href="https://alifindme.com/?lang=en">
+  <link rel="alternate" hreflang="ar" href="https://alifindme.com/?lang=ar">
+  <link rel="alternate" hreflang="ru" href="https://alifindme.com/?lang=ru">
+  <link rel="alternate" hreflang="es" href="https://alifindme.com/?lang=es">
+  <link rel="alternate" hreflang="pt" href="https://alifindme.com/?lang=pt">
+  <link rel="alternate" hreflang="tr" href="https://alifindme.com/?lang=tr">
+  <link rel="alternate" hreflang="fr" href="https://alifindme.com/?lang=fr">
+  <link rel="alternate" hreflang="x-default" href="https://alifindme.com/">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&family=Assistant:wght@300;400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=20260316">
+  <link rel="stylesheet" href="css/style.css?v=20260316b">
 
   <script type="application/ld+json">
   {
@@ -53,9 +62,18 @@
         <button class="theme-toggle-btn" id="themeToggle" onclick="toggleTheme()" title="מצב חשוך">
           🌙
         </button>
-        <div class="lang-toggle">
-          <button class="lang-btn" id="langEn" onclick="setLang('en')">EN</button>
-          <button class="lang-btn active" id="langHe" onclick="setLang('he')">עברית</button>
+        <div class="lang-dropdown-wrap" id="langDropdownWrap">
+          <button class="lang-flag-btn" id="langFlag" onclick="toggleLangDropdown()" title="Language">🇮🇱</button>
+          <div class="lang-dropdown" id="langDropdown">
+            <button class="lang-option" onclick="setLang('he')">🇮🇱 עברית</button>
+            <button class="lang-option" onclick="setLang('en')">🇺🇸 English</button>
+            <button class="lang-option" onclick="setLang('ar')">🇸🇦 العربية</button>
+            <button class="lang-option" onclick="setLang('ru')">🇷🇺 Русский</button>
+            <button class="lang-option" onclick="setLang('es')">🇪🇸 Español</button>
+            <button class="lang-option" onclick="setLang('pt')">🇧🇷 Português</button>
+            <button class="lang-option" onclick="setLang('tr')">🇹🇷 Türkçe</button>
+            <button class="lang-option" onclick="setLang('fr')">🇫🇷 Français</button>
+          </div>
         </div>
         <a href="admin.html" class="admin-link" title="ניהול">⚙️</a>
       </div>
@@ -238,7 +256,7 @@
     </div>
   </footer>
 
-  <script src="js/app.js?v=20260316"></script>
+  <script src="js/app.js?v=20260316b"></script>
   <script>
     // Register Service Worker
     if ('serviceWorker' in navigator) {

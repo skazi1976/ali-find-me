@@ -110,28 +110,70 @@ body {
 
 [dir="rtl"] .fav-badge { right: auto; left: -2px; }
 
-.lang-toggle {
-  display: flex;
-  background: var(--bg);
-  border-radius: 20px;
-  padding: 3px;
-  border: 1px solid var(--border);
+/* Language Dropdown */
+.lang-dropdown-wrap {
+  position: relative;
 }
 
-.lang-btn {
-  padding: 6px 14px;
-  border: none;
+.lang-flag-btn {
   background: none;
-  border-radius: 18px;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  width: 34px;
+  height: 34px;
+  font-size: 1.2rem;
   cursor: pointer;
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: var(--text-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   transition: all 0.2s;
 }
 
-.lang-btn.active {
-  background: var(--primary);
+.lang-flag-btn:hover {
+  border-color: var(--primary);
+  transform: scale(1.1);
+}
+
+.lang-dropdown {
+  display: none;
+  position: absolute;
+  top: 42px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+  z-index: 200;
+  min-width: 160px;
+  padding: 6px 0;
+  animation: dropdownFade 0.2s ease;
+}
+
+@keyframes dropdownFade {
+  from { opacity: 0; transform: translateX(-50%) translateY(-8px); }
+  to { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+
+.lang-dropdown.open { display: block; }
+
+.lang-option {
+  display: block;
+  width: 100%;
+  padding: 8px 16px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 0.9rem;
+  text-align: right;
+  white-space: nowrap;
+  transition: background 0.15s;
+}
+
+[dir="ltr"] .lang-option { text-align: left; }
+
+.lang-option:hover {
+  background: var(--primary-light);
   color: #fff;
 }
 
@@ -1084,8 +1126,9 @@ body {
   }
   .nav-icon-btn { font-size: 0.9rem; padding: 4px; }
   .theme-toggle-btn { font-size: 0.9rem; padding: 4px; }
-  .lang-toggle { padding: 1px; }
-  .lang-btn { padding: 2px 6px; font-size: 0.65rem; }
+  .lang-flag-btn { width: 28px; height: 28px; font-size: 1rem; }
+  .lang-dropdown { min-width: 140px; }
+  .lang-option { padding: 6px 12px; font-size: 0.82rem; }
   .admin-link { font-size: 0.85rem; display: none; }
 
   /* ---- Hero ---- */
@@ -1205,7 +1248,7 @@ body {
   .nav-actions { gap: 1px; }
   .nav-icon-btn { font-size: 0.85rem; padding: 3px; }
   .theme-toggle-btn { font-size: 0.85rem; padding: 3px; }
-  .lang-btn { padding: 2px 5px; font-size: 0.6rem; }
+  .lang-flag-btn { width: 24px; height: 24px; font-size: 0.85rem; }
   .hero-title { font-size: 1.1rem; }
   .hero-subtitle { font-size: 0.75rem; }
   .chip { font-size: 0.65rem; padding: 4px 8px; }
