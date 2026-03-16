@@ -410,6 +410,119 @@ function switchTab(name) {
   document.querySelectorAll(".admin-nav button").forEach(b => b.classList.remove("active"));
   document.getElementById(`tab-${name}`).classList.add("active");
   event.target.classList.add("active");
+  if (name === "searchlogs") loadSearchLogs();
+}
+
+// ============================================================
+//  Search Logs
+// ============================================================
+
+function loadSearchLogs() {
+  const logs = JSON.parse(localStorage.getItem("search_logs") || "[]");
+
+  // Stats
+  const total = logs.length;
+  const unique = new Set(logs.map(l => l.q)).size;
+  const noResults = logs.filter(l => l.results === 0).length;
+  const imageSearches = logs.filter(l => l.q.startsWith("[IMAGE]")).length;
+
+  document.getElementById("statTotalSearches").textContent = total;
+  document.getElementById("statUniqueQueries").textContent = unique;
+  document.getElementById("statNoResults").textContent = noResults;
+  document.getElementById("statImageSearches").textContent = imageSearches;
+
+  // Top queries
+  const queryCounts = {};
+  logs.forEach(l => {
+    const q = l.q.toLowerCase().trim();
+    if (!q) return;
+    queryCounts[q] = (queryCounts[q] || 0) + 1;
+  });
+  const sorted = Object.entries(queryCounts).sort((a, b) => b[1] - a[1]).slice(0, 20);
+  const maxCount = sorted.length > 0 ? sorted[0][1] : 1;
+
+  let chartHtml = "";
+  sorted.forEach(([query, count]) => {
+    const pct = Math.round((count / maxCount) * 100);
+    const color = query.startsWith("[image]") ? "#1976d2" : "#6C5CE7";
+    chartHtml += `<div style="display:flex;align-items:center;gap:12px;margin-bottom:8px;">
+      <div style="width:180px;font-size:0.9rem;text-align:right;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="${query}">${query}</div>
+      <div style="flex:1;height:24px;background:#f0ecff;border-radius:6px;overflow:hidden;">
+        <div style="height:100%;width:${pct}%;background:${color};border-radius:6px;transition:width 0.5s;"></div>
+      </div>
+      <div style="width:40px;font-weight:700;font-size:0.9rem;color:${color};">${count}</div>
+    </div>`;
+  });
+  document.getElementById("topQueriesChart").innerHTML = chartHtml || "<p style='color:#999;'>אין נתונים עדיין</p>";
+
+  // No results table
+  const noResultQueries = {};
+  logs.filter(l => l.results === 0).forEach(l => {
+    const key = l.q + "|" + (l.t || "") + "|" + l.lang;
+    if (!noResultQueries[key]) noResultQueries[key] = { q: l.q, t: l.t, lang: l.lang, count: 0 };
+    noResultQueries[key].count++;
+  });
+  const noResultSorted = Object.values(noResultQueries).sort((a, b) => b.count - a.count);
+  let noResultHtml = "";
+  noResultSorted.forEach(item => {
+    noResultHtml += `<tr>
+      <td><strong>${item.q}</strong></td>
+      <td style="color:#636e72;">${item.t || "-"}</td>
+      <td>${item.lang}</td>
+      <td style="color:#e74c3c;font-weight:700;">${item.count}</td>
+    </tr>`;
+  });
+  document.querySelector("#noResultsTable tbody").innerHTML = noResultHtml || "<tr><td colspan='4' style='color:#999;text-align:center;'>אין חיפושים ללא תוצאות 🎉</td></tr>";
+
+  // All logs table (newest first)
+  const recentLogs = [...logs].reverse().slice(0, 200);
+  let logsHtml = "";
+  recentLogs.forEach(l => {
+    const date = new Date(l.ts).toLocaleString("he-IL", { day: "2-digit", month: "2-digit", hour: "2-digit", minute: "2-digit" });
+    const resultColor = l.results === 0 ? "#e74c3c" : "#2e7d32";
+    logsHtml += `<tr>
+      <td style="font-size:0.85rem;color:#636e72;white-space:nowrap;">${date}</td>
+      <td><strong>${l.q}</strong></td>
+      <td style="color:#636e72;">${l.t || "-"}</td>
+      <td>${l.lang}</td>
+      <td style="color:${resultColor};font-weight:700;">${l.results}</td>
+    </tr>`;
+  });
+  document.querySelector("#searchLogsTable tbody").innerHTML = logsHtml || "<tr><td colspan='5' style='color:#999;text-align:center;'>אין חיפושים עדיין</td></tr>";
+}
+
+function filterSearchLogs() {
+  const filter = document.getElementById("searchLogFilter").value.toLowerCase();
+  const rows = document.querySelectorAll("#searchLogsTable tbody tr");
+  rows.forEach(row => {
+    row.style.display = row.textContent.toLowerCase().includes(filter) ? "" : "none";
+  });
+}
+
+function exportSearchLogs() {
+  const logs = JSON.parse(localStorage.getItem("search_logs") || "[]");
+  if (logs.length === 0) { toast("אין נתונים לייצוא", "error"); return; }
+
+  let csv = "Date,Original Query,Translated,Language,Currency,Country,Results\n";
+  logs.forEach(l => {
+    csv += `"${l.ts}","${(l.q || "").replace(/"/g, '""')}","${(l.t || "").replace(/"/g, '""')}","${l.lang}","${l.currency || ""}","${l.country || ""}","${l.results}"\n`;
+  });
+
+  const blob = new Blob(["\uFEFF" + csv], { type: "text/csv;charset=utf-8;" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "search_logs_" + new Date().toISOString().slice(0, 10) + ".csv";
+  a.click();
+  URL.revokeObjectURL(url);
+  toast("ייצוא CSV הצליח!");
+}
+
+function clearSearchLogs() {
+  if (!confirm("האם אתה בטוח שרוצה לנקות את כל לוג החיפושים?")) return;
+  localStorage.removeItem("search_logs");
+  loadSearchLogs();
+  toast("לוג החיפושים נוקה");
 }
 
 function toast(msg, type = "success") {

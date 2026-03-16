@@ -1326,13 +1326,56 @@ function translateQuery(query) {
   return hebrewRemaining ? query : result;
 }
 
+// Search logging - save every query to Google Sheets + localStorage
+function logSearch(originalQuery, translatedQuery, resultCount) {
+  // Save to localStorage for admin dashboard
+  try {
+    const logs = JSON.parse(localStorage.getItem("search_logs") || "[]");
+    logs.push({
+      q: originalQuery,
+      t: translatedQuery,
+      lang: currentLang,
+      results: resultCount,
+      ts: new Date().toISOString()
+    });
+    // Keep last 500 searches locally
+    if (logs.length > 500) logs.splice(0, logs.length - 500);
+    localStorage.setItem("search_logs", JSON.stringify(logs));
+  } catch(e) {}
+
+  // Send to Google Sheets
+  const sheetUrl = "https://script.google.com/macros/s/AKfycbyKsWkOorDYMOqGQiUDCxHUxGZMj1VLBJhxy3LbQRqOk8_tVVVlTJ0yZpU_9IzCXUMQ/exec";
+  fetch(sheetUrl, {
+    method: "POST",
+    mode: "no-cors",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      type: "search",
+      query: originalQuery,
+      translated: translatedQuery,
+      lang: currentLang,
+      currency: currentCurrency,
+      country: currentCountry,
+      results: resultCount,
+      date: new Date().toISOString()
+    })
+  }).catch(() => {});
+}
+
 async function doSearch(query, page = 1) {
   const translatedQ = translateQuery(query);
   const params = new URLSearchParams({
     q: translatedQ, lang: currentLang, currency: currentCurrency, country: currentCountry, page: String(page),
   });
   const resp = await fetch(`${API_BASE}/search?${params}`);
-  return resp.json();
+  const data = await resp.json();
+
+  // Log the search
+  if (page === 1) {
+    logSearch(query, translatedQ, data?.products?.length || 0);
+  }
+
+  return data;
 }
 
 // Localized suggestions per language
@@ -2344,6 +2387,9 @@ async function searchByImage(base64) {
     renderProducts(data.products);
     document.getElementById("resultsSection").style.display = "block";
     document.getElementById("loadMore").style.display = "none";
+
+    // Log image search
+    logSearch("[IMAGE] " + desc, currentQuery, data.products?.length || 0);
 
     // Update context
     chatContext.lastQuery = currentQuery;

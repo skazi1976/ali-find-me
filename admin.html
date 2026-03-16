@@ -180,6 +180,7 @@
       <button onclick="switchTab('categories')">🏷️ קטגוריות</button>
       <button onclick="switchTab('suggestions')">💡 הצעות</button>
       <button onclick="switchTab('settings')">⚙️ הגדרות</button>
+      <button onclick="switchTab('searchlogs')">🔍 לוג חיפושים</button>
     </div>
 
     <div class="admin-content">
@@ -329,6 +330,59 @@
             </div>
             <button class="btn btn-warning btn-primary" onclick="changePassword()">שנה סיסמה</button>
           </div>
+        </div>
+      </div>
+
+      <!-- Search Logs Tab -->
+      <div class="tab-panel" id="tab-searchlogs">
+        <div class="admin-card">
+          <h2>📊 סטטיסטיקות חיפוש</h2>
+          <div class="stats-grid" id="searchStatsGrid" style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:20px;">
+            <div class="stat-card" style="background:#f0ecff;border-radius:12px;padding:16px;text-align:center;">
+              <div style="font-size:2rem;font-weight:900;color:#6C5CE7;" id="statTotalSearches">0</div>
+              <div style="font-size:0.85rem;color:#636e72;">סה"כ חיפושים</div>
+            </div>
+            <div class="stat-card" style="background:#e3f2fd;border-radius:12px;padding:16px;text-align:center;">
+              <div style="font-size:2rem;font-weight:900;color:#1976d2;" id="statUniqueQueries">0</div>
+              <div style="font-size:0.85rem;color:#636e72;">שאילתות ייחודיות</div>
+            </div>
+            <div class="stat-card" style="background:#fff3e0;border-radius:12px;padding:16px;text-align:center;">
+              <div style="font-size:2rem;font-weight:900;color:#e65100;" id="statNoResults">0</div>
+              <div style="font-size:0.85rem;color:#636e72;">בלי תוצאות</div>
+            </div>
+            <div class="stat-card" style="background:#e8f5e9;border-radius:12px;padding:16px;text-align:center;">
+              <div style="font-size:2rem;font-weight:900;color:#2e7d32;" id="statImageSearches">0</div>
+              <div style="font-size:0.85rem;color:#636e72;">חיפושי תמונה</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="admin-card">
+          <h2>🔥 מילות חיפוש פופולריות</h2>
+          <div id="topQueriesChart" style="margin-bottom:16px;"></div>
+        </div>
+
+        <div class="admin-card">
+          <h2>⚠️ חיפושים בלי תוצאות (צריך תיקון!)</h2>
+          <table class="admin-table" id="noResultsTable">
+            <thead><tr><th>שאילתה</th><th>תרגום</th><th>שפה</th><th>פעמים</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+
+        <div class="admin-card">
+          <div class="toolbar">
+            <h2>📋 כל החיפושים (אחרונים)</h2>
+            <div>
+              <input type="text" class="filter-input" id="searchLogFilter" placeholder="🔍 חפש בלוג..." oninput="filterSearchLogs()">
+              <button class="btn btn-outline btn-sm" onclick="exportSearchLogs()">📥 ייצוא CSV</button>
+              <button class="btn btn-outline btn-sm" onclick="clearSearchLogs()" style="color:#e74c3c;border-color:#e74c3c;">🗑️ נקה</button>
+            </div>
+          </div>
+          <table class="admin-table" id="searchLogsTable">
+            <thead><tr><th>תאריך</th><th>שאילתה מקורית</th><th>תרגום</th><th>שפה</th><th>תוצאות</th></tr></thead>
+            <tbody></tbody>
+          </table>
         </div>
       </div>
     </div>
