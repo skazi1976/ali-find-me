@@ -15,6 +15,9 @@ let currentMinPrice = null;
 let currentMaxPrice = null;
 let isLoading = false;
 let cachedSuggestions = []; // store suggestions for autocomplete
+let currentCurrency = "ILS";
+let currentCountry = "IL";
+let currentCurrencySymbol = "₪";
 
 // ============================================================
 //  i18n
@@ -47,6 +50,8 @@ const i18n = {
     alsoSearch: "\u05de\u05d7\u05e4\u05e9\u05d9\u05dd \u05d2\u05dd:",
     sortBy: "\u05de\u05d9\u05d5\u05df:",
     priceRange: "\u05de\u05d7\u05d9\u05e8:",
+    priceFrom: "\u05de-",
+    priceTo: "\u05e2\u05d3",
     apply: "\u05e1\u05e0\u05df",
     sortPopular: "\u05d4\u05db\u05d9 \u05e0\u05de\u05db\u05e8",
     sortCheap: "\u05d4\u05db\u05d9 \u05d6\u05d5\u05dc",
@@ -92,6 +97,8 @@ const i18n = {
     alsoSearch: "People also search:",
     sortBy: "Sort:",
     priceRange: "Price:",
+    priceFrom: "From",
+    priceTo: "To",
     apply: "Filter",
     sortPopular: "Best selling",
     sortCheap: "Cheapest",
@@ -137,6 +144,8 @@ const i18n = {
     alsoSearch: "\u064a\u0628\u062d\u062b\u0648\u0646 \u0623\u064a\u0636\u0627\u064b:",
     sortBy: "\u062a\u0631\u062a\u064a\u0628:",
     priceRange: "\u0627\u0644\u0633\u0639\u0631:",
+    priceFrom: "\u0645\u0646",
+    priceTo: "\u0625\u0644\u0649",
     apply: "\u062a\u0637\u0628\u064a\u0642",
     sortPopular: "\u0627\u0644\u0623\u0643\u062b\u0631 \u0645\u0628\u064a\u0639\u0627\u064b",
     sortCheap: "\u0627\u0644\u0623\u0631\u062e\u0635",
@@ -180,7 +189,7 @@ const i18n = {
     disclaimer: "\u0421\u0430\u0439\u0442 \u0438\u0441\u043f\u043e\u043b\u044c\u0437\u0443\u0435\u0442 \u043f\u0430\u0440\u0442\u043d\u0451\u0440\u0441\u043a\u0438\u0435 \u0441\u0441\u044b\u043b\u043a\u0438. \u0412\u0430\u0448\u0430 \u043f\u043e\u043a\u0443\u043f\u043a\u0430 \u043d\u0435 \u0431\u0443\u0434\u0435\u0442 \u0441\u0442\u043e\u0438\u0442\u044c \u0434\u043e\u0440\u043e\u0436\u0435.",
     recentSearches: "\u041d\u0435\u0434\u0430\u0432\u043d\u0438\u0435 \u043f\u043e\u0438\u0441\u043a\u0438:",
     alsoSearch: "\u0422\u0430\u043a\u0436\u0435 \u0438\u0449\u0443\u0442:",
-    sortBy: "\u0421\u043e\u0440\u0442\u0438\u0440\u043e\u0432\u043a\u0430:", priceRange: "\u0426\u0435\u043d\u0430:", apply: "\u041f\u0440\u0438\u043c\u0435\u043d\u0438\u0442\u044c",
+    sortBy: "\u0421\u043e\u0440\u0442\u0438\u0440\u043e\u0432\u043a\u0430:", priceRange: "\u0426\u0435\u043d\u0430:", priceFrom: "\u041e\u0442", priceTo: "\u0414\u043e", apply: "\u041f\u0440\u0438\u043c\u0435\u043d\u0438\u0442\u044c",
     sortPopular: "\u041f\u043e\u043f\u0443\u043b\u044f\u0440\u043d\u044b\u0435", sortCheap: "\u0414\u0435\u0448\u0435\u0432\u043b\u0435", sortExpensive: "\u0414\u043e\u0440\u043e\u0436\u0435", sortNew: "\u041d\u043e\u0432\u0438\u043d\u043a\u0438", sortRating: "\u0420\u0435\u0439\u0442\u0438\u043d\u0433",
     myFavorites: "\u0418\u0437\u0431\u0440\u0430\u043d\u043d\u043e\u0435", noFavorites: "\u041d\u0435\u0442 \u0438\u0437\u0431\u0440\u0430\u043d\u043d\u044b\u0445",
     shareText: "\u0421\u043c\u043e\u0442\u0440\u0438 \u0447\u0442\u043e \u044f \u043d\u0430\u0448\u0451\u043b \u043d\u0430 AliExpress!",
@@ -209,7 +218,7 @@ const i18n = {
     step3Title: "Compra barato", step3Desc: "Haz clic en el producto e ir\u00e1s a AliExpress",
     disclaimer: "Este sitio usa enlaces de afiliados. Tu compra no costar\u00e1 m\u00e1s, pero podemos recibir una peque\u00f1a comisi\u00f3n.",
     recentSearches: "B\u00fasquedas recientes:", alsoSearch: "Tambi\u00e9n buscan:",
-    sortBy: "Ordenar:", priceRange: "Precio:", apply: "Filtrar",
+    sortBy: "Ordenar:", priceRange: "Precio:", priceFrom: "Desde", priceTo: "Hasta", apply: "Filtrar",
     sortPopular: "M\u00e1s vendidos", sortCheap: "M\u00e1s baratos", sortExpensive: "M\u00e1s caros", sortNew: "Nuevos", sortRating: "Valoraci\u00f3n",
     myFavorites: "Mis favoritos", noFavorites: "A\u00fan no hay favoritos",
     shareText: "\u00a1Mira lo que encontr\u00e9 en AliExpress!",
@@ -238,7 +247,7 @@ const i18n = {
     step3Title: "Compre barato", step3Desc: "Clique no produto e v\u00e1 direto ao AliExpress",
     disclaimer: "Este site usa links de afiliados. Sua compra n\u00e3o custar\u00e1 mais, mas podemos receber uma pequena comiss\u00e3o.",
     recentSearches: "Pesquisas recentes:", alsoSearch: "Tamb\u00e9m pesquisam:",
-    sortBy: "Ordenar:", priceRange: "Pre\u00e7o:", apply: "Filtrar",
+    sortBy: "Ordenar:", priceRange: "Pre\u00e7o:", priceFrom: "De", priceTo: "At\u00e9", apply: "Filtrar",
     sortPopular: "Mais vendidos", sortCheap: "Mais baratos", sortExpensive: "Mais caros", sortNew: "Novos", sortRating: "Avalia\u00e7\u00e3o",
     myFavorites: "Meus favoritos", noFavorites: "Ainda sem favoritos",
     shareText: "Veja o que encontrei no AliExpress!",
@@ -267,7 +276,7 @@ const i18n = {
     step3Title: "Ucuza al", step3Desc: "\u00dcr\u00fcne t\u0131kla ve AliExpress'e git",
     disclaimer: "Bu site ortakl\u0131k ba\u011flant\u0131lar\u0131 kullan\u0131r. Al\u0131\u015fveri\u015finiz daha pahal\u0131ya mal olmaz.",
     recentSearches: "Son aramalar:", alsoSearch: "Ba\u015fkalar\u0131 da ar\u0131yor:",
-    sortBy: "S\u0131rala:", priceRange: "Fiyat:", apply: "Filtrele",
+    sortBy: "S\u0131rala:", priceRange: "Fiyat:", priceFrom: "En az", priceTo: "En \u00e7ok", apply: "Filtrele",
     sortPopular: "En \u00e7ok satan", sortCheap: "En ucuz", sortExpensive: "En pahal\u0131", sortNew: "En yeni", sortRating: "Puan",
     myFavorites: "Favorilerim", noFavorites: "Hen\u00fcz favori yok",
     shareText: "AliExpress'te ne buldum bak!",
@@ -296,7 +305,7 @@ const i18n = {
     step3Title: "Achetez pas cher", step3Desc: "Cliquez sur le produit et allez sur AliExpress",
     disclaimer: "Ce site utilise des liens d'affiliation. Votre achat ne co\u00fbtera pas plus cher.",
     recentSearches: "Recherches r\u00e9centes:", alsoSearch: "Recherchent aussi:",
-    sortBy: "Trier:", priceRange: "Prix:", apply: "Filtrer",
+    sortBy: "Trier:", priceRange: "Prix:", priceFrom: "De", priceTo: "\u00c0", apply: "Filtrer",
     sortPopular: "Plus vendus", sortCheap: "Moins cher", sortExpensive: "Plus cher", sortNew: "Nouveaux", sortRating: "Note",
     myFavorites: "Mes favoris", noFavorites: "Pas encore de favoris",
     shareText: "Regarde ce que j'ai trouv\u00e9 sur AliExpress!",
@@ -322,6 +331,18 @@ const LANG_META = {
   fr: { flag: "\ud83c\uddeb\ud83c\uddf7", name: "Fran\u00e7ais" },
 };
 
+// Language → Country/Currency mapping for auto-detection
+const LANG_COUNTRY_CURRENCY = {
+  he: { country: "IL", currency: "ILS", symbol: "₪" },
+  en: { country: "US", currency: "USD", symbol: "$" },
+  ar: { country: "SA", currency: "SAR", symbol: "ر.س" },
+  ru: { country: "RU", currency: "RUB", symbol: "₽" },
+  es: { country: "ES", currency: "EUR", symbol: "€" },
+  pt: { country: "BR", currency: "BRL", symbol: "R$" },
+  tr: { country: "TR", currency: "TRY", symbol: "₺" },
+  fr: { country: "FR", currency: "EUR", symbol: "€" },
+};
+
 // ============================================================
 //  i18n application
 // ============================================================
@@ -330,6 +351,12 @@ function setLang(lang) {
   if (!i18n[lang]) lang = "en";
   currentLang = lang;
   localStorage.setItem("ali_lang", lang);
+
+  // Update currency/country based on language
+  const geo = LANG_COUNTRY_CURRENCY[lang] || LANG_COUNTRY_CURRENCY.en;
+  currentCurrency = geo.currency;
+  currentCountry = geo.country;
+  currentCurrencySymbol = geo.symbol;
 
   const isRTL = RTL_LANGS.has(lang);
   document.documentElement.lang = lang;
@@ -365,6 +392,12 @@ function setLang(lang) {
     const key = el.getAttribute("data-i18n-placeholder");
     if (i18n[lang][key]) el.placeholder = i18n[lang][key];
   });
+
+  // Update price filter placeholders
+  const priceMin = document.getElementById("priceMin");
+  const priceMax = document.getElementById("priceMax");
+  if (priceMin) priceMin.placeholder = i18n[lang].priceFrom || "From";
+  if (priceMax) priceMax.placeholder = i18n[lang].priceTo || "To";
 
   const sortSelect = document.getElementById("sortSelect");
   if (sortSelect) {
@@ -504,7 +537,7 @@ function showFavorites() {
         </a>
         <div class="fav-info">
           <div class="fav-title">${p.title}</div>
-          <div class="fav-price">\u20aa${p.price}</div>
+          <div class="fav-price">${currentCurrencySymbol}${p.price}</div>
           <div class="fav-actions">
             <a href="${p.affiliate_url}" target="_blank" rel="noopener" class="fav-buy-btn">${i18n[currentLang].viewProduct}</a>
             <button class="fav-remove-btn" onclick="removeFavorite(${p.id})">🗑️</button>
@@ -567,7 +600,7 @@ function loadRecentlyViewed() {
         <img src="${p.image}" alt="${p.title}" loading="lazy">
         <div class="rv-card-info">
           <div class="rv-card-title">${p.title}</div>
-          <div class="rv-card-price">\u20aa${p.price}</div>
+          <div class="rv-card-price">${currentCurrencySymbol}${p.price}</div>
         </div>
       </a>
     </div>
@@ -659,8 +692,8 @@ function showAlertDialog(product) {
   dialog.innerHTML = `
     <h3>🔔 ${i18n[currentLang].setAlert}</h3>
     <div style="font-size:0.85rem;color:var(--text-light);margin-bottom:8px">${product.title.substring(0, 50)}...</div>
-    <div style="margin-bottom:4px;font-size:0.85rem;color:var(--text-muted)">${i18n[currentLang].priceRange}: \u20aa${product.price}</div>
-    <div>\u20aa <input type="number" class="alert-price-input" id="alertPriceInput" value="${suggestedPrice}" min="1"></div>
+    <div style="margin-bottom:4px;font-size:0.85rem;color:var(--text-muted)">${i18n[currentLang].priceRange}: ${currentCurrencySymbol}${product.price}</div>
+    <div>${currentCurrencySymbol} <input type="number" class="alert-price-input" id="alertPriceInput" value="${suggestedPrice}" min="1"></div>
     <div class="alert-dialog-btns">
       <button class="alert-save-btn" onclick="saveAlertFromDialog()">${i18n[currentLang].save}</button>
       <button class="alert-cancel-btn" onclick="closeAlertDialog()">${i18n[currentLang].cancel}</button>
@@ -713,10 +746,10 @@ function showAlerts() {
         <div class="fav-info">
           <div class="fav-title">${a.title}</div>
           <div class="fav-price">
-            \u20aa${a.currentPrice}
+            ${currentCurrencySymbol}${a.currentPrice}
             ${a.triggered ? `<span class="price-drop-label">\u2193 ${i18n[currentLang].priceDropped}</span>` : ''}
           </div>
-          <div style="font-size:0.78rem;color:var(--text-muted)">${i18n[currentLang].targetPrice}: \u20aa${a.targetPrice}</div>
+          <div style="font-size:0.78rem;color:var(--text-muted)">${i18n[currentLang].targetPrice}: ${currentCurrencySymbol}${a.targetPrice}</div>
           <div class="fav-actions">
             <a href="${a.affiliate_url}" target="_blank" rel="noopener" class="fav-buy-btn">${i18n[currentLang].viewProduct}</a>
             <button class="fav-remove-btn" onclick="removeAlert(${a.id})">🗑️</button>
@@ -735,7 +768,7 @@ function closeAlerts() { document.getElementById("alertModal").style.display = "
 // ============================================================
 
 function shareProduct(title, price, url) {
-  const text = `${i18n[currentLang].shareText}\n${title}\n\u20aa${price}\n${url}`;
+  const text = `${i18n[currentLang].shareText}\n${title}\n${currentCurrencySymbol}${price}\n${url}`;
   window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`, "_blank");
 }
 
@@ -871,7 +904,7 @@ const SORT_API_MAP = {
 
 async function doSearch(query, page = 1) {
   const params = new URLSearchParams({
-    q: query, lang: currentLang, currency: "ILS", country: "IL", page: String(page),
+    q: query, lang: currentLang, currency: currentCurrency, country: currentCountry, page: String(page),
   });
   const resp = await fetch(`${API_BASE}/search?${params}`);
   return resp.json();
@@ -1017,7 +1050,7 @@ function showSkeletons() {
 function buildProductCard(p) {
   const stars = "\u2605".repeat(Math.round(p.rating || 0)) + "\u2606".repeat(5 - Math.round(p.rating || 0));
   const discount = p.discount > 0 ? `<span class="product-discount">-${p.discount}%</span>` : "";
-  const originalPrice = p.discount > 0 ? `<span class="product-original-price">\u20aa${p.original_price}</span>` : "";
+  const originalPrice = p.discount > 0 ? `<span class="product-original-price">${currentCurrencySymbol}${p.original_price}</span>` : "";
   const ordersLabel = i18n[currentLang].orders;
   const ctaLabel = i18n[currentLang].viewProduct;
   const isFav = isFavorite(p.id);
@@ -1048,7 +1081,7 @@ function buildProductCard(p) {
       <div class="product-info">
         <div class="product-title">${p.title}</div>
         <div class="product-price-row">
-          <span class="product-price">\u20aa${p.price}</span>
+          <span class="product-price">${currentCurrencySymbol}${p.price}</span>
           ${originalPrice}
           ${discount}
         </div>
