@@ -72,7 +72,8 @@ body {
 }
 
 .logo-icon { font-size: 1.6rem; }
-.logo-img { height: 36px; width: auto; object-fit: contain; }
+.logo-img { height: 44px; width: auto; object-fit: contain; }
+.logo-img + .logo-text { display: none; }
 
 .nav-actions {
   display: flex;
@@ -1209,7 +1210,7 @@ body {
     white-space: nowrap;
   }
   .logo-icon { font-size: 1rem; }
-  .logo-img { height: 28px; }
+  .logo-img { height: 32px; }
   .nav-actions {
     gap: 2px;
     flex-shrink: 0;
