@@ -1259,7 +1259,7 @@ const HE_EN_DICT = {
   "גרביים": "socks", "גרבי": "socks", "גרב": "socks",
   "חזייה": "bra", "חזיות": "bras", "חזיית": "bra",
   "בגד ים": "swimsuit", "ביקיני": "bikini",
-  "אביזרי סקס": "sex toys adult toys", "צעצועי סקס": "sex toys adult", "צעצועי מין": "sex toys adult", "ויברטור": "vibrator", "דילדו": "dildo", "טבעת רטט": "vibrating ring", "אזיקים": "handcuffs bondage", "לנז'רי": "sexy lingerie", "לנז'רי סקסי": "sexy lingerie women", "קוספליי": "cosplay costume", "תלבושת סקסית": "sexy costume lingerie",
+  "אביזרי סקס": "sex toys adult toys", "צעצועי סקס": "sex toys adult", "צעצועי מין": "sex toys adult", "ויברטור": "vibrator", "דילדו": "dildo", "טבעת רטט": "vibrating ring", "אזיקים": "handcuffs bondage", "לנז'רי": "sexy lingerie", "לנז'רי סקסי": "sexy lingerie women", "קוספליי": "cosplay costume", "תלבושת סקסית": "sexy costume lingerie", "פלאג": "butt plug anal plug", "פלאג לתחת": "butt plug anal plug", "פלאג אנאלי": "anal plug butt plug",
   "נעליים": "shoes", "נעלי": "shoes", "סניקרס": "sneakers", "סנדלים": "sandals",
   "מגפיים": "boots", "עקבים": "heels", "כפכפים": "slippers",
   "תיק": "bag", "תיקים": "bags", "תיק יד": "handbag", "תיק גב": "backpack",
