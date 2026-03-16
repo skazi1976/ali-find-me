@@ -168,4 +168,20 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://alifindme.com/blog/aliexpress-shopping-guide-2026.html"/>
   </url>
 
+  <!-- Privacy Policy -->
+  <url>
+    <loc>https://alifindme.com/privacy.html</loc>
+    <lastmod>2026-03-16</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <!-- Terms of Use -->
+  <url>
+    <loc>https://alifindme.com/terms.html</loc>
+    <lastmod>2026-03-16</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
 </urlset>

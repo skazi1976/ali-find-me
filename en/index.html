@@ -15,18 +15,28 @@
       keys.forEach(function(k){caches.delete(k)});
     });
     setTimeout(function(){
-      navigator.serviceWorker.register('/sw.js?v=17');
+      navigator.serviceWorker.register('/sw.js?v=18');
     },1000);
   }
   </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=5">
   <title>Ali Find Me | Smart AliExpress Product Search</title>
   <meta name="description" content="Smart search engine for fashion & lifestyle products on AliExpress. Best prices with worldwide shipping.">
-  <meta property="og:title" content="Ali Find Me - Smart AliExpress Product Search">
-  <meta property="og:description" content="Find the best deals on AliExpress - fashion, bags, shoes, jewelry and more">
+  <meta name="keywords" content="AliExpress search, product search, AliExpress deals, online shopping, fashion, jewelry, best prices, image search, AI search, free shipping">
+  <meta property="og:title" content="Ali Find Me - Smart AliExpress Product Search Engine">
+  <meta property="og:description" content="Find the best deals on AliExpress - fashion, bags, shoes, jewelry and more. AI image search in 8 languages with auto-currency.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://alifindme.com/en/">
   <meta property="og:locale" content="en_US">
+  <meta property="og:site_name" content="Ali Find Me">
+  <meta property="og:image" content="https://alifindme.com/icons/icon-512.png">
+  <meta property="og:image:width" content="512">
+  <meta property="og:image:height" content="512">
+  <meta property="og:image:alt" content="Ali Find Me - Smart AliExpress Product Search">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Ali Find Me - Smart AliExpress Product Search">
+  <meta name="twitter:description" content="Smart search engine for AliExpress. Find best deals with AI image search in 8 languages.">
+  <meta name="twitter:image" content="https://alifindme.com/icons/icon-512.png">
   <meta name="theme-color" content="#6C5CE7">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
@@ -44,6 +54,9 @@
   <link rel="alternate" hreflang="fr" href="https://alifindme.com/fr/">
   <link rel="alternate" hreflang="x-default" href="https://alifindme.com/">
   <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://ali-find-me.ohad1.workers.dev">
+  <link rel="dns-prefetch" href="https://ae01.alicdn.com">
   <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&family=Assistant:wght@300;400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/style.css?v=20260316x">
 
@@ -59,6 +72,18 @@
       "target": "https://alifindme.com/en/?q={search_term_string}",
       "query-input": "required name=search_term_string"
     }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Ali Find Me",
+    "url": "https://alifindme.com",
+    "logo": "https://alifindme.com/icons/icon-512.png",
+    "description": "Smart search engine for AliExpress products with AI image search, available in 8 languages worldwide.",
+    "sameAs": []
   }
   </script>
 
@@ -448,6 +473,6 @@
     </div>
   </div>
 
-  <script src="../js/app.js?v=20260316y"></script>
+  <script src="../js/app.js?v=20260316z"></script>
 </body>
 </html>

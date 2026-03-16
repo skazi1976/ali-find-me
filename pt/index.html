@@ -15,18 +15,28 @@
       keys.forEach(function(k){caches.delete(k)});
     });
     setTimeout(function(){
-      navigator.serviceWorker.register('/sw.js?v=17');
+      navigator.serviceWorker.register('/sw.js?v=18');
     },1000);
   }
   </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=5">
   <title>Ali Encontre-me | Busca inteligente no AliExpress</title>
   <meta name="description" content="Buscador inteligente de moda e estilo de vida no AliExpress. Melhores preços com frete para todo o mundo.">
+  <meta name="keywords" content="AliExpress busca, buscar produtos, ofertas AliExpress, compras online, moda, joias, melhores preços, busca por imagem, busca IA, frete grátis">
   <meta property="og:title" content="Ali Encontre-me - Busca inteligente no AliExpress">
   <meta property="og:description" content="Encontre as melhores ofertas no AliExpress - moda, bolsas, sapatos, joias e mais">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://alifindme.com/pt/">
   <meta property="og:locale" content="pt_BR">
+  <meta property="og:site_name" content="Ali Find Me">
+  <meta property="og:image" content="https://alifindme.com/icons/icon-512.png">
+  <meta property="og:image:width" content="512">
+  <meta property="og:image:height" content="512">
+  <meta property="og:image:alt" content="Ali Encontre-me - Busca inteligente no AliExpress">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Ali Encontre-me - Busca inteligente no AliExpress">
+  <meta name="twitter:description" content="Buscador inteligente para AliExpress. Encontre as melhores ofertas com busca por imagem IA em 8 idiomas.">
+  <meta name="twitter:image" content="https://alifindme.com/icons/icon-512.png">
   <meta name="theme-color" content="#6C5CE7">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
@@ -44,6 +54,9 @@
   <link rel="alternate" hreflang="fr" href="https://alifindme.com/fr/">
   <link rel="alternate" hreflang="x-default" href="https://alifindme.com/">
   <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://ali-find-me.ohad1.workers.dev">
+  <link rel="dns-prefetch" href="https://ae01.alicdn.com">
   <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&family=Assistant:wght@300;400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/style.css?v=20260316x">
 
@@ -59,6 +72,18 @@
       "target": "https://alifindme.com/pt/?q={search_term_string}",
       "query-input": "required name=search_term_string"
     }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Ali Find Me",
+    "url": "https://alifindme.com",
+    "logo": "https://alifindme.com/icons/icon-512.png",
+    "description": "Smart search engine for AliExpress products with AI image search, available in 8 languages worldwide.",
+    "sameAs": []
   }
   </script>
   <script>localStorage.setItem("ali_lang","pt");</script>
@@ -135,6 +160,6 @@
   <div class="points-toast" id="pointsToast"></div>
   <div class="modal-overlay" id="pointsModal" style="display:none" onclick="if(event.target===this)closePointsModal()"><div class="modal-content points-modal"><div class="modal-header"><h2 data-i18n="pointsTitle">Meus pontos</h2><button class="modal-close" onclick="closePointsModal()">&times;</button></div><div class="modal-body" id="pointsModalBody"></div></div></div>
 
-  <script src="../js/app.js?v=20260316y"></script>
+  <script src="../js/app.js?v=20260316z"></script>
 </body>
 </html>
