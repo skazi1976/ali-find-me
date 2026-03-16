@@ -15,7 +15,7 @@
       keys.forEach(function(k){caches.delete(k)});
     });
     setTimeout(function(){
-      navigator.serviceWorker.register('/sw.js?v=16');
+      navigator.serviceWorker.register('/sw.js?v=17');
     },1000);
   }
   </script>
@@ -45,7 +45,7 @@
   <link rel="alternate" hreflang="x-default" href="https://alifindme.com/">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&family=Assistant:wght@300;400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../css/style.css?v=20260316w">
+  <link rel="stylesheet" href="../css/style.css?v=20260316x">
 
   <script type="application/ld+json">
   {
@@ -59,6 +59,55 @@
       "target": "https://alifindme.com/en/?q={search_term_string}",
       "query-input": "required name=search_term_string"
     }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is Ali Find Me?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ali Find Me is a smart search engine that searches products on AliExpress and shows you the best results with prices, ratings, and shipping info. Available in 8 languages with auto-currency detection."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is Ali Find Me free to use?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes! Ali Find Me is completely free. No registration or credit card required. Just search for a product and find the best deal."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How does image search work?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Click the camera icon next to the search bar, upload a photo of a product you like, and AI will find similar products on AliExpress with prices and comparisons."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What languages are supported?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ali Find Me is available in 8 languages: Hebrew, English, Arabic, Russian, Spanish, Portuguese, Turkish, and French. Prices are automatically displayed in your local currency."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I earn points?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "You can earn points by searching products (2 points), sharing deals (5 points), subscribing to the newsletter (15 points), and playing the spin wheel (up to 50 points). Points can be redeemed for discounts."
+        }
+      }
+    ]
   }
   </script>
   <script>localStorage.setItem("ali_lang","en");</script>
@@ -279,6 +328,37 @@
     </div>
   </div>
 
+  <!-- FAQ Section -->
+  <section class="faq-section" id="faqSection">
+    <h2 class="faq-title">❓ Frequently Asked Questions</h2>
+    <div class="faq-list">
+      <details class="faq-item">
+        <summary>What is Ali Find Me?</summary>
+        <p>Ali Find Me is a smart search engine that searches products on AliExpress and shows you the best results with prices, ratings, and shipping info. Available in 8 languages with auto-currency detection.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Is it free to use?</summary>
+        <p>Yes! Ali Find Me is completely free. No registration or credit card required. Just search for a product and find the best deal.</p>
+      </details>
+      <details class="faq-item">
+        <summary>How does image search work?</summary>
+        <p>Click the camera icon 📷 next to the search bar, upload a photo of a product you like, and our AI will find similar products on AliExpress with prices and comparisons.</p>
+      </details>
+      <details class="faq-item">
+        <summary>What languages are supported?</summary>
+        <p>Ali Find Me is available in 8 languages: Hebrew, English, Arabic, Russian, Spanish, Portuguese, Turkish, and French. Prices are automatically displayed in your local currency.</p>
+      </details>
+      <details class="faq-item">
+        <summary>How do I earn points?</summary>
+        <p>You can earn points by searching products (2 pts), sharing deals (5 pts), subscribing to the newsletter (15 pts), and playing the spin wheel (up to 50 pts). Points can be redeemed for discounts.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Does it ship to my country?</summary>
+        <p>Most products on AliExpress ship worldwide. Ali Find Me automatically filters products with shipping to your country and shows prices in your local currency including shipping costs.</p>
+      </details>
+    </div>
+  </section>
+
   <!-- Newsletter Section -->
     <div class="modal-overlay" id="shareModal" style="display:none" onclick="if(event.target===this)closeShareModal()"><div class="share-modal"><button class="modal-close" onclick="closeShareModal()">✕</button><h3 class="share-modal-title" data-i18n="shareTitle">📤 Share this deal!</h3><div class="share-buttons"><button class="share-platform-btn whatsapp-btn" id="shareWhatsApp"><span class="share-icon">💬</span> WhatsApp</button><button class="share-platform-btn telegram-btn" id="shareTelegram"><span class="share-icon">✈️</span> Telegram</button><button class="share-platform-btn facebook-btn" id="shareFacebook"><span class="share-icon">👤</span> Facebook</button><button class="share-platform-btn twitter-btn" id="shareTwitter"><span class="share-icon">🐦</span> X / Twitter</button><button class="share-platform-btn copy-btn" id="shareCopy"><span class="share-icon">📋</span> <span data-i18n="shareCopied">Copy link</span></button><button class="share-platform-btn native-btn" id="shareNative" style="display:none"><span class="share-icon">📲</span> <span data-i18n="shareNative">More...</span></button></div></div></div>
   <section class="newsletter-section" id="newsletterSection">
@@ -363,6 +443,6 @@
     </div>
   </div>
 
-  <script src="../js/app.js?v=20260316v"></script>
+  <script src="../js/app.js?v=20260316x"></script>
 </body>
 </html>

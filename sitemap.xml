@@ -138,4 +138,34 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://alifindme.com/"/>
   </url>
 
+  <!-- Blog Index -->
+  <url>
+    <loc>https://alifindme.com/blog/</loc>
+    <lastmod>2026-03-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Blog: AliExpress Shopping Guide (EN) -->
+  <url>
+    <loc>https://alifindme.com/blog/aliexpress-shopping-guide-2026.html</loc>
+    <lastmod>2026-03-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://alifindme.com/blog/aliexpress-shopping-guide-2026.html"/>
+    <xhtml:link rel="alternate" hreflang="he" href="https://alifindme.com/blog/he/tips-kniya-ali-express-2026.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://alifindme.com/blog/aliexpress-shopping-guide-2026.html"/>
+  </url>
+
+  <!-- Blog: מדריך קנייה חכמה (HE) -->
+  <url>
+    <loc>https://alifindme.com/blog/he/tips-kniya-ali-express-2026.html</loc>
+    <lastmod>2026-03-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="he" href="https://alifindme.com/blog/he/tips-kniya-ali-express-2026.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://alifindme.com/blog/aliexpress-shopping-guide-2026.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://alifindme.com/blog/aliexpress-shopping-guide-2026.html"/>
+  </url>
+
 </urlset>

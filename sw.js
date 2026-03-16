@@ -1,4 +1,4 @@
-const CACHE_NAME = 'ali-findme-v16';
+const CACHE_NAME = 'ali-findme-v17';
 const STATIC_ASSETS = [
   '/',
   '/index.html',
@@ -15,6 +15,9 @@ const STATIC_ASSETS = [
   '/pt/index.html',
   '/tr/index.html',
   '/fr/index.html',
+  '/blog/index.html',
+  '/blog/aliexpress-shopping-guide-2026.html',
+  '/blog/he/tips-kniya-ali-express-2026.html',
 ];
 
 // Install: cache static assets + force activate immediately

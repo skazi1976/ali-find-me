@@ -12,7 +12,7 @@
       keys.forEach(function(k){caches.delete(k)});
     });
     setTimeout(function(){
-      navigator.serviceWorker.register('/sw.js?v=16');
+      navigator.serviceWorker.register('/sw.js?v=17');
     },1000);
   }
   </script>
@@ -43,7 +43,7 @@
   <link rel="alternate" hreflang="x-default" href="https://alifindme.com/">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&family=Assistant:wght@300;400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=20260316w">
+  <link rel="stylesheet" href="css/style.css?v=20260316x">
 
   <script type="application/ld+json">
   {
@@ -56,6 +56,63 @@
       "target": "https://alifindme.com/?q={search_term_string}",
       "query-input": "required name=search_term_string"
     }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "מהו עלי תמצא לי?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "עלי תמצא לי הוא מנוע חיפוש חכם שמחפש מוצרים באלי אקספרס ומציג לכם את התוצאות הטובות ביותר עם מחירים, דירוגים ומשלוח. האתר זמין ב-8 שפות ומזהה אוטומטית את המטבע המקומי שלכם."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "האם השימוש באתר חינם?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "כן! השימוש בעלי תמצא לי חינמי לחלוטין. אין צורך בהרשמה או כרטיס אשראי. פשוט חפשו מוצר ומצאו את הדיל הכי טוב."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "איך עובד חיפוש בתמונה?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "לחצו על אייקון המצלמה ליד שורת החיפוש, העלו תמונה של מוצר שאהבתם, והבינה המלאכותית תמצא מוצרים דומים באלי אקספרס עם מחירים והשוואות."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "באילו שפות האתר זמין?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "האתר זמין ב-8 שפות: עברית, אנגלית, ערבית, רוסית, ספרדית, פורטוגזית, טורקית וצרפתית. המחירים מוצגים אוטומטית במטבע המקומי שלכם."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "איך אני צובר/ת נקודות?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "אפשר לצבור נקודות על ידי חיפוש מוצרים (2 נקודות), שיתוף דילים (5 נקודות), הרשמה לניוזלטר (15 נקודות), ומשחק גלגל המזל (עד 50 נקודות). נקודות ניתנות למימוש להנחות."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "האם המוצרים מגיעים לישראל?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "כן! רוב המוצרים באלי אקספרס נשלחים לישראל. עלי תמצא לי מסנן אוטומטית מוצרים עם משלוח לישראל ומציג מחירים בשקלים כולל משלוח."
+        }
+      }
+    ]
   }
   </script>
 </head>
@@ -306,6 +363,37 @@
     </div>
   </div>
 
+  <!-- FAQ Section -->
+  <section class="faq-section" id="faqSection">
+    <h2 class="faq-title">❓ שאלות נפוצות</h2>
+    <div class="faq-list">
+      <details class="faq-item">
+        <summary>מהו עלי תמצא לי?</summary>
+        <p>עלי תמצא לי הוא מנוע חיפוש חכם שמחפש מוצרים באלי אקספרס ומציג לכם את התוצאות הטובות ביותר עם מחירים, דירוגים ומשלוח. האתר זמין ב-8 שפות ומזהה אוטומטית את המטבע המקומי שלכם.</p>
+      </details>
+      <details class="faq-item">
+        <summary>האם השימוש באתר חינם?</summary>
+        <p>כן! השימוש בעלי תמצא לי חינמי לחלוטין. אין צורך בהרשמה או כרטיס אשראי. פשוט חפשו מוצר ומצאו את הדיל הכי טוב.</p>
+      </details>
+      <details class="faq-item">
+        <summary>איך עובד חיפוש בתמונה?</summary>
+        <p>לחצו על אייקון המצלמה 📷 ליד שורת החיפוש, העלו תמונה של מוצר שאהבתם, והבינה המלאכותית תמצא מוצרים דומים באלי אקספרס עם מחירים והשוואות.</p>
+      </details>
+      <details class="faq-item">
+        <summary>באילו שפות האתר זמין?</summary>
+        <p>האתר זמין ב-8 שפות: עברית, אנגלית, ערבית, רוסית, ספרדית, פורטוגזית, טורקית וצרפתית. המחירים מוצגים אוטומטית במטבע המקומי שלכם.</p>
+      </details>
+      <details class="faq-item">
+        <summary>איך אני צובר/ת נקודות?</summary>
+        <p>אפשר לצבור נקודות על ידי חיפוש מוצרים (2 נקודות), שיתוף דילים (5 נקודות), הרשמה לניוזלטר (15 נקודות), ומשחק גלגל המזל (עד 50 נקודות). נקודות ניתנות למימוש להנחות.</p>
+      </details>
+      <details class="faq-item">
+        <summary>האם המוצרים מגיעים לישראל?</summary>
+        <p>כן! רוב המוצרים באלי אקספרס נשלחים לישראל. עלי תמצא לי מסנן אוטומטית מוצרים עם משלוח לישראל ומציג מחירים בשקלים כולל משלוח.</p>
+      </details>
+    </div>
+  </section>
+
   <!-- Newsletter Section -->
   <section class="newsletter-section" id="newsletterSection">
     <div class="newsletter-content">
@@ -395,6 +483,6 @@
     </div>
   </div>
 
-  <script src="js/app.js?v=20260316v"></script>
+  <script src="js/app.js?v=20260316x"></script>
 </body>
 </html>

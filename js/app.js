@@ -1246,9 +1246,10 @@ const SORT_API_MAP = {
 // Hebrew→English translation dictionary for common search terms
 const HE_EN_DICT = {
   "תחתונים": "underwear panties", "תחתוני": "underwear panties", "תחתון": "underwear panties",
+  "הלבשה תחתונה": "lingerie underwear", "הלבשה תחתונה לנשים": "women lingerie underwear", "הלבשה תחתונה לגברים": "men underwear boxer briefs",
   "תחתוני נשים": "women panties underwear", "תחתוני גברים": "men boxer underwear briefs",
   "בוקסר": "boxer briefs", "בוקסרים": "boxer briefs", "תחתוני בוקסר": "boxer briefs men",
-  "טנגה": "thong", "תחרה": "lace",
+  "טנגה": "thong", "חוטיני": "women thong g-string tanga panties", "חוטיני נשים": "women thong g-string tanga panties", "חוטיני גברים": "men thong g-string underwear", "תחרה": "lace",
   "גברים": "men", "נשים": "women", "ילדים": "kids", "ילדות": "girls", "בנים": "boys",
   "שמלה": "dress", "שמלת": "dress", "שמלות": "dresses",
   "ערב": "evening", "קיץ": "summer", "חורף": "winter",
@@ -1258,6 +1259,7 @@ const HE_EN_DICT = {
   "גרביים": "socks", "גרבי": "socks", "גרב": "socks",
   "חזייה": "bra", "חזיות": "bras", "חזיית": "bra",
   "בגד ים": "swimsuit", "ביקיני": "bikini",
+  "אביזרי סקס": "sex toys adult toys", "צעצועי סקס": "sex toys adult", "צעצועי מין": "sex toys adult", "ויברטור": "vibrator", "דילדו": "dildo", "טבעת רטט": "vibrating ring", "אזיקים": "handcuffs bondage", "לנז'רי": "sexy lingerie", "לנז'רי סקסי": "sexy lingerie women", "קוספליי": "cosplay costume", "תלבושת סקסית": "sexy costume lingerie",
   "נעליים": "shoes", "נעלי": "shoes", "סניקרס": "sneakers", "סנדלים": "sandals",
   "מגפיים": "boots", "עקבים": "heels", "כפכפים": "slippers",
   "תיק": "bag", "תיקים": "bags", "תיק יד": "handbag", "תיק גב": "backpack",

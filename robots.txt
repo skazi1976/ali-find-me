@@ -1,4 +1,14 @@
 User-agent: *
 Allow: /
+Allow: /blog/
+Allow: /en/
+Allow: /ar/
+Allow: /ru/
+Allow: /es/
+Allow: /pt/
+Allow: /tr/
+Allow: /fr/
+
+Disallow: /admin.html
 
 Sitemap: https://alifindme.com/sitemap.xml
