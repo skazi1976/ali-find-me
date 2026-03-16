@@ -430,21 +430,30 @@ body {
 
 #chatInput {
   flex: 1;
-  padding: 14px 18px;
-  border: 2px solid var(--border);
-  border-radius: 25px;
-  font-size: 1rem;
+  padding: 16px 22px;
+  border: 2.5px solid var(--primary-light);
+  border-radius: 30px;
+  font-size: 1.1rem;
   font-family: var(--font-body);
   outline: none;
-  transition: border-color 0.2s;
+  transition: border-color 0.3s, box-shadow 0.3s;
   background: var(--card-bg);
+  box-shadow: 0 2px 12px rgba(108, 92, 231, 0.1);
 }
 
-#chatInput:focus { border-color: var(--primary); }
+#chatInput::placeholder {
+  color: var(--text-muted);
+  font-weight: 400;
+}
+
+#chatInput:focus {
+  border-color: var(--primary);
+  box-shadow: 0 4px 20px rgba(108, 92, 231, 0.2);
+}
 
 .send-btn {
-  width: 48px;
-  height: 48px;
+  width: 52px;
+  height: 52px;
   border-radius: 50%;
   border: none;
   background: var(--gradient);
@@ -1242,7 +1251,7 @@ body {
   .message-avatar { width: 26px; height: 26px; font-size: 0.95rem; }
   .input-area { padding: 8px 10px; }
   .input-wrapper { gap: 6px; }
-  #chatInput { padding: 8px 12px; font-size: 0.82rem; border-width: 1.5px; }
+  #chatInput { padding: 12px 16px; font-size: 0.95rem; border-width: 2.5px; }
   .send-btn { width: 36px; height: 36px; }
   .send-btn svg { width: 16px; height: 16px; }
 
@@ -1359,7 +1368,7 @@ body {
   .product-cta { font-size: 0.7rem; padding: 6px; }
   .section-title { font-size: 0.95rem; }
   .message-bubble { font-size: 0.75rem; padding: 7px 10px; }
-  #chatInput { font-size: 0.78rem; padding: 7px 10px; }
+  #chatInput { font-size: 0.88rem; padding: 10px 14px; }
   .send-btn { width: 32px; height: 32px; }
 }
 
