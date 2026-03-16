@@ -78,6 +78,13 @@ const i18n = {
     spinCongrats: "\u05de\u05d6\u05dc \u05d8\u05d5\u05d1! \ud83c\udf89",
     spinTryAgain: "\u05e0\u05e1\u05d4 \u05e9\u05d5\u05d1 \u05de\u05d7\u05e8",
     spinGetPrize: "\u05dc\u05e7\u05d1\u05dc\u05ea \u05d4\u05e4\u05e8\u05e1",
+    chatHelp: "\u05d0\u05e0\u05d9 \u05d9\u05db\u05d5\u05dc\u05d4 \u05dc\u05e2\u05d6\u05d5\u05e8 \u05dc\u05da \u05dc\u05de\u05e6\u05d5\u05d0 \u05de\u05d5\u05e6\u05e8\u05d9\u05dd \u05d1\u05d0\u05dc\u05d9 \u05d0\u05e7\u05e1\u05e4\u05e8\u05e1! \u05db\u05ea\u05d1\u05d9 \u05de\u05d4 \u05d0\u05ea \u05de\u05d7\u05e4\u05e9\u05ea, \u05ea\u05d1\u05e7\u05e9\u05d9 \u05d4\u05de\u05dc\u05e6\u05d5\u05ea, \u05d0\u05d5 \u05ea\u05e9\u05d0\u05dc\u05d9 \u05de\u05d4 \u05db\u05d3\u05d0\u05d9 \u05dc\u05e7\u05e0\u05d5\u05ea \ud83d\uded2",
+    chatRecommending: "\u05d1\u05d5\u05d3\u05e7\u05ea \u05d4\u05de\u05dc\u05e6\u05d5\u05ea...",
+    chatRefining: "\u05de\u05d7\u05e4\u05e9\u05ea {query}...",
+    quickCheapest: "\ud83d\udd3d \u05d4\u05db\u05d9 \u05d6\u05d5\u05dc",
+    quickRated: "\u2b50 \u05d4\u05db\u05d9 \u05de\u05d3\u05d5\u05e8\u05d2",
+    quickNewest: "\ud83c\udd95 \u05d4\u05db\u05d9 \u05d7\u05d3\u05e9",
+    quickSimilar: "\ud83d\udca1 \u05d4\u05de\u05dc\u05e6\u05d5\u05ea",
   },
   en: {
     heroTitle: "\u2728 Find Your Perfect Product",
@@ -133,6 +140,13 @@ const i18n = {
     spinCongrats: "Congratulations! \ud83c\udf89",
     spinTryAgain: "Try again tomorrow",
     spinGetPrize: "Claim Prize",
+    chatHelp: "I can help you find products on AliExpress! Type what you're looking for, ask for recommendations, or ask what to buy \ud83d\uded2",
+    chatRecommending: "Checking recommendations...",
+    chatRefining: "Searching {query}...",
+    quickCheapest: "\ud83d\udd3d Cheapest",
+    quickRated: "\u2b50 Top Rated",
+    quickNewest: "\ud83c\udd95 Newest",
+    quickSimilar: "\ud83d\udca1 Recommend",
   },
   ar: {
     heroTitle: "\u2728 \u0627\u0639\u062b\u0631 \u0639\u0644\u0649 \u0627\u0644\u0645\u0646\u062a\u062c \u0627\u0644\u0645\u062b\u0627\u0644\u064a",
@@ -188,6 +202,13 @@ const i18n = {
     spinCongrats: "\u0645\u0628\u0631\u0648\u0643! \ud83c\udf89",
     spinTryAgain: "\u062d\u0627\u0648\u0644 \u063a\u062f\u0627\u064b",
     spinGetPrize: "\u0627\u062d\u0635\u0644 \u0639\u0644\u0649 \u0627\u0644\u062c\u0627\u0626\u0632\u0629",
+    chatHelp: "\u064a\u0645\u0643\u0646\u0646\u064a \u0645\u0633\u0627\u0639\u062f\u062a\u0643 \u0641\u064a \u0627\u0644\u0639\u062b\u0648\u0631 \u0639\u0644\u0649 \u0645\u0646\u062a\u062c\u0627\u062a \u0631\u0627\u0626\u0639\u0629! \u0627\u0643\u062a\u0628 \u0645\u0627 \u062a\u0628\u062d\u062b \u0639\u0646\u0647 \u0623\u0648 \u0627\u0637\u0644\u0628 \u062a\u0648\u0635\u064a\u0627\u062a \ud83d\uded2",
+    chatRecommending: "\u0623\u0628\u062d\u062b \u0639\u0646 \u062a\u0648\u0635\u064a\u0627\u062a...",
+    chatRefining: "\u0623\u0628\u062d\u062b {query}...",
+    quickCheapest: "\ud83d\udd3d \u0627\u0644\u0623\u0631\u062e\u0635",
+    quickRated: "\u2b50 \u0627\u0644\u0623\u0641\u0636\u0644",
+    quickNewest: "\ud83c\udd95 \u0627\u0644\u0623\u062d\u062f\u062b",
+    quickSimilar: "\ud83d\udca1 \u062a\u0648\u0635\u064a\u0627\u062a",
   },
   ru: {
     heroTitle: "\u2728 \u041d\u0430\u0439\u0434\u0438 \u0438\u0434\u0435\u0430\u043b\u044c\u043d\u044b\u0439 \u0442\u043e\u0432\u0430\u0440",
@@ -224,6 +245,9 @@ const i18n = {
     dailyDealsTitle: "\u23f0 \u0421\u0434\u0435\u043b\u043a\u0438 \u0434\u043d\u044f", dealsEndsIn: "\u0417\u0430\u043a\u0430\u043d\u0447\u0438\u0432\u0430\u0435\u0442\u0441\u044f \u0447\u0435\u0440\u0435\u0437",
     spinTitle: "\ud83c\udfb0 \u041a\u0440\u0443\u0442\u0438 \u0438 \u0432\u044b\u0438\u0433\u0440\u044b\u0432\u0430\u0439!", spinBtn: "\u041a\u0440\u0443\u0442\u0438\u0442\u044c!", spinAlreadyUsed: "\u0412\u044b \u0443\u0436\u0435 \u043a\u0440\u0443\u0442\u0438\u043b\u0438 \u0441\u0435\u0433\u043e\u0434\u043d\u044f! \u0412\u043e\u0437\u0432\u0440\u0430\u0449\u0430\u0439\u0442\u0435\u0441\u044c \u0437\u0430\u0432\u0442\u0440\u0430 \ud83d\ude0a",
     spinCongrats: "\u041f\u043e\u0437\u0434\u0440\u0430\u0432\u043b\u044f\u0435\u043c! \ud83c\udf89", spinTryAgain: "\u041f\u043e\u043f\u0440\u043e\u0431\u0443\u0439\u0442\u0435 \u0437\u0430\u0432\u0442\u0440\u0430", spinGetPrize: "\u041f\u043e\u043b\u0443\u0447\u0438\u0442\u044c \u043f\u0440\u0438\u0437",
+    chatHelp: "\u042f \u043f\u043e\u043c\u043e\u0433\u0443 \u043d\u0430\u0439\u0442\u0438 \u0442\u043e\u0432\u0430\u0440\u044b \u043d\u0430 AliExpress! \u041d\u0430\u043f\u0438\u0448\u0438 \u0447\u0442\u043e \u0438\u0449\u0435\u0448\u044c \u0438\u043b\u0438 \u043f\u043e\u043f\u0440\u043e\u0441\u0438 \u0440\u0435\u043a\u043e\u043c\u0435\u043d\u0434\u0430\u0446\u0438\u0438 \ud83d\uded2",
+    chatRecommending: "\u0418\u0449\u0443 \u0440\u0435\u043a\u043e\u043c\u0435\u043d\u0434\u0430\u0446\u0438\u0438...", chatRefining: "\u0418\u0449\u0443 {query}...",
+    quickCheapest: "\ud83d\udd3d \u0414\u0435\u0448\u0435\u0432\u043b\u0435", quickRated: "\u2b50 \u041b\u0443\u0447\u0448\u0435\u0435", quickNewest: "\ud83c\udd95 \u041d\u043e\u0432\u043e\u0435", quickSimilar: "\ud83d\udca1 \u0420\u0435\u043a\u043e\u043c\u0435\u043d\u0434\u0430\u0446\u0438\u0438",
   },
   es: {
     heroTitle: "\u2728 Encuentra el producto perfecto",
@@ -256,6 +280,9 @@ const i18n = {
     dailyDealsTitle: "\u23f0 Ofertas del d\u00eda", dealsEndsIn: "Termina en",
     spinTitle: "\ud83c\udfb0 \u00a1Gira y gana!", spinBtn: "\u00a1Girar!", spinAlreadyUsed: "\u00a1Ya giraste hoy! Vuelve ma\u00f1ana \ud83d\ude0a",
     spinCongrats: "\u00a1Felicidades! \ud83c\udf89", spinTryAgain: "Intenta ma\u00f1ana", spinGetPrize: "Reclamar premio",
+    chatHelp: "\u00a1Puedo ayudarte a encontrar productos! Escribe lo que buscas o pide recomendaciones \ud83d\uded2",
+    chatRecommending: "Buscando recomendaciones...", chatRefining: "Buscando {query}...",
+    quickCheapest: "\ud83d\udd3d M\u00e1s barato", quickRated: "\u2b50 Mejor valorado", quickNewest: "\ud83c\udd95 M\u00e1s nuevo", quickSimilar: "\ud83d\udca1 Recomendar",
   },
   pt: {
     heroTitle: "\u2728 Encontre o produto perfeito",
@@ -288,6 +315,9 @@ const i18n = {
     dailyDealsTitle: "\u23f0 Ofertas do dia", dealsEndsIn: "Termina em",
     spinTitle: "\ud83c\udfb0 Gire e ganhe!", spinBtn: "Girar!", spinAlreadyUsed: "Voc\u00ea j\u00e1 girou hoje! Volte amanh\u00e3 \ud83d\ude0a",
     spinCongrats: "Parab\u00e9ns! \ud83c\udf89", spinTryAgain: "Tente amanh\u00e3", spinGetPrize: "Resgatar pr\u00eamio",
+    chatHelp: "Posso te ajudar a encontrar produtos! Escreva o que procura ou pe\u00e7a recomenda\u00e7\u00f5es \ud83d\uded2",
+    chatRecommending: "Buscando recomenda\u00e7\u00f5es...", chatRefining: "Buscando {query}...",
+    quickCheapest: "\ud83d\udd3d Mais barato", quickRated: "\u2b50 Melhor avaliado", quickNewest: "\ud83c\udd95 Mais novo", quickSimilar: "\ud83d\udca1 Recomendar",
   },
   tr: {
     heroTitle: "\u2728 M\u00fckemmel \u00fcr\u00fcn\u00fc bul",
@@ -320,6 +350,9 @@ const i18n = {
     dailyDealsTitle: "\u23f0 G\u00fcn\u00fcn F\u0131rsatlar\u0131", dealsEndsIn: "Biter",
     spinTitle: "\ud83c\udfb0 \u00c7evir ve kazan!", spinBtn: "\u00c7evir!", spinAlreadyUsed: "Bug\u00fcn zaten \u00e7evirdiniz! Yar\u0131n gelin \ud83d\ude0a",
     spinCongrats: "Tebrikler! \ud83c\udf89", spinTryAgain: "Yar\u0131n tekrar dene", spinGetPrize: "\u00d6d\u00fcl\u00fc al",
+    chatHelp: "\u00dcr\u00fcn bulmanda yard\u0131mc\u0131 olabilirim! Ne arad\u0131\u011f\u0131n\u0131 yaz veya \u00f6neri iste \ud83d\uded2",
+    chatRecommending: "\u00d6neriler aran\u0131yor...", chatRefining: "{query} aran\u0131yor...",
+    quickCheapest: "\ud83d\udd3d En ucuz", quickRated: "\u2b50 En iyi", quickNewest: "\ud83c\udd95 En yeni", quickSimilar: "\ud83d\udca1 \u00d6neriler",
   },
   fr: {
     heroTitle: "\u2728 Trouvez le produit parfait",
@@ -352,6 +385,9 @@ const i18n = {
     dailyDealsTitle: "\u23f0 Offres du jour", dealsEndsIn: "Se termine dans",
     spinTitle: "\ud83c\udfb0 Tournez et gagnez!", spinBtn: "Tourner!", spinAlreadyUsed: "D\u00e9j\u00e0 tourn\u00e9 aujourd'hui! Revenez demain \ud83d\ude0a",
     spinCongrats: "F\u00e9licitations! \ud83c\udf89", spinTryAgain: "R\u00e9essayez demain", spinGetPrize: "R\u00e9clamer le prix",
+    chatHelp: "Je peux vous aider \u00e0 trouver des produits! \u00c9crivez ce que vous cherchez ou demandez des recommandations \ud83d\uded2",
+    chatRecommending: "Recherche de recommandations...", chatRefining: "Recherche {query}...",
+    quickCheapest: "\ud83d\udd3d Moins cher", quickRated: "\u2b50 Mieux not\u00e9", quickNewest: "\ud83c\udd95 Plus r\u00e9cent", quickSimilar: "\ud83d\udca1 Recommander",
   }
 };
 
@@ -1443,18 +1479,255 @@ function chipClick(text) {
   sendMessage();
 }
 
+// ============================================================
+//  Smart Chatbot — Intent Detection & Context
+// ============================================================
+
+let chatContext = { lastQuery: "", lastIntent: "", lastResultCount: 0 };
+
+const GREETING_PATTERNS = {
+  he: /^(היי|שלום|מה נשמע|בוקר טוב|ערב טוב|הי|אהלן|מה קורה)\s*[!?.]*$/i,
+  en: /^(hi|hello|hey|good morning|good evening|what's up|howdy)\s*[!?.]*$/i,
+  ar: /^(مرحبا|أهلا|سلام|صباح الخير)\s*[!?.]*$/i,
+  ru: /^(привет|здравствуй|добрый день|доброе утро)\s*[!?.]*$/i,
+  es: /^(hola|buenos d[ií]as|buenas tardes|hey)\s*[!?.]*$/i,
+  pt: /^(oi|ol[aá]|bom dia|boa tarde|hey)\s*[!?.]*$/i,
+  tr: /^(merhaba|selam|günaydın|hey)\s*[!?.]*$/i,
+  fr: /^(salut|bonjour|bonsoir|coucou|hey)\s*[!?.]*$/i,
+};
+
+const HELP_PATTERNS = {
+  he: /איך (זה )?עובד|מה אפשר|עזרה|מה את יודע/i,
+  en: /how (does|do|to)|what can|help me|what is this/i,
+  ar: /كيف يعمل|مساعدة|ماذا يمكن/i,
+  ru: /как (это )?работает|помощь|что можно/i,
+  es: /c[oó]mo funciona|ayuda|qu[eé] puedo/i,
+  pt: /como funciona|ajuda|o que posso/i,
+  tr: /nas[ıi]l [çc]al[ıi][şs][ıi]|yard[ıi]m|ne yapabilirim/i,
+  fr: /comment [çc]a marche|aide|que puis-je/i,
+};
+
+const RECOMMEND_PATTERNS = {
+  he: /מה כדאי|תמליצ|המלצ|מתנה ל|מה לקנות|יש רעיון|מה מומלץ|עוזר/i,
+  en: /recommend|suggest|what should|gift for|idea for|help me choose|what to buy/i,
+  ar: /توصي|اقترح|هدية|ماذا أشتري/i,
+  ru: /рекомендуй|подскаж|что купить|подарок для|идея для/i,
+  es: /recomiend|suger|regalo para|qu[eé] comprar|idea para/i,
+  pt: /recomend|sugest|presente para|o que comprar|ideia para/i,
+  tr: /öner|hediye|ne almalı|fikir/i,
+  fr: /recommand|sugg[eé]r|cadeau pour|quoi acheter|id[eé]e pour/i,
+};
+
+const REFINE_PATTERNS = {
+  he: /^(יותר זול|הכי זול|יותר יקר|הכי חדש|הכי מדורג|משלוח חינם|בצבע \S+|צבע \S+)$/i,
+  en: /^(cheaper|cheapest|most expensive|newest|best rated|free shipping|in (red|blue|black|white|pink|green))$/i,
+  ar: /^(أرخص|أغلى|أحدث|أفضل|شحن مجاني)$/i,
+  ru: /^(дешевле|дороже|новее|лучшее|бесплатная доставка)$/i,
+  es: /^(m[aá]s barato|m[aá]s caro|m[aá]s nuevo|mejor valorado|env[ií]o gratis)$/i,
+  pt: /^(mais barato|mais caro|mais novo|melhor avaliado|frete gr[aá]tis)$/i,
+  tr: /^(en ucuz|en pahal[ıi]|en yeni|en iyi|[üu]cretsiz kargo)$/i,
+  fr: /^(moins cher|plus cher|plus r[eé]cent|mieux not[eé]|livraison gratuite)$/i,
+};
+
+const REFINE_MODIFIERS = {
+  "יותר זול": { sort: "cheap" }, "הכי זול": { sort: "cheap" },
+  "cheaper": { sort: "cheap" }, "cheapest": { sort: "cheap" },
+  "יותר יקר": { sort: "expensive" }, "most expensive": { sort: "expensive" },
+  "הכי חדש": { sort: "new" }, "newest": { sort: "new" },
+  "הכי מדורג": { sort: "rating" }, "best rated": { sort: "rating" },
+  "משלוח חינם": { append: "free shipping" }, "free shipping": { append: "free shipping" },
+};
+
+function detectIntent(text) {
+  const t = text.trim();
+  const lang = currentLang;
+
+  // Greeting — check all languages (user might type in any language)
+  for (const pat of Object.values(GREETING_PATTERNS)) {
+    if (pat.test(t)) return "greeting";
+  }
+
+  // Help — check all languages
+  for (const pat of Object.values(HELP_PATTERNS)) {
+    if (pat.test(t)) return "help";
+  }
+
+  // Refine (only if there's a previous search)
+  if (chatContext.lastQuery) {
+    for (const pat of Object.values(REFINE_PATTERNS)) {
+      if (pat.test(t)) return "refine";
+    }
+    // Also check color patterns
+    if (/^בצבע /i.test(t) || /^in (red|blue|black|white|pink|green|yellow|purple)/i.test(t)) return "refine";
+  }
+
+  // Recommend — check all languages
+  for (const pat of Object.values(RECOMMEND_PATTERNS)) {
+    if (pat.test(t)) return "recommend";
+  }
+
+  return "search";
+}
+
+function getRefineQuery(text) {
+  const t = text.trim().toLowerCase();
+  const lastQ = chatContext.lastQuery;
+
+  // Check modifier map
+  for (const [key, mod] of Object.entries(REFINE_MODIFIERS)) {
+    if (t === key.toLowerCase()) {
+      if (mod.sort) {
+        currentSort = mod.sort;
+        document.getElementById("sortSelect").value = mod.sort;
+        return lastQ;
+      }
+      if (mod.append) {
+        return lastQ + " " + mod.append;
+      }
+    }
+  }
+
+  // Color patterns
+  const colorMatch = t.match(/^(?:בצבע |צבע |in )(\S+)/i);
+  if (colorMatch) {
+    const colorMap = {
+      "אדום": "red", "שחור": "black", "לבן": "white", "כחול": "blue",
+      "ורוד": "pink", "ירוק": "green", "צהוב": "yellow", "סגול": "purple",
+      "חום": "brown", "אפור": "grey", "כתום": "orange",
+    };
+    const color = colorMap[colorMatch[1]] || colorMatch[1];
+    return lastQ + " " + color;
+  }
+
+  return lastQ + " " + t;
+}
+
+async function handleGreeting() {
+  const lang = i18n[currentLang] || i18n.en;
+  const greetings = [
+    lang.welcome,
+    lang.welcome,
+  ];
+  const greeting = greetings[Math.floor(Math.random() * greetings.length)];
+  addMessage(greeting);
+  // Show suggestion chips
+  loadSuggestions();
+  document.getElementById("chipsContainer").style.display = "flex";
+}
+
+async function handleHelp() {
+  const lang = i18n[currentLang] || i18n.en;
+  addMessage(lang.chatHelp);
+  loadSuggestions();
+  document.getElementById("chipsContainer").style.display = "flex";
+}
+
+async function handleRecommend(query) {
+  const lang = i18n[currentLang] || i18n.en;
+  addMessage(lang.chatRecommending);
+  showTyping();
+
+  try {
+    const resp = await fetch(`${API_BASE}/chat?q=${encodeURIComponent(query)}&lang=${currentLang}`);
+    const data = await resp.json();
+    hideTyping();
+
+    if (data.reply) {
+      addMessage(data.reply);
+    }
+
+    if (data.queries && data.queries.length > 0) {
+      // Show AI-suggested searches as chips
+      document.getElementById("chipsContainer").style.display = "flex";
+      renderChips(data.queries);
+    }
+  } catch {
+    hideTyping();
+    addMessage(lang.chatHelp);
+    loadSuggestions();
+    document.getElementById("chipsContainer").style.display = "flex";
+  }
+}
+
+function renderQuickReplies() {
+  const lang = i18n[currentLang] || i18n.en;
+  const container = document.getElementById("quickReplies");
+  if (!container) return;
+
+  container.innerHTML = `
+    <button class="quick-reply-btn" onclick="chipClick('${lang.quickCheapest.replace(/['"]/g,"")}')">${lang.quickCheapest}</button>
+    <button class="quick-reply-btn" onclick="chipClick('${lang.quickRated.replace(/['"]/g,"")}')">${lang.quickRated}</button>
+    <button class="quick-reply-btn" onclick="chipClick('${lang.quickNewest.replace(/['"]/g,"")}')">${lang.quickNewest}</button>
+    <button class="quick-reply-btn" onclick="quickRecommend()">${lang.quickSimilar}</button>
+  `;
+  container.style.display = "flex";
+}
+
+function quickRecommend() {
+  const lang = i18n[currentLang] || i18n.en;
+  const query = currentLang === "he"
+    ? `מה כדאי לקנות דומה ל-${chatContext.lastQuery}?`
+    : `recommend something similar to ${chatContext.lastQuery}`;
+  document.getElementById("chatInput").value = query;
+  sendMessage();
+}
+
+function hideQuickReplies() {
+  const container = document.getElementById("quickReplies");
+  if (container) container.style.display = "none";
+}
+
 async function sendMessage() {
   const input = document.getElementById("chatInput");
   const query = input.value.trim();
   if (!query || isLoading) return;
 
-  isLoading = true;
-  currentQuery = query;
-  currentPage = 1;
-  currentSort = "popular";
   input.value = "";
+  addMessage(query, true);
+  hideQuickReplies();
 
-  document.getElementById("sortSelect").value = "popular";
+  // Detect intent
+  const intent = detectIntent(query);
+
+  // Handle non-search intents without loading state
+  if (intent === "greeting") {
+    document.getElementById("chipsContainer").style.display = "none";
+    await handleGreeting();
+    chatContext.lastIntent = "greeting";
+    return;
+  }
+
+  if (intent === "help") {
+    document.getElementById("chipsContainer").style.display = "none";
+    await handleHelp();
+    chatContext.lastIntent = "help";
+    return;
+  }
+
+  if (intent === "recommend") {
+    isLoading = true;
+    document.getElementById("chipsContainer").style.display = "none";
+    document.getElementById("historyContainer").style.display = "none";
+    await handleRecommend(query);
+    chatContext.lastIntent = "recommend";
+    isLoading = false;
+    return;
+  }
+
+  // For refine, modify the search query
+  let searchQuery = query;
+  if (intent === "refine" && chatContext.lastQuery) {
+    searchQuery = getRefineQuery(query);
+  }
+
+  isLoading = true;
+  currentQuery = searchQuery;
+  currentPage = 1;
+  if (intent !== "refine") {
+    currentSort = "popular";
+    document.getElementById("sortSelect").value = "popular";
+  }
+
   document.getElementById("priceMin").value = "";
   document.getElementById("priceMax").value = "";
 
@@ -1465,12 +1738,11 @@ async function sendMessage() {
   document.getElementById("dailyDealsSection").style.display = "none";
   document.getElementById("recentlyViewed").style.display = "none";
 
-  addMessage(query, true);
   showTyping();
   showSkeletons();
 
   try {
-    const data = await doSearch(query, 1);
+    const data = await doSearch(searchQuery, 1);
     hideTyping();
 
     if (data.products && data.products.length > 0) {
@@ -1483,6 +1755,12 @@ async function sendMessage() {
       document.getElementById("resultsSection").style.display = "block";
       document.getElementById("loadMore").style.display = (data.total || 0) > currentPage * 50 ? "block" : "none";
       loadRelated(query);
+
+      // Update context and show quick replies
+      chatContext.lastQuery = searchQuery;
+      chatContext.lastIntent = intent;
+      chatContext.lastResultCount = data.total || data.products.length;
+      renderQuickReplies();
     } else {
       const msg = data.message || i18n[currentLang].noResults;
       addMessage(msg);

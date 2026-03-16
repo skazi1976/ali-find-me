@@ -1655,6 +1655,49 @@ body {
 }
 
 /* ============================================
+   Quick Replies (Smart Chatbot)
+   ============================================ */
+.quick-replies {
+  display: flex;
+  gap: 8px;
+  padding: 8px 18px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.quick-reply-btn {
+  padding: 6px 14px;
+  border: 2px solid transparent;
+  border-radius: 20px;
+  background: var(--card-bg);
+  color: var(--primary);
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  font-family: var(--font-body);
+  transition: all 0.2s;
+  background-image: linear-gradient(var(--card-bg), var(--card-bg)), var(--gradient);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+}
+
+.quick-reply-btn:hover {
+  background: var(--gradient);
+  color: #fff;
+  border-color: transparent;
+  background-clip: border-box;
+  transform: translateY(-1px);
+}
+
+@media (max-width: 600px) {
+  .quick-replies { padding: 6px 10px; gap: 6px; }
+  .quick-reply-btn { font-size: 0.72rem; padding: 5px 10px; }
+}
+
+/* ============================================
    Spin & Win
    ============================================ */
 .spin-float-btn {
