@@ -2,6 +2,20 @@
 <html lang="he" dir="rtl">
 <head>
   <meta charset="UTF-8">
+  <!-- Force clear old cache -->
+  <script>
+  if('serviceWorker' in navigator){
+    navigator.serviceWorker.getRegistrations().then(function(regs){
+      regs.forEach(function(r){r.unregister()});
+    });
+    caches.keys().then(function(keys){
+      keys.forEach(function(k){caches.delete(k)});
+    });
+    setTimeout(function(){
+      navigator.serviceWorker.register('/sw.js?v=16');
+    },1000);
+  }
+  </script>
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-18NLX6KS89"></script>
   <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-18NLX6KS89');</script>
