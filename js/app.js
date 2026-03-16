@@ -72,6 +72,12 @@ const i18n = {
     targetPrice: "\u05de\u05d7\u05d9\u05e8 \u05d9\u05e2\u05d3",
     dailyDealsTitle: "\u23f0 \u05d3\u05d9\u05dc\u05d9\u05dd \u05d9\u05d5\u05de\u05d9\u05d9\u05dd",
     dealsEndsIn: "\u05de\u05e1\u05ea\u05d9\u05d9\u05dd \u05d1\u05e2\u05d5\u05d3",
+    spinTitle: "\ud83c\udfb0 \u05e1\u05d5\u05d1\u05d1 \u05d5\u05d6\u05db\u05d4!",
+    spinBtn: "\u05e1\u05d5\u05d1\u05d1!",
+    spinAlreadyUsed: "\u05db\u05d1\u05e8 \u05e1\u05d5\u05d1\u05d1\u05ea \u05d4\u05d9\u05d5\u05dd! \u05d7\u05d6\u05e8\u05d9 \u05de\u05d7\u05e8 \ud83d\ude0a",
+    spinCongrats: "\u05de\u05d6\u05dc \u05d8\u05d5\u05d1! \ud83c\udf89",
+    spinTryAgain: "\u05e0\u05e1\u05d4 \u05e9\u05d5\u05d1 \u05de\u05d7\u05e8",
+    spinGetPrize: "\u05dc\u05e7\u05d1\u05dc\u05ea \u05d4\u05e4\u05e8\u05e1",
   },
   en: {
     heroTitle: "\u2728 Find Your Perfect Product",
@@ -121,6 +127,12 @@ const i18n = {
     targetPrice: "Target price",
     dailyDealsTitle: "\u23f0 Daily Deals",
     dealsEndsIn: "Ends in",
+    spinTitle: "\ud83c\udfb0 Spin & Win!",
+    spinBtn: "Spin!",
+    spinAlreadyUsed: "Already spun today! Come back tomorrow \ud83d\ude0a",
+    spinCongrats: "Congratulations! \ud83c\udf89",
+    spinTryAgain: "Try again tomorrow",
+    spinGetPrize: "Claim Prize",
   },
   ar: {
     heroTitle: "\u2728 \u0627\u0639\u062b\u0631 \u0639\u0644\u0649 \u0627\u0644\u0645\u0646\u062a\u062c \u0627\u0644\u0645\u062b\u0627\u0644\u064a",
@@ -170,6 +182,12 @@ const i18n = {
     targetPrice: "\u0627\u0644\u0633\u0639\u0631 \u0627\u0644\u0645\u0633\u062a\u0647\u062f\u0641",
     dailyDealsTitle: "\u23f0 \u0639\u0631\u0648\u0636 \u0627\u0644\u064a\u0648\u0645",
     dealsEndsIn: "\u064a\u0646\u062a\u0647\u064a \u062e\u0644\u0627\u0644",
+    spinTitle: "\ud83c\udfb0 \u0623\u062f\u0631 \u0648\u0627\u0631\u0628\u062d!",
+    spinBtn: "\u0623\u062f\u0631!",
+    spinAlreadyUsed: "\u0644\u0642\u062f \u0623\u062f\u0631\u062a \u0627\u0644\u064a\u0648\u0645! \u0639\u062f \u063a\u062f\u0627\u064b \ud83d\ude0a",
+    spinCongrats: "\u0645\u0628\u0631\u0648\u0643! \ud83c\udf89",
+    spinTryAgain: "\u062d\u0627\u0648\u0644 \u063a\u062f\u0627\u064b",
+    spinGetPrize: "\u0627\u062d\u0635\u0644 \u0639\u0644\u0649 \u0627\u0644\u062c\u0627\u0626\u0632\u0629",
   },
   ru: {
     heroTitle: "\u2728 \u041d\u0430\u0439\u0434\u0438 \u0438\u0434\u0435\u0430\u043b\u044c\u043d\u044b\u0439 \u0442\u043e\u0432\u0430\u0440",
@@ -204,6 +222,8 @@ const i18n = {
     setAlert: "\u0423\u0432\u0435\u0434\u043e\u043c\u0438\u0442\u044c \u043a\u043e\u0433\u0434\u0430 \u0446\u0435\u043d\u0430 \u0443\u043f\u0430\u0434\u0451\u0442 \u0434\u043e:",
     save: "\u0421\u043e\u0445\u0440\u0430\u043d\u0438\u0442\u044c", cancel: "\u041e\u0442\u043c\u0435\u043d\u0430", priceDropped: "\u0426\u0435\u043d\u0430 \u0441\u043d\u0438\u0437\u0438\u043b\u0430\u0441\u044c!", targetPrice: "\u0426\u0435\u043b\u0435\u0432\u0430\u044f \u0446\u0435\u043d\u0430",
     dailyDealsTitle: "\u23f0 \u0421\u0434\u0435\u043b\u043a\u0438 \u0434\u043d\u044f", dealsEndsIn: "\u0417\u0430\u043a\u0430\u043d\u0447\u0438\u0432\u0430\u0435\u0442\u0441\u044f \u0447\u0435\u0440\u0435\u0437",
+    spinTitle: "\ud83c\udfb0 \u041a\u0440\u0443\u0442\u0438 \u0438 \u0432\u044b\u0438\u0433\u0440\u044b\u0432\u0430\u0439!", spinBtn: "\u041a\u0440\u0443\u0442\u0438\u0442\u044c!", spinAlreadyUsed: "\u0412\u044b \u0443\u0436\u0435 \u043a\u0440\u0443\u0442\u0438\u043b\u0438 \u0441\u0435\u0433\u043e\u0434\u043d\u044f! \u0412\u043e\u0437\u0432\u0440\u0430\u0449\u0430\u0439\u0442\u0435\u0441\u044c \u0437\u0430\u0432\u0442\u0440\u0430 \ud83d\ude0a",
+    spinCongrats: "\u041f\u043e\u0437\u0434\u0440\u0430\u0432\u043b\u044f\u0435\u043c! \ud83c\udf89", spinTryAgain: "\u041f\u043e\u043f\u0440\u043e\u0431\u0443\u0439\u0442\u0435 \u0437\u0430\u0432\u0442\u0440\u0430", spinGetPrize: "\u041f\u043e\u043b\u0443\u0447\u0438\u0442\u044c \u043f\u0440\u0438\u0437",
   },
   es: {
     heroTitle: "\u2728 Encuentra el producto perfecto",
@@ -234,6 +254,8 @@ const i18n = {
     setAlert: "Alertar cuando el precio baje a:", save: "Guardar", cancel: "Cancelar",
     priceDropped: "\u00a1Baj\u00f3 el precio!", targetPrice: "Precio objetivo",
     dailyDealsTitle: "\u23f0 Ofertas del d\u00eda", dealsEndsIn: "Termina en",
+    spinTitle: "\ud83c\udfb0 \u00a1Gira y gana!", spinBtn: "\u00a1Girar!", spinAlreadyUsed: "\u00a1Ya giraste hoy! Vuelve ma\u00f1ana \ud83d\ude0a",
+    spinCongrats: "\u00a1Felicidades! \ud83c\udf89", spinTryAgain: "Intenta ma\u00f1ana", spinGetPrize: "Reclamar premio",
   },
   pt: {
     heroTitle: "\u2728 Encontre o produto perfeito",
@@ -264,6 +286,8 @@ const i18n = {
     setAlert: "Alertar quando o pre\u00e7o cair para:", save: "Salvar", cancel: "Cancelar",
     priceDropped: "Pre\u00e7o caiu!", targetPrice: "Pre\u00e7o alvo",
     dailyDealsTitle: "\u23f0 Ofertas do dia", dealsEndsIn: "Termina em",
+    spinTitle: "\ud83c\udfb0 Gire e ganhe!", spinBtn: "Girar!", spinAlreadyUsed: "Voc\u00ea j\u00e1 girou hoje! Volte amanh\u00e3 \ud83d\ude0a",
+    spinCongrats: "Parab\u00e9ns! \ud83c\udf89", spinTryAgain: "Tente amanh\u00e3", spinGetPrize: "Resgatar pr\u00eamio",
   },
   tr: {
     heroTitle: "\u2728 M\u00fckemmel \u00fcr\u00fcn\u00fc bul",
@@ -294,6 +318,8 @@ const i18n = {
     setAlert: "Fiyat d\u00fc\u015ft\u00fc\u011f\u00fcnde uyar:", save: "Kaydet", cancel: "\u0130ptal",
     priceDropped: "Fiyat d\u00fc\u015ft\u00fc!", targetPrice: "Hedef fiyat",
     dailyDealsTitle: "\u23f0 G\u00fcn\u00fcn F\u0131rsatlar\u0131", dealsEndsIn: "Biter",
+    spinTitle: "\ud83c\udfb0 \u00c7evir ve kazan!", spinBtn: "\u00c7evir!", spinAlreadyUsed: "Bug\u00fcn zaten \u00e7evirdiniz! Yar\u0131n gelin \ud83d\ude0a",
+    spinCongrats: "Tebrikler! \ud83c\udf89", spinTryAgain: "Yar\u0131n tekrar dene", spinGetPrize: "\u00d6d\u00fcl\u00fc al",
   },
   fr: {
     heroTitle: "\u2728 Trouvez le produit parfait",
@@ -324,6 +350,8 @@ const i18n = {
     setAlert: "Alerter quand le prix descend \u00e0:", save: "Sauver", cancel: "Annuler",
     priceDropped: "Prix en baisse!", targetPrice: "Prix cible",
     dailyDealsTitle: "\u23f0 Offres du jour", dealsEndsIn: "Se termine dans",
+    spinTitle: "\ud83c\udfb0 Tournez et gagnez!", spinBtn: "Tourner!", spinAlreadyUsed: "D\u00e9j\u00e0 tourn\u00e9 aujourd'hui! Revenez demain \ud83d\ude0a",
+    spinCongrats: "F\u00e9licitations! \ud83c\udf89", spinTryAgain: "R\u00e9essayez demain", spinGetPrize: "R\u00e9clamer le prix",
   }
 };
 
@@ -1037,6 +1065,199 @@ function startCountdown() {
   };
   update();
   countdownInterval = setInterval(update, 1000);
+}
+
+// ============================================================
+//  Spin & Win
+// ============================================================
+
+const SPIN_PRIZES = [
+  { labelKey: "coupon2",    icon: "🎁", color: "#6C5CE7", link: "https://s.click.aliexpress.com/e/_oBbNzoG" },
+  { labelKey: "freeShip",   icon: "🚚", color: "#FD79A8", link: "https://s.click.aliexpress.com/e/_oBbNzoG" },
+  { labelKey: "tryAgain",   icon: "😅", color: "#DFE6E9", link: null },
+  { labelKey: "coupon3",    icon: "🎁", color: "#A29BFE", link: "https://s.click.aliexpress.com/e/_oBbNzoG" },
+  { labelKey: "deal",       icon: "🔥", color: "#FDCB6E", link: null, action: "deals" },
+  { labelKey: "tryAgain2",  icon: "😅", color: "#DFE6E9", link: null },
+  { labelKey: "coupon5",    icon: "🎁", color: "#00B894", link: "https://s.click.aliexpress.com/e/_oBbNzoG" },
+  { labelKey: "discount10", icon: "⭐", color: "#E17055", link: "https://s.click.aliexpress.com/e/_oBbNzoG" },
+];
+
+const SPIN_LABELS = {
+  he: { coupon2: "קופון $2", freeShip: "משלוח חינם!", tryAgain: "נסי שוב מחר", coupon3: "קופון $3", deal: "דיל מיוחד!", tryAgain2: "נסי שוב מחר", coupon5: "קופון $5", discount10: "10% הנחה!" },
+  en: { coupon2: "$2 Coupon", freeShip: "Free Shipping!", tryAgain: "Try Tomorrow", coupon3: "$3 Coupon", deal: "Special Deal!", tryAgain2: "Try Tomorrow", coupon5: "$5 Coupon", discount10: "10% Off!" },
+  ar: { coupon2: "كوبون $2", freeShip: "شحن مجاني!", tryAgain: "حاول غداً", coupon3: "كوبون $3", deal: "عرض خاص!", tryAgain2: "حاول غداً", coupon5: "كوبون $5", discount10: "خصم 10%!" },
+  ru: { coupon2: "Купон $2", freeShip: "Бесплатная доставка!", tryAgain: "Попробуй завтра", coupon3: "Купон $3", deal: "Спецпредложение!", tryAgain2: "Попробуй завтра", coupon5: "Купон $5", discount10: "Скидка 10%!" },
+  es: { coupon2: "Cupón $2", freeShip: "¡Envío gratis!", tryAgain: "Intenta mañana", coupon3: "Cupón $3", deal: "¡Oferta especial!", tryAgain2: "Intenta mañana", coupon5: "Cupón $5", discount10: "¡10% Descuento!" },
+  pt: { coupon2: "Cupom $2", freeShip: "Frete grátis!", tryAgain: "Tente amanhã", coupon3: "Cupom $3", deal: "Oferta especial!", tryAgain2: "Tente amanhã", coupon5: "Cupom $5", discount10: "10% Desconto!" },
+  tr: { coupon2: "$2 Kupon", freeShip: "Ücretsiz kargo!", tryAgain: "Yarın dene", coupon3: "$3 Kupon", deal: "Özel fırsat!", tryAgain2: "Yarın dene", coupon5: "$5 Kupon", discount10: "%10 İndirim!" },
+  fr: { coupon2: "Coupon $2", freeShip: "Livraison gratuite!", tryAgain: "Essaie demain", coupon3: "Coupon $3", deal: "Offre spéciale!", tryAgain2: "Essaie demain", coupon5: "Coupon $5", discount10: "10% de réduction!" },
+};
+
+let spinAngle = 0;
+
+function getSpinLabel(key) {
+  const labels = SPIN_LABELS[currentLang] || SPIN_LABELS.en;
+  return labels[key] || key;
+}
+
+function canSpin() {
+  const last = localStorage.getItem("ali_spin_date");
+  const today = new Date().toISOString().split("T")[0];
+  return last !== today;
+}
+
+function markSpinUsed() {
+  const today = new Date().toISOString().split("T")[0];
+  localStorage.setItem("ali_spin_date", today);
+}
+
+function drawWheel(canvas) {
+  const ctx = canvas.getContext("2d");
+  const w = canvas.width, h = canvas.height;
+  const cx = w / 2, cy = h / 2, r = w / 2 - 2;
+  const segments = SPIN_PRIZES.length;
+  const arc = (2 * Math.PI) / segments;
+
+  ctx.clearRect(0, 0, w, h);
+
+  for (let i = 0; i < segments; i++) {
+    const angle = i * arc;
+    const prize = SPIN_PRIZES[i];
+
+    // Draw sector
+    ctx.beginPath();
+    ctx.moveTo(cx, cy);
+    ctx.arc(cx, cy, r, angle, angle + arc);
+    ctx.closePath();
+    ctx.fillStyle = prize.color;
+    ctx.fill();
+    ctx.strokeStyle = "#fff";
+    ctx.lineWidth = 2;
+    ctx.stroke();
+
+    // Draw text + icon
+    ctx.save();
+    ctx.translate(cx, cy);
+    ctx.rotate(angle + arc / 2);
+    ctx.textAlign = "right";
+    ctx.fillStyle = prize.color === "#DFE6E9" ? "#636E72" : "#fff";
+    ctx.font = "bold 11px 'Assistant', sans-serif";
+    const label = getSpinLabel(prize.labelKey);
+    ctx.fillText(label, r - 14, 4);
+    ctx.font = "16px sans-serif";
+    ctx.fillText(prize.icon, r - 2 - ctx.measureText(label).width - 8, 5);
+    ctx.restore();
+  }
+
+  // Center circle
+  ctx.beginPath();
+  ctx.arc(cx, cy, 20, 0, 2 * Math.PI);
+  ctx.fillStyle = "#fff";
+  ctx.fill();
+  ctx.strokeStyle = "#6C5CE7";
+  ctx.lineWidth = 3;
+  ctx.stroke();
+
+  ctx.fillStyle = "#6C5CE7";
+  ctx.font = "bold 14px sans-serif";
+  ctx.textAlign = "center";
+  ctx.textBaseline = "middle";
+  ctx.fillText("🎯", cx, cy);
+}
+
+function showSpinWheel() {
+  const overlay = document.getElementById("spinModalOverlay");
+  overlay.style.display = "flex";
+  const result = document.getElementById("spinResult");
+  result.style.display = "none";
+  const btn = document.getElementById("spinBtn");
+  btn.disabled = false;
+  btn.textContent = (i18n[currentLang] || i18n.en).spinBtn;
+
+  const canvas = document.getElementById("spinCanvas");
+  // Reset rotation
+  canvas.style.transition = "none";
+  canvas.style.transform = "rotate(0deg)";
+  spinAngle = 0;
+
+  // Wait for reset, then draw
+  requestAnimationFrame(() => {
+    drawWheel(canvas);
+  });
+}
+
+function closeSpinModal() {
+  document.getElementById("spinModalOverlay").style.display = "none";
+}
+
+function spinWheel() {
+  if (!canSpin()) {
+    const result = document.getElementById("spinResult");
+    result.style.display = "block";
+    result.innerHTML = `
+      <div class="spin-result-icon">⏰</div>
+      <div class="spin-result-text">${(i18n[currentLang] || i18n.en).spinAlreadyUsed}</div>
+    `;
+    document.getElementById("spinBtn").disabled = true;
+    return;
+  }
+
+  const btn = document.getElementById("spinBtn");
+  btn.disabled = true;
+
+  // Pick random prize index
+  const prizeIndex = Math.floor(Math.random() * SPIN_PRIZES.length);
+  const segments = SPIN_PRIZES.length;
+  const arc = 360 / segments;
+
+  // Calculate target angle: spin 5-8 full rotations + land on prize
+  // Prize i starts at angle i*arc. Center of prize = i*arc + arc/2.
+  // Canvas top = 270° (12 o'clock). Pointer is at top.
+  // We need: finalAngle mod 360 = 360 - (prizeIndex * arc + arc/2) + 270
+  // Simplify: we want the sector at 12 o'clock = 270°
+  const targetSectorAngle = prizeIndex * arc + arc / 2;
+  const offset = 270 - targetSectorAngle;
+  const fullRotations = (5 + Math.floor(Math.random() * 4)) * 360;
+  const finalAngle = fullRotations + offset + (Math.random() * (arc * 0.6) - arc * 0.3);
+
+  const canvas = document.getElementById("spinCanvas");
+  canvas.style.transition = "transform 4s cubic-bezier(0.17, 0.67, 0.12, 0.99)";
+
+  requestAnimationFrame(() => {
+    canvas.style.transform = `rotate(${finalAngle}deg)`;
+  });
+
+  // After spin completes
+  setTimeout(() => {
+    markSpinUsed();
+    showSpinResult(SPIN_PRIZES[prizeIndex]);
+  }, 4200);
+}
+
+function showSpinResult(prize) {
+  const lang = i18n[currentLang] || i18n.en;
+  const result = document.getElementById("spinResult");
+  const label = getSpinLabel(prize.labelKey);
+  const isTryAgain = prize.labelKey === "tryAgain" || prize.labelKey === "tryAgain2";
+
+  let html = `<div class="spin-result-icon">${prize.icon}</div>`;
+
+  if (isTryAgain) {
+    html += `<div class="spin-result-text">${lang.spinTryAgain}</div>`;
+    html += `<div class="spin-result-sub">😊</div>`;
+  } else {
+    html += `<div class="spin-result-text">${lang.spinCongrats}</div>`;
+    html += `<div class="spin-result-sub">${label}</div>`;
+
+    if (prize.action === "deals") {
+      html += `<a href="#dailyDealsSection" class="spin-claim-btn" onclick="closeSpinModal(); document.getElementById('dailyDealsSection').scrollIntoView({behavior:'smooth'})">${lang.spinGetPrize}</a>`;
+    } else if (prize.link) {
+      html += `<a href="${prize.link}" target="_blank" rel="noopener" class="spin-claim-btn">${lang.spinGetPrize}</a>`;
+    }
+  }
+
+  result.innerHTML = html;
+  result.style.display = "block";
 }
 
 async function loadRelated(query) {

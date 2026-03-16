@@ -25,7 +25,7 @@
   <link rel="alternate" hreflang="x-default" href="https://alifindme.com/">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&family=Assistant:wght@300;400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=20260316e">
+  <link rel="stylesheet" href="css/style.css?v=20260316f">
 
   <script type="application/ld+json">
   {
@@ -266,7 +266,24 @@
     </div>
   </footer>
 
-  <script src="js/app.js?v=20260316e"></script>
+  <!-- Spin & Win Float Button -->
+  <button class="spin-float-btn" id="spinFloatBtn" onclick="showSpinWheel()" title="Spin & Win">🎰</button>
+
+  <!-- Spin & Win Modal -->
+  <div class="spin-modal-overlay" id="spinModalOverlay" style="display:none" onclick="if(event.target===this)closeSpinModal()">
+    <div class="spin-modal">
+      <button class="spin-modal-close" onclick="closeSpinModal()">&times;</button>
+      <h2 class="spin-title" data-i18n="spinTitle">🎰 סובב וזכה!</h2>
+      <div class="spin-wheel-wrap">
+        <div class="spin-pointer">▼</div>
+        <canvas id="spinCanvas" width="300" height="300"></canvas>
+      </div>
+      <button class="spin-btn" id="spinBtn" onclick="spinWheel()" data-i18n="spinBtn">סובב!</button>
+      <div class="spin-result" id="spinResult" style="display:none"></div>
+    </div>
+  </div>
+
+  <script src="js/app.js?v=20260316f"></script>
   <script>
     // Register Service Worker
     if ('serviceWorker' in navigator) {
