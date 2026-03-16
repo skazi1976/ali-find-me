@@ -88,6 +88,16 @@ const i18n = {
     installTitle: "\u05d4\u05ea\u05e7\u05d9\u05e0\u05d9 \u05d0\u05ea \u05d4\u05d0\u05e4\u05dc\u05d9\u05e7\u05e6\u05d9\u05d4!",
     installDesc: "\u05d2\u05d9\u05e9\u05d4 \u05de\u05d4\u05d9\u05e8\u05d4 \u05dc\u05d3\u05d9\u05dc\u05d9\u05dd \u05d9\u05e9\u05d9\u05e8\u05d5\u05ea \u05de\u05d4\u05de\u05e1\u05da",
     installBtn: "\u05d4\u05ea\u05e7\u05df",
+    pointsTitle: "\u05d4\u05e0\u05e7\u05d5\u05d3\u05d5\u05ea \u05e9\u05dc\u05d9", pointsBalance: "\u05e0\u05e7\u05d5\u05d3\u05d5\u05ea",
+    pointsEarn: "\u05e6\u05d1\u05e8\u05ea +{pts} \u05e0\u05e7\u05d5\u05d3\u05d5\u05ea!",
+    pointsRedeem: "\u05e4\u05d3\u05d9\u05d5\u05df \u05e0\u05e7\u05d5\u05d3\u05d5\u05ea", pointsHistory: "\u05d4\u05d9\u05e1\u05d8\u05d5\u05e8\u05d9\u05d4",
+    pointsDaily: "\u05d1\u05d5\u05e0\u05d5\u05e1 \u05d9\u05d5\u05de\u05d9!", pointsSearch: "\u05d7\u05d9\u05e4\u05d5\u05e9",
+    pointsClick: "\u05e6\u05e4\u05d9\u05d9\u05d4 \u05d1\u05de\u05d5\u05e6\u05e8", pointsShare: "\u05e9\u05d9\u05ea\u05d5\u05e3",
+    pointsFav: "\u05de\u05d5\u05e2\u05d3\u05e3", pointsSpin: "\u05e1\u05d9\u05d1\u05d5\u05d1",
+    pointsCoupon5: "\u05e7\u05d5\u05e4\u05d5\u05df 5%", pointsCoupon10: "\u05e7\u05d5\u05e4\u05d5\u05df 10%",
+    pointsFreeShip: "\u05de\u05e9\u05dc\u05d5\u05d7 \u05d7\u05d9\u05e0\u05dd", pointsCoupon5off: "\u05e7\u05d5\u05e4\u05d5\u05df $5",
+    pointsRedeemed: "\u05e0\u05e4\u05d3\u05d4 \u05d1\u05d4\u05e6\u05dc\u05d7\u05d4!", pointsNotEnough: "\u05d0\u05d9\u05df \u05de\u05e1\u05e4\u05d9\u05e7 \u05e0\u05e7\u05d5\u05d3\u05d5\u05ea",
+    pointsToday: "\u05d4\u05d9\u05d5\u05dd", pointsYesterday: "\u05d0\u05ea\u05de\u05d5\u05dc",
   },
   en: {
     heroTitle: "\u2728 Find Your Perfect Product",
@@ -151,6 +161,16 @@ const i18n = {
     quickNewest: "\ud83c\udd95 Newest",
     quickSimilar: "\ud83d\udca1 Recommend",
     installTitle: "Install the app!", installDesc: "Quick access to deals from your home screen", installBtn: "Install",
+    pointsTitle: "My Points", pointsBalance: "points",
+    pointsEarn: "Earned +{pts} points!",
+    pointsRedeem: "Redeem Points", pointsHistory: "History",
+    pointsDaily: "Daily Bonus!", pointsSearch: "Search",
+    pointsClick: "Product View", pointsShare: "Share",
+    pointsFav: "Favorite", pointsSpin: "Spin",
+    pointsCoupon5: "5% Coupon", pointsCoupon10: "10% Coupon",
+    pointsFreeShip: "Free Shipping", pointsCoupon5off: "$5 Coupon",
+    pointsRedeemed: "Redeemed!", pointsNotEnough: "Not enough points",
+    pointsToday: "Today", pointsYesterday: "Yesterday",
   },
   ar: {
     heroTitle: "\u2728 \u0627\u0639\u062b\u0631 \u0639\u0644\u0649 \u0627\u0644\u0645\u0646\u062a\u062c \u0627\u0644\u0645\u062b\u0627\u0644\u064a",
@@ -214,6 +234,16 @@ const i18n = {
     quickNewest: "\ud83c\udd95 \u0627\u0644\u0623\u062d\u062f\u062b",
     quickSimilar: "\ud83d\udca1 \u062a\u0648\u0635\u064a\u0627\u062a",
     installTitle: "\u062b\u0628\u0651\u062a \u0627\u0644\u062a\u0637\u0628\u064a\u0642!", installDesc: "\u0648\u0635\u0648\u0644 \u0633\u0631\u064a\u0639 \u0644\u0644\u0639\u0631\u0648\u0636 \u0645\u0646 \u0634\u0627\u0634\u062a\u0643", installBtn: "\u062a\u062b\u0628\u064a\u062a",
+    pointsTitle: "\u0646\u0642\u0627\u0637\u064a", pointsBalance: "\u0646\u0642\u0627\u0637",
+    pointsEarn: "\u0631\u0628\u062d\u062a +{pts} \u0646\u0642\u0627\u0637!",
+    pointsRedeem: "\u0627\u0633\u062a\u0628\u062f\u0627\u0644", pointsHistory: "\u0627\u0644\u0633\u062c\u0644",
+    pointsDaily: "\u0645\u0643\u0627\u0641\u0623\u0629 \u064a\u0648\u0645\u064a\u0629!", pointsSearch: "\u0628\u062d\u062b",
+    pointsClick: "\u0639\u0631\u0636 \u0645\u0646\u062a\u062c", pointsShare: "\u0645\u0634\u0627\u0631\u0643\u0629",
+    pointsFav: "\u0645\u0641\u0636\u0644\u0629", pointsSpin: "\u062f\u0648\u0631\u0627\u0646",
+    pointsCoupon5: "\u0642\u0633\u064a\u0645\u0629 5%", pointsCoupon10: "\u0642\u0633\u064a\u0645\u0629 10%",
+    pointsFreeShip: "\u0634\u062d\u0646 \u0645\u062c\u0627\u0646\u064a", pointsCoupon5off: "\u0642\u0633\u064a\u0645\u0629 $5",
+    pointsRedeemed: "\u062a\u0645 \u0627\u0644\u0627\u0633\u062a\u0628\u062f\u0627\u0644!", pointsNotEnough: "\u0646\u0642\u0627\u0637 \u063a\u064a\u0631 \u0643\u0627\u0641\u064a\u0629",
+    pointsToday: "\u0627\u0644\u064a\u0648\u0645", pointsYesterday: "\u0623\u0645\u0633",
   },
   ru: {
     heroTitle: "\u2728 \u041d\u0430\u0439\u0434\u0438 \u0438\u0434\u0435\u0430\u043b\u044c\u043d\u044b\u0439 \u0442\u043e\u0432\u0430\u0440",
@@ -254,6 +284,16 @@ const i18n = {
     chatRecommending: "\u0418\u0449\u0443 \u0440\u0435\u043a\u043e\u043c\u0435\u043d\u0434\u0430\u0446\u0438\u0438...", chatRefining: "\u0418\u0449\u0443 {query}...",
     quickCheapest: "\ud83d\udd3d \u0414\u0435\u0448\u0435\u0432\u043b\u0435", quickRated: "\u2b50 \u041b\u0443\u0447\u0448\u0435\u0435", quickNewest: "\ud83c\udd95 \u041d\u043e\u0432\u043e\u0435", quickSimilar: "\ud83d\udca1 \u0420\u0435\u043a\u043e\u043c\u0435\u043d\u0434\u0430\u0446\u0438\u0438",
     installTitle: "\u0423\u0441\u0442\u0430\u043d\u043e\u0432\u0438 \u043f\u0440\u0438\u043b\u043e\u0436\u0435\u043d\u0438\u0435!", installDesc: "\u0411\u044b\u0441\u0442\u0440\u044b\u0439 \u0434\u043e\u0441\u0442\u0443\u043f \u043a \u0441\u043a\u0438\u0434\u043a\u0430\u043c \u0441 \u044d\u043a\u0440\u0430\u043d\u0430", installBtn: "\u0423\u0441\u0442\u0430\u043d\u043e\u0432\u0438\u0442\u044c",
+    pointsTitle: "\u041c\u043e\u0438 \u0431\u0430\u043b\u043b\u044b", pointsBalance: "\u0431\u0430\u043b\u043b\u043e\u0432",
+    pointsEarn: "\u041f\u043e\u043b\u0443\u0447\u0435\u043d\u043e +{pts} \u0431\u0430\u043b\u043b\u043e\u0432!",
+    pointsRedeem: "\u041e\u0431\u043c\u0435\u043d\u044f\u0442\u044c", pointsHistory: "\u0418\u0441\u0442\u043e\u0440\u0438\u044f",
+    pointsDaily: "\u0415\u0436\u0435\u0434\u043d\u0435\u0432\u043d\u044b\u0439 \u0431\u043e\u043d\u0443\u0441!", pointsSearch: "\u041f\u043e\u0438\u0441\u043a",
+    pointsClick: "\u041f\u0440\u043e\u0441\u043c\u043e\u0442\u0440", pointsShare: "\u041f\u043e\u0434\u0435\u043b\u0438\u0442\u044c\u0441\u044f",
+    pointsFav: "\u0418\u0437\u0431\u0440\u0430\u043d\u043d\u043e\u0435", pointsSpin: "\u0412\u0440\u0430\u0449\u0435\u043d\u0438\u0435",
+    pointsCoupon5: "\u041a\u0443\u043f\u043e\u043d 5%", pointsCoupon10: "\u041a\u0443\u043f\u043e\u043d 10%",
+    pointsFreeShip: "\u0411\u0435\u0441\u043f\u043b. \u0434\u043e\u0441\u0442\u0430\u0432\u043a\u0430", pointsCoupon5off: "\u041a\u0443\u043f\u043e\u043d $5",
+    pointsRedeemed: "\u041e\u0431\u043c\u0435\u043d\u044f\u043d\u043e!", pointsNotEnough: "\u041d\u0435\u0434\u043e\u0441\u0442\u0430\u0442\u043e\u0447\u043d\u043e \u0431\u0430\u043b\u043b\u043e\u0432",
+    pointsToday: "\u0421\u0435\u0433\u043e\u0434\u043d\u044f", pointsYesterday: "\u0412\u0447\u0435\u0440\u0430",
   },
   es: {
     heroTitle: "\u2728 Encuentra el producto perfecto",
@@ -290,6 +330,16 @@ const i18n = {
     chatRecommending: "Buscando recomendaciones...", chatRefining: "Buscando {query}...",
     quickCheapest: "\ud83d\udd3d M\u00e1s barato", quickRated: "\u2b50 Mejor valorado", quickNewest: "\ud83c\udd95 M\u00e1s nuevo", quickSimilar: "\ud83d\udca1 Recomendar",
     installTitle: "\u00a1Instala la app!", installDesc: "Acceso r\u00e1pido a ofertas desde tu pantalla", installBtn: "Instalar",
+    pointsTitle: "Mis Puntos", pointsBalance: "puntos",
+    pointsEarn: "\u00a1+{pts} puntos ganados!",
+    pointsRedeem: "Canjear", pointsHistory: "Historial",
+    pointsDaily: "\u00a1Bono diario!", pointsSearch: "B\u00fasqueda",
+    pointsClick: "Ver producto", pointsShare: "Compartir",
+    pointsFav: "Favorito", pointsSpin: "Giro",
+    pointsCoupon5: "Cup\u00f3n 5%", pointsCoupon10: "Cup\u00f3n 10%",
+    pointsFreeShip: "Env\u00edo gratis", pointsCoupon5off: "Cup\u00f3n $5",
+    pointsRedeemed: "\u00a1Canjeado!", pointsNotEnough: "Puntos insuficientes",
+    pointsToday: "Hoy", pointsYesterday: "Ayer",
   },
   pt: {
     heroTitle: "\u2728 Encontre o produto perfeito",
@@ -326,6 +376,16 @@ const i18n = {
     chatRecommending: "Buscando recomenda\u00e7\u00f5es...", chatRefining: "Buscando {query}...",
     quickCheapest: "\ud83d\udd3d Mais barato", quickRated: "\u2b50 Melhor avaliado", quickNewest: "\ud83c\udd95 Mais novo", quickSimilar: "\ud83d\udca1 Recomendar",
     installTitle: "Instale o app!", installDesc: "Acesso r\u00e1pido a ofertas na sua tela", installBtn: "Instalar",
+    pointsTitle: "Meus Pontos", pointsBalance: "pontos",
+    pointsEarn: "+{pts} pontos ganhos!",
+    pointsRedeem: "Resgatar", pointsHistory: "Hist\u00f3rico",
+    pointsDaily: "B\u00f4nus di\u00e1rio!", pointsSearch: "Pesquisa",
+    pointsClick: "Ver produto", pointsShare: "Compartilhar",
+    pointsFav: "Favorito", pointsSpin: "Giro",
+    pointsCoupon5: "Cupom 5%", pointsCoupon10: "Cupom 10%",
+    pointsFreeShip: "Frete gr\u00e1tis", pointsCoupon5off: "Cupom $5",
+    pointsRedeemed: "Resgatado!", pointsNotEnough: "Pontos insuficientes",
+    pointsToday: "Hoje", pointsYesterday: "Ontem",
   },
   tr: {
     heroTitle: "\u2728 M\u00fckemmel \u00fcr\u00fcn\u00fc bul",
@@ -362,6 +422,16 @@ const i18n = {
     chatRecommending: "\u00d6neriler aran\u0131yor...", chatRefining: "{query} aran\u0131yor...",
     quickCheapest: "\ud83d\udd3d En ucuz", quickRated: "\u2b50 En iyi", quickNewest: "\ud83c\udd95 En yeni", quickSimilar: "\ud83d\udca1 \u00d6neriler",
     installTitle: "Uygulamay\u0131 y\u00fckle!", installDesc: "Ekran\u0131ndan f\u0131rsatlara h\u0131zl\u0131 eri\u015fim", installBtn: "Y\u00fckle",
+    pointsTitle: "Puanlar\u0131m", pointsBalance: "puan",
+    pointsEarn: "+{pts} puan kazan\u0131ld\u0131!",
+    pointsRedeem: "Kullan", pointsHistory: "Ge\u00e7mi\u015f",
+    pointsDaily: "G\u00fcnl\u00fck bonus!", pointsSearch: "Arama",
+    pointsClick: "\u00dcr\u00fcn g\u00f6r\u00fcnt\u00fcleme", pointsShare: "Payla\u015f",
+    pointsFav: "Favori", pointsSpin: "D\u00f6nd\u00fcr",
+    pointsCoupon5: "Kupon %5", pointsCoupon10: "Kupon %10",
+    pointsFreeShip: "\u00dccretsiz kargo", pointsCoupon5off: "Kupon $5",
+    pointsRedeemed: "Kullan\u0131ld\u0131!", pointsNotEnough: "Yetersiz puan",
+    pointsToday: "Bug\u00fcn", pointsYesterday: "D\u00fcn",
   },
   fr: {
     heroTitle: "\u2728 Trouvez le produit parfait",
@@ -398,6 +468,16 @@ const i18n = {
     chatRecommending: "Recherche de recommandations...", chatRefining: "Recherche {query}...",
     quickCheapest: "\ud83d\udd3d Moins cher", quickRated: "\u2b50 Mieux not\u00e9", quickNewest: "\ud83c\udd95 Plus r\u00e9cent", quickSimilar: "\ud83d\udca1 Recommander",
     installTitle: "Installez l'appli!", installDesc: "Acc\u00e8s rapide aux offres depuis votre \u00e9cran", installBtn: "Installer",
+    pointsTitle: "Mes Points", pointsBalance: "points",
+    pointsEarn: "+{pts} points gagn\u00e9s!",
+    pointsRedeem: "\u00c9changer", pointsHistory: "Historique",
+    pointsDaily: "Bonus quotidien!", pointsSearch: "Recherche",
+    pointsClick: "Voir produit", pointsShare: "Partager",
+    pointsFav: "Favori", pointsSpin: "Tourner",
+    pointsCoupon5: "Coupon 5%", pointsCoupon10: "Coupon 10%",
+    pointsFreeShip: "Livraison gratuite", pointsCoupon5off: "Coupon 5$",
+    pointsRedeemed: "\u00c9chang\u00e9!", pointsNotEnough: "Points insuffisants",
+    pointsToday: "Aujourd'hui", pointsYesterday: "Hier",
   }
 };
 
@@ -594,7 +674,7 @@ function toggleFavorite(product) {
   let favs = getFavorites();
   const idx = favs.findIndex(f => f.id === product.id);
   if (idx >= 0) { favs.splice(idx, 1); }
-  else { favs.unshift(product); if (favs.length > 50) favs = favs.slice(0, 50); }
+  else { favs.unshift(product); if (favs.length > 50) favs = favs.slice(0, 50); addPoints(1, "fav"); }
   localStorage.setItem("ali_favorites", JSON.stringify(favs));
   updateFavBadge();
   return idx < 0;
@@ -856,6 +936,7 @@ function closeAlerts() { document.getElementById("alertModal").style.display = "
 function shareProduct(title, price, url) {
   const text = `${i18n[currentLang].shareText}\n${title}\n${currentCurrencySymbol}${price}\n${url}`;
   window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`, "_blank");
+  addPoints(5, "share");
 }
 
 function shareSearch(query) {
@@ -1277,6 +1358,7 @@ function spinWheel() {
   setTimeout(() => {
     markSpinUsed();
     showSpinResult(SPIN_PRIZES[prizeIndex]);
+    addPoints(2, "spin");
   }, 4200);
 }
 
@@ -1457,6 +1539,7 @@ function onFavClick(btn, productJson) {
 function onProductClick(productJson) {
   const p = JSON.parse(productJson.replace(/&quot;/g, '"').replace(/&#39;/g, "'"));
   trackView(p);
+  addPoints(3, "click");
 }
 
 function onAlertClick(productJson) {
@@ -1771,6 +1854,7 @@ async function sendMessage() {
       chatContext.lastIntent = intent;
       chatContext.lastResultCount = data.total || data.products.length;
       renderQuickReplies();
+      addPoints(2, "search");
     } else {
       const msg = data.message || i18n[currentLang].noResults;
       addMessage(msg);
@@ -1910,6 +1994,144 @@ document.addEventListener("click", (e) => {
     if (dd) dd.classList.remove("open");
   }
 });
+
+// ─── Points Program ────────────────────────────────────────
+const POINTS_KEY = "ali_points";
+const POINTS_LIMITS = { searches: 10, clicks: 20, shares: 5 };
+const POINTS_TIERS = [
+  { cost: 50, key: "pointsCoupon5", icon: "🏷️", discount: "5%" },
+  { cost: 100, key: "pointsCoupon10", icon: "🎫", discount: "10%" },
+  { cost: 200, key: "pointsFreeShip", icon: "🚚", discount: "free_ship" },
+  { cost: 500, key: "pointsCoupon5off", icon: "💰", discount: "$5" },
+];
+
+function getPointsData() {
+  try { return JSON.parse(localStorage.getItem(POINTS_KEY) || "null") || { total: 0, today: { date: "", searches: 0, clicks: 0, shares: 0 }, history: [] }; }
+  catch { return { total: 0, today: { date: "", searches: 0, clicks: 0, shares: 0 }, history: [] }; }
+}
+
+function savePointsData(data) {
+  // Keep history to last 50 entries
+  if (data.history.length > 50) data.history = data.history.slice(-50);
+  localStorage.setItem(POINTS_KEY, JSON.stringify(data));
+  updatePointsBadge();
+}
+
+function getTodayStr() { return new Date().toISOString().slice(0, 10); }
+
+function resetTodayIfNeeded(data) {
+  if (data.today.date !== getTodayStr()) {
+    data.today = { date: getTodayStr(), searches: 0, clicks: 0, shares: 0 };
+  }
+  return data;
+}
+
+function addPoints(amount, reason) {
+  let data = getPointsData();
+  data = resetTodayIfNeeded(data);
+  // Check daily limits
+  if (reason === "search" && data.today.searches >= POINTS_LIMITS.searches) return;
+  if (reason === "click" && data.today.clicks >= POINTS_LIMITS.clicks) return;
+  if (reason === "share" && data.today.shares >= POINTS_LIMITS.shares) return;
+  // Update counters
+  if (reason === "search") data.today.searches++;
+  if (reason === "click") data.today.clicks++;
+  if (reason === "share") data.today.shares++;
+  data.total += amount;
+  data.history.push({ pts: amount, reason, date: getTodayStr(), ts: Date.now() });
+  savePointsData(data);
+  showPointsToast(amount, reason);
+  gtag?.("event", "points_earned", { amount, reason });
+}
+
+function checkDailyBonus() {
+  let data = getPointsData();
+  const today = getTodayStr();
+  if (data.today.date === today && data.history.some(h => h.reason === "daily" && h.date === today)) return;
+  data = resetTodayIfNeeded(data);
+  data.total += 5;
+  data.history.push({ pts: 5, reason: "daily", date: today, ts: Date.now() });
+  savePointsData(data);
+  setTimeout(() => showPointsToast(5, "daily"), 1500);
+}
+
+function updatePointsBadge() {
+  const badge = document.getElementById("pointsBadge");
+  if (badge) badge.textContent = getPointsData().total;
+}
+
+function showPointsToast(pts, reason) {
+  const lang = i18n[currentLang] || i18n.en;
+  const reasonMap = { daily: lang.pointsDaily, search: lang.pointsSearch, click: lang.pointsClick, share: lang.pointsShare, fav: lang.pointsFav, spin: lang.pointsSpin };
+  const toast = document.getElementById("pointsToast");
+  if (!toast) return;
+  toast.innerHTML = `<span class="points-toast-icon">⭐</span> <span>+${pts} ${lang.pointsBalance}</span><br><small>${reasonMap[reason] || reason}</small>`;
+  toast.classList.add("show");
+  setTimeout(() => toast.classList.remove("show"), 3000);
+}
+
+function showPointsModal() {
+  const data = getPointsData();
+  const lang = i18n[currentLang] || i18n.en;
+  const modal = document.getElementById("pointsModal");
+  if (!modal) return;
+
+  // Build redeem grid
+  let tiersHtml = POINTS_TIERS.map(t => {
+    const canRedeem = data.total >= t.cost;
+    return `<button class="points-tier-card ${canRedeem ? '' : 'disabled'}" onclick="${canRedeem ? `redeemPoints(${t.cost})` : ''}">
+      <span class="tier-icon">${t.icon}</span>
+      <span class="tier-cost">${t.cost} ⭐</span>
+      <span class="tier-label">${lang[t.key]}</span>
+    </button>`;
+  }).join("");
+
+  // Build history
+  let histHtml = data.history.slice().reverse().slice(0, 15).map(h => {
+    const reasonMap = { daily: lang.pointsDaily, search: lang.pointsSearch, click: lang.pointsClick, share: lang.pointsShare, fav: lang.pointsFav, spin: lang.pointsSpin, redeem: lang.pointsRedeem };
+    const isRedeem = h.pts < 0;
+    const dateLabel = h.date === getTodayStr() ? lang.pointsToday : lang.pointsYesterday || h.date;
+    return `<div class="points-history-item">
+      <span class="ph-pts ${isRedeem ? 'negative' : 'positive'}">${isRedeem ? '' : '+'}${h.pts}</span>
+      <span class="ph-reason">${reasonMap[h.reason] || h.reason}</span>
+      <span class="ph-date">${dateLabel}</span>
+    </div>`;
+  }).join("") || `<p style="text-align:center;color:#999">---</p>`;
+
+  document.getElementById("pointsModalBody").innerHTML = `
+    <div class="points-balance-display">
+      <span class="points-balance-num">${data.total}</span>
+      <span class="points-balance-label">⭐ ${lang.pointsBalance}</span>
+    </div>
+    <h3 class="points-section-title">${lang.pointsRedeem}</h3>
+    <div class="points-tiers-grid">${tiersHtml}</div>
+    <h3 class="points-section-title">${lang.pointsHistory}</h3>
+    <div class="points-history-list">${histHtml}</div>`;
+  modal.style.display = "flex";
+}
+
+function closePointsModal() {
+  const modal = document.getElementById("pointsModal");
+  if (modal) modal.style.display = "none";
+}
+
+function redeemPoints(cost) {
+  let data = getPointsData();
+  const lang = i18n[currentLang] || i18n.en;
+  if (data.total < cost) { alert(lang.pointsNotEnough); return; }
+  data.total -= cost;
+  data.history.push({ pts: -cost, reason: "redeem", date: getTodayStr(), ts: Date.now() });
+  savePointsData(data);
+  // Show redeemed message
+  const tier = POINTS_TIERS.find(t => t.cost === cost);
+  const msg = `${lang.pointsRedeemed}\n${tier ? tier.icon + " " + lang[tier.key] : ""}`;
+  alert(msg);
+  showPointsModal(); // Refresh modal
+}
+
+// Init points on page load
+updatePointsBadge();
+checkDailyBonus();
 
 // ─── PWA Install Prompt ────────────────────────────────────
 let deferredPrompt = null;
