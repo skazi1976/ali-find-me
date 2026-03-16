@@ -70,6 +70,8 @@ const i18n = {
     cancel: "\u05d1\u05d9\u05d8\u05d5\u05dc",
     priceDropped: "\u05d9\u05e8\u05d3 \u05de\u05d7\u05d9\u05e8!",
     targetPrice: "\u05de\u05d7\u05d9\u05e8 \u05d9\u05e2\u05d3",
+    dailyDealsTitle: "\u23f0 \u05d3\u05d9\u05dc\u05d9\u05dd \u05d9\u05d5\u05de\u05d9\u05d9\u05dd",
+    dealsEndsIn: "\u05de\u05e1\u05ea\u05d9\u05d9\u05dd \u05d1\u05e2\u05d5\u05d3",
   },
   en: {
     heroTitle: "\u2728 Find Your Perfect Product",
@@ -117,6 +119,8 @@ const i18n = {
     cancel: "Cancel",
     priceDropped: "Price dropped!",
     targetPrice: "Target price",
+    dailyDealsTitle: "\u23f0 Daily Deals",
+    dealsEndsIn: "Ends in",
   },
   ar: {
     heroTitle: "\u2728 \u0627\u0639\u062b\u0631 \u0639\u0644\u0649 \u0627\u0644\u0645\u0646\u062a\u062c \u0627\u0644\u0645\u062b\u0627\u0644\u064a",
@@ -164,6 +168,8 @@ const i18n = {
     cancel: "\u0625\u0644\u063a\u0627\u0621",
     priceDropped: "\u0627\u0646\u062e\u0641\u0636 \u0627\u0644\u0633\u0639\u0631!",
     targetPrice: "\u0627\u0644\u0633\u0639\u0631 \u0627\u0644\u0645\u0633\u062a\u0647\u062f\u0641",
+    dailyDealsTitle: "\u23f0 \u0639\u0631\u0648\u0636 \u0627\u0644\u064a\u0648\u0645",
+    dealsEndsIn: "\u064a\u0646\u062a\u0647\u064a \u062e\u0644\u0627\u0644",
   },
   ru: {
     heroTitle: "\u2728 \u041d\u0430\u0439\u0434\u0438 \u0438\u0434\u0435\u0430\u043b\u044c\u043d\u044b\u0439 \u0442\u043e\u0432\u0430\u0440",
@@ -197,6 +203,7 @@ const i18n = {
     myAlerts: "\u0423\u0432\u0435\u0434\u043e\u043c\u043b\u0435\u043d\u0438\u044f \u043e \u0446\u0435\u043d\u0435", noAlerts: "\u041d\u0435\u0442 \u0443\u0432\u0435\u0434\u043e\u043c\u043b\u0435\u043d\u0438\u0439",
     setAlert: "\u0423\u0432\u0435\u0434\u043e\u043c\u0438\u0442\u044c \u043a\u043e\u0433\u0434\u0430 \u0446\u0435\u043d\u0430 \u0443\u043f\u0430\u0434\u0451\u0442 \u0434\u043e:",
     save: "\u0421\u043e\u0445\u0440\u0430\u043d\u0438\u0442\u044c", cancel: "\u041e\u0442\u043c\u0435\u043d\u0430", priceDropped: "\u0426\u0435\u043d\u0430 \u0441\u043d\u0438\u0437\u0438\u043b\u0430\u0441\u044c!", targetPrice: "\u0426\u0435\u043b\u0435\u0432\u0430\u044f \u0446\u0435\u043d\u0430",
+    dailyDealsTitle: "\u23f0 \u0421\u0434\u0435\u043b\u043a\u0438 \u0434\u043d\u044f", dealsEndsIn: "\u0417\u0430\u043a\u0430\u043d\u0447\u0438\u0432\u0430\u0435\u0442\u0441\u044f \u0447\u0435\u0440\u0435\u0437",
   },
   es: {
     heroTitle: "\u2728 Encuentra el producto perfecto",
@@ -226,6 +233,7 @@ const i18n = {
     myAlerts: "Alertas de precio", noAlerts: "Sin alertas activas",
     setAlert: "Alertar cuando el precio baje a:", save: "Guardar", cancel: "Cancelar",
     priceDropped: "\u00a1Baj\u00f3 el precio!", targetPrice: "Precio objetivo",
+    dailyDealsTitle: "\u23f0 Ofertas del d\u00eda", dealsEndsIn: "Termina en",
   },
   pt: {
     heroTitle: "\u2728 Encontre o produto perfeito",
@@ -255,6 +263,7 @@ const i18n = {
     myAlerts: "Alertas de pre\u00e7o", noAlerts: "Sem alertas ativos",
     setAlert: "Alertar quando o pre\u00e7o cair para:", save: "Salvar", cancel: "Cancelar",
     priceDropped: "Pre\u00e7o caiu!", targetPrice: "Pre\u00e7o alvo",
+    dailyDealsTitle: "\u23f0 Ofertas do dia", dealsEndsIn: "Termina em",
   },
   tr: {
     heroTitle: "\u2728 M\u00fckemmel \u00fcr\u00fcn\u00fc bul",
@@ -284,6 +293,7 @@ const i18n = {
     myAlerts: "Fiyat uyar\u0131lar\u0131", noAlerts: "Aktif uyar\u0131 yok",
     setAlert: "Fiyat d\u00fc\u015ft\u00fc\u011f\u00fcnde uyar:", save: "Kaydet", cancel: "\u0130ptal",
     priceDropped: "Fiyat d\u00fc\u015ft\u00fc!", targetPrice: "Hedef fiyat",
+    dailyDealsTitle: "\u23f0 G\u00fcn\u00fcn F\u0131rsatlar\u0131", dealsEndsIn: "Biter",
   },
   fr: {
     heroTitle: "\u2728 Trouvez le produit parfait",
@@ -313,6 +323,7 @@ const i18n = {
     myAlerts: "Alertes prix", noAlerts: "Pas d'alertes actives",
     setAlert: "Alerter quand le prix descend \u00e0:", save: "Sauver", cancel: "Annuler",
     priceDropped: "Prix en baisse!", targetPrice: "Prix cible",
+    dailyDealsTitle: "\u23f0 Offres du jour", dealsEndsIn: "Se termine dans",
   }
 };
 
@@ -412,6 +423,7 @@ function setLang(lang) {
   loadCategories();
   renderHistory();
   loadTrending();
+  loadDailyDeals();
   loadRecentlyViewed();
 }
 
@@ -968,6 +980,65 @@ async function loadTrending() {
   } catch { document.getElementById("trendingSection").style.display = "none"; }
 }
 
+// ============================================================
+//  Daily Deals
+// ============================================================
+
+const DEALS_CATEGORIES = [
+  "fashion sale women dress",
+  "electronics gadgets deals",
+  "beauty skincare sale",
+  "home kitchen gadgets",
+  "jewelry accessories sale",
+  "sports fitness accessories",
+];
+
+let countdownInterval = null;
+
+async function loadDailyDeals() {
+  try {
+    const hour = new Date().getHours();
+    const category = DEALS_CATEGORIES[Math.floor(hour / 4) % DEALS_CATEGORIES.length];
+    const data = await doSearch(category, 1);
+    if (data.products && data.products.length > 0) {
+      const dealsProducts = data.products
+        .filter(p => p.discount >= 15)
+        .sort((a, b) => b.discount - a.discount)
+        .slice(0, 6);
+      if (dealsProducts.length >= 2) {
+        renderDailyDeals(dealsProducts);
+        document.getElementById("dailyDealsSection").style.display = "block";
+        startCountdown();
+      } else {
+        document.getElementById("dailyDealsSection").style.display = "none";
+      }
+    }
+  } catch {
+    document.getElementById("dailyDealsSection").style.display = "none";
+  }
+}
+
+function renderDailyDeals(products) {
+  document.getElementById("dealsGrid").innerHTML = products.map(p => buildProductCard(p)).join("");
+}
+
+function startCountdown() {
+  if (countdownInterval) clearInterval(countdownInterval);
+  const update = () => {
+    const now = new Date();
+    const end = new Date();
+    end.setHours(23, 59, 59, 999);
+    const diff = end - now;
+    const h = String(Math.floor(diff / 3600000)).padStart(2, "0");
+    const m = String(Math.floor((diff % 3600000) / 60000)).padStart(2, "0");
+    const s = String(Math.floor((diff % 60000) / 1000)).padStart(2, "0");
+    const el = document.getElementById("countdownTimer");
+    if (el) el.textContent = `${h}:${m}:${s}`;
+  };
+  update();
+  countdownInterval = setInterval(update, 1000);
+}
+
 async function loadRelated(query) {
   try {
     const resp = await fetch(`${API_BASE}/related?q=${encodeURIComponent(query)}`);
@@ -1170,6 +1241,7 @@ async function sendMessage() {
   document.getElementById("chipsContainer").style.display = "none";
   document.getElementById("historyContainer").style.display = "none";
   document.getElementById("trendingSection").style.display = "none";
+  document.getElementById("dailyDealsSection").style.display = "none";
   document.getElementById("recentlyViewed").style.display = "none";
 
   addMessage(query, true);

@@ -831,6 +831,39 @@ body {
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)) !important;
 }
 
+/* ---- Daily Deals ---- */
+.daily-deals-section {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+.deals-countdown {
+  text-align: center;
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  font-size: 1rem;
+  color: var(--text-light);
+}
+
+.countdown-timer {
+  background: linear-gradient(135deg, #6C5CE7 0%, #FD79A8 100%);
+  color: #fff;
+  padding: 8px 22px;
+  border-radius: 20px;
+  font-weight: 700;
+  font-size: 1.15rem;
+  letter-spacing: 2px;
+  box-shadow: 0 4px 15px rgba(108, 92, 231, 0.3);
+}
+
+.deals-grid {
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)) !important;
+}
+
 /* ---- Categories ---- */
 .categories-section {
   max-width: 1200px;
@@ -1091,6 +1124,9 @@ body {
   .hero-subtitle { font-size: 0.95rem; }
   .product-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
   .trending-grid { grid-template-columns: repeat(2, 1fr) !important; }
+  .deals-grid { grid-template-columns: repeat(2, 1fr) !important; }
+  .daily-deals-section { margin: 20px auto; padding: 0 8px; }
+  .countdown-timer { font-size: 1rem; padding: 6px 16px; }
   .steps-grid { grid-template-columns: 1fr; gap: 16px; }
   .categories-grid { grid-template-columns: repeat(3, 1fr); }
   .filters-bar { gap: 10px; flex-direction: column; align-items: stretch; }

@@ -25,7 +25,7 @@
   <link rel="alternate" hreflang="x-default" href="https://alifindme.com/">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&family=Assistant:wght@300;400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=20260316d">
+  <link rel="stylesheet" href="css/style.css?v=20260316e">
 
   <script type="application/ld+json">
   {
@@ -188,6 +188,16 @@
     <div class="product-grid trending-grid" id="trendingGrid"></div>
   </section>
 
+  <!-- Daily Deals Section -->
+  <section class="daily-deals-section" id="dailyDealsSection" style="display:none">
+    <h2 class="section-title" data-i18n="dailyDealsTitle">⏰ דילים יומיים</h2>
+    <div class="deals-countdown" id="dealsCountdown">
+      <span class="deals-ends-label" data-i18n="dealsEndsIn">מסתיים בעוד</span>
+      <span class="countdown-timer" id="countdownTimer">00:00:00</span>
+    </div>
+    <div class="product-grid deals-grid" id="dealsGrid"></div>
+  </section>
+
   <!-- Categories Section -->
   <section class="categories-section">
     <h2 class="section-title" data-i18n="categoriesTitle">
@@ -256,7 +266,7 @@
     </div>
   </footer>
 
-  <script src="js/app.js?v=20260316d"></script>
+  <script src="js/app.js?v=20260316e"></script>
   <script>
     // Register Service Worker
     if ('serviceWorker' in navigator) {
