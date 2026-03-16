@@ -1,16 +1,18 @@
 {
   "name": "עלי תמצא לי - חיפוש מוצרים חכם",
   "short_name": "עלי תמצא לי",
-  "description": "מנוע חיפוש חכם למוצרי אופנה ולייפסטייל באלי אקספרס",
-  "start_url": "/",
+  "description": "מנוע חיפוש חכם למוצרי אופנה ולייפסטייל באלי אקספרס. מחירים הכי טובים עם משלוח לישראל.",
+  "start_url": "/?source=pwa",
   "scope": "/",
+  "id": "/",
   "display": "standalone",
   "orientation": "any",
   "theme_color": "#6C5CE7",
   "background_color": "#F8F9FD",
   "lang": "he",
   "dir": "rtl",
-  "categories": ["shopping", "lifestyle"],
+  "categories": ["shopping", "lifestyle", "fashion"],
+  "prefer_related_applications": false,
   "icons": [
     {
       "src": "icons/icon-192.png",
@@ -23,6 +25,32 @@
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "שמלות",
+      "short_name": "שמלות",
+      "url": "/?q=שמלה&source=shortcut",
+      "icons": [{ "src": "icons/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "תיקים",
+      "short_name": "תיקים",
+      "url": "/?q=תיק יד&source=shortcut",
+      "icons": [{ "src": "icons/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "נעליים",
+      "short_name": "נעליים",
+      "url": "/?q=נעליים&source=shortcut",
+      "icons": [{ "src": "icons/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "דילים יומיים",
+      "short_name": "דילים",
+      "url": "/?source=deals",
+      "icons": [{ "src": "icons/icon-192.png", "sizes": "192x192" }]
     }
   ]
 }

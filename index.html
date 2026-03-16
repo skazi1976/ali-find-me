@@ -25,7 +25,7 @@
   <link rel="alternate" hreflang="x-default" href="https://alifindme.com/">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&family=Assistant:wght@300;400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=20260316g">
+  <link rel="stylesheet" href="css/style.css?v=20260316h">
 
   <script type="application/ld+json">
   {
@@ -269,6 +269,19 @@
     </div>
   </footer>
 
+  <!-- PWA Install Banner -->
+  <div class="install-banner" id="installBanner" style="display:none">
+    <div class="install-banner-content">
+      <span class="install-icon">📲</span>
+      <div class="install-text">
+        <strong data-i18n="installTitle">התקיני את האפליקציה!</strong>
+        <span data-i18n="installDesc">גישה מהירה לדילים ישירות מהמסך</span>
+      </div>
+      <button class="install-btn" id="installBtn" onclick="installApp()" data-i18n="installBtn">התקן</button>
+      <button class="install-dismiss" onclick="dismissInstall()">✕</button>
+    </div>
+  </div>
+
   <!-- Spin & Win Float Button -->
   <button class="spin-float-btn" id="spinFloatBtn" onclick="showSpinWheel()" title="Spin & Win">🎰</button>
 
@@ -286,7 +299,7 @@
     </div>
   </div>
 
-  <script src="js/app.js?v=20260316g"></script>
+  <script src="js/app.js?v=20260316h"></script>
   <script>
     // Register Service Worker
     if ('serviceWorker' in navigator) {

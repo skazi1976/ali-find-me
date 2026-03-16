@@ -85,6 +85,9 @@ const i18n = {
     quickRated: "\u2b50 \u05d4\u05db\u05d9 \u05de\u05d3\u05d5\u05e8\u05d2",
     quickNewest: "\ud83c\udd95 \u05d4\u05db\u05d9 \u05d7\u05d3\u05e9",
     quickSimilar: "\ud83d\udca1 \u05d4\u05de\u05dc\u05e6\u05d5\u05ea",
+    installTitle: "\u05d4\u05ea\u05e7\u05d9\u05e0\u05d9 \u05d0\u05ea \u05d4\u05d0\u05e4\u05dc\u05d9\u05e7\u05e6\u05d9\u05d4!",
+    installDesc: "\u05d2\u05d9\u05e9\u05d4 \u05de\u05d4\u05d9\u05e8\u05d4 \u05dc\u05d3\u05d9\u05dc\u05d9\u05dd \u05d9\u05e9\u05d9\u05e8\u05d5\u05ea \u05de\u05d4\u05de\u05e1\u05da",
+    installBtn: "\u05d4\u05ea\u05e7\u05df",
   },
   en: {
     heroTitle: "\u2728 Find Your Perfect Product",
@@ -147,6 +150,7 @@ const i18n = {
     quickRated: "\u2b50 Top Rated",
     quickNewest: "\ud83c\udd95 Newest",
     quickSimilar: "\ud83d\udca1 Recommend",
+    installTitle: "Install the app!", installDesc: "Quick access to deals from your home screen", installBtn: "Install",
   },
   ar: {
     heroTitle: "\u2728 \u0627\u0639\u062b\u0631 \u0639\u0644\u0649 \u0627\u0644\u0645\u0646\u062a\u062c \u0627\u0644\u0645\u062b\u0627\u0644\u064a",
@@ -209,6 +213,7 @@ const i18n = {
     quickRated: "\u2b50 \u0627\u0644\u0623\u0641\u0636\u0644",
     quickNewest: "\ud83c\udd95 \u0627\u0644\u0623\u062d\u062f\u062b",
     quickSimilar: "\ud83d\udca1 \u062a\u0648\u0635\u064a\u0627\u062a",
+    installTitle: "\u062b\u0628\u0651\u062a \u0627\u0644\u062a\u0637\u0628\u064a\u0642!", installDesc: "\u0648\u0635\u0648\u0644 \u0633\u0631\u064a\u0639 \u0644\u0644\u0639\u0631\u0648\u0636 \u0645\u0646 \u0634\u0627\u0634\u062a\u0643", installBtn: "\u062a\u062b\u0628\u064a\u062a",
   },
   ru: {
     heroTitle: "\u2728 \u041d\u0430\u0439\u0434\u0438 \u0438\u0434\u0435\u0430\u043b\u044c\u043d\u044b\u0439 \u0442\u043e\u0432\u0430\u0440",
@@ -248,6 +253,7 @@ const i18n = {
     chatHelp: "\u042f \u043f\u043e\u043c\u043e\u0433\u0443 \u043d\u0430\u0439\u0442\u0438 \u0442\u043e\u0432\u0430\u0440\u044b \u043d\u0430 AliExpress! \u041d\u0430\u043f\u0438\u0448\u0438 \u0447\u0442\u043e \u0438\u0449\u0435\u0448\u044c \u0438\u043b\u0438 \u043f\u043e\u043f\u0440\u043e\u0441\u0438 \u0440\u0435\u043a\u043e\u043c\u0435\u043d\u0434\u0430\u0446\u0438\u0438 \ud83d\uded2",
     chatRecommending: "\u0418\u0449\u0443 \u0440\u0435\u043a\u043e\u043c\u0435\u043d\u0434\u0430\u0446\u0438\u0438...", chatRefining: "\u0418\u0449\u0443 {query}...",
     quickCheapest: "\ud83d\udd3d \u0414\u0435\u0448\u0435\u0432\u043b\u0435", quickRated: "\u2b50 \u041b\u0443\u0447\u0448\u0435\u0435", quickNewest: "\ud83c\udd95 \u041d\u043e\u0432\u043e\u0435", quickSimilar: "\ud83d\udca1 \u0420\u0435\u043a\u043e\u043c\u0435\u043d\u0434\u0430\u0446\u0438\u0438",
+    installTitle: "\u0423\u0441\u0442\u0430\u043d\u043e\u0432\u0438 \u043f\u0440\u0438\u043b\u043e\u0436\u0435\u043d\u0438\u0435!", installDesc: "\u0411\u044b\u0441\u0442\u0440\u044b\u0439 \u0434\u043e\u0441\u0442\u0443\u043f \u043a \u0441\u043a\u0438\u0434\u043a\u0430\u043c \u0441 \u044d\u043a\u0440\u0430\u043d\u0430", installBtn: "\u0423\u0441\u0442\u0430\u043d\u043e\u0432\u0438\u0442\u044c",
   },
   es: {
     heroTitle: "\u2728 Encuentra el producto perfecto",
@@ -283,6 +289,7 @@ const i18n = {
     chatHelp: "\u00a1Puedo ayudarte a encontrar productos! Escribe lo que buscas o pide recomendaciones \ud83d\uded2",
     chatRecommending: "Buscando recomendaciones...", chatRefining: "Buscando {query}...",
     quickCheapest: "\ud83d\udd3d M\u00e1s barato", quickRated: "\u2b50 Mejor valorado", quickNewest: "\ud83c\udd95 M\u00e1s nuevo", quickSimilar: "\ud83d\udca1 Recomendar",
+    installTitle: "\u00a1Instala la app!", installDesc: "Acceso r\u00e1pido a ofertas desde tu pantalla", installBtn: "Instalar",
   },
   pt: {
     heroTitle: "\u2728 Encontre o produto perfeito",
@@ -318,6 +325,7 @@ const i18n = {
     chatHelp: "Posso te ajudar a encontrar produtos! Escreva o que procura ou pe\u00e7a recomenda\u00e7\u00f5es \ud83d\uded2",
     chatRecommending: "Buscando recomenda\u00e7\u00f5es...", chatRefining: "Buscando {query}...",
     quickCheapest: "\ud83d\udd3d Mais barato", quickRated: "\u2b50 Melhor avaliado", quickNewest: "\ud83c\udd95 Mais novo", quickSimilar: "\ud83d\udca1 Recomendar",
+    installTitle: "Instale o app!", installDesc: "Acesso r\u00e1pido a ofertas na sua tela", installBtn: "Instalar",
   },
   tr: {
     heroTitle: "\u2728 M\u00fckemmel \u00fcr\u00fcn\u00fc bul",
@@ -353,6 +361,7 @@ const i18n = {
     chatHelp: "\u00dcr\u00fcn bulmanda yard\u0131mc\u0131 olabilirim! Ne arad\u0131\u011f\u0131n\u0131 yaz veya \u00f6neri iste \ud83d\uded2",
     chatRecommending: "\u00d6neriler aran\u0131yor...", chatRefining: "{query} aran\u0131yor...",
     quickCheapest: "\ud83d\udd3d En ucuz", quickRated: "\u2b50 En iyi", quickNewest: "\ud83c\udd95 En yeni", quickSimilar: "\ud83d\udca1 \u00d6neriler",
+    installTitle: "Uygulamay\u0131 y\u00fckle!", installDesc: "Ekran\u0131ndan f\u0131rsatlara h\u0131zl\u0131 eri\u015fim", installBtn: "Y\u00fckle",
   },
   fr: {
     heroTitle: "\u2728 Trouvez le produit parfait",
@@ -388,6 +397,7 @@ const i18n = {
     chatHelp: "Je peux vous aider \u00e0 trouver des produits! \u00c9crivez ce que vous cherchez ou demandez des recommandations \ud83d\uded2",
     chatRecommending: "Recherche de recommandations...", chatRefining: "Recherche {query}...",
     quickCheapest: "\ud83d\udd3d Moins cher", quickRated: "\u2b50 Mieux not\u00e9", quickNewest: "\ud83c\udd95 Plus r\u00e9cent", quickSimilar: "\ud83d\udca1 Recommander",
+    installTitle: "Installez l'appli!", installDesc: "Acc\u00e8s rapide aux offres depuis votre \u00e9cran", installBtn: "Installer",
   }
 };
 
@@ -1900,3 +1910,53 @@ document.addEventListener("click", (e) => {
     if (dd) dd.classList.remove("open");
   }
 });
+
+// ─── PWA Install Prompt ────────────────────────────────────
+let deferredPrompt = null;
+
+window.addEventListener("beforeinstallprompt", (e) => {
+  e.preventDefault();
+  deferredPrompt = e;
+  // Show banner if not dismissed recently (24h cooldown)
+  const dismissed = localStorage.getItem("installDismissed");
+  if (dismissed && Date.now() - parseInt(dismissed) < 86400000) return;
+  // Don't show if already installed (standalone mode)
+  if (window.matchMedia("(display-mode: standalone)").matches) return;
+  setTimeout(() => {
+    const banner = document.getElementById("installBanner");
+    if (banner) banner.style.display = "flex";
+  }, 3000); // Show after 3s delay
+});
+
+function installApp() {
+  if (!deferredPrompt) return;
+  deferredPrompt.prompt();
+  deferredPrompt.userChoice.then((choice) => {
+    if (choice.outcome === "accepted") {
+      gtag?.("event", "pwa_install", { method: "banner" });
+    }
+    deferredPrompt = null;
+    const banner = document.getElementById("installBanner");
+    if (banner) banner.style.display = "none";
+  });
+}
+
+function dismissInstall() {
+  const banner = document.getElementById("installBanner");
+  if (banner) banner.style.display = "none";
+  localStorage.setItem("installDismissed", Date.now().toString());
+}
+
+// Hide banner if app is installed
+window.addEventListener("appinstalled", () => {
+  const banner = document.getElementById("installBanner");
+  if (banner) banner.style.display = "none";
+  deferredPrompt = null;
+});
+
+// ─── Service Worker Registration ────────────────────────────
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("/sw.js").catch(() => {});
+  });
+}

@@ -1655,6 +1655,92 @@ body {
 }
 
 /* ============================================
+   PWA Install Banner
+   ============================================ */
+.install-banner {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 200;
+  background: var(--card-bg);
+  border-top: 1px solid var(--border);
+  box-shadow: 0 -4px 20px rgba(0,0,0,0.1);
+  padding: 12px 16px;
+  animation: slideUp 0.3s ease-out;
+}
+
+@keyframes slideUp {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+
+.install-banner-content {
+  max-width: 600px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.install-icon { font-size: 1.6rem; flex-shrink: 0; }
+
+.install-text {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.install-text strong {
+  font-family: var(--font-heading);
+  font-size: 0.92rem;
+  color: var(--text);
+}
+
+.install-text span {
+  font-size: 0.78rem;
+  color: var(--text-light);
+}
+
+.install-btn {
+  background: var(--gradient);
+  color: #fff;
+  border: none;
+  padding: 8px 20px;
+  border-radius: 20px;
+  font-weight: 700;
+  font-size: 0.85rem;
+  cursor: pointer;
+  font-family: var(--font-body);
+  white-space: nowrap;
+  transition: transform 0.2s;
+}
+
+.install-btn:hover { transform: scale(1.05); }
+
+.install-dismiss {
+  background: none;
+  border: none;
+  font-size: 1.1rem;
+  cursor: pointer;
+  color: var(--text-muted);
+  padding: 4px;
+  flex-shrink: 0;
+  transition: color 0.2s;
+}
+
+.install-dismiss:hover { color: var(--text); }
+
+@media (max-width: 600px) {
+  .install-banner { padding: 10px 12px; }
+  .install-icon { font-size: 1.3rem; }
+  .install-text strong { font-size: 0.82rem; }
+  .install-text span { font-size: 0.72rem; }
+  .install-btn { padding: 6px 16px; font-size: 0.78rem; }
+}
+
+/* ============================================
    Quick Replies (Smart Chatbot)
    ============================================ */
 .quick-replies {
