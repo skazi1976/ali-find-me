@@ -1,4 +1,4 @@
-const CACHE_NAME = 'ali-findme-v15';
+const CACHE_NAME = 'ali-findme-v16';
 const STATIC_ASSETS = [
   '/',
   '/index.html',
@@ -7,6 +7,7 @@ const STATIC_ASSETS = [
   '/manifest.json',
   '/icons/icon-192.png',
   '/icons/icon-512.png',
+  '/icons/logo.png',
   '/en/index.html',
   '/ar/index.html',
   '/ru/index.html',
@@ -16,7 +17,7 @@ const STATIC_ASSETS = [
   '/fr/index.html',
 ];
 
-// Install: cache static assets
+// Install: cache static assets + force activate immediately
 self.addEventListener('install', event => {
   event.waitUntil(
     caches.open(CACHE_NAME)
@@ -25,7 +26,7 @@ self.addEventListener('install', event => {
   );
 });
 
-// Activate: clean old caches
+// Activate: delete ALL old caches + take control immediately
 self.addEventListener('activate', event => {
   event.waitUntil(
     caches.keys().then(keys =>
@@ -38,7 +39,7 @@ self.addEventListener('activate', event => {
 self.addEventListener('fetch', event => {
   const url = new URL(event.request.url);
 
-  // API calls: network-first
+  // API calls: network-only
   if (url.hostname.includes('ali-findme-api') || url.hostname.includes('cloudflare')) {
     event.respondWith(
       fetch(event.request)
@@ -47,7 +48,13 @@ self.addEventListener('fetch', event => {
     return;
   }
 
-  // Google Fonts: cache-first
+  // Google Analytics: always network, never cache
+  if (url.hostname.includes('googletagmanager.com') || url.hostname.includes('google-analytics.com')) {
+    event.respondWith(fetch(event.request));
+    return;
+  }
+
+  // Google Fonts: cache-first (they never change)
   if (url.hostname.includes('googleapis.com') || url.hostname.includes('gstatic.com')) {
     event.respondWith(
       caches.match(event.request).then(cached => {
@@ -62,12 +69,29 @@ self.addEventListener('fetch', event => {
     return;
   }
 
-  // Static assets: cache-first, fallback to network
+  // HTML, CSS, JS: network-first (always get latest version)
+  if (event.request.mode === 'navigate' ||
+      url.pathname.endsWith('.html') ||
+      url.pathname.endsWith('.css') ||
+      url.pathname.endsWith('.js') ||
+      url.pathname === '/') {
+    event.respondWith(
+      fetch(event.request).then(resp => {
+        if (resp.status === 200) {
+          const clone = resp.clone();
+          caches.open(CACHE_NAME).then(cache => cache.put(event.request, clone));
+        }
+        return resp;
+      }).catch(() => caches.match(event.request))
+    );
+    return;
+  }
+
+  // Images & other assets: cache-first
   event.respondWith(
     caches.match(event.request).then(cached => {
       if (cached) return cached;
       return fetch(event.request).then(resp => {
-        // Cache successful responses for our own domain
         if (resp.status === 200 && url.origin === self.location.origin) {
           const clone = resp.clone();
           caches.open(CACHE_NAME).then(cache => cache.put(event.request, clone));
@@ -75,7 +99,6 @@ self.addEventListener('fetch', event => {
         return resp;
       });
     }).catch(() => {
-      // Offline fallback
       if (event.request.mode === 'navigate') {
         return caches.match('/index.html');
       }
