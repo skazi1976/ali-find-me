@@ -45,7 +45,7 @@
   <link rel="alternate" hreflang="x-default" href="https://alifindme.com/">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&family=Assistant:wght@300;400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../css/style.css?v=20260316r">
+  <link rel="stylesheet" href="../css/style.css?v=20260316s">
 
   <script type="application/ld+json">
   {
@@ -103,21 +103,10 @@
 
   <section class="chat-section">
     <div class="chat-container">
-      <div class="chat-messages" id="chatMessages">
-        <div class="message bot-message">
-          <div class="message-avatar">🤖</div>
-          <div class="message-bubble" id="welcomeMsg" data-i18n="welcome">مرحبا! أنا هنا لمساعدتك في العثور على منتجات رائعة في علي اكسبرس. أخبرني ماذا تبحث وسأجد لك أفضل الصفقات! 🛍️</div>
-        </div>
-      </div>
-      <div class="history-container" id="historyContainer" style="display:none">
-        <div class="history-label">🕐 <span data-i18n="recentSearches">عمليات بحث سابقة:</span></div>
-        <div class="history-chips" id="historyChips"></div>
-      </div>
-      <div class="chips-container" id="chipsContainer"></div>
-      <div class="quick-replies" id="quickReplies" style="display:none"></div>
-      <div class="input-area">
+
+      <div class="input-area input-area-top">
         <div class="input-wrapper">
-          <input type="text" id="chatInput" data-i18n-placeholder="inputPlaceholder" placeholder="ماذا تبحث؟ (مثال: فستان سهرة، تايتس رياضي...)" autocomplete="off">
+          <input type="text" id="chatInput" data-i18n-placeholder="🔍 inputPlaceholder" placeholder="ماذا تبحث؟ (مثال: فستان سهرة، تايتس رياضي...)" autocomplete="off">
           <div class="image-search-wrap">
             <button class="image-search-btn" id="imageSearchBtn" onclick="showImageOptions()" title="بحث بالصورة">📷</button>
             <div class="image-options-dropdown" id="imageOptions" style="display:none">
@@ -133,6 +122,19 @@
           <div class="autocomplete-dropdown" id="autocompleteDropdown"></div>
         </div>
       </div>
+
+      <div class="chat-messages" id="chatMessages">
+        <div class="message bot-message">
+          <div class="message-avatar">🤖</div>
+          <div class="message-bubble" id="welcomeMsg" data-i18n="welcome">مرحبا! أنا هنا لمساعدتك في العثور على منتجات رائعة في علي اكسبرس. أخبرني ماذا تبحث وسأجد لك أفضل الصفقات! 🛍️</div>
+        </div>
+      </div>
+      <div class="history-container" id="historyContainer" style="display:none">
+        <div class="history-label">🕐 <span data-i18n="recentSearches">عمليات بحث سابقة:</span></div>
+        <div class="history-chips" id="historyChips"></div>
+      </div>
+      <div class="chips-container" id="chipsContainer"></div>
+      <div class="quick-replies" id="quickReplies" style="display:none"></div>
     </div>
   </section>
 

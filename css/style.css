@@ -422,6 +422,10 @@ body {
   border-radius: 0 0 var(--radius) var(--radius);
 }
 
+.input-area-top {
+  border-radius: var(--radius) var(--radius) 0 0;
+}
+
 .input-wrapper {
   display: flex;
   gap: 10px;
