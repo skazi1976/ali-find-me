@@ -1168,9 +1168,88 @@ const SORT_API_MAP = {
   "rating": "EVALUATE_RATE_DESC",
 };
 
+// Hebrew→English translation dictionary for common search terms
+const HE_EN_DICT = {
+  "תחתונים": "underwear", "תחתוני": "underwear", "תחתון": "underwear",
+  "גברים": "men", "נשים": "women", "ילדים": "kids", "ילדות": "girls", "בנים": "boys",
+  "שמלה": "dress", "שמלת": "dress", "שמלות": "dresses",
+  "ערב": "evening", "קיץ": "summer", "חורף": "winter",
+  "חולצה": "shirt", "חולצת": "shirt", "חולצות": "shirts",
+  "מכנסיים": "pants", "מכנס": "pants", "ג'ינס": "jeans", "ג׳ינס": "jeans",
+  "טייץ": "leggings", "טייצים": "leggings",
+  "גרביים": "socks", "גרבי": "socks", "גרב": "socks",
+  "חזייה": "bra", "חזיות": "bras", "חזיית": "bra",
+  "בגד ים": "swimsuit", "ביקיני": "bikini",
+  "נעליים": "shoes", "נעלי": "shoes", "סניקרס": "sneakers", "סנדלים": "sandals",
+  "מגפיים": "boots", "עקבים": "heels", "כפכפים": "slippers",
+  "תיק": "bag", "תיקים": "bags", "תיק יד": "handbag", "תיק גב": "backpack",
+  "ארנק": "wallet", "ארנקים": "wallets",
+  "שעון": "watch", "שעונים": "watches", "שעון חכם": "smartwatch",
+  "אוזניות": "earphones", "אוזניות אלחוטיות": "wireless earbuds",
+  "טלפון": "phone", "כיסוי": "case", "כיסוי לטלפון": "phone case",
+  "מחשב": "computer", "מחשב נייד": "laptop", "טאבלט": "tablet",
+  "עגילים": "earrings", "שרשרת": "necklace", "צמיד": "bracelet", "טבעת": "ring",
+  "תכשיטים": "jewelry", "תכשיט": "jewelry",
+  "קרם": "cream", "קרם פנים": "face cream", "סרום": "serum", "מסכה": "mask",
+  "איפור": "makeup", "שפתון": "lipstick", "מסקרה": "mascara",
+  "פאה": "wig", "פאות": "wigs", "תוספות שיער": "hair extensions",
+  "מברשת": "brush", "מברשת שיער": "hair brush",
+  "מייבש שיער": "hair dryer", "מחליק שיער": "hair straightener",
+  "ספורט": "sport", "ספורטיבי": "sports",
+  "יוגה": "yoga", "כושר": "fitness", "ריצה": "running",
+  "פריירית אוויר": "air fryer", "פרייר": "fryer",
+  "שואב אבק": "vacuum cleaner", "שואב אבק רובוטי": "robot vacuum",
+  "מנורה": "lamp", "תאורה": "lighting", "לד": "LED",
+  "שטיח": "rug", "וילון": "curtain", "וילונות": "curtains",
+  "מצעים": "bedding", "כרית": "pillow", "שמיכה": "blanket",
+  "מטבח": "kitchen", "סכין": "knife", "סיר": "pot", "מחבת": "pan",
+  "בקבוק": "bottle", "כוס": "cup", "צלחת": "plate",
+  "צעצוע": "toy", "צעצועים": "toys", "לגו": "lego", "בובה": "doll",
+  "תינוק": "baby", "עגלה": "stroller", "מוצץ": "pacifier",
+  "כלב": "dog", "חתול": "cat", "חיות מחמד": "pets",
+  "מדבקות": "stickers", "מדבקה": "sticker",
+  "פנס": "flashlight", "סוללה": "battery",
+  "אופניים": "bicycle", "קורקינט": "scooter",
+  "מצלמה": "camera", "דרון": "drone",
+  "פרחים": "flowers", "מלאכותי": "artificial",
+  "חם": "warm", "קר": "cold", "גדול": "large", "קטן": "small",
+  "זול": "cheap", "יפה": "beautiful", "חדש": "new",
+  "ורוד": "pink", "שחור": "black", "לבן": "white", "אדום": "red", "כחול": "blue",
+  "סקסי": "sexy", "אלגנטי": "elegant", "קז'ואל": "casual",
+  "פיג'מה": "pajamas", "פיג׳מה": "pajamas",
+  "חגורה": "belt", "כובע": "hat", "משקפיים": "glasses", "משקפי שמש": "sunglasses",
+  "מעיל": "jacket", "מעילים": "jackets", "סווטשירט": "sweatshirt",
+  "חליפה": "suit", "חליפת": "suit",
+  "רובוטי": "robot", "חשמלי": "electric", "נטען": "rechargeable",
+};
+
+// Translate Hebrew query to English for better AliExpress results
+function translateQuery(query) {
+  if (currentLang !== "he") return query;
+
+  // First try multi-word phrases
+  let translated = query.toLowerCase();
+  const multiWordKeys = Object.keys(HE_EN_DICT).filter(k => k.includes(" ")).sort((a, b) => b.length - a.length);
+  for (const phrase of multiWordKeys) {
+    if (translated.includes(phrase)) {
+      translated = translated.replace(new RegExp(phrase, "g"), HE_EN_DICT[phrase]);
+    }
+  }
+
+  // Then single words
+  const words = translated.split(/\s+/);
+  const result = words.map(w => HE_EN_DICT[w] || w).join(" ");
+
+  // If any Hebrew chars remain, return original (let API handle it)
+  // But if we translated everything, use the English version
+  const hebrewRemaining = result.match(/[\u0590-\u05FF]/);
+  return hebrewRemaining ? query : result;
+}
+
 async function doSearch(query, page = 1) {
+  const translatedQ = translateQuery(query);
   const params = new URLSearchParams({
-    q: query, lang: currentLang, currency: currentCurrency, country: currentCountry, page: String(page),
+    q: translatedQ, lang: currentLang, currency: currentCurrency, country: currentCountry, page: String(page),
   });
   const resp = await fetch(`${API_BASE}/search?${params}`);
   return resp.json();
@@ -1875,6 +1954,9 @@ async function sendMessage() {
   if (!query || isLoading) return;
 
   input.value = "";
+  // Clear old chat messages on each new search
+  const chatEl = document.getElementById("chatMessages");
+  if (chatEl) chatEl.innerHTML = "";
   addMessage(query, true);
   hideQuickReplies();
 
