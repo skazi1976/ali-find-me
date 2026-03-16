@@ -60,6 +60,10 @@ body {
   height: 64px;
 }
 
+[dir="rtl"] .nav-container {
+  flex-direction: row-reverse;
+}
+
 .logo {
   display: flex;
   align-items: center;
