@@ -456,6 +456,59 @@ body {
   box-shadow: 0 4px 15px rgba(108, 92, 231, 0.4);
 }
 
+/* ---- Image Search Button ---- */
+.image-search-wrap { position: relative; flex-shrink: 0; }
+.image-search-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 2px solid var(--border);
+  background: var(--card-bg);
+  cursor: pointer;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+.image-search-btn:hover {
+  border-color: var(--primary);
+  transform: scale(1.05);
+}
+.image-options-dropdown {
+  position: absolute;
+  bottom: 54px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 6px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+  z-index: 50;
+  min-width: 120px;
+}
+.image-options-dropdown button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border: none;
+  background: transparent;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  white-space: nowrap;
+  color: var(--text);
+  transition: background 0.15s;
+}
+.image-options-dropdown button:hover {
+  background: rgba(108, 92, 231, 0.1);
+}
+
 /* ---- Filters Bar ---- */
 .filters-bar {
   display: flex;

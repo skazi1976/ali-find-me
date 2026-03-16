@@ -98,6 +98,9 @@ const i18n = {
     pointsFreeShip: "\u05de\u05e9\u05dc\u05d5\u05d7 \u05d7\u05d9\u05e0\u05dd", pointsCoupon5off: "\u05e7\u05d5\u05e4\u05d5\u05df $5",
     pointsRedeemed: "\u05e0\u05e4\u05d3\u05d4 \u05d1\u05d4\u05e6\u05dc\u05d7\u05d4!", pointsNotEnough: "\u05d0\u05d9\u05df \u05de\u05e1\u05e4\u05d9\u05e7 \u05e0\u05e7\u05d5\u05d3\u05d5\u05ea",
     pointsToday: "\u05d4\u05d9\u05d5\u05dd", pointsYesterday: "\u05d0\u05ea\u05de\u05d5\u05dc",
+    imgSearching: "\u05de\u05d6\u05d4\u05d4 \u05d0\u05ea \u05d4\u05de\u05d5\u05e6\u05e8...",
+    imgResult: "\u05d6\u05d9\u05d4\u05d9\u05ea\u05d9: {desc}", imgError: "\u05dc\u05d0 \u05d4\u05e6\u05dc\u05d7\u05ea\u05d9 \u05dc\u05d6\u05d4\u05d5\u05ea. \u05e0\u05e1\u05d4 \u05ea\u05de\u05d5\u05e0\u05d4 \u05d0\u05d7\u05e8\u05ea",
+    imgTakePhoto: "\u05e6\u05dc\u05dd", imgUpload: "\u05d4\u05e2\u05dc\u05d4",
   },
   en: {
     heroTitle: "\u2728 Find Your Perfect Product",
@@ -171,6 +174,8 @@ const i18n = {
     pointsFreeShip: "Free Shipping", pointsCoupon5off: "$5 Coupon",
     pointsRedeemed: "Redeemed!", pointsNotEnough: "Not enough points",
     pointsToday: "Today", pointsYesterday: "Yesterday",
+    imgSearching: "Identifying product...", imgResult: "Found: {desc}", imgError: "Could not identify. Try another photo",
+    imgTakePhoto: "Take Photo", imgUpload: "Upload",
   },
   ar: {
     heroTitle: "\u2728 \u0627\u0639\u062b\u0631 \u0639\u0644\u0649 \u0627\u0644\u0645\u0646\u062a\u062c \u0627\u0644\u0645\u062b\u0627\u0644\u064a",
@@ -244,6 +249,8 @@ const i18n = {
     pointsFreeShip: "\u0634\u062d\u0646 \u0645\u062c\u0627\u0646\u064a", pointsCoupon5off: "\u0642\u0633\u064a\u0645\u0629 $5",
     pointsRedeemed: "\u062a\u0645 \u0627\u0644\u0627\u0633\u062a\u0628\u062f\u0627\u0644!", pointsNotEnough: "\u0646\u0642\u0627\u0637 \u063a\u064a\u0631 \u0643\u0627\u0641\u064a\u0629",
     pointsToday: "\u0627\u0644\u064a\u0648\u0645", pointsYesterday: "\u0623\u0645\u0633",
+    imgSearching: "\u062c\u0627\u0631\u064a \u0627\u0644\u062a\u0639\u0631\u0641...", imgResult: "\u062a\u0645 \u0627\u0644\u0639\u062b\u0648\u0631: {desc}", imgError: "\u0644\u0645 \u0623\u062a\u0645\u0643\u0646 \u0645\u0646 \u0627\u0644\u062a\u0639\u0631\u0641. \u062c\u0631\u0628 \u0635\u0648\u0631\u0629 \u0623\u062e\u0631\u0649",
+    imgTakePhoto: "\u0627\u0644\u062a\u0642\u0637", imgUpload: "\u0631\u0641\u0639",
   },
   ru: {
     heroTitle: "\u2728 \u041d\u0430\u0439\u0434\u0438 \u0438\u0434\u0435\u0430\u043b\u044c\u043d\u044b\u0439 \u0442\u043e\u0432\u0430\u0440",
@@ -294,6 +301,8 @@ const i18n = {
     pointsFreeShip: "\u0411\u0435\u0441\u043f\u043b. \u0434\u043e\u0441\u0442\u0430\u0432\u043a\u0430", pointsCoupon5off: "\u041a\u0443\u043f\u043e\u043d $5",
     pointsRedeemed: "\u041e\u0431\u043c\u0435\u043d\u044f\u043d\u043e!", pointsNotEnough: "\u041d\u0435\u0434\u043e\u0441\u0442\u0430\u0442\u043e\u0447\u043d\u043e \u0431\u0430\u043b\u043b\u043e\u0432",
     pointsToday: "\u0421\u0435\u0433\u043e\u0434\u043d\u044f", pointsYesterday: "\u0412\u0447\u0435\u0440\u0430",
+    imgSearching: "\u0420\u0430\u0441\u043f\u043e\u0437\u043d\u0430\u044e \u0442\u043e\u0432\u0430\u0440...", imgResult: "\u041d\u0430\u0448\u043b\u043e\u0441\u044c: {desc}", imgError: "\u041d\u0435 \u0443\u0434\u0430\u043b\u043e\u0441\u044c \u0440\u0430\u0441\u043f\u043e\u0437\u043d\u0430\u0442\u044c",
+    imgTakePhoto: "\u0421\u0444\u043e\u0442\u043e", imgUpload: "\u0417\u0430\u0433\u0440\u0443\u0437\u0438\u0442\u044c",
   },
   es: {
     heroTitle: "\u2728 Encuentra el producto perfecto",
@@ -340,6 +349,8 @@ const i18n = {
     pointsFreeShip: "Env\u00edo gratis", pointsCoupon5off: "Cup\u00f3n $5",
     pointsRedeemed: "\u00a1Canjeado!", pointsNotEnough: "Puntos insuficientes",
     pointsToday: "Hoy", pointsYesterday: "Ayer",
+    imgSearching: "Identificando producto...", imgResult: "Encontrado: {desc}", imgError: "No se pudo identificar",
+    imgTakePhoto: "Foto", imgUpload: "Subir",
   },
   pt: {
     heroTitle: "\u2728 Encontre o produto perfeito",
@@ -386,6 +397,8 @@ const i18n = {
     pointsFreeShip: "Frete gr\u00e1tis", pointsCoupon5off: "Cupom $5",
     pointsRedeemed: "Resgatado!", pointsNotEnough: "Pontos insuficientes",
     pointsToday: "Hoje", pointsYesterday: "Ontem",
+    imgSearching: "Identificando produto...", imgResult: "Encontrado: {desc}", imgError: "N\u00e3o foi poss\u00edvel identificar",
+    imgTakePhoto: "Foto", imgUpload: "Enviar",
   },
   tr: {
     heroTitle: "\u2728 M\u00fckemmel \u00fcr\u00fcn\u00fc bul",
@@ -432,6 +445,8 @@ const i18n = {
     pointsFreeShip: "\u00dccretsiz kargo", pointsCoupon5off: "Kupon $5",
     pointsRedeemed: "Kullan\u0131ld\u0131!", pointsNotEnough: "Yetersiz puan",
     pointsToday: "Bug\u00fcn", pointsYesterday: "D\u00fcn",
+    imgSearching: "\u00dcr\u00fcn tan\u0131mlan\u0131yor...", imgResult: "Bulundu: {desc}", imgError: "Tan\u0131mlanamad\u0131",
+    imgTakePhoto: "Foto", imgUpload: "Y\u00fckle",
   },
   fr: {
     heroTitle: "\u2728 Trouvez le produit parfait",
@@ -478,6 +493,8 @@ const i18n = {
     pointsFreeShip: "Livraison gratuite", pointsCoupon5off: "Coupon 5$",
     pointsRedeemed: "\u00c9chang\u00e9!", pointsNotEnough: "Points insuffisants",
     pointsToday: "Aujourd'hui", pointsYesterday: "Hier",
+    imgSearching: "Identification du produit...", imgResult: "Trouv\u00e9: {desc}", imgError: "Impossible d'identifier",
+    imgTakePhoto: "Photo", imgUpload: "T\u00e9l\u00e9charger",
   }
 };
 
@@ -1992,6 +2009,114 @@ document.addEventListener("click", (e) => {
   if (wrap && !wrap.contains(e.target)) {
     const dd = document.getElementById("langDropdown");
     if (dd) dd.classList.remove("open");
+  }
+});
+
+// ─── Image Search ──────────────────────────────────────────
+function showImageOptions() {
+  const dd = document.getElementById("imageOptions");
+  if (dd) dd.style.display = dd.style.display === "flex" ? "none" : "flex";
+}
+
+function hideImageOptions() {
+  const dd = document.getElementById("imageOptions");
+  if (dd) dd.style.display = "none";
+}
+
+function handleImageFile(input) {
+  hideImageOptions();
+  const file = input.files?.[0];
+  if (!file) return;
+  resizeAndSearch(file);
+  input.value = ""; // Reset for re-upload
+}
+
+function resizeAndSearch(file) {
+  const reader = new FileReader();
+  reader.onload = (e) => {
+    const img = new Image();
+    img.onload = () => {
+      // Resize to max 512px
+      const maxSize = 512;
+      let w = img.width, h = img.height;
+      if (w > maxSize || h > maxSize) {
+        if (w > h) { h = Math.round(h * maxSize / w); w = maxSize; }
+        else { w = Math.round(w * maxSize / h); h = maxSize; }
+      }
+      const canvas = document.createElement("canvas");
+      canvas.width = w;
+      canvas.height = h;
+      const ctx = canvas.getContext("2d");
+      ctx.drawImage(img, 0, 0, w, h);
+      const base64 = canvas.toDataURL("image/jpeg", 0.8);
+      searchByImage(base64);
+    };
+    img.src = e.target.result;
+  };
+  reader.readAsDataURL(file);
+}
+
+async function searchByImage(base64) {
+  const lang = i18n[currentLang] || i18n.en;
+
+  // Show searching state
+  addMessage("📷", true);
+  document.getElementById("chipsContainer").style.display = "none";
+  document.getElementById("historyContainer").style.display = "none";
+  document.getElementById("trendingSection").style.display = "none";
+  document.getElementById("dailyDealsSection").style.display = "none";
+  showTyping();
+  showSkeletons();
+
+  try {
+    const resp = await fetch(`${API_BASE}/image-search`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        image: base64,
+        lang: currentLang,
+        currency: currentCurrency,
+        country: currentCountry,
+      }),
+    });
+    const data = await resp.json();
+    hideTyping();
+
+    if (data.error || !data.products || data.products.length === 0) {
+      addMessage(lang.imgError);
+      document.getElementById("productGrid").innerHTML = "";
+      return;
+    }
+
+    // Show what was identified
+    const desc = data.description || data.query_used || "";
+    addMessage(lang.imgResult.replace("{desc}", desc));
+
+    // Render products
+    currentQuery = data.query_used || desc;
+    renderProducts(data.products);
+    document.getElementById("resultsSection").style.display = "block";
+    document.getElementById("loadMore").style.display = "none";
+
+    // Update context
+    chatContext.lastQuery = currentQuery;
+    chatContext.lastIntent = "search";
+    chatContext.lastResultCount = data.total || data.products.length;
+    renderQuickReplies();
+    addPoints(2, "search");
+  } catch {
+    hideTyping();
+    addMessage(lang.imgError);
+    document.getElementById("productGrid").innerHTML = "";
+  }
+}
+
+// Close image options on outside click
+document.addEventListener("click", (e) => {
+  const wrap = document.getElementById("imageSearchBtn");
+  const dd = document.getElementById("imageOptions");
+  if (wrap && dd && !wrap.contains(e.target) && !dd.contains(e.target)) {
+    dd.style.display = "none";
   }
 });
 
