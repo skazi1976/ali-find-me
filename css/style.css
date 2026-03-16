@@ -1199,18 +1199,19 @@ body {
   /* ---- Navbar: force single row, no overflow ---- */
   .navbar { padding: 0 8px; }
   .nav-container {
-    height: 44px;
-    overflow: hidden;
+    height: 48px;
+    overflow: visible;
     flex-wrap: nowrap;
   }
   .logo {
     font-size: 0.85rem;
     gap: 4px;
-    flex-shrink: 0;
+    flex-shrink: 1;
+    min-width: 0;
     white-space: nowrap;
   }
   .logo-icon { font-size: 1rem; }
-  .logo-img { height: 36px; }
+  .logo-img { height: 36px; max-width: 140px; }
   .nav-actions {
     gap: 2px;
     flex-shrink: 0;
