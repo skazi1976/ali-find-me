@@ -1285,7 +1285,7 @@ async function loadMore() {
 }
 
 async function fetchProducts(query, page) {
-  const url = `${API_BASE}/search?q=${encodeURIComponent(query)}&lang=he&currency=ILS&country=IL&page=${page}`;
+  const url = `${API_BASE}/search?q=${encodeURIComponent(query)}&lang=he&currency=ILS&country=IL&page=${page}&context=pets`;
   const resp = await fetch(url);
   if (!resp.ok) throw new Error('API error');
   return resp.json();
