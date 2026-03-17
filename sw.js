@@ -1,4 +1,4 @@
-const CACHE_NAME = 'ali-findme-v21';
+const CACHE_NAME = 'ali-findme-v22';
 const STATIC_ASSETS = [
   '/',
   '/index.html',

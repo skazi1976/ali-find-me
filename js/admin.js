@@ -507,8 +507,16 @@ function renderBarList(elId, dataObj, nameMap, color) {
 //  Search Logs
 // ============================================================
 
-function loadSearchLogs() {
-  const logs = JSON.parse(localStorage.getItem("search_logs") || "[]");
+async function loadSearchLogs() {
+  // Load from server KV (not localStorage)
+  let logs = [];
+  try {
+    const data = await api("/admin/search-logs");
+    if (data?.logs) logs = data.logs;
+  } catch(e) {
+    // Fallback to localStorage
+    logs = JSON.parse(localStorage.getItem("search_logs") || "[]");
+  }
 
   // Stats
   const total = logs.length;
@@ -589,8 +597,14 @@ function filterSearchLogs() {
   });
 }
 
-function exportSearchLogs() {
-  const logs = JSON.parse(localStorage.getItem("search_logs") || "[]");
+async function exportSearchLogs() {
+  let logs = [];
+  try {
+    const data = await api("/admin/search-logs");
+    if (data?.logs) logs = data.logs;
+  } catch(e) {
+    logs = JSON.parse(localStorage.getItem("search_logs") || "[]");
+  }
   if (logs.length === 0) { toast("אין נתונים לייצוא", "error"); return; }
 
   let csv = "Date,Original Query,Translated,Language,Currency,Country,Results\n";
@@ -608,10 +622,13 @@ function exportSearchLogs() {
   toast("ייצוא CSV הצליח!");
 }
 
-function clearSearchLogs() {
+async function clearSearchLogs() {
   if (!confirm("האם אתה בטוח שרוצה לנקות את כל לוג החיפושים?")) return;
+  try {
+    await api("/admin/search-logs", "DELETE");
+  } catch(e) {}
   localStorage.removeItem("search_logs");
-  loadSearchLogs();
+  await loadSearchLogs();
   toast("לוג החיפושים נוקה");
 }
 
