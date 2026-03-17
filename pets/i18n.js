@@ -54,6 +54,7 @@ const TRANSLATIONS = {
     freeShipping: "משלוח חינם",
     shipping: "משלוח",
     // Features
+    featuresTitle: "🤖 איך הבינה המלאכותית עובדת בשבילכם?",
     features: [
       { emoji: "🧠", title: "AI שמבין את השפה שלכם", desc: "כתבו בשפה שלכם — ה-AI מתרגם, מבין את הכוונה ומוצא בדיוק מה שחיפשתם" },
       { emoji: "💎", title: "סינון חכם", desc: "הבינה המלאכותית סורקת אלפי מוצרים ומציגה רק את הדילים הכי משתלמים עם דירוגים גבוהים" },
@@ -122,6 +123,7 @@ const TRANSLATIONS = {
     buyNow: "🛒 Buy Now",
     freeShipping: "Free Shipping",
     shipping: "Shipping",
+    featuresTitle: "🤖 How Our AI Works for You",
     features: [
       { emoji: "🧠", title: "AI That Understands You", desc: "Type naturally — our AI translates, understands context, and finds exactly what you need" },
       { emoji: "💎", title: "Smart Filtering", desc: "AI scans thousands of products and shows only the best deals with high ratings" },
@@ -186,6 +188,7 @@ const TRANSLATIONS = {
     buyNow: "🛒 Comprar",
     freeShipping: "Envío Gratis",
     shipping: "Envío",
+    featuresTitle: "🤖 ¿Cómo Funciona Nuestra IA?",
     features: [
       { emoji: "🧠", title: "IA Que Te Entiende", desc: "Escribe en español — la IA traduce, entiende y encuentra exactamente lo que buscas" },
       { emoji: "💎", title: "Filtrado Inteligente", desc: "La IA analiza miles de productos y muestra solo las mejores ofertas con calificaciones altas" },
@@ -250,6 +253,7 @@ const TRANSLATIONS = {
     buyNow: "🛒 Kaufen",
     freeShipping: "Kostenloser Versand",
     shipping: "Versand",
+    featuresTitle: "🤖 Wie Unsere KI Für Sie Arbeitet",
     features: [
       { emoji: "🧠", title: "KI Versteht Sie", desc: "Schreiben Sie auf Deutsch — die KI übersetzt, versteht und findet genau das Richtige" },
       { emoji: "💎", title: "Intelligente Filterung", desc: "Die KI analysiert tausende Produkte und zeigt nur die besten Angebote mit Top-Bewertungen" },
@@ -314,6 +318,7 @@ const TRANSLATIONS = {
     buyNow: "🛒 Comprar",
     freeShipping: "Frete Grátis",
     shipping: "Frete",
+    featuresTitle: "🤖 Como Nossa IA Trabalha Para Você",
     features: [
       { emoji: "🧠", title: "IA Que Entende Você", desc: "Escreva em português — a IA traduz, entende e encontra exatamente o que você procura" },
       { emoji: "💎", title: "Filtragem Inteligente", desc: "A IA analisa milhares de produtos e mostra apenas as melhores ofertas com avaliações altas" },
@@ -378,6 +383,7 @@ const TRANSLATIONS = {
     buyNow: "🛒 Acheter",
     freeShipping: "Livraison Gratuite",
     shipping: "Livraison",
+    featuresTitle: "🤖 Comment Notre IA Travaille Pour Vous",
     features: [
       { emoji: "🧠", title: "IA Qui Vous Comprend", desc: "Écrivez en français — l'IA traduit, comprend et trouve exactement ce que vous cherchez" },
       { emoji: "💎", title: "Filtrage Intelligent", desc: "L'IA analyse des milliers de produits et affiche uniquement les meilleures offres" },
@@ -442,6 +448,7 @@ const TRANSLATIONS = {
     buyNow: "🛒 Купить",
     freeShipping: "Бесплатная Доставка",
     shipping: "Доставка",
+    featuresTitle: "🤖 Как Наш ИИ Работает Для Вас",
     features: [
       { emoji: "🧠", title: "ИИ Понимает Вас", desc: "Пишите на русском — ИИ переведёт, поймёт и найдёт именно то, что вам нужно" },
       { emoji: "💎", title: "Умная Фильтрация", desc: "ИИ анализирует тысячи товаров и показывает только лучшие предложения с высокими рейтингами" },
@@ -591,6 +598,9 @@ function applyLanguage(lang) {
   }
 
   // Features section
+  const featuresTitle = document.getElementById("featuresTitle");
+  if (featuresTitle) featuresTitle.textContent = t.featuresTitle;
+
   const featuresGrid = document.getElementById("featuresGrid");
   if (featuresGrid && t.features) {
     featuresGrid.innerHTML = t.features.map(f =>
