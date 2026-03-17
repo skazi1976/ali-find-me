@@ -13,6 +13,7 @@ const TRANSLATIONS = {
     metaDesc: "מנוע חיפוש חכם למוצרי חיות מחמד מאלי אקספרס. מזון, צעצועים, אביזרים לכלבים, חתולים ועוד — במחירים הכי טובים עם משלוח לישראל.",
     // Hero
     heroTitle: 'מצאו הכל <strong>לחיית המחמד</strong> שלכם',
+    heroSubtitle: 'הבינה המלאכותית שלנו סורקת אלפי מוצרים ומוצאת לכם את הדילים הכי משתלמים לכלבים, חתולים וחיות מחמד',
     searchPlaceholder: "כתבו בעברית — ה-AI ימצא לכם הכל 🐶🐱",
     searchButton: "לחצו לחיפוש",
     aiBadge: "🤖 מונע בינה מלאכותית — מוצא לכם את המחיר הכי טוב",
@@ -84,6 +85,7 @@ const TRANSLATIONS = {
     metaTitle: "🐾 Pet Find Me | Best Pet Products from AliExpress",
     metaDesc: "Smart AI search engine for pet products on AliExpress. Food, toys, accessories for dogs, cats & more — at the best prices with free shipping.",
     heroTitle: 'Find Everything for <strong>Your Pet</strong>',
+    heroSubtitle: 'Our AI scans thousands of products and finds you the best deals for dogs, cats and all pets',
     searchPlaceholder: "Search for pet products... 🐶🐱",
     searchButton: "Search",
     aiBadge: "🤖 Powered by AI — finds you the best deals",
@@ -147,6 +149,7 @@ const TRANSLATIONS = {
     metaTitle: "🐾 Pet Find Me | Productos para Mascotas de AliExpress",
     metaDesc: "Buscador inteligente con IA para productos de mascotas en AliExpress. Comida, juguetes, accesorios para perros, gatos y más — a los mejores precios.",
     heroTitle: 'Encuentra Todo para <strong>Tu Mascota</strong>',
+    heroSubtitle: 'Nuestra IA escanea miles de productos y te encuentra las mejores ofertas para perros, gatos y todas las mascotas',
     searchPlaceholder: "Busca productos para mascotas... 🐶🐱",
     searchButton: "Buscar",
     aiBadge: "🤖 Impulsado por IA — encuentra las mejores ofertas",
@@ -210,6 +213,7 @@ const TRANSLATIONS = {
     metaTitle: "🐾 Pet Find Me | Haustierprodukte von AliExpress",
     metaDesc: "Intelligente KI-Suchmaschine für Haustierprodukte auf AliExpress. Futter, Spielzeug, Zubehör für Hunde, Katzen & mehr — zu den besten Preisen.",
     heroTitle: 'Finden Sie Alles für <strong>Ihr Haustier</strong>',
+    heroSubtitle: 'Unsere KI durchsucht tausende Produkte und findet die besten Angebote für Hunde, Katzen und alle Haustiere',
     searchPlaceholder: "Haustierprodukte suchen... 🐶🐱",
     searchButton: "Suchen",
     aiBadge: "🤖 KI-gestützt — findet die besten Angebote",
@@ -273,6 +277,7 @@ const TRANSLATIONS = {
     metaTitle: "🐾 Pet Find Me | Produtos para Pets do AliExpress",
     metaDesc: "Buscador inteligente com IA para produtos de pets no AliExpress. Ração, brinquedos, acessórios para cães, gatos e mais — nos melhores preços.",
     heroTitle: 'Encontre Tudo para o <strong>Seu Pet</strong>',
+    heroSubtitle: 'Nossa IA analisa milhares de produtos e encontra as melhores ofertas para cachorros, gatos e todos os pets',
     searchPlaceholder: "Busque produtos para pets... 🐶🐱",
     searchButton: "Buscar",
     aiBadge: "🤖 Movido por IA — encontra as melhores ofertas",
@@ -336,6 +341,7 @@ const TRANSLATIONS = {
     metaTitle: "🐾 Pet Find Me | Produits pour Animaux sur AliExpress",
     metaDesc: "Moteur de recherche IA pour produits animaliers sur AliExpress. Nourriture, jouets, accessoires pour chiens, chats et plus — aux meilleurs prix.",
     heroTitle: 'Trouvez Tout pour <strong>Votre Animal</strong>',
+    heroSubtitle: 'Notre IA analyse des milliers de produits et trouve les meilleures offres pour chiens, chats et tous les animaux',
     searchPlaceholder: "Cherchez des produits pour animaux... 🐶🐱",
     searchButton: "Rechercher",
     aiBadge: "🤖 Propulsé par l'IA — trouve les meilleures offres",
@@ -399,6 +405,7 @@ const TRANSLATIONS = {
     metaTitle: "🐾 Pet Find Me | Товары для Животных с AliExpress",
     metaDesc: "Умный поисковик с ИИ для товаров для домашних животных на AliExpress. Корм, игрушки, аксессуары для собак, кошек и других — по лучшим ценам.",
     heroTitle: 'Найдите Всё для <strong>Вашего Питомца</strong>',
+    heroSubtitle: 'Наш ИИ сканирует тысячи товаров и находит лучшие предложения для собак, кошек и всех питомцев',
     searchPlaceholder: "Ищите товары для питомцев... 🐶🐱",
     searchButton: "Искать",
     aiBadge: "🤖 На основе ИИ — находит лучшие предложения",
@@ -525,6 +532,9 @@ function applyLanguage(lang) {
   const heroTitle = document.getElementById("heroTitle");
   if (heroTitle) heroTitle.innerHTML = t.heroTitle;
 
+  const heroSubtitle = document.getElementById("heroSubtitle");
+  if (heroSubtitle) heroSubtitle.textContent = t.heroSubtitle || '';
+
   const searchInput = document.getElementById("searchInput");
   if (searchInput) searchInput.placeholder = t.searchPlaceholder;
 
@@ -612,6 +622,24 @@ function applyLanguage(lang) {
   if (chatFabLabel) {
     chatFabLabel.textContent = lang === "he" ? "💬 שאלו את פאו!" : `💬 Ask ${t.chatName}!`;
   }
+
+  // Hide Hebrew-only sections when not Hebrew
+  const seoContent = document.getElementById("seoContent");
+  if (seoContent) seoContent.style.display = lang === "he" ? "" : "none";
+  const faqSection = document.getElementById("faqSection");
+  if (faqSection) faqSection.style.display = lang === "he" ? "" : "none";
+
+  // Install banner
+  const installTitle = document.querySelector(".install-banner-title");
+  if (installTitle) installTitle.textContent = lang === "he" ? "התקינו את פט פיינד מי!" : "Install Pet Find Me!";
+  const installSubtitle = document.querySelector(".install-banner-subtitle");
+  if (installSubtitle) installSubtitle.textContent = lang === "he" ? "חיפוש מוצרים מהיר יותר ישירות מהנייד 📲" : "Search products faster directly from your phone 📲";
+  const installBtn = document.getElementById("installBtn");
+  if (installBtn) installBtn.textContent = t.installBtn || "Install";
+
+  // WhatsApp fab
+  const whatsappFab = document.getElementById("whatsappFab");
+  if (whatsappFab) whatsappFab.style.display = lang === "he" ? "" : "none";
 
   // Language switcher highlight
   document.querySelectorAll(".lang-option").forEach(el => {

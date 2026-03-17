@@ -202,7 +202,9 @@
     .lang-option.active { border-color: var(--primary); background: rgba(255,107,53,0.1); }
     /* Mobile: dropdown language switcher */
     .lang-toggle { display: none; background: none; border: 2px solid var(--border); border-radius: 10px; font-size: 20px; cursor: pointer; padding: 5px 8px; line-height: 1; }
-    .lang-dropdown { display: none; position: absolute; top: calc(100% + 8px); left: 0; background: #fff; border-radius: 12px; box-shadow: 0 8px 30px rgba(0,0,0,.15); padding: 10px; gap: 6px; flex-wrap: wrap; z-index: 200; width: 200px; justify-content: center; }
+    .lang-dropdown { display: none; position: absolute; top: calc(100% + 8px); background: #fff; border-radius: 12px; box-shadow: 0 8px 30px rgba(0,0,0,.15); padding: 10px; gap: 6px; flex-wrap: wrap; z-index: 200; width: 200px; justify-content: center; }
+    [dir="rtl"] .lang-dropdown { left: 0; right: auto; }
+    [dir="ltr"] .lang-dropdown { right: 0; left: auto; }
     .lang-dropdown.show { display: flex; }
     .lang-dropdown .lang-option { font-size: 24px; padding: 8px 10px; }
     @media (max-width: 520px) {
