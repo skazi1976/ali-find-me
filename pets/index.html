@@ -1660,13 +1660,13 @@
 <!-- FOOTER -->
 <footer class="footer">
   <div class="footer-brand">🐾 Pet Find Me</div>
-  <div>מנוע חיפוש AI חכם למוצרי חיות מחמד מאלי אקספרס</div>
+  <div class="footer-desc" id="footerDesc">מנוע חיפוש AI חכם למוצרי חיות מחמד מאלי אקספרס</div>
   <div class="footer-links">
     <a href="/">🔍 Ali Find Me</a>
-    <a href="/privacy.html">מדיניות פרטיות</a>
-    <a href="/terms.html">תנאי שימוש</a>
+    <a href="/privacy.html" id="footerPrivacy">מדיניות פרטיות</a>
+    <a href="/terms.html" id="footerTerms">תנאי שימוש</a>
   </div>
-  <div style="margin-top:12px;font-size:12px;opacity:0.5">© 2026 Pet Find Me. כל הזכויות שמורות.</div>
+  <div style="margin-top:12px;font-size:12px;opacity:0.5" id="footerCopy">© 2026 Pet Find Me. כל הזכויות שמורות.</div>
 </footer>
 
 <!-- BACK TO TOP -->
@@ -2199,7 +2199,7 @@ if ('serviceWorker' in navigator) {
 </script>
 
 <!-- i18n - Multi-language support -->
-<script src="i18n.js?v=3"></script>
+<script src="i18n.js?v=4"></script>
 <script>
 // Initialize language on page load
 (function() {

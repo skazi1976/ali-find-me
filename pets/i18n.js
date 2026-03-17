@@ -71,12 +71,18 @@ const TRANSLATIONS = {
     ],
     chatPlaceholder: "שאלו את פאו...",
     // Footer
-    footerText: "מנוע חיפוש חכם למוצרי חיות מחמד",
+    footerText: "מנוע חיפוש AI חכם למוצרי חיות מחמד מאלי אקספרס",
+    footerPrivacy: "מדיניות פרטיות",
+    footerTerms: "תנאי שימוש",
+    footerCopy: "© 2026 Pet Find Me. כל הזכויות שמורות.",
     // Language switcher
     langLabel: "שפה",
     // Install
     installBtn: "התקנה",
     installHow: "איך מתקינים?",
+    installTitle: "התקינו את פט פיינד מי!",
+    installSubtitle: "חיפוש מוצרים מהיר יותר ישירות מהנייד 📲",
+    chatFabLabel: "💬 שאלו את פאו!",
   },
 
   en: {
@@ -138,10 +144,16 @@ const TRANSLATIONS = {
       { emoji: "🛏️", text: "Bed for a small dog" },
     ],
     chatPlaceholder: "Ask Paw...",
-    footerText: "Smart search engine for pet products",
+    footerText: "Smart AI search engine for pet products from AliExpress",
+    footerPrivacy: "Privacy Policy",
+    footerTerms: "Terms of Use",
+    footerCopy: "© 2026 Pet Find Me. All rights reserved.",
     langLabel: "Language",
     installBtn: "Install",
     installHow: "How to install?",
+    installTitle: "Install Pet Find Me!",
+    installSubtitle: "Search products faster directly from your phone 📲",
+    chatFabLabel: "💬 Ask Paw!",
   },
 
   es: {
@@ -203,10 +215,16 @@ const TRANSLATIONS = {
       { emoji: "🛏️", text: "Cama para perro pequeño" },
     ],
     chatPlaceholder: "Pregunta a Paw...",
-    footerText: "Buscador inteligente de productos para mascotas",
+    footerText: "Buscador inteligente con IA de productos para mascotas en AliExpress",
+    footerPrivacy: "Política de Privacidad",
+    footerTerms: "Términos de Uso",
+    footerCopy: "© 2026 Pet Find Me. Todos los derechos reservados.",
     langLabel: "Idioma",
     installBtn: "Instalar",
     installHow: "¿Cómo instalar?",
+    installTitle: "¡Instala Pet Find Me!",
+    installSubtitle: "Busca productos más rápido desde tu móvil 📲",
+    chatFabLabel: "💬 ¡Pregunta a Paw!",
   },
 
   de: {
@@ -268,10 +286,16 @@ const TRANSLATIONS = {
       { emoji: "🛏️", text: "Bett für kleinen Hund" },
     ],
     chatPlaceholder: "Frag Paw...",
-    footerText: "Intelligente Suchmaschine für Haustierprodukte",
+    footerText: "Intelligente KI-Suchmaschine für Haustierprodukte auf AliExpress",
+    footerPrivacy: "Datenschutz",
+    footerTerms: "Nutzungsbedingungen",
+    footerCopy: "© 2026 Pet Find Me. Alle Rechte vorbehalten.",
     langLabel: "Sprache",
     installBtn: "Installieren",
     installHow: "Wie installieren?",
+    installTitle: "Installieren Sie Pet Find Me!",
+    installSubtitle: "Suchen Sie Produkte schneller direkt vom Handy 📲",
+    chatFabLabel: "💬 Frag Paw!",
   },
 
   pt: {
@@ -333,10 +357,16 @@ const TRANSLATIONS = {
       { emoji: "🛏️", text: "Cama para cachorro pequeno" },
     ],
     chatPlaceholder: "Pergunte ao Paw...",
-    footerText: "Buscador inteligente de produtos para pets",
+    footerText: "Buscador inteligente com IA de produtos para pets no AliExpress",
+    footerPrivacy: "Política de Privacidade",
+    footerTerms: "Termos de Uso",
+    footerCopy: "© 2026 Pet Find Me. Todos os direitos reservados.",
     langLabel: "Idioma",
     installBtn: "Instalar",
     installHow: "Como instalar?",
+    installTitle: "Instale o Pet Find Me!",
+    installSubtitle: "Busque produtos mais rápido direto do celular 📲",
+    chatFabLabel: "💬 Pergunte ao Paw!",
   },
 
   fr: {
@@ -398,10 +428,16 @@ const TRANSLATIONS = {
       { emoji: "🛏️", text: "Lit pour petit chien" },
     ],
     chatPlaceholder: "Demandez à Paw...",
-    footerText: "Moteur de recherche intelligent pour produits animaliers",
+    footerText: "Moteur de recherche IA intelligent pour produits animaliers sur AliExpress",
+    footerPrivacy: "Politique de Confidentialité",
+    footerTerms: "Conditions d'Utilisation",
+    footerCopy: "© 2026 Pet Find Me. Tous droits réservés.",
     langLabel: "Langue",
     installBtn: "Installer",
     installHow: "Comment installer ?",
+    installTitle: "Installez Pet Find Me !",
+    installSubtitle: "Cherchez des produits plus vite depuis votre mobile 📲",
+    chatFabLabel: "💬 Demandez à Paw !",
   },
 
   ru: {
@@ -463,10 +499,16 @@ const TRANSLATIONS = {
       { emoji: "🛏️", text: "Лежанка для маленькой собаки" },
     ],
     chatPlaceholder: "Спросите Paw...",
-    footerText: "Умный поисковик товаров для домашних животных",
+    footerText: "Умный ИИ-поисковик товаров для домашних животных на AliExpress",
+    footerPrivacy: "Политика Конфиденциальности",
+    footerTerms: "Условия Использования",
+    footerCopy: "© 2026 Pet Find Me. Все права защищены.",
     langLabel: "Язык",
     installBtn: "Установить",
     installHow: "Как установить?",
+    installTitle: "Установите Pet Find Me!",
+    installSubtitle: "Ищите товары быстрее прямо с телефона 📲",
+    chatFabLabel: "💬 Спросите Paw!",
   },
 };
 
@@ -624,13 +666,19 @@ function applyLanguage(lang) {
   if (loadMoreText) loadMoreText.textContent = t.loadMore;
 
   // Footer
-  const footerDesc = document.querySelector(".footer-desc");
+  const footerDesc = document.getElementById("footerDesc");
   if (footerDesc) footerDesc.textContent = t.footerText;
+  const footerPrivacy = document.getElementById("footerPrivacy");
+  if (footerPrivacy) footerPrivacy.textContent = t.footerPrivacy;
+  const footerTerms = document.getElementById("footerTerms");
+  if (footerTerms) footerTerms.textContent = t.footerTerms;
+  const footerCopy = document.getElementById("footerCopy");
+  if (footerCopy) footerCopy.textContent = t.footerCopy;
 
   // Chat fab label
   const chatFabLabel = document.querySelector(".chat-fab-label");
   if (chatFabLabel) {
-    chatFabLabel.textContent = lang === "he" ? "💬 שאלו את פאו!" : `💬 Ask ${t.chatName}!`;
+    chatFabLabel.textContent = t.chatFabLabel || `💬 Ask ${t.chatName}!`;
   }
 
   // Hide Hebrew-only sections when not Hebrew
@@ -641,9 +689,9 @@ function applyLanguage(lang) {
 
   // Install banner
   const installTitle = document.querySelector(".install-banner-title");
-  if (installTitle) installTitle.textContent = lang === "he" ? "התקינו את פט פיינד מי!" : "Install Pet Find Me!";
+  if (installTitle) installTitle.textContent = t.installTitle || "Install Pet Find Me!";
   const installSubtitle = document.querySelector(".install-banner-subtitle");
-  if (installSubtitle) installSubtitle.textContent = lang === "he" ? "חיפוש מוצרים מהיר יותר ישירות מהנייד 📲" : "Search products faster directly from your phone 📲";
+  if (installSubtitle) installSubtitle.textContent = t.installSubtitle || "Search products faster directly from your phone 📲";
   const installBtn = document.getElementById("installBtn");
   if (installBtn) installBtn.textContent = t.installBtn || "Install";
 
