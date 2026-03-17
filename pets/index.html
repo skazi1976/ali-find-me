@@ -142,7 +142,13 @@
   <meta name="geo.placename" content="Israel">
   <meta name="content-language" content="he">
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
-  <link rel="alternate" hreflang="he" href="https://alifindme.com/pets/">
+  <link rel="alternate" hreflang="he" href="https://alifindme.com/pets/?lang=he">
+  <link rel="alternate" hreflang="en" href="https://alifindme.com/pets/?lang=en">
+  <link rel="alternate" hreflang="es" href="https://alifindme.com/pets/?lang=es">
+  <link rel="alternate" hreflang="de" href="https://alifindme.com/pets/?lang=de">
+  <link rel="alternate" hreflang="pt" href="https://alifindme.com/pets/?lang=pt">
+  <link rel="alternate" hreflang="fr" href="https://alifindme.com/pets/?lang=fr">
+  <link rel="alternate" hreflang="ru" href="https://alifindme.com/pets/?lang=ru">
   <link rel="alternate" hreflang="x-default" href="https://alifindme.com/pets/">
 
   <style>
@@ -177,9 +183,20 @@
       background-image: var(--paw-bg);
       color: var(--text);
       min-height: 100vh;
-      direction: rtl;
       line-height: 1.6;
     }
+    [dir="rtl"] body, html[dir="rtl"] { direction: rtl; }
+    [dir="ltr"] body, html[dir="ltr"] { direction: ltr; }
+
+    /* Language Switcher */
+    .lang-switcher { display: flex; gap: 4px; align-items: center; }
+    .lang-option {
+      background: none; border: 2px solid transparent; border-radius: 8px;
+      font-size: 20px; cursor: pointer; padding: 4px 6px; transition: all 0.2s;
+      line-height: 1;
+    }
+    .lang-option:hover { background: rgba(255,107,53,0.1); transform: scale(1.15); }
+    .lang-option.active { border-color: var(--primary); background: rgba(255,107,53,0.1); }
 
     /* ===== NAVBAR ===== */
     .navbar {
@@ -761,6 +778,59 @@
     .back-to-top:hover { transform: scale(1.1); }
 
     /* ===== CHAT FAB ===== */
+    /* WhatsApp FAB */
+    .whatsapp-fab {
+      position: fixed;
+      bottom: 30px;
+      left: 30px;
+      width: 60px;
+      height: 60px;
+      background: #25D366;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      font-size: 32px;
+      cursor: pointer;
+      box-shadow: 0 4px 16px rgba(37,211,102,0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 999;
+      transition: all 0.3s;
+      text-decoration: none;
+      animation: whatsappPulse 4s infinite;
+    }
+    .whatsapp-fab:hover { transform: scale(1.1); box-shadow: 0 6px 24px rgba(37,211,102,0.6); }
+    @keyframes whatsappPulse {
+      0%, 100% { box-shadow: 0 4px 16px rgba(37,211,102,0.4); }
+      50% { box-shadow: 0 4px 24px rgba(37,211,102,0.7), 0 0 0 8px rgba(37,211,102,0.1); }
+    }
+    .whatsapp-fab-label {
+      position: absolute;
+      bottom: 68px;
+      left: 0;
+      background: #25D366;
+      color: white;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 700;
+      white-space: nowrap;
+      box-shadow: 0 3px 12px rgba(37,211,102,0.3);
+      animation: fadeInUp 0.5s ease 4s both;
+    }
+    .whatsapp-fab-label::after {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      left: 20px;
+      width: 12px;
+      height: 12px;
+      background: #25D366;
+      transform: rotate(45deg);
+      border-radius: 2px;
+    }
+
     .chat-fab {
       position: fixed;
       bottom: 30px;
@@ -1087,6 +1157,8 @@
       .chat-fab { bottom: 20px; right: 14px; width: auto; height: 48px; font-size: 20px; border-radius: 24px; padding: 0 16px; gap: 6px; }
       .chat-fab-label { position: static; background: none; color: white; padding: 0; box-shadow: none; font-size: 13px; font-weight: 700; animation: none; }
       .chat-fab-label::after { display: none; }
+      .whatsapp-fab { bottom: 20px; left: 14px; width: 48px; height: 48px; font-size: 24px; }
+      .whatsapp-fab-label { display: none; }
     }
     @media (max-width: 380px) {
       .products-grid { grid-template-columns: 1fr; }
@@ -1337,21 +1409,29 @@
     <span class="logo-icon">🐾</span>
     <span class="logo-text">Pet Find Me</span>
   </a>
-  <a href="/" class="navbar-link">
-    🔍 Ali Find Me ←
-  </a>
+  <div style="display:flex;align-items:center;gap:10px;">
+    <div class="lang-switcher" id="langSwitcher">
+      <button class="lang-option active" data-lang="he" onclick="switchLanguage('he')" title="עברית">🇮🇱</button>
+      <button class="lang-option" data-lang="en" onclick="switchLanguage('en')" title="English">🇺🇸</button>
+      <button class="lang-option" data-lang="es" onclick="switchLanguage('es')" title="Español">🇪🇸</button>
+      <button class="lang-option" data-lang="de" onclick="switchLanguage('de')" title="Deutsch">🇩🇪</button>
+      <button class="lang-option" data-lang="pt" onclick="switchLanguage('pt')" title="Português">🇧🇷</button>
+      <button class="lang-option" data-lang="fr" onclick="switchLanguage('fr')" title="Français">🇫🇷</button>
+      <button class="lang-option" data-lang="ru" onclick="switchLanguage('ru')" title="Русский">🇷🇺</button>
+    </div>
+  </div>
 </nav>
 
 <!-- HERO -->
 <section class="hero">
-  <h1 class="hero-title">
+  <h1 class="hero-title" id="heroTitle">
     <span class="paw">🐾</span> מצאו הכל <span class="highlight">לחיית המחמד</span> שלכם
   </h1>
-  <p class="hero-subtitle">הבינה המלאכותית שלנו סורקת אלפי מוצרים ומוצאת לכם את הדילים הכי משתלמים לכלבים, חתולים וחיות מחמד</p>
+  <p class="hero-subtitle" id="heroSubtitle">הבינה המלאכותית שלנו סורקת אלפי מוצרים ומוצאת לכם את הדילים הכי משתלמים לכלבים, חתולים וחיות מחמד</p>
 
   <div class="ai-badge">
     <div class="ai-dot"></div>
-    <span>🤖 מונע בינה מלאכותית — מוצא לכם את המחיר הכי טוב</span>
+    <span id="aiBadge">🤖 מונע בינה מלאכותית — מוצא לכם את המחיר הכי טוב</span>
   </div>
 
   <!-- SEARCH -->
@@ -1360,20 +1440,20 @@
       <input type="text" class="search-input" id="searchInput" placeholder="כתבו בעברית — ה-AI ימצא לכם הכל 🐶🐱" autocomplete="off">
       <button class="search-btn" id="searchBtn" onclick="doSearch()">
         <span class="icon">🔍</span>
-        <span>לחצו לחיפוש</span>
+        <span class="search-btn-text">לחצו לחיפוש</span>
       </button>
     </div>
   </div>
 
   <div class="ai-search-banner">
     <div class="ai-icon">🧠</div>
-    <div><strong>חיפוש AI חכם:</strong> כתבו מה שבא לכם בעברית — המנוע שלנו מבין, מתרגם ומוצא את המוצרים הכי משתלמים מאלי אקספרס עם משלוח לישראל</div>
+    <div id="bannerText"><strong>חיפוש AI חכם:</strong> כתבו מה שבא לכם בעברית — המנוע שלנו מבין, מתרגם ומוצא את המוצרים הכי משתלמים מאלי אקספרס עם משלוח לישראל</div>
   </div>
 
   <!-- POPULAR SEARCHES -->
   <div class="popular-searches">
-    <div class="popular-title">🔥 חיפושים פופולריים</div>
-    <div class="chips">
+    <div class="popular-title" id="popularTitle">🔥 חיפושים פופולריים</div>
+    <div class="chips" id="chipsContainer">
       <a class="chip" onclick="quickSearch('צעצוע לכלב')">🦴 צעצוע לכלב</a>
       <a class="chip" onclick="quickSearch('מזון לחתולים')">🐱 מזון לחתולים</a>
       <a class="chip" onclick="quickSearch('רצועה לכלב')">🐕 רצועה לכלב</a>
@@ -1388,8 +1468,8 @@
 
 <!-- CATEGORIES -->
 <section class="categories">
-  <h2 class="section-title">🏷️ קטגוריות לחיות מחמד</h2>
-  <div class="categories-grid">
+  <h2 class="section-title" id="categoriesTitle">🏷️ קטגוריות לחיות מחמד</h2>
+  <div class="categories-grid" id="categoriesGrid">
     <a class="category-card" onclick="quickSearch('מוצרים לכלבים')">
       <span class="category-icon">🐶</span>
       <div class="category-name">כלבים</div>
@@ -1426,13 +1506,13 @@
 <!-- LOADING -->
 <div class="loading" id="loading">
   <div class="spinner">🤖</div>
-  <div class="loading-text">ה-AI סורק אלפי מוצרים ומוצא לכם את הדילים הכי טובים... 🐾</div>
+  <div class="loading-text" id="loadingText">ה-AI סורק אלפי מוצרים ומוצא לכם את הדילים הכי טובים... 🐾</div>
 </div>
 
 <!-- NO RESULTS -->
 <div class="no-results" id="noResults">
   <div class="no-results-icon">😿</div>
-  <div class="no-results-text">לא נמצאו תוצאות. נסו חיפוש אחר!</div>
+  <div class="no-results-text" id="noResultsText">לא נמצאו תוצאות. נסו חיפוש אחר!</div>
 </div>
 
 <!-- RESULTS -->
@@ -1442,18 +1522,18 @@
       <span class="results-title" id="resultsTitle">תוצאות חיפוש</span>
       <span class="results-count" id="resultsCount"></span>
     </div>
-    <button class="results-clear" onclick="clearResults()">✕ נקה</button>
+    <button class="results-clear" id="clearBtn" onclick="clearResults()">✕ נקה</button>
   </div>
   <div class="products-grid" id="productsGrid"></div>
   <div class="load-more-wrap" id="loadMoreWrap">
-    <button class="load-more-btn" onclick="loadMore()">🐾 טען עוד מוצרים</button>
+    <button class="load-more-btn" onclick="loadMore()"><span class="load-more-text">🐾 טען עוד מוצרים</span></button>
   </div>
 </section>
 
 <!-- FEATURES -->
 <section class="features" id="featuresSection">
   <h2 class="section-title">🤖 איך הבינה המלאכותית עובדת בשבילכם?</h2>
-  <div class="features-grid">
+  <div class="features-grid" id="featuresGrid">
     <div class="feature-card">
       <span class="feature-icon">🧠</span>
       <div class="feature-title">AI שמבין עברית</div>
@@ -1562,6 +1642,12 @@
 <!-- BACK TO TOP -->
 <button class="back-to-top" id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
 
+<!-- WHATSAPP FAB -->
+<a class="whatsapp-fab" id="whatsappFab" href="https://wa.me/972507483316?text=%D7%94%D7%99%D7%99%2C%20%D7%90%D7%A0%D7%99%20%D7%9E%D7%97%D7%A4%D7%A9%20%D7%9E%D7%95%D7%A6%D7%A8%D7%99%D7%9D%20%D7%9C%D7%97%D7%99%D7%95%D7%AA%20%D7%9E%D7%97%D7%9E%D7%93" target="_blank" rel="noopener" aria-label="שלחו הודעה בוואטסאפ">
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  <div class="whatsapp-fab-label">📲 חפשו בוואטסאפ!</div>
+</a>
+
 <!-- CHAT FAB -->
 <button class="chat-fab" id="chatFab" onclick="toggleChat()">
   🐾
@@ -1634,6 +1720,11 @@ function quickSearch(q) {
   doSearch();
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
+function searchFromChip(q) {
+  document.getElementById('searchInput').value = q;
+  doSearch();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
 
 async function doSearch() {
   const input = document.getElementById('searchInput');
@@ -1697,7 +1788,7 @@ async function loadMore() {
   try {
     const data = await fetchProducts(currentQuery, currentPage);
     isLoading = false;
-    btn.textContent = '🐾 טען עוד מוצרים';
+    btn.textContent = (window.currentTranslation || {}).loadMore || '🐾 Load More';
 
     if (data.products && data.products.length > 0) {
       renderProducts(data.products, true);
@@ -1708,12 +1799,13 @@ async function loadMore() {
     }
   } catch (err) {
     isLoading = false;
-    btn.textContent = '🐾 טען עוד מוצרים';
+    btn.textContent = (window.currentTranslation || {}).loadMore || '🐾 Load More';
   }
 }
 
 async function fetchProducts(query, page) {
-  const url = `${API_BASE}/search?q=${encodeURIComponent(query)}&lang=he&currency=ILS&country=IL&page=${page}&context=pets`;
+  const t = window.currentTranslation || { lang: 'he', currency: 'ILS', country: 'IL' };
+  const url = `${API_BASE}/search?q=${encodeURIComponent(query)}&lang=${t.lang}&currency=${t.currency}&country=${t.country}&page=${page}&context=pets`;
   const resp = await fetch(url);
   if (!resp.ok) throw new Error('API error');
   return resp.json();
@@ -1754,10 +1846,10 @@ function renderProducts(products, append) {
       </div>
       <div class="product-info">
         <div class="product-title">${title}</div>
-        <div class="product-price">${currency === 'ILS' ? '₪' : currency} ${parseFloat(price).toFixed(0)}</div>
+        <div class="product-price">${(window.currentTranslation || {}).currencySymbol || '₪'} ${parseFloat(price).toFixed(0)}</div>
         <div class="product-meta">
           ${ratingStars}
-          ${orders > 0 ? `<div class="product-orders">${orders > 999 ? (orders/1000).toFixed(1)+'K' : orders} מכירות</div>` : ''}
+          ${orders > 0 ? `<div class="product-orders">${orders > 999 ? (orders/1000).toFixed(1)+'K' : orders} ${(window.currentTranslation || {}).orders || 'orders'}</div>` : ''}
         </div>
       </div>
     `;
@@ -2061,6 +2153,16 @@ function dismissInstallBanner(permanent) {
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('../sw.js').catch(() => {});
 }
+</script>
+
+<!-- i18n - Multi-language support -->
+<script src="i18n.js"></script>
+<script>
+// Initialize language on page load
+(function() {
+  const lang = detectLanguage();
+  applyLanguage(lang);
+})();
 </script>
 
 </body>
