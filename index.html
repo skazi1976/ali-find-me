@@ -58,7 +58,7 @@
   <link rel="preconnect" href="https://ali-find-me.ohad1.workers.dev">
   <link rel="dns-prefetch" href="https://ae01.alicdn.com">
   <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&family=Assistant:wght@300;400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=20260316x">
+  <link rel="stylesheet" href="css/style.css?v=20260317a">
 
   <script type="application/ld+json">
   {
@@ -473,15 +473,39 @@
   </footer>
 
   <!-- PWA Install Banner -->
-  <div class="install-banner" id="installBanner" style="display:none">
+  <div class="install-banner" id="installBanner">
     <div class="install-banner-content">
       <span class="install-icon">📲</span>
       <div class="install-text">
-        <strong data-i18n="installTitle">התקיני את האפליקציה!</strong>
-        <span data-i18n="installDesc">גישה מהירה לדילים ישירות מהמסך</span>
+        <strong data-i18n="installTitle">התקינו את עלי תמצא לי!</strong>
+        <span data-i18n="installDesc">חיפוש מוצרים מהיר יותר ישירות מהנייד 🛍️</span>
       </div>
-      <button class="install-btn" id="installBtn" onclick="installApp()" data-i18n="installBtn">התקן</button>
-      <button class="install-dismiss" onclick="dismissInstall()">✕</button>
+      <button class="install-btn" id="installBtn" onclick="installApp()" data-i18n="installBtn">התקנה</button>
+      <button class="install-dismiss" onclick="dismissInstall()">&times;</button>
+    </div>
+  </div>
+
+  <!-- AI Chat FAB -->
+  <button class="chat-fab" id="chatFab" onclick="toggleAiChat()">
+    🤖
+    <div class="chat-fab-label">💬 שאלו את הבינה!</div>
+  </button>
+
+  <!-- AI Chat Panel -->
+  <div class="ai-chat-panel" id="aiChatPanel">
+    <div class="ai-chat-header">
+      <div class="ai-chat-header-avatar">🤖</div>
+      <div class="ai-chat-header-info">
+        <div class="ai-chat-header-name">עוזר/ת הקניות החכם/ה</div>
+        <div class="ai-chat-header-status">🟢 מונע בינה מלאכותית (Claude AI)</div>
+      </div>
+      <button class="ai-chat-close" onclick="toggleAiChat()">✕</button>
+    </div>
+    <div class="ai-chat-messages" id="aiChatMessages"></div>
+    <div class="ai-chat-chips" id="aiChatChips"></div>
+    <div class="ai-chat-input-area">
+      <input type="text" class="ai-chat-input" id="aiChatInput" placeholder="מחפשים משהו ספציפי? שאלו אותי..." autocomplete="off">
+      <button class="ai-chat-send" id="aiChatSend" onclick="sendAiChat()">➤</button>
     </div>
   </div>
 
@@ -516,6 +540,6 @@
     </div>
   </div>
 
-  <script src="js/app.js?v=20260316z"></script>
+  <script src="js/app.js?v=20260317a"></script>
 </body>
 </html>

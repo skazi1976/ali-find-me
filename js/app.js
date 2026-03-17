@@ -2152,6 +2152,10 @@ async function sendMessage() {
         <button class="share-search-btn" onclick="shareSearch('${currentQuery.replace(/'/g,"\\'")}')" title="\u05e9\u05ea\u05e3 \u05d7\u05d9\u05e4\u05d5\u05e9">\ud83d\udce4 \u05e9\u05ea\u05e3</button>`;
       document.getElementById("resultsSection").style.display = "block";
       document.getElementById("loadMore").style.display = (data.total || 0) > currentPage * 50 ? "block" : "none";
+      // Auto-scroll to results
+      setTimeout(() => {
+        document.getElementById('resultsSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 100);
       loadRelated(query);
 
       // Update context and show quick replies
@@ -2552,48 +2556,7 @@ function redeemPoints(cost) {
 updatePointsBadge();
 checkDailyBonus();
 
-// ─── PWA Install Prompt ────────────────────────────────────
-let deferredPrompt = null;
-
-window.addEventListener("beforeinstallprompt", (e) => {
-  e.preventDefault();
-  deferredPrompt = e;
-  // Show banner if not dismissed recently (24h cooldown)
-  const dismissed = localStorage.getItem("installDismissed");
-  if (dismissed && Date.now() - parseInt(dismissed) < 86400000) return;
-  // Don't show if already installed (standalone mode)
-  if (window.matchMedia("(display-mode: standalone)").matches) return;
-  setTimeout(() => {
-    const banner = document.getElementById("installBanner");
-    if (banner) banner.style.display = "flex";
-  }, 3000); // Show after 3s delay
-});
-
-function installApp() {
-  if (!deferredPrompt) return;
-  deferredPrompt.prompt();
-  deferredPrompt.userChoice.then((choice) => {
-    if (choice.outcome === "accepted") {
-      gtag?.("event", "pwa_install", { method: "banner" });
-    }
-    deferredPrompt = null;
-    const banner = document.getElementById("installBanner");
-    if (banner) banner.style.display = "none";
-  });
-}
-
-function dismissInstall() {
-  const banner = document.getElementById("installBanner");
-  if (banner) banner.style.display = "none";
-  localStorage.setItem("installDismissed", Date.now().toString());
-}
-
-// Hide banner if app is installed
-window.addEventListener("appinstalled", () => {
-  const banner = document.getElementById("installBanner");
-  if (banner) banner.style.display = "none";
-  deferredPrompt = null;
-});
+// ─── PWA Install Prompt (moved to bottom with AI Chat) ──────
 
 // ─── Service Worker Registration ────────────────────────────
 if ("serviceWorker" in navigator) {
@@ -2678,3 +2641,231 @@ setTimeout(() => {
     })
   }).catch(() => {}); // silently fail
 })();
+
+// ============================================================
+//  AI Chat (Claude) Integration
+// ============================================================
+let aiChatOpen = false;
+let aiChatHistory = [];
+let aiChatLoading = false;
+let aiChatFirstOpen = true;
+
+function toggleAiChat() {
+  aiChatOpen = !aiChatOpen;
+  const panel = document.getElementById('aiChatPanel');
+  const fab = document.getElementById('chatFab');
+  panel.classList.toggle('open', aiChatOpen);
+  fab.classList.toggle('hidden', aiChatOpen);
+  if (aiChatOpen && aiChatFirstOpen) {
+    aiChatFirstOpen = false;
+    addAiChatMsg('היי! 👋 אני העוזר/ת החכם/ה של עלי תמצא לי.\nספרו לי מה אתם מחפשים ואני אמצא לכם את הדילים הכי טובים! 🛍️', false);
+    renderAiChatChips([
+      { label: '👗 שמלת ערב', query: 'אני מחפשת שמלת ערב יפה' },
+      { label: '⌚ שעון יד', query: 'שעון יד לגבר' },
+      { label: '💎 תכשיטים', query: 'תכשיטים במחיר טוב' },
+      { label: '🏠 לבית', query: 'מוצרים שימושיים לבית' },
+    ]);
+  }
+  if (aiChatOpen) {
+    setTimeout(() => document.getElementById('aiChatInput').focus(), 200);
+  }
+}
+
+function addAiChatMsg(text, isUser) {
+  const container = document.getElementById('aiChatMessages');
+  const div = document.createElement('div');
+  div.className = 'ai-chat-msg' + (isUser ? ' user' : '');
+  div.innerHTML = `
+    <div class="ai-chat-msg-avatar">${isUser ? '👤' : '🤖'}</div>
+    <div class="ai-chat-msg-bubble">${text.replace(/\n/g, '<br>')}</div>
+  `;
+  container.appendChild(div);
+  container.scrollTop = container.scrollHeight;
+}
+
+function showAiTyping() {
+  const container = document.getElementById('aiChatMessages');
+  const div = document.createElement('div');
+  div.className = 'ai-chat-msg';
+  div.id = 'aiTyping';
+  div.innerHTML = `
+    <div class="ai-chat-msg-avatar">🤖</div>
+    <div class="ai-chat-typing"><span></span><span></span><span></span></div>
+  `;
+  container.appendChild(div);
+  container.scrollTop = container.scrollHeight;
+}
+
+function hideAiTyping() {
+  const el = document.getElementById('aiTyping');
+  if (el) el.remove();
+}
+
+function renderAiChatChips(chips) {
+  const container = document.getElementById('aiChatChips');
+  container.innerHTML = chips.map(c =>
+    `<button class="ai-chat-chip" onclick="aiChipClick('${c.query.replace(/'/g, "\\'")}')">${c.label}</button>`
+  ).join('');
+}
+
+function aiChipClick(query) {
+  document.getElementById('aiChatInput').value = query;
+  document.getElementById('aiChatChips').innerHTML = '';
+  sendAiChat();
+}
+
+function renderAiChatProducts(products, label) {
+  const container = document.getElementById('aiChatMessages');
+  if (label) {
+    const labelDiv = document.createElement('div');
+    labelDiv.className = 'ai-chat-msg';
+    labelDiv.innerHTML = `<div class="ai-chat-msg-avatar">🤖</div><div class="ai-chat-msg-bubble">🔍 ${label}</div>`;
+    container.appendChild(labelDiv);
+  }
+  const scrollDiv = document.createElement('div');
+  scrollDiv.className = 'ai-chat-products-scroll';
+  products.forEach(p => {
+    const price = p.sale_price || p.price || p.target_sale_price || '';
+    const img = p.image || p.product_main_image_url || '';
+    const title = p.title || p.product_title || '';
+    const url = p.affiliate_url || p.affiliate_link || p.product_detail_url || '#';
+    scrollDiv.innerHTML += `
+      <a href="${url}" target="_blank" rel="noopener" class="ai-chat-product-mini" onclick="gtag('event','ai_chat_product_click',{event_label:'${title.substring(0,30)}'})">
+        <img src="${img}" alt="${title}" loading="lazy" onerror="this.src='icons/icon-192.png'">
+        <div class="ai-chat-product-mini-info">
+          <div class="ai-chat-product-mini-title">${title}</div>
+          <div class="ai-chat-product-mini-price">${currentCurrencySymbol}${price}</div>
+        </div>
+      </a>
+    `;
+  });
+  container.appendChild(scrollDiv);
+  container.scrollTop = container.scrollHeight;
+}
+
+async function sendAiChat() {
+  const input = document.getElementById('aiChatInput');
+  const query = input.value.trim();
+  if (!query || aiChatLoading) return;
+
+  input.value = '';
+  document.getElementById('aiChatChips').innerHTML = '';
+  addAiChatMsg(query, true);
+  aiChatHistory.push({ role: 'user', content: query });
+  aiChatLoading = true;
+  showAiTyping();
+
+  gtag('event', 'ai_chat_message', { event_category: 'ai_chat', event_label: query });
+
+  try {
+    const resp = await fetch(`${API_BASE}/pets/chat`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        messages: aiChatHistory,
+        context: 'general',
+        lang: currentLang,
+        currency: currentCurrency
+      }),
+    });
+
+    hideAiTyping();
+
+    if (!resp.ok) throw new Error('Chat API error');
+    const data = await resp.json();
+
+    if (data.reply) {
+      addAiChatMsg(data.reply, false);
+      aiChatHistory.push({ role: 'assistant', content: data.reply });
+    }
+
+    // Server-side search results
+    if (data.searchResults && data.searchResults.length > 0) {
+      for (const sr of data.searchResults) {
+        if (sr.products && sr.products.length > 0) {
+          renderAiChatProducts(sr.products, sr.label);
+        }
+      }
+    } else if (data.searches && data.searches.length > 0) {
+      // Fallback: client-side search
+      for (const s of data.searches) {
+        try {
+          const searchData = await doSearch(s.query, 1);
+          if (searchData.products && searchData.products.length > 0) {
+            renderAiChatProducts(searchData.products.slice(0, 6), s.label);
+          }
+        } catch (e) {
+          console.error('Chat search error:', e);
+        }
+      }
+    }
+  } catch (err) {
+    hideAiTyping();
+    addAiChatMsg('😔 סליחה, משהו השתבש. נסו שוב עוד רגע!', false);
+  }
+
+  aiChatLoading = false;
+}
+
+// Enter key to send AI chat
+document.addEventListener('DOMContentLoaded', () => {
+  const aiInput = document.getElementById('aiChatInput');
+  if (aiInput) {
+    aiInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') sendAiChat();
+    });
+  }
+});
+
+// ============================================================
+//  Improved PWA Install Banner
+// ============================================================
+let deferredInstallPrompt = null;
+
+window.addEventListener('beforeinstallprompt', (e) => {
+  e.preventDefault();
+  deferredInstallPrompt = e;
+});
+
+function shouldShowInstallBanner() {
+  if (localStorage.getItem('pwa-install-dismissed')) return false;
+  if (window.matchMedia('(display-mode: standalone)').matches) return false;
+  if (window.navigator.standalone === true) return false;
+  if (window.innerWidth > 768) return false;
+  return true;
+}
+
+if (shouldShowInstallBanner()) {
+  setTimeout(() => {
+    const banner = document.getElementById('installBanner');
+    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+    if (isIOS) {
+      const btn = document.getElementById('installBtn');
+      if (btn) btn.textContent = 'איך מתקינים?';
+    }
+    if (banner) banner.style.display = 'block';
+  }, 3000);
+}
+
+function installApp() {
+  if (deferredInstallPrompt) {
+    deferredInstallPrompt.prompt();
+    deferredInstallPrompt.userChoice.then((choice) => {
+      if (choice.outcome === 'accepted') dismissInstall(true);
+      deferredInstallPrompt = null;
+    });
+  } else if (/iPad|iPhone|iPod/.test(navigator.userAgent)) {
+    alert('כדי להתקין את האפליקציה:\n\n1. לחצו על כפתור השיתוף (Share) בתחתית המסך\n2. גללו למטה ובחרו "Add to Home Screen"\n3. לחצו "Add"\n\nזהו! האפליקציה תופיע במסך הבית 📲');
+  } else {
+    alert('כדי להתקין:\n\n1. פתחו את התפריט של הדפדפן (⋮)\n2. בחרו "התקן אפליקציה" או "הוסף למסך הבית"\n3. אשרו את ההתקנה\n\nזהו! 📲');
+  }
+}
+
+function dismissInstall(permanent) {
+  const banner = document.getElementById('installBanner');
+  if (banner) {
+    banner.classList.add('hiding');
+    if (permanent !== false) localStorage.setItem('pwa-install-dismissed', '1');
+    setTimeout(() => { banner.style.display = 'none'; banner.classList.remove('hiding'); }, 300);
+  }
+}
