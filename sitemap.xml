@@ -298,4 +298,12 @@
     <priority>0.3</priority>
   </url>
 
+  <!-- Pets Landing Page -->
+  <url>
+    <loc>https://alifindme.com/pets/</loc>
+    <lastmod>2026-03-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
 </urlset>
