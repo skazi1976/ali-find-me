@@ -1701,26 +1701,22 @@ function shouldShowInstallBanner() {
 window.addEventListener('beforeinstallprompt', (e) => {
   e.preventDefault();
   deferredPrompt = e;
-  if (shouldShowInstallBanner()) {
-    setTimeout(() => {
-      installBanner.classList.add('show');
-    }, 3000);
-  }
 });
 
-// iOS: no beforeinstallprompt, show custom instructions
-if (/iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream) {
-  if (shouldShowInstallBanner()) {
-    setTimeout(() => {
-      const btn = document.getElementById('installBtn');
-      btn.textContent = 'איך מתקינים?';
-      installBanner.classList.add('show');
-    }, 3000);
-  }
+// Always show banner on mobile after 3 seconds
+if (shouldShowInstallBanner()) {
+  setTimeout(() => {
+    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+    if (isIOS) {
+      document.getElementById('installBtn').textContent = 'איך מתקינים?';
+    }
+    installBanner.classList.add('show');
+  }, 3000);
 }
 
 function installApp() {
   if (deferredPrompt) {
+    // Android/Chrome native install
     deferredPrompt.prompt();
     deferredPrompt.userChoice.then((choiceResult) => {
       if (choiceResult.outcome === 'accepted') {
@@ -1731,6 +1727,10 @@ function installApp() {
   } else if (/iPad|iPhone|iPod/.test(navigator.userAgent)) {
     // iOS instructions
     alert('כדי להתקין:\n1. לחצו על כפתור השיתוף (Share) בתחתית Safari\n2. בחרו "הוסף למסך הבית" (Add to Home Screen)\n3. לחצו "הוסף"');
+    dismissInstallBanner(false);
+  } else {
+    // Other browsers — show generic instructions
+    alert('כדי להתקין:\nפתחו את התפריט של הדפדפן (⋮) ובחרו "התקן אפליקציה" או "הוסף למסך הבית"');
     dismissInstallBanner(false);
   }
 }
