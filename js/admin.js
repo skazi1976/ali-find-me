@@ -411,6 +411,97 @@ function switchTab(name) {
   document.getElementById(`tab-${name}`).classList.add("active");
   event.target.classList.add("active");
   if (name === "searchlogs") loadSearchLogs();
+  if (name === "analytics") loadAnalytics();
+}
+
+// ============================================================
+//  Analytics Dashboard
+// ============================================================
+
+const COUNTRY_NAMES = {
+  IL:"ישראל 🇮🇱", US:"ארה\"ב 🇺🇸", GB:"בריטניה 🇬🇧", DE:"גרמניה 🇩🇪", FR:"צרפת 🇫🇷",
+  RU:"רוסיה 🇷🇺", SA:"סעודיה 🇸🇦", AE:"אמירויות 🇦🇪", EG:"מצרים 🇪🇬", TR:"טורקיה 🇹🇷",
+  BR:"ברזיל 🇧🇷", ES:"ספרד 🇪🇸", PT:"פורטוגל 🇵🇹", IT:"איטליה 🇮🇹", CA:"קנדה 🇨🇦",
+  AU:"אוסטרליה 🇦🇺", IN:"הודו 🇮🇳", JP:"יפן 🇯🇵", KR:"דרום קוריאה 🇰🇷", CN:"סין 🇨🇳",
+  MA:"מרוקו 🇲🇦", DZ:"אלג'יריה 🇩🇿", TN:"תוניסיה 🇹🇳", IQ:"עירק 🇮🇶", JO:"ירדן 🇯🇴",
+  LB:"לבנון 🇱🇧", KW:"כווית 🇰🇼", QA:"קטאר 🇶🇦", BH:"בחריין 🇧🇭", OM:"עומאן 🇴🇲",
+  PL:"פולין 🇵🇱", NL:"הולנד 🇳🇱", SE:"שוודיה 🇸🇪", NO:"נורבגיה 🇳🇴", UA:"אוקראינה 🇺🇦",
+  MX:"מקסיקו 🇲🇽", AR:"ארגנטינה 🇦🇷", CO:"קולומביה 🇨🇴", CL:"צ'ילה 🇨🇱",
+  XX:"לא ידוע 🌐"
+};
+
+const LANG_NAMES = {
+  he:"עברית 🇮🇱", en:"English 🇺🇸", ar:"العربية 🇸🇦", ru:"Русский 🇷🇺",
+  es:"Español 🇪🇸", pt:"Português 🇧🇷", tr:"Türkçe 🇹🇷", fr:"Français 🇫🇷"
+};
+
+function formatNum(n) {
+  if (n >= 1000000) return (n / 1000000).toFixed(1) + "M";
+  if (n >= 1000) return (n / 1000).toFixed(1) + "K";
+  return String(n);
+}
+
+async function loadAnalytics() {
+  const range = document.getElementById("analyticsRange")?.value || "30";
+  const data = await api(`/admin/analytics?range=${range}`);
+  if (!data) return;
+
+  // Main stats
+  document.getElementById("anTotalViews").textContent = formatNum(data.total?.views || 0);
+  document.getElementById("anMonthViews").textContent = formatNum(data.monthly?.views || 0);
+  document.getElementById("anRangeViews").textContent = formatNum(data.range?.views || 0);
+  document.getElementById("anCountries").textContent = Object.keys(data.total?.countries || {}).length;
+
+  // Daily chart (bar chart)
+  const daily = data.range?.daily || [];
+  const maxDaily = Math.max(...daily.map(d => d.views), 1);
+  const chartEl = document.getElementById("dailyChart");
+  chartEl.innerHTML = daily.map(d => {
+    const pct = Math.max((d.views / maxDaily) * 100, 2);
+    const dayLabel = d.date.slice(5); // MM-DD
+    const isToday = d.date === new Date().toISOString().slice(0, 10);
+    const color = isToday ? "#6C5CE7" : "#a29bfe";
+    return `<div style="flex:1;min-width:20px;display:flex;flex-direction:column;align-items:center;gap:4px;">
+      <span style="font-size:0.75rem;font-weight:700;color:${color};">${d.views}</span>
+      <div style="width:100%;height:${pct}%;background:${color};border-radius:4px 4px 0 0;min-height:4px;transition:height 0.5s;"></div>
+      <span style="font-size:0.65rem;color:#999;transform:rotate(-45deg);white-space:nowrap;">${dayLabel}</span>
+    </div>`;
+  }).join("");
+
+  // Countries chart
+  renderBarList("countriesChart", data.range?.countries || {}, COUNTRY_NAMES, "#6C5CE7");
+
+  // Languages chart
+  renderBarList("langsChart", data.range?.langs || {}, LANG_NAMES, "#00B894");
+
+  // Pages chart
+  renderBarList("pagesChart", data.range?.pages || {}, {}, "#0984e3");
+
+  // Referrers chart
+  renderBarList("refsChart", data.range?.refs || {}, {}, "#e17055");
+}
+
+function renderBarList(elId, dataObj, nameMap, color) {
+  const el = document.getElementById(elId);
+  const entries = Object.entries(dataObj).sort((a, b) => b[1] - a[1]);
+  if (entries.length === 0) {
+    el.innerHTML = '<p style="color:#999;text-align:center;padding:20px;">אין נתונים עדיין</p>';
+    return;
+  }
+  const maxVal = entries[0][1];
+  el.innerHTML = entries.map(([key, val]) => {
+    const pct = Math.round((val / maxVal) * 100);
+    const label = nameMap[key] || key;
+    return `<div style="display:flex;align-items:center;gap:12px;margin-bottom:8px;">
+      <div style="width:140px;font-size:0.9rem;text-align:right;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="${key}">${label}</div>
+      <div style="flex:1;height:26px;background:#f0f0f0;border-radius:6px;overflow:hidden;">
+        <div style="height:100%;width:${pct}%;background:${color};border-radius:6px;transition:width 0.5s;display:flex;align-items:center;justify-content:flex-end;padding-right:8px;">
+          ${pct > 20 ? `<span style="color:#fff;font-size:0.8rem;font-weight:700;">${val}</span>` : ""}
+        </div>
+      </div>
+      ${pct <= 20 ? `<span style="font-size:0.85rem;font-weight:700;color:${color};min-width:35px;">${val}</span>` : ""}
+    </div>`;
+  }).join("");
 }
 
 // ============================================================

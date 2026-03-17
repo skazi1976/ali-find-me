@@ -2653,3 +2653,28 @@ setTimeout(() => {
   const popup = document.getElementById("nlPopup");
   if (popup) popup.style.display = "flex";
 }, 15000);
+
+// ─── Analytics Tracking ──────────────────────────────────────
+(function trackPageview() {
+  // Don't track admin pages or localhost
+  if (location.pathname.includes("admin")) return;
+  if (location.hostname === "localhost" || location.hostname === "127.0.0.1") return;
+  // Avoid double-counting within same session (5 min window)
+  const lastTrack = sessionStorage.getItem("ali_last_track");
+  const now = Date.now();
+  if (lastTrack && (now - parseInt(lastTrack)) < 300000) return;
+  sessionStorage.setItem("ali_last_track", String(now));
+  // Detect referrer source
+  const urlParams = new URLSearchParams(location.search);
+  const ref = urlParams.get("utm_source") || (document.referrer ? new URL(document.referrer).hostname : "");
+  // Send pageview (fire-and-forget)
+  fetch(`${API_BASE}/track`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      lang: currentLang,
+      page: location.pathname,
+      ref: ref
+    })
+  }).catch(() => {}); // silently fail
+})();
