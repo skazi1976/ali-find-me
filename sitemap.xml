@@ -306,4 +306,12 @@
     <priority>0.8</priority>
   </url>
 
+  <!-- Blog: Pet Products Guide (Hebrew) -->
+  <url>
+    <loc>https://alifindme.com/blog/he/mutzarim-lchayot-machmad-ali-express.html</loc>
+    <lastmod>2026-03-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
 </urlset>
