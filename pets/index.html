@@ -204,11 +204,12 @@
     .lang-toggle { display: none; background: none; border: 2px solid var(--border); border-radius: 10px; font-size: 20px; cursor: pointer; padding: 5px 8px; line-height: 1; }
     .lang-dropdown { display: none; position: absolute; top: calc(100% + 8px); left: 0; background: #fff; border-radius: 12px; box-shadow: 0 8px 30px rgba(0,0,0,.15); padding: 10px; gap: 6px; flex-wrap: wrap; z-index: 200; width: 200px; justify-content: center; }
     .lang-dropdown.show { display: flex; }
-    .lang-dropdown .lang-option { font-size: 24px; padding: 8px 10px; display: flex !important; }
+    .lang-dropdown .lang-option { font-size: 24px; padding: 8px 10px; }
     @media (max-width: 520px) {
-      .lang-switcher .lang-option:not(.lang-toggle):not(.lang-dropdown .lang-option) { display: none; }
       .lang-switcher > .lang-option { display: none !important; }
-      .lang-switcher .lang-toggle { display: block; }
+      .lang-switcher > .lang-toggle { display: block !important; }
+      .lang-dropdown.show { display: flex !important; }
+      .lang-dropdown .lang-option { display: flex !important; }
     }
 
     /* ===== NAVBAR ===== */
