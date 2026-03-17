@@ -655,14 +655,318 @@
     .back-to-top.show { display: flex; }
     .back-to-top:hover { transform: scale(1.1); }
 
+    /* ===== CHAT FAB ===== */
+    .chat-fab {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 64px;
+      height: 64px;
+      background: var(--gradient);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      font-size: 30px;
+      cursor: pointer;
+      box-shadow: 0 6px 24px rgba(255,107,53,0.45);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      transition: all 0.3s;
+      animation: fabPulse 3s infinite;
+    }
+    .chat-fab:hover { transform: scale(1.1); box-shadow: 0 8px 30px rgba(255,107,53,0.6); }
+    .chat-fab.hidden { display: none; }
+    @keyframes fabPulse {
+      0%, 100% { box-shadow: 0 6px 24px rgba(255,107,53,0.45); }
+      50% { box-shadow: 0 6px 30px rgba(255,107,53,0.7), 0 0 0 10px rgba(255,107,53,0.1); }
+    }
+    .chat-fab-label {
+      position: absolute;
+      bottom: 72px;
+      right: 0;
+      background: var(--text);
+      color: white;
+      padding: 8px 16px;
+      border-radius: var(--radius-sm);
+      font-size: 13px;
+      white-space: nowrap;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      animation: fabLabelBounce 2s ease-in-out infinite;
+    }
+    .chat-fab-label::after {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      right: 20px;
+      width: 12px;
+      height: 12px;
+      background: var(--text);
+      transform: rotate(45deg);
+    }
+    @keyframes fabLabelBounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-4px); }
+    }
+
+    /* ===== CHAT PANEL ===== */
+    .chat-panel {
+      position: fixed;
+      bottom: 0;
+      right: 0;
+      width: 420px;
+      height: 600px;
+      max-height: 80vh;
+      background: var(--bg);
+      border-radius: 20px 20px 0 0;
+      box-shadow: 0 -8px 40px rgba(0,0,0,0.15);
+      z-index: 1001;
+      display: flex;
+      flex-direction: column;
+      transform: translateY(100%);
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      overflow: hidden;
+    }
+    .chat-panel.open { transform: translateY(0); }
+
+    .chat-header {
+      background: var(--gradient);
+      color: white;
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-shrink: 0;
+    }
+    .chat-header-avatar {
+      width: 42px;
+      height: 42px;
+      background: rgba(255,255,255,0.2);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+    }
+    .chat-header-info { flex: 1; }
+    .chat-header-name {
+      font-family: 'Heebo', sans-serif;
+      font-weight: 700;
+      font-size: 16px;
+    }
+    .chat-header-status {
+      font-size: 12px;
+      opacity: 0.85;
+    }
+    .chat-close {
+      background: rgba(255,255,255,0.2);
+      border: none;
+      color: white;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      font-size: 18px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.3s;
+    }
+    .chat-close:hover { background: rgba(255,255,255,0.3); }
+
+    .chat-messages {
+      flex: 1;
+      overflow-y: auto;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .chat-msg {
+      display: flex;
+      gap: 8px;
+      max-width: 88%;
+      animation: msgFadeIn 0.3s ease;
+    }
+    @keyframes msgFadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .chat-msg.user { align-self: flex-start; flex-direction: row; }
+    .chat-msg.bot { align-self: flex-end; flex-direction: row-reverse; }
+    .chat-msg-avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      flex-shrink: 0;
+    }
+    .chat-msg.user .chat-msg-avatar { background: #E8E8E8; }
+    .chat-msg.bot .chat-msg-avatar { background: var(--primary-light); }
+    .chat-msg-bubble {
+      padding: 12px 16px;
+      border-radius: 16px;
+      font-size: 14px;
+      line-height: 1.6;
+      white-space: pre-line;
+    }
+    .chat-msg.user .chat-msg-bubble {
+      background: var(--gradient);
+      color: white;
+      border-bottom-right-radius: 4px;
+    }
+    .chat-msg.bot .chat-msg-bubble {
+      background: white;
+      color: var(--text);
+      border: 1px solid var(--border);
+      border-bottom-left-radius: 4px;
+    }
+
+    /* Typing indicator */
+    .chat-typing {
+      display: flex;
+      gap: 4px;
+      padding: 4px 0;
+      align-items: center;
+    }
+    .chat-typing span {
+      width: 7px;
+      height: 7px;
+      background: var(--text-muted);
+      border-radius: 50%;
+      animation: typingDot 1.4s infinite;
+    }
+    .chat-typing span:nth-child(2) { animation-delay: 0.2s; }
+    .chat-typing span:nth-child(3) { animation-delay: 0.4s; }
+    @keyframes typingDot {
+      0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
+      30% { transform: translateY(-6px); opacity: 1; }
+    }
+
+    /* Chat suggested chips */
+    .chat-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 8px;
+    }
+    .chat-chip {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-full);
+      padding: 6px 14px;
+      font-size: 12px;
+      cursor: pointer;
+      transition: all 0.3s;
+      color: var(--text);
+      font-family: 'Assistant', sans-serif;
+    }
+    .chat-chip:hover { background: var(--primary); color: white; border-color: var(--primary); }
+
+    /* Chat product cards */
+    .chat-products-label {
+      font-family: 'Heebo', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--primary);
+      margin: 8px 0 4px;
+    }
+    .chat-products-scroll {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding: 4px 0 8px;
+      scroll-snap-type: x mandatory;
+    }
+    .chat-products-scroll::-webkit-scrollbar { height: 4px; }
+    .chat-products-scroll::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+    .chat-product-mini {
+      min-width: 130px;
+      max-width: 130px;
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      text-decoration: none;
+      color: var(--text);
+      scroll-snap-align: start;
+      flex-shrink: 0;
+      transition: transform 0.2s;
+    }
+    .chat-product-mini:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+    .chat-product-mini img {
+      width: 100%;
+      height: 100px;
+      object-fit: cover;
+    }
+    .chat-product-mini-info { padding: 6px 8px; }
+    .chat-product-mini-title {
+      font-size: 11px;
+      line-height: 1.3;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .chat-product-mini-price {
+      font-family: 'Heebo', sans-serif;
+      font-weight: 700;
+      color: var(--primary);
+      font-size: 14px;
+      margin-top: 4px;
+    }
+
+    /* Chat input */
+    .chat-input-area {
+      padding: 12px 16px;
+      background: white;
+      border-top: 1px solid var(--border);
+      display: flex;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+    .chat-input {
+      flex: 1;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-full);
+      padding: 10px 16px;
+      font-size: 14px;
+      font-family: 'Assistant', sans-serif;
+      direction: rtl;
+      outline: none;
+      background: var(--bg);
+      transition: border-color 0.3s;
+    }
+    .chat-input:focus { border-color: var(--primary); }
+    .chat-send {
+      background: var(--gradient);
+      border: none;
+      border-radius: 50%;
+      width: 42px;
+      height: 42px;
+      color: white;
+      font-size: 18px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.2s;
+      flex-shrink: 0;
+    }
+    .chat-send:hover { transform: scale(1.1); }
+    .chat-send:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+
     /* ===== RESPONSIVE ===== */
     @media (max-width: 768px) {
       .hero { padding: 35px 16px 20px; }
       .hero-title { font-size: 30px; }
       .hero-subtitle { font-size: 15px; }
       .hero::before { font-size: 28px; letter-spacing: 8px; }
-      .search-btn span { display: none; }
-      .search-btn { padding: 14px 18px; }
+      .search-btn { padding: 14px 20px; font-size: 14px; }
       .categories-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
       .category-card { padding: 20px 14px; }
       .category-icon { font-size: 36px; }
@@ -670,6 +974,11 @@
       .products-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
       .features-grid { grid-template-columns: 1fr; }
       .section-title { font-size: 22px; }
+    }
+    @media (max-width: 768px) {
+      .chat-panel { width: 100%; height: 100vh; max-height: 100vh; border-radius: 0; }
+      .chat-fab { bottom: 20px; right: 20px; width: 56px; height: 56px; font-size: 26px; }
+      .chat-fab-label { display: none; }
     }
     @media (max-width: 380px) {
       .products-grid { grid-template-columns: 1fr; }
@@ -693,29 +1002,29 @@
 <!-- HERO -->
 <section class="hero">
   <h1 class="hero-title">
-    <span class="paw">🐾</span> מצא הכל <span class="highlight">לחיית המחמד</span> שלך
+    <span class="paw">🐾</span> מצאו הכל <span class="highlight">לחיית המחמד</span> שלכם
   </h1>
-  <p class="hero-subtitle">הבינה המלאכותית שלנו סורקת אלפי מוצרים ומוצאת לך את הדילים הכי משתלמים לכלבים, חתולים וחיות מחמד</p>
+  <p class="hero-subtitle">הבינה המלאכותית שלנו סורקת אלפי מוצרים ומוצאת לכם את הדילים הכי משתלמים לכלבים, חתולים וחיות מחמד</p>
 
   <div class="ai-badge">
     <div class="ai-dot"></div>
-    <span>🤖 מונע בינה מלאכותית — מוצא את המחיר הכי טוב בשבילך</span>
+    <span>🤖 מונע בינה מלאכותית — מוצא לכם את המחיר הכי טוב</span>
   </div>
 
   <!-- SEARCH -->
   <div class="search-container">
     <div class="search-box">
-      <input type="text" class="search-input" id="searchInput" placeholder="כתוב בעברית — ה-AI ימצא לך הכל 🐶🐱" autocomplete="off">
+      <input type="text" class="search-input" id="searchInput" placeholder="כתבו בעברית — ה-AI ימצא לכם הכל 🐶🐱" autocomplete="off">
       <button class="search-btn" id="searchBtn" onclick="doSearch()">
-        <span class="icon">🤖</span>
-        <span>חפש</span>
+        <span class="icon">🔍</span>
+        <span>לחצו לחיפוש</span>
       </button>
     </div>
   </div>
 
   <div class="ai-search-banner">
     <div class="ai-icon">🧠</div>
-    <div><strong>חיפוש AI חכם:</strong> כתוב מה שבא לך בעברית — המנוע שלנו מבין, מתרגם ומוצא את המוצרים הכי משתלמים מאלי אקספרס עם משלוח לישראל</div>
+    <div><strong>חיפוש AI חכם:</strong> כתבו מה שבא לכם בעברית — המנוע שלנו מבין, מתרגם ומוצא את המוצרים הכי משתלמים מאלי אקספרס עם משלוח לישראל</div>
   </div>
 
   <!-- POPULAR SEARCHES -->
@@ -774,13 +1083,13 @@
 <!-- LOADING -->
 <div class="loading" id="loading">
   <div class="spinner">🤖</div>
-  <div class="loading-text">ה-AI סורק אלפי מוצרים ומוצא את הדילים הכי טובים... 🐾</div>
+  <div class="loading-text">ה-AI סורק אלפי מוצרים ומוצא לכם את הדילים הכי טובים... 🐾</div>
 </div>
 
 <!-- NO RESULTS -->
 <div class="no-results" id="noResults">
   <div class="no-results-icon">😿</div>
-  <div class="no-results-text">לא נמצאו תוצאות. נסה חיפוש אחר!</div>
+  <div class="no-results-text">לא נמצאו תוצאות. נסו חיפוש אחר!</div>
 </div>
 
 <!-- RESULTS -->
@@ -800,12 +1109,12 @@
 
 <!-- FEATURES -->
 <section class="features" id="featuresSection">
-  <h2 class="section-title">🤖 איך הבינה המלאכותית עובדת בשבילך?</h2>
+  <h2 class="section-title">🤖 איך הבינה המלאכותית עובדת בשבילכם?</h2>
   <div class="features-grid">
     <div class="feature-card">
       <span class="feature-icon">🧠</span>
       <div class="feature-title">AI שמבין עברית</div>
-      <div class="feature-desc">כתוב בעברית כמו שבא לך — ה-AI מתרגם, מבין את הכוונה ומוצא בדיוק מה שחיפשת</div>
+      <div class="feature-desc">כתבו בעברית כמו שבא לכם — ה-AI מתרגם, מבין את הכוונה ומוצא בדיוק מה שחיפשתם</div>
     </div>
     <div class="feature-card">
       <span class="feature-icon">💎</span>
@@ -814,8 +1123,8 @@
     </div>
     <div class="feature-card">
       <span class="feature-icon">🚀</span>
-      <div class="feature-title">מחירים שלא תמצא</div>
-      <div class="feature-desc">ישירות מאלי אקספרס עם משלוח לישראל — חוסכים עד 80% מהמחירים בארץ</div>
+      <div class="feature-title">מחירים שלא תמצאו</div>
+      <div class="feature-desc">ישירות מאלי אקספרס עם משלוח לישראל — חסכו עד 80% מהמחירים בארץ</div>
     </div>
   </div>
 </section>
@@ -834,6 +1143,29 @@
 
 <!-- BACK TO TOP -->
 <button class="back-to-top" id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<!-- CHAT FAB -->
+<button class="chat-fab" id="chatFab" onclick="toggleChat()">
+  🐾
+  <div class="chat-fab-label">💬 שאלו את פאו!</div>
+</button>
+
+<!-- CHAT PANEL -->
+<div class="chat-panel" id="chatPanel">
+  <div class="chat-header">
+    <div class="chat-header-avatar">🐾</div>
+    <div class="chat-header-info">
+      <div class="chat-header-name">פאו — יועצת הקניות שלכם</div>
+      <div class="chat-header-status">🟢 מונע בינה מלאכותית (Claude AI)</div>
+    </div>
+    <button class="chat-close" onclick="toggleChat()">✕</button>
+  </div>
+  <div class="chat-messages" id="chatMessages"></div>
+  <div class="chat-input-area">
+    <input type="text" class="chat-input" id="chatInput" placeholder="כתבו הודעה לפאו..." autocomplete="off">
+    <button class="chat-send" id="chatSend" onclick="sendChatMessage()">➤</button>
+  </div>
+</div>
 
 <!-- TOAST -->
 <div class="toast" id="toast"></div>
@@ -1027,6 +1359,200 @@ function showToast(msg) {
   t.classList.add('show');
   setTimeout(() => t.classList.remove('show'), 3000);
 }
+
+// ============================================================
+//  CHAT — Claude AI Shopping Advisor ("Paw")
+// ============================================================
+let chatOpen = false;
+let chatHistory = [];
+let chatLoading = false;
+
+function toggleChat() {
+  chatOpen = !chatOpen;
+  const panel = document.getElementById('chatPanel');
+  const fab = document.getElementById('chatFab');
+  panel.classList.toggle('open', chatOpen);
+  fab.classList.toggle('hidden', chatOpen);
+
+  if (chatOpen) {
+    const msgs = document.getElementById('chatMessages');
+    if (msgs.children.length === 0) {
+      // Welcome message
+      addChatMsg(`🐾 היי! אני פאו, היועצת שלכם למוצרי חיות מחמד!\nספרו לי מה יש לכם בבית — כלב? חתול? משהו אחר?\nואני אמצא לכם את הדילים הכי טובים מאלי אקספרס 🛒`, false);
+
+      // Suggested chips
+      const chipsDiv = document.createElement('div');
+      chipsDiv.className = 'chat-chips';
+      chipsDiv.innerHTML = `
+        <button class="chat-chip" onclick="suggestChat('מה כדאי לקנות לכלב?')">🐶 מה כדאי לכלב?</button>
+        <button class="chat-chip" onclick="suggestChat('צעצועים לחתול')">🐱 צעצועים לחתול</button>
+        <button class="chat-chip" onclick="suggestChat('מתנה לבעל כלב')">🎁 מתנה לבעל כלב</button>
+        <button class="chat-chip" onclick="suggestChat('מיטה לכלב קטן')">🛏️ מיטה לכלב קטן</button>
+      `;
+      msgs.appendChild(chipsDiv);
+    }
+    setTimeout(() => document.getElementById('chatInput').focus(), 400);
+  }
+}
+
+function suggestChat(text) {
+  document.getElementById('chatInput').value = text;
+  // Remove chips after selection
+  const chips = document.querySelector('.chat-chips');
+  if (chips) chips.remove();
+  sendChatMessage();
+}
+
+function addChatMsg(text, isUser) {
+  const msgs = document.getElementById('chatMessages');
+  const div = document.createElement('div');
+  div.className = `chat-msg ${isUser ? 'user' : 'bot'}`;
+  div.innerHTML = `
+    <div class="chat-msg-avatar">${isUser ? '👤' : '🐾'}</div>
+    <div class="chat-msg-bubble">${text}</div>
+  `;
+  msgs.appendChild(div);
+  msgs.scrollTop = msgs.scrollHeight;
+  return div;
+}
+
+function showChatTyping() {
+  const msgs = document.getElementById('chatMessages');
+  const div = document.createElement('div');
+  div.className = 'chat-msg bot';
+  div.id = 'chatTyping';
+  div.innerHTML = `
+    <div class="chat-msg-avatar">🐾</div>
+    <div class="chat-msg-bubble">
+      <div class="chat-typing"><span></span><span></span><span></span></div>
+    </div>
+  `;
+  msgs.appendChild(div);
+  msgs.scrollTop = msgs.scrollHeight;
+}
+
+function hideChatTyping() {
+  const el = document.getElementById('chatTyping');
+  if (el) el.remove();
+}
+
+async function sendChatMessage() {
+  const input = document.getElementById('chatInput');
+  const text = input.value.trim();
+  if (!text || chatLoading) return;
+
+  chatLoading = true;
+  input.value = '';
+  document.getElementById('chatSend').disabled = true;
+
+  // Add user message
+  addChatMsg(text, true);
+  chatHistory.push({ role: 'user', content: text });
+
+  // Remove any remaining chips
+  const chips = document.querySelector('.chat-chips');
+  if (chips) chips.remove();
+
+  // Show typing
+  showChatTyping();
+
+  // GA event
+  if (typeof gtag === 'function') {
+    gtag('event', 'chat_message', { event_category: 'pets_chat', event_label: text });
+  }
+
+  try {
+    const resp = await fetch(`${API_BASE}/pets/chat`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ messages: chatHistory }),
+    });
+
+    hideChatTyping();
+
+    if (!resp.ok) {
+      const err = await resp.json().catch(() => ({}));
+      addChatMsg(err.reply || 'סליחה, יש בעיה טכנית 😿 נסו שוב!', false);
+      chatLoading = false;
+      document.getElementById('chatSend').disabled = false;
+      return;
+    }
+
+    const data = await resp.json();
+
+    // Add bot reply
+    if (data.reply) {
+      addChatMsg(data.reply, false);
+      chatHistory.push({ role: 'assistant', content: data.reply });
+    }
+
+    // Search products for each search query
+    if (data.searches && data.searches.length > 0) {
+      for (const s of data.searches) {
+        try {
+          const searchData = await fetchProducts(s.query, 1);
+          if (searchData.products && searchData.products.length > 0) {
+            renderChatProducts(searchData.products.slice(0, 6), s.label);
+          }
+        } catch (e) {
+          console.error('Chat search error:', e);
+        }
+      }
+    }
+  } catch (err) {
+    hideChatTyping();
+    addChatMsg('סליחה, משהו השתבש 😿 נסו שוב!', false);
+  }
+
+  chatLoading = false;
+  document.getElementById('chatSend').disabled = false;
+  document.getElementById('chatInput').focus();
+}
+
+function renderChatProducts(products, label) {
+  const msgs = document.getElementById('chatMessages');
+
+  const wrapper = document.createElement('div');
+  wrapper.style.maxWidth = '88%';
+  wrapper.style.alignSelf = 'flex-end';
+  wrapper.style.animation = 'msgFadeIn 0.3s ease';
+
+  wrapper.innerHTML = `<div class="chat-products-label">🏷️ ${label}</div>`;
+
+  const scroll = document.createElement('div');
+  scroll.className = 'chat-products-scroll';
+
+  products.forEach(p => {
+    const price = p.sale_price || p.price || '?';
+    const currency = p.currency || '₪';
+    const img = p.image || p.product_main_image_url || '';
+    const title = p.title || p.product_title || '';
+    const link = p.affiliate_url || p.affiliate_link || '#';
+
+    const card = document.createElement('a');
+    card.className = 'chat-product-mini';
+    card.href = link;
+    card.target = '_blank';
+    card.rel = 'noopener';
+    card.innerHTML = `
+      <img src="${img}" alt="${title}" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 200 200%22><text x=%2250%%22 y=%2250%%22 font-size=%2260%22 text-anchor=%22middle%22 dominant-baseline=%22central%22>🐾</text></svg>'">
+      <div class="chat-product-mini-info">
+        <div class="chat-product-mini-title">${title}</div>
+        <div class="chat-product-mini-price">${currency === 'ILS' ? '₪' : currency} ${parseFloat(price).toFixed(0)}</div>
+      </div>
+    `;
+    scroll.appendChild(card);
+  });
+
+  wrapper.appendChild(scroll);
+  msgs.appendChild(wrapper);
+  msgs.scrollTop = msgs.scrollHeight;
+}
+
+// Chat Enter key
+document.getElementById('chatInput').addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') sendChatMessage();
+});
 </script>
 
 </body>
