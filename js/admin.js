@@ -208,7 +208,6 @@ async function addKeyword() {
   const en = document.getElementById("kwEnglish").value.trim();
   const stores = getSelectedStores();
   if (!he || !en) return toast("יש למלא את שני השדות", "error");
-  if (stores.length === 0) return toast("יש לבחור לפחות חנות אחת", "error");
 
   const data = await api("/admin/keywords", "POST", { keyword: he, translation: en, stores });
   if (data?.success) {
