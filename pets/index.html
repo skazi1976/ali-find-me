@@ -879,7 +879,7 @@ function renderProducts(products, append) {
     const currency = p.currency || '₪';
     const img = p.image || p.product_main_image_url || '';
     const title = p.title || p.product_title || '';
-    const link = p.affiliate_link || p.link || p.product_detail_url || '#';
+    const link = p.affiliate_url || p.affiliate_link || p.link || p.product_detail_url || '#';
     const rating = p.rating || p.evaluate_rate || '';
     const orders = p.orders || p.lastest_volume || 0;
     const discount = p.discount || '';
