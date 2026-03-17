@@ -189,7 +189,7 @@
     [dir="ltr"] body, html[dir="ltr"] { direction: ltr; }
 
     /* Language Switcher */
-    .lang-switcher { display: flex; gap: 4px; align-items: center; }
+    .lang-switcher { display: flex; gap: 4px; align-items: center; position: relative; }
     .lang-option {
       background: none; border: 2px solid transparent; border-radius: 8px;
       font-size: 20px; cursor: pointer; padding: 4px 6px; transition: all 0.2s;
@@ -197,6 +197,16 @@
     }
     .lang-option:hover { background: rgba(255,107,53,0.1); transform: scale(1.15); }
     .lang-option.active { border-color: var(--primary); background: rgba(255,107,53,0.1); }
+    /* Mobile: dropdown language switcher */
+    .lang-toggle { display: none; background: none; border: 2px solid var(--border); border-radius: 10px; font-size: 20px; cursor: pointer; padding: 5px 8px; line-height: 1; }
+    .lang-dropdown { display: none; position: absolute; top: 100%; right: 0; background: #fff; border-radius: 12px; box-shadow: 0 8px 30px rgba(0,0,0,.15); padding: 8px; gap: 4px; flex-wrap: wrap; z-index: 200; min-width: 180px; }
+    .lang-dropdown.show { display: flex; }
+    .lang-dropdown .lang-option { font-size: 22px; padding: 6px 8px; }
+    @media (max-width: 520px) {
+      .lang-switcher .lang-option:not(.lang-toggle) { display: none; }
+      .lang-switcher .lang-toggle { display: block; }
+      .lang-switcher.open .lang-option:not(.lang-toggle) { display: none; }
+    }
 
     /* ===== NAVBAR ===== */
     .navbar {
@@ -1137,6 +1147,9 @@
 
     /* ===== RESPONSIVE ===== */
     @media (max-width: 768px) {
+      .navbar { padding: 10px 12px; }
+      .navbar-brand .logo-text { font-size: 18px; }
+      .navbar-brand .logo-icon { font-size: 24px; }
       .hero { padding: 35px 16px 20px; }
       .hero-title { font-size: 30px; }
       .hero-subtitle { font-size: 15px; }
@@ -1418,6 +1431,16 @@
       <button class="lang-option" data-lang="pt" onclick="switchLanguage('pt')" title="Português">🇧🇷</button>
       <button class="lang-option" data-lang="fr" onclick="switchLanguage('fr')" title="Français">🇫🇷</button>
       <button class="lang-option" data-lang="ru" onclick="switchLanguage('ru')" title="Русский">🇷🇺</button>
+      <button class="lang-toggle" id="langToggle" onclick="toggleLangDropdown()" title="🌍 Language">🌍</button>
+      <div class="lang-dropdown" id="langDropdown">
+        <button class="lang-option" data-lang="he" onclick="switchLanguage('he');closeLangDropdown()" title="עברית">🇮🇱</button>
+        <button class="lang-option" data-lang="en" onclick="switchLanguage('en');closeLangDropdown()" title="English">🇺🇸</button>
+        <button class="lang-option" data-lang="es" onclick="switchLanguage('es');closeLangDropdown()" title="Español">🇪🇸</button>
+        <button class="lang-option" data-lang="de" onclick="switchLanguage('de');closeLangDropdown()" title="Deutsch">🇩🇪</button>
+        <button class="lang-option" data-lang="pt" onclick="switchLanguage('pt');closeLangDropdown()" title="Português">🇧🇷</button>
+        <button class="lang-option" data-lang="fr" onclick="switchLanguage('fr');closeLangDropdown()" title="Français">🇫🇷</button>
+        <button class="lang-option" data-lang="ru" onclick="switchLanguage('ru');closeLangDropdown()" title="Русский">🇷🇺</button>
+      </div>
     </div>
   </div>
 </nav>
@@ -1725,6 +1748,19 @@ function searchFromChip(q) {
   doSearch();
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
+
+// Language dropdown for mobile
+function toggleLangDropdown() {
+  const dd = document.getElementById('langDropdown');
+  dd.classList.toggle('show');
+}
+function closeLangDropdown() {
+  document.getElementById('langDropdown').classList.remove('show');
+}
+// Close dropdown when clicking outside
+document.addEventListener('click', function(e) {
+  if (!e.target.closest('.lang-switcher')) closeLangDropdown();
+});
 
 async function doSearch() {
   const input = document.getElementById('searchInput');
