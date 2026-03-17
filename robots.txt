@@ -1,5 +1,6 @@
 User-agent: *
 Allow: /
+Allow: /pets/
 Allow: /blog/
 Allow: /en/
 Allow: /ar/
@@ -10,5 +11,10 @@ Allow: /tr/
 Allow: /fr/
 
 Disallow: /admin.html
+Disallow: /pets/manifest.json
+Disallow: /sw.js
 
 Sitemap: https://alifindme.com/sitemap.xml
+
+# Pet Find Me - AI-powered pet product search engine
+# https://alifindme.com/pets/
