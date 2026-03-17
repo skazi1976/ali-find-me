@@ -160,7 +160,79 @@
       font-size: 18px;
       color: var(--text-light);
       max-width: 500px;
-      margin: 0 auto 30px;
+      margin: 0 auto 20px;
+    }
+
+    /* AI Badge */
+    .ai-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(135deg, #1a1a2e, #16213e);
+      color: #00d4ff;
+      padding: 10px 22px;
+      border-radius: var(--radius-full);
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 28px;
+      box-shadow: 0 4px 20px rgba(0,212,255,0.2), inset 0 0 20px rgba(0,212,255,0.05);
+      position: relative;
+      overflow: hidden;
+      animation: aiBadgePulse 3s infinite;
+    }
+    .ai-badge::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: conic-gradient(from 0deg, transparent, rgba(0,212,255,0.1), transparent);
+      animation: aiSpin 4s linear infinite;
+    }
+    .ai-badge .ai-dot {
+      width: 8px;
+      height: 8px;
+      background: #00d4ff;
+      border-radius: 50%;
+      animation: aiDotPulse 1.5s infinite;
+      box-shadow: 0 0 8px #00d4ff;
+    }
+    .ai-badge span { position: relative; z-index: 1; }
+    .ai-badge .ai-dot { position: relative; z-index: 1; }
+    @keyframes aiBadgePulse {
+      0%, 100% { box-shadow: 0 4px 20px rgba(0,212,255,0.2), inset 0 0 20px rgba(0,212,255,0.05); }
+      50% { box-shadow: 0 4px 30px rgba(0,212,255,0.35), inset 0 0 25px rgba(0,212,255,0.1); }
+    }
+    @keyframes aiDotPulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(0.7); }
+    }
+    @keyframes aiSpin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    /* AI Search Banner */
+    .ai-search-banner {
+      max-width: 600px;
+      margin: 0 auto 10px;
+      background: linear-gradient(135deg, rgba(26,26,46,0.05), rgba(22,33,62,0.08));
+      border: 1px solid rgba(0,212,255,0.15);
+      border-radius: var(--radius);
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 13px;
+      color: var(--text-light);
+    }
+    .ai-search-banner .ai-icon {
+      font-size: 28px;
+      flex-shrink: 0;
+    }
+    .ai-search-banner strong {
+      color: var(--text);
     }
 
     /* ===== SEARCH ===== */
@@ -623,17 +695,27 @@
   <h1 class="hero-title">
     <span class="paw">🐾</span> מצא הכל <span class="highlight">לחיית המחמד</span> שלך
   </h1>
-  <p class="hero-subtitle">חפש אלפי מוצרים לכלבים, חתולים וחיות מחמד באלי אקספרס — במחירים הכי טובים עם משלוח לישראל</p>
+  <p class="hero-subtitle">הבינה המלאכותית שלנו סורקת אלפי מוצרים ומוצאת לך את הדילים הכי משתלמים לכלבים, חתולים וחיות מחמד</p>
+
+  <div class="ai-badge">
+    <div class="ai-dot"></div>
+    <span>🤖 מונע בינה מלאכותית — מוצא את המחיר הכי טוב בשבילך</span>
+  </div>
 
   <!-- SEARCH -->
   <div class="search-container">
     <div class="search-box">
-      <input type="text" class="search-input" id="searchInput" placeholder="מה חיית המחמד שלך צריכה? 🐶🐱" autocomplete="off">
+      <input type="text" class="search-input" id="searchInput" placeholder="כתוב בעברית — ה-AI ימצא לך הכל 🐶🐱" autocomplete="off">
       <button class="search-btn" id="searchBtn" onclick="doSearch()">
-        <span class="icon">🔍</span>
+        <span class="icon">🤖</span>
         <span>חפש</span>
       </button>
     </div>
+  </div>
+
+  <div class="ai-search-banner">
+    <div class="ai-icon">🧠</div>
+    <div><strong>חיפוש AI חכם:</strong> כתוב מה שבא לך בעברית — המנוע שלנו מבין, מתרגם ומוצא את המוצרים הכי משתלמים מאלי אקספרס עם משלוח לישראל</div>
   </div>
 
   <!-- POPULAR SEARCHES -->
@@ -691,8 +773,8 @@
 
 <!-- LOADING -->
 <div class="loading" id="loading">
-  <div class="spinner">🐾</div>
-  <div class="loading-text">מחפש מוצרים מושלמים... 🔍</div>
+  <div class="spinner">🤖</div>
+  <div class="loading-text">ה-AI סורק אלפי מוצרים ומוצא את הדילים הכי טובים... 🐾</div>
 </div>
 
 <!-- NO RESULTS -->
@@ -718,22 +800,22 @@
 
 <!-- FEATURES -->
 <section class="features" id="featuresSection">
-  <h2 class="section-title">💡 למה לחפש אצלנו?</h2>
+  <h2 class="section-title">🤖 איך הבינה המלאכותית עובדת בשבילך?</h2>
   <div class="features-grid">
     <div class="feature-card">
-      <span class="feature-icon">💰</span>
-      <div class="feature-title">מחירים מטורפים</div>
-      <div class="feature-desc">מוצרים לחיות מחמד במחירים הכי טובים — ישירות מאלי אקספרס</div>
-    </div>
-    <div class="feature-card">
-      <span class="feature-icon">🚚</span>
-      <div class="feature-title">משלוח לישראל</div>
-      <div class="feature-desc">כל המוצרים עם אפשרות משלוח לישראל, הרבה עם משלוח חינם</div>
-    </div>
-    <div class="feature-card">
       <span class="feature-icon">🧠</span>
-      <div class="feature-title">חיפוש חכם</div>
-      <div class="feature-desc">חפש בעברית — המנוע שלנו מבין מה אתה מחפש ומוצא את המוצר המושלם</div>
+      <div class="feature-title">AI שמבין עברית</div>
+      <div class="feature-desc">כתוב בעברית כמו שבא לך — ה-AI מתרגם, מבין את הכוונה ומוצא בדיוק מה שחיפשת</div>
+    </div>
+    <div class="feature-card">
+      <span class="feature-icon">💎</span>
+      <div class="feature-title">סינון חכם</div>
+      <div class="feature-desc">הבינה המלאכותית סורקת אלפי מוצרים ומציגה רק את הדילים הכי משתלמים עם דירוגים גבוהים</div>
+    </div>
+    <div class="feature-card">
+      <span class="feature-icon">🚀</span>
+      <div class="feature-title">מחירים שלא תמצא</div>
+      <div class="feature-desc">ישירות מאלי אקספרס עם משלוח לישראל — חוסכים עד 80% מהמחירים בארץ</div>
     </div>
   </div>
 </section>
@@ -741,7 +823,7 @@
 <!-- FOOTER -->
 <footer class="footer">
   <div class="footer-brand">🐾 Pet Find Me</div>
-  <div>מנוע חיפוש חכם למוצרי חיות מחמד מאלי אקספרס</div>
+  <div>מנוע חיפוש AI חכם למוצרי חיות מחמד מאלי אקספרס</div>
   <div class="footer-links">
     <a href="/">🔍 Ali Find Me</a>
     <a href="/privacy.html">מדיניות פרטיות</a>
