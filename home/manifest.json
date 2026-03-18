@@ -1,0 +1,50 @@
+{
+  "name": "\u05d4\u05d5\u05dd \u05e4\u05d9\u05d9\u05e0\u05d3 \u2014 \u05de\u05d5\u05e6\u05e8\u05d9 \u05e2\u05d9\u05e6\u05d5\u05d1 \u05d4\u05d1\u05d9\u05ea",
+  "short_name": "\u05d4\u05d5\u05dd \u05e4\u05d9\u05d9\u05e0\u05d3",
+  "description": "\u05de\u05e0\u05d5\u05e2 \u05d7\u05d9\u05e4\u05d5\u05e9 \u05d7\u05db\u05dd \u05dc\u05de\u05d5\u05e6\u05e8\u05d9 \u05e2\u05d9\u05e6\u05d5\u05d1 \u05d4\u05d1\u05d9\u05ea \u05de\u05d0\u05dc\u05d9 \u05d0\u05e7\u05e1\u05e4\u05e8\u05e1. \u05de\u05d3\u05e4\u05d9\u05dd, \u05de\u05d0\u05e8\u05d2\u05e0\u05d9\u05dd, \u05ea\u05d0\u05d5\u05e8\u05d4, \u05d3\u05e7\u05d5\u05e8\u05e6\u05d9\u05d4 \u05d5\u05e2\u05d5\u05d3.",
+  "start_url": "/home/?source=pwa",
+  "scope": "/home/",
+  "id": "/home/",
+  "display": "standalone",
+  "orientation": "any",
+  "theme_color": "#4A7C59",
+  "background_color": "#F5F9F7",
+  "lang": "he",
+  "dir": "rtl",
+  "categories": ["shopping", "lifestyle"],
+  "prefer_related_applications": false,
+  "icons": [
+    {
+      "src": "../icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "../icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "\u05e1\u05dc\u05d5\u05df",
+      "short_name": "\u05e1\u05dc\u05d5\u05df",
+      "url": "/home/?q=living+room+decor&source=shortcut",
+      "icons": [{ "src": "../icons/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "\u05de\u05d8\u05d1\u05d7",
+      "short_name": "\u05de\u05d8\u05d1\u05d7",
+      "url": "/home/?q=kitchen+organizer&source=shortcut",
+      "icons": [{ "src": "../icons/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "\u05ea\u05d0\u05d5\u05e8\u05d4",
+      "short_name": "\u05ea\u05d0\u05d5\u05e8\u05d4",
+      "url": "/home/?q=home+lighting+LED&source=shortcut",
+      "icons": [{ "src": "../icons/icon-192.png", "sizes": "192x192" }]
+    }
+  ]
+}
