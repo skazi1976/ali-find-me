@@ -1815,9 +1815,6 @@ function buildProductCard(p) {
         <button class="alert-btn-card ${alertActive ? 'has-alert' : ''}" onclick="onAlertClick('${pJson}')" title="\u05d4\u05ea\u05e8\u05d0\u05ea \u05de\u05d7\u05d9\u05e8">
           ${alertActive ? "\ud83d\udd14" : "\ud83d\udd15"}
         </button>
-        <button class="compare-btn" onclick="event.stopPropagation();onCompareClick('${pJson}')" title="${i18n[currentLang].findCheaper || 'Find Cheaper'}">
-          💰 ${i18n[currentLang].findCheaper || 'Find Cheaper'}
-        </button>
       </div>
       <div class="product-info">
         <div class="product-title">${p.title}</div>
@@ -1830,6 +1827,9 @@ function buildProductCard(p) {
           <span class="product-rating">${stars}</span>
           <span>${(p.orders || 0).toLocaleString()} ${ordersLabel}</span>
         </div>
+        <button class="compare-btn" onclick="event.stopPropagation();onCompareClick('${pJson}')" title="${i18n[currentLang].findCheaper || 'Find Cheaper'}">
+          💰 ${i18n[currentLang].findCheaper || 'Find Cheaper'}
+        </button>
         <a href="${p.affiliate_url}" target="_blank" rel="noopener" class="product-cta" onclick="onProductClick('${pJson}')">${ctaLabel}</a>
       </div>
     </div>`;
