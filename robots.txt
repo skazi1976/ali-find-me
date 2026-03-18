@@ -1,7 +1,5 @@
 User-agent: *
 Allow: /
-Allow: /pets/
-Allow: /blog/
 Allow: /en/
 Allow: /ar/
 Allow: /ru/
@@ -9,12 +7,21 @@ Allow: /es/
 Allow: /pt/
 Allow: /tr/
 Allow: /fr/
+Allow: /home/
+Allow: /pets/
+Allow: /pets/articles/
+Allow: /blog/
 
 Disallow: /admin.html
-Disallow: /pets/manifest.json
+Disallow: /js/admin.js
 Disallow: /sw.js
+Disallow: /manifest.json
+Disallow: /home/manifest.json
+Disallow: /pets/manifest.json
 
 Sitemap: https://alifindme.com/sitemap.xml
 
-# Pet Find Me - AI-powered pet product search engine
-# https://alifindme.com/pets/
+# Ali Find Me - AI-powered multilingual product search engine
+# https://alifindme.com
+# Verticals: Pet Find Me (/pets/), HomeFind (/home/)
+# Languages: Hebrew, English, Arabic, Russian, Spanish, Portuguese, Turkish, French

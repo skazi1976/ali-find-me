@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+        xmlns:xhtml="http://www.w3.org/1999/xhtml"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+
+  <!-- ==================== MAIN SITE (8 languages) ==================== -->
 
   <!-- Hebrew (default) -->
   <url>
     <loc>https://alifindme.com/</loc>
-    <lastmod>2026-03-16</lastmod>
+    <lastmod>2026-03-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="he" href="https://alifindme.com/"/>
@@ -16,15 +19,15 @@
     <xhtml:link rel="alternate" hreflang="pt" href="https://alifindme.com/pt/"/>
     <xhtml:link rel="alternate" hreflang="tr" href="https://alifindme.com/tr/"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://alifindme.com/fr/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://alifindme.com/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://alifindme.com/en/"/>
   </url>
 
   <!-- English -->
   <url>
     <loc>https://alifindme.com/en/</loc>
-    <lastmod>2026-03-16</lastmod>
+    <lastmod>2026-03-18</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.9</priority>
+    <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="he" href="https://alifindme.com/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://alifindme.com/en/"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://alifindme.com/ar/"/>
@@ -33,13 +36,13 @@
     <xhtml:link rel="alternate" hreflang="pt" href="https://alifindme.com/pt/"/>
     <xhtml:link rel="alternate" hreflang="tr" href="https://alifindme.com/tr/"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://alifindme.com/fr/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://alifindme.com/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://alifindme.com/en/"/>
   </url>
 
   <!-- Arabic -->
   <url>
     <loc>https://alifindme.com/ar/</loc>
-    <lastmod>2026-03-16</lastmod>
+    <lastmod>2026-03-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="he" href="https://alifindme.com/"/>
@@ -50,13 +53,13 @@
     <xhtml:link rel="alternate" hreflang="pt" href="https://alifindme.com/pt/"/>
     <xhtml:link rel="alternate" hreflang="tr" href="https://alifindme.com/tr/"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://alifindme.com/fr/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://alifindme.com/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://alifindme.com/en/"/>
   </url>
 
   <!-- Russian -->
   <url>
     <loc>https://alifindme.com/ru/</loc>
-    <lastmod>2026-03-16</lastmod>
+    <lastmod>2026-03-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="he" href="https://alifindme.com/"/>
@@ -67,13 +70,13 @@
     <xhtml:link rel="alternate" hreflang="pt" href="https://alifindme.com/pt/"/>
     <xhtml:link rel="alternate" hreflang="tr" href="https://alifindme.com/tr/"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://alifindme.com/fr/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://alifindme.com/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://alifindme.com/en/"/>
   </url>
 
   <!-- Spanish -->
   <url>
     <loc>https://alifindme.com/es/</loc>
-    <lastmod>2026-03-16</lastmod>
+    <lastmod>2026-03-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="he" href="https://alifindme.com/"/>
@@ -84,13 +87,13 @@
     <xhtml:link rel="alternate" hreflang="pt" href="https://alifindme.com/pt/"/>
     <xhtml:link rel="alternate" hreflang="tr" href="https://alifindme.com/tr/"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://alifindme.com/fr/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://alifindme.com/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://alifindme.com/en/"/>
   </url>
 
   <!-- Portuguese -->
   <url>
     <loc>https://alifindme.com/pt/</loc>
-    <lastmod>2026-03-16</lastmod>
+    <lastmod>2026-03-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="he" href="https://alifindme.com/"/>
@@ -101,13 +104,13 @@
     <xhtml:link rel="alternate" hreflang="pt" href="https://alifindme.com/pt/"/>
     <xhtml:link rel="alternate" hreflang="tr" href="https://alifindme.com/tr/"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://alifindme.com/fr/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://alifindme.com/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://alifindme.com/en/"/>
   </url>
 
   <!-- Turkish -->
   <url>
     <loc>https://alifindme.com/tr/</loc>
-    <lastmod>2026-03-16</lastmod>
+    <lastmod>2026-03-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="he" href="https://alifindme.com/"/>
@@ -118,13 +121,13 @@
     <xhtml:link rel="alternate" hreflang="pt" href="https://alifindme.com/pt/"/>
     <xhtml:link rel="alternate" hreflang="tr" href="https://alifindme.com/tr/"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://alifindme.com/fr/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://alifindme.com/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://alifindme.com/en/"/>
   </url>
 
   <!-- French -->
   <url>
     <loc>https://alifindme.com/fr/</loc>
-    <lastmod>2026-03-16</lastmod>
+    <lastmod>2026-03-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="he" href="https://alifindme.com/"/>
@@ -135,21 +138,381 @@
     <xhtml:link rel="alternate" hreflang="pt" href="https://alifindme.com/pt/"/>
     <xhtml:link rel="alternate" hreflang="tr" href="https://alifindme.com/tr/"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://alifindme.com/fr/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://alifindme.com/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://alifindme.com/en/"/>
   </url>
+
+  <!-- ==================== VERTICAL: HomeFind ==================== -->
+  <url>
+    <loc>https://alifindme.com/home/</loc>
+    <lastmod>2026-03-18</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- ==================== VERTICAL: Pet Find Me ==================== -->
+  <url>
+    <loc>https://alifindme.com/pets/</loc>
+    <lastmod>2026-03-18</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- ==================== PET ARTICLES: Dog Toys (7 languages) ==================== -->
+
+  <!-- EN: Best Dog Toys -->
+  <url>
+    <loc>https://alifindme.com/pets/articles/best-dog-toys-aliexpress.html</loc>
+    <lastmod>2026-03-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://alifindme.com/pets/articles/best-dog-toys-aliexpress.html"/>
+    <xhtml:link rel="alternate" hreflang="he" href="https://alifindme.com/pets/articles/tzaatzuim-klavim-ali-express.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://alifindme.com/pets/articles/beste-hundespielzeug-aliexpress.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://alifindme.com/pets/articles/meilleurs-jouets-chien-aliexpress.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://alifindme.com/pets/articles/mejores-juguetes-perro-aliexpress.html"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://alifindme.com/pets/articles/melhores-brinquedos-cachorro-aliexpress.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://alifindme.com/pets/articles/%D0%BB%D1%83%D1%87%D1%88%D0%B8%D0%B5-%D0%B8%D0%B3%D1%80%D1%83%D1%88%D0%BA%D0%B8-%D0%B4%D0%BB%D1%8F-%D1%81%D0%BE%D0%B1%D0%B0%D0%BA-aliexpress.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://alifindme.com/pets/articles/best-dog-toys-aliexpress.html"/>
+  </url>
+
+  <!-- HE: צעצועים לכלבים -->
+  <url>
+    <loc>https://alifindme.com/pets/articles/tzaatzuim-klavim-ali-express.html</loc>
+    <lastmod>2026-03-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://alifindme.com/pets/articles/best-dog-toys-aliexpress.html"/>
+    <xhtml:link rel="alternate" hreflang="he" href="https://alifindme.com/pets/articles/tzaatzuim-klavim-ali-express.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://alifindme.com/pets/articles/beste-hundespielzeug-aliexpress.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://alifindme.com/pets/articles/meilleurs-jouets-chien-aliexpress.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://alifindme.com/pets/articles/mejores-juguetes-perro-aliexpress.html"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://alifindme.com/pets/articles/melhores-brinquedos-cachorro-aliexpress.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://alifindme.com/pets/articles/%D0%BB%D1%83%D1%87%D1%88%D0%B8%D0%B5-%D0%B8%D0%B3%D1%80%D1%83%D1%88%D0%BA%D0%B8-%D0%B4%D0%BB%D1%8F-%D1%81%D0%BE%D0%B1%D0%B0%D0%BA-aliexpress.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://alifindme.com/pets/articles/best-dog-toys-aliexpress.html"/>
+  </url>
+
+  <!-- DE: Beste Hundespielzeug -->
+  <url>
+    <loc>https://alifindme.com/pets/articles/beste-hundespielzeug-aliexpress.html</loc>
+    <lastmod>2026-03-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://alifindme.com/pets/articles/best-dog-toys-aliexpress.html"/>
+    <xhtml:link rel="alternate" hreflang="he" href="https://alifindme.com/pets/articles/tzaatzuim-klavim-ali-express.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://alifindme.com/pets/articles/beste-hundespielzeug-aliexpress.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://alifindme.com/pets/articles/meilleurs-jouets-chien-aliexpress.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://alifindme.com/pets/articles/mejores-juguetes-perro-aliexpress.html"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://alifindme.com/pets/articles/melhores-brinquedos-cachorro-aliexpress.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://alifindme.com/pets/articles/%D0%BB%D1%83%D1%87%D1%88%D0%B8%D0%B5-%D0%B8%D0%B3%D1%80%D1%83%D1%88%D0%BA%D0%B8-%D0%B4%D0%BB%D1%8F-%D1%81%D0%BE%D0%B1%D0%B0%D0%BA-aliexpress.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://alifindme.com/pets/articles/best-dog-toys-aliexpress.html"/>
+  </url>
+
+  <!-- FR: Meilleurs Jouets Chien -->
+  <url>
+    <loc>https://alifindme.com/pets/articles/meilleurs-jouets-chien-aliexpress.html</loc>
+    <lastmod>2026-03-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://alifindme.com/pets/articles/best-dog-toys-aliexpress.html"/>
+    <xhtml:link rel="alternate" hreflang="he" href="https://alifindme.com/pets/articles/tzaatzuim-klavim-ali-express.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://alifindme.com/pets/articles/beste-hundespielzeug-aliexpress.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://alifindme.com/pets/articles/meilleurs-jouets-chien-aliexpress.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://alifindme.com/pets/articles/mejores-juguetes-perro-aliexpress.html"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://alifindme.com/pets/articles/melhores-brinquedos-cachorro-aliexpress.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://alifindme.com/pets/articles/%D0%BB%D1%83%D1%87%D1%88%D0%B8%D0%B5-%D0%B8%D0%B3%D1%80%D1%83%D1%88%D0%BA%D0%B8-%D0%B4%D0%BB%D1%8F-%D1%81%D0%BE%D0%B1%D0%B0%D0%BA-aliexpress.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://alifindme.com/pets/articles/best-dog-toys-aliexpress.html"/>
+  </url>
+
+  <!-- ES: Mejores Juguetes Perro -->
+  <url>
+    <loc>https://alifindme.com/pets/articles/mejores-juguetes-perro-aliexpress.html</loc>
+    <lastmod>2026-03-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://alifindme.com/pets/articles/best-dog-toys-aliexpress.html"/>
+    <xhtml:link rel="alternate" hreflang="he" href="https://alifindme.com/pets/articles/tzaatzuim-klavim-ali-express.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://alifindme.com/pets/articles/beste-hundespielzeug-aliexpress.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://alifindme.com/pets/articles/meilleurs-jouets-chien-aliexpress.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://alifindme.com/pets/articles/mejores-juguetes-perro-aliexpress.html"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://alifindme.com/pets/articles/melhores-brinquedos-cachorro-aliexpress.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://alifindme.com/pets/articles/%D0%BB%D1%83%D1%87%D1%88%D0%B8%D0%B5-%D0%B8%D0%B3%D1%80%D1%83%D1%88%D0%BA%D0%B8-%D0%B4%D0%BB%D1%8F-%D1%81%D0%BE%D0%B1%D0%B0%D0%BA-aliexpress.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://alifindme.com/pets/articles/best-dog-toys-aliexpress.html"/>
+  </url>
+
+  <!-- PT: Melhores Brinquedos Cachorro -->
+  <url>
+    <loc>https://alifindme.com/pets/articles/melhores-brinquedos-cachorro-aliexpress.html</loc>
+    <lastmod>2026-03-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://alifindme.com/pets/articles/best-dog-toys-aliexpress.html"/>
+    <xhtml:link rel="alternate" hreflang="he" href="https://alifindme.com/pets/articles/tzaatzuim-klavim-ali-express.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://alifindme.com/pets/articles/beste-hundespielzeug-aliexpress.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://alifindme.com/pets/articles/meilleurs-jouets-chien-aliexpress.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://alifindme.com/pets/articles/mejores-juguetes-perro-aliexpress.html"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://alifindme.com/pets/articles/melhores-brinquedos-cachorro-aliexpress.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://alifindme.com/pets/articles/%D0%BB%D1%83%D1%87%D1%88%D0%B8%D0%B5-%D0%B8%D0%B3%D1%80%D1%83%D1%88%D0%BA%D0%B8-%D0%B4%D0%BB%D1%8F-%D1%81%D0%BE%D0%B1%D0%B0%D0%BA-aliexpress.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://alifindme.com/pets/articles/best-dog-toys-aliexpress.html"/>
+  </url>
+
+  <!-- RU: Лучшие игрушки для собак -->
+  <url>
+    <loc>https://alifindme.com/pets/articles/%D0%BB%D1%83%D1%87%D1%88%D0%B8%D0%B5-%D0%B8%D0%B3%D1%80%D1%83%D1%88%D0%BA%D0%B8-%D0%B4%D0%BB%D1%8F-%D1%81%D0%BE%D0%B1%D0%B0%D0%BA-aliexpress.html</loc>
+    <lastmod>2026-03-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://alifindme.com/pets/articles/best-dog-toys-aliexpress.html"/>
+    <xhtml:link rel="alternate" hreflang="he" href="https://alifindme.com/pets/articles/tzaatzuim-klavim-ali-express.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://alifindme.com/pets/articles/beste-hundespielzeug-aliexpress.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://alifindme.com/pets/articles/meilleurs-jouets-chien-aliexpress.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://alifindme.com/pets/articles/mejores-juguetes-perro-aliexpress.html"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://alifindme.com/pets/articles/melhores-brinquedos-cachorro-aliexpress.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://alifindme.com/pets/articles/%D0%BB%D1%83%D1%87%D1%88%D0%B8%D0%B5-%D0%B8%D0%B3%D1%80%D1%83%D1%88%D0%BA%D0%B8-%D0%B4%D0%BB%D1%8F-%D1%81%D0%BE%D0%B1%D0%B0%D0%BA-aliexpress.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://alifindme.com/pets/articles/best-dog-toys-aliexpress.html"/>
+  </url>
+
+  <!-- ==================== PET ARTICLES: Cat Products (7 languages) ==================== -->
+
+  <!-- EN: Best Cat Products -->
+  <url>
+    <loc>https://alifindme.com/pets/articles/best-cat-products-aliexpress.html</loc>
+    <lastmod>2026-03-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://alifindme.com/pets/articles/best-cat-products-aliexpress.html"/>
+    <xhtml:link rel="alternate" hreflang="he" href="https://alifindme.com/pets/articles/mutzrim-chatulim-ali-express.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://alifindme.com/pets/articles/beste-katzenprodukte-aliexpress.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://alifindme.com/pets/articles/meilleurs-produits-chat-aliexpress.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://alifindme.com/pets/articles/mejores-productos-gato-aliexpress.html"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://alifindme.com/pets/articles/melhores-produtos-gato-aliexpress.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://alifindme.com/pets/articles/%D0%BB%D1%83%D1%87%D1%88%D0%B8%D0%B5-%D1%82%D0%BE%D0%B2%D0%B0%D1%80%D1%8B-%D0%B4%D0%BB%D1%8F-%D0%BA%D0%BE%D1%88%D0%B5%D0%BA-aliexpress.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://alifindme.com/pets/articles/best-cat-products-aliexpress.html"/>
+  </url>
+
+  <!-- HE: מוצרים לחתולים -->
+  <url>
+    <loc>https://alifindme.com/pets/articles/mutzrim-chatulim-ali-express.html</loc>
+    <lastmod>2026-03-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://alifindme.com/pets/articles/best-cat-products-aliexpress.html"/>
+    <xhtml:link rel="alternate" hreflang="he" href="https://alifindme.com/pets/articles/mutzrim-chatulim-ali-express.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://alifindme.com/pets/articles/beste-katzenprodukte-aliexpress.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://alifindme.com/pets/articles/meilleurs-produits-chat-aliexpress.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://alifindme.com/pets/articles/mejores-productos-gato-aliexpress.html"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://alifindme.com/pets/articles/melhores-produtos-gato-aliexpress.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://alifindme.com/pets/articles/%D0%BB%D1%83%D1%87%D1%88%D0%B8%D0%B5-%D1%82%D0%BE%D0%B2%D0%B0%D1%80%D1%8B-%D0%B4%D0%BB%D1%8F-%D0%BA%D0%BE%D1%88%D0%B5%D0%BA-aliexpress.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://alifindme.com/pets/articles/best-cat-products-aliexpress.html"/>
+  </url>
+
+  <!-- DE: Beste Katzenprodukte -->
+  <url>
+    <loc>https://alifindme.com/pets/articles/beste-katzenprodukte-aliexpress.html</loc>
+    <lastmod>2026-03-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://alifindme.com/pets/articles/best-cat-products-aliexpress.html"/>
+    <xhtml:link rel="alternate" hreflang="he" href="https://alifindme.com/pets/articles/mutzrim-chatulim-ali-express.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://alifindme.com/pets/articles/beste-katzenprodukte-aliexpress.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://alifindme.com/pets/articles/meilleurs-produits-chat-aliexpress.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://alifindme.com/pets/articles/mejores-productos-gato-aliexpress.html"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://alifindme.com/pets/articles/melhores-produtos-gato-aliexpress.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://alifindme.com/pets/articles/%D0%BB%D1%83%D1%87%D1%88%D0%B8%D0%B5-%D1%82%D0%BE%D0%B2%D0%B0%D1%80%D1%8B-%D0%B4%D0%BB%D1%8F-%D0%BA%D0%BE%D1%88%D0%B5%D0%BA-aliexpress.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://alifindme.com/pets/articles/best-cat-products-aliexpress.html"/>
+  </url>
+
+  <!-- FR: Meilleurs Produits Chat -->
+  <url>
+    <loc>https://alifindme.com/pets/articles/meilleurs-produits-chat-aliexpress.html</loc>
+    <lastmod>2026-03-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://alifindme.com/pets/articles/best-cat-products-aliexpress.html"/>
+    <xhtml:link rel="alternate" hreflang="he" href="https://alifindme.com/pets/articles/mutzrim-chatulim-ali-express.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://alifindme.com/pets/articles/beste-katzenprodukte-aliexpress.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://alifindme.com/pets/articles/meilleurs-produits-chat-aliexpress.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://alifindme.com/pets/articles/mejores-productos-gato-aliexpress.html"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://alifindme.com/pets/articles/melhores-produtos-gato-aliexpress.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://alifindme.com/pets/articles/%D0%BB%D1%83%D1%87%D1%88%D0%B8%D0%B5-%D1%82%D0%BE%D0%B2%D0%B0%D1%80%D1%8B-%D0%B4%D0%BB%D1%8F-%D0%BA%D0%BE%D1%88%D0%B5%D0%BA-aliexpress.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://alifindme.com/pets/articles/best-cat-products-aliexpress.html"/>
+  </url>
+
+  <!-- ES: Mejores Productos Gato -->
+  <url>
+    <loc>https://alifindme.com/pets/articles/mejores-productos-gato-aliexpress.html</loc>
+    <lastmod>2026-03-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://alifindme.com/pets/articles/best-cat-products-aliexpress.html"/>
+    <xhtml:link rel="alternate" hreflang="he" href="https://alifindme.com/pets/articles/mutzrim-chatulim-ali-express.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://alifindme.com/pets/articles/beste-katzenprodukte-aliexpress.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://alifindme.com/pets/articles/meilleurs-produits-chat-aliexpress.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://alifindme.com/pets/articles/mejores-productos-gato-aliexpress.html"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://alifindme.com/pets/articles/melhores-produtos-gato-aliexpress.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://alifindme.com/pets/articles/%D0%BB%D1%83%D1%87%D1%88%D0%B8%D0%B5-%D1%82%D0%BE%D0%B2%D0%B0%D1%80%D1%8B-%D0%B4%D0%BB%D1%8F-%D0%BA%D0%BE%D1%88%D0%B5%D0%BA-aliexpress.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://alifindme.com/pets/articles/best-cat-products-aliexpress.html"/>
+  </url>
+
+  <!-- PT: Melhores Produtos Gato -->
+  <url>
+    <loc>https://alifindme.com/pets/articles/melhores-produtos-gato-aliexpress.html</loc>
+    <lastmod>2026-03-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://alifindme.com/pets/articles/best-cat-products-aliexpress.html"/>
+    <xhtml:link rel="alternate" hreflang="he" href="https://alifindme.com/pets/articles/mutzrim-chatulim-ali-express.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://alifindme.com/pets/articles/beste-katzenprodukte-aliexpress.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://alifindme.com/pets/articles/meilleurs-produits-chat-aliexpress.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://alifindme.com/pets/articles/mejores-productos-gato-aliexpress.html"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://alifindme.com/pets/articles/melhores-produtos-gato-aliexpress.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://alifindme.com/pets/articles/%D0%BB%D1%83%D1%87%D1%88%D0%B8%D0%B5-%D1%82%D0%BE%D0%B2%D0%B0%D1%80%D1%8B-%D0%B4%D0%BB%D1%8F-%D0%BA%D0%BE%D1%88%D0%B5%D0%BA-aliexpress.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://alifindme.com/pets/articles/best-cat-products-aliexpress.html"/>
+  </url>
+
+  <!-- RU: Лучшие товары для кошек -->
+  <url>
+    <loc>https://alifindme.com/pets/articles/%D0%BB%D1%83%D1%87%D1%88%D0%B8%D0%B5-%D1%82%D0%BE%D0%B2%D0%B0%D1%80%D1%8B-%D0%B4%D0%BB%D1%8F-%D0%BA%D0%BE%D1%88%D0%B5%D0%BA-aliexpress.html</loc>
+    <lastmod>2026-03-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://alifindme.com/pets/articles/best-cat-products-aliexpress.html"/>
+    <xhtml:link rel="alternate" hreflang="he" href="https://alifindme.com/pets/articles/mutzrim-chatulim-ali-express.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://alifindme.com/pets/articles/beste-katzenprodukte-aliexpress.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://alifindme.com/pets/articles/meilleurs-produits-chat-aliexpress.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://alifindme.com/pets/articles/mejores-productos-gato-aliexpress.html"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://alifindme.com/pets/articles/melhores-produtos-gato-aliexpress.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://alifindme.com/pets/articles/%D0%BB%D1%83%D1%87%D1%88%D0%B8%D0%B5-%D1%82%D0%BE%D0%B2%D0%B0%D1%80%D1%8B-%D0%B4%D0%BB%D1%8F-%D0%BA%D0%BE%D1%88%D0%B5%D0%BA-aliexpress.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://alifindme.com/pets/articles/best-cat-products-aliexpress.html"/>
+  </url>
+
+  <!-- ==================== PET ARTICLES: Pet Supplies (7 languages) ==================== -->
+
+  <!-- EN: Best Pet Supplies -->
+  <url>
+    <loc>https://alifindme.com/pets/articles/best-pet-supplies-aliexpress.html</loc>
+    <lastmod>2026-03-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://alifindme.com/pets/articles/best-pet-supplies-aliexpress.html"/>
+    <xhtml:link rel="alternate" hreflang="he" href="https://alifindme.com/pets/articles/motzrim-hayot-mahamd-ali-express.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://alifindme.com/pets/articles/beste-haustierprodukte-aliexpress.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://alifindme.com/pets/articles/meilleurs-produits-animaux-aliexpress.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://alifindme.com/pets/articles/mejores-productos-mascotas-aliexpress.html"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://alifindme.com/pets/articles/melhores-produtos-pet-aliexpress.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://alifindme.com/pets/articles/%D0%BB%D1%83%D1%87%D1%88%D0%B8%D0%B5-%D1%82%D0%BE%D0%B2%D0%B0%D1%80%D1%8B-%D0%B4%D0%BB%D1%8F-%D0%B6%D0%B8%D0%B2%D0%BE%D1%82%D0%BD%D1%8B%D1%85-aliexpress.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://alifindme.com/pets/articles/best-pet-supplies-aliexpress.html"/>
+  </url>
+
+  <!-- HE: מוצרים לחיות מחמד -->
+  <url>
+    <loc>https://alifindme.com/pets/articles/motzrim-hayot-mahamd-ali-express.html</loc>
+    <lastmod>2026-03-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://alifindme.com/pets/articles/best-pet-supplies-aliexpress.html"/>
+    <xhtml:link rel="alternate" hreflang="he" href="https://alifindme.com/pets/articles/motzrim-hayot-mahamd-ali-express.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://alifindme.com/pets/articles/beste-haustierprodukte-aliexpress.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://alifindme.com/pets/articles/meilleurs-produits-animaux-aliexpress.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://alifindme.com/pets/articles/mejores-productos-mascotas-aliexpress.html"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://alifindme.com/pets/articles/melhores-produtos-pet-aliexpress.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://alifindme.com/pets/articles/%D0%BB%D1%83%D1%87%D1%88%D0%B8%D0%B5-%D1%82%D0%BE%D0%B2%D0%B0%D1%80%D1%8B-%D0%B4%D0%BB%D1%8F-%D0%B6%D0%B8%D0%B2%D0%BE%D1%82%D0%BD%D1%8B%D1%85-aliexpress.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://alifindme.com/pets/articles/best-pet-supplies-aliexpress.html"/>
+  </url>
+
+  <!-- DE: Beste Haustierprodukte -->
+  <url>
+    <loc>https://alifindme.com/pets/articles/beste-haustierprodukte-aliexpress.html</loc>
+    <lastmod>2026-03-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://alifindme.com/pets/articles/best-pet-supplies-aliexpress.html"/>
+    <xhtml:link rel="alternate" hreflang="he" href="https://alifindme.com/pets/articles/motzrim-hayot-mahamd-ali-express.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://alifindme.com/pets/articles/beste-haustierprodukte-aliexpress.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://alifindme.com/pets/articles/meilleurs-produits-animaux-aliexpress.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://alifindme.com/pets/articles/mejores-productos-mascotas-aliexpress.html"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://alifindme.com/pets/articles/melhores-produtos-pet-aliexpress.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://alifindme.com/pets/articles/%D0%BB%D1%83%D1%87%D1%88%D0%B8%D0%B5-%D1%82%D0%BE%D0%B2%D0%B0%D1%80%D1%8B-%D0%B4%D0%BB%D1%8F-%D0%B6%D0%B8%D0%B2%D0%BE%D1%82%D0%BD%D1%8B%D1%85-aliexpress.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://alifindme.com/pets/articles/best-pet-supplies-aliexpress.html"/>
+  </url>
+
+  <!-- FR: Meilleurs Produits Animaux -->
+  <url>
+    <loc>https://alifindme.com/pets/articles/meilleurs-produits-animaux-aliexpress.html</loc>
+    <lastmod>2026-03-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://alifindme.com/pets/articles/best-pet-supplies-aliexpress.html"/>
+    <xhtml:link rel="alternate" hreflang="he" href="https://alifindme.com/pets/articles/motzrim-hayot-mahamd-ali-express.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://alifindme.com/pets/articles/beste-haustierprodukte-aliexpress.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://alifindme.com/pets/articles/meilleurs-produits-animaux-aliexpress.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://alifindme.com/pets/articles/mejores-productos-mascotas-aliexpress.html"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://alifindme.com/pets/articles/melhores-produtos-pet-aliexpress.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://alifindme.com/pets/articles/%D0%BB%D1%83%D1%87%D1%88%D0%B8%D0%B5-%D1%82%D0%BE%D0%B2%D0%B0%D1%80%D1%8B-%D0%B4%D0%BB%D1%8F-%D0%B6%D0%B8%D0%B2%D0%BE%D1%82%D0%BD%D1%8B%D1%85-aliexpress.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://alifindme.com/pets/articles/best-pet-supplies-aliexpress.html"/>
+  </url>
+
+  <!-- ES: Mejores Productos Mascotas -->
+  <url>
+    <loc>https://alifindme.com/pets/articles/mejores-productos-mascotas-aliexpress.html</loc>
+    <lastmod>2026-03-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://alifindme.com/pets/articles/best-pet-supplies-aliexpress.html"/>
+    <xhtml:link rel="alternate" hreflang="he" href="https://alifindme.com/pets/articles/motzrim-hayot-mahamd-ali-express.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://alifindme.com/pets/articles/beste-haustierprodukte-aliexpress.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://alifindme.com/pets/articles/meilleurs-produits-animaux-aliexpress.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://alifindme.com/pets/articles/mejores-productos-mascotas-aliexpress.html"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://alifindme.com/pets/articles/melhores-produtos-pet-aliexpress.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://alifindme.com/pets/articles/%D0%BB%D1%83%D1%87%D1%88%D0%B8%D0%B5-%D1%82%D0%BE%D0%B2%D0%B0%D1%80%D1%8B-%D0%B4%D0%BB%D1%8F-%D0%B6%D0%B8%D0%B2%D0%BE%D1%82%D0%BD%D1%8B%D1%85-aliexpress.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://alifindme.com/pets/articles/best-pet-supplies-aliexpress.html"/>
+  </url>
+
+  <!-- PT: Melhores Produtos Pet -->
+  <url>
+    <loc>https://alifindme.com/pets/articles/melhores-produtos-pet-aliexpress.html</loc>
+    <lastmod>2026-03-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://alifindme.com/pets/articles/best-pet-supplies-aliexpress.html"/>
+    <xhtml:link rel="alternate" hreflang="he" href="https://alifindme.com/pets/articles/motzrim-hayot-mahamd-ali-express.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://alifindme.com/pets/articles/beste-haustierprodukte-aliexpress.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://alifindme.com/pets/articles/meilleurs-produits-animaux-aliexpress.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://alifindme.com/pets/articles/mejores-productos-mascotas-aliexpress.html"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://alifindme.com/pets/articles/melhores-produtos-pet-aliexpress.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://alifindme.com/pets/articles/%D0%BB%D1%83%D1%87%D1%88%D0%B8%D0%B5-%D1%82%D0%BE%D0%B2%D0%B0%D1%80%D1%8B-%D0%B4%D0%BB%D1%8F-%D0%B6%D0%B8%D0%B2%D0%BE%D1%82%D0%BD%D1%8B%D1%85-aliexpress.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://alifindme.com/pets/articles/best-pet-supplies-aliexpress.html"/>
+  </url>
+
+  <!-- RU: Лучшие товары для животных -->
+  <url>
+    <loc>https://alifindme.com/pets/articles/%D0%BB%D1%83%D1%87%D1%88%D0%B8%D0%B5-%D1%82%D0%BE%D0%B2%D0%B0%D1%80%D1%8B-%D0%B4%D0%BB%D1%8F-%D0%B6%D0%B8%D0%B2%D0%BE%D1%82%D0%BD%D1%8B%D1%85-aliexpress.html</loc>
+    <lastmod>2026-03-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://alifindme.com/pets/articles/best-pet-supplies-aliexpress.html"/>
+    <xhtml:link rel="alternate" hreflang="he" href="https://alifindme.com/pets/articles/motzrim-hayot-mahamd-ali-express.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://alifindme.com/pets/articles/beste-haustierprodukte-aliexpress.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://alifindme.com/pets/articles/meilleurs-produits-animaux-aliexpress.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://alifindme.com/pets/articles/mejores-productos-mascotas-aliexpress.html"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://alifindme.com/pets/articles/melhores-produtos-pet-aliexpress.html"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://alifindme.com/pets/articles/%D0%BB%D1%83%D1%87%D1%88%D0%B8%D0%B5-%D1%82%D0%BE%D0%B2%D0%B0%D1%80%D1%8B-%D0%B4%D0%BB%D1%8F-%D0%B6%D0%B8%D0%B2%D0%BE%D1%82%D0%BD%D1%8B%D1%85-aliexpress.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://alifindme.com/pets/articles/best-pet-supplies-aliexpress.html"/>
+  </url>
+
+  <!-- ==================== BLOG: Shopping Guides (8 languages) ==================== -->
 
   <!-- Blog Index -->
   <url>
     <loc>https://alifindme.com/blog/</loc>
-    <lastmod>2026-03-16</lastmod>
+    <lastmod>2026-03-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
 
-  <!-- Blog: AliExpress Shopping Guide (EN) -->
+  <!-- EN: AliExpress Shopping Guide -->
   <url>
     <loc>https://alifindme.com/blog/aliexpress-shopping-guide-2026.html</loc>
-    <lastmod>2026-03-16</lastmod>
+    <lastmod>2026-03-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://alifindme.com/blog/aliexpress-shopping-guide-2026.html"/>
@@ -163,10 +526,10 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://alifindme.com/blog/aliexpress-shopping-guide-2026.html"/>
   </url>
 
-  <!-- Blog: מדריך קנייה חכמה (HE) -->
+  <!-- HE: מדריך קנייה חכמה -->
   <url>
     <loc>https://alifindme.com/blog/he/tips-kniya-ali-express-2026.html</loc>
-    <lastmod>2026-03-16</lastmod>
+    <lastmod>2026-03-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://alifindme.com/blog/aliexpress-shopping-guide-2026.html"/>
@@ -180,10 +543,10 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://alifindme.com/blog/aliexpress-shopping-guide-2026.html"/>
   </url>
 
-  <!-- Blog: دليل التسوق من علي اكسبرس (AR) -->
+  <!-- AR: دليل التسوق -->
   <url>
     <loc>https://alifindme.com/blog/ar/dalil-tassawuq-aliexpress-2026.html</loc>
-    <lastmod>2026-03-16</lastmod>
+    <lastmod>2026-03-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://alifindme.com/blog/aliexpress-shopping-guide-2026.html"/>
@@ -197,10 +560,10 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://alifindme.com/blog/aliexpress-shopping-guide-2026.html"/>
   </url>
 
-  <!-- Blog: Гид по покупкам на AliExpress (RU) -->
+  <!-- RU: Гид по покупкам -->
   <url>
     <loc>https://alifindme.com/blog/ru/guide-pokupki-aliexpress-2026.html</loc>
-    <lastmod>2026-03-16</lastmod>
+    <lastmod>2026-03-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://alifindme.com/blog/aliexpress-shopping-guide-2026.html"/>
@@ -214,10 +577,10 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://alifindme.com/blog/aliexpress-shopping-guide-2026.html"/>
   </url>
 
-  <!-- Blog: Guía de Compras en AliExpress (ES) -->
+  <!-- ES: Guía de Compras -->
   <url>
     <loc>https://alifindme.com/blog/es/guia-compras-aliexpress-2026.html</loc>
-    <lastmod>2026-03-16</lastmod>
+    <lastmod>2026-03-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://alifindme.com/blog/aliexpress-shopping-guide-2026.html"/>
@@ -231,10 +594,10 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://alifindme.com/blog/aliexpress-shopping-guide-2026.html"/>
   </url>
 
-  <!-- Blog: Guia de Compras no AliExpress (PT) -->
+  <!-- PT: Guia de Compras -->
   <url>
     <loc>https://alifindme.com/blog/pt/guia-compras-aliexpress-2026.html</loc>
-    <lastmod>2026-03-16</lastmod>
+    <lastmod>2026-03-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://alifindme.com/blog/aliexpress-shopping-guide-2026.html"/>
@@ -248,10 +611,10 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://alifindme.com/blog/aliexpress-shopping-guide-2026.html"/>
   </url>
 
-  <!-- Blog: AliExpress Alışveriş Rehberi (TR) -->
+  <!-- TR: AliExpress Alışveriş Rehberi -->
   <url>
     <loc>https://alifindme.com/blog/tr/alisveris-rehberi-aliexpress-2026.html</loc>
-    <lastmod>2026-03-16</lastmod>
+    <lastmod>2026-03-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://alifindme.com/blog/aliexpress-shopping-guide-2026.html"/>
@@ -265,10 +628,10 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://alifindme.com/blog/aliexpress-shopping-guide-2026.html"/>
   </url>
 
-  <!-- Blog: Guide d'Achat AliExpress (FR) -->
+  <!-- FR: Guide d'Achat AliExpress -->
   <url>
     <loc>https://alifindme.com/blog/fr/guide-achats-aliexpress-2026.html</loc>
-    <lastmod>2026-03-16</lastmod>
+    <lastmod>2026-03-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://alifindme.com/blog/aliexpress-shopping-guide-2026.html"/>
@@ -282,38 +645,28 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://alifindme.com/blog/aliexpress-shopping-guide-2026.html"/>
   </url>
 
-  <!-- Privacy Policy -->
-  <url>
-    <loc>https://alifindme.com/privacy.html</loc>
-    <lastmod>2026-03-16</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
-  </url>
-
-  <!-- Terms of Use -->
-  <url>
-    <loc>https://alifindme.com/terms.html</loc>
-    <lastmod>2026-03-16</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
-  </url>
-
-  <!-- Pets Landing Page -->
-  <url>
-    <loc>https://alifindme.com/pets/</loc>
-    <lastmod>2026-03-17</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="he" href="https://alifindme.com/pets/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://alifindme.com/pets/"/>
-  </url>
-
-  <!-- Blog: Pet Products Guide (Hebrew) -->
+  <!-- HE: Pet Products Blog -->
   <url>
     <loc>https://alifindme.com/blog/he/mutzarim-lchayot-machmad-ali-express.html</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2026-03-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+  </url>
+
+  <!-- ==================== LEGAL PAGES ==================== -->
+
+  <url>
+    <loc>https://alifindme.com/privacy.html</loc>
+    <lastmod>2026-03-18</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <url>
+    <loc>https://alifindme.com/terms.html</loc>
+    <lastmod>2026-03-18</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
   </url>
 
 </urlset>
