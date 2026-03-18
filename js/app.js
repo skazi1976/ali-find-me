@@ -101,6 +101,14 @@ const i18n = {
     imgSearching: "\u05de\u05d6\u05d4\u05d4 \u05d0\u05ea \u05d4\u05de\u05d5\u05e6\u05e8...",
     imgResult: "\u05d6\u05d9\u05d4\u05d9\u05ea\u05d9: {desc}", imgError: "\u05dc\u05d0 \u05d4\u05e6\u05dc\u05d7\u05ea\u05d9 \u05dc\u05d6\u05d4\u05d5\u05ea. \u05e0\u05e1\u05d4 \u05ea\u05de\u05d5\u05e0\u05d4 \u05d0\u05d7\u05e8\u05ea",
     imgTakePhoto: "\u05e6\u05dc\u05dd", imgUpload: "\u05d4\u05e2\u05dc\u05d4",
+    findCheaper: "מצא זול יותר 💰",
+    comparing: "מחפש חלופות זולות יותר...",
+    cheaperAlts: "חלופות זולות יותר 💰",
+    savingsLabel: "חיסכון",
+    noAlternatives: "לא נמצאו חלופות זולות יותר למוצר זה",
+    originalProduct: "המוצר המקורי",
+    viewDeal: "לצפייה ורכישה →",
+    aiSummary: "סיכום AI",
   },
   en: {
     heroTitle: "\u2728 Find Your Perfect Product",
@@ -187,6 +195,14 @@ const i18n = {
     nlSkip: "Not now",
     shareTitle: "שתפי את הדיל!", shareCopied: "הקישור הועתק!",
     shareNative: "שתף עוד...",
+    findCheaper: "Find Cheaper 💰",
+    comparing: "Finding cheaper alternatives...",
+    cheaperAlts: "Cheaper Alternatives 💰",
+    savingsLabel: "Savings",
+    noAlternatives: "No cheaper alternatives found",
+    originalProduct: "Original Product",
+    viewDeal: "View & Buy →",
+    aiSummary: "AI Summary",
   },
   ar: {
     heroTitle: "\u2728 \u0627\u0639\u062b\u0631 \u0639\u0644\u0649 \u0627\u0644\u0645\u0646\u062a\u062c \u0627\u0644\u0645\u062b\u0627\u0644\u064a",
@@ -1799,6 +1815,9 @@ function buildProductCard(p) {
         <button class="alert-btn-card ${alertActive ? 'has-alert' : ''}" onclick="onAlertClick('${pJson}')" title="\u05d4\u05ea\u05e8\u05d0\u05ea \u05de\u05d7\u05d9\u05e8">
           ${alertActive ? "\ud83d\udd14" : "\ud83d\udd15"}
         </button>
+        <button class="compare-btn" onclick="event.stopPropagation();onCompareClick('${pJson}')" title="${i18n[currentLang].findCheaper || 'Find Cheaper'}">
+          💰
+        </button>
       </div>
       <div class="product-info">
         <div class="product-title">${p.title}</div>
@@ -2868,4 +2887,154 @@ function dismissInstall(permanent) {
     if (permanent !== false) localStorage.setItem('pwa-install-dismissed', '1');
     setTimeout(() => { banner.style.display = 'none'; banner.classList.remove('hiding'); }, 300);
   }
+}
+
+// ============================================================
+//  Price Comparison (Find Cheaper) Modal
+// ============================================================
+
+function onCompareClick(pJson) {
+  try {
+    const product = JSON.parse(pJson.replace(/&quot;/g, '"').replace(/&#39;/g, "'"));
+    showCompareModal(product);
+  } catch (e) {
+    console.error("Compare parse error:", e);
+  }
+}
+
+function showCompareModal(product) {
+  const t = i18n[currentLang] || i18n.en;
+  // Create overlay
+  const overlay = document.createElement('div');
+  overlay.className = 'compare-overlay';
+  overlay.onclick = closeCompareModal;
+
+  // Create modal
+  const modal = document.createElement('div');
+  modal.className = 'compare-modal';
+  modal.id = 'compareModal';
+  modal.onclick = (e) => e.stopPropagation();
+
+  const currSymbol = currentCurrencySymbol || '₪';
+
+  modal.innerHTML = `
+    <button class="compare-close" onclick="closeCompareModal()">✕</button>
+    <div class="compare-original-section">
+      <div class="compare-section-label">${t.originalProduct || 'Original Product'}</div>
+      <div class="compare-original-card">
+        <img src="${product.image}" alt="${product.title}" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22300%22 fill=%22%23f0f0f0%22%3E%3Crect width=%22300%22 height=%22300%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 fill=%22%23999%22 font-size=%2216%22%3E%F0%9F%93%B7%3C/text%3E%3C/svg%3E'">
+        <div class="compare-original-info">
+          <div class="compare-original-title">${product.title}</div>
+          <div class="compare-original-price">${currSymbol}${product.price}</div>
+        </div>
+      </div>
+    </div>
+    <div class="compare-divider">
+      <span>${t.cheaperAlts || 'Cheaper Alternatives 💰'}</span>
+    </div>
+    <div class="compare-results" id="compareResults">
+      <div class="compare-loading">
+        <div class="compare-spinner"></div>
+        <p>${t.comparing || 'Finding cheaper alternatives...'}</p>
+      </div>
+    </div>
+  `;
+
+  document.body.appendChild(overlay);
+  document.body.appendChild(modal);
+  document.body.style.overflow = 'hidden';
+
+  // Fetch alternatives
+  const context = typeof getCompareContext === 'function' ? getCompareContext() : '';
+  const params = new URLSearchParams({
+    title: product.title,
+    price: product.price,
+    id: product.id,
+    currency: currentCurrency || 'ILS',
+    country: currentCountry || 'IL',
+    context: context,
+    lang: currentLang || 'he',
+  });
+
+  const controller = new AbortController();
+  setTimeout(() => controller.abort(), 15000);
+
+  fetch(`${API_BASE}/find-cheaper?${params}`, { signal: controller.signal })
+    .then(res => res.json())
+    .then(data => renderCompareResults(data, product))
+    .catch(err => {
+      const resultsDiv = document.getElementById('compareResults');
+      if (resultsDiv) {
+        resultsDiv.innerHTML = `<div class="compare-error">
+          <p>❌ ${err.name === 'AbortError' ? 'Timeout - try again' : 'Error loading alternatives'}</p>
+          <button onclick="closeCompareModal();onCompareClick('${JSON.stringify(product).replace(/'/g, "&#39;").replace(/"/g, "&quot;")}')">🔄 Retry</button>
+        </div>`;
+      }
+    });
+}
+
+function renderCompareResults(data, originalProduct) {
+  const resultsDiv = document.getElementById('compareResults');
+  if (!resultsDiv) return;
+
+  const t = i18n[currentLang] || i18n.en;
+  const currSymbol = currentCurrencySymbol || '₪';
+
+  if (!data.alternatives || data.alternatives.length === 0) {
+    resultsDiv.innerHTML = `<div class="compare-empty">
+      <p>🔍 ${t.noAlternatives || 'No cheaper alternatives found'}</p>
+    </div>`;
+    return;
+  }
+
+  let html = '';
+
+  data.alternatives.forEach((alt, i) => {
+    const savingsBadge = alt.savings_percent > 0
+      ? `<span class="compare-savings-badge">-${alt.savings_percent}% | ${t.savingsLabel || 'Savings'} ${currSymbol}${alt.savings}</span>`
+      : '';
+
+    const aiNote = alt.ai_note
+      ? `<div class="compare-ai-note">🤖 ${alt.ai_note}</div>`
+      : '';
+
+    const stars = '★'.repeat(Math.round(alt.rating || 0)) + '☆'.repeat(5 - Math.round(alt.rating || 0));
+
+    html += `
+      <div class="compare-alt-card">
+        <div class="compare-alt-rank">#${i + 1}</div>
+        <img src="${alt.image}" alt="${alt.title}" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22300%22 fill=%22%23f0f0f0%22%3E%3Crect width=%22300%22 height=%22300%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 fill=%22%23999%22 font-size=%2216%22%3E%F0%9F%93%B7%3C/text%3E%3C/svg%3E'">
+        <div class="compare-alt-info">
+          <div class="compare-alt-title">${alt.title}</div>
+          <div class="compare-alt-price-row">
+            <span class="compare-alt-price">${currSymbol}${alt.price}</span>
+            ${savingsBadge}
+          </div>
+          <div class="compare-alt-meta">
+            <span class="compare-alt-rating">${stars}</span>
+            <span>${(alt.orders || 0).toLocaleString()} ${t.orders || 'orders'}</span>
+          </div>
+          ${aiNote}
+          <a href="${alt.affiliate_url}" target="_blank" rel="noopener" class="compare-alt-cta">${t.viewDeal || 'View & Buy →'}</a>
+        </div>
+      </div>
+    `;
+  });
+
+  if (data.ai_summary) {
+    html += `<div class="compare-summary">
+      <span class="compare-summary-label">🤖 ${t.aiSummary || 'AI Summary'}:</span>
+      ${data.ai_summary}
+    </div>`;
+  }
+
+  resultsDiv.innerHTML = html;
+}
+
+function closeCompareModal() {
+  const overlay = document.querySelector('.compare-overlay');
+  const modal = document.getElementById('compareModal');
+  if (overlay) overlay.remove();
+  if (modal) modal.remove();
+  document.body.style.overflow = '';
 }
