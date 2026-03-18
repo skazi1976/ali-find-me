@@ -1816,7 +1816,7 @@ function buildProductCard(p) {
           ${alertActive ? "\ud83d\udd14" : "\ud83d\udd15"}
         </button>
         <button class="compare-btn" onclick="event.stopPropagation();onCompareClick('${pJson}')" title="${i18n[currentLang].findCheaper || 'Find Cheaper'}">
-          💰
+          💰 ${i18n[currentLang].findCheaper || 'Find Cheaper'}
         </button>
       </div>
       <div class="product-info">

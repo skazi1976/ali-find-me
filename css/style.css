@@ -3015,17 +3015,18 @@ body {
 
 /* Compare button on product card */
 .compare-btn {
-  position: absolute; bottom: 8px; left: 8px;
-  background: rgba(255,255,255,0.9); border: none;
-  border-radius: 50%; width: 34px; height: 34px;
-  font-size: 16px; cursor: pointer; display: flex;
-  align-items: center; justify-content: center;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  position: absolute; bottom: 8px; left: 8px; right: 8px;
+  background: linear-gradient(135deg, #ff9800, #f57c00); border: none;
+  border-radius: 20px; padding: 6px 10px;
+  font-size: 12px; font-weight: 700; font-family: 'Heebo', 'Assistant', sans-serif;
+  color: #fff; cursor: pointer; display: flex;
+  align-items: center; justify-content: center; gap: 4px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
   transition: transform 0.2s, background 0.2s;
-  z-index: 2;
+  z-index: 2; white-space: nowrap;
 }
 .compare-btn:hover {
-  transform: scale(1.15); background: #fff;
+  transform: scale(1.05); background: linear-gradient(135deg, #ffa726, #ef6c00);
 }
 
 /* Mobile responsive */
