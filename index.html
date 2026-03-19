@@ -58,7 +58,7 @@
   <link rel="preconnect" href="https://ali-find-me.ohad1.workers.dev">
   <link rel="dns-prefetch" href="https://ae01.alicdn.com">
   <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&family=Assistant:wght@300;400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=20260319c">
+  <link rel="stylesheet" href="css/style.css?v=20260319d">
 
   <script type="application/ld+json">
   {
@@ -341,11 +341,16 @@
     <div class="recently-viewed-grid" id="recentlyViewedGrid"></div>
   </section>
 
-  <!-- Trending Section (shown on homepage) -->
-  <section class="trending-section" id="trendingSection">
-    <h2 class="section-title" data-i18n="trendingTitle">
-      <span>🔥</span> מוצרים טרנדיים עכשיו
+  <!-- Categories Section -->
+  <section class="categories-section">
+    <h2 class="section-title" data-i18n="categoriesTitle">
+      <span>🏷️</span> קטגוריות פופולריות
     </h2>
+    <div class="categories-grid" id="categoriesGrid"></div>
+  </section>
+
+  <!-- Trending Section (right after categories, no title) -->
+  <section class="trending-section" id="trendingSection">
     <div class="product-grid trending-grid" id="trendingGrid"></div>
   </section>
 
@@ -357,14 +362,6 @@
       <span class="countdown-timer" id="countdownTimer">00:00:00</span>
     </div>
     <div class="product-grid deals-grid" id="dealsGrid"></div>
-  </section>
-
-  <!-- Categories Section -->
-  <section class="categories-section">
-    <h2 class="section-title" data-i18n="categoriesTitle">
-      <span>🏷️</span> קטגוריות פופולריות
-    </h2>
-    <div class="categories-grid" id="categoriesGrid"></div>
   </section>
 
   <!-- How it works -->
@@ -582,6 +579,6 @@
     </div>
   </div>
 
-  <script src="js/app.js?v=20260319c"></script>
+  <script src="js/app.js?v=20260319d"></script>
 </body>
 </html>

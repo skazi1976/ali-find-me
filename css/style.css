@@ -897,7 +897,7 @@ body {
 /* ---- Trending Section ---- */
 .trending-section {
   max-width: 1200px;
-  margin: 40px auto;
+  margin: 10px auto 40px;
   padding: 0 20px;
 }
 
