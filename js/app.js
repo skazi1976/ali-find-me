@@ -2416,15 +2416,24 @@ async function searchByImage(base64) {
     const data = await resp.json();
     hideTyping();
 
+    console.log("[IMAGE-SEARCH] Response:", JSON.stringify({
+      description: data.description,
+      query_used: data.query_used,
+      error: data.error,
+      debug: data.debug,
+      total: data.total,
+      productCount: data.products?.length
+    }));
+
     if (data.error || !data.products || data.products.length === 0) {
-      addMessage(lang.imgError);
+      addMessage(lang.imgError + (data.error ? ` (${data.error})` : ""));
       document.getElementById("productGrid").innerHTML = "";
       return;
     }
 
     // Show what was identified
     const desc = data.description || data.query_used || "";
-    addMessage(lang.imgResult.replace("{desc}", desc));
+    addMessage(`🔍 ${lang.imgResult.replace("{desc}", desc)}`);
 
     // Render products
     currentQuery = data.query_used || desc;
