@@ -5,6 +5,7 @@ Allow: /ar/
 Allow: /ru/
 Allow: /es/
 Allow: /pt/
+Allow: /br/
 Allow: /tr/
 Allow: /fr/
 Allow: /home/
