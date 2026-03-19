@@ -1539,43 +1539,6 @@
   </div>
 </section>
 
-<!-- CATEGORIES -->
-<section class="categories">
-  <h2 class="section-title" id="categoriesTitle">🏷️ קטגוריות לחיות מחמד</h2>
-  <div class="categories-grid" id="categoriesGrid">
-    <a class="category-card" onclick="quickSearch('מוצרים לכלבים')">
-      <span class="category-icon">🐶</span>
-      <div class="category-name">כלבים</div>
-      <div class="category-desc">מזון, צעצועים, רצועות, מיטות</div>
-    </a>
-    <a class="category-card" onclick="quickSearch('מוצרים לחתולים')">
-      <span class="category-icon">🐱</span>
-      <div class="category-name">חתולים</div>
-      <div class="category-desc">מזון, חול, מגרדות, צעצועים</div>
-    </a>
-    <a class="category-card" onclick="quickSearch('bird cage accessories')">
-      <span class="category-icon">🐦</span>
-      <div class="category-name">ציפורים</div>
-      <div class="category-desc">כלובים, מזון, אביזרים</div>
-    </a>
-    <a class="category-card" onclick="quickSearch('aquarium fish tank accessories')">
-      <span class="category-icon">🐠</span>
-      <div class="category-name">דגים</div>
-      <div class="category-desc">אקווריומים, פילטרים, מזון</div>
-    </a>
-    <a class="category-card" onclick="quickSearch('hamster cage wheel accessories')">
-      <span class="category-icon">🐹</span>
-      <div class="category-name">מכרסמים</div>
-      <div class="category-desc">כלובים, גלגלים, מזון</div>
-    </a>
-    <a class="category-card" onclick="quickSearch('rabbit bunny supplies accessories')">
-      <span class="category-icon">🐰</span>
-      <div class="category-name">שפנים</div>
-      <div class="category-desc">כלובים, מזון, צעצועים</div>
-    </a>
-  </div>
-</section>
-
 <!-- LOADING -->
 <div class="loading" id="loading">
   <div class="spinner">🤖</div>
@@ -1588,7 +1551,7 @@
   <div class="no-results-text" id="noResultsText">לא נמצאו תוצאות. נסו חיפוש אחר!</div>
 </div>
 
-<!-- RESULTS -->
+<!-- RESULTS — moved ABOVE categories so products are visible immediately -->
 <section class="results-section" id="resultsSection">
   <div class="results-header">
     <div>
@@ -1600,6 +1563,30 @@
   <div class="products-grid" id="productsGrid"></div>
   <div class="load-more-wrap" id="loadMoreWrap">
     <button class="load-more-btn" onclick="loadMore()"><span class="load-more-text">🐾 טען עוד מוצרים</span></button>
+  </div>
+</section>
+
+<!-- CATEGORIES — compact inline strip -->
+<section class="categories" style="padding:16px 20px;max-width:900px;margin:0 auto;">
+  <div class="categories-grid" id="categoriesGrid" style="display:flex;flex-wrap:wrap;justify-content:center;gap:8px;">
+    <a class="category-card" onclick="quickSearch('מוצרים לכלבים')" style="display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:20px;background:#fff;border:1px solid #eee;cursor:pointer;font-size:14px;min-width:auto;text-decoration:none;color:#333;">
+      <span>🐶</span><span>כלבים</span>
+    </a>
+    <a class="category-card" onclick="quickSearch('מוצרים לחתולים')" style="display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:20px;background:#fff;border:1px solid #eee;cursor:pointer;font-size:14px;min-width:auto;text-decoration:none;color:#333;">
+      <span>🐱</span><span>חתולים</span>
+    </a>
+    <a class="category-card" onclick="quickSearch('bird cage accessories')" style="display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:20px;background:#fff;border:1px solid #eee;cursor:pointer;font-size:14px;min-width:auto;text-decoration:none;color:#333;">
+      <span>🐦</span><span>ציפורים</span>
+    </a>
+    <a class="category-card" onclick="quickSearch('aquarium fish tank accessories')" style="display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:20px;background:#fff;border:1px solid #eee;cursor:pointer;font-size:14px;min-width:auto;text-decoration:none;color:#333;">
+      <span>🐠</span><span>דגים</span>
+    </a>
+    <a class="category-card" onclick="quickSearch('hamster cage wheel accessories')" style="display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:20px;background:#fff;border:1px solid #eee;cursor:pointer;font-size:14px;min-width:auto;text-decoration:none;color:#333;">
+      <span>🐹</span><span>מכרסמים</span>
+    </a>
+    <a class="category-card" onclick="quickSearch('rabbit bunny supplies accessories')" style="display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:20px;background:#fff;border:1px solid #eee;cursor:pointer;font-size:14px;min-width:auto;text-decoration:none;color:#333;">
+      <span>🐰</span><span>שפנים</span>
+    </a>
   </div>
 </section>
 
@@ -1827,6 +1814,8 @@ async function autoLoadPopularProducts() {
       grid.innerHTML = '';
       renderProducts(allProducts.slice(0, 20), false);
       if (titleEl) titleEl.textContent = `🔥 ${allProducts.length > 20 ? 20 : allProducts.length} המוצרים הכי נמכרים`;
+      // Scroll to products so user sees them immediately
+      setTimeout(() => section.scrollIntoView({ behavior: 'smooth', block: 'start' }), 300);
     } else {
       grid.innerHTML = '';
     }
