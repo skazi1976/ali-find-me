@@ -58,7 +58,7 @@
   <link rel="preconnect" href="https://ali-find-me.ohad1.workers.dev">
   <link rel="dns-prefetch" href="https://ae01.alicdn.com">
   <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&family=Assistant:wght@300;400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=20260319e">
+  <link rel="stylesheet" href="css/style.css?v=20260319f">
 
   <script type="application/ld+json">
   {
@@ -272,6 +272,11 @@
       <!-- Suggestion chips -->
       <div class="chips-container" id="chipsContainer"></div>
 
+      <!-- Categories (inside hero, right after search) -->
+      <div class="categories-section" style="margin-top:16px">
+        <div class="categories-grid" id="categoriesGrid"></div>
+      </div>
+
       <!-- Welcome message -->
       <div class="chat-messages" id="chatMessages">
         <div class="message bot-message">
@@ -288,15 +293,7 @@
     </div>
   </section>
 
-  <!-- Categories Section (right below search) -->
-  <section class="categories-section">
-    <h2 class="section-title" data-i18n="categoriesTitle">
-      <span>🏷️</span> קטגוריות פופולריות
-    </h2>
-    <div class="categories-grid" id="categoriesGrid"></div>
-  </section>
-
-  <!-- Trending Section (no title, right after categories) -->
+  <!-- Trending Section (right after hero) -->
   <section class="trending-section" id="trendingSection">
     <div class="product-grid trending-grid" id="trendingGrid"></div>
   </section>
@@ -579,6 +576,6 @@
     </div>
   </div>
 
-  <script src="js/app.js?v=20260319e"></script>
+  <script src="js/app.js?v=20260319f"></script>
 </body>
 </html>
