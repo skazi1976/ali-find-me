@@ -1183,18 +1183,22 @@
       .navbar-brand .logo-text { font-size: 18px; }
       .navbar-brand .logo-icon { font-size: 24px; }
       .hero { padding: 25px 16px 15px; }
-      .hero-title { font-size: 20px; white-space: nowrap; margin-bottom: 8px; }
+      .hero-title { font-size: 28px; white-space: nowrap; margin-bottom: 8px; }
       .hero-subtitle { display: none; }
       .ai-badge { display: none; }
       .hero::before { font-size: 28px; letter-spacing: 8px; }
       .search-btn { padding: 10px 14px; font-size: 13px; }
       .search-btn span:not(.icon) { display: none; }
       .search-btn .icon { font-size: 20px; }
-      .chips { gap: 4px; }
-      .chip { padding: 5px 10px; font-size: 11px; gap: 3px; }
+      .chips { gap: 4px; flex-wrap: nowrap; overflow-x: auto; justify-content: flex-start; }
+      .chip { padding: 5px 10px; font-size: 11px; gap: 3px; white-space: nowrap; flex-shrink: 0; }
       .popular-label { font-size: 13px; margin-bottom: 4px; }
-      .categories-grid { gap: 6px; }
-      .category-card { padding: 6px 12px; font-size: 12px; }
+      .popular-searches { margin-bottom: 10px !important; }
+      .ai-search-banner { margin-bottom: 4px; padding: 8px 14px; font-size: 12px; }
+      .results-section { padding-top: 0; }
+      .categories-grid { gap: 6px; flex-wrap: nowrap !important; overflow-x: auto; justify-content: flex-start !important; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+      .categories-grid::-webkit-scrollbar { display: none; }
+      .category-card { padding: 6px 12px; font-size: 12px; white-space: nowrap; flex-shrink: 0; }
       .category-name { font-size: 12px; }
       .category-icon { font-size: 16px; }
       .products-grid { grid-template-columns: repeat(3, 1fr); gap: 6px; }
@@ -1218,8 +1222,8 @@
       .whatsapp-fab-label { display: none; }
     }
     @media (max-width: 380px) {
-      .hero-title { font-size: 18px; white-space: nowrap; }
-      .chips { max-height: 60px; }
+      .hero-title { font-size: 24px; white-space: nowrap; }
+      .chips { max-height: none; }
       .chip { padding: 4px 8px; font-size: 10px; }
       .products-grid { grid-template-columns: repeat(3, 1fr); gap: 4px; }
       .product-info { padding: 4px; }
