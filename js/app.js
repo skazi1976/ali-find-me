@@ -1750,7 +1750,7 @@ function renderCategories(categories) {
   const grid = document.getElementById("categoriesGrid");
   const lang = currentLang;
   grid.innerHTML = categories.map(cat => {
-    const name = lang === "en" ? (cat.nameEn || cat.name) : cat.name;
+    const name = (lang === "he" || lang === "ar") ? cat.name : (cat.nameEn || cat.name);
     const keyword = cat.keywords?.[0] || cat.name;
     return `
       <div class="category-card" onclick="chipClick('${keyword.replace(/'/g, "\\'")}')">
