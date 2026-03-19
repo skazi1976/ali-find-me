@@ -1,4 +1,4 @@
-const CACHE_NAME = 'ali-findme-v26';
+const CACHE_NAME = 'ali-findme-v27';
 const STATIC_ASSETS = [
   '/',
   '/index.html',
@@ -49,6 +49,12 @@ self.addEventListener('activate', event => {
 // Fetch strategy
 self.addEventListener('fetch', event => {
   const url = new URL(event.request.url);
+
+  // Landing pages (/pets/, /br/, /home/): ALWAYS network-only, never cache
+  if (url.pathname.startsWith('/pets/') || url.pathname.startsWith('/br/') || url.pathname.startsWith('/home/')) {
+    event.respondWith(fetch(event.request));
+    return;
+  }
 
   // API calls: network-only
   if (url.hostname.includes('ali-findme-api') || url.hostname.includes('cloudflare')) {
