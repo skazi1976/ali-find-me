@@ -1458,6 +1458,14 @@
 </head>
 <body>
 
+<!-- Trust Bar -->
+<div id="petTrustBar" style="background:linear-gradient(135deg,#FF6B35,#E85D2C);color:#fff;padding:10px 16px;text-align:center;font-size:13px;font-weight:600;display:flex;justify-content:center;gap:12px;flex-wrap:wrap;direction:rtl;">
+  <span>🚚 משלוח חינם</span><span style="opacity:0.5">|</span>
+  <span>🔒 קנייה בטוחה</span><span style="opacity:0.5">|</span>
+  <span>🇮🇱 משלוח לישראל</span><span style="opacity:0.5">|</span>
+  <span>🐾 מחירים בשקלים</span>
+</div>
+
 <!-- NAVBAR -->
 <nav class="navbar">
   <a href="/pets/" class="navbar-brand">
@@ -1759,13 +1767,16 @@ let currentPage = 1;
 let totalResults = 0;
 let isLoading = false;
 
-// Init — check URL params
+// Init — check URL params + auto-load products for landing page
 (function init() {
   const params = new URLSearchParams(location.search);
   const q = params.get('q');
   if (q) {
     document.getElementById('searchInput').value = q;
     doSearch();
+  } else {
+    // Auto-load popular pet products (especially for Facebook ad visitors)
+    autoLoadPopularProducts();
   }
 
   // Enter key
@@ -1779,6 +1790,50 @@ let isLoading = false;
     btn.classList.toggle('show', window.scrollY > 400);
   });
 })();
+
+// Auto-load best-selling pet products on page load
+async function autoLoadPopularProducts() {
+  const queries = ['dog toys accessories', 'cat toys supplies', 'pet grooming brush'];
+  const t = window.currentTranslation || { lang: 'he', currency: 'ILS', country: 'IL' };
+  const grid = document.getElementById('productsGrid');
+  const section = document.getElementById('resultsSection');
+  const titleEl = document.getElementById('resultsCount');
+
+  // Show section with title
+  section.classList.add('active');
+  const mainTitle = document.getElementById('resultsTitle');
+  if (mainTitle) mainTitle.textContent = '🔥 המוצרים הכי נמכרים לחיות מחמד';
+  if (titleEl) titleEl.textContent = '';
+
+  grid.innerHTML = '<div style="text-align:center;padding:40px;color:#999;font-size:1.1rem">🐾 טוען מוצרים פופולריים...</div>';
+
+  try {
+    const results = await Promise.all(queries.map(q =>
+      fetch(`${API_BASE}/search?q=${encodeURIComponent(q)}&lang=${t.lang}&currency=${t.currency}&country=${t.country}&page=1&context=pets`)
+        .then(r => r.json())
+        .then(d => d.products || [])
+        .catch(() => [])
+    ));
+
+    // Combine, dedupe by id, sort by orders
+    const seen = new Set();
+    const allProducts = results.flat().filter(p => {
+      if (seen.has(p.id)) return false;
+      seen.add(p.id);
+      return true;
+    }).sort((a, b) => (parseInt(b.orders) || 0) - (parseInt(a.orders) || 0));
+
+    if (allProducts.length > 0) {
+      grid.innerHTML = '';
+      renderProducts(allProducts.slice(0, 20), false);
+      if (titleEl) titleEl.textContent = `🔥 ${allProducts.length > 20 ? 20 : allProducts.length} המוצרים הכי נמכרים`;
+    } else {
+      grid.innerHTML = '';
+    }
+  } catch (e) {
+    grid.innerHTML = '';
+  }
+}
 
 function quickSearch(q) {
   document.getElementById('searchInput').value = q;
