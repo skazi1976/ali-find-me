@@ -1780,7 +1780,14 @@ let isLoading = false;
 
 // Auto-load best-selling pet products on page load
 async function autoLoadPopularProducts() {
-  const queries = ['dog toys accessories', 'cat toys supplies', 'pet grooming brush'];
+  const queries = [
+    'dog leash harness collar',
+    'cat tree tower scratching post',
+    'pet bed dog bed cushion',
+    'automatic pet feeder water fountain',
+    'dog chew toy ball interactive',
+    'cat laser pointer toy feather'
+  ];
   const t = window.currentTranslation || { lang: 'he', currency: 'ILS', country: 'IL' };
   const grid = document.getElementById('productsGrid');
   const section = document.getElementById('resultsSection');
@@ -1798,22 +1805,27 @@ async function autoLoadPopularProducts() {
     const results = await Promise.all(queries.map(q =>
       fetch(`${API_BASE}/search?q=${encodeURIComponent(q)}&lang=${t.lang}&currency=${t.currency}&country=${t.country}&page=1&context=pets`)
         .then(r => r.json())
-        .then(d => d.products || [])
+        .then(d => (d.products || []).slice(0, 4)) // Take only 4 per category for variety
         .catch(() => [])
     ));
 
-    // Combine, dedupe by id, sort by orders
+    // Combine, dedupe by id + dedupe by similar titles, sort by orders
     const seen = new Set();
+    const seenTitles = new Set();
     const allProducts = results.flat().filter(p => {
       if (seen.has(p.id)) return false;
+      // Also dedupe by first 3 words of title to avoid similar products
+      const titleKey = (p.title || '').toLowerCase().split(/\s+/).slice(0, 3).join(' ');
+      if (seenTitles.has(titleKey)) return false;
       seen.add(p.id);
+      seenTitles.add(titleKey);
       return true;
     }).sort((a, b) => (parseInt(b.orders) || 0) - (parseInt(a.orders) || 0));
 
     if (allProducts.length > 0) {
       grid.innerHTML = '';
-      renderProducts(allProducts.slice(0, 20), false);
-      if (titleEl) titleEl.textContent = `🔥 ${allProducts.length > 20 ? 20 : allProducts.length} המוצרים הכי נמכרים`;
+      renderProducts(allProducts.slice(0, 24), false);
+      if (titleEl) titleEl.textContent = `🔥 ${Math.min(allProducts.length, 24)} המוצרים הכי נמכרים`;
       // Scroll to products so user sees them immediately
       setTimeout(() => section.scrollIntoView({ behavior: 'smooth', block: 'start' }), 300);
     } else {
