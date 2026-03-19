@@ -2,14 +2,34 @@
 <html lang="he" dir="rtl">
 <head>
   <meta charset="UTF-8">
-  <!-- Service Worker with forced update -->
+  <!-- Service Worker: kill old, install new -->
   <script>
-  if('serviceWorker' in navigator){
-    navigator.serviceWorker.register('/sw.js', {updateViaCache:'none'}).then(function(reg){
-      // Check for updates every page load
-      reg.update();
+  (function(){
+    if(!('serviceWorker' in navigator)) return;
+    // Step 1: Unregister ALL old service workers (including sw.js?v=19)
+    navigator.serviceWorker.getRegistrations().then(function(regs){
+      var hadOld = false;
+      regs.forEach(function(r){
+        if(r.active && r.active.scriptURL.indexOf('v=') !== -1){
+          hadOld = true;
+          r.unregister();
+        }
+      });
+      // Step 2: Clear ALL caches
+      caches.keys().then(function(keys){
+        keys.forEach(function(k){ caches.delete(k); });
+      });
+      // Step 3: Register clean SW (no version param)
+      navigator.serviceWorker.register('/sw.js', {updateViaCache:'none'}).then(function(reg){
+        reg.update();
+        // Step 4: If we killed an old SW, reload once to get fresh content
+        if(hadOld && !sessionStorage.getItem('sw_refreshed')){
+          sessionStorage.setItem('sw_refreshed','1');
+          setTimeout(function(){ location.reload(); }, 500);
+        }
+      });
     });
-  }
+  })();
   </script>
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-18NLX6KS89"></script>
@@ -53,7 +73,7 @@
   <link rel="preconnect" href="https://ali-find-me.ohad1.workers.dev">
   <link rel="dns-prefetch" href="https://ae01.alicdn.com">
   <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&family=Assistant:wght@300;400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=20260319g">
+  <link rel="stylesheet" href="css/style.css?v=20260319h">
 
   <script type="application/ld+json">
   {
@@ -574,6 +594,6 @@
     </div>
   </div>
 
-  <script src="js/app.js?v=20260319g"></script>
+  <script src="js/app.js?v=20260319h"></script>
 </body>
 </html>
