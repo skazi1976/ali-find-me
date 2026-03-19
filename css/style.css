@@ -902,8 +902,8 @@ body {
 }
 
 .trending-grid {
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)) !important;
-  gap: 12px !important;
+  grid-template-columns: repeat(3, 1fr) !important;
+  gap: 14px !important;
 }
 
 /* ---- Daily Deals ---- */

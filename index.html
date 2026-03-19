@@ -58,7 +58,7 @@
   <link rel="preconnect" href="https://ali-find-me.ohad1.workers.dev">
   <link rel="dns-prefetch" href="https://ae01.alicdn.com">
   <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&family=Assistant:wght@300;400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=20260319d">
+  <link rel="stylesheet" href="css/style.css?v=20260319e">
 
   <script type="application/ld+json">
   {
@@ -288,6 +288,19 @@
     </div>
   </section>
 
+  <!-- Categories Section (right below search) -->
+  <section class="categories-section">
+    <h2 class="section-title" data-i18n="categoriesTitle">
+      <span>🏷️</span> קטגוריות פופולריות
+    </h2>
+    <div class="categories-grid" id="categoriesGrid"></div>
+  </section>
+
+  <!-- Trending Section (no title, right after categories) -->
+  <section class="trending-section" id="trendingSection">
+    <div class="product-grid trending-grid" id="trendingGrid"></div>
+  </section>
+
   <!-- Results Section (hidden until search) -->
   <section class="results-section" id="resultsSection" style="display:none">
     <div class="results-container">
@@ -339,19 +352,6 @@
       <button class="rv-clear-btn" onclick="clearViewed()" data-i18n="clearViewed">נקה</button>
     </div>
     <div class="recently-viewed-grid" id="recentlyViewedGrid"></div>
-  </section>
-
-  <!-- Categories Section -->
-  <section class="categories-section">
-    <h2 class="section-title" data-i18n="categoriesTitle">
-      <span>🏷️</span> קטגוריות פופולריות
-    </h2>
-    <div class="categories-grid" id="categoriesGrid"></div>
-  </section>
-
-  <!-- Trending Section (right after categories, no title) -->
-  <section class="trending-section" id="trendingSection">
-    <div class="product-grid trending-grid" id="trendingGrid"></div>
   </section>
 
   <!-- Daily Deals Section -->
@@ -579,6 +579,6 @@
     </div>
   </div>
 
-  <script src="js/app.js?v=20260319d"></script>
+  <script src="js/app.js?v=20260319e"></script>
 </body>
 </html>
