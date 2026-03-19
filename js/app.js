@@ -1303,7 +1303,16 @@ const HE_EN_DICT = {
   "בקבוק": "bottle", "כוס": "cup", "צלחת": "plate",
   "צעצוע": "toy", "צעצועים": "toys", "לגו": "lego", "בובה": "doll",
   "תינוק": "baby", "עגלה": "stroller", "מוצץ": "pacifier",
-  "כלב": "dog", "חתול": "cat", "חיות מחמד": "pets",
+  "כלב": "dog", "חתול": "cat", "חיות מחמד": "pets", "כלבים": "dogs", "חתולים": "cats",
+  "מכנסיים לכלב": "dog pants clothes", "בגדים לכלב": "dog clothes apparel", "בגדים לכלבים": "dog clothes apparel",
+  "מעיל לכלב": "dog jacket coat clothes", "חולצה לכלב": "dog shirt clothes", "סוודר לכלב": "dog sweater clothes",
+  "צעצוע לכלב": "dog toy chew", "צעצועים לכלב": "dog toys", "צעצועים לכלבים": "dog toys",
+  "רצועה לכלב": "dog leash harness", "רצועה לכלבים": "dog leash", "קולר לכלב": "dog collar",
+  "מיטה לכלב": "dog bed", "מזון לכלב": "dog food treats", "חטיפים לכלב": "dog treats snacks",
+  "צעצוע לחתול": "cat toy interactive", "צעצועים לחתול": "cat toys", "צעצועים לחתולים": "cat toys",
+  "מזון לחתולים": "cat food treats", "מזון לחתול": "cat food", "חול לחתול": "cat litter",
+  "מיטה לחתול": "cat bed", "עץ חתולים": "cat tree tower scratching post", "עץ לחתול": "cat tree tower",
+  "בגדים לחתול": "cat clothes costume", "קולר לחתול": "cat collar",
   "מדבקות": "stickers", "מדבקה": "sticker",
   "פנס": "flashlight", "סוללה": "battery",
   "אופניים": "bicycle", "קורקינט": "scooter",
@@ -1333,9 +1342,20 @@ function translateQuery(query) {
     }
   }
 
-  // Then single words
+  // Then single words — strip Hebrew prefixes (ל,ב,ה,מ,ו,כ,ש) if word not found
+  const HE_PREFIXES = ["ל","ב","ה","מ","ו","כ","ש"];
   const words = translated.split(/\s+/);
-  const result = words.map(w => HE_EN_DICT[w] || w).join(" ");
+  const result = words.map(w => {
+    if (HE_EN_DICT[w]) return HE_EN_DICT[w];
+    // Try stripping one Hebrew prefix
+    for (const p of HE_PREFIXES) {
+      if (w.startsWith(p) && w.length > 2) {
+        const stripped = w.slice(p.length);
+        if (HE_EN_DICT[stripped]) return HE_EN_DICT[stripped];
+      }
+    }
+    return w;
+  }).join(" ");
 
   // If any Hebrew chars remain, return original (let API handle it)
   // But if we translated everything, use the English version
