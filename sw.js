@@ -1,124 +1,45 @@
-const CACHE_NAME = 'ali-findme-v31';
-const STATIC_ASSETS = [
-  '/',
-  '/index.html',
-  '/css/style.css',
-  '/js/app.js',
-  '/manifest.json',
-  '/icons/icon-192.png',
-  '/icons/icon-512.png',
-  '/icons/logo.png',
-  '/en/index.html',
-  '/ar/index.html',
-  '/ru/index.html',
-  '/es/index.html',
-  '/pt/index.html',
-  '/tr/index.html',
-  '/fr/index.html',
-  '/privacy.html',
-  '/terms.html',
-  '/blog/index.html',
-  '/blog/aliexpress-shopping-guide-2026.html',
-  '/blog/he/tips-kniya-ali-express-2026.html',
-  '/blog/ar/dalil-tassawuq-aliexpress-2026.html',
-  '/blog/ru/guide-pokupki-aliexpress-2026.html',
-  '/blog/es/guia-compras-aliexpress-2026.html',
-  '/blog/pt/guia-compras-aliexpress-2026.html',
-  '/blog/tr/alisveris-rehberi-aliexpress-2026.html',
-  '/blog/fr/guide-achats-aliexpress-2026.html',
-];
+const CACHE_NAME = 'ali-findme-v32';
 
-// Install: cache static assets + force activate immediately
+// Install: skip waiting immediately, DON'T cache anything upfront
 self.addEventListener('install', event => {
-  event.waitUntil(
-    caches.open(CACHE_NAME)
-      .then(cache => cache.addAll(STATIC_ASSETS))
-      .then(() => self.skipWaiting())
-  );
+  self.skipWaiting();
 });
 
 // Activate: delete ALL old caches + take control immediately
 self.addEventListener('activate', event => {
   event.waitUntil(
     caches.keys().then(keys =>
-      Promise.all(keys.filter(k => k !== CACHE_NAME).map(k => caches.delete(k)))
+      Promise.all(keys.map(k => caches.delete(k)))
     ).then(() => self.clients.claim())
   );
 });
 
-// Fetch strategy
+// Fetch: ALWAYS network-first, cache as backup only
 self.addEventListener('fetch', event => {
   const url = new URL(event.request.url);
 
-  // Landing pages (/pets/, /br/, /home/): ALWAYS network-only, never cache
-  if (url.pathname.startsWith('/pets/') || url.pathname.startsWith('/br/') || url.pathname.startsWith('/home/')) {
-    event.respondWith(fetch(event.request));
+  // API calls, analytics, external: network only
+  if (!url.origin.includes('alifindme') && !url.origin.includes('github.io')) {
     return;
   }
 
-  // API calls: network-only
-  if (url.hostname.includes('ali-findme-api') || url.hostname.includes('cloudflare')) {
-    event.respondWith(
-      fetch(event.request)
-        .catch(() => caches.match(event.request))
-    );
-    return;
-  }
-
-  // Google Analytics: always network, never cache
-  if (url.hostname.includes('googletagmanager.com') || url.hostname.includes('google-analytics.com')) {
-    event.respondWith(fetch(event.request));
-    return;
-  }
-
-  // Google Fonts: cache-first (they never change)
-  if (url.hostname.includes('googleapis.com') || url.hostname.includes('gstatic.com')) {
-    event.respondWith(
-      caches.match(event.request).then(cached => {
-        if (cached) return cached;
-        return fetch(event.request).then(resp => {
-          const clone = resp.clone();
-          caches.open(CACHE_NAME).then(cache => cache.put(event.request, clone));
-          return resp;
-        });
-      })
-    );
-    return;
-  }
-
-  // HTML, CSS, JS: network-first (always get latest version)
-  if (event.request.mode === 'navigate' ||
-      url.pathname.endsWith('.html') ||
-      url.pathname.endsWith('.css') ||
-      url.pathname.endsWith('.js') ||
-      url.pathname === '/') {
-    event.respondWith(
-      fetch(event.request).then(resp => {
-        if (resp.status === 200) {
-          const clone = resp.clone();
-          caches.open(CACHE_NAME).then(cache => cache.put(event.request, clone));
-        }
-        return resp;
-      }).catch(() => caches.match(event.request))
-    );
-    return;
-  }
-
-  // Images & other assets: cache-first
+  // Everything: network-first
   event.respondWith(
-    caches.match(event.request).then(cached => {
-      if (cached) return cached;
-      return fetch(event.request).then(resp => {
-        if (resp.status === 200 && url.origin === self.location.origin) {
-          const clone = resp.clone();
-          caches.open(CACHE_NAME).then(cache => cache.put(event.request, clone));
-        }
-        return resp;
-      });
-    }).catch(() => {
-      if (event.request.mode === 'navigate') {
-        return caches.match('/index.html');
+    fetch(event.request).then(resp => {
+      // Cache successful responses for offline fallback
+      if (resp.status === 200 && event.request.method === 'GET') {
+        const clone = resp.clone();
+        caches.open(CACHE_NAME).then(cache => cache.put(event.request, clone));
       }
+      return resp;
+    }).catch(() => {
+      // Offline: try cache
+      return caches.match(event.request).then(cached => {
+        if (cached) return cached;
+        if (event.request.mode === 'navigate') {
+          return caches.match('/index.html');
+        }
+      });
     })
   );
 });
