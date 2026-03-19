@@ -1778,7 +1778,7 @@ function renderCategories(categories) {
 }
 
 function renderTrending(products) {
-  document.getElementById("trendingGrid").innerHTML = products.slice(0, 8).map(p => buildProductCard(p)).join("");
+  document.getElementById("trendingGrid").innerHTML = products.slice(0, 18).map(p => buildProductCard(p)).join("");
 }
 
 function renderRelatedSearches(related) {
