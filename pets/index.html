@@ -1784,62 +1784,79 @@ let isLoading = false;
   });
 })();
 
-// Auto-load best-selling pet products on page load
+// Auto-load best-selling pet products — progressive loading for speed
 async function autoLoadPopularProducts() {
-  const queries = [
+  // Wave 1: fastest categories (show products ASAP)
+  const wave1 = [
     'dog leash harness collar',
-    'cat tree tower scratching post',
-    'pet bed dog bed cushion',
-    'automatic pet feeder water fountain',
-    'dog chew toy ball interactive',
-    'cat laser pointer toy feather'
+    'cat toys feather laser interactive',
+    'pet bed dog bed cushion'
+  ];
+  // Wave 2: more variety (loads in background)
+  const wave2 = [
+    'automatic pet feeder water fountain dispenser',
+    'cat tree tower scratching post sisal',
+    'dog chew toy ball rubber squeaky',
+    'pet grooming clippers nail trimmer',
+    'cat litter box self cleaning',
+    'dog clothes costume outfit'
   ];
   const t = window.currentTranslation || { lang: 'he', currency: 'ILS', country: 'IL' };
   const grid = document.getElementById('productsGrid');
   const section = document.getElementById('resultsSection');
   const titleEl = document.getElementById('resultsCount');
-
-  // Show section with title
-  section.classList.add('active');
   const mainTitle = document.getElementById('resultsTitle');
+
+  section.classList.add('active');
   if (mainTitle) mainTitle.textContent = '🔥 המוצרים הכי נמכרים לחיות מחמד';
   if (titleEl) titleEl.textContent = '';
-
   grid.innerHTML = '<div style="text-align:center;padding:40px;color:#999;font-size:1.1rem">🐾 טוען מוצרים פופולריים...</div>';
 
-  try {
-    const results = await Promise.all(queries.map(q =>
-      fetch(`${API_BASE}/search?q=${encodeURIComponent(q)}&lang=${t.lang}&currency=${t.currency}&country=${t.country}&page=1&context=pets`)
-        .then(r => r.json())
-        .then(d => (d.products || []).slice(0, 4)) // Take only 4 per category for variety
-        .catch(() => [])
-    ));
+  const seen = new Set();
+  const seenTitles = new Set();
+  let allProducts = [];
 
-    // Combine, dedupe by id + dedupe by similar titles, sort by orders
-    const seen = new Set();
-    const seenTitles = new Set();
-    const allProducts = results.flat().filter(p => {
+  function dedupe(products) {
+    return products.filter(p => {
       if (seen.has(p.id)) return false;
-      // Also dedupe by first 3 words of title to avoid similar products
       const titleKey = (p.title || '').toLowerCase().split(/\s+/).slice(0, 3).join(' ');
       if (seenTitles.has(titleKey)) return false;
       seen.add(p.id);
       seenTitles.add(titleKey);
       return true;
-    }).sort((a, b) => (parseInt(b.orders) || 0) - (parseInt(a.orders) || 0));
+    });
+  }
 
+  function fetchCategory(q) {
+    const params = new URLSearchParams({ q, lang: t.lang, currency: t.currency, country: t.country, page: '1', context: 'pets' });
+    return fetch(`${API_BASE}/search?${params}`)
+      .then(r => r.json())
+      .then(d => (d.products || []).slice(0, 6))
+      .catch(() => []);
+  }
+
+  // WAVE 1: Load first 3 categories and show immediately
+  try {
+    const results1 = await Promise.all(wave1.map(fetchCategory));
+    allProducts = dedupe(results1.flat()).sort((a, b) => (parseInt(b.orders) || 0) - (parseInt(a.orders) || 0));
     if (allProducts.length > 0) {
       grid.innerHTML = '';
-      renderProducts(allProducts.slice(0, 24), false);
-      if (titleEl) titleEl.textContent = `🔥 ${Math.min(allProducts.length, 24)} המוצרים הכי נמכרים`;
-      // Scroll to products so user sees them immediately
+      renderProducts(allProducts, false);
+      if (titleEl) titleEl.textContent = `🔥 ${allProducts.length} המוצרים הכי נמכרים`;
       setTimeout(() => section.scrollIntoView({ behavior: 'smooth', block: 'start' }), 300);
-    } else {
-      grid.innerHTML = '';
     }
-  } catch (e) {
-    grid.innerHTML = '';
-  }
+  } catch (e) {}
+
+  // WAVE 2: Load more categories in background, append without clearing
+  try {
+    const results2 = await Promise.all(wave2.map(fetchCategory));
+    const newProducts = dedupe(results2.flat()).sort((a, b) => (parseInt(b.orders) || 0) - (parseInt(a.orders) || 0));
+    if (newProducts.length > 0) {
+      renderProducts(newProducts, false);
+      allProducts = allProducts.concat(newProducts);
+      if (titleEl) titleEl.textContent = `🔥 ${allProducts.length} המוצרים הכי נמכרים`;
+    }
+  } catch (e) {}
 }
 
 function quickSearch(q) {
