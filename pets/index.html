@@ -2307,9 +2307,12 @@ function dismissInstallBanner(permanent) {
   }, 300);
 }
 
-// Register service worker
+// Unregister service worker — landing page must always show fresh content
 if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('../sw.js').catch(() => {});
+  navigator.serviceWorker.getRegistrations().then(regs => {
+    regs.forEach(r => r.unregister());
+  });
+  caches.keys().then(keys => keys.forEach(k => caches.delete(k)));
 }
 
 // ============================================================
