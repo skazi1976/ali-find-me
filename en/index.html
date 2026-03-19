@@ -5,18 +5,12 @@
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-18NLX6KS89"></script>
   <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-18NLX6KS89');</script>
   <meta charset="UTF-8">
-  <!-- Force clear old cache -->
+  <!-- Service Worker with forced update -->
   <script>
   if('serviceWorker' in navigator){
-    navigator.serviceWorker.getRegistrations().then(function(regs){
-      regs.forEach(function(r){r.unregister()});
+    navigator.serviceWorker.register('/sw.js', {updateViaCache:'none'}).then(function(reg){
+      reg.update();
     });
-    caches.keys().then(function(keys){
-      keys.forEach(function(k){caches.delete(k)});
-    });
-    setTimeout(function(){
-      navigator.serviceWorker.register('/sw.js?v=19');
-    },1000);
   }
   </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=5">
@@ -58,7 +52,7 @@
   <link rel="preconnect" href="https://ali-find-me.ohad1.workers.dev">
   <link rel="dns-prefetch" href="https://ae01.alicdn.com">
   <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&family=Assistant:wght@300;400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../css/style.css?v=20260319a">
+  <link rel="stylesheet" href="../css/style.css?v=20260319g">
 
   <script type="application/ld+json">
   {
@@ -515,6 +509,6 @@
     </div>
   </div>
 
-  <script src="../js/app.js?v=20260319a"></script>
+  <script src="../js/app.js?v=20260319g"></script>
 </body>
 </html>
