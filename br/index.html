@@ -227,6 +227,52 @@
     .br-cat-icon { font-size: 2rem; display: block; margin-bottom: 8px; }
     .br-cat-name { font-size: 0.85rem; font-weight: 600; }
 
+    .br-cat-section {
+      padding: 20px 16px 10px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .br-cat-section h2 {
+      font-size: 1.3rem;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .br-cat-section .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 16px;
+    }
+    .br-coupon-banner {
+      background: linear-gradient(135deg, #FF6B6B, #FF8E53);
+      color: #fff;
+      text-align: center;
+      padding: 20px 16px;
+      margin: 10px 0;
+    }
+    .br-coupon-banner h3 {
+      font-size: 1.3rem;
+      margin-bottom: 8px;
+    }
+    .br-coupon-banner p {
+      font-size: 0.95rem;
+      opacity: 0.9;
+      margin-bottom: 12px;
+    }
+    .br-coupon-btn {
+      display: inline-block;
+      background: #fff;
+      color: #FF6B6B;
+      padding: 10px 28px;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 1rem;
+      text-decoration: none;
+      transition: transform 0.2s;
+    }
+    .br-coupon-btn:hover { transform: scale(1.05); }
+
     .br-discount-banner {
       background: linear-gradient(135deg, #FFDF00, #FFB300);
       color: #1a1a1a;
@@ -315,6 +361,31 @@
 
   <section class="daily-deals-section" id="dailyDealsSection" style="display:none"><h2 class="section-title" data-i18n="dailyDealsTitle">⏰ Ofertas do dia</h2><div class="deals-countdown" id="dealsCountdown"><span class="deals-ends-label" data-i18n="dealsEndsIn">Termina em</span><span class="countdown-timer" id="countdownTimer">00:00:00</span></div><div class="product-grid deals-grid" id="dealsGrid"></div></section>
 
+  <!-- Category: Moda Feminina -->
+  <div class="br-cat-section">
+    <h2>👗 Moda Feminina — Mais Vendidos</h2>
+    <div class="product-grid" id="brModaGrid"><div style="text-align:center;padding:40px;color:#999">Carregando ofertas...</div></div>
+  </div>
+
+  <!-- Coupon Banner -->
+  <div class="br-coupon-banner">
+    <h3>🎁 Cupons de Desconto AliExpress</h3>
+    <p>Pegue cupons exclusivos e economize ainda mais nas suas compras!</p>
+    <a href="https://s.click.aliexpress.com/e/_oBbNzoG" target="_blank" rel="noopener" class="br-coupon-btn">Pegar Cupons Grátis →</a>
+  </div>
+
+  <!-- Category: Eletrônicos -->
+  <div class="br-cat-section">
+    <h2>📱 Eletrônicos — Ofertas Imperdíveis</h2>
+    <div class="product-grid" id="brEletroGrid"><div style="text-align:center;padding:40px;color:#999">Carregando ofertas...</div></div>
+  </div>
+
+  <!-- Category: Beleza -->
+  <div class="br-cat-section">
+    <h2>💄 Beleza e Cuidados — Preços Incríveis</h2>
+    <div class="product-grid" id="brBelezaGrid"><div style="text-align:center;padding:40px;color:#999">Carregando ofertas...</div></div>
+  </div>
+
   <div class="br-categories">
     <h2>🏷️ Categorias Populares no Brasil</h2>
     <div class="br-cat-grid">
@@ -386,5 +457,34 @@
   <div class="modal-overlay" id="pointsModal" style="display:none" onclick="if(event.target===this)closePointsModal()"><div class="modal-content points-modal"><div class="modal-header"><h2 data-i18n="pointsTitle">Meus pontos</h2><button class="modal-close" onclick="closePointsModal()">&times;</button></div><div class="modal-body" id="pointsModalBody"></div></div></div>
 
   <script src="../js/app.js?v=20260316z"></script>
+  <script>
+  // Auto-load category products for Brazilian landing page
+  (function() {
+    const API = "https://ali-findme-api.ohadf1976.workers.dev";
+    const cats = [
+      { query: "women dress fashion", gridId: "brModaGrid" },
+      { query: "bluetooth earphones TWS", gridId: "brEletroGrid" },
+      { query: "makeup set skincare", gridId: "brBelezaGrid" }
+    ];
+    cats.forEach(cat => {
+      const params = new URLSearchParams({
+        q: cat.query, lang: "pt", currency: "BRL", country: "BR", page: "1"
+      });
+      fetch(`${API}/search?${params}`)
+        .then(r => r.json())
+        .then(data => {
+          const grid = document.getElementById(cat.gridId);
+          if (data.products && data.products.length > 0 && typeof buildProductCard === "function") {
+            grid.innerHTML = data.products.slice(0, 5).map(p => buildProductCard(p)).join("");
+          } else {
+            grid.innerHTML = '<div style="text-align:center;padding:20px;color:#999">Sem ofertas no momento</div>';
+          }
+        })
+        .catch(() => {
+          document.getElementById(cat.gridId).innerHTML = '';
+        });
+    });
+  })();
+  </script>
 </body>
 </html>
