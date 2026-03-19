@@ -1746,11 +1746,28 @@ function renderChips(suggestions) {
   ).join("");
 }
 
+const CATEGORY_TRANSLATIONS = {
+  "Dresses":        { he:"שמלות", ar:"فساتين", ru:"Платья", es:"Vestidos", pt:"Vestidos", tr:"Elbiseler", fr:"Robes", br:"Vestidos" },
+  "Sportswear":     { he:"ספורט", ar:"ملابس رياضية", ru:"Спортивная одежда", es:"Ropa deportiva", pt:"Roupas esportivas", tr:"Spor giyim", fr:"Vêtements de sport", br:"Roupas esportivas" },
+  "Bags":           { he:"תיקים", ar:"حقائب", ru:"Сумки", es:"Bolsos", pt:"Bolsas", tr:"Çantalar", fr:"Sacs", br:"Bolsas" },
+  "Jewelry":        { he:"תכשיטים", ar:"مجوهرات", ru:"Украшения", es:"Joyería", pt:"Joias", tr:"Takı", fr:"Bijoux", br:"Joias" },
+  "Beauty":         { he:"יופי", ar:"جمال", ru:"Красота", es:"Belleza", pt:"Beleza", tr:"Güzellik", fr:"Beauté", br:"Beleza" },
+  "Shoes":          { he:"נעליים", ar:"أحذية", ru:"Обувь", es:"Zapatos", pt:"Sapatos", tr:"Ayakkabılar", fr:"Chaussures", br:"Sapatos" },
+  "Electronics":    { he:"אלקטרוניקה", ar:"إلكترونيات", ru:"Электроника", es:"Electrónica", pt:"Eletrônicos", tr:"Elektronik", fr:"Électronique", br:"Eletrônicos" },
+  "Home & Kitchen": { he:"בית ומטבח", ar:"المنزل والمطبخ", ru:"Дом и кухня", es:"Hogar y cocina", pt:"Casa e cozinha", tr:"Ev ve mutfak", fr:"Maison et cuisine", br:"Casa e cozinha" },
+  "Kids":           { he:"ילדים", ar:"أطفال", ru:"Дети", es:"Niños", pt:"Crianças", tr:"Çocuklar", fr:"Enfants", br:"Crianças" },
+  "Men":            { he:"גברים", ar:"رجال", ru:"Мужчины", es:"Hombres", pt:"Homens", tr:"Erkekler", fr:"Hommes", br:"Homens" },
+  "Tools":          { he:"כלי עבודה", ar:"أدوات", ru:"Инструменты", es:"Herramientas", pt:"Ferramentas", tr:"Aletler", fr:"Outils", br:"Ferramentas" },
+  "Outdoor":        { he:"קמפינג", ar:"خارجي", ru:"Отдых", es:"Aire libre", pt:"Ar livre", tr:"Outdoor", fr:"Plein air", br:"Ar livre" },
+};
+
 function renderCategories(categories) {
   const grid = document.getElementById("categoriesGrid");
   const lang = currentLang;
   grid.innerHTML = categories.map(cat => {
-    const name = (lang === "he" || lang === "ar") ? cat.name : (cat.nameEn || cat.name);
+    const enName = cat.nameEn || cat.name;
+    const name = (CATEGORY_TRANSLATIONS[enName] && CATEGORY_TRANSLATIONS[enName][lang])
+      || (lang === "he" ? cat.name : enName);
     const keyword = cat.keywords?.[0] || cat.name;
     return `
       <div class="category-card" onclick="chipClick('${keyword.replace(/'/g, "\\'")}')">
