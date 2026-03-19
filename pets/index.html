@@ -454,6 +454,7 @@
       display: flex;
       align-items: center;
       gap: 6px;
+      white-space: nowrap;
     }
     .chip:hover {
       background: var(--primary);
@@ -1188,6 +1189,9 @@
       .search-btn { padding: 10px 14px; font-size: 13px; }
       .search-btn span:not(.icon) { display: none; }
       .search-btn .icon { font-size: 20px; }
+      .chips { gap: 4px; max-height: 68px; overflow: hidden; }
+      .chip { padding: 5px 10px; font-size: 11px; gap: 3px; }
+      .popular-label { font-size: 13px; margin-bottom: 4px; }
       .categories-grid { gap: 6px; }
       .category-card { padding: 6px 12px; font-size: 12px; }
       .category-name { font-size: 12px; }
@@ -1213,6 +1217,8 @@
       .whatsapp-fab-label { display: none; }
     }
     @media (max-width: 380px) {
+      .chips { max-height: 60px; }
+      .chip { padding: 4px 8px; font-size: 10px; }
       .products-grid { grid-template-columns: repeat(3, 1fr); gap: 4px; }
       .product-info { padding: 4px; }
       .product-title { font-size: 10px; }
