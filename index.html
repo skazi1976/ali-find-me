@@ -2,18 +2,13 @@
 <html lang="he" dir="rtl">
 <head>
   <meta charset="UTF-8">
-  <!-- Force clear old cache -->
+  <!-- Service Worker with forced update -->
   <script>
   if('serviceWorker' in navigator){
-    navigator.serviceWorker.getRegistrations().then(function(regs){
-      regs.forEach(function(r){r.unregister()});
+    navigator.serviceWorker.register('/sw.js', {updateViaCache:'none'}).then(function(reg){
+      // Check for updates every page load
+      reg.update();
     });
-    caches.keys().then(function(keys){
-      keys.forEach(function(k){caches.delete(k)});
-    });
-    setTimeout(function(){
-      navigator.serviceWorker.register('/sw.js?v=19');
-    },1000);
   }
   </script>
   <!-- Google Analytics -->
