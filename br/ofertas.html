@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="pt-BR" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🔥 Top Ofertas AliExpress Brasil - Até 81% OFF | Ali Find Me</title>
+  <meta name="description" content="As melhores ofertas do AliExpress para o Brasil. Frete grátis, preços em Real, até 81% de desconto. Camisetas, fones, tênis, maquiagem e muito mais!">
+  <link rel="icon" href="/favicon.ico">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; background: #0f0f0f; color: #fff; }
+
+    /* Header */
+    .header {
+      background: linear-gradient(135deg, #ff6a00 0%, #ee0979 100%);
+      padding: 20px;
+      text-align: center;
+    }
+    .header h1 { font-size: 1.6rem; font-weight: 900; margin-bottom: 5px; }
+    .header p { font-size: 0.95rem; opacity: 0.9; }
+    .header .flag { font-size: 1.5rem; }
+
+    /* Timer bar */
+    .timer-bar {
+      background: #1a1a2e;
+      padding: 10px;
+      text-align: center;
+      font-size: 0.85rem;
+      color: #ff6a00;
+      font-weight: 700;
+      border-bottom: 2px solid #ff6a00;
+    }
+    .timer-bar span { color: #fff; }
+
+    /* Stats */
+    .stats {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      padding: 15px;
+      background: #1a1a2e;
+      flex-wrap: wrap;
+    }
+    .stat { text-align: center; }
+    .stat-num { font-size: 1.3rem; font-weight: 800; color: #ff6a00; }
+    .stat-label { font-size: 0.7rem; color: #aaa; }
+
+    /* Products Grid */
+    .products {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 15px;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+    @media (min-width: 768px) {
+      .products { grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    }
+    @media (min-width: 1024px) {
+      .products { grid-template-columns: repeat(4, 1fr); }
+    }
+
+    /* Product Card */
+    .card {
+      background: #1a1a2e;
+      border-radius: 12px;
+      overflow: hidden;
+      transition: transform 0.2s;
+      position: relative;
+    }
+    .card:hover { transform: translateY(-3px); }
+    .card a { text-decoration: none; color: inherit; display: block; }
+
+    .card-badge {
+      position: absolute;
+      top: 8px;
+      left: 8px;
+      background: #ff0040;
+      color: #fff;
+      padding: 3px 8px;
+      border-radius: 6px;
+      font-size: 0.7rem;
+      font-weight: 800;
+      z-index: 2;
+    }
+    .card-orders {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      background: rgba(0,0,0,0.7);
+      color: #ffd700;
+      padding: 3px 7px;
+      border-radius: 6px;
+      font-size: 0.65rem;
+      font-weight: 600;
+      z-index: 2;
+    }
+
+    .card-img {
+      width: 100%;
+      aspect-ratio: 1;
+      object-fit: cover;
+      background: #2a2a3e;
+    }
+
+    .card-body { padding: 10px; }
+    .card-title {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: #e0e0e0;
+      line-height: 1.3;
+      height: 2.6em;
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      margin-bottom: 8px;
+    }
+
+    .card-price {
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+      margin-bottom: 6px;
+    }
+    .price-now {
+      font-size: 1.1rem;
+      font-weight: 900;
+      color: #ff6a00;
+    }
+    .price-was {
+      font-size: 0.75rem;
+      color: #666;
+      text-decoration: line-through;
+    }
+
+    .card-rating {
+      font-size: 0.7rem;
+      color: #ffd700;
+      margin-bottom: 8px;
+    }
+
+    .card-btn {
+      display: block;
+      width: 100%;
+      padding: 8px;
+      background: linear-gradient(135deg, #ff6a00, #ee0979);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-align: center;
+      cursor: pointer;
+    }
+
+    /* Shipping badge */
+    .shipping {
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+      font-size: 0.65rem;
+      color: #4caf50;
+      margin-bottom: 6px;
+    }
+
+    /* Section Title */
+    .section-title {
+      text-align: center;
+      padding: 25px 15px 10px;
+      font-size: 1.2rem;
+      font-weight: 800;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .section-title span { color: #ff6a00; }
+
+    /* CTA Banner */
+    .cta-banner {
+      max-width: 1200px;
+      margin: 20px auto;
+      padding: 20px;
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+      border-radius: 12px;
+      text-align: center;
+      border: 1px solid #ff6a0033;
+      margin-left: 15px;
+      margin-right: 15px;
+    }
+    .cta-banner h3 { font-size: 1.1rem; margin-bottom: 8px; }
+    .cta-banner p { font-size: 0.85rem; color: #aaa; margin-bottom: 12px; }
+    .cta-btn {
+      display: inline-block;
+      padding: 12px 30px;
+      background: linear-gradient(135deg, #ff6a00, #ee0979);
+      color: #fff;
+      text-decoration: none;
+      border-radius: 25px;
+      font-weight: 700;
+      font-size: 0.9rem;
+    }
+
+    /* Footer */
+    .footer {
+      text-align: center;
+      padding: 20px;
+      color: #555;
+      font-size: 0.7rem;
+    }
+    .footer a { color: #ff6a00; text-decoration: none; }
+
+    /* Pulsing animation for badges */
+    @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.7; } }
+    .card-badge { animation: pulse 2s infinite; }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <div class="header">
+    <div class="flag">🇧🇷</div>
+    <h1>Top Ofertas AliExpress Brasil</h1>
+    <p>Os produtos mais vendidos com até 81% OFF + Frete Grátis</p>
+  </div>
+
+  <!-- Timer -->
+  <div class="timer-bar">
+    ⏰ Ofertas por tempo limitado! <span id="timer">Carregando...</span>
+  </div>
+
+  <!-- Stats -->
+  <div class="stats">
+    <div class="stat">
+      <div class="stat-num">100K+</div>
+      <div class="stat-label">Vendidos</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">81%</div>
+      <div class="stat-label">Desconto máx</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">R$</div>
+      <div class="stat-label">Preços em Real</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">🚚</div>
+      <div class="stat-label">Frete Grátis</div>
+    </div>
+  </div>
+
+  <!-- Fashion Section -->
+  <div class="section-title">👕 <span>Moda Masculina</span> - Mais Vendidos</div>
+  <div class="products">
+
+    <div class="card">
+      <a href="https://s.click.aliexpress.com/e/_c39zplxZ" target="_blank" rel="nofollow">
+        <span class="card-badge">-54%</span>
+        <span class="card-orders">🔥 40.7K vendidos</span>
+        <img class="card-img" src="https://ae-pic-a1.aliexpress-media.com/kf/S4c3c73827fa748dc81d7096bae07f136K.jpg" alt="Camiseta Masculina Esportiva" loading="lazy">
+        <div class="card-body">
+          <div class="card-title">Camiseta Masculina Esportiva - Secagem Rápida, Gola Redonda</div>
+          <div class="shipping">🚚 Frete Grátis para o Brasil</div>
+          <div class="card-price">
+            <span class="price-now">R$ 20,03</span>
+            <span class="price-was">R$ 43,55</span>
+          </div>
+          <div class="card-rating">⭐⭐⭐⭐⭐ (40.748 vendidos)</div>
+          <div class="card-btn">🛒 COMPRAR AGORA</div>
+        </div>
+      </a>
+    </div>
+
+    <div class="card">
+      <a href="https://s.click.aliexpress.com/e/_c396Hw4J" target="_blank" rel="nofollow">
+        <span class="card-badge">-59%</span>
+        <span class="card-orders">🔥 26.5K vendidos</span>
+        <img class="card-img" src="https://ae-pic-a1.aliexpress-media.com/kf/S02dc8a3bb10348e8a7d9b649e99e322ex.jpg" alt="Camiseta Secagem Rápida" loading="lazy">
+        <div class="card-body">
+          <div class="card-title">Camiseta Secagem Rápida - Respirável, Caminhada e Corrida</div>
+          <div class="shipping">🚚 Frete Grátis para o Brasil</div>
+          <div class="card-price">
+            <span class="price-now">R$ 20,62</span>
+            <span class="price-was">R$ 50,53</span>
+          </div>
+          <div class="card-rating">⭐⭐⭐⭐⭐ (26.505 vendidos)</div>
+          <div class="card-btn">🛒 COMPRAR AGORA</div>
+        </div>
+      </a>
+    </div>
+
+    <div class="card">
+      <a href="https://s.click.aliexpress.com/e/_c3WDunC3" target="_blank" rel="nofollow">
+        <span class="card-badge">-64%</span>
+        <span class="card-orders">🔥 1.8K vendidos</span>
+        <img class="card-img" src="https://ae-pic-a1.aliexpress-media.com/kf/S0ea8ef986eb649c99aaf783013aa796by.png" alt="Camiseta Compressão" loading="lazy">
+        <div class="card-body">
+          <div class="card-title">Camiseta Compressão Masculina - Manga Curta, Cor Sólida</div>
+          <div class="shipping">🚚 Frete Grátis para o Brasil</div>
+          <div class="card-price">
+            <span class="price-now">R$ 24,89</span>
+            <span class="price-was">R$ 69,14</span>
+          </div>
+          <div class="card-rating">⭐⭐⭐⭐ (1.883 vendidos)</div>
+          <div class="card-btn">🛒 COMPRAR AGORA</div>
+        </div>
+      </a>
+    </div>
+
+    <div class="card">
+      <a href="https://s.click.aliexpress.com/e/_c4lV3w2j" target="_blank" rel="nofollow">
+        <span class="card-badge">9% comissão</span>
+        <span class="card-orders">🔥 243 vendidos</span>
+        <img class="card-img" src="https://ae-pic-a1.aliexpress-media.com/kf/S6212d8d4434942bda71522a5b3d635acn.jpg" alt="Camiseta Seda Gelada" loading="lazy">
+        <div class="card-body">
+          <div class="card-title">Camiseta Seda Gelada - Verão, Tamanho Grande, Solta e Respirável</div>
+          <div class="shipping">🚚 Frete Grátis para o Brasil</div>
+          <div class="card-price">
+            <span class="price-now">R$ 30,00</span>
+            <span class="price-was">R$ 35,71</span>
+          </div>
+          <div class="card-rating">⭐⭐⭐⭐⭐ (243 vendidos)</div>
+          <div class="card-btn">🛒 COMPRAR AGORA</div>
+        </div>
+      </a>
+    </div>
+
+  </div>
+
+  <!-- Electronics Section -->
+  <div class="section-title">🎧 <span>Eletrônicos</span> - Preços Imbatíveis</div>
+  <div class="products">
+
+    <div class="card">
+      <a href="https://s.click.aliexpress.com/e/_c3tWrTs7" target="_blank" rel="nofollow">
+        <span class="card-badge">-51%</span>
+        <span class="card-orders">🔥 17.3K vendidos</span>
+        <img class="card-img" src="https://ae-pic-a1.aliexpress-media.com/kf/Se4140084a7fa4040bc39a1e80cec82bcM.jpg" alt="Cabo USB-C Baseus 100W" loading="lazy">
+        <div class="card-body">
+          <div class="card-title">Cabo USB-C Baseus 100W - Carregamento Rápido iPhone 16/15</div>
+          <div class="shipping">🚚 Frete Grátis para o Brasil</div>
+          <div class="card-price">
+            <span class="price-now">R$ 18,89</span>
+            <span class="price-was">R$ 39,35</span>
+          </div>
+          <div class="card-rating">⭐⭐⭐⭐⭐ (17.374 vendidos)</div>
+          <div class="card-btn">🛒 COMPRAR AGORA</div>
+        </div>
+      </a>
+    </div>
+
+    <div class="card">
+      <a href="https://s.click.aliexpress.com/e/_c3JxDgaF" target="_blank" rel="nofollow">
+        <span class="card-badge">-65%</span>
+        <span class="card-orders">🔥 286 vendidos</span>
+        <img class="card-img" src="https://ae-pic-a1.aliexpress-media.com/kf/Sc6eadbed154841f99afc64d016b34019E.jpg" alt="Fone Bluetooth Esportivo" loading="lazy">
+        <div class="card-body">
+          <div class="card-title">Fone Bluetooth Esportivo ERAZER XT80 - Com Microfone, Sem Fio</div>
+          <div class="shipping">🚚 Frete Grátis para o Brasil</div>
+          <div class="card-price">
+            <span class="price-now">R$ 44,87</span>
+            <span class="price-was">R$ 131,61</span>
+          </div>
+          <div class="card-rating">⭐⭐⭐⭐⭐ (286 vendidos)</div>
+          <div class="card-btn">🛒 COMPRAR AGORA</div>
+        </div>
+      </a>
+    </div>
+
+    <div class="card">
+      <a href="https://s.click.aliexpress.com/e/_c3C1v8wF" target="_blank" rel="nofollow">
+        <span class="card-badge">-45%</span>
+        <span class="card-orders">🔥 308 vendidos</span>
+        <img class="card-img" src="https://ae-pic-a1.aliexpress-media.com/kf/S8e7045b7afb340efab315084688062b6M.jpg" alt="Fone KZ Bluetooth 5.2" loading="lazy">
+        <div class="card-body">
+          <div class="card-title">Fone KZ AZ09 Pro - Bluetooth 5.2, True Wireless, Profissional</div>
+          <div class="shipping">🚚 Frete Grátis para o Brasil</div>
+          <div class="card-price">
+            <span class="price-now">R$ 148,59</span>
+            <span class="price-was">R$ 270,22</span>
+          </div>
+          <div class="card-rating">⭐⭐⭐⭐⭐ (308 vendidos)</div>
+          <div class="card-btn">🛒 COMPRAR AGORA</div>
+        </div>
+      </a>
+    </div>
+
+    <div class="card">
+      <a href="https://s.click.aliexpress.com/e/_c3mttJsL" target="_blank" rel="nofollow">
+        <span class="card-badge">NOVO</span>
+        <span class="card-orders">🔥 176 vendidos</span>
+        <img class="card-img" src="https://ae-pic-a1.aliexpress-media.com/kf/Sa016cae00fe74aea9d585201c082eae7q.jpg" alt="Capa Samsung MagSafe" loading="lazy">
+        <div class="card-body">
+          <div class="card-title">Capa Luxo Samsung Galaxy S25/S24 - MagSafe, Couro Premium</div>
+          <div class="shipping">🚚 Frete Grátis para o Brasil</div>
+          <div class="card-price">
+            <span class="price-now">R$ 25,19</span>
+            <span class="price-was">R$ 25,99</span>
+          </div>
+          <div class="card-rating">⭐⭐⭐⭐ (176 vendidos)</div>
+          <div class="card-btn">🛒 COMPRAR AGORA</div>
+        </div>
+      </a>
+    </div>
+
+  </div>
+
+  <!-- Shoes & Accessories -->
+  <div class="section-title">👟 <span>Tênis & Beleza</span> - Super Descontos</div>
+  <div class="products">
+
+    <div class="card">
+      <a href="https://s.click.aliexpress.com/e/_c37J5en9" target="_blank" rel="nofollow">
+        <span class="card-badge">-81%</span>
+        <span class="card-orders">🔥 253 vendidos</span>
+        <img class="card-img" src="https://ae-pic-a1.aliexpress-media.com/kf/Sb78f654ba46342d2bf5600d46b0865ecn.jpg" alt="Tênis Masculino Luxo" loading="lazy">
+        <div class="card-body">
+          <div class="card-title">Tênis Masculino de Luxo - Corrida, Esportivo, Design Premium</div>
+          <div class="shipping">🚚 Frete Grátis para o Brasil</div>
+          <div class="card-price">
+            <span class="price-now">R$ 71,39</span>
+            <span class="price-was">R$ 396,61</span>
+          </div>
+          <div class="card-rating">⭐⭐⭐⭐⭐ (253 vendidos)</div>
+          <div class="card-btn">🛒 COMPRAR AGORA</div>
+        </div>
+      </a>
+    </div>
+
+    <div class="card">
+      <a href="https://s.click.aliexpress.com/e/_c351ouSb" target="_blank" rel="nofollow">
+        <span class="card-badge">BEST SELLER</span>
+        <span class="card-orders">🔥 502 vendidos</span>
+        <img class="card-img" src="https://ae-pic-a1.aliexpress-media.com/kf/S4a82de775da14df990af36adb976773a8.jpg" alt="Pincel Maquiagem Profissional" loading="lazy">
+        <div class="card-body">
+          <div class="card-title">Pincel de Maquiagem Profissional - Base em Pó, Tamanho Grande</div>
+          <div class="shipping">🚚 Frete Grátis para o Brasil</div>
+          <div class="card-price">
+            <span class="price-now">R$ 13,24</span>
+          </div>
+          <div class="card-rating">⭐⭐⭐⭐⭐ (502 vendidos)</div>
+          <div class="card-btn">🛒 COMPRAR AGORA</div>
+        </div>
+      </a>
+    </div>
+
+    <div class="card">
+      <a href="https://s.click.aliexpress.com/e/_c2zN1i4B" target="_blank" rel="nofollow">
+        <span class="card-badge">TENDÊNCIA</span>
+        <span class="card-orders">🔥 388 vendidos</span>
+        <img class="card-img" src="https://ae-pic-a1.aliexpress-media.com/kf/S56ab104dd8f74a4fadc8a8e3d7b947dbm.jpg" alt="Anel Banhado a Ouro" loading="lazy">
+        <div class="card-body">
+          <div class="card-title">Anel Moda Feminina - Banhado a Ouro 18K, Aço Inoxidável</div>
+          <div class="shipping">🚚 Frete Grátis para o Brasil</div>
+          <div class="card-price">
+            <span class="price-now">R$ 16,40</span>
+            <span class="price-was">R$ 18,55</span>
+          </div>
+          <div class="card-rating">⭐⭐⭐⭐⭐ (388 vendidos)</div>
+          <div class="card-btn">🛒 COMPRAR AGORA</div>
+        </div>
+      </a>
+    </div>
+
+    <div class="card">
+      <a href="https://s.click.aliexpress.com/e/_c4Ko2Ebz" target="_blank" rel="nofollow">
+        <span class="card-badge">9% OFF</span>
+        <span class="card-orders">🔥 195 vendidos</span>
+        <img class="card-img" src="https://ae-pic-a1.aliexpress-media.com/kf/S3622888c2d59416793db1440570cbabf5.jpg" alt="Camiseta Casual Verão" loading="lazy">
+        <div class="card-body">
+          <div class="card-title">Camiseta Casual de Verão - Manga Curta, Esportiva, Solta</div>
+          <div class="shipping">🚚 Frete Grátis para o Brasil</div>
+          <div class="card-price">
+            <span class="price-now">R$ 33,19</span>
+            <span class="price-was">R$ 39,51</span>
+          </div>
+          <div class="card-rating">⭐⭐⭐⭐⭐ (195 vendidos)</div>
+          <div class="card-btn">🛒 COMPRAR AGORA</div>
+        </div>
+      </a>
+    </div>
+
+  </div>
+
+  <!-- CTA Banner -->
+  <div class="cta-banner">
+    <h3>🔍 Não encontrou o que procura?</h3>
+    <p>Nosso buscador com IA encontra qualquer produto no AliExpress - em português!</p>
+    <a href="/br/?utm_source=landing&utm_medium=cta&utm_campaign=brasil_ofertas" class="cta-btn">Buscar Produtos →</a>
+  </div>
+
+  <!-- Trust Section -->
+  <div class="cta-banner" style="border-color: #4caf5033;">
+    <h3>🛡️ Compra Segura</h3>
+    <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-top: 10px; font-size: 0.8rem; color: #aaa;">
+      <span>✅ Frete Grátis</span>
+      <span>✅ Preços em R$</span>
+      <span>✅ PIX, Boleto, Cartão</span>
+      <span>✅ Devolução Grátis</span>
+    </div>
+    <p style="margin-top: 10px; font-size: 0.75rem; color: #666;">
+      Todos os produtos são do AliExpress oficial. Programa Remessa Conforme 🇧🇷
+    </p>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <p>© 2026 <a href="https://alifindme.com">Ali Find Me</a> - Buscador inteligente de ofertas</p>
+    <p style="margin-top: 5px;">Este site contém links de afiliado. Ao comprar, você nos ajuda sem custo extra.</p>
+  </div>
+
+  <!-- Timer Script -->
+  <script>
+    function updateTimer() {
+      const now = new Date();
+      const end = new Date();
+      end.setHours(23, 59, 59, 0);
+      const diff = end - now;
+      const h = Math.floor(diff / 3600000);
+      const m = Math.floor((diff % 3600000) / 60000);
+      const s = Math.floor((diff % 60000) / 1000);
+      document.getElementById('timer').textContent =
+        `Termina em ${h}h ${m}m ${s}s`;
+    }
+    updateTimer();
+    setInterval(updateTimer, 1000);
+  </script>
+
+  <!-- Facebook Pixel (placeholder) -->
+  <script>
+    // Track clicks
+    document.querySelectorAll('.card a').forEach(link => {
+      link.addEventListener('click', () => {
+        if (typeof fbq !== 'undefined') fbq('track', 'ViewContent');
+      });
+    });
+  </script>
+
+</body>
+</html>
