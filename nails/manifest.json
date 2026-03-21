@@ -1,0 +1,50 @@
+{
+  "name": "נייל פיינד — מוצרי ציפורניים ובניית ציפורניים",
+  "short_name": "נייל פיינד",
+  "description": "מנוע חיפוש חכם למוצרי ציפורניים, ג'ל, נייל ארט וכלי מניקור מאלי אקספרס. מחירים בשקלים עם משלוח לישראל.",
+  "start_url": "/nails/?source=pwa",
+  "scope": "/nails/",
+  "id": "/nails/",
+  "display": "standalone",
+  "orientation": "any",
+  "theme_color": "#C964CF",
+  "background_color": "#FDF5FF",
+  "lang": "he",
+  "dir": "rtl",
+  "categories": ["shopping", "beauty", "lifestyle"],
+  "prefer_related_applications": false,
+  "icons": [
+    {
+      "src": "../icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "../icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "ג'ל ציפורניים",
+      "short_name": "ג'ל",
+      "url": "/nails/?q=gel+nail+polish&source=shortcut",
+      "icons": [{ "src": "../icons/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "ציפורניים מוכנות",
+      "short_name": "Press-on",
+      "url": "/nails/?q=press+on+nails&source=shortcut",
+      "icons": [{ "src": "../icons/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "מנורת UV",
+      "short_name": "UV",
+      "url": "/nails/?q=UV+LED+nail+lamp&source=shortcut",
+      "icons": [{ "src": "../icons/icon-192.png", "sizes": "192x192" }]
+    }
+  ]
+}

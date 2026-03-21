@@ -1,0 +1,50 @@
+{
+  "name": "בייבי פיינד — מוצרי תינוקות וילדים",
+  "short_name": "בייבי פיינד",
+  "description": "מנוע חיפוש חכם למוצרי תינוקות וילדים מאלי אקספרס. צעצועים, ביגוד, האכלה, שינה ועוד.",
+  "start_url": "/baby/?source=pwa",
+  "scope": "/baby/",
+  "id": "/baby/",
+  "display": "standalone",
+  "orientation": "any",
+  "theme_color": "#E8776F",
+  "background_color": "#FFF5F4",
+  "lang": "he",
+  "dir": "rtl",
+  "categories": ["shopping", "lifestyle"],
+  "prefer_related_applications": false,
+  "icons": [
+    {
+      "src": "../icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "../icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "צעצועים",
+      "short_name": "צעצועים",
+      "url": "/baby/?q=baby+toys+development&source=shortcut",
+      "icons": [{ "src": "../icons/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "ביגוד",
+      "short_name": "ביגוד",
+      "url": "/baby/?q=baby+clothes&source=shortcut",
+      "icons": [{ "src": "../icons/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "האכלה",
+      "short_name": "האכלה",
+      "url": "/baby/?q=baby+feeding+silicone&source=shortcut",
+      "icons": [{ "src": "../icons/icon-192.png", "sizes": "192x192" }]
+    }
+  ]
+}
