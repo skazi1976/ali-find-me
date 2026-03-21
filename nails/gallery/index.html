@@ -497,32 +497,76 @@ function renderGallery() {
   loadRealImages(items);
 }
 
+// Image cache to avoid duplicate API calls
+const imageCache = {};
+const usedImages = new Set();
+
 async function loadRealImages(items) {
-  // Fetch real product images from AliExpress for each item
-  for (let i = 0; i < items.length; i += 5) {
-    const batch = items.slice(i, i + 5);
-    const promises = batch.map(item =>
-      fetch(`${API_BASE}/search?q=${encodeURIComponent(item.search)}&country=IL&currency=ILS&source=baby&page=1`)
+  const cards = document.querySelectorAll('.gallery-item');
+
+  // Group items by unique search query to avoid duplicate API calls
+  const uniqueQueries = {};
+  items.forEach((item, idx) => {
+    if (!uniqueQueries[item.search]) {
+      uniqueQueries[item.search] = [];
+    }
+    uniqueQueries[item.search].push({ item, idx });
+  });
+
+  const queries = Object.keys(uniqueQueries);
+
+  for (let i = 0; i < queries.length; i += 4) {
+    const batch = queries.slice(i, i + 4);
+    const promises = batch.map(query => {
+      // Check sessionStorage cache first
+      const cacheKey = 'img_' + query;
+      const cached = sessionStorage.getItem(cacheKey);
+      if (cached) {
+        const images = JSON.parse(cached);
+        assignImages(uniqueQueries[query], images, cards);
+        return Promise.resolve();
+      }
+
+      return fetch(`${API_BASE}/search?q=${encodeURIComponent(query)}&country=IL&currency=ILS&source=baby&page=1`)
         .then(r => r.json())
         .then(data => {
           if (data.products && data.products.length > 0) {
-            const img = data.products[0].image;
-            const card = document.querySelector(`.gallery-item[data-cat="${item.cat}"]:nth-child(${GALLERY_DATA.indexOf(item) + 1}) img`);
-            // Find correct card
-            const cards = document.querySelectorAll('.gallery-item');
-            const filtered = getFilteredItems();
-            const idx = filtered.indexOf(item);
-            if (idx >= 0 && cards[idx]) {
-              cards[idx].querySelector('img').src = img;
-            }
+            // Collect multiple unique images from results
+            const images = data.products
+              .slice(0, 8)
+              .map(p => p.image)
+              .filter(img => img && img.startsWith('http'));
+            // Cache in sessionStorage
+            try { sessionStorage.setItem(cacheKey, JSON.stringify(images)); } catch(e) {}
+            assignImages(uniqueQueries[query], images, cards);
           }
         })
-        .catch(() => {})
-    );
+        .catch(() => {});
+    });
     await Promise.all(promises);
-    // Small delay between batches
-    await new Promise(r => setTimeout(r, 300));
+    await new Promise(r => setTimeout(r, 200));
   }
+}
+
+function assignImages(entries, images, cards) {
+  if (!images || images.length === 0) return;
+  entries.forEach((entry, i) => {
+    // Pick a unique image - avoid already used ones
+    let img = null;
+    for (let j = i; j < images.length; j++) {
+      if (!usedImages.has(images[j])) {
+        img = images[j];
+        break;
+      }
+    }
+    // Fallback: use modulo if all were used
+    if (!img) img = images[i % images.length];
+    usedImages.add(img);
+
+    if (entry.idx >= 0 && cards[entry.idx]) {
+      cards[entry.idx].querySelector('img').src = img;
+    }
+  });
 }
 
 function searchProduct(query) {

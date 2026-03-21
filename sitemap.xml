@@ -966,6 +966,17 @@
   <!-- ==================== BABY VERTICAL ==================== -->
 
   <url>
+    <loc>https://alifindme.com/baby/</loc>
+    <lastmod>2026-03-21</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://alifindme.com/icons/icon-512.png</image:loc>
+      <image:title>BabyFind - מנוע חיפוש למוצרי תינוקות</image:title>
+    </image:image>
+  </url>
+
+  <url>
     <loc>https://alifindme.com/baby/gallery/</loc>
     <lastmod>2026-03-21</lastmod>
     <changefreq>weekly</changefreq>
