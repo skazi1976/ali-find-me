@@ -677,6 +677,143 @@
     .compare-btn { background:linear-gradient(135deg,#ff9800,#f57c00);border:none;border-radius:20px;padding:6px 10px;font-size:12px;font-weight:700;font-family:'Heebo','Assistant',sans-serif;color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:4px;box-shadow:0 2px 8px rgba(0,0,0,0.15);transition:transform 0.2s,background 0.2s;white-space:nowrap;margin:6px auto 2px; }
     .compare-btn:hover { transform:scale(1.05);background:linear-gradient(135deg,#ffa726,#ef6c00); }
 
+    /* ===== TRENDING PRODUCTS ===== */
+    .trending-section {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 30px 20px 10px;
+    }
+    .trending-title {
+      font-family: 'Heebo', sans-serif;
+      font-size: 22px;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 20px;
+      color: var(--text);
+    }
+    .trending-tabs {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+    .trending-tab {
+      padding: 8px 16px;
+      border-radius: 50px;
+      border: 2px solid var(--border);
+      background: var(--bg-card);
+      cursor: pointer;
+      font-size: 13px;
+      font-family: 'Assistant', sans-serif;
+      font-weight: 600;
+      transition: all 0.3s;
+    }
+    .trending-tab:hover { border-color: var(--primary-light); }
+    .trending-tab.active {
+      background: var(--gradient);
+      color: white;
+      border-color: transparent;
+    }
+    .trending-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 14px;
+    }
+    .trending-card {
+      background: var(--bg-card);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: all 0.3s;
+      cursor: pointer;
+      text-decoration: none;
+      color: var(--text);
+      display: block;
+    }
+    .trending-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-hover);
+    }
+    .trending-card img {
+      width: 100%;
+      aspect-ratio: 1;
+      object-fit: cover;
+      display: block;
+      background: #f9f0f5;
+    }
+    .trending-card-info {
+      padding: 10px 12px;
+    }
+    .trending-card-title {
+      font-size: 13px;
+      font-weight: 600;
+      line-height: 1.3;
+      margin-bottom: 6px;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .trending-card-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .trending-card-price {
+      font-weight: 800;
+      font-size: 16px;
+      color: var(--primary-dark);
+    }
+    .trending-card-sold {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+    .trending-card-badge {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      background: var(--gradient);
+      color: white;
+      padding: 3px 8px;
+      border-radius: 12px;
+      font-size: 10px;
+      font-weight: 700;
+    }
+    .trending-card { position: relative; }
+    .trending-loading {
+      text-align: center;
+      padding: 40px;
+      color: var(--text-light);
+    }
+    .trending-loading .spinner-emoji {
+      font-size: 30px;
+      animation: spin 1s linear infinite;
+      display: inline-block;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .trending-more {
+      display: block;
+      margin: 20px auto;
+      padding: 12px 30px;
+      background: var(--gradient);
+      color: white;
+      border: none;
+      border-radius: var(--radius-full);
+      font-family: 'Heebo', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s;
+      box-shadow: var(--shadow);
+    }
+    .trending-more:hover { transform: scale(1.05); box-shadow: var(--shadow-hover); }
+    @media (max-width: 600px) {
+      .trending-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+      .trending-card-title { font-size: 12px; }
+      .trending-card-price { font-size: 14px; }
+    }
+
     /* ===== LOADING ===== */
     .loading {
       text-align: center;
@@ -1563,6 +1700,23 @@
   </div>
 </section>
 
+<!-- TRENDING PRODUCTS -->
+<section class="trending-section" id="trendingSection">
+  <div class="trending-title">🔥 מוצרים טרנדיים עכשיו</div>
+  <div class="trending-tabs" id="trendingTabs">
+    <button class="trending-tab active" data-q="gel nail polish popular">💅 לק ג'ל</button>
+    <button class="trending-tab" data-q="press on nails design">✨ ציפורניים מוכנות</button>
+    <button class="trending-tab" data-q="nail rhinestones decoration set">💎 אבנים ועיטורים</button>
+    <button class="trending-tab" data-q="UV LED nail lamp dryer">🔦 מנורת UV</button>
+    <button class="trending-tab" data-q="nail art stamping kit">🎨 סטמפינג</button>
+    <button class="trending-tab" data-q="cat eye magnetic gel nail">🐱 קט אי</button>
+  </div>
+  <div class="trending-grid" id="trendingGrid">
+    <div class="trending-loading"><span class="spinner-emoji">💅</span><p>טוען מוצרים טרנדיים...</p></div>
+  </div>
+  <button class="trending-more" id="trendingMore" onclick="viewAllTrending()" style="display:none">💅 הצג עוד מוצרים →</button>
+</section>
+
 <!-- LOADING -->
 <div class="loading" id="loading">
   <div class="spinner">💅</div>
@@ -1816,6 +1970,7 @@ async function doSearch() {
   document.getElementById('resultsSection').classList.remove('active');
   document.getElementById('noResults').classList.remove('active');
   document.getElementById('featuresSection').style.display = 'none';
+  document.getElementById('trendingSection').style.display = 'none';
   document.getElementById('productsGrid').innerHTML = '';
 
   // GA event
@@ -1949,6 +2104,7 @@ function clearResults() {
   document.getElementById('resultsSection').classList.remove('active');
   document.getElementById('noResults').classList.remove('active');
   document.getElementById('featuresSection').style.display = '';
+  document.getElementById('trendingSection').style.display = '';
   document.getElementById('searchInput').value = '';
   document.getElementById('productsGrid').innerHTML = '';
   history.replaceState(null, '', '/nails/');
@@ -1962,6 +2118,97 @@ function showToast(msg) {
   t.classList.add('show');
   setTimeout(() => t.classList.remove('show'), 3000);
 }
+
+// ============================================================
+//  TRENDING PRODUCTS — Auto-loaded on page load
+// ============================================================
+let trendingQuery = 'gel nail polish popular';
+
+async function loadTrending(query) {
+  trendingQuery = query || trendingQuery;
+  const grid = document.getElementById('trendingGrid');
+  const moreBtn = document.getElementById('trendingMore');
+  grid.innerHTML = '<div class="trending-loading"><span class="spinner-emoji">💅</span><p>טוען מוצרים טרנדיים...</p></div>';
+  moreBtn.style.display = 'none';
+
+  try {
+    const t = window.currentTranslation || { lang: 'he', currency: 'ILS', country: 'IL' };
+    const url = `${API_BASE}/search?q=${encodeURIComponent(trendingQuery)}&lang=${t.lang}&currency=${t.currency}&country=${t.country}&page=1&context=nails&source=baby`;
+    const resp = await fetch(url);
+    const data = await resp.json();
+
+    if (!data.products || data.products.length === 0) {
+      grid.innerHTML = '<div class="trending-loading"><p>לא נמצאו מוצרים</p></div>';
+      return;
+    }
+
+    // Show first 8 products
+    const products = data.products.slice(0, 8);
+    grid.innerHTML = '';
+
+    products.forEach((p, i) => {
+      const card = document.createElement('a');
+      card.className = 'trending-card';
+      card.href = p.affiliate_url || p.url || '#';
+      card.target = '_blank';
+      card.rel = 'noopener';
+      card.onclick = function() {
+        gtag('event', 'trending_click', {
+          event_category: 'trending',
+          event_label: p.title,
+          value: parseFloat(p.price) || 0
+        });
+      };
+
+      const sold = p.sold ? `${p.sold > 1000 ? Math.round(p.sold/1000) + 'K+' : p.sold} נמכרו` : '';
+      const badge = i === 0 ? '<div class="trending-card-badge">🔥 HOT</div>' :
+                    i === 1 ? '<div class="trending-card-badge">⭐ פופולרי</div>' : '';
+
+      const sym = (t.currencySymbol || '₪');
+      card.innerHTML = `
+        ${badge}
+        <img src="${p.image}" alt="${p.title}" loading="lazy"
+             onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22200%22 height=%22200%22><rect fill=%22%23FDF5FF%22 width=%22200%22 height=%22200%22/><text x=%22100%22 y=%22110%22 text-anchor=%22middle%22 font-size=%2240%22>💅</text></svg>'">
+        <div class="trending-card-info">
+          <div class="trending-card-title">${p.title}</div>
+          <div class="trending-card-bottom">
+            <span class="trending-card-price">${sym}${p.price}</span>
+            <span class="trending-card-sold">${sold}</span>
+          </div>
+        </div>
+      `;
+      grid.appendChild(card);
+    });
+
+    moreBtn.style.display = 'block';
+
+  } catch(err) {
+    grid.innerHTML = '<div class="trending-loading"><p>שגיאה בטעינה, נסו שוב</p></div>';
+  }
+}
+
+function viewAllTrending() {
+  document.getElementById('searchInput').value = trendingQuery;
+  doSearch();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// Trending tabs click handler
+document.getElementById('trendingTabs').addEventListener('click', (e) => {
+  const tab = e.target.closest('.trending-tab');
+  if (!tab) return;
+  document.querySelectorAll('.trending-tab').forEach(t => t.classList.remove('active'));
+  tab.classList.add('active');
+  loadTrending(tab.dataset.q);
+});
+
+// Load trending on page load (if no search query)
+(function() {
+  const params = new URLSearchParams(location.search);
+  if (!params.get('q')) {
+    loadTrending('gel nail polish popular');
+  }
+})();
 
 // ============================================================
 //  CHAT — Claude AI Shopping Advisor ("NailFind")
