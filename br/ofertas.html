@@ -554,32 +554,111 @@
   </script>
 
   <script>
-  // Fix affiliate links for Brazil - redirect through pt.aliexpress.com
-  document.querySelectorAll('.card a').forEach(link => {
+  // === ADVANCED TRACKING FOR BRAZIL LANDING PAGE ===
+
+  // 1. Track page load with source info
+  (function() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const source = urlParams.get('utm_source') || document.referrer || 'direct';
+    const medium = urlParams.get('utm_medium') || 'none';
+    const campaign = urlParams.get('utm_campaign') || 'none';
+
+    if (typeof gtag !== 'undefined') {
+      gtag('event', 'ofertas_page_view', {
+        event_category: 'brazil_landing',
+        event_label: source,
+        utm_source: source,
+        utm_medium: medium,
+        utm_campaign: campaign,
+        referrer: document.referrer || 'direct'
+      });
+    }
+  })();
+
+  // 2. Track scroll depth
+  let scrollTracked = {};
+  window.addEventListener('scroll', function() {
+    const scrollPercent = Math.round((window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100);
+    [25, 50, 75, 100].forEach(threshold => {
+      if (scrollPercent >= threshold && !scrollTracked[threshold]) {
+        scrollTracked[threshold] = true;
+        if (typeof gtag !== 'undefined') {
+          gtag('event', 'ofertas_scroll', {
+            event_category: 'brazil_engagement',
+            event_label: threshold + '%',
+            value: threshold
+          });
+        }
+      }
+    });
+  });
+
+  // 3. Track time on page
+  let timeIntervals = [10, 30, 60, 120];
+  timeIntervals.forEach(seconds => {
+    setTimeout(() => {
+      if (typeof gtag !== 'undefined') {
+        gtag('event', 'ofertas_time_on_page', {
+          event_category: 'brazil_engagement',
+          event_label: seconds + 's',
+          value: seconds
+        });
+      }
+    }, seconds * 1000);
+  });
+
+  // 4. Track product clicks with product details
+  document.querySelectorAll('.card a').forEach((link, index) => {
     link.addEventListener('click', function(e) {
       e.preventDefault();
       const originalUrl = this.href;
+      const productTitle = this.querySelector('.card-title')?.textContent || 'unknown';
+      const productPrice = this.querySelector('.price-now')?.textContent || 'unknown';
+      const productNumber = index + 1;
 
-      // Track click in GA
+      // Track click in GA with full details
       if (typeof gtag !== 'undefined') {
-        gtag('event', 'click', {
-          event_category: 'affiliate',
-          event_label: this.querySelector('.card-title')?.textContent || 'product',
+        gtag('event', 'ofertas_product_click', {
+          event_category: 'brazil_affiliate',
+          event_label: productTitle,
+          product_name: productTitle,
+          product_price: productPrice,
+          product_position: productNumber,
+          destination_url: originalUrl,
           transport_type: 'beacon'
         });
       }
 
-      // For s.click links, add Brazil parameters
-      let finalUrl = originalUrl;
-      if (originalUrl.includes('s.click.aliexpress.com')) {
-        // Add country parameter to force Brazil redirect
-        const separator = originalUrl.includes('?') ? '&' : '?';
-        finalUrl = originalUrl + separator + 'dp=y&country=BR&currency=BRL&aff_platform=portals-tool';
-      }
-
       // Open in new tab
-      window.open(finalUrl, '_blank', 'noopener');
+      window.open(originalUrl, '_blank', 'noopener');
     });
+  });
+
+  // 5. Track coupon button click
+  document.querySelectorAll('a[href*="aliexpress"]').forEach(link => {
+    if (link.closest('.card')) return; // Skip product cards (handled above)
+    link.addEventListener('click', function() {
+      if (typeof gtag !== 'undefined') {
+        gtag('event', 'ofertas_coupon_click', {
+          event_category: 'brazil_affiliate',
+          event_label: this.textContent.trim().substring(0, 50),
+          destination_url: this.href
+        });
+      }
+    });
+  });
+
+  // 6. Track bounce - user leaving without clicking anything
+  let hasInteracted = false;
+  document.addEventListener('click', () => { hasInteracted = true; });
+  window.addEventListener('beforeunload', function() {
+    if (!hasInteracted && typeof gtag !== 'undefined') {
+      gtag('event', 'ofertas_bounce', {
+        event_category: 'brazil_engagement',
+        event_label: 'left_without_click',
+        transport_type: 'beacon'
+      });
+    }
   });
   </script>
 
