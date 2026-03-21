@@ -683,4 +683,260 @@
     <priority>0.3</priority>
   </url>
 
+  <!-- ==================== BLOG ARTICLES ==================== -->
+
+  <!-- Blog - English -->
+  <url>
+    <loc>https://alifindme.com/blog/best-fashion-finds-aliexpress-2026.html</loc>
+    <lastmod>2026-03-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://alifindme.com/blog/best-tech-gadgets-aliexpress-2026.html</loc>
+    <lastmod>2026-03-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Blog - Hebrew -->
+  <url>
+    <loc>https://alifindme.com/blog/he/mamtzaim-ofna-aliexpress-2026.html</loc>
+    <lastmod>2026-03-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://alifindme.com/blog/he/gadgetim-tech-aliexpress-2026.html</loc>
+    <lastmod>2026-03-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Blog - Arabic -->
+  <url>
+    <loc>https://alifindme.com/blog/ar/afdal-azya-aliexpress-2026.html</loc>
+    <lastmod>2026-03-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://alifindme.com/blog/ar/afdal-ajhiza-tech-aliexpress-2026.html</loc>
+    <lastmod>2026-03-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Blog - Spanish -->
+  <url>
+    <loc>https://alifindme.com/blog/es/mejores-hallazgos-moda-aliexpress-2026.html</loc>
+    <lastmod>2026-03-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://alifindme.com/blog/es/mejores-gadgets-tecnologia-aliexpress-2026.html</loc>
+    <lastmod>2026-03-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Blog - Portuguese -->
+  <url>
+    <loc>https://alifindme.com/blog/pt/melhores-achados-moda-aliexpress-2026.html</loc>
+    <lastmod>2026-03-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://alifindme.com/blog/pt/melhores-gadgets-tecnologia-aliexpress-2026.html</loc>
+    <lastmod>2026-03-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Blog - French -->
+  <url>
+    <loc>https://alifindme.com/blog/fr/meilleures-trouvailles-mode-aliexpress-2026.html</loc>
+    <lastmod>2026-03-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://alifindme.com/blog/fr/meilleurs-gadgets-tech-aliexpress-2026.html</loc>
+    <lastmod>2026-03-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Blog - Russian -->
+  <url>
+    <loc>https://alifindme.com/blog/ru/luchshie-nahodki-moda-aliexpress-2026.html</loc>
+    <lastmod>2026-03-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://alifindme.com/blog/ru/luchshie-gadzhety-tech-aliexpress-2026.html</loc>
+    <lastmod>2026-03-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Blog - Turkish -->
+  <url>
+    <loc>https://alifindme.com/blog/tr/en-iyi-moda-aliexpress-2026.html</loc>
+    <lastmod>2026-03-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://alifindme.com/blog/tr/en-iyi-teknoloji-aliexpress-2026.html</loc>
+    <lastmod>2026-03-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- ==================== HOMEFIND ARTICLES ==================== -->
+
+  <!-- HomeFind - English -->
+  <url>
+    <loc>https://alifindme.com/home/articles/kitchen-organization-aliexpress.html</loc>
+    <lastmod>2026-03-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://alifindme.com/home/articles/bathroom-accessories-aliexpress.html</loc>
+    <lastmod>2026-03-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://alifindme.com/home/articles/smart-home-gadgets-aliexpress.html</loc>
+    <lastmod>2026-03-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- HomeFind - Hebrew -->
+  <url>
+    <loc>https://alifindme.com/home/articles/arganon-mitbach-aliexpress.html</loc>
+    <lastmod>2026-03-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://alifindme.com/home/articles/avizarei-ambatya-aliexpress.html</loc>
+    <lastmod>2026-03-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://alifindme.com/home/articles/gadgetim-bayit-chacham-aliexpress.html</loc>
+    <lastmod>2026-03-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- HomeFind - Spanish -->
+  <url>
+    <loc>https://alifindme.com/home/articles/organizacion-cocina-aliexpress.html</loc>
+    <lastmod>2026-03-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://alifindme.com/home/articles/accesorios-bano-aliexpress.html</loc>
+    <lastmod>2026-03-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://alifindme.com/home/articles/gadgets-hogar-inteligente-aliexpress.html</loc>
+    <lastmod>2026-03-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- HomeFind - Portuguese -->
+  <url>
+    <loc>https://alifindme.com/home/articles/organizacao-cozinha-aliexpress.html</loc>
+    <lastmod>2026-03-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://alifindme.com/home/articles/acessorios-banheiro-aliexpress.html</loc>
+    <lastmod>2026-03-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://alifindme.com/home/articles/gadgets-casa-inteligente-aliexpress.html</loc>
+    <lastmod>2026-03-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- HomeFind - French -->
+  <url>
+    <loc>https://alifindme.com/home/articles/organisation-cuisine-aliexpress.html</loc>
+    <lastmod>2026-03-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://alifindme.com/home/articles/accessoires-salle-de-bain-aliexpress.html</loc>
+    <lastmod>2026-03-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://alifindme.com/home/articles/gadgets-maison-intelligente-aliexpress.html</loc>
+    <lastmod>2026-03-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- HomeFind - Russian -->
+  <url>
+    <loc>https://alifindme.com/home/articles/organizaciya-kuhni-aliexpress.html</loc>
+    <lastmod>2026-03-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://alifindme.com/home/articles/aksessuary-vannoy-aliexpress.html</loc>
+    <lastmod>2026-03-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://alifindme.com/home/articles/gadzhety-umnyy-dom-aliexpress.html</loc>
+    <lastmod>2026-03-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
 </urlset>
