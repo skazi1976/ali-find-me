@@ -1663,6 +1663,23 @@
   </div>
 </section>
 
+<!-- TRENDING PRODUCTS -->
+<section class="trending-section" id="trendingSection">
+  <div class="trending-title">🔥 מוצרים טרנדיים עכשיו</div>
+  <div class="trending-tabs" id="trendingTabs">
+    <button class="trending-tab active" data-q="gel nail polish popular">💅 לק ג'ל</button>
+    <button class="trending-tab" data-q="press on nails design">✨ ציפורניים מוכנות</button>
+    <button class="trending-tab" data-q="nail rhinestones decoration set">💎 אבנים ועיטורים</button>
+    <button class="trending-tab" data-q="UV LED nail lamp dryer">🔦 מנורת UV</button>
+    <button class="trending-tab" data-q="nail art stamping kit">🎨 סטמפינג</button>
+    <button class="trending-tab" data-q="cat eye magnetic gel nail">🐱 קט אי</button>
+  </div>
+  <div class="trending-grid" id="trendingGrid">
+    <div class="trending-loading"><span class="spinner-emoji">💅</span><p>טוען מוצרים טרנדיים...</p></div>
+  </div>
+  <button class="trending-more" id="trendingMore" onclick="viewAllTrending()" style="display:none">💅 הצג עוד מוצרים →</button>
+</section>
+
 <!-- CATEGORIES -->
 <section class="categories">
   <h2 class="section-title" id="categoriesTitle">🏷️ קטגוריות מוצרי ציפורניים</h2>
@@ -1698,23 +1715,6 @@
       <div class="category-desc">פצירות, קליפרים, דוחפי עור, סטים</div>
     </a>
   </div>
-</section>
-
-<!-- TRENDING PRODUCTS -->
-<section class="trending-section" id="trendingSection">
-  <div class="trending-title">🔥 מוצרים טרנדיים עכשיו</div>
-  <div class="trending-tabs" id="trendingTabs">
-    <button class="trending-tab active" data-q="gel nail polish popular">💅 לק ג'ל</button>
-    <button class="trending-tab" data-q="press on nails design">✨ ציפורניים מוכנות</button>
-    <button class="trending-tab" data-q="nail rhinestones decoration set">💎 אבנים ועיטורים</button>
-    <button class="trending-tab" data-q="UV LED nail lamp dryer">🔦 מנורת UV</button>
-    <button class="trending-tab" data-q="nail art stamping kit">🎨 סטמפינג</button>
-    <button class="trending-tab" data-q="cat eye magnetic gel nail">🐱 קט אי</button>
-  </div>
-  <div class="trending-grid" id="trendingGrid">
-    <div class="trending-loading"><span class="spinner-emoji">💅</span><p>טוען מוצרים טרנדיים...</p></div>
-  </div>
-  <button class="trending-more" id="trendingMore" onclick="viewAllTrending()" style="display:none">💅 הצג עוד מוצרים →</button>
 </section>
 
 <!-- LOADING -->
@@ -2142,8 +2142,8 @@ async function loadTrending(query) {
       return;
     }
 
-    // Show first 8 products
-    const products = data.products.slice(0, 8);
+    // Show first 12 products
+    const products = data.products.slice(0, 12);
     grid.innerHTML = '';
 
     products.forEach((p, i) => {
