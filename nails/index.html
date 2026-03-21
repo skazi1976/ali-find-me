@@ -812,12 +812,41 @@
       .trending-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
       .trending-card-title { font-size: 12px; }
       .trending-card-price { font-size: 14px; }
-      .trending-section { padding-top: 15px; }
-      .trending-title { font-size: 20px; margin-bottom: 12px; }
-      /* Hide popular searches and categories on mobile - trending is enough */
+      .trending-section { padding: 10px 10px 0; }
+      .trending-title { font-size: 18px; margin-bottom: 10px; }
+      .trending-tabs { gap: 5px; margin-bottom: 12px; }
+      .trending-tab { padding: 6px 12px; font-size: 12px; }
+      /* Compact: hide clutter, show products fast */
       .popular-searches { display: none !important; }
-      .categories { display: none !important; }
       .ai-search-banner { display: none !important; }
+      /* Categories as compact horizontal scroll on mobile */
+      .categories { padding: 5px 10px 10px; }
+      .categories .section-title { font-size: 16px; margin-bottom: 8px; }
+      .categories-grid {
+        display: flex !important;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        gap: 8px;
+        padding-bottom: 5px;
+        -webkit-overflow-scrolling: touch;
+      }
+      .categories-grid::-webkit-scrollbar { display: none; }
+      .category-card {
+        min-width: 100px;
+        max-width: 100px;
+        padding: 10px 8px !important;
+        scroll-snap-align: start;
+        flex-shrink: 0;
+      }
+      .category-icon { font-size: 24px !important; margin-bottom: 4px !important; }
+      .category-name { font-size: 12px !important; }
+      .category-desc { display: none !important; }
+      /* Reduce hero space on mobile */
+      .hero { padding: 20px 16px 12px !important; }
+      .hero-title { font-size: 26px !important; }
+      .hero-subtitle { font-size: 13px !important; margin-bottom: 8px !important; }
+      .hero::before { display: none !important; }
+      .search-box { margin-top: 8px !important; }
     }
 
     /* ===== LOADING ===== */
