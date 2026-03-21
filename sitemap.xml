@@ -939,4 +939,41 @@
     <priority>0.7</priority>
   </url>
 
+  <!-- ==================== NAILS VERTICAL ==================== -->
+
+  <url>
+    <loc>https://alifindme.com/nails/</loc>
+    <lastmod>2026-03-21</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://alifindme.com/icons/icon-512.png</image:loc>
+      <image:title>NailFind - מנוע חיפוש למוצרי ציפורניים</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://alifindme.com/nails/gallery/</loc>
+    <lastmod>2026-03-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://alifindme.com/icons/icon-512.png</image:loc>
+      <image:title>גלריית עיצובי ציפורניים 2026</image:title>
+    </image:image>
+  </url>
+
+  <!-- ==================== BABY VERTICAL ==================== -->
+
+  <url>
+    <loc>https://alifindme.com/baby/gallery/</loc>
+    <lastmod>2026-03-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://alifindme.com/icons/icon-512.png</image:loc>
+      <image:title>גלריית מוצרי תינוקות מאלי אקספרס</image:title>
+    </image:image>
+  </url>
+
 </urlset>

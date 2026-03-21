@@ -12,6 +12,10 @@ Allow: /home/
 Allow: /pets/
 Allow: /pets/articles/
 Allow: /blog/
+Allow: /nails/
+Allow: /nails/gallery/
+Allow: /baby/
+Allow: /baby/gallery/
 
 Disallow: /admin.html
 Disallow: /js/admin.js
@@ -19,10 +23,12 @@ Disallow: /sw.js
 Disallow: /manifest.json
 Disallow: /home/manifest.json
 Disallow: /pets/manifest.json
+Disallow: /nails/manifest.json
+Disallow: /baby/manifest.json
 
 Sitemap: https://alifindme.com/sitemap.xml
 
 # Ali Find Me - AI-powered multilingual product search engine
 # https://alifindme.com
-# Verticals: Pet Find Me (/pets/), HomeFind (/home/)
+# Verticals: Pet Find Me (/pets/), HomeFind (/home/), NailFind (/nails/), BabyFind (/baby/)
 # Languages: Hebrew, English, Arabic, Russian, Spanish, Portuguese, Turkish, French
