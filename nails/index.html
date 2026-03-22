@@ -2083,7 +2083,7 @@ async function loadMore() {
 
 async function fetchProducts(query, page) {
   const t = window.currentTranslation || { lang: 'he', currency: 'ILS', country: 'IL' };
-  const url = `${API_BASE}/search?q=${encodeURIComponent(query)}&lang=${t.lang}&currency=${t.currency}&country=${t.country}&page=${page}&context=nails&source=baby`;
+  const url = `${API_BASE}/search?q=${encodeURIComponent(query)}&lang=${t.lang}&currency=${t.currency}&country=${t.country}&page=${page}&context=nails`;
   const resp = await fetch(url);
   if (!resp.ok) throw new Error('API error');
   return resp.json();
@@ -2198,7 +2198,7 @@ async function loadTrending(query) {
 
   try {
     const t = window.currentTranslation || { lang: 'he', currency: 'ILS', country: 'IL' };
-    const url = `${API_BASE}/search?q=${encodeURIComponent(trendingQuery)}&lang=${t.lang}&currency=${t.currency}&country=${t.country}&page=1&context=nails&source=baby`;
+    const url = `${API_BASE}/search?q=${encodeURIComponent(trendingQuery)}&lang=${t.lang}&currency=${t.currency}&country=${t.country}&page=1&context=nails`;
     const resp = await fetch(url);
     const data = await resp.json();
 
