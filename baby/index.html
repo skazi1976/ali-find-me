@@ -2192,9 +2192,8 @@ async function loadTrending(query) {
     products.forEach((p, i) => {
       const card = document.createElement('a');
       card.className = 'trending-card';
-      card.href = p.affiliate_url || p.url || '#';
-      card.target = '_blank';
-      card.rel = 'noopener';
+      const searchQuery = p.search_q || p.title;
+      card.href = `/baby/?q=${encodeURIComponent(searchQuery)}`;
       card.onclick = function() {
         if (typeof gtag === 'function') {
           gtag('event', 'trending_click', {
