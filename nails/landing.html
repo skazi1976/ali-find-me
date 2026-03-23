@@ -270,9 +270,11 @@ function renderCards(items) {
     var name = p.title || p.product_title || '';
     if (name.length > 45) name = name.substring(0, 42) + '...';
     var img = p.image || p.product_main_image_url || '';
-    var link = p.affiliate_url || p.affiliate_link || p.link || p.product_detail_url || '#';
     var orders = p.orders || p.lastest_volume || 0;
     var badge = discount > 50 ? '-' + discount + '%' : (orders > 100 ? orders + ' נמכרו 🔥' : 'פופולרי ⭐');
+    // Link to search engine with product name as query
+    var searchQuery = encodeURIComponent(name.substring(0, 30));
+    var link = '/nails/?q=' + searchQuery + '&utm_source=facebook&utm_medium=cpc&utm_campaign=nails_landing';
 
     html += '<div class="card">' +
       '<div class="card-badge">' + badge + '</div>' +
@@ -286,7 +288,7 @@ function renderCards(items) {
     }
     html += '<span class="card-price">₪' + price.toFixed(0) + '</span>' +
         '</div>' +
-        '<a href="' + link + '" target="_blank" rel="noopener" class="card-btn" onclick="trackClick(\'' + name.replace(/'/g,'') + '\',' + price + ')">קני עכשיו</a>' +
+        '<a href="' + link + '" class="card-btn" onclick="trackClick(\'' + name.replace(/'/g,'') + '\',' + price + ')">צפי במוצר 💅</a>' +
       '</div></div>';
   }
   grid.innerHTML = html;
