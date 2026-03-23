@@ -2076,10 +2076,8 @@ async function doSearch() {
       document.getElementById('resultsTitle').textContent = `💅 תוצאות: "${query}"`;
       document.getElementById('resultsCount').textContent = `(${totalResults} מוצרים)`;
       document.getElementById('loadMoreWrap').classList.toggle('active', data.products.length >= 50);
-      // Auto-scroll to results
-      setTimeout(() => {
-        document.getElementById('resultsSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }, 100);
+      // Scroll to top — hero is hidden, results are right below search bar
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     } else {
       document.getElementById('noResults').classList.add('active');
     }
