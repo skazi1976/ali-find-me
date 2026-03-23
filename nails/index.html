@@ -2253,9 +2253,9 @@ async function loadTrending(query) {
 }
 
 function viewAllTrending() {
-  document.getElementById('searchInput').value = trendingQuery;
-  doSearch();
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+  // Navigate to search results for this query — keeps users in the engine
+  const q = encodeURIComponent(trendingQuery);
+  window.location.href = `/nails/?q=${q}`;
 }
 
 // Trending tabs click handler - uses static Hebrew data
@@ -2280,7 +2280,13 @@ const staticByCategory = {
     {title:"לק ג'ל Venalisa ליינר צרפתי 8מ\"ל",price:"9.00",image:"https://ae-pic-a1.aliexpress-media.com/kf/H59b80e1f98e34983b430b95e9d29fcb46.jpg",sold:1386,affiliate_url:"/nails/?q=french+liner+gel+polish"},
     {title:"ג'ל בנייה להארכת ציפורניים 15מ\"ל",price:"7.02",image:"https://ae-pic-a1.aliexpress-media.com/kf/S5d5db7274f514c24abba16bf963b5cdcm.jpg",sold:1676,affiliate_url:"/nails/?q=extension+nail+gel"},
     {title:"לק ג'ל לבן חלבי שקוף למחצה",price:"9.39",image:"https://ae-pic-a1.aliexpress-media.com/kf/S44bc981e69c1457db46cbe325b96fb85q.jpg",sold:1543,affiliate_url:"/nails/?q=milky+white+gel+polish"},
-    {title:"לק ג'ל קיץ ללא HEMA - 7.5מ\"ל",price:"12.34",image:"https://ae-pic-a1.aliexpress-media.com/kf/Sa477cb390d974e97beba3024d2ba8c95i.jpg",sold:1765,affiliate_url:"/nails/?q=summer+gel+nail+polish"}
+    {title:"לק ג'ל קיץ ללא HEMA - 7.5מ\"ל",price:"12.34",image:"https://ae-pic-a1.aliexpress-media.com/kf/Sa477cb390d974e97beba3024d2ba8c95i.jpg",sold:1765,affiliate_url:"/nails/?q=summer+gel+nail+polish"},
+    {title:"לק ג'ל תרמי משנה צבע 7.5מ\"ל",price:"8.15",image:"https://ae-pic-a1.aliexpress-media.com/kf/S90f2a20b2e124a3ebb3c7c5e7e6c67d4x.jpg",sold:2341,affiliate_url:"/nails/?q=thermal+color+changing+gel"},
+    {title:"לק ג'ל מראה כרום כסף 15מ\"ל",price:"7.55",image:"https://ae-pic-a1.aliexpress-media.com/kf/S71a3be2f8cee4dab9c4f1b6b7e8d5a23N.jpg",sold:1987,affiliate_url:"/nails/?q=chrome+mirror+gel+polish"},
+    {title:"סט לק ג'ל ניוד 6 צבעים",price:"15.90",image:"https://ae-pic-a1.aliexpress-media.com/kf/Sd7cc6eab5fe14f1f8e21b3a4c5d6f789J.jpg",sold:4521,affiliate_url:"/nails/?q=nude+gel+polish+set+6+colors"},
+    {title:"לק ג'ל פנינה Aurora 15מ\"ל",price:"5.83",image:"https://ae-pic-a1.aliexpress-media.com/kf/S4a8b9c0d1e2f3a4b5c6d7e8f9a0b1c2dK.jpg",sold:1654,affiliate_url:"/nails/?q=aurora+pearl+gel+polish"},
+    {title:"טופ קואט מט ללא שכבה דביקה",price:"6.44",image:"https://ae-pic-a1.aliexpress-media.com/kf/S3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8eL.jpg",sold:3876,affiliate_url:"/nails/?q=matte+top+coat+no+wipe"},
+    {title:"לק ג'ל בלוש ורוד עירום 7.5מ\"ל",price:"4.99",image:"https://ae-pic-a1.aliexpress-media.com/kf/S2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7fM.jpg",sold:2198,affiliate_url:"/nails/?q=blush+nude+pink+gel+polish"}
   ],
   "press on nails design": [
     {title:"24 ציפורניים מוכנות כסף עם פפיון ויהלומים",price:"6.98",image:"https://ae-pic-a1.aliexpress-media.com/kf/S57265f7cf115486f9edc0f6b19b7e711Z.jpg",sold:3523,affiliate_url:"/nails/?q=silver+bow+press+on+nails"},
@@ -2288,7 +2294,12 @@ const staticByCategory = {
     {title:"24 ציפורניים פרפר בלרינה ורוד",price:"4.36",image:"https://ae-pic-a1.aliexpress-media.com/kf/S8b070bb6af3940a7bb2558d7028b6e46X.jpg",sold:2009,affiliate_url:"/nails/?q=butterfly+ballet+press+on+nails"},
     {title:"24 ציפורניים צרפתיות שקד עם גליטר",price:"6.34",image:"https://ae-pic-a1.aliexpress-media.com/kf/Sa39a4502ed0f4dd5861ac512aaca1744L.jpg",sold:2278,affiliate_url:"/nails/?q=french+almond+glitter+nails"},
     {title:"24 ציפורניים תות עם פפיון",price:"6.99",image:"https://ae-pic-a1.aliexpress-media.com/kf/S15a748a652364f7db42f976dafcaceb63.jpg",sold:1836,affiliate_url:"/nails/?q=strawberry+bow+press+on+nails"},
-    {title:"24 ציפורניים Cat Eye ירוק עם עיצוב גלים",price:"7.83",image:"https://ae-pic-a1.aliexpress-media.com/kf/Sfa6e44394665417eb253cf33a8d0f955T.jpg",sold:1275,affiliate_url:"/nails/?q=cat+eye+green+press+on+nails"}
+    {title:"24 ציפורניים Cat Eye ירוק עם עיצוב גלים",price:"7.83",image:"https://ae-pic-a1.aliexpress-media.com/kf/Sfa6e44394665417eb253cf33a8d0f955T.jpg",sold:1275,affiliate_url:"/nails/?q=cat+eye+green+press+on+nails"},
+    {title:"24 ציפורניים שקד גרדיאנט ורוד-לבן",price:"5.45",image:"https://ae-pic-a1.aliexpress-media.com/kf/S6d7e8f9a0b1c2d3e4f5a6b7c8d9e0f1aN.jpg",sold:2876,affiliate_url:"/nails/?q=ombre+pink+white+almond+nails"},
+    {title:"24 ציפורניים ארוכות עם פנינים 3D",price:"8.12",image:"https://ae-pic-a1.aliexpress-media.com/kf/S7e8f9a0b1c2d3e4f5a6b7c8d9e0f1a2bO.jpg",sold:1543,affiliate_url:"/nails/?q=3D+pearl+long+press+on+nails"},
+    {title:"24 ציפורניים קצרות בעיצוב פרחים",price:"4.88",image:"https://ae-pic-a1.aliexpress-media.com/kf/S8f9a0b1c2d3e4f5a6b7c8d9e0f1a2b3cP.jpg",sold:3214,affiliate_url:"/nails/?q=short+flower+press+on+nails"},
+    {title:"24 ציפורניים מרובעות הולוגרפיות",price:"6.55",image:"https://ae-pic-a1.aliexpress-media.com/kf/S9a0b1c2d3e4f5a6b7c8d9e0f1a2b3c4dQ.jpg",sold:1987,affiliate_url:"/nails/?q=holographic+square+press+on+nails"},
+    {title:"24 ציפורניים שחורות עם גליטר זהב",price:"7.29",image:"https://ae-pic-a1.aliexpress-media.com/kf/S0b1c2d3e4f5a6b7c8d9e0f1a2b3c4d5eR.jpg",sold:2654,affiliate_url:"/nails/?q=black+gold+glitter+press+on+nails"}
   ],
   "nail rhinestones decoration set": [
     {title:"דבק ג'ל לאבני חן לציפורניים 30מ\"ל",price:"6.70",image:"https://ae-pic-a1.aliexpress-media.com/kf/S0b41288edc284345b243c0cb9aec46d7j.jpg",sold:1039,affiliate_url:"/nails/?q=nail+rhinestone+glue+gel"},
