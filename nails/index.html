@@ -2582,7 +2582,7 @@ function createTrendingCard(p, i, sym) {
       const resp = await fetch(`${API_BASE}/search?q=${encodeURIComponent(q)}&lang=he&currency=ILS&country=IL&page=1&context=nails`);
       const data = await resp.json();
       if (data.products && data.products[0] && data.products[0].affiliate_url) {
-        window.open(data.products[0].affiliate_url, '_blank');
+        window.location.href = data.products[0].affiliate_url;
       } else {
         window.location.href = `/nails/?q=${encodeURIComponent(q)}`;
       }
