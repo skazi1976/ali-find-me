@@ -17,10 +17,11 @@
 <meta property="og:site_name" content="Ali Find Me">
 
 <!-- Preconnect for performance -->
+<link rel="preconnect" href="https://ae-pic-a1.aliexpress-media.com" crossorigin>
 <link rel="preconnect" href="https://ali-findme-api.ohadf1976.workers.dev" crossorigin>
+<link rel="dns-prefetch" href="https://ae-pic-a1.aliexpress-media.com">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="dns-prefetch" href="https://ae01.alicdn.com">
 <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@700;900&family=Assistant:wght@400;600&display=swap" rel="stylesheet">
 <!-- Products pre-embedded for instant load -->
 
@@ -73,7 +74,7 @@ h1,h2,h3,.cat-btn,.cta-btn{font-family:'Heebo',sans-serif}
 @keyframes urgencyPulse{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
 
 /* CATEGORIES */
-.categories{padding:16px 12px 8px;overflow-x:auto;-webkit-overflow-scrolling:touch;display:flex;gap:8px;scrollbar-width:none}
+.categories{padding:16px 12px 8px;overflow-x:auto;-webkit-overflow-scrolling:touch;display:flex;gap:8px;scrollbar-width:none;justify-content:center;flex-wrap:wrap}
 .categories::-webkit-scrollbar{display:none}
 .cat-btn{flex-shrink:0;padding:8px 18px;border-radius:50px;border:2px solid #eee;background:#fff;font-size:13px;font-weight:700;color:#555;cursor:pointer;transition:all .2s;white-space:nowrap}
 .cat-btn.active,.cat-btn:hover{border-color:var(--accent);background:var(--accent);color:#fff;transform:scale(1.03)}
@@ -218,7 +219,7 @@ var grid = document.getElementById('productGrid');
 
 // Pre-embedded products - NO API call needed!
 var staticProducts = [
-  {t:"מדבקות ציפורניים עיצובים חמודים",p:6.89,o:6.89,img:"https://ae-pic-a1.aliexpress-media.com/kf/Sc021f19a88974608a61c46ffdaf0c60e9.png",r:231,d:0,q:"nail stickers cute"},
+  {t:"מדבקות ציפורניים עיצובים חמודים",p:6.89,o:6.89,img:"https://ae-pic-a1.aliexpress-media.com/kf/Sc021f19a88974608a61c46ffdaf0c60e9.png_220x220.jpg",r:231,d:0,q:"nail stickers cute"},
   {t:"מדבקות צרפתיות יהלום 5D - 2 יח'",p:6.38,o:6.60,img:"https://ae-pic-a1.aliexpress-media.com/kf/S232c4db67f5e47c3ba5675d1d30770937.jpg",r:1034,d:3,q:"french tip nail stickers diamond"},
   {t:"מדבקות פרחי חיננית 5D לבן - 2 יח'",p:5.73,o:5.86,img:"https://ae-pic-a1.aliexpress-media.com/kf/Sa2ba38b944b7447eac7fe292bd953783m.jpg",r:1117,d:2,q:"daisy nail stickers 5D"},
   {t:"מדבקות לבבות זהב 3D",p:3.79,o:3.85,img:"https://ae-pic-a1.aliexpress-media.com/kf/S3900cdf174564d91b1959aa3830c6fb80.jpg",r:1155,d:2,q:"gold heart nail stickers 3D"},
@@ -226,7 +227,7 @@ var staticProducts = [
   {t:"10 גלילי פויל תחרה שחור לבן",p:7.53,o:7.72,img:"https://ae-pic-a1.aliexpress-media.com/kf/Se8f766ed03f5406192e1a389af4b146cW.jpg",r:2402,d:2,q:"lace nail foils black white"},
   {t:"מדבקות לבבות צבעוניות 3D - 8 יח'",p:5.92,o:6.07,img:"https://ae-pic-a1.aliexpress-media.com/kf/S61cc15e81d77401791af5b1bdd125cbc1.jpg",r:3966,d:2,q:"heart nail stickers 3D colorful"},
   {t:"מדבקות הלו קיטי 5D זהב לייזר",p:8.29,o:8.29,img:"https://ae-pic-a1.aliexpress-media.com/kf/Sdb027e64e130455ba76197fb2131c9a2p.jpg",r:1171,d:0,q:"hello kitty nail stickers 5D"},
-  {t:"מדבקות יהלום 5D דבק עצמי",p:6.76,o:6.76,img:"https://ae-pic-a1.aliexpress-media.com/kf/S9c1f17b5146a48998cd744f915cc6654v.png",r:1051,d:0,q:"diamond nail stickers 5D"},
+  {t:"מדבקות יהלום 5D דבק עצמי",p:6.76,o:6.76,img:"https://ae-pic-a1.aliexpress-media.com/kf/S9c1f17b5146a48998cd744f915cc6654v.png_220x220.jpg",r:1051,d:0,q:"diamond nail stickers 5D"},
   {t:"מדבקות חתולים וכלבים חמודים 3D",p:4.14,o:4.20,img:"https://ae-pic-a1.aliexpress-media.com/kf/Se43e503c6c3742d3b82fe7fe9d5913836.jpg",r:160,d:1,q:"cat dog nail decals 3D"},
   {t:"מדבקות פורצלן כחול לבן",p:5.21,o:11.58,img:"https://ae-pic-a1.aliexpress-media.com/kf/S02ba9c4bbbe94d61a132db66243a59ffW.jpg",r:113,d:55,q:"porcelain nail stickers"},
   {t:"סט פפיון בורגנדי סרט לב",p:5.71,o:5.93,img:"https://ae-pic-a1.aliexpress-media.com/kf/S7c4ffafcf2fa445680c9da05a3b10482M.jpg",r:2097,d:4,q:"bow ribbon nail stickers"}
