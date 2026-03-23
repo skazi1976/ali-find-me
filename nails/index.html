@@ -2887,7 +2887,10 @@ function dismissInstallBanner(permanent) {
 
 // Register service worker
 if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('../sw.js').catch(() => {});
+  navigator.serviceWorker.register('../sw.js?v=33').then(reg => {
+    // Force update check on every page load
+    reg.update();
+  }).catch(() => {});
 }
 
 // ============================================================
