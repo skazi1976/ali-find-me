@@ -2267,11 +2267,47 @@ document.getElementById('trendingTabs').addEventListener('click', (e) => {
   loadTrending(tab.dataset.q);
 });
 
+// Pre-embedded trending products for INSTANT display
+const staticTrending = [
+  {title:"מדבקות לבבות צבעוניות 3D - 8 יח'",price:"5.92",image:"https://ae-pic-a1.aliexpress-media.com/kf/S61cc15e81d77401791af5b1bdd125cbc1.jpg",sold:3966,affiliate_url:"/nails/?q=heart+nail+stickers+3D"},
+  {title:"10 גלילי פויל תחרה שחור לבן",price:"7.53",image:"https://ae-pic-a1.aliexpress-media.com/kf/Se8f766ed03f5406192e1a389af4b146cW.jpg",sold:2402,affiliate_url:"/nails/?q=lace+nail+foils"},
+  {title:"סט פפיון בורגנדי סרט לב",price:"5.71",image:"https://ae-pic-a1.aliexpress-media.com/kf/S7c4ffafcf2fa445680c9da05a3b10482M.jpg",sold:2097,affiliate_url:"/nails/?q=bow+ribbon+nail+stickers"},
+  {title:"סט מדבקות חתול שחור 12 גיליונות",price:"8.01",image:"https://ae-pic-a1.aliexpress-media.com/kf/S3b183eee589147f69e75c3ffff3e278dC.jpg",sold:1390,affiliate_url:"/nails/?q=cat+nail+stickers+set"},
+  {title:"מדבקות לבבות זהב 3D",price:"3.79",image:"https://ae-pic-a1.aliexpress-media.com/kf/S3900cdf174564d91b1959aa3830c6fb80.jpg",sold:1155,affiliate_url:"/nails/?q=gold+heart+nail+stickers"},
+  {title:"מדבקות הלו קיטי 5D זהב לייזר",price:"8.29",image:"https://ae-pic-a1.aliexpress-media.com/kf/Sdb027e64e130455ba76197fb2131c9a2p.jpg",sold:1171,affiliate_url:"/nails/?q=hello+kitty+nail+stickers"},
+  {title:"מדבקות פרחי חיננית 5D לבן",price:"5.73",image:"https://ae-pic-a1.aliexpress-media.com/kf/Sa2ba38b944b7447eac7fe292bd953783m.jpg",sold:1117,affiliate_url:"/nails/?q=daisy+nail+stickers+5D"},
+  {title:"מדבקות יהלום 5D דבק עצמי",price:"6.76",image:"https://ae-pic-a1.aliexpress-media.com/kf/S9c1f17b5146a48998cd744f915cc6654v.png",sold:1051,affiliate_url:"/nails/?q=diamond+nail+stickers+5D"},
+  {title:"מדבקות צרפתיות יהלום 5D",price:"6.38",image:"https://ae-pic-a1.aliexpress-media.com/kf/S232c4db67f5e47c3ba5675d1d30770937.jpg",sold:1034,affiliate_url:"/nails/?q=french+tip+nail+stickers"},
+  {title:"מדבקות ציפורניים חמודים",price:"6.89",image:"https://ae-pic-a1.aliexpress-media.com/kf/Sc021f19a88974608a61c46ffdaf0c60e9.png",sold:231,affiliate_url:"/nails/?q=nail+stickers+cute"},
+  {title:"מדבקות פורצלן כחול לבן",price:"5.21",image:"https://ae-pic-a1.aliexpress-media.com/kf/S02ba9c4bbbe94d61a132db66243a59ffW.jpg",sold:113,affiliate_url:"/nails/?q=porcelain+nail+stickers"},
+  {title:"מדבקות חתולים וכלבים 3D",price:"4.14",image:"https://ae-pic-a1.aliexpress-media.com/kf/Se43e503c6c3742d3b82fe7fe9d5913836.jpg",sold:160,affiliate_url:"/nails/?q=cat+dog+nail+decals"}
+];
+
+function renderStaticTrending() {
+  const grid = document.getElementById('trendingGrid');
+  const moreBtn = document.getElementById('trendingMore');
+  const sym = '₪';
+  grid.innerHTML = '';
+  staticTrending.forEach((p, i) => {
+    const card = document.createElement('a');
+    card.className = 'trending-card';
+    card.href = p.affiliate_url;
+    const sold = p.sold > 1000 ? Math.round(p.sold/1000) + 'K+ נמכרו' : p.sold + ' נמכרו';
+    const badge = i === 0 ? '<div class="trending-card-badge">🔥 HOT</div>' :
+                  i === 1 ? '<div class="trending-card-badge">⭐ פופולרי</div>' : '';
+    card.innerHTML = `${badge}<img src="${p.image}" alt="${p.title}" loading="${i<4?'eager':'lazy'}"><div class="trending-card-info"><div class="trending-card-title">${p.title}</div><div class="trending-card-bottom"><span class="trending-card-price">${sym}${p.price}</span><span class="trending-card-sold">${sold}</span></div></div>`;
+    grid.appendChild(card);
+  });
+  moreBtn.style.display = 'block';
+}
+
 // Load trending on page load (if no search query)
 (function() {
   const params = new URLSearchParams(location.search);
   if (!params.get('q')) {
-    loadTrending('gel nail polish popular');
+    // Show static products INSTANTLY, then refresh from API in background
+    renderStaticTrending();
+    setTimeout(() => loadTrending('gel nail polish popular'), 2000);
   }
 })();
 
