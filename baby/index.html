@@ -357,17 +357,19 @@
       position: relative;
     }
     .search-sticky {
-      position: sticky;
+      position: fixed;
       top: 0;
+      left: 0;
+      right: 0;
       z-index: 999;
       background: rgba(255,245,244,0.97);
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
       padding: 10px 16px;
       box-shadow: 0 2px 12px rgba(0,0,0,0.1);
-      max-width: 100%;
       margin: 0;
     }
+    .search-spacer { height: 62px; }
     .search-sticky .search-box {
       max-width: 650px;
       margin: 0 auto;
@@ -1610,6 +1612,7 @@
     </button>
   </div>
 </div>
+<div class="search-spacer"></div>
 
 <!-- TRENDING PRODUCTS -->
 <section class="trending-section" id="trendingSection">
