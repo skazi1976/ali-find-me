@@ -2044,17 +2044,19 @@ async function loadTrending(query) {
   }
 }
 
-function viewAllTrending() {
-  // Show ALL static Hebrew products from all categories instead of API search
-  const allProducts = [];
+// Pre-build "all products" list once at load time for instant display
+const allStaticProducts = (function() {
+  const seen = new Set(), all = [];
   for (const cat in staticByCategory) {
-    staticByCategory[cat].forEach(p => {
-      if (!allProducts.find(x => x.title === p.title)) allProducts.push(p);
-    });
+    for (const p of staticByCategory[cat]) {
+      if (!seen.has(p.title)) { seen.add(p.title); all.push(p); }
+    }
   }
-  // Sort by popularity
-  allProducts.sort((a, b) => (b.sold || 0) - (a.sold || 0));
-  renderStaticTrending(allProducts);
+  return all.sort((a, b) => (b.sold || 0) - (a.sold || 0));
+})();
+
+function viewAllTrending() {
+  renderStaticTrending(allStaticProducts);
   window.scrollTo({ top: document.getElementById('trendingGrid').offsetTop - 80, behavior: 'smooth' });
 }
 
