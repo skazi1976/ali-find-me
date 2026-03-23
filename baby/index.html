@@ -365,11 +365,13 @@
       background: rgba(255,245,244,0.97);
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
-      padding: 10px 16px;
+      padding: 8px 16px;
       box-shadow: 0 2px 12px rgba(0,0,0,0.1);
       margin: 0;
     }
-    .search-spacer { height: 62px; }
+    body.search-is-sticky {
+      padding-top: 65px;
+    }
     .search-sticky .search-box {
       max-width: 650px;
       margin: 0 auto;
@@ -2461,7 +2463,10 @@ document.getElementById('trendingTabs').addEventListener('click', (e) => {
 // Sticky search bar — always fixed at top
 (function() {
   const sc = document.getElementById('searchContainer');
-  if (sc) sc.classList.add('search-sticky');
+  if (sc) {
+    sc.classList.add('search-sticky');
+    document.body.classList.add('search-is-sticky');
+  }
 })();
 
 // ============================================================
