@@ -2050,20 +2050,96 @@ function viewAllTrending() {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-// Trending tabs click handler
+// Pre-embedded Hebrew products for INSTANT display
+const staticByCategory = {
+  "baby toys educational developmental": [
+    {title:"צעצוע מונטסורי מיון צורות קשת צבעונית",price:"11.54",image:"https://ae-pic-a1.aliexpress-media.com/kf/S3b9bfcc2be144b78b4be5cb5d4f69697w.jpg",sold:7484,affiliate_url:"/baby/?q=montessori+shape+sorter"},
+    {title:"פסנתר מוזיקלי לתינוק עם אורות מסתובב",price:"20.77",image:"https://ae-pic-a1.aliexpress-media.com/kf/S8da8a3444a474ae5bd0bdbacd497f8afH.jpg",sold:9634,affiliate_url:"/baby/?q=baby+piano+music+toy"},
+    {title:"צעצוע לימודי צבעוני מונטסורי",price:"15.04",image:"https://ae-pic-a1.aliexpress-media.com/kf/S784d0a2d793847b589be7ed7f26d13c2v.jpg",sold:10108,affiliate_url:"/baby/?q=montessori+learning+toy"},
+    {title:"צעצוע נשכן רך לתינוק חינוכי",price:"10.07",image:"https://ae-pic-a1.aliexpress-media.com/kf/Sdf0a09c358114cad91e22af3b89edf23P.jpg",sold:7906,affiliate_url:"/baby/?q=baby+teething+toy"},
+    {title:"כדור רעשן רב תפקודי לתינוק",price:"8.44",image:"https://ae-pic-a1.aliexpress-media.com/kf/S9547a53af4db453d9cbb4b2c9d5ea397s.jpg",sold:6611,affiliate_url:"/baby/?q=baby+rattle+ball"},
+    {title:"צעצוע דיג מגנטי חינוכי לילדים",price:"12.42",image:"https://ae-pic-a1.aliexpress-media.com/kf/S63376d58c63b45ab94fbc2b0ae9e8d8dG.jpg",sold:5370,affiliate_url:"/baby/?q=magnetic+fishing+toy+baby"}
+  ],
+  "montessori toys baby wooden": [
+    {title:"פאזל עץ מונטסורי צורות גיאומטריות",price:"18.99",image:"https://ae-pic-a1.aliexpress-media.com/kf/S1db4e7b271974101b35d3ea5ca94cf67B.jpg",sold:481,affiliate_url:"/baby/?q=montessori+wooden+puzzle"},
+    {title:"צעצוע עץ מונטסורי מיון והערמה",price:"14.49",image:"https://ae-pic-a1.aliexpress-media.com/kf/S7cb0d385dc634aac81e2c9b39c1f12e4i.jpg",sold:278,affiliate_url:"/baby/?q=wooden+sorting+stacking+toy"},
+    {title:"פאזל עץ 3D חיות מצוירות לתינוק",price:"13.88",image:"https://ae-pic-a1.aliexpress-media.com/kf/S5632177f59c845519a3f5a4506fb43f2d.jpg",sold:316,affiliate_url:"/baby/?q=wooden+3D+puzzle+animals"},
+    {title:"מבוך חרוזים עץ מונטסורי",price:"10.77",image:"https://ae-pic-a1.aliexpress-media.com/kf/S1932c7f445504bf39e5f29ed2fa2a87bt.jpg",sold:120,affiliate_url:"/baby/?q=wooden+bead+maze+montessori"},
+    {title:"צעצוע מוזיקלי דובי עץ מונטסורי",price:"9.10",image:"https://ae-pic-a1.aliexpress-media.com/kf/Sf79ba6f9d9904bcaab4b9c39b26f31d0B.jpg",sold:40,affiliate_url:"/baby/?q=montessori+wooden+music+toy"},
+    {title:"משחק התאמת צבעים קשת עץ",price:"58.29",image:"https://ae-pic-a1.aliexpress-media.com/kf/Sc21265f7bc044d0c9cdf8ac5fcc78a7bB.jpg",sold:96,affiliate_url:"/baby/?q=rainbow+color+matching+wooden"}
+  ],
+  "baby feeding silicone bib plate": [
+    {title:"סט האכלה סיליקון לתינוק עם צלחת וכפית",price:"15.19",image:"https://ae-pic-a1.aliexpress-media.com/kf/Scab8a6b7742546b6b17c7aba69fa913eH.jpg",sold:1274,affiliate_url:"/baby/?q=silicone+baby+feeding+set"},
+    {title:"סט כלי אוכל סיליקון BPA Free לתינוק",price:"41.54",image:"https://ae-pic-a1.aliexpress-media.com/kf/See19553e38eb470c904d9f5fe3c1b1e1Y.jpg",sold:32,affiliate_url:"/baby/?q=silicone+tableware+baby"},
+    {title:"סט האכלה סיליקון 8/5 חלקים לילדים",price:"50.77",image:"https://ae-pic-a1.aliexpress-media.com/kf/Sf1d7829716554f14896b4f5e3a1af11dA.jpg",sold:303,affiliate_url:"/baby/?q=silicone+feeding+set+kids"},
+    {title:"סט האכלה סיליקון 9 חלקים עם שם",price:"64.61",image:"https://ae-pic-a1.aliexpress-media.com/kf/Seb17341e8ecb4f9fb6e0c1f0dd5c3fddN.jpg",sold:135,affiliate_url:"/baby/?q=personalized+baby+feeding+set"},
+    {title:"צלחת סיליקון עם כוס יניקה לתינוק",price:"56.83",image:"https://ae-pic-a1.aliexpress-media.com/kf/Scad4c7cc121a4f558f90b45ebc8da6b6v.jpg",sold:381,affiliate_url:"/baby/?q=suction+silicone+plate+baby"},
+    {title:"סט האכלה מותאם אישית לילדים",price:"60.85",image:"https://ae-pic-a1.aliexpress-media.com/kf/S13e8e1845edd417d92d38498b7f360d5C.jpg",sold:6,affiliate_url:"/baby/?q=custom+baby+feeding+silicone"}
+  ],
+  "baby sleeping bag wearable blanket": [
+    {title:"שק שינה כותנה ללא שרוולים לתינוק",price:"25.03",image:"https://ae-pic-a1.aliexpress-media.com/kf/S76f265d240dc4cc8830e4de7a3ddab27w.jpg",sold:485,affiliate_url:"/baby/?q=cotton+baby+sleeping+bag"},
+    {title:"שק שינה לתינוק ארבע עונות",price:"24.63",image:"https://ae-pic-a1.aliexpress-media.com/kf/S93781294b2c6461ab3badd4d3b6a0a7dV.jpg",sold:167,affiliate_url:"/baby/?q=four+seasons+baby+sleeping+bag"},
+    {title:"חיתול שינה לתינוק עם עטיפה",price:"16.73",image:"https://ae-pic-a1.aliexpress-media.com/kf/Se8773251f53149c3a45bea4fdbc8c01b6.jpg",sold:195,affiliate_url:"/baby/?q=baby+swaddle+blanket+wrap"},
+    {title:"שק שינה לתינוק נגד בעיטות",price:"26.84",image:"https://ae-pic-a1.aliexpress-media.com/kf/S1bbc7215cd284161848cfab1a6f55e23q.jpg",sold:177,affiliate_url:"/baby/?q=anti+kick+baby+sleeping+bag"},
+    {title:"שק שינה לתינוק יילוד ללא שרוולים",price:"28.99",image:"https://ae-pic-a1.aliexpress-media.com/kf/Sed74c05d481444079506aa8e55370ee1M.jpg",sold:197,affiliate_url:"/baby/?q=newborn+sleeveless+sleeping+bag"},
+    {title:"חיתול שינה לתינוק עטיפת יילוד",price:"19.84",image:"https://ae-pic-a1.aliexpress-media.com/kf/Se8773251f53149c3a45bea4fdbc8c01b6.jpg",sold:25,affiliate_url:"/baby/?q=infant+swaddle+sleeping+bag"}
+  ],
+  "baby clothes romper newborn": [
+    {title:"אוברול תינוק אנימה חמוד לבנים ובנות",price:"22.84",image:"https://ae-pic-a1.aliexpress-media.com/kf/S1844dd0f2e02416790f80c63efa8ece4A.jpg",sold:823,affiliate_url:"/baby/?q=anime+baby+romper+costume"},
+    {title:"אוברול יילוד סגנון אנימה",price:"24.94",image:"https://ae-pic-a1.aliexpress-media.com/kf/Sc51965cef9704a78891fc1e1dd1416b0H.jpg",sold:215,affiliate_url:"/baby/?q=newborn+anime+onesie"},
+    {title:"מגבת הרגעה לתינוק ארנב/דובי/פיל",price:"18.82",image:"https://ae-pic-a1.aliexpress-media.com/kf/S1cef75020b9a4052ae7bc7e7cd6aed83z.jpg",sold:249,affiliate_url:"/baby/?q=baby+soother+towel"},
+    {title:"ספר בד 3D לתינוק - צעצוע חינוכי",price:"12.35",image:"https://ae-pic-a1.aliexpress-media.com/kf/S3b718a5faec748be892b8c61db8a6e81k.jpg",sold:14,affiliate_url:"/baby/?q=baby+cloth+book+3D"},
+    {title:"מנקה אף לתינוק 2 יח'",price:"5.89",image:"https://ae-pic-a1.aliexpress-media.com/kf/S473e1ccb8239422aabb8ae5f1f944ccf3.jpg",sold:3022,affiliate_url:"/baby/?q=baby+nose+cleaner"},
+    {title:"קשת צעצועים מוזיקלית לעגלה",price:"30.06",image:"https://ae-pic-a1.aliexpress-media.com/kf/S4e74e8eeec85486c8ed0d19fe94a8cf2W.jpg",sold:5,affiliate_url:"/baby/?q=stroller+arch+musical+toy"}
+  ],
+  "baby bath toys waterproof": [
+    {title:"צעצועי LED לאמבטיה צבעוניים 6/12 יח'",price:"11.84",image:"https://ae-pic-a1.aliexpress-media.com/kf/S5f112ca5948447748afd4a7abd8ac39d2.jpg",sold:4859,affiliate_url:"/baby/?q=LED+bath+toys+baby"},
+    {title:"צעצוע שחייה דג ליצן לאמבטיה",price:"5.60",image:"https://ae-pic-a1.aliexpress-media.com/kf/S3dbf76d93d674e24b6e96e4ee4416847e.jpg",sold:3052,affiliate_url:"/baby/?q=swimming+clown+fish+bath+toy"},
+    {title:"סט ברווזוני גומי 10 יח' לאמבטיה",price:"3.79",image:"https://ae-pic-a1.aliexpress-media.com/kf/S65fb3ea4858c42019c21fe1fc8bf4419F.jpg",sold:2461,affiliate_url:"/baby/?q=rubber+duck+bath+toys"},
+    {title:"צעצוע אמבטיה חמוד לתינוק",price:"5.58",image:"https://ae-pic-a1.aliexpress-media.com/kf/Saf5bcde3bf6d41978d8bbd3a4e455be82.jpg",sold:1620,affiliate_url:"/baby/?q=cute+baby+bath+toy"},
+    {title:"צעצוע בועות ברווז לאמבטיה",price:"5.59",image:"https://ae-pic-a1.aliexpress-media.com/kf/Sc919fb87b0bf4fa981f14a3e1daa28f9s.jpg",sold:1304,affiliate_url:"/baby/?q=bubble+duck+bath+toy"},
+    {title:"פצצות אמבטיה עם הפתעה 24 יח'",price:"108.12",image:"https://ae-pic-a1.aliexpress-media.com/kf/S6209399925c54b6bbab38d3f2be38e0aR.jpg",sold:1130,affiliate_url:"/baby/?q=bath+bombs+kids+surprise"}
+  ]
+};
+const staticTrending = staticByCategory["baby toys educational developmental"];
+
+function renderStaticTrending(products) {
+  const items = products || staticTrending;
+  const grid = document.getElementById('trendingGrid');
+  const moreBtn = document.getElementById('trendingMore');
+  grid.innerHTML = '';
+  items.forEach((p, i) => {
+    const card = document.createElement('a');
+    card.className = 'trending-card';
+    card.href = p.affiliate_url;
+    const sold = p.sold > 1000 ? Math.round(p.sold/1000) + 'K+ נמכרו' : p.sold + ' נמכרו';
+    const badge = i === 0 ? '<div class="trending-card-badge">🔥 HOT</div>' :
+                  i === 1 ? '<div class="trending-card-badge">⭐ פופולרי</div>' : '';
+    card.innerHTML = `${badge}<img src="${p.image}" alt="${p.title}" loading="${i<4?'eager':'lazy'}"><div class="trending-card-info"><div class="trending-card-title">${p.title}</div><div class="trending-card-bottom"><span class="trending-card-price">₪${p.price}</span><span class="trending-card-sold">${sold}</span></div></div>`;
+    grid.appendChild(card);
+  });
+  moreBtn.style.display = 'block';
+}
+
+// Trending tabs click handler - uses static Hebrew data
 document.getElementById('trendingTabs').addEventListener('click', (e) => {
   const tab = e.target.closest('.trending-tab');
   if (!tab) return;
   document.querySelectorAll('.trending-tab').forEach(t => t.classList.remove('active'));
   tab.classList.add('active');
-  loadTrending(tab.dataset.q);
+  const q = tab.dataset.q;
+  if (staticByCategory[q]) {
+    renderStaticTrending(staticByCategory[q]);
+  } else {
+    loadTrending(q);
+  }
 });
 
-// Load trending on page load (if no search query)
+// Load trending on page load
 (function() {
   const params = new URLSearchParams(location.search);
   if (!params.get('q')) {
-    loadTrending('baby toys educational developmental');
+    renderStaticTrending();
   }
 })();
 
