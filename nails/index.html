@@ -280,7 +280,7 @@
     /* ===== HERO ===== */
     .hero {
       text-align: center;
-      padding: 50px 20px 30px;
+      padding: 15px 20px 10px;
       position: relative;
       overflow: hidden;
     }
@@ -878,12 +878,9 @@
       .category-icon { font-size: 24px !important; margin-bottom: 4px !important; }
       .category-name { font-size: 12px !important; }
       .category-desc { display: none !important; }
-      /* Minimal hero on mobile - just search bar */
-      .hero { padding: 8px 12px 0 !important; }
-      .hero-title { font-size: 20px !important; margin: 0 0 2px !important; }
-      .hero-subtitle { display: none !important; }
+      /* Hide hero on mobile - navbar+search are enough */
+      .hero { display: none !important; }
       .hero::before { display: none !important; }
-      .search-box { margin-top: 4px !important; }
       .search-container { margin-bottom: 5px !important; }
       .categories { margin-bottom: 5px !important; padding: 0 10px 5px !important; }
       .categories .section-title { display: none !important; }
@@ -1767,7 +1764,7 @@
 </div>
 
 <!-- HERO (hidden on mobile, visible on desktop) -->
-<section class="hero" id="heroSection" style="display:none">
+<section class="hero" id="heroSection">
   <h1 class="hero-title" id="heroTitle">
     <span class="paw">💅</span> נייל <span class="highlight">פיינד</span>
   </h1>
