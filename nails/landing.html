@@ -22,8 +22,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="dns-prefetch" href="https://ae01.alicdn.com">
 <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@700;900&family=Assistant:wght@400;600&display=swap" rel="stylesheet">
-<!-- Prefetch products immediately -->
-<script>window._productsPromise=fetch('https://ali-findme-api.ohadf1976.workers.dev/search?q=nail+art+popular&lang=he&currency=ILS&country=IL&context=nails&source=nails').then(r=>r.json()).catch(()=>null);</script>
+<!-- Products pre-embedded for instant load -->
 
 <!-- Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-18NLX6KS89"></script>
@@ -185,12 +184,7 @@ h1,h2,h3,.cat-btn,.cta-btn{font-family:'Heebo',sans-serif}
 <!-- PRODUCTS -->
 <section class="products-section">
   <h2 class="section-title">המוצרים הכי נמכרים 🔥</h2>
-  <div class="grid" id="productGrid">
-    <div class="loading-spinner" id="spinner">
-      <div class="spinner"></div>
-      <p>טוענת מוצרים...</p>
-    </div>
-  </div>
+  <div class="grid" id="productGrid"></div>
 </section>
 
 <!-- FEATURES -->
@@ -221,87 +215,88 @@ h1,h2,h3,.cat-btn,.cta-btn{font-family:'Heebo',sans-serif}
 <script>
 var API = 'https://ali-findme-api.ohadf1976.workers.dev';
 var grid = document.getElementById('productGrid');
-var allProducts = [];
 
-// Category search queries
-var catQueries = {
-  all: 'nail art popular',
-  gel: 'gel nail polish',
-  ready: 'press on nails',
-  stickers: 'nail stickers',
-  tools: 'manicure tools set',
-  uv: 'UV LED nail lamp',
-  art: 'nail art rhinestones glitter'
-};
+// Pre-embedded products - NO API call needed!
+var staticProducts = [
+  {t:"מדבקות ציפורניים עיצובים חמודים",p:6.89,o:6.89,img:"https://ae-pic-a1.aliexpress-media.com/kf/Sc021f19a88974608a61c46ffdaf0c60e9.png",r:231,d:0,q:"nail stickers cute"},
+  {t:"מדבקות צרפתיות יהלום 5D - 2 יח'",p:6.38,o:6.60,img:"https://ae-pic-a1.aliexpress-media.com/kf/S232c4db67f5e47c3ba5675d1d30770937.jpg",r:1034,d:3,q:"french tip nail stickers diamond"},
+  {t:"מדבקות פרחי חיננית 5D לבן - 2 יח'",p:5.73,o:5.86,img:"https://ae-pic-a1.aliexpress-media.com/kf/Sa2ba38b944b7447eac7fe292bd953783m.jpg",r:1117,d:2,q:"daisy nail stickers 5D"},
+  {t:"מדבקות לבבות זהב 3D",p:3.79,o:3.85,img:"https://ae-pic-a1.aliexpress-media.com/kf/S3900cdf174564d91b1959aa3830c6fb80.jpg",r:1155,d:2,q:"gold heart nail stickers 3D"},
+  {t:"סט מדבקות חתול שחור 12 גיליונות",p:8.01,o:8.27,img:"https://ae-pic-a1.aliexpress-media.com/kf/S3b183eee589147f69e75c3ffff3e278dC.jpg",r:1390,d:3,q:"cat nail stickers set"},
+  {t:"10 גלילי פויל תחרה שחור לבן",p:7.53,o:7.72,img:"https://ae-pic-a1.aliexpress-media.com/kf/Se8f766ed03f5406192e1a389af4b146cW.jpg",r:2402,d:2,q:"lace nail foils black white"},
+  {t:"מדבקות לבבות צבעוניות 3D - 8 יח'",p:5.92,o:6.07,img:"https://ae-pic-a1.aliexpress-media.com/kf/S61cc15e81d77401791af5b1bdd125cbc1.jpg",r:3966,d:2,q:"heart nail stickers 3D colorful"},
+  {t:"מדבקות הלו קיטי 5D זהב לייזר",p:8.29,o:8.29,img:"https://ae-pic-a1.aliexpress-media.com/kf/Sdb027e64e130455ba76197fb2131c9a2p.jpg",r:1171,d:0,q:"hello kitty nail stickers 5D"},
+  {t:"מדבקות יהלום 5D דבק עצמי",p:6.76,o:6.76,img:"https://ae-pic-a1.aliexpress-media.com/kf/S9c1f17b5146a48998cd744f915cc6654v.png",r:1051,d:0,q:"diamond nail stickers 5D"},
+  {t:"מדבקות חתולים וכלבים חמודים 3D",p:4.14,o:4.20,img:"https://ae-pic-a1.aliexpress-media.com/kf/Se43e503c6c3742d3b82fe7fe9d5913836.jpg",r:160,d:1,q:"cat dog nail decals 3D"},
+  {t:"מדבקות פורצלן כחול לבן",p:5.21,o:11.58,img:"https://ae-pic-a1.aliexpress-media.com/kf/S02ba9c4bbbe94d61a132db66243a59ffW.jpg",r:113,d:55,q:"porcelain nail stickers"},
+  {t:"סט פפיון בורגנדי סרט לב",p:5.71,o:5.93,img:"https://ae-pic-a1.aliexpress-media.com/kf/S7c4ffafcf2fa445680c9da05a3b10482M.jpg",r:2097,d:4,q:"bow ribbon nail stickers"}
+];
 
-// Load products from API
-async function loadProducts(query, cat, usePrefetch) {
-  grid.innerHTML = '<div class="loading-spinner"><div class="spinner"></div><p>טוענת מוצרים...</p></div>';
-  try {
-    var data;
-    if (usePrefetch && window._productsPromise) {
-      data = await window._productsPromise;
-      window._productsPromise = null;
-    }
-    if (!data) {
-      var url = API + '/search?q=' + encodeURIComponent(query) + '&lang=he&currency=ILS&country=IL&context=nails&source=nails';
-      var res = await fetch(url);
-      data = await res.json();
-    }
-    var items = (data.products || data.items || data || []).slice(0, 16);
-    if (cat === 'all') allProducts = items;
-    renderCards(items);
-  } catch(e) {
-    grid.innerHTML = '<p style="text-align:center;padding:40px;grid-column:1/-1;color:#999">שגיאה בטעינה, נסי שוב</p>';
-  }
-}
-
-function renderCards(items) {
-  if (!items.length) {
-    grid.innerHTML = '<p style="text-align:center;padding:40px;grid-column:1/-1;color:#999">לא נמצאו מוצרים</p>';
-    return;
-  }
+// Render static products instantly
+function renderStatic() {
   var html = '';
-  for (var i = 0; i < items.length; i++) {
-    var p = items[i];
-    var price = parseFloat(p.sale_price || p.price || 0);
-    var orig = parseFloat(p.original_price || p.retail_price || price * 1.8);
-    var discount = orig > price ? Math.round((1 - price / orig) * 100) : 0;
-    var name = p.title || p.product_title || '';
-    if (name.length > 45) name = name.substring(0, 42) + '...';
-    var img = p.image || p.product_main_image_url || '';
-    var orders = p.orders || p.lastest_volume || 0;
-    var badge = discount > 50 ? '-' + discount + '%' : (orders > 100 ? orders + ' נמכרו 🔥' : 'פופולרי ⭐');
-    // Link to search engine with product name as query
-    var searchQuery = encodeURIComponent(name.substring(0, 30));
-    var link = '/nails/?q=' + searchQuery + '&utm_source=facebook&utm_medium=cpc&utm_campaign=nails_landing';
+  for (var i = 0; i < staticProducts.length; i++) {
+    var p = staticProducts[i];
+    var discount = p.d;
+    var badge = discount > 50 ? '-' + discount + '%' : (p.r > 1000 ? p.r.toLocaleString() + ' נמכרו 🔥' : (p.r > 100 ? p.r + ' נמכרו ⭐' : 'חדש ✨'));
+    var link = '/nails/?q=' + encodeURIComponent(p.q) + '&utm_source=facebook&utm_medium=cpc&utm_campaign=nails_landing';
 
     html += '<div class="card">' +
       '<div class="card-badge">' + badge + '</div>' +
-      '<div class="card-img"><img src="' + img + '" alt="' + name + '" loading="lazy" onerror="this.style.display=\'none\'"></div>' +
+      '<div class="card-img"><img src="' + p.img + '" alt="' + p.t + '" loading="' + (i < 4 ? 'eager' : 'lazy') + '"></div>' +
       '<div class="card-body">' +
-        '<div class="card-name">' + name + '</div>' +
+        '<div class="card-name">' + p.t + '</div>' +
         '<div class="card-prices">';
-    if (discount > 0) {
-      html += '<span class="card-discount">-' + discount + '%</span>' +
-        '<span class="card-original">₪' + orig.toFixed(0) + '</span>';
+    if (p.o > p.p) {
+      html += '<span class="card-discount">-' + Math.round((1-p.p/p.o)*100) + '%</span>' +
+        '<span class="card-original">₪' + Math.round(p.o) + '</span>';
     }
-    html += '<span class="card-price">₪' + price.toFixed(0) + '</span>' +
+    html += '<span class="card-price">₪' + p.p.toFixed(0) + '</span>' +
         '</div>' +
-        '<a href="' + link + '" class="card-btn" onclick="trackClick(\'' + name.replace(/'/g,'') + '\',' + price + ')">צפי במוצר 💅</a>' +
+        '<a href="' + link + '" class="card-btn" onclick="trackClick(\'' + p.t.replace(/'/g,'') + '\',' + p.p + ')">צפי במוצר 💅</a>' +
       '</div></div>';
   }
   grid.innerHTML = html;
 }
 
+// Load from API for category tabs
+async function loadProducts(query) {
+  grid.innerHTML = '<div class="loading-spinner"><div class="spinner"></div><p>טוענת מוצרים...</p></div>';
+  try {
+    var url = API + '/search?q=' + encodeURIComponent(query) + '&lang=he&currency=ILS&country=IL&context=nails&source=nails';
+    var res = await fetch(url);
+    var data = await res.json();
+    var items = (data.products || []).slice(0, 12);
+    var html = '';
+    for (var i = 0; i < items.length; i++) {
+      var p = items[i];
+      var price = parseFloat(p.price || 0);
+      var orig = parseFloat(p.original_price || price);
+      var disc = orig > price ? Math.round((1 - price/orig)*100) : 0;
+      var name = (p.title||'').substring(0,45);
+      var orders = p.orders || 0;
+      var badge = disc > 50 ? '-'+disc+'%' : (orders > 1000 ? orders.toLocaleString()+' נמכרו 🔥' : 'פופולרי ⭐');
+      var link = '/nails/?q=' + encodeURIComponent(name.substring(0,30)) + '&utm_source=facebook&utm_medium=cpc&utm_campaign=nails_landing';
+      html += '<div class="card"><div class="card-badge">'+badge+'</div><div class="card-img"><img src="'+(p.image_alt||p.image)+'" alt="'+name+'" loading="lazy"></div><div class="card-body"><div class="card-name">'+name+'</div><div class="card-prices">';
+      if (disc > 0) html += '<span class="card-discount">-'+disc+'%</span><span class="card-original">₪'+Math.round(orig)+'</span>';
+      html += '<span class="card-price">₪'+Math.round(price)+'</span></div><a href="'+link+'" class="card-btn" onclick="trackClick(\''+name.replace(/'/g,'')+'\','+price+')">צפי במוצר 💅</a></div></div>';
+    }
+    grid.innerHTML = html;
+  } catch(e) {
+    renderStatic(); // fallback to static
+  }
+}
+
 // Category tabs
+var catQueries = {all:'',gel:'gel nail polish',ready:'press on nails',stickers:'nail stickers',tools:'manicure tools set',uv:'UV LED nail lamp',art:'nail art rhinestones glitter'};
 document.getElementById('categories').addEventListener('click', function(e) {
   var btn = e.target.closest('.cat-btn');
   if (!btn) return;
   document.querySelectorAll('.cat-btn').forEach(function(b){b.classList.remove('active')});
   btn.classList.add('active');
   var cat = btn.dataset.cat;
-  loadProducts(catQueries[cat] || 'nail art', cat);
+  if (cat === 'all') renderStatic();
+  else loadProducts(catQueries[cat]);
 });
 
 // Track CTA clicks
@@ -346,8 +341,8 @@ setTimeout(function(){
   setInterval(showToast, 12000);
 }, 5000);
 
-// Load initial products (use prefetched data)
-loadProducts('nail art popular', 'all', true);
+// Instant render - no API call!
+renderStatic();
 checkReveal();
 </script>
 </body>
