@@ -1700,7 +1700,7 @@
 </nav>
 
 <!-- HERO -->
-<section class="hero">
+<section class="hero" id="heroSection">
   <h1 class="hero-title" id="heroTitle">
     <span class="paw">💅</span> נייל <span class="highlight">פיינד</span>
   </h1>
@@ -1761,7 +1761,7 @@
 </section>
 
 <!-- CATEGORIES -->
-<section class="categories">
+<section class="categories" id="categoriesSection">
   <h2 class="section-title" id="categoriesTitle">🏷️ קטגוריות מוצרי ציפורניים</h2>
   <div class="categories-grid" id="categoriesGrid">
     <a class="category-card" onclick="quickSearch('gel nail polish colors')">
@@ -2049,8 +2049,10 @@ async function doSearch() {
   document.getElementById('loading').classList.add('active');
   document.getElementById('resultsSection').classList.remove('active');
   document.getElementById('noResults').classList.remove('active');
+  document.getElementById('heroSection').style.display = 'none';
   document.getElementById('featuresSection').style.display = 'none';
   document.getElementById('trendingSection').style.display = 'none';
+  document.getElementById('categoriesSection').style.display = 'none';
   document.getElementById('productsGrid').innerHTML = '';
 
   // GA event
@@ -2233,8 +2235,10 @@ function renderProducts(products, append) {
 function clearResults() {
   document.getElementById('resultsSection').classList.remove('active');
   document.getElementById('noResults').classList.remove('active');
+  document.getElementById('heroSection').style.display = '';
   document.getElementById('featuresSection').style.display = '';
   document.getElementById('trendingSection').style.display = '';
+  document.getElementById('categoriesSection').style.display = '';
   document.getElementById('searchInput').value = '';
   document.getElementById('productsGrid').innerHTML = '';
   history.replaceState(null, '', '/nails/');
