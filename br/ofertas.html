@@ -891,8 +891,20 @@
         });
       }
 
-      // Open in new tab
-      window.open(originalUrl, '_blank', 'noopener');
+      // Ensure link opens on Brazilian AliExpress
+      let brUrl = originalUrl;
+      try {
+        const u = new URL(originalUrl);
+        if (u.hostname === 'www.aliexpress.com') {
+          u.hostname = 'pt.aliexpress.com';
+          u.searchParams.set('gatewayAdapt', 'glo2bra');
+          brUrl = u.toString();
+        } else if (u.hostname === 's.click.aliexpress.com') {
+          // For short links, append gatewayAdapt via redirect
+          brUrl = originalUrl + (originalUrl.includes('?') ? '&' : '?') + 'gatewayAdapt=glo2bra';
+        }
+      } catch(e) {}
+      window.open(brUrl, '_blank', 'noopener');
     });
   });
 
