@@ -298,15 +298,16 @@
 
     /* CTA Banner */
     .cta-banner {
-      max-width: 1200px;
+      max-width: 1170px;
       margin: 20px auto;
       padding: 20px;
       background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
       border-radius: 12px;
       text-align: center;
       border: 1px solid #ff6a0033;
-      margin-left: 15px;
-      margin-right: 15px;
+      margin-left: auto;
+      margin-right: auto;
+      width: calc(100% - 30px);
     }
     .cta-banner h3 { font-size: 1.1rem; margin-bottom: 8px; }
     .cta-banner p { font-size: 0.85rem; color: #aaa; margin-bottom: 12px; }
@@ -899,7 +900,7 @@
   </div>
 
   <!-- Trust Section -->
-  <div style="max-width: 1200px; margin: 20px auto; padding: 25px 15px; background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); border-radius: 12px; text-align: center; border: 1px solid #4caf5033;">
+  <div class="cta-banner" style="border-color: #4caf5033;">
     <h3 style="font-size: 1.1rem; margin-bottom: 12px;">🛡️ Compra Segura</h3>
     <div style="display: flex; justify-content: center; gap: 25px; flex-wrap: wrap; font-size: 0.85rem; color: #ccc;">
       <span>✅ Frete Grátis</span>
