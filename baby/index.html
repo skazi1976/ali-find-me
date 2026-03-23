@@ -356,6 +356,23 @@
       margin: 0 auto 20px;
       position: relative;
     }
+    .search-sticky {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 999;
+      background: rgba(255,245,244,0.95);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      padding: 10px 16px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+      max-width: 100%;
+    }
+    .search-sticky .search-box {
+      max-width: 650px;
+      margin: 0 auto;
+    }
     .search-box {
       display: flex;
       align-items: center;
@@ -537,8 +554,8 @@
     .results-clear:hover { border-color: var(--primary); color: var(--primary); }
     .products-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-      gap: 16px;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 12px;
     }
     .product-card {
       background: var(--bg-card);
@@ -708,6 +725,7 @@
       color: var(--text);
       display: block;
       position: relative;
+      position: relative;
     }
     .trending-card:hover {
       transform: translateY(-4px);
@@ -822,27 +840,61 @@
 
     /* ===== LOADING ===== */
     .loading {
-      text-align: center;
-      padding: 60px 20px;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(255,245,244,0.95);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      z-index: 998;
       display: none;
+      align-items: center;
+      justify-content: center;
     }
-    .loading.active { display: block; }
+    .loading.active { display: flex; }
+    .loading-inner { text-align: center; padding: 20px; }
     .spinner {
-      width: 50px;
-      height: 50px;
-      margin: 0 auto 16px;
-      position: relative;
-      animation: spinPaw 1.5s infinite ease-in-out;
-      font-size: 40px;
+      font-size: 48px;
+      animation: spinBounce 1.2s infinite ease-in-out;
+      margin-bottom: 20px;
     }
-    @keyframes spinPaw {
+    @keyframes spinBounce {
       0% { transform: rotate(0deg) scale(1); }
-      50% { transform: rotate(180deg) scale(1.2); }
+      25% { transform: rotate(90deg) scale(1.3); }
+      50% { transform: rotate(180deg) scale(1); }
+      75% { transform: rotate(270deg) scale(1.3); }
       100% { transform: rotate(360deg) scale(1); }
     }
+    .loading-progress-bar {
+      width: 240px;
+      height: 6px;
+      background: #f0d0cc;
+      border-radius: 3px;
+      margin: 0 auto 16px;
+      overflow: hidden;
+    }
+    .loading-progress-fill {
+      height: 100%;
+      width: 0%;
+      background: var(--gradient);
+      border-radius: 3px;
+      transition: width 0.4s ease;
+    }
     .loading-text {
+      color: var(--primary-dark);
+      font-size: 18px;
+      font-weight: 700;
+      font-family: 'Heebo', sans-serif;
+      margin-bottom: 8px;
+    }
+    .loading-steps {
       color: var(--text-light);
-      font-size: 16px;
+      font-size: 14px;
+      min-height: 20px;
+      animation: fadeStep 0.5s ease;
+    }
+    @keyframes fadeStep {
+      from { opacity: 0; transform: translateY(5px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     /* ===== LOAD MORE ===== */
@@ -1484,6 +1536,23 @@
       color: var(--text-light);
       line-height: 1.8;
     }
+    /* Exit Intent Popup */
+    .exit-overlay { display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:10000;animation:fadeIn 0.3s; }
+    .exit-overlay.show { display:flex;align-items:center;justify-content:center; }
+    .exit-popup { background:#fff;border-radius:20px;padding:30px 24px;max-width:400px;width:calc(100vw - 32px);text-align:center;animation:popIn 0.4s ease; }
+    @keyframes popIn { from{transform:scale(0.8);opacity:0}to{transform:scale(1);opacity:1} }
+    .exit-popup h2 { font-size:24px;margin:0 0 8px;font-family:'Heebo',sans-serif; }
+    .exit-popup p { font-size:15px;color:#666;margin:0 0 20px;line-height:1.6; }
+    .exit-popup-grid { display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:20px; }
+    .exit-popup-item { background:#FFF0EE;border-radius:12px;padding:8px;text-align:center; }
+    .exit-popup-item img { width:100%;aspect-ratio:1;object-fit:cover;border-radius:8px; }
+    .exit-popup-item span { display:block;font-size:12px;font-weight:700;color:var(--primary);margin-top:4px; }
+    .exit-popup-btn { display:block;width:100%;padding:14px;background:var(--gradient);color:#fff;border:none;border-radius:var(--radius-full);font-size:17px;font-weight:700;cursor:pointer;font-family:'Heebo',sans-serif;margin-bottom:10px; }
+    .exit-popup-btn:hover { transform:scale(1.03); }
+    .exit-popup-close { background:none;border:none;color:#999;font-size:14px;cursor:pointer; }
+    /* Trending card CTA button */
+    .trending-card-cta { display:block;background:var(--gradient);color:#fff;text-align:center;padding:8px;font-size:13px;font-weight:700;font-family:'Heebo',sans-serif;border:none;cursor:pointer;transition:all 0.2s; }
+    .trending-card-cta:hover { filter:brightness(1.1); }
   </style>
 </head>
 <body>
@@ -1500,7 +1569,7 @@
 </nav>
 
 <!-- HERO -->
-<section class="hero">
+<section class="hero" id="heroSection">
   <h1 class="hero-title">
     <span class="paw">👶</span> בייבי <span class="highlight">פיינד</span>
   </h1>
@@ -1561,7 +1630,7 @@
 </section>
 
 <!-- CATEGORIES -->
-<section class="categories">
+<section class="categories" id="categoriesSection">
   <h2 class="section-title">🏷️ קטגוריות מוצרי תינוקות</h2>
   <div class="categories-grid">
     <a class="category-card" onclick="quickSearch('baby toys educational developmental')">
@@ -1599,8 +1668,12 @@
 
 <!-- LOADING -->
 <div class="loading" id="loading">
-  <div class="spinner">👶</div>
-  <div class="loading-text">ה-AI סורק אלפי מוצרי תינוקות ומוצא לכם את הדילים הכי טובים... 🍼</div>
+  <div class="loading-inner">
+    <div class="spinner">👶</div>
+    <div class="loading-progress-bar"><div class="loading-progress-fill" id="loadingProgress"></div></div>
+    <div class="loading-text" id="loadingText">🔍 מחפש...</div>
+    <div class="loading-steps" id="loadingSteps"></div>
+  </div>
 </div>
 
 <!-- NO RESULTS -->
@@ -1776,13 +1849,49 @@ let currentPage = 1;
 let totalResults = 0;
 let isLoading = false;
 
+let loadingTimer = null;
+function animateLoading() {
+  const steps = [
+    { text: '🔍 מחפש...', sub: 'מתרגם את החיפוש שלך', pct: 15 },
+    { text: '🤖 AI סורק מוצרים...', sub: 'בודק אלפי מוצרים באלי אקספרס', pct: 35 },
+    { text: '💰 משווה מחירים...', sub: 'מוצא את הדילים הכי טובים', pct: 60 },
+    { text: '⭐ מדרג תוצאות...', sub: 'מסנן לפי איכות ודירוג', pct: 80 },
+    { text: '✨ כמעט מוכן!', sub: 'מכין את התוצאות', pct: 95 },
+  ];
+  let i = 0;
+  const progress = document.getElementById('loadingProgress');
+  const text = document.getElementById('loadingText');
+  const stepsEl = document.getElementById('loadingSteps');
+
+  function next() {
+    if (i < steps.length) {
+      progress.style.width = steps[i].pct + '%';
+      text.textContent = steps[i].text;
+      stepsEl.textContent = steps[i].sub;
+      stepsEl.style.animation = 'none';
+      stepsEl.offsetHeight;
+      stepsEl.style.animation = 'fadeStep 0.4s ease';
+      i++;
+    }
+  }
+  next();
+  if (loadingTimer) clearInterval(loadingTimer);
+  loadingTimer = setInterval(() => {
+    if (!document.getElementById('loading').classList.contains('active')) {
+      clearInterval(loadingTimer);
+      return;
+    }
+    next();
+  }, 800);
+}
+
 // Init
 (function init() {
   const params = new URLSearchParams(location.search);
   const q = params.get('q');
   if (q) {
     document.getElementById('searchInput').value = q;
-    doSearch();
+    setTimeout(() => doSearch(), 100);
   }
 
   document.getElementById('searchInput').addEventListener('keydown', (e) => {
@@ -1812,11 +1921,20 @@ async function doSearch() {
 
   history.replaceState(null, '', `/baby/?q=${encodeURIComponent(query)}`);
 
+  // Show loading
   document.getElementById('loading').classList.add('active');
+  animateLoading();
+  // Safety: remove loading after 12 seconds no matter what
+  setTimeout(() => {
+    document.getElementById('loading').classList.remove('active');
+    isLoading = false;
+  }, 12000);
   document.getElementById('resultsSection').classList.remove('active');
   document.getElementById('noResults').classList.remove('active');
+  document.getElementById('heroSection').style.display = 'none';
   document.getElementById('featuresSection').style.display = 'none';
   document.getElementById('trendingSection').style.display = 'none';
+  document.getElementById('categoriesSection').style.display = 'none';
   document.getElementById('productsGrid').innerHTML = '';
 
   if (typeof gtag === 'function') {
@@ -1838,9 +1956,8 @@ async function doSearch() {
       document.getElementById('resultsTitle').textContent = `👶 תוצאות: "${query}"`;
       document.getElementById('resultsCount').textContent = `(${totalResults} מוצרים)`;
       document.getElementById('loadMoreWrap').classList.toggle('active', data.products.length >= 50);
-      setTimeout(() => {
-        document.getElementById('resultsSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }, 100);
+      // Scroll to top — hero is hidden, results are right below search bar
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     } else {
       document.getElementById('noResults').classList.add('active');
     }
@@ -1878,6 +1995,66 @@ async function loadMore() {
   }
 }
 
+// Quick Hebrew translation for common baby product terms
+const babyTermsHe = {
+  // Multi-word phrases first
+  'baby toys':'צעצועי תינוק','educational toys':'צעצועים חינוכיים','developmental toys':'צעצועי התפתחות',
+  'teething toy':'נשכן','teething ring':'נשכן טבעת',
+  'baby bottle':'בקבוק תינוק','sippy cup':'כוס שתייה','pacifier':'מוצץ','pacifier clip':'קליפ מוצץ',
+  'bib':'סינר','bibs':'סינרים',
+  'stroller':'עגלה','car seat':'כיסא בטיחות','baby monitor':'מוניטור תינוק',
+  'diaper':'חיתול','diapers':'חיתולים','wipes':'מגבונים','diaper bag':'תיק החתלה',
+  'onesie':'אוברול','romper':'רומפר','bodysuit':'בגד גוף',
+  'baby blanket':'שמיכת תינוק','swaddle':'חיתול עטיפה','sleep sack':'שק שינה','sleeping bag':'שק שינה',
+  'baby bath':'אמבטיית תינוק','bath toy':'צעצוע אמבטיה','bath toys':'צעצועי אמבטיה',
+  'baby carrier':'מנשא','baby wrap':'מנשא מעטפת',
+  'rattle':'רעשן','rattles':'רעשנים','plush':'פלאש','stuffed':'ממולא','plush toy':'בובת פלאש',
+  'montessori':'מונטסורי','sensory':'חושי','sensory toy':'צעצוע חושי',
+  'wooden':'עץ','wooden toy':'צעצוע עץ','silicone':'סיליקון',
+  'BPA free':'ללא BPA','BPA Free':'ללא BPA','food grade':'בטוח למזון',
+  'newborn':'יילוד','infant':'תינוק','toddler':'פעוט','baby':'תינוק',
+  'feeding':'האכלה','feeding set':'סט האכלה','tableware':'כלי אוכל',
+  'suction plate':'צלחת יניקה','suction cup':'כוס יניקה',
+  'teether':'נשכן','teethers':'נשכנים',
+  'busy board':'לוח עסוק','activity cube':'קוביית פעילות',
+  'stacking':'הערמה','sorting':'מיון','shape sorter':'מיון צורות',
+  'tummy time':'זמן בטן','play mat':'מזרן משחק','water mat':'מזרן מים',
+  'high contrast':'ניגודיות גבוהה','cloth book':'ספר בד',
+  'rubber duck':'ברווז גומי','bubble':'בועות',
+  'wearable blanket':'שק שינה לביש','anti kick':'נגד בעיטות',
+  'free shipping':'משלוח חינם',
+  // Colors
+  'pink':'ורוד','Pink':'ורוד','white':'לבן','White':'לבן',
+  'black':'שחור','Black':'שחור','red':'אדום','Red':'אדום',
+  'gold':'זהב','Gold':'זהב','silver':'כסף','Silver':'כסף',
+  'green':'ירוק','Green':'ירוק','blue':'כחול','Blue':'כחול','purple':'סגול','Purple':'סגול',
+  'yellow':'צהוב','Yellow':'צהוב','orange':'כתום','Orange':'כתום',
+  'transparent':'שקוף','Transparent':'שקוף',
+  'gray':'אפור','Grey':'אפור','beige':'בז\'',
+  // Size/material
+  'cotton':'כותנה','Cotton':'כותנה','soft':'רך','Soft':'רך',
+  'set':'סט','Set':'סט','Kit':'ערכה','kit':'ערכה',
+  'pcs':'יח\'','Pcs':'יח\'','pieces':'יח\'','Pieces':'יח\'',
+  'portable':'נייד','Portable':'נייד','mini':'מיני','Mini':'מיני',
+  'new':'חדש','New':'חדש','Hot':'חם','hot':'חם',
+  'cute':'חמוד','Cute':'חמוד','cartoon':'מצויר','Cartoon':'מצויר',
+  'waterproof':'עמיד למים','Waterproof':'עמיד למים',
+  'LED':'LED','USB':'USB','WiFi':'WiFi',
+  'Natural':'טבעי','natural':'טבעי','Sell':'','sell':'','Buy':'','buy':''
+};
+
+function translateTitle(title) {
+  if (!title) return '';
+  let t = title;
+  // Sort by length (longest first) to replace multi-word phrases before single words
+  const sorted = Object.entries(babyTermsHe).sort((a,b) => b[0].length - a[0].length);
+  for (const [en, he] of sorted) {
+    t = t.replace(new RegExp(en, 'gi'), he);
+  }
+  // Truncate
+  return t.length > 60 ? t.substring(0, 57) + '...' : t;
+}
+
 async function fetchProducts(query, page) {
   const url = `${API_BASE}/search?q=${encodeURIComponent(query)}&lang=he&currency=ILS&country=IL&page=${page}&context=baby&source=baby`;
   const resp = await fetch(url);
@@ -1891,8 +2068,12 @@ function renderProducts(products, append) {
 
   products.forEach(p => {
     const price = p.sale_price || p.price || '?';
-    const img = p.image || p.product_main_image_url || '';
-    const title = p.title || p.product_title || '';
+    let img = p.image || p.product_main_image_url || '';
+    if (img.includes('/img?url=')) {
+      try { img = decodeURIComponent(img.split('/img?url=')[1].split('&')[0]); } catch(e) {}
+    }
+    const rawTitle = p.title || p.product_title || '';
+    const title = translateTitle(rawTitle);
     const link = p.affiliate_url || p.affiliate_link || p.link || p.product_detail_url || '#';
     const rating = p.rating || p.evaluate_rate || '';
     const orders = p.orders || p.lastest_volume || 0;
@@ -1961,8 +2142,10 @@ function renderProducts(products, append) {
 function clearResults() {
   document.getElementById('resultsSection').classList.remove('active');
   document.getElementById('noResults').classList.remove('active');
+  document.getElementById('heroSection').style.display = '';
   document.getElementById('featuresSection').style.display = '';
   document.getElementById('trendingSection').style.display = '';
+  document.getElementById('categoriesSection').style.display = '';
   document.getElementById('searchInput').value = '';
   document.getElementById('productsGrid').innerHTML = '';
   history.replaceState(null, '', '/baby/');
@@ -2045,7 +2228,32 @@ async function loadTrending(query) {
 }
 
 function viewAllTrending() {
-  renderStaticTrending(allStaticProducts);
+  if (categoryKeys.length === 0) categoryKeys = Object.keys(staticByCategory);
+  const grid = document.getElementById('trendingGrid');
+  const moreBtn = document.getElementById('trendingMore');
+  const sym = '₪';
+  const currentCategory = staticByCategory[trendingQuery] || staticTrending;
+
+  if (!trendingShowingAll && currentCategory.length > 6) {
+    // First click: show remaining products (7-12)
+    const remaining = currentCategory.slice(6);
+    remaining.forEach((p, i) => {
+      grid.appendChild(createTrendingCard(p, i + 6, sym));
+    });
+    trendingShowingAll = true;
+    moreBtn.textContent = '👶 הצג עוד תוצאות ←';
+  } else if (nextCategoryIndex < categoryKeys.length) {
+    // Next clicks: append products from next category
+    const nextKey = categoryKeys[nextCategoryIndex];
+    const nextProducts = staticByCategory[nextKey];
+    nextProducts.forEach((p, i) => {
+      grid.appendChild(createTrendingCard(p, i, sym));
+    });
+    nextCategoryIndex++;
+    if (nextCategoryIndex >= categoryKeys.length) {
+      moreBtn.style.display = 'none'; // No more categories
+    }
+  }
 }
 
 // Pre-embedded Hebrew products for INSTANT display
@@ -2131,33 +2339,36 @@ const staticByCategory = {
 };
 const staticTrending = staticByCategory["baby toys educational developmental"];
 
-// Pre-build "all products" list for "show more" button
-const allStaticProducts = (function() {
-  const seen = new Set(), all = [];
-  for (const cat in staticByCategory) {
-    for (const p of staticByCategory[cat]) {
-      if (!seen.has(p.title)) { seen.add(p.title); all.push(p); }
-    }
-  }
-  return all.sort((a, b) => (b.sold || 0) - (a.sold || 0));
-})();
+let categoryKeys = [];
+let nextCategoryIndex = 1;
+let trendingShowingAll = false;
 
 function renderStaticTrending(products) {
   const items = products || staticTrending;
   const grid = document.getElementById('trendingGrid');
   const moreBtn = document.getElementById('trendingMore');
+  const sym = '₪';
+  trendingShowingAll = false;
   grid.innerHTML = '';
-  items.forEach((p, i) => {
-    const card = document.createElement('a');
-    card.className = 'trending-card';
-    card.href = p.affiliate_url;
-    const sold = p.sold > 1000 ? Math.round(p.sold/1000) + 'K+ נמכרו' : p.sold + ' נמכרו';
-    const badge = i === 0 ? '<div class="trending-card-badge">🔥 HOT</div>' :
-                  i === 1 ? '<div class="trending-card-badge">⭐ פופולרי</div>' : '';
-    card.innerHTML = `${badge}<img src="${p.image}" alt="${p.title}" loading="${i<4?'eager':'lazy'}"><div class="trending-card-info"><div class="trending-card-title">${p.title}</div><div class="trending-card-bottom"><span class="trending-card-price">₪${p.price}</span><span class="trending-card-sold">${sold}</span></div></div>`;
-    grid.appendChild(card);
+  // Show first 6 initially
+  const toShow = items.slice(0, 6);
+  toShow.forEach((p, i) => {
+    grid.appendChild(createTrendingCard(p, i, sym));
   });
-  moreBtn.style.display = 'block';
+  // Show "more" button only if there are more than 6
+  moreBtn.style.display = items.length > 6 ? 'block' : 'none';
+  moreBtn.textContent = '👶 הצג עוד מוצרים ←';
+}
+
+function createTrendingCard(p, i, sym) {
+  const card = document.createElement('a');
+  card.className = 'trending-card';
+  card.href = p.affiliate_url;
+  const sold = p.sold > 1000 ? Math.round(p.sold/1000) + 'K+ נמכרו' : p.sold + ' נמכרו';
+  const badge = i === 0 ? '<div class="trending-card-badge">🔥 HOT</div>' :
+                i === 1 ? '<div class="trending-card-badge">⭐ פופולרי</div>' : '';
+  card.innerHTML = `${badge}<img src="${p.image}" alt="${p.title}" loading="${i<4?'eager':'lazy'}"><div class="trending-card-info"><div class="trending-card-title">${p.title}</div><div class="trending-card-bottom"><span class="trending-card-price">${sym}${p.price}</span><span class="trending-card-sold">${sold}</span></div></div><div class="trending-card-cta">🛒 צפי במוצר</div>`;
+  return card;
 }
 
 // Trending tabs click handler - uses static Hebrew data
@@ -2174,12 +2385,28 @@ document.getElementById('trendingTabs').addEventListener('click', (e) => {
   }
 });
 
-// Load trending on page load
+// Load trending on page load (if no search query)
 (function() {
   const params = new URLSearchParams(location.search);
   if (!params.get('q')) {
     renderStaticTrending();
   }
+})();
+
+// Sticky search bar on scroll
+(function() {
+  const searchContainer = document.querySelector('.search-container');
+  const searchOffset = searchContainer.offsetTop + searchContainer.offsetHeight;
+  let isSticky = false;
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > searchOffset && !isSticky) {
+      searchContainer.classList.add('search-sticky');
+      isSticky = true;
+    } else if (window.scrollY <= searchOffset && isSticky) {
+      searchContainer.classList.remove('search-sticky');
+      isSticky = false;
+    }
+  }, { passive: true });
 })();
 
 // ============================================================
@@ -2456,6 +2683,64 @@ function closeCompareModal() {
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('../sw.js').catch(() => {});
 }
+</script>
+
+<!-- Exit Intent Popup -->
+<div class="exit-overlay" id="exitOverlay">
+  <div class="exit-popup">
+    <h2>👶 חכי! יש עוד מוצרים מדהימים לתינוק</h2>
+    <p>הנה כמה מוצרים שאולי פספסת — במחירים שלא תמצאי בשום מקום אחר!</p>
+    <div class="exit-popup-grid" id="exitGrid"></div>
+    <button class="exit-popup-btn" onclick="document.getElementById('exitOverlay').classList.remove('show');document.getElementById('searchInput').focus();">🔍 רוצה לחפש עוד מוצרים</button>
+    <button class="exit-popup-close" onclick="document.getElementById('exitOverlay').classList.remove('show')">לא תודה, אני יוצאת</button>
+  </div>
+</div>
+
+<script>
+// Exit intent detection
+let exitShown = false;
+function showExitPopup() {
+  if (exitShown) return;
+  exitShown = true;
+  // Fill popup with random products from static data
+  const allProducts = Object.values(staticByCategory).flat();
+  const shuffled = allProducts.sort(() => 0.5 - Math.random()).slice(0, 3);
+  const grid = document.getElementById('exitGrid');
+  grid.innerHTML = shuffled.map(p =>
+    `<div class="exit-popup-item"><img src="${p.image}" alt="${p.title}"><span>₪${p.price}</span></div>`
+  ).join('');
+  document.getElementById('exitOverlay').classList.add('show');
+  if (typeof gtag === 'function') gtag('event', 'exit_intent', { event_category: 'engagement' });
+}
+
+// Desktop: mouse leaves viewport from top
+document.addEventListener('mouseout', (e) => {
+  if (e.clientY < 5 && !exitShown) showExitPopup();
+});
+
+// Mobile: visibility change
+document.addEventListener('visibilitychange', () => {
+  if (document.visibilityState === 'hidden' && !exitShown) {
+    sessionStorage.setItem('baby_exit', '1');
+  }
+});
+
+// Mobile: scroll up fast (intent to leave)
+let lastScrollY = 0;
+let scrollUpCount = 0;
+window.addEventListener('scroll', () => {
+  const diff = lastScrollY - window.scrollY;
+  if (diff > 80 && window.scrollY < 100 && !exitShown) {
+    scrollUpCount++;
+    if (scrollUpCount >= 2) showExitPopup();
+  }
+  lastScrollY = window.scrollY;
+}, { passive: true });
+
+// Close on overlay click
+document.getElementById('exitOverlay').addEventListener('click', (e) => {
+  if (e.target === e.currentTarget) e.target.classList.remove('show');
+});
 </script>
 
 </body>
