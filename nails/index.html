@@ -391,17 +391,16 @@
       position: relative;
     }
     .search-sticky {
-      position: fixed;
+      position: sticky;
       top: 0;
-      left: 0;
-      right: 0;
       z-index: 999;
-      background: rgba(253,240,253,0.95);
+      background: rgba(253,240,253,0.97);
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
       padding: 10px 16px;
       box-shadow: 0 2px 12px rgba(0,0,0,0.1);
       max-width: 100%;
+      margin: 0;
     }
     .search-sticky .search-box {
       max-width: 650px;
@@ -2643,18 +2642,12 @@ function prefetchAffiliateLinks(products) {
   }
 })();
 
-// Sticky search bar on scroll
+// Sticky search bar — always fixed at top
 (function() {
-  const searchContainer = document.querySelector('.search-container');
-  const searchOffset = searchContainer.offsetTop + searchContainer.offsetHeight;
-  let isSticky = false;
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > searchOffset && !isSticky) {
-      searchContainer.classList.add('search-sticky');
-      isSticky = true;
-    } else if (window.scrollY <= searchOffset && isSticky) {
-      searchContainer.classList.remove('search-sticky');
-      isSticky = false;
+  const sc = document.getElementById('searchContainer');
+  if (sc) sc.classList.add('search-sticky');
+  // dummy block for closing
+  if (false) {
     }
   }, { passive: true });
 })();
