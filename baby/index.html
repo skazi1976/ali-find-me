@@ -2044,17 +2044,6 @@ async function loadTrending(query) {
   }
 }
 
-// Pre-build "all products" list once at load time for instant display
-const allStaticProducts = (function() {
-  const seen = new Set(), all = [];
-  for (const cat in staticByCategory) {
-    for (const p of staticByCategory[cat]) {
-      if (!seen.has(p.title)) { seen.add(p.title); all.push(p); }
-    }
-  }
-  return all.sort((a, b) => (b.sold || 0) - (a.sold || 0));
-})();
-
 function viewAllTrending() {
   renderStaticTrending(allStaticProducts);
 }
@@ -2141,6 +2130,17 @@ const staticByCategory = {
   ]
 };
 const staticTrending = staticByCategory["baby toys educational developmental"];
+
+// Pre-build "all products" list for "show more" button
+const allStaticProducts = (function() {
+  const seen = new Set(), all = [];
+  for (const cat in staticByCategory) {
+    for (const p of staticByCategory[cat]) {
+      if (!seen.has(p.title)) { seen.add(p.title); all.push(p); }
+    }
+  }
+  return all.sort((a, b) => (b.sold || 0) - (a.sold || 0));
+})();
 
 function renderStaticTrending(products) {
   const items = products || staticTrending;
