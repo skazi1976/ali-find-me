@@ -1580,17 +1580,6 @@
     <span>🤖 מונע בינה מלאכותית — מוצא לכם את המחיר הכי טוב</span>
   </div>
 
-  <!-- SEARCH -->
-  <div class="search-container">
-    <div class="search-box">
-      <input type="text" class="search-input" id="searchInput" placeholder="חפשו מוצרי תינוקות... 👶✨" autocomplete="off">
-      <button class="search-btn" id="searchBtn" onclick="doSearch()">
-        <span class="icon">🔍</span>
-        <span class="search-btn-text">לחצו לחיפוש</span>
-      </button>
-    </div>
-  </div>
-
   <div class="ai-search-banner">
     <div class="ai-icon">🧠</div>
     <div><strong>חיפוש AI חכם:</strong> כתבו מה שבא לכם בעברית — המנוע שלנו מבין, מתרגם ומוצא את מוצרי התינוקות הכי משתלמים מאלי אקספרס עם משלוח לישראל</div>
@@ -1611,6 +1600,17 @@
     </div>
   </div>
 </section>
+
+<!-- SEARCH (outside hero so it stays visible) -->
+<div class="search-container" id="searchContainer">
+  <div class="search-box">
+    <input type="text" class="search-input" id="searchInput" placeholder="חפשו מוצרי תינוקות... 👶✨" autocomplete="off">
+    <button class="search-btn" id="searchBtn" onclick="doSearch()">
+      <span class="icon">🔍</span>
+      <span class="search-btn-text">לחצו לחיפוש</span>
+    </button>
+  </div>
+</div>
 
 <!-- TRENDING PRODUCTS -->
 <section class="trending-section" id="trendingSection">
