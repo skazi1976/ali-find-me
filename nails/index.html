@@ -2605,21 +2605,33 @@ function createTrendingCard(p, i, sym) {
   return card;
 }
 
-// Pre-fetch affiliate links in background
+// Pre-fetch affiliate links with ONE API call
 const affiliateCache = {};
 function prefetchAffiliateLinks(products) {
-  products.forEach(p => {
-    const q = p.search_q || '';
-    if (!q || affiliateCache[q]) return;
-    affiliateCache[q] = 'loading';
-    fetch(`${API_BASE}/search?q=${encodeURIComponent(q)}&lang=he&currency=ILS&country=IL&page=1&context=nails`)
-      .then(r => r.json())
-      .then(data => {
-        if (data.products && data.products[0] && data.products[0].affiliate_url) {
+  const firstQ = (products[0] && products[0].search_q) || 'gel nail polish';
+  if (affiliateCache._fetched) return;
+  affiliateCache._fetched = true;
+  fetch(`${API_BASE}/search?q=${encodeURIComponent(firstQ)}&lang=he&currency=ILS&country=IL&page=1&context=nails`)
+    .then(r => r.json())
+    .then(data => {
+      if (!data.products) return;
+      products.forEach(p => {
+        const q = (p.search_q || '').toLowerCase();
+        if (!q) return;
+        const words = q.split(/\s+/);
+        let best = null, bestScore = 0;
+        data.products.forEach(ap => {
+          const title = (ap.title || '').toLowerCase();
+          const score = words.filter(w => title.includes(w)).length;
+          if (score > bestScore) { bestScore = score; best = ap; }
+        });
+        if (best && best.affiliate_url) {
+          affiliateCache[q] = best.affiliate_url;
+        } else if (data.products[0] && data.products[0].affiliate_url) {
           affiliateCache[q] = data.products[0].affiliate_url;
         }
-      }).catch(() => {});
-  });
+      });
+    }).catch(() => {});
 }
 
 // Load trending on page load (if no search query)
