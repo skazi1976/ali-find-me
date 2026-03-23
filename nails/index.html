@@ -1649,6 +1649,23 @@
       color: var(--text-light);
       line-height: 1.8;
     }
+    /* Exit Intent Popup */
+    .exit-overlay { display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:10000;animation:fadeIn 0.3s; }
+    .exit-overlay.show { display:flex;align-items:center;justify-content:center; }
+    .exit-popup { background:#fff;border-radius:20px;padding:30px 24px;max-width:400px;width:calc(100vw - 32px);text-align:center;animation:popIn 0.4s ease; }
+    @keyframes popIn { from{transform:scale(0.8);opacity:0}to{transform:scale(1);opacity:1} }
+    .exit-popup h2 { font-size:24px;margin:0 0 8px;font-family:'Heebo',sans-serif; }
+    .exit-popup p { font-size:15px;color:#666;margin:0 0 20px;line-height:1.6; }
+    .exit-popup-grid { display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:20px; }
+    .exit-popup-item { background:#FDF0FD;border-radius:12px;padding:8px;text-align:center; }
+    .exit-popup-item img { width:100%;aspect-ratio:1;object-fit:cover;border-radius:8px; }
+    .exit-popup-item span { display:block;font-size:12px;font-weight:700;color:var(--primary);margin-top:4px; }
+    .exit-popup-btn { display:block;width:100%;padding:14px;background:var(--gradient);color:#fff;border:none;border-radius:var(--radius-full);font-size:17px;font-weight:700;cursor:pointer;font-family:'Heebo',sans-serif;margin-bottom:10px; }
+    .exit-popup-btn:hover { transform:scale(1.03); }
+    .exit-popup-close { background:none;border:none;color:#999;font-size:14px;cursor:pointer; }
+    /* Trending card CTA button */
+    .trending-card-cta { display:block;background:var(--gradient);color:#fff;text-align:center;padding:8px;font-size:13px;font-weight:700;font-family:'Heebo',sans-serif;border:none;cursor:pointer;transition:all 0.2s; }
+    .trending-card-cta:hover { filter:brightness(1.1); }
   </style>
 </head>
 <body>
@@ -2435,7 +2452,7 @@ function createTrendingCard(p, i, sym) {
   const sold = p.sold > 1000 ? Math.round(p.sold/1000) + 'K+ נמכרו' : p.sold + ' נמכרו';
   const badge = i === 0 ? '<div class="trending-card-badge">🔥 HOT</div>' :
                 i === 1 ? '<div class="trending-card-badge">⭐ פופולרי</div>' : '';
-  card.innerHTML = `${badge}<img src="${p.image}" alt="${p.title}" loading="${i<4?'eager':'lazy'}"><div class="trending-card-info"><div class="trending-card-title">${p.title}</div><div class="trending-card-bottom"><span class="trending-card-price">${sym}${p.price}</span><span class="trending-card-sold">${sold}</span></div></div>`;
+  card.innerHTML = `${badge}<img src="${p.image}" alt="${p.title}" loading="${i<4?'eager':'lazy'}"><div class="trending-card-info"><div class="trending-card-title">${p.title}</div><div class="trending-card-bottom"><span class="trending-card-price">${sym}${p.price}</span><span class="trending-card-sold">${sold}</span></div></div><div class="trending-card-cta">🛒 צפי במוצר</div>`;
   return card;
 }
 
@@ -2823,6 +2840,65 @@ function closeCompareModal() {
     applyLanguage(lang);
   }
 })();
+</script>
+
+<!-- Exit Intent Popup -->
+<div class="exit-overlay" id="exitOverlay">
+  <div class="exit-popup">
+    <h2>💅 חכי! יש לנו עוד דילים מטורפים</h2>
+    <p>הנה כמה מוצרים שאולי פספסת — במחירים שלא תמצאי בשום מקום אחר!</p>
+    <div class="exit-popup-grid" id="exitGrid"></div>
+    <button class="exit-popup-btn" onclick="document.getElementById('exitOverlay').classList.remove('show');document.getElementById('searchInput').focus();">🔍 רוצה לחפש עוד מוצרים</button>
+    <button class="exit-popup-close" onclick="document.getElementById('exitOverlay').classList.remove('show')">לא תודה, אני יוצאת</button>
+  </div>
+</div>
+
+<script>
+// Exit intent detection
+let exitShown = false;
+function showExitPopup() {
+  if (exitShown) return;
+  exitShown = true;
+  // Fill popup with random products from static data
+  const allProducts = Object.values(staticByCategory).flat();
+  const shuffled = allProducts.sort(() => 0.5 - Math.random()).slice(0, 3);
+  const grid = document.getElementById('exitGrid');
+  grid.innerHTML = shuffled.map(p =>
+    `<div class="exit-popup-item"><img src="${p.image}" alt="${p.title}"><span>₪${p.price}</span></div>`
+  ).join('');
+  document.getElementById('exitOverlay').classList.add('show');
+  if (typeof gtag === 'function') gtag('event', 'exit_intent', { event_category: 'engagement' });
+}
+
+// Desktop: mouse leaves viewport from top
+document.addEventListener('mouseout', (e) => {
+  if (e.clientY < 5 && !exitShown) showExitPopup();
+});
+
+// Mobile: back button / visibility change
+document.addEventListener('visibilitychange', () => {
+  if (document.visibilityState === 'hidden' && !exitShown) {
+    // Mark for next visit
+    sessionStorage.setItem('nails_exit', '1');
+  }
+});
+
+// Mobile: scroll up fast (intent to leave)
+let lastScrollY = 0;
+let scrollUpCount = 0;
+window.addEventListener('scroll', () => {
+  const diff = lastScrollY - window.scrollY;
+  if (diff > 80 && window.scrollY < 100 && !exitShown) {
+    scrollUpCount++;
+    if (scrollUpCount >= 2) showExitPopup();
+  }
+  lastScrollY = window.scrollY;
+}, { passive: true });
+
+// Close on overlay click
+document.getElementById('exitOverlay').addEventListener('click', (e) => {
+  if (e.target === e.currentTarget) e.target.classList.remove('show');
+});
 </script>
 
 </body>
