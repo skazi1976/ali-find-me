@@ -2066,6 +2066,20 @@ function searchFromChip(q) {
 }
 
 // Language dropdown for mobile
+function switchLanguage(lang) {
+  const langPaths = {
+    he: '/nails/',
+    en: '/en/nails/',
+    es: '/es/nails/',
+    de: '/de/nails/',
+    pt: '/pt/nails/',
+    fr: '/fr/nails/',
+    ru: '/ru/nails/'
+  };
+  const path = langPaths[lang] || '/nails/';
+  window.location.href = path;
+}
+
 function toggleLangDropdown() {
   const dd = document.getElementById('langDropdown');
   dd.classList.toggle('show');
