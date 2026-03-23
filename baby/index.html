@@ -2363,7 +2363,26 @@ function renderStaticTrending(products) {
 function createTrendingCard(p, i, sym) {
   const card = document.createElement('a');
   card.className = 'trending-card';
-  card.href = p.affiliate_url;
+  card.href = '#';
+  card.onclick = async function(e) {
+    e.preventDefault();
+    const cta = this.querySelector('.trending-card-cta');
+    cta.textContent = '⏳ מעביר...';
+    try {
+      const q = p.search_q || p.title.replace(/[^\w\s]/g,'').trim().split(/\s+/).slice(0,4).join('+');
+      const resp = await fetch(`${API_BASE}/search?q=${encodeURIComponent(q)}&lang=he&currency=ILS&country=IL&page=1&context=baby`);
+      const data = await resp.json();
+      if (data.products && data.products[0] && data.products[0].affiliate_url) {
+        window.open(data.products[0].affiliate_url, '_blank');
+      } else {
+        window.location.href = `/baby/?q=${encodeURIComponent(q)}`;
+      }
+    } catch(err) {
+      window.location.href = `/baby/?q=${encodeURIComponent(p.title.split(' ').slice(0,3).join('+'))}`;
+    }
+    cta.textContent = '🛒 צפי במוצר';
+    return false;
+  };
   const sold = p.sold > 1000 ? Math.round(p.sold/1000) + 'K+ נמכרו' : p.sold + ' נמכרו';
   const badge = i === 0 ? '<div class="trending-card-badge">🔥 HOT</div>' :
                 i === 1 ? '<div class="trending-card-badge">⭐ פופולרי</div>' : '';

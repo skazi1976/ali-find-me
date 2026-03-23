@@ -2489,12 +2489,12 @@ document.getElementById('trendingTabs').addEventListener('click', (e) => {
 // Pre-embedded trending products for INSTANT display — ALL HEBREW
 const staticByCategory = {
   "gel nail polish popular": [
-    {title:"לק ג'ל גליטר זהב שמפניה 15מ\"ל",price:"6.09",image:"https://ae-pic-a1.aliexpress-media.com/kf/Saab4af832f71400e96a5fb5493d58ca24.jpg",sold:3132,affiliate_url:"/nails/?q=glitter+gel+nail+polish"},
-    {title:"לק ג'ל קיץ צבעי ג'לי ללא HEMA",price:"4.51",image:"https://ae-pic-a1.aliexpress-media.com/kf/S21c9374cebcc44fb96938d5ef0e0b018g.jpg",sold:1229,affiliate_url:"/nails/?q=jelly+gel+nail+polish"},
-    {title:"לק ג'ל Venalisa ליינר צרפתי 8מ\"ל",price:"9.00",image:"https://ae-pic-a1.aliexpress-media.com/kf/H59b80e1f98e34983b430b95e9d29fcb46.jpg",sold:1386,affiliate_url:"/nails/?q=french+liner+gel+polish"},
-    {title:"ג'ל בנייה להארכת ציפורניים 15מ\"ל",price:"7.02",image:"https://ae-pic-a1.aliexpress-media.com/kf/S5d5db7274f514c24abba16bf963b5cdcm.jpg",sold:1676,affiliate_url:"/nails/?q=extension+nail+gel"},
-    {title:"לק ג'ל לבן חלבי שקוף למחצה",price:"9.39",image:"https://ae-pic-a1.aliexpress-media.com/kf/S44bc981e69c1457db46cbe325b96fb85q.jpg",sold:1543,affiliate_url:"/nails/?q=milky+white+gel+polish"},
-    {title:"לק ג'ל קיץ ללא HEMA - 7.5מ\"ל",price:"12.34",image:"https://ae-pic-a1.aliexpress-media.com/kf/Sa477cb390d974e97beba3024d2ba8c95i.jpg",sold:1765,affiliate_url:"/nails/?q=summer+gel+nail+polish"},
+    {title:"לק ג'ל גליטר זהב שמפניה 15מ\"ל",price:"6.09",image:"https://ae-pic-a1.aliexpress-media.com/kf/Saab4af832f71400e96a5fb5493d58ca24.jpg",sold:3132,search_q:"UR SUGAR champagne gold glitter gel"},
+    {title:"לק ג'ל קיץ צבעי ג'לי ללא HEMA",price:"4.51",image:"https://ae-pic-a1.aliexpress-media.com/kf/S21c9374cebcc44fb96938d5ef0e0b018g.jpg",sold:1229,search_q:"Venalisa jelly gel polish HEMA free"},
+    {title:"לק ג'ל Venalisa ליינר צרפתי 8מ\"ל",price:"9.00",image:"https://ae-pic-a1.aliexpress-media.com/kf/H59b80e1f98e34983b430b95e9d29fcb46.jpg",sold:1386,search_q:"Venalisa liner gel french nail"},
+    {title:"ג'ל בנייה להארכת ציפורניים 15מ\"ל",price:"7.02",image:"https://ae-pic-a1.aliexpress-media.com/kf/S5d5db7274f514c24abba16bf963b5cdcm.jpg",sold:1676,search_q:"UR SUGAR extension nail gel 15ml"},
+    {title:"לק ג'ל לבן חלבי שקוף למחצה",price:"9.39",image:"https://ae-pic-a1.aliexpress-media.com/kf/S44bc981e69c1457db46cbe325b96fb85q.jpg",sold:1543,search_q:"Venalisa milky white gel polish"},
+    {title:"לק ג'ל קיץ ללא HEMA - 7.5מ\"ל",price:"12.34",image:"https://ae-pic-a1.aliexpress-media.com/kf/Sa477cb390d974e97beba3024d2ba8c95i.jpg",sold:1765,search_q:"Venalisa HEMA free summer gel polish"},
     {title:"לק ג'ל חלבי לבן שקוף 15מ\"ל",price:"9.84",image:"https://ae-pic-a1.aliexpress-media.com/kf/S92e275d7658a4bbfbadc1cac42967a331.jpg",sold:2341,affiliate_url:"/nails/?q=milky+white+jelly+gel"},
     {title:"בייס ג'ל רבר ורוד הסוואה",price:"11.56",image:"https://ae-pic-a1.aliexpress-media.com/kf/S79a1e522252440399527872709d414b9l.png",sold:1987,affiliate_url:"/nails/?q=rubber+base+gel+pink"},
     {title:"לק ג'ל ללא HEMA צבע מלא 7.5מ\"ל",price:"4.51",image:"https://ae-pic-a1.aliexpress-media.com/kf/S60aa01faf87a4b698d91dae3f16d490e2.jpg",sold:4521,affiliate_url:"/nails/?q=hema+free+gel+polish+full"},
@@ -2572,7 +2572,26 @@ function renderStaticTrending(products) {
 function createTrendingCard(p, i, sym) {
   const card = document.createElement('a');
   card.className = 'trending-card';
-  card.href = p.affiliate_url;
+  card.href = '#';
+  card.onclick = async function(e) {
+    e.preventDefault();
+    const cta = this.querySelector('.trending-card-cta');
+    cta.textContent = '⏳ מעביר...';
+    try {
+      const q = p.search_q || p.title.replace(/[^\w\s]/g,'').trim().split(/\s+/).slice(0,4).join('+');
+      const resp = await fetch(`${API_BASE}/search?q=${encodeURIComponent(q)}&lang=he&currency=ILS&country=IL&page=1&context=nails`);
+      const data = await resp.json();
+      if (data.products && data.products[0] && data.products[0].affiliate_url) {
+        window.open(data.products[0].affiliate_url, '_blank');
+      } else {
+        window.location.href = `/nails/?q=${encodeURIComponent(q)}`;
+      }
+    } catch(err) {
+      window.location.href = `/nails/?q=${encodeURIComponent(p.title.split(' ').slice(0,3).join('+'))}`;
+    }
+    cta.textContent = '🛒 צפי במוצר';
+    return false;
+  };
   const sold = p.sold > 1000 ? Math.round(p.sold/1000) + 'K+ נמכרו' : p.sold + ' נמכרו';
   const badge = i === 0 ? '<div class="trending-card-badge">🔥 HOT</div>' :
                 i === 1 ? '<div class="trending-card-badge">⭐ פופולרי</div>' : '';
