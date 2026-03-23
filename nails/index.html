@@ -571,8 +571,8 @@
     .results-clear:hover { border-color: var(--primary); color: var(--primary); }
     .products-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-      gap: 16px;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 12px;
     }
     .product-card {
       background: var(--bg-card);
@@ -2097,7 +2097,9 @@ function renderProducts(products, append) {
     const price = p.sale_price || p.price || '?';
     const currency = p.currency || '₪';
     const img = p.image || p.product_main_image_url || '';
-    const title = p.title || p.product_title || '';
+    const rawTitle = p.title || p.product_title || '';
+    // Shorten long English titles for cleaner display
+    const title = rawTitle.length > 60 ? rawTitle.substring(0, 57) + '...' : rawTitle;
     const link = p.affiliate_url || p.affiliate_link || p.link || p.product_detail_url || '#';
     const rating = p.rating || p.evaluate_rate || '';
     const orders = p.orders || p.lastest_volume || 0;
