@@ -2317,10 +2317,11 @@ async function loadTrending(query) {
   }
 }
 
-const categoryKeys = Object.keys(staticByCategory);
-let nextCategoryIndex = 1; // Start from second category (first is already shown)
+let categoryKeys = [];
+let nextCategoryIndex = 1;
 
 function viewAllTrending() {
+  if (categoryKeys.length === 0) categoryKeys = Object.keys(staticByCategory);
   const grid = document.getElementById('trendingGrid');
   const moreBtn = document.getElementById('trendingMore');
   const sym = '₪';
