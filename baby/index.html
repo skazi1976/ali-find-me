@@ -2360,27 +2360,53 @@ function renderStaticTrending(products) {
   moreBtn.textContent = '👶 הצג עוד מוצרים ←';
 }
 
+// Pre-fetch affiliate links in background
+const affiliateCache = {};
+function prefetchAffiliateLinks(products) {
+  products.forEach(p => {
+    const q = p.search_q || '';
+    if (!q || affiliateCache[q]) return;
+    affiliateCache[q] = 'loading';
+    fetch(`${API_BASE}/search?q=${encodeURIComponent(q)}&lang=he&currency=ILS&country=IL&page=1&context=baby`)
+      .then(r => r.json())
+      .then(data => {
+        if (data.products && data.products[0] && data.products[0].affiliate_url) {
+          affiliateCache[q] = data.products[0].affiliate_url;
+        }
+      }).catch(() => {});
+  });
+}
+
 function createTrendingCard(p, i, sym) {
   const card = document.createElement('a');
   card.className = 'trending-card';
   card.href = '#';
-  card.onclick = async function(e) {
+  card.onclick = function(e) {
     e.preventDefault();
-    const cta = this.querySelector('.trending-card-cta');
-    cta.textContent = '⏳ מעביר...';
-    try {
-      const q = p.search_q || p.title.replace(/[^\w\s]/g,'').trim().split(/\s+/).slice(0,4).join('+');
-      const resp = await fetch(`${API_BASE}/search?q=${encodeURIComponent(q)}&lang=he&currency=ILS&country=IL&page=1&context=baby`);
-      const data = await resp.json();
-      if (data.products && data.products[0] && data.products[0].affiliate_url) {
-        window.location.href = data.products[0].affiliate_url;
-      } else {
-        window.location.href = `/baby/?q=${encodeURIComponent(q)}`;
-      }
-    } catch(err) {
-      window.location.href = `/baby/?q=${encodeURIComponent(p.title.split(' ').slice(0,3).join('+'))}`;
+    const q = p.search_q || '';
+    const cached = affiliateCache[q];
+    if (cached && cached !== 'loading') {
+      // Instant redirect!
+      window.location.href = cached;
+    } else {
+      // Still loading — show spinner and wait
+      const cta = this.querySelector('.trending-card-cta');
+      cta.textContent = '⏳ מעביר לאלי אקספרס...';
+      const check = setInterval(() => {
+        const link = affiliateCache[q];
+        if (link && link !== 'loading') {
+          clearInterval(check);
+          window.location.href = link;
+        }
+      }, 300);
+      // Timeout after 8 seconds — fallback to search
+      setTimeout(() => {
+        clearInterval(check);
+        if (!affiliateCache[q] || affiliateCache[q] === 'loading') {
+          window.location.href = `/baby/?q=${encodeURIComponent(q)}`;
+        }
+      }, 8000);
     }
-    cta.textContent = '🛒 צפי במוצר';
     return false;
   };
   const sold = p.sold > 1000 ? Math.round(p.sold/1000) + 'K+ נמכרו' : p.sold + ' נמכרו';
@@ -2409,6 +2435,8 @@ document.getElementById('trendingTabs').addEventListener('click', (e) => {
   const params = new URLSearchParams(location.search);
   if (!params.get('q')) {
     renderStaticTrending();
+    // Pre-fetch affiliate links for first 6 products in background
+    setTimeout(() => prefetchAffiliateLinks(staticTrending), 500);
   }
 })();
 
