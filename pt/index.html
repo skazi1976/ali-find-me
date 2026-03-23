@@ -144,6 +144,33 @@
   <section class="newsletter-section" id="newsletterSection"><div class="newsletter-content"><div class="newsletter-icon">📬</div><h2 class="newsletter-title" data-i18n="nlTitle">Receba ofertas quentes no seu email!</h2><p class="newsletter-desc" data-i18n="nlDesc">Assine nossa newsletter semanal</p><form class="newsletter-form" id="newsletterForm" onsubmit="subscribeNewsletter(event)"><div class="newsletter-input-wrap"><input type="email" id="nlEmail" class="newsletter-input" placeholder="Digite seu email" data-i18n-placeholder="nlPlaceholder" required><button type="submit" class="newsletter-btn" data-i18n="nlBtn">Assinar</button></div></form><p class="newsletter-privacy" data-i18n="nlPrivacy">🔒 Sem spam. Cancele quando quiser.</p><div class="newsletter-success" id="nlSuccess" style="display:none"><span class="newsletter-success-icon">✅</span><span data-i18n="nlSuccess">Inscrito!</span></div></div></section>
   <div class="nl-popup-overlay" id="nlPopup" style="display:none" onclick="if(event.target===this)closeNlPopup()"><div class="nl-popup"><button class="nl-popup-close" onclick="closeNlPopup()">&times;</button><div class="nl-popup-icon">🎁</div><h3 class="nl-popup-title" data-i18n="nlPopupTitle">Não perca ofertas!</h3><p class="nl-popup-desc" data-i18n="nlPopupDesc">Junte-se a milhares de assinantes</p><form class="nl-popup-form" onsubmit="subscribeNewsletter(event, true)"><input type="email" id="nlPopupEmail" class="newsletter-input" placeholder="Digite seu email" data-i18n-placeholder="nlPlaceholder" required><button type="submit" class="newsletter-btn nl-popup-btn" data-i18n="nlBtn">Assinar</button></form><button class="nl-popup-skip" onclick="closeNlPopup()" data-i18n="nlSkip">Agora não</button></div></div>
 
+  <section style="padding:40px 20px;background:linear-gradient(135deg,#1a1a2e,#16213e);text-align:center;">
+    <h2 style="color:#fff;font-size:1.6em;margin-bottom:8px;">🔍 Buscadores Especializados</h2>
+    <p style="color:#a29bfe;margin-bottom:24px;">Encontre exatamente o que procura com nossos buscadores de nicho</p>
+    <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:16px;max-width:800px;margin:0 auto;">
+      <a href="/pt/nails/" style="flex:1;min-width:160px;max-width:200px;background:linear-gradient(135deg,#D4A5C9,#b388a2);border-radius:16px;padding:24px 16px;text-decoration:none;color:#fff;transition:transform .2s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+        <div style="font-size:2.2em;margin-bottom:8px;">💅</div>
+        <div style="font-weight:700;font-size:1.1em;">Nail Find Me</div>
+        <div style="font-size:.85em;opacity:.9;margin-top:4px;">Unhas, esmaltes e nail art</div>
+      </a>
+      <a href="/pt/baby/" style="flex:1;min-width:160px;max-width:200px;background:linear-gradient(135deg,#E8776F,#d35d55);border-radius:16px;padding:24px 16px;text-decoration:none;color:#fff;transition:transform .2s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+        <div style="font-size:2.2em;margin-bottom:8px;">👶</div>
+        <div style="font-weight:700;font-size:1.1em;">Baby Find Me</div>
+        <div style="font-size:.85em;opacity:.9;margin-top:4px;">Brinquedos e produtos para bebê</div>
+      </a>
+      <a href="/pt/pets/" style="flex:1;min-width:160px;max-width:200px;background:linear-gradient(135deg,#7BAFD4,#5a9bc4);border-radius:16px;padding:24px 16px;text-decoration:none;color:#fff;transition:transform .2s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+        <div style="font-size:2.2em;margin-bottom:8px;">🐾</div>
+        <div style="font-weight:700;font-size:1.1em;">Pet Find Me</div>
+        <div style="font-size:.85em;opacity:.9;margin-top:4px;">Produtos para cães e gatos</div>
+      </a>
+      <a href="/pt/home/" style="flex:1;min-width:160px;max-width:200px;background:linear-gradient(135deg,#5B9BD5,#4a8ac4);border-radius:16px;padding:24px 16px;text-decoration:none;color:#fff;transition:transform .2s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+        <div style="font-size:2.2em;margin-bottom:8px;">🏠</div>
+        <div style="font-weight:700;font-size:1.1em;">Home Find Me</div>
+        <div style="font-size:.85em;opacity:.9;margin-top:4px;">Decoração e organização</div>
+      </a>
+    </div>
+  </section>
+
   <footer class="footer"><div class="footer-content"><p class="footer-brand">Ali Encontre-me &copy; 2026</p><p class="footer-disclaimer" data-i18n="disclaimer">Este site usa links de afiliados. Sua compra não será mais cara, mas podemos receber uma pequena comissão.</p><p class="footer-links"><a href="../privacy.html" style="color:#a29bfe;text-decoration:none;margin:0 8px;">Privacy</a> | <a href="../terms.html" style="color:#a29bfe;text-decoration:none;margin:0 8px;">Terms</a> | <a href="../blog/" style="color:#a29bfe;text-decoration:none;margin:0 8px;">Blog</a></p></div></footer>
 
   <div class="install-banner" id="installBanner" style="display:none"><div class="install-banner-content"><span class="install-icon">📲</span><div class="install-text"><strong data-i18n="installTitle">Instale o app!</strong><span data-i18n="installDesc">Acesso rápido às ofertas na sua tela</span></div><button class="install-btn" id="installBtn" onclick="installApp()" data-i18n="installBtn">Instalar</button><button class="install-dismiss" onclick="dismissInstall()">✕</button></div></div>

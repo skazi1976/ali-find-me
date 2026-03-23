@@ -1089,4 +1089,61 @@
     <priority>0.8</priority>
   </url>
 
+  <!-- ==================== PORTUGUESE (BR) ENGINES ==================== -->
+
+  <!-- PT Main -->
+  <url>
+    <loc>https://alifindme.com/pt/</loc>
+    <lastmod>2026-03-23</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://alifindme.com/pt/"/>
+    <xhtml:link rel="alternate" hreflang="he" href="https://alifindme.com/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://alifindme.com/en/"/>
+  </url>
+
+  <!-- PT Nails -->
+  <url>
+    <loc>https://alifindme.com/pt/nails/</loc>
+    <lastmod>2026-03-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://alifindme.com/pt/nails/"/>
+    <xhtml:link rel="alternate" hreflang="he" href="https://alifindme.com/nails/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://alifindme.com/nails/"/>
+  </url>
+
+  <!-- PT Baby -->
+  <url>
+    <loc>https://alifindme.com/pt/baby/</loc>
+    <lastmod>2026-03-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://alifindme.com/pt/baby/"/>
+    <xhtml:link rel="alternate" hreflang="he" href="https://alifindme.com/baby/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://alifindme.com/baby/"/>
+  </url>
+
+  <!-- PT Pets -->
+  <url>
+    <loc>https://alifindme.com/pt/pets/</loc>
+    <lastmod>2026-03-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://alifindme.com/pt/pets/"/>
+    <xhtml:link rel="alternate" hreflang="he" href="https://alifindme.com/pets/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://alifindme.com/pets/"/>
+  </url>
+
+  <!-- PT Home -->
+  <url>
+    <loc>https://alifindme.com/pt/home/</loc>
+    <lastmod>2026-03-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://alifindme.com/pt/home/"/>
+    <xhtml:link rel="alternate" hreflang="he" href="https://alifindme.com/home/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://alifindme.com/home/"/>
+  </url>
+
 </urlset>
