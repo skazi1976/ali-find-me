@@ -17,10 +17,13 @@
 <meta property="og:site_name" content="Ali Find Me">
 
 <!-- Preconnect for performance -->
+<link rel="preconnect" href="https://ali-findme-api.ohadf1976.workers.dev" crossorigin>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@500;700;900&family=Assistant:wght@400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" media="print" onload="this.media='all'">
+<link rel="dns-prefetch" href="https://ae01.alicdn.com">
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@700;900&family=Assistant:wght@400;600&display=swap" rel="stylesheet">
+<!-- Prefetch products immediately -->
+<script>window._productsPromise=fetch('https://ali-findme-api.ohadf1976.workers.dev/search?q=nail+art+popular&lang=he&currency=ILS&country=IL&context=nails&source=nails').then(r=>r.json()).catch(()=>null);</script>
 
 <!-- Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-18NLX6KS89"></script>
@@ -155,9 +158,9 @@ h1,h2,h3,.cat-btn,.cta-btn{font-family:'Heebo',sans-serif}
 
 <!-- TRUST BAR -->
 <div class="trust-bar">
-  <div class="trust-item"><i class="fas fa-truck"></i> משלוח חינם</div>
-  <div class="trust-item"><i class="fas fa-tag"></i> מחירים מ-₪5</div>
-  <div class="trust-item"><i class="fas fa-shield-halved"></i> קנייה מאובטחת</div>
+  <div class="trust-item">🚚 משלוח חינם</div>
+  <div class="trust-item">🏷️ מחירים מ-₪5</div>
+  <div class="trust-item">🔒 קנייה מאובטחת</div>
 </div>
 
 <!-- SOCIAL PROOF -->
@@ -232,12 +235,19 @@ var catQueries = {
 };
 
 // Load products from API
-async function loadProducts(query, cat) {
+async function loadProducts(query, cat, usePrefetch) {
   grid.innerHTML = '<div class="loading-spinner"><div class="spinner"></div><p>טוענת מוצרים...</p></div>';
   try {
-    var url = API + '/search?q=' + encodeURIComponent(query) + '&lang=he&currency=ILS&country=IL&context=nails&source=nails';
-    var res = await fetch(url);
-    var data = await res.json();
+    var data;
+    if (usePrefetch && window._productsPromise) {
+      data = await window._productsPromise;
+      window._productsPromise = null;
+    }
+    if (!data) {
+      var url = API + '/search?q=' + encodeURIComponent(query) + '&lang=he&currency=ILS&country=IL&context=nails&source=nails';
+      var res = await fetch(url);
+      data = await res.json();
+    }
     var items = (data.products || data.items || data || []).slice(0, 16);
     if (cat === 'all') allProducts = items;
     renderCards(items);
@@ -334,8 +344,8 @@ setTimeout(function(){
   setInterval(showToast, 12000);
 }, 5000);
 
-// Load initial products
-loadProducts('nail art popular', 'all');
+// Load initial products (use prefetched data)
+loadProducts('nail art popular', 'all', true);
 checkReveal();
 </script>
 </body>
