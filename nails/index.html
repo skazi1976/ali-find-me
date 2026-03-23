@@ -879,40 +879,61 @@
 
     /* ===== LOADING ===== */
     .loading {
-      text-align: center;
-      padding: 60px 20px;
-      display: none;
       position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: rgba(253,240,253,0.92);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(253,240,253,0.95);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
       z-index: 998;
       display: none;
       align-items: center;
       justify-content: center;
-      flex-direction: column;
     }
     .loading.active { display: flex; }
+    .loading-inner { text-align: center; padding: 20px; }
     .spinner {
-      width: 50px;
-      height: 50px;
-      margin: 0 auto 16px;
-      position: relative;
-      animation: spinPaw 1.5s infinite ease-in-out;
-      font-size: 40px;
+      font-size: 48px;
+      animation: spinBounce 1.2s infinite ease-in-out;
+      margin-bottom: 20px;
     }
-    @keyframes spinPaw {
+    @keyframes spinBounce {
       0% { transform: rotate(0deg) scale(1); }
-      50% { transform: rotate(180deg) scale(1.2); }
+      25% { transform: rotate(90deg) scale(1.3); }
+      50% { transform: rotate(180deg) scale(1); }
+      75% { transform: rotate(270deg) scale(1.3); }
       100% { transform: rotate(360deg) scale(1); }
     }
+    .loading-progress-bar {
+      width: 240px;
+      height: 6px;
+      background: #e0d0e6;
+      border-radius: 3px;
+      margin: 0 auto 16px;
+      overflow: hidden;
+    }
+    .loading-progress-fill {
+      height: 100%;
+      width: 0%;
+      background: var(--gradient);
+      border-radius: 3px;
+      transition: width 0.4s ease;
+    }
     .loading-text {
+      color: var(--primary-dark);
+      font-size: 18px;
+      font-weight: 700;
+      font-family: 'Heebo', sans-serif;
+      margin-bottom: 8px;
+    }
+    .loading-steps {
       color: var(--text-light);
-      font-size: 16px;
+      font-size: 14px;
+      min-height: 20px;
+      animation: fadeStep 0.5s ease;
+    }
+    @keyframes fadeStep {
+      from { opacity: 0; transform: translateY(5px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     /* ===== LOAD MORE ===== */
@@ -1812,8 +1833,12 @@
 
 <!-- LOADING -->
 <div class="loading" id="loading">
-  <div class="spinner">💅</div>
-  <div class="loading-text" id="loadingText">ה-AI סורק אלפי מוצרי ציפורניים ומוצא לכם את הדילים הכי טובים... 💅</div>
+  <div class="loading-inner">
+    <div class="spinner">💅</div>
+    <div class="loading-progress-bar"><div class="loading-progress-fill" id="loadingProgress"></div></div>
+    <div class="loading-text" id="loadingText">🔍 מחפש...</div>
+    <div class="loading-steps" id="loadingSteps"></div>
+  </div>
 </div>
 
 <!-- NO RESULTS -->
@@ -2046,6 +2071,42 @@ document.addEventListener('click', function(e) {
   if (!e.target.closest('.lang-switcher')) closeLangDropdown();
 });
 
+let loadingTimer = null;
+function animateLoading() {
+  const steps = [
+    { text: '🔍 מחפש...', sub: 'מתרגם את החיפוש שלך', pct: 15 },
+    { text: '🤖 AI סורק מוצרים...', sub: 'בודק אלפי מוצרים באלי אקספרס', pct: 35 },
+    { text: '💰 משווה מחירים...', sub: 'מוצא את הדילים הכי טובים', pct: 60 },
+    { text: '⭐ מדרג תוצאות...', sub: 'מסנן לפי איכות ודירוג', pct: 80 },
+    { text: '✨ כמעט מוכן!', sub: 'מכין את התוצאות', pct: 95 },
+  ];
+  let i = 0;
+  const progress = document.getElementById('loadingProgress');
+  const text = document.getElementById('loadingText');
+  const stepsEl = document.getElementById('loadingSteps');
+
+  function next() {
+    if (i < steps.length) {
+      progress.style.width = steps[i].pct + '%';
+      text.textContent = steps[i].text;
+      stepsEl.textContent = steps[i].sub;
+      stepsEl.style.animation = 'none';
+      stepsEl.offsetHeight;
+      stepsEl.style.animation = 'fadeStep 0.4s ease';
+      i++;
+    }
+  }
+  next();
+  if (loadingTimer) clearInterval(loadingTimer);
+  loadingTimer = setInterval(() => {
+    if (!document.getElementById('loading').classList.contains('active')) {
+      clearInterval(loadingTimer);
+      return;
+    }
+    next();
+  }, 800);
+}
+
 async function doSearch() {
   const input = document.getElementById('searchInput');
   const query = input.value.trim();
@@ -2060,6 +2121,7 @@ async function doSearch() {
 
   // Show loading
   document.getElementById('loading').classList.add('active');
+  animateLoading();
   document.getElementById('resultsSection').classList.remove('active');
   document.getElementById('noResults').classList.remove('active');
   document.getElementById('heroSection').style.display = 'none';
