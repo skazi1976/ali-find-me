@@ -1723,22 +1723,7 @@
   <div style="display:flex;align-items:center;gap:10px;">
     <div class="lang-switcher" id="langSwitcher">
       <button class="lang-option active" data-lang="he" onclick="switchLanguage('he')" title="עברית"><img src="https://flagcdn.com/w20/il.png" width="20" alt="IL" style="vertical-align:middle"></button>
-      <button class="lang-option" data-lang="en" onclick="switchLanguage('en')" title="English"><img src="https://flagcdn.com/w20/us.png" width="20" alt="US" style="vertical-align:middle"></button>
-      <button class="lang-option" data-lang="es" onclick="switchLanguage('es')" title="Español"><img src="https://flagcdn.com/w20/es.png" width="20" alt="ES" style="vertical-align:middle"></button>
-      <button class="lang-option" data-lang="de" onclick="switchLanguage('de')" title="Deutsch"><img src="https://flagcdn.com/w20/de.png" width="20" alt="DE" style="vertical-align:middle"></button>
       <button class="lang-option" data-lang="pt" onclick="switchLanguage('pt')" title="Português"><img src="https://flagcdn.com/w20/br.png" width="20" alt="BR" style="vertical-align:middle"></button>
-      <button class="lang-option" data-lang="fr" onclick="switchLanguage('fr')" title="Français"><img src="https://flagcdn.com/w20/fr.png" width="20" alt="FR" style="vertical-align:middle"></button>
-      <button class="lang-option" data-lang="ru" onclick="switchLanguage('ru')" title="Русский"><img src="https://flagcdn.com/w20/ru.png" width="20" alt="RU" style="vertical-align:middle"></button>
-      <button class="lang-toggle" id="langToggle" onclick="toggleLangDropdown()" title="🌍 Language">🌍</button>
-      <div class="lang-dropdown" id="langDropdown">
-        <button class="lang-option" data-lang="he" onclick="switchLanguage('he');closeLangDropdown()" title="עברית"><img src="https://flagcdn.com/w20/il.png" width="20" alt="IL" style="vertical-align:middle"></button>
-        <button class="lang-option" data-lang="en" onclick="switchLanguage('en');closeLangDropdown()" title="English"><img src="https://flagcdn.com/w20/us.png" width="20" alt="US" style="vertical-align:middle"></button>
-        <button class="lang-option" data-lang="es" onclick="switchLanguage('es');closeLangDropdown()" title="Español"><img src="https://flagcdn.com/w20/es.png" width="20" alt="ES" style="vertical-align:middle"></button>
-        <button class="lang-option" data-lang="de" onclick="switchLanguage('de');closeLangDropdown()" title="Deutsch"><img src="https://flagcdn.com/w20/de.png" width="20" alt="DE" style="vertical-align:middle"></button>
-        <button class="lang-option" data-lang="pt" onclick="switchLanguage('pt');closeLangDropdown()" title="Português"><img src="https://flagcdn.com/w20/br.png" width="20" alt="BR" style="vertical-align:middle"></button>
-        <button class="lang-option" data-lang="fr" onclick="switchLanguage('fr');closeLangDropdown()" title="Français"><img src="https://flagcdn.com/w20/fr.png" width="20" alt="FR" style="vertical-align:middle"></button>
-        <button class="lang-option" data-lang="ru" onclick="switchLanguage('ru');closeLangDropdown()" title="Русский"><img src="https://flagcdn.com/w20/ru.png" width="20" alt="RU" style="vertical-align:middle"></button>
-      </div>
     </div>
   </div>
 </nav>
@@ -2069,15 +2054,12 @@ function searchFromChip(q) {
 function switchLanguage(lang) {
   const langPaths = {
     he: '/nails/',
-    en: '/en/nails/',
-    es: '/es/nails/',
-    de: '/de/nails/',
-    pt: '/pt/nails/',
-    fr: '/fr/nails/',
-    ru: '/ru/nails/'
+    pt: '/pt/nails/'
   };
-  const path = langPaths[lang] || '/nails/';
-  window.location.href = path;
+  const path = langPaths[lang];
+  if (path) {
+    window.location.href = path;
+  }
 }
 
 function toggleLangDropdown() {
