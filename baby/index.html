@@ -1359,7 +1359,7 @@
       .whatsapp-fab-label { display: none; }
     }
     @media (max-width: 380px) {
-      .products-grid { grid-template-columns: 1fr; }
+      .products-grid { grid-template-columns: repeat(2, 1fr); }
       .categories-grid { grid-template-columns: repeat(2, 1fr); }
     }
 
@@ -2045,9 +2045,17 @@ async function loadTrending(query) {
 }
 
 function viewAllTrending() {
-  document.getElementById('searchInput').value = trendingQuery;
-  doSearch();
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+  // Show ALL static Hebrew products from all categories instead of API search
+  const allProducts = [];
+  for (const cat in staticByCategory) {
+    staticByCategory[cat].forEach(p => {
+      if (!allProducts.find(x => x.title === p.title)) allProducts.push(p);
+    });
+  }
+  // Sort by popularity
+  allProducts.sort((a, b) => (b.sold || 0) - (a.sold || 0));
+  renderStaticTrending(allProducts);
+  window.scrollTo({ top: document.getElementById('trendingGrid').offsetTop - 80, behavior: 'smooth' });
 }
 
 // Pre-embedded Hebrew products for INSTANT display
