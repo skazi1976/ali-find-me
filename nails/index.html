@@ -2258,37 +2258,80 @@ function viewAllTrending() {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-// Trending tabs click handler
+// Trending tabs click handler - uses static Hebrew data
 document.getElementById('trendingTabs').addEventListener('click', (e) => {
   const tab = e.target.closest('.trending-tab');
   if (!tab) return;
   document.querySelectorAll('.trending-tab').forEach(t => t.classList.remove('active'));
   tab.classList.add('active');
-  loadTrending(tab.dataset.q);
+  const q = tab.dataset.q;
+  if (staticByCategory[q]) {
+    renderStaticTrending(staticByCategory[q]);
+  } else {
+    loadTrending(q);
+  }
 });
 
-// Pre-embedded trending products for INSTANT display
-const staticTrending = [
-  {title:"מדבקות לבבות צבעוניות 3D - 8 יח'",price:"5.92",image:"https://ae-pic-a1.aliexpress-media.com/kf/S61cc15e81d77401791af5b1bdd125cbc1.jpg",sold:3966,affiliate_url:"/nails/?q=heart+nail+stickers+3D"},
-  {title:"10 גלילי פויל תחרה שחור לבן",price:"7.53",image:"https://ae-pic-a1.aliexpress-media.com/kf/Se8f766ed03f5406192e1a389af4b146cW.jpg",sold:2402,affiliate_url:"/nails/?q=lace+nail+foils"},
-  {title:"סט פפיון בורגנדי סרט לב",price:"5.71",image:"https://ae-pic-a1.aliexpress-media.com/kf/S7c4ffafcf2fa445680c9da05a3b10482M.jpg",sold:2097,affiliate_url:"/nails/?q=bow+ribbon+nail+stickers"},
-  {title:"סט מדבקות חתול שחור 12 גיליונות",price:"8.01",image:"https://ae-pic-a1.aliexpress-media.com/kf/S3b183eee589147f69e75c3ffff3e278dC.jpg",sold:1390,affiliate_url:"/nails/?q=cat+nail+stickers+set"},
-  {title:"מדבקות לבבות זהב 3D",price:"3.79",image:"https://ae-pic-a1.aliexpress-media.com/kf/S3900cdf174564d91b1959aa3830c6fb80.jpg",sold:1155,affiliate_url:"/nails/?q=gold+heart+nail+stickers"},
-  {title:"מדבקות הלו קיטי 5D זהב לייזר",price:"8.29",image:"https://ae-pic-a1.aliexpress-media.com/kf/Sdb027e64e130455ba76197fb2131c9a2p.jpg",sold:1171,affiliate_url:"/nails/?q=hello+kitty+nail+stickers"},
-  {title:"מדבקות פרחי חיננית 5D לבן",price:"5.73",image:"https://ae-pic-a1.aliexpress-media.com/kf/Sa2ba38b944b7447eac7fe292bd953783m.jpg",sold:1117,affiliate_url:"/nails/?q=daisy+nail+stickers+5D"},
-  {title:"מדבקות יהלום 5D דבק עצמי",price:"6.76",image:"https://ae-pic-a1.aliexpress-media.com/kf/S9c1f17b5146a48998cd744f915cc6654v.png",sold:1051,affiliate_url:"/nails/?q=diamond+nail+stickers+5D"},
-  {title:"מדבקות צרפתיות יהלום 5D",price:"6.38",image:"https://ae-pic-a1.aliexpress-media.com/kf/S232c4db67f5e47c3ba5675d1d30770937.jpg",sold:1034,affiliate_url:"/nails/?q=french+tip+nail+stickers"},
-  {title:"מדבקות ציפורניים חמודים",price:"6.89",image:"https://ae-pic-a1.aliexpress-media.com/kf/Sc021f19a88974608a61c46ffdaf0c60e9.png",sold:231,affiliate_url:"/nails/?q=nail+stickers+cute"},
-  {title:"מדבקות פורצלן כחול לבן",price:"5.21",image:"https://ae-pic-a1.aliexpress-media.com/kf/S02ba9c4bbbe94d61a132db66243a59ffW.jpg",sold:113,affiliate_url:"/nails/?q=porcelain+nail+stickers"},
-  {title:"מדבקות חתולים וכלבים 3D",price:"4.14",image:"https://ae-pic-a1.aliexpress-media.com/kf/Se43e503c6c3742d3b82fe7fe9d5913836.jpg",sold:160,affiliate_url:"/nails/?q=cat+dog+nail+decals"}
-];
+// Pre-embedded trending products for INSTANT display — ALL HEBREW
+const staticByCategory = {
+  "gel nail polish popular": [
+    {title:"לק ג'ל גליטר זהב שמפניה 15מ\"ל",price:"6.09",image:"https://ae-pic-a1.aliexpress-media.com/kf/Saab4af832f71400e96a5fb5493d58ca24.jpg",sold:3132,affiliate_url:"/nails/?q=glitter+gel+nail+polish"},
+    {title:"לק ג'ל קיץ צבעי ג'לי ללא HEMA",price:"4.51",image:"https://ae-pic-a1.aliexpress-media.com/kf/S21c9374cebcc44fb96938d5ef0e0b018g.jpg",sold:1229,affiliate_url:"/nails/?q=jelly+gel+nail+polish"},
+    {title:"לק ג'ל Venalisa ליינר צרפתי 8מ\"ל",price:"9.00",image:"https://ae-pic-a1.aliexpress-media.com/kf/H59b80e1f98e34983b430b95e9d29fcb46.jpg",sold:1386,affiliate_url:"/nails/?q=french+liner+gel+polish"},
+    {title:"ג'ל בנייה להארכת ציפורניים 15מ\"ל",price:"7.02",image:"https://ae-pic-a1.aliexpress-media.com/kf/S5d5db7274f514c24abba16bf963b5cdcm.jpg",sold:1676,affiliate_url:"/nails/?q=extension+nail+gel"},
+    {title:"לק ג'ל לבן חלבי שקוף למחצה",price:"9.39",image:"https://ae-pic-a1.aliexpress-media.com/kf/S44bc981e69c1457db46cbe325b96fb85q.jpg",sold:1543,affiliate_url:"/nails/?q=milky+white+gel+polish"},
+    {title:"לק ג'ל קיץ ללא HEMA - 7.5מ\"ל",price:"12.34",image:"https://ae-pic-a1.aliexpress-media.com/kf/Sa477cb390d974e97beba3024d2ba8c95i.jpg",sold:1765,affiliate_url:"/nails/?q=summer+gel+nail+polish"}
+  ],
+  "press on nails design": [
+    {title:"24 ציפורניים מוכנות כסף עם פפיון ויהלומים",price:"6.98",image:"https://ae-pic-a1.aliexpress-media.com/kf/S57265f7cf115486f9edc0f6b19b7e711Z.jpg",sold:3523,affiliate_url:"/nails/?q=silver+bow+press+on+nails"},
+    {title:"24 ציפורניים צרפתיות עם הדפס נמר ורוד",price:"5.83",image:"https://ae-pic-a1.aliexpress-media.com/kf/S721a025f680e498ba9e7bdaf859c0355K.jpg",sold:1684,affiliate_url:"/nails/?q=pink+leopard+french+nails"},
+    {title:"24 ציפורניים פרפר בלרינה ורוד",price:"4.36",image:"https://ae-pic-a1.aliexpress-media.com/kf/S8b070bb6af3940a7bb2558d7028b6e46X.jpg",sold:2009,affiliate_url:"/nails/?q=butterfly+ballet+press+on+nails"},
+    {title:"24 ציפורניים צרפתיות שקד עם גליטר",price:"6.34",image:"https://ae-pic-a1.aliexpress-media.com/kf/Sa39a4502ed0f4dd5861ac512aaca1744L.jpg",sold:2278,affiliate_url:"/nails/?q=french+almond+glitter+nails"},
+    {title:"24 ציפורניים תות עם פפיון",price:"6.99",image:"https://ae-pic-a1.aliexpress-media.com/kf/S15a748a652364f7db42f976dafcaceb63.jpg",sold:1836,affiliate_url:"/nails/?q=strawberry+bow+press+on+nails"},
+    {title:"24 ציפורניים Cat Eye ירוק עם עיצוב גלים",price:"7.83",image:"https://ae-pic-a1.aliexpress-media.com/kf/Sfa6e44394665417eb253cf33a8d0f955T.jpg",sold:1275,affiliate_url:"/nails/?q=cat+eye+green+press+on+nails"}
+  ],
+  "nail rhinestones decoration set": [
+    {title:"דבק ג'ל לאבני חן לציפורניים 30מ\"ל",price:"6.70",image:"https://ae-pic-a1.aliexpress-media.com/kf/S0b41288edc284345b243c0cb9aec46d7j.jpg",sold:1039,affiliate_url:"/nails/?q=nail+rhinestone+glue+gel"},
+    {title:"כוכבי מתכת 3D כסף לציפורניים 10 יח'",price:"5.54",image:"https://ae-pic-a1.aliexpress-media.com/kf/Sc5a6adbb073c4d0ab0cd23499b987e950.jpg",sold:377,affiliate_url:"/nails/?q=3D+star+nail+rhinestones"},
+    {title:"סט לק ג'ל Cat Eye 6 צבעים",price:"17.62",image:"https://ae-pic-a1.aliexpress-media.com/kf/S18460cfedce24d019116d779194568a1G.jpg",sold:2677,affiliate_url:"/nails/?q=cat+eye+gel+nail+polish+set"},
+    {title:"חרוזי קוויאר מיני 12 צבעים לציפורניים",price:"4.49",image:"https://ae-pic-a1.aliexpress-media.com/kf/S3079bb05b1d64c71926e0af4db58553cz.jpg",sold:6338,affiliate_url:"/nails/?q=caviar+beads+nail+decoration"},
+    {title:"שרשרת קריסטל יוקרתית לציפורניים",price:"4.77",image:"https://ae-pic-a1.aliexpress-media.com/kf/S8d83184a786642dba399c577add7e8d7D.jpg",sold:2552,affiliate_url:"/nails/?q=crystal+chain+nail+charms"},
+    {title:"מגש אחסון נירוסטה למניקור",price:"6.52",image:"https://ae-pic-a1.aliexpress-media.com/kf/S250cd0b823a54a0db3e12473bac56619g.jpg",sold:7357,affiliate_url:"/nails/?q=stainless+steel+manicure+tray"}
+  ],
+  "UV LED nail lamp dryer": [
+    {title:"מנורת UV LED קליפ לייבוש ג'ל",price:"14.36",image:"https://ae-pic-a1.aliexpress-media.com/kf/Scf23b51e494e414b92eec6083aaf9ec7R.jpg",sold:5197,affiliate_url:"/nails/?q=UV+LED+clip+nail+lamp"},
+    {title:"מנורת UV מיני ניידת USB",price:"9.98",image:"https://ae-pic-a1.aliexpress-media.com/kf/S8000465282d0400b8a51607747a74feec.jpg",sold:1738,affiliate_url:"/nails/?q=mini+portable+USB+nail+lamp"},
+    {title:"מייבש ציפורניים מיני 6 LED",price:"8.27",image:"https://ae-pic-a1.aliexpress-media.com/kf/S552bc6e729a549f8b959ffe0be636b74N.jpg",sold:1770,affiliate_url:"/nails/?q=mini+nail+dryer+6+LED"},
+    {title:"דבק ג'ל רך לטיפים 20 גרם",price:"7.46",image:"https://ae-pic-a1.aliexpress-media.com/kf/S5f3eb943fedf473aa2b1138dbf61a2d7p.jpg",sold:2170,affiliate_url:"/nails/?q=soft+nail+tips+gel+glue"},
+    {title:"לק ג'ל ליינר 5 צבעים 8מ\"ל",price:"5.19",image:"https://ae-pic-a1.aliexpress-media.com/kf/S8751d656a0284bb182a2b180124e5112G.jpg",sold:2498,affiliate_url:"/nails/?q=liner+gel+nail+polish+5+colors"},
+    {title:"לק ג'ל Venalisa ליינר צרפתי",price:"9.00",image:"https://ae-pic-a1.aliexpress-media.com/kf/H59b80e1f98e34983b430b95e9d29fcb46.jpg",sold:1386,affiliate_url:"/nails/?q=venalisa+french+liner+gel"}
+  ],
+  "nail art stamping kit": [
+    {title:"חרוזי קוויאר מתכת 12 צבעים",price:"4.49",image:"https://ae-pic-a1.aliexpress-media.com/kf/S3079bb05b1d64c71926e0af4db58553cz.jpg",sold:6338,affiliate_url:"/nails/?q=caviar+beads+nail+12+colors"},
+    {title:"מגש אחסון נירוסטה למניקור",price:"6.52",image:"https://ae-pic-a1.aliexpress-media.com/kf/S250cd0b823a54a0db3e12473bac56619g.jpg",sold:7357,affiliate_url:"/nails/?q=stainless+steel+nail+tray"},
+    {title:"שרשרת קריסטל יוקרתית 50/100 ס\"מ",price:"4.77",image:"https://ae-pic-a1.aliexpress-media.com/kf/S8d83184a786642dba399c577add7e8d7D.jpg",sold:2552,affiliate_url:"/nails/?q=crystal+chain+nail+art"},
+    {title:"סט לק ג'ל Cat Eye מגנטי 6 צבעים",price:"17.62",image:"https://ae-pic-a1.aliexpress-media.com/kf/S18460cfedce24d019116d779194568a1G.jpg",sold:2677,affiliate_url:"/nails/?q=cat+eye+gel+set+6+colors"},
+    {title:"סט מברשות סיליקון Nail Art 5 יח'",price:"6.08",image:"https://ae-pic-a1.aliexpress-media.com/kf/S05c8cba7ebb54b2792f36f85adafa617V.jpg",sold:1381,affiliate_url:"/nails/?q=silicone+nail+art+brush+set"},
+    {title:"ג'ל 3D פיסול לציפורניים",price:"5.28",image:"https://ae-pic-a1.aliexpress-media.com/kf/Sa2953541dabf452287da093955ff4c7cV.jpg",sold:1327,affiliate_url:"/nails/?q=3D+sculpture+nail+gel"}
+  ],
+  "cat eye magnetic gel nail": [
+    {title:"סט לק ג'ל Cat Eye מגנטי 6 צבעים",price:"17.62",image:"https://ae-pic-a1.aliexpress-media.com/kf/S18460cfedce24d019116d779194568a1G.jpg",sold:2677,affiliate_url:"/nails/?q=cat+eye+gel+polish+set"},
+    {title:"לק ג'ל גליטר זהב שמפניה 15מ\"ל",price:"6.09",image:"https://ae-pic-a1.aliexpress-media.com/kf/Saab4af832f71400e96a5fb5493d58ca24.jpg",sold:3132,affiliate_url:"/nails/?q=champagne+gold+glitter+gel"},
+    {title:"לק ג'ל Venalisa ליינר צרפתי 8מ\"ל",price:"9.00",image:"https://ae-pic-a1.aliexpress-media.com/kf/H59b80e1f98e34983b430b95e9d29fcb46.jpg",sold:1386,affiliate_url:"/nails/?q=venalisa+liner+gel+french"},
+    {title:"ג'ל בנייה להארכת ציפורניים 15מ\"ל",price:"7.02",image:"https://ae-pic-a1.aliexpress-media.com/kf/S5d5db7274f514c24abba16bf963b5cdcm.jpg",sold:1676,affiliate_url:"/nails/?q=extension+nail+gel+15ml"},
+    {title:"לק ג'ל לבן חלבי שקוף למחצה",price:"9.39",image:"https://ae-pic-a1.aliexpress-media.com/kf/S44bc981e69c1457db46cbe325b96fb85q.jpg",sold:1543,affiliate_url:"/nails/?q=milky+white+semi+gel"},
+    {title:"לק ג'ל קיץ ללא HEMA 7.5מ\"ל",price:"12.34",image:"https://ae-pic-a1.aliexpress-media.com/kf/Sa477cb390d974e97beba3024d2ba8c95i.jpg",sold:1765,affiliate_url:"/nails/?q=HEMA+free+summer+gel+polish"}
+  ]
+};
+const staticTrending = staticByCategory["gel nail polish popular"];
 
-function renderStaticTrending() {
+function renderStaticTrending(products) {
+  const items = products || staticTrending;
   const grid = document.getElementById('trendingGrid');
   const moreBtn = document.getElementById('trendingMore');
   const sym = '₪';
   grid.innerHTML = '';
-  staticTrending.forEach((p, i) => {
+  items.forEach((p, i) => {
     const card = document.createElement('a');
     card.className = 'trending-card';
     card.href = p.affiliate_url;
