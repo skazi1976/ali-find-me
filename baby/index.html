@@ -356,8 +356,8 @@
       margin: 0 auto 20px;
       position: relative;
     }
-    .search-sticky {
-      position: fixed;
+    .search-stuck {
+      position: fixed !important;
       top: 0;
       left: 0;
       right: 0;
@@ -369,42 +369,27 @@
       box-shadow: 0 2px 12px rgba(0,0,0,0.1);
       margin: 0;
     }
-    .search-sticky .search-box {
+    .search-stuck .search-box {
+      max-width: 650px;
+      margin: 0 auto;
       height: 42px;
       border-radius: 21px;
     }
-    .search-sticky .search-box input {
-      font-size: 14px;
-    }
-    .search-sticky .search-box .search-btn {
-      width: 36px;
-      height: 36px;
-    }
-    body.search-is-sticky {
-      padding-top: 56px;
-    }
-    body.search-is-sticky .navbar {
-      padding: 4px 16px;
-    }
-    body.search-is-sticky .navbar-brand {
+    .search-placeholder {
       display: none;
     }
-    body.search-is-sticky .hero {
-      padding: 5px 16px 10px;
+    .search-placeholder.visible {
+      display: block;
     }
-    body.search-is-sticky .hero-title {
-      font-size: 1.3rem;
-      margin: 0 0 3px;
+    .hero {
+      padding: 20px 16px 10px;
     }
-    body.search-is-sticky .hero-subtitle {
-      font-size: 0.8rem;
-      margin: 0 0 5px;
+    .hero-subtitle {
+      margin-bottom: 8px;
+      font-size: 0.9rem;
     }
-    body.search-is-sticky .ai-badge {
+    .ai-badge {
       display: none;
-    }
-    body.search-is-sticky .popular-searches {
-      margin-top: 5px;
     }
     .search-sticky .search-box {
       max-width: 650px;
@@ -2494,13 +2479,26 @@ document.getElementById('trendingTabs').addEventListener('click', (e) => {
   }
 })();
 
-// Sticky search bar — always fixed at top
+// Sticky search bar — becomes fixed only when scrolled past
 (function() {
   const sc = document.getElementById('searchContainer');
-  if (sc) {
-    sc.classList.add('search-sticky');
-    document.body.classList.add('search-is-sticky');
-  }
+  if (!sc) return;
+  let placeholder = document.createElement('div');
+  placeholder.className = 'search-placeholder';
+  sc.parentNode.insertBefore(placeholder, sc.nextSibling);
+  const scH = sc.offsetHeight;
+  placeholder.style.height = scH + 'px';
+
+  window.addEventListener('scroll', function() {
+    const rect = placeholder.getBoundingClientRect();
+    if (rect.top <= 0) {
+      sc.classList.add('search-stuck');
+      placeholder.classList.add('visible');
+    } else {
+      sc.classList.remove('search-stuck');
+      placeholder.classList.remove('visible');
+    }
+  }, {passive: true});
 })();
 
 // ============================================================
