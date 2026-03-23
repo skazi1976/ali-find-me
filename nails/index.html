@@ -2452,9 +2452,10 @@ function viewAllTrending() {
   const sym = '₪';
   const currentCategory = staticByCategory[trendingQuery] || staticTrending;
 
-  if (!trendingShowingAll && currentCategory.length > 6) {
-    // First click: show remaining products (7-12)
-    const remaining = currentCategory.slice(6);
+  const initialCount = window.innerWidth > 768 ? 12 : 6;
+  if (!trendingShowingAll && currentCategory.length > initialCount) {
+    // First click: show remaining products
+    const remaining = currentCategory.slice(initialCount);
     remaining.forEach((p, i) => {
       grid.appendChild(createTrendingCard(p, i + 6, sym));
     });
@@ -2561,8 +2562,9 @@ function renderStaticTrending(products) {
   const sym = '₪';
   trendingShowingAll = false;
   grid.innerHTML = '';
-  // Show first 6 initially
-  const toShow = items.slice(0, 6);
+  // Show more products on desktop, 6 on mobile
+  const initialCount = window.innerWidth > 768 ? 12 : 6;
+  const toShow = items.slice(0, initialCount);
   toShow.forEach((p, i) => {
     grid.appendChild(createTrendingCard(p, i, sym));
   });
