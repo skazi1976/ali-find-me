@@ -2378,34 +2378,11 @@ function prefetchAffiliateLinks(products) {
 function createTrendingCard(p, i, sym) {
   const card = document.createElement('a');
   card.className = 'trending-card';
-  card.href = '#';
-  card.onclick = function(e) {
-    e.preventDefault();
-    const q = p.search_q || '';
-    const cached = affiliateCache[q];
-    if (cached && cached !== 'loading') {
-      // Instant redirect!
-      window.location.href = cached;
-    } else {
-      // Still loading — show spinner and wait
-      const cta = this.querySelector('.trending-card-cta');
-      cta.textContent = '⏳ מעביר לאלי אקספרס...';
-      const check = setInterval(() => {
-        const link = affiliateCache[q];
-        if (link && link !== 'loading') {
-          clearInterval(check);
-          window.location.href = link;
-        }
-      }, 300);
-      // Timeout after 8 seconds — fallback to search
-      setTimeout(() => {
-        clearInterval(check);
-        if (!affiliateCache[q] || affiliateCache[q] === 'loading') {
-          window.location.href = `/baby/?q=${encodeURIComponent(q)}`;
-        }
-      }, 8000);
-    }
-    return false;
+  card.href = p.affiliate_url || `/baby/?q=${encodeURIComponent(p.search_q || p.title)}`;
+  card.target = '_blank';
+  card.rel = 'noopener';
+  card.onclick = function() {
+    if (typeof gtag === 'function') gtag('event', 'trending_click', { event_label: p.title });
   };
   const sold = p.sold > 1000 ? Math.round(p.sold/1000) + 'K+ נמכרו' : p.sold + ' נמכרו';
   const badge = i === 0 ? '<div class="trending-card-badge">🔥 HOT</div>' :
