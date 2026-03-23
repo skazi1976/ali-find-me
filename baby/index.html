@@ -195,15 +195,26 @@
     html { overflow-x: hidden; }
     [dir="rtl"] body, html[dir="rtl"] { direction: rtl; }
 
-    /* ===== NAVBAR ===== */
-    .navbar {
-      position: sticky;
+    /* ===== FIXED HEADER ===== */
+    .fixed-header {
+      position: fixed;
       top: 0;
-      z-index: 100;
-      background: rgba(255,245,244,0.95);
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: rgba(255,245,244,0.97);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
-      border-bottom: 1px solid var(--border);
+      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    }
+    .fixed-header-spacer {
+      height: 145px;
+    }
+
+    /* ===== NAVBAR ===== */
+    .navbar {
+      background: transparent;
+      border-bottom: 1px solid rgba(200,150,200,0.2);
       padding: 12px 20px;
       display: flex;
       align-items: center;
@@ -240,7 +251,7 @@
     /* ===== HERO ===== */
     .hero {
       text-align: center;
-      padding: 50px 20px 30px;
+      padding: 15px 20px 10px;
       position: relative;
       overflow: hidden;
     }
@@ -353,47 +364,15 @@
     /* ===== SEARCH ===== */
     .search-container {
       max-width: 650px;
-      margin: 0 auto 20px;
-      position: relative;
-    }
-    .search-stuck {
-      position: fixed !important;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 999;
-      background: rgba(255,245,244,0.97);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      padding: 6px 12px;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.1);
-      margin: 0;
-    }
-    .search-stuck .search-box {
-      max-width: 650px;
       margin: 0 auto;
-      height: 42px;
-      border-radius: 21px;
-    }
-    .search-placeholder {
-      display: none;
-    }
-    .search-placeholder.visible {
-      display: block;
-    }
-    .hero {
-      padding: 20px 16px 10px;
+      padding: 6px 12px;
     }
     .hero-subtitle {
-      margin-bottom: 8px;
+      margin-bottom: 5px;
       font-size: 0.9rem;
     }
     .ai-badge {
       display: none;
-    }
-    .search-sticky .search-box {
-      max-width: 650px;
-      margin: 0 auto;
     }
     .search-box {
       display: flex;
@@ -831,7 +810,10 @@
       .trending-tabs { gap: 5px; margin-bottom: 12px; }
       .trending-tab { padding: 6px 12px; font-size: 12px; }
       .popular-searches { display: none !important; }
-      .ai-search-banner { display: none !important; }
+      .ai-search-banner { font-size: 13px !important; padding: 8px 12px !important; margin: 0 10px 5px !important; }
+      .hero { display: none !important; }
+      .hero::before { display: none !important; }
+      .fixed-header-spacer { height: 140px; }
       .categories { padding: 5px 10px 10px; }
       .categories .section-title { font-size: 16px; margin-bottom: 8px; }
       .categories-grid {
@@ -853,10 +835,8 @@
       .category-icon { font-size: 24px !important; margin-bottom: 4px !important; }
       .category-name { font-size: 12px !important; }
       .category-desc { display: none !important; }
-      .hero { padding: 20px 16px 12px !important; }
       .hero-title { font-size: 26px !important; }
       .hero-subtitle { font-size: 13px !important; margin-bottom: 8px !important; }
-      .hero::before { display: none !important; }
       .search-box { margin-top: 8px !important; }
     }
 
@@ -1579,16 +1559,34 @@
 </head>
 <body>
 
-<!-- NAVBAR -->
-<nav class="navbar">
-  <a href="/baby/" class="navbar-brand">
-    <span class="logo-icon">👶</span>
-    <span class="logo-text">בייבי פיינד</span>
-  </a>
-  <div style="display:flex;align-items:center;gap:10px;">
-    <a href="/baby/gallery/" class="navbar-link">🖼️ גלריה</a>
+<!-- FIXED HEADER -->
+<div class="fixed-header">
+  <nav class="navbar">
+    <a href="/baby/" class="navbar-brand">
+      <span class="logo-icon">👶</span>
+      <span class="logo-text">בייבי פיינד</span>
+    </a>
+    <div style="display:flex;align-items:center;gap:10px;">
+      <a href="/baby/gallery/" class="navbar-link">🖼️ גלריה</a>
+    </div>
+  </nav>
+  <div class="search-container" id="searchContainer">
+    <div class="search-box">
+      <input type="text" class="search-input" id="searchInput" placeholder="חפשו מוצרי תינוקות... 👶✨" autocomplete="off">
+      <button class="search-btn" id="searchBtn" onclick="doSearch()">
+        <span class="icon">🔍</span>
+        <span class="search-btn-text">לחצו לחיפוש</span>
+      </button>
+    </div>
   </div>
-</nav>
+</div>
+<div class="fixed-header-spacer"></div>
+
+<!-- AI BANNER -->
+<div class="ai-search-banner" id="aiBanner">
+  <div class="ai-icon">💎</div>
+  <div id="bannerText"><strong>חיפוש AI חכם</strong> — כתבו בעברית והמנוע מוצא לכם את מוצרי התינוקות הכי משתלמים מאלי אקספרס</div>
+</div>
 
 <!-- HERO -->
 <section class="hero" id="heroSection">
@@ -1600,11 +1598,6 @@
   <div class="ai-badge">
     <div class="ai-dot"></div>
     <span>🤖 מונע בינה מלאכותית — מוצא לכם את המחיר הכי טוב</span>
-  </div>
-
-  <div class="ai-search-banner">
-    <div class="ai-icon">🧠</div>
-    <div><strong>חיפוש AI חכם:</strong> כתבו מה שבא לכם בעברית — המנוע שלנו מבין, מתרגם ומוצא את מוצרי התינוקות הכי משתלמים מאלי אקספרס עם משלוח לישראל</div>
   </div>
 
   <!-- POPULAR SEARCHES -->
@@ -1622,18 +1615,6 @@
     </div>
   </div>
 </section>
-
-<!-- SEARCH (outside hero so it stays visible) -->
-<div class="search-container" id="searchContainer">
-  <div class="search-box">
-    <input type="text" class="search-input" id="searchInput" placeholder="חפשו מוצרי תינוקות... 👶✨" autocomplete="off">
-    <button class="search-btn" id="searchBtn" onclick="doSearch()">
-      <span class="icon">🔍</span>
-      <span class="search-btn-text">לחצו לחיפוש</span>
-    </button>
-  </div>
-</div>
-<div class="search-spacer"></div>
 
 <!-- TRENDING PRODUCTS -->
 <section class="trending-section" id="trendingSection">
@@ -2257,9 +2238,10 @@ function viewAllTrending() {
   const sym = '₪';
   const currentCategory = staticByCategory[trendingQuery] || staticTrending;
 
-  if (!trendingShowingAll && currentCategory.length > 6) {
-    // First click: show remaining products (7-12)
-    const remaining = currentCategory.slice(6);
+  const initialCount = window.innerWidth > 768 ? 12 : 6;
+  if (!trendingShowingAll && currentCategory.length > initialCount) {
+    // First click: show remaining products
+    const remaining = currentCategory.slice(initialCount);
     remaining.forEach((p, i) => {
       grid.appendChild(createTrendingCard(p, i + 6, sym));
     });
@@ -2373,13 +2355,14 @@ function renderStaticTrending(products) {
   const sym = '₪';
   trendingShowingAll = false;
   grid.innerHTML = '';
-  // Show first 6 initially
-  const toShow = items.slice(0, 6);
+  // Show first 12 on desktop, 6 on mobile
+  const initialCount = window.innerWidth > 768 ? 12 : 6;
+  const toShow = items.slice(0, initialCount);
   toShow.forEach((p, i) => {
     grid.appendChild(createTrendingCard(p, i, sym));
   });
   // Show "more" button only if there are more than 6
-  moreBtn.style.display = items.length > 6 ? 'block' : 'none';
+  moreBtn.style.display = items.length > initialCount ? 'block' : 'none';
   moreBtn.textContent = '👶 הצג עוד מוצרים ←';
 }
 
@@ -2479,27 +2462,12 @@ document.getElementById('trendingTabs').addEventListener('click', (e) => {
   }
 })();
 
-// Sticky search bar — becomes fixed only when scrolled past
-(function() {
-  const sc = document.getElementById('searchContainer');
-  if (!sc) return;
-  let placeholder = document.createElement('div');
-  placeholder.className = 'search-placeholder';
-  sc.parentNode.insertBefore(placeholder, sc.nextSibling);
-  const scH = sc.offsetHeight;
-  placeholder.style.height = scH + 'px';
-
-  window.addEventListener('scroll', function() {
-    const rect = placeholder.getBoundingClientRect();
-    if (rect.top <= 0) {
-      sc.classList.add('search-stuck');
-      placeholder.classList.add('visible');
-    } else {
-      sc.classList.remove('search-stuck');
-      placeholder.classList.remove('visible');
-    }
-  }, {passive: true});
-})();
+// switchLanguage
+function switchLanguage(lang) {
+  const langPaths = { he: '/baby/', pt: '/pt/baby/' };
+  const path = langPaths[lang];
+  if (path) window.location.href = path;
+}
 
 // ============================================================
 //  CHAT — Claude AI Shopping Advisor ("BabyFind")
