@@ -2305,9 +2305,7 @@ function renderStaticTrending() {
 (function() {
   const params = new URLSearchParams(location.search);
   if (!params.get('q')) {
-    // Show static products INSTANTLY, then refresh from API in background
     renderStaticTrending();
-    setTimeout(() => loadTrending('gel nail polish popular'), 2000);
   }
 })();
 
