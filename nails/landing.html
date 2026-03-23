@@ -135,6 +135,13 @@ h1,h2,h3,.cat-btn,.cta-btn{font-family:'Heebo',sans-serif}
 /* Toast */
 .toast{position:fixed;bottom:80px;left:50%;transform:translateX(-50%) translateY(100px);background:var(--dark);color:#fff;padding:10px 20px;border-radius:50px;font-size:13px;font-weight:600;z-index:200;opacity:0;transition:all .4s ease;white-space:nowrap;box-shadow:0 4px 20px rgba(0,0,0,.2)}
 .toast.show{transform:translateX(-50%) translateY(0);opacity:1}
+.loading-spinner{text-align:center;padding:40px;grid-column:1/-1}
+.spinner{width:40px;height:40px;border:4px solid #ffd6e0;border-top-color:var(--pink);border-radius:50%;animation:spin .8s linear infinite;margin:0 auto 12px}
+@keyframes spin{to{transform:rotate(360deg)}}
+.loading-spinner p{color:#999;font-size:14px}
+.card-img{position:relative;width:100%;padding-top:100%;overflow:hidden;border-radius:12px 12px 0 0;background:#f8f8f8}
+.card-img img{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;transition:transform .3s}
+.card:hover .card-img img{transform:scale(1.05)}
 </style>
 </head>
 <body>
@@ -176,6 +183,10 @@ h1,h2,h3,.cat-btn,.cta-btn{font-family:'Heebo',sans-serif}
 <section class="products-section">
   <h2 class="section-title">המוצרים הכי נמכרים 🔥</h2>
   <div class="grid" id="productGrid">
+    <div class="loading-spinner" id="spinner">
+      <div class="spinner"></div>
+      <p>טוענת מוצרים...</p>
+    </div>
   </div>
 </section>
 
@@ -205,54 +216,67 @@ h1,h2,h3,.cat-btn,.cta-btn{font-family:'Heebo',sans-serif}
 <div class="toast" id="toast"></div>
 
 <script>
-// Product data
-var products = [
-  {id:1, name:"סט לק ג'ל 6 צבעים",price:29,original:89,cat:"gel",emoji:"💅",q:"gel+nail+polish+set+6+colors",badge:"נמכר ביותר",
-   grad:"linear-gradient(135deg,#FFDEE9,#B5FFFC)"},
-  {id:2, name:"מנורת UV LED לייבוש ג'ל",price:35,original:120,cat:"uv",emoji:"💡",q:"UV+LED+nail+lamp+dryer",badge:"⚡ מבצע",
-   grad:"linear-gradient(135deg,#a18cd1,#fbc2eb)"},
-  {id:3, name:"ציפורניים מוכנות פרימיום",price:15,original:49,cat:"ready",emoji:"✨",q:"press+on+nails+premium",badge:"-69%",
-   grad:"linear-gradient(135deg,#ffecd2,#fcb69f)"},
-  {id:4, name:"סט מדבקות לציפורניים 50 יח'",price:8,original:35,cat:"stickers",emoji:"🌸",q:"nail+stickers+set+50",badge:"הכי זול",
-   grad:"linear-gradient(135deg,#f5f7fa,#c3cfe2)"},
-  {id:5, name:"סט כלי מניקור מקצועי",price:22,original:79,cat:"tools",emoji:"🛠️",q:"professional+manicure+tools+set",badge:"-72%",
-   grad:"linear-gradient(135deg,#667eea,#764ba2)"},
-  {id:6, name:"אבני חן לציפורניים",price:6,original:25,cat:"art",emoji:"💎",q:"nail+art+rhinestones+gems",badge:"מ-₪6!",
-   grad:"linear-gradient(135deg,#f093fb,#f5576c)"},
-  {id:7, name:"לק ג'ל Cat Eye מגנטי",price:12,original:45,cat:"gel",emoji:"🐱",q:"cat+eye+magnetic+gel+polish",badge:"טרנדי",
-   grad:"linear-gradient(135deg,#4facfe,#00f2fe)"},
-  {id:8, name:"בסיס + מעיל עליון ג'ל",price:18,original:59,cat:"gel",emoji:"💅",q:"gel+base+coat+top+coat",badge:"-69%",
-   grad:"linear-gradient(135deg,#43e97b,#38f9d7)"},
-  {id:9, name:"גליטר לציפורניים 12 צבעים",price:14,original:49,cat:"art",emoji:"✨",q:"nail+glitter+powder+12+colors",badge:"פופולרי",
-   grad:"linear-gradient(135deg,#fa709a,#fee140)"},
-  {id:10,name:"סט חותמות לציפורניים",price:19,original:65,cat:"art",emoji:"🎨",q:"nail+stamping+plates+set",badge:"-71%",
-   grad:"linear-gradient(135deg,#a8edea,#fed6e3)"},
-  {id:11,name:"ציפורניים צרפתיות מוכנות",price:12,original:39,cat:"ready",emoji:"🇫🇷",q:"french+press+on+nails",badge:"קלאסי",
-   grad:"linear-gradient(135deg,#fdfcfb,#e2d1c3)"},
-  {id:12,name:"סט מברשות nail art 15 יח'",price:16,original:55,cat:"tools",emoji:"🖌️",q:"nail+art+brushes+set+15",badge:"-71%",
-   grad:"linear-gradient(135deg,#89f7fe,#66a6ff)"}
-];
-
+var API = 'https://mamachoice-api.skazi1976.workers.dev';
 var grid = document.getElementById('productGrid');
+var allProducts = [];
 var utm = '&utm_source=facebook&utm_medium=cpc&utm_campaign=nails_landing';
 
-function renderProducts(cat) {
-  var filtered = cat === 'all' ? products : products.filter(function(p){return p.cat === cat});
+// Category search queries
+var catQueries = {
+  all: 'nail art set',
+  gel: 'gel nail polish',
+  ready: 'press on nails',
+  stickers: 'nail stickers',
+  tools: 'manicure tools set',
+  uv: 'UV LED nail lamp',
+  art: 'nail art rhinestones glitter'
+};
+
+// Load products from API
+async function loadProducts(query, cat) {
+  grid.innerHTML = '<div class="loading-spinner"><div class="spinner"></div><p>טוענת מוצרים...</p></div>';
+  try {
+    var url = API + '/api/products?q=' + encodeURIComponent(query) + '&lang=he&currency=ILS&country=IL&context=nails&source=nails&sort=SALE_PRICE_ASC';
+    var res = await fetch(url);
+    var data = await res.json();
+    var items = (data.products || data.items || []).slice(0, 16);
+    if (cat === 'all') allProducts = items;
+    renderCards(items);
+  } catch(e) {
+    grid.innerHTML = '<p style="text-align:center;padding:40px;grid-column:1/-1;color:#999">שגיאה בטעינה, נסי שוב</p>';
+  }
+}
+
+function renderCards(items) {
+  if (!items.length) {
+    grid.innerHTML = '<p style="text-align:center;padding:40px;grid-column:1/-1;color:#999">לא נמצאו מוצרים</p>';
+    return;
+  }
   var html = '';
-  for (var i = 0; i < filtered.length; i++) {
-    var p = filtered[i];
-    var discount = Math.round((1 - p.price / p.original) * 100);
-    html += '<div class="card" data-cat="' + p.cat + '">' +
-      '<div class="card-badge">' + p.badge + '</div>' +
-      '<div class="card-img" style="background:' + p.grad + '"><span class="emoji">' + p.emoji + '</span></div>' +
+  for (var i = 0; i < items.length; i++) {
+    var p = items[i];
+    var price = parseFloat(p.salePrice || p.price || 0);
+    var orig = parseFloat(p.originalPrice || p.retailPrice || price * 1.8);
+    var discount = orig > price ? Math.round((1 - price / orig) * 100) : 0;
+    var name = p.title || p.name || '';
+    if (name.length > 45) name = name.substring(0, 42) + '...';
+    var img = p.imageUrl || p.image || '';
+    var link = p.affiliateUrl || p.promotionLink || p.link || '/nails/?q=' + encodeURIComponent(name);
+    var badge = discount > 50 ? '-' + discount + '%' : (discount > 30 ? 'מבצע 🔥' : 'פופולרי ⭐');
+
+    html += '<div class="card">' +
+      '<div class="card-badge">' + badge + '</div>' +
+      '<div class="card-img"><img src="' + img + '" alt="' + name + '" loading="lazy" onerror="this.style.display=\'none\'"></div>' +
       '<div class="card-body">' +
-        '<div class="card-name">' + p.name + '</div>' +
-        '<div class="card-prices">' +
-          '<span class="card-discount">-' + discount + '%</span>' +
-          '<span class="card-original">₪' + p.original + '</span>' +
-          '<span class="card-price">₪' + p.price + '</span>' +
+        '<div class="card-name">' + name + '</div>' +
+        '<div class="card-prices">';
+    if (discount > 0) {
+      html += '<span class="card-discount">-' + discount + '%</span>' +
+        '<span class="card-original">₪' + orig.toFixed(0) + '</span>';
+    }
+    html += '<span class="card-price">₪' + price.toFixed(0) + '</span>' +
         '</div>' +
-        '<a href="/nails/?q=' + p.q + utm + '" class="card-btn" onclick="trackClick(\'' + p.name + '\',' + p.price + ')">קני עכשיו</a>' +
+        '<a href="' + link + '" target="_blank" rel="noopener" class="card-btn" onclick="trackClick(\'' + name.replace(/'/g,'') + '\',' + price + ')">קני עכשיו</a>' +
       '</div></div>';
   }
   grid.innerHTML = html;
@@ -264,7 +288,8 @@ document.getElementById('categories').addEventListener('click', function(e) {
   if (!btn) return;
   document.querySelectorAll('.cat-btn').forEach(function(b){b.classList.remove('active')});
   btn.classList.add('active');
-  renderProducts(btn.dataset.cat);
+  var cat = btn.dataset.cat;
+  loadProducts(catQueries[cat] || 'nail art', cat);
 });
 
 // Track CTA clicks
@@ -309,8 +334,8 @@ setTimeout(function(){
   setInterval(showToast, 12000);
 }, 5000);
 
-// Initial render
-renderProducts('all');
+// Load initial products
+loadProducts('nail art popular', 'all');
 checkReveal();
 </script>
 </body>
