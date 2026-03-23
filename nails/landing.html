@@ -216,14 +216,13 @@ h1,h2,h3,.cat-btn,.cta-btn{font-family:'Heebo',sans-serif}
 <div class="toast" id="toast"></div>
 
 <script>
-var API = 'https://mamachoice-api.skazi1976.workers.dev';
+var API = 'https://ali-findme-api.ohadf1976.workers.dev';
 var grid = document.getElementById('productGrid');
 var allProducts = [];
-var utm = '&utm_source=facebook&utm_medium=cpc&utm_campaign=nails_landing';
 
 // Category search queries
 var catQueries = {
-  all: 'nail art set',
+  all: 'nail art popular',
   gel: 'gel nail polish',
   ready: 'press on nails',
   stickers: 'nail stickers',
@@ -236,10 +235,10 @@ var catQueries = {
 async function loadProducts(query, cat) {
   grid.innerHTML = '<div class="loading-spinner"><div class="spinner"></div><p>טוענת מוצרים...</p></div>';
   try {
-    var url = API + '/api/products?q=' + encodeURIComponent(query) + '&lang=he&currency=ILS&country=IL&context=nails&source=nails&sort=SALE_PRICE_ASC';
+    var url = API + '/search?q=' + encodeURIComponent(query) + '&lang=he&currency=ILS&country=IL&context=nails&source=nails';
     var res = await fetch(url);
     var data = await res.json();
-    var items = (data.products || data.items || []).slice(0, 16);
+    var items = (data.products || data.items || data || []).slice(0, 16);
     if (cat === 'all') allProducts = items;
     renderCards(items);
   } catch(e) {
@@ -255,14 +254,15 @@ function renderCards(items) {
   var html = '';
   for (var i = 0; i < items.length; i++) {
     var p = items[i];
-    var price = parseFloat(p.salePrice || p.price || 0);
-    var orig = parseFloat(p.originalPrice || p.retailPrice || price * 1.8);
+    var price = parseFloat(p.sale_price || p.price || 0);
+    var orig = parseFloat(p.original_price || p.retail_price || price * 1.8);
     var discount = orig > price ? Math.round((1 - price / orig) * 100) : 0;
-    var name = p.title || p.name || '';
+    var name = p.title || p.product_title || '';
     if (name.length > 45) name = name.substring(0, 42) + '...';
-    var img = p.imageUrl || p.image || '';
-    var link = p.affiliateUrl || p.promotionLink || p.link || '/nails/?q=' + encodeURIComponent(name);
-    var badge = discount > 50 ? '-' + discount + '%' : (discount > 30 ? 'מבצע 🔥' : 'פופולרי ⭐');
+    var img = p.image || p.product_main_image_url || '';
+    var link = p.affiliate_url || p.affiliate_link || p.link || p.product_detail_url || '#';
+    var orders = p.orders || p.lastest_volume || 0;
+    var badge = discount > 50 ? '-' + discount + '%' : (orders > 100 ? orders + ' נמכרו 🔥' : 'פופולרי ⭐');
 
     html += '<div class="card">' +
       '<div class="card-badge">' + badge + '</div>' +
