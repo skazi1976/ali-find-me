@@ -2032,7 +2032,8 @@ let isLoading = false;
   const q = params.get('q');
   if (q) {
     document.getElementById('searchInput').value = q;
-    doSearch();
+    // Small delay to ensure DOM is ready
+    setTimeout(() => doSearch(), 100);
   }
 
   // Enter key
@@ -2122,6 +2123,11 @@ async function doSearch() {
   // Show loading
   document.getElementById('loading').classList.add('active');
   animateLoading();
+  // Safety: remove loading after 12 seconds no matter what
+  setTimeout(() => {
+    document.getElementById('loading').classList.remove('active');
+    isLoading = false;
+  }, 12000);
   document.getElementById('resultsSection').classList.remove('active');
   document.getElementById('noResults').classList.remove('active');
   document.getElementById('heroSection').style.display = 'none';
