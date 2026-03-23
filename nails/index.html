@@ -226,14 +226,24 @@
     }
 
     /* ===== NAVBAR ===== */
-    .navbar {
-      position: sticky;
+    .fixed-header {
+      position: fixed;
       top: 0;
-      z-index: 100;
-      background: rgba(253,245,255,0.95);
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: rgba(253,245,255,0.97);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
-      border-bottom: 1px solid var(--border);
+      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    }
+    .fixed-header-spacer {
+      height: 110px;
+    }
+    .navbar {
+      z-index: 100;
+      background: transparent;
+      border-bottom: none;
       padding: 12px 20px;
       display: flex;
       align-items: center;
@@ -387,39 +397,14 @@
     /* ===== SEARCH ===== */
     .search-container {
       max-width: 650px;
-      margin: 0 auto 20px;
-      position: relative;
-    }
-    .search-stuck {
-      position: fixed !important;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 999;
-      background: rgba(253,240,253,0.97);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      padding: 6px 12px;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.1);
-      margin: 0;
-    }
-    .search-stuck .search-box {
-      max-width: 650px;
       margin: 0 auto;
-      height: 42px;
-      border-radius: 21px;
-    }
-    .search-placeholder {
-      display: none;
-    }
-    .search-placeholder.visible {
-      display: block;
+      padding: 6px 12px;
     }
     .hero {
-      padding: 20px 16px 10px;
+      padding: 15px 16px 5px;
     }
     .hero-subtitle {
-      margin-bottom: 8px;
+      margin-bottom: 5px;
       font-size: 0.9rem;
     }
     .ai-badge {
@@ -868,7 +853,9 @@
       .trending-tab { padding: 6px 12px; font-size: 12px; }
       /* Compact: hide clutter, show products fast */
       .popular-searches { display: none !important; }
-      .ai-search-banner { display: none !important; }
+      .ai-search-banner { font-size: 13px !important; padding: 8px 12px !important; margin: 0 10px 5px !important; }
+      .ai-search-banner .ai-icon { font-size: 16px !important; }
+      .fixed-header-spacer { height: 105px; }
       /* Categories as compact horizontal scroll on mobile */
       .categories { padding: 5px 10px 10px; }
       .categories .section-title { font-size: 16px; margin-bottom: 8px; }
@@ -891,12 +878,15 @@
       .category-icon { font-size: 24px !important; margin-bottom: 4px !important; }
       .category-name { font-size: 12px !important; }
       .category-desc { display: none !important; }
-      /* Reduce hero space on mobile */
-      .hero { padding: 20px 16px 12px !important; }
-      .hero-title { font-size: 26px !important; }
-      .hero-subtitle { font-size: 13px !important; margin-bottom: 8px !important; }
+      /* Minimal hero on mobile - just search bar */
+      .hero { padding: 8px 12px 0 !important; }
+      .hero-title { font-size: 20px !important; margin: 0 0 2px !important; }
+      .hero-subtitle { display: none !important; }
       .hero::before { display: none !important; }
-      .search-box { margin-top: 8px !important; }
+      .search-box { margin-top: 4px !important; }
+      .search-container { margin-bottom: 5px !important; }
+      .categories { margin-bottom: 5px !important; padding: 0 10px 5px !important; }
+      .categories .section-title { display: none !important; }
     }
 
     /* ===== LOADING ===== */
@@ -1727,6 +1717,7 @@
 <body>
 
 <!-- NAVBAR -->
+<div class="fixed-header">
 <nav class="navbar">
   <a href="/nails/" class="navbar-brand">
     <span class="logo-icon">💅</span>
@@ -1755,24 +1746,31 @@
   </div>
 </nav>
 
-<!-- HERO -->
-<section class="hero" id="heroSection">
+<!-- SEARCH BAR (right after navbar) -->
+<div class="search-container" id="searchContainer">
+  <div class="search-box">
+    <input type="text" class="search-input" id="searchInput" placeholder="חפשו מוצרי ציפורניים... 💅✨" autocomplete="off">
+    <button class="search-btn" id="searchBtn" onclick="doSearch()">
+      <span class="icon">🔍</span>
+      <span class="search-btn-text">לחצו לחיפוש</span>
+    </button>
+  </div>
+</div>
+
+</div><!-- end fixed-header -->
+<div class="fixed-header-spacer"></div>
+
+<!-- AI BANNER -->
+<div class="ai-search-banner" id="aiBanner">
+  <div class="ai-icon">💎</div>
+  <div id="bannerText"><strong>חיפוש AI חכם</strong> — כתבו בעברית והמנוע מוצא לכם את מוצרי הציפורניים הכי משתלמים מאלי אקספרס</div>
+</div>
+
+<!-- HERO (hidden on mobile, visible on desktop) -->
+<section class="hero" id="heroSection" style="display:none">
   <h1 class="hero-title" id="heroTitle">
     <span class="paw">💅</span> נייל <span class="highlight">פיינד</span>
   </h1>
-  <p class="hero-subtitle" id="heroSubtitle">מנוע חיפוש AI חכם למוצרי ציפורניים ובניית ציפורניים מאלי אקספרס 💎</p>
-
-  <div class="ai-badge">
-    <div class="ai-dot"></div>
-    <span id="aiBadge">🤖 מונע בינה מלאכותית — מוצא לכם את המחיר הכי טוב</span>
-  </div>
-
-  <div class="ai-search-banner">
-    <div class="ai-icon">🧠</div>
-    <div id="bannerText"><strong>חיפוש AI חכם:</strong> כתבו מה שבא לכם בעברית — המנוע שלנו מבין, מתרגם ומוצא את מוצרי הציפורניים הכי משתלמים מאלי אקספרס עם משלוח לישראל</div>
-  </div>
-
-  <!-- POPULAR SEARCHES -->
   <div class="popular-searches">
     <div class="popular-title" id="popularTitle">🔥 חיפושים פופולריים</div>
     <div class="chips" id="chipsContainer">
@@ -1787,18 +1785,6 @@
     </div>
   </div>
 </section>
-
-<!-- SEARCH (outside hero so it stays visible during search) -->
-<div class="search-container" id="searchContainer">
-  <div class="search-box">
-    <input type="text" class="search-input" id="searchInput" placeholder="חפשו מוצרי ציפורניים... 💅✨" autocomplete="off">
-    <button class="search-btn" id="searchBtn" onclick="doSearch()">
-      <span class="icon">🔍</span>
-      <span class="search-btn-text">לחצו לחיפוש</span>
-    </button>
-  </div>
-</div>
-<div style="height:62px"></div>
 
 <!-- TRENDING PRODUCTS -->
 <section class="trending-section" id="trendingSection">
@@ -2616,27 +2602,7 @@ function createTrendingCard(p, i, sym) {
   }
 })();
 
-// Sticky search bar — becomes fixed only when scrolled past
-(function() {
-  const sc = document.getElementById('searchContainer');
-  if (!sc) return;
-  let placeholder = document.createElement('div');
-  placeholder.className = 'search-placeholder';
-  sc.parentNode.insertBefore(placeholder, sc.nextSibling);
-  const scH = sc.offsetHeight;
-  placeholder.style.height = scH + 'px';
-
-  window.addEventListener('scroll', function() {
-    const rect = placeholder.getBoundingClientRect();
-    if (rect.top <= 0) {
-      sc.classList.add('search-stuck');
-      placeholder.classList.add('visible');
-    } else {
-      sc.classList.remove('search-stuck');
-      placeholder.classList.remove('visible');
-    }
-  }, {passive: true});
-})();
+// Search bar uses CSS position:sticky - no JS needed
 
 // ============================================================
 //  CHAT — Claude AI Shopping Advisor ("NailFind")
