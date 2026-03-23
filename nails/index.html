@@ -2192,20 +2192,57 @@ async function loadMore() {
 
 // Quick Hebrew translation for common nail product terms
 const nailTermsHe = {
-  'gel nail polish':'לק ג\'ל','nail polish':'לק ציפורניים','press on nails':'ציפורניים מוכנות',
-  'nail art':'נייל ארט','nail lamp':'מנורת ציפורניים','UV LED':'UV LED','nail dryer':'מייבש ציפורניים',
-  'nail sticker':'מדבקות ציפורניים','nail glue':'דבק ציפורניים','nail tips':'טיפים לציפורניים',
-  'base coat':'בייס קואט','top coat':'טופ קואט','rubber base':'בייס רבר','matte':'מט',
-  'glitter':'גליטר','chrome':'כרום','cat eye':'קט אי','french':'צרפתי','manicure':'מניקור',
-  'pedicure':'פדיקור','acrylic':'אקריל','extension':'הארכה','rhinestone':'אבני חן',
-  'stamping':'סטמפינג','gel polish set':'סט לק ג\'ל','nail brush':'מברשת ציפורניים',
-  'cuticle':'קוטיקולה','remover':'מסיר','semi permanent':'עמיד למחצה','soak off':'סוק אוף',
-  'nail file':'פצירה','nail decoration':'קישוטי ציפורניים','magnetic':'מגנטי',
-  'nude':'ניוד','pink':'ורוד','white':'לבן','black':'שחור','red':'אדום','gold':'זהב','silver':'כסף',
-  'color':'צבע','colors':'צבעים','set':'סט','pcs':'יח\'','pieces':'יח\'','box':'קופסה',
-  'ml':'מ"ל','professional':'מקצועי','portable':'נייד','mini':'מיני','new':'חדש',
-  'women':'נשים','summer':'קיץ','spring':'אביב','winter':'חורף','design':'עיצוב',
-  'popular':'פופולרי','hot':'חם','sale':'מבצע','free shipping':'משלוח חינם'
+  // Multi-word phrases first
+  'gel nail polish':'לק ג\'ל','nail gel polish':'לק ג\'ל','gel polish':'לק ג\'ל',
+  'press on nails':'ציפורניים מוכנות','false nails':'ציפורניים מלאכותיות','fake nails':'ציפורניים מלאכותיות',
+  'nail art':'נייל ארט','nail lamp':'מנורת ציפורניים','nail dryer':'מייבש ציפורניים',
+  'nail sticker':'מדבקות ציפורניים','nail stickers':'מדבקות ציפורניים','nail decals':'מדבקות ציפורניים',
+  'nail glue':'דבק ציפורניים','nail tips':'טיפים לציפורניים','nail tip':'טיפ לציפורניים',
+  'nail polish':'לק ציפורניים','nail brush':'מברשת ציפורניים','nail file':'פצירה',
+  'nail decoration':'קישוטי ציפורניים','nail decorations':'קישוטי ציפורניים',
+  'nail foil':'פויל לציפורניים','nail foils':'פויל לציפורניים',
+  'base coat':'בייס קואט','top coat':'טופ קואט','rubber base':'בייס רבר','base gel':'ג\'ל בסיס',
+  'gel polish set':'סט לק ג\'ל','gel polish kit':'ערכת לק ג\'ל',
+  'semi permanent':'עמיד למחצה','semi-permanent':'עמיד למחצה','soak off':'סוק אוף',
+  'full coverage':'כיסוי מלא','quick extension':'הארכה מהירה','quick construction':'בנייה מהירה',
+  'cat eye':'קט אי','free shipping':'משלוח חינם','UV LED':'UV LED',
+  'hema free':'ללא HEMA','HEMA FREE':'ללא HEMA','tpo free':'ללא TPO','TPO FREE':'ללא TPO',
+  'dip powder':'אבקת טבילה','nail powder':'אבקת ציפורניים',
+  'liner gel':'ג\'ל ליינר','blooming gel':'ג\'ל בלומינג','spider gel':'ג\'ל ספיידר',
+  'builder gel':'ג\'ל בנייה','sculpture gel':'ג\'ל פיסול',
+  'tempered top':'טופ מחוסם','no wipe':'ללא שכבה דביקה',
+  'nail salon':'סלון ציפורניים',
+  // Brand names (keep as-is but shorten)
+  'Venalisa':'ונליסה','VENALISA':'ונליסה','UR SUGAR':'UR SUGAR','LILYCUTE':'LILYCUTE',
+  'MSHARE':'MSHARE','MEET ACROSS':'MEET ACROSS','Canni':'Canni',
+  // Single words
+  'Varnish':'לכה','varnish':'לכה','glitter':'גליטר','Glitter':'גליטר',
+  'chrome':'כרום','Chrome':'כרום','french':'צרפתי','French':'צרפתי',
+  'matte':'מט','Matte':'מט','manicure':'מניקור','Manicure':'מניקור',
+  'pedicure':'פדיקור','acrylic':'אקריל','Acrylic':'אקריל',
+  'extension':'הארכה','Extension':'הארכה','rhinestone':'אבן חן','rhinestones':'אבני חן',
+  'stamping':'סטמפינג','cuticle':'קוטיקולה','remover':'מסיר','magnetic':'מגנטי',
+  'nude':'ניוד','Nude':'ניוד','pink':'ורוד','Pink':'ורוד','white':'לבן','White':'לבן',
+  'black':'שחור','Black':'שחור','red':'אדום','Red':'אדום',
+  'gold':'זהב','Gold':'זהב','silver':'כסף','Silver':'כסף',
+  'green':'ירוק','Green':'ירוק','blue':'כחול','Blue':'כחול','purple':'סגול','Purple':'סגול',
+  'transparent':'שקוף','Transparent':'שקוף','translucent':'שקוף למחצה',
+  'Milky':'חלבי','milky':'חלבי','jelly':'ג\'לי','Jelly':'ג\'לי',
+  'Champagne':'שמפניה','champagne':'שמפניה','Reflective':'רפלקטיבי',
+  'color':'צבע','Color':'צבע','colors':'צבעים','Colors':'צבעים',
+  'set':'סט','Set':'סט','Kit':'ערכה','kit':'ערכה',
+  'pcs':'יח\'','Pcs':'יח\'','pieces':'יח\'','Pieces':'יח\'','box':'קופסה',
+  'professional':'מקצועי','Professional':'מקצועי','portable':'נייד','Portable':'נייד',
+  'mini':'מיני','Mini':'מיני','new':'חדש','New':'חדש','Hot':'חם','hot':'חם',
+  'women':'נשים','Women':'נשים','summer':'קיץ','Summer':'קיץ',
+  'spring':'אביב','Spring':'אביב','winter':'חורף','Winter':'חורף',
+  'design':'עיצוב','Design':'עיצוב','popular':'פופולרי',
+  'Gorgeous':'מהמם','gorgeous':'מהמם','DIY':'עשי זאת בעצמך',
+  'Painting':'ציור','painting':'ציור','Drawing':'ציור',
+  'Finger':'אצבע','finger':'אצבע','Art':'ארט',
+  'Camouflage':'הסוואה','camouflage':'הסוואה',
+  'Coverage':'כיסוי','coverage':'כיסוי','Hard':'קשה','Soft':'רך',
+  'Natural':'טבעי','natural':'טבעי','Sell':'','sell':'','Buy':'','buy':''
 };
 
 function translateTitle(title) {
@@ -2235,7 +2272,10 @@ function renderProducts(products, append) {
   products.forEach(p => {
     const price = p.sale_price || p.price || '?';
     const currency = p.currency || '₪';
-    const img = p.image || p.product_main_image_url || '';
+    let img = p.image || p.image_alt || p.product_main_image_url || '';
+    if (img.includes('/img?url=')) {
+      try { img = decodeURIComponent(img.split('/img?url=')[1].split('&')[0]); } catch(e) {}
+    }
     const rawTitle = p.title || p.product_title || '';
     const title = translateTitle(rawTitle);
     const link = p.affiliate_url || p.affiliate_link || p.link || p.product_detail_url || '#';
