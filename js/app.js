@@ -719,8 +719,18 @@ function toggleLangDropdown() {
 function detectLanguage() {
   const saved = localStorage.getItem("ali_lang");
   if (saved && i18n[saved]) return saved;
+  // Detect by country (set by Cloudflare or URL)
+  const country = (currentCountry || "").toUpperCase();
+  const countryLangMap = {
+    "IL": "he", "BR": "pt", "ES": "es", "FR": "fr",
+    "DE": "de", "IT": "it", "RU": "ru", "JP": "ja",
+    "KR": "ko", "SA": "ar", "AE": "ar", "TR": "tr",
+    "TH": "th", "CN": "zh", "TW": "zh",
+  };
+  if (countryLangMap[country] && i18n[countryLangMap[country]]) return countryLangMap[country];
+  // Fallback to browser language
   const browserLang = (navigator.language || navigator.userLanguage || "en").substring(0, 2).toLowerCase();
-  return i18n[browserLang] ? browserLang : "en";
+  return i18n[browserLang] ? browserLang : "he";
 }
 
 // ============================================================
@@ -2641,7 +2651,16 @@ if (urlQuery) {
   setTimeout(() => sendMessage(), 500);
 }
 
-// Init language from path > URL param > localStorage > browser detect
+// Detect country from Cloudflare (fast, no API call)
+try {
+  const tz = Intl.DateTimeFormat().resolvedOptions().timeZone || "";
+  if (tz.startsWith("Asia/Jerusalem") || tz.startsWith("Asia/Tel_Aviv")) currentCountry = "IL";
+  else if (tz.startsWith("America/Sao_Paulo") || tz.startsWith("America/Fortaleza") || tz.startsWith("America/Recife") || tz.startsWith("America/Bahia")) currentCountry = "BR";
+  else if (tz.startsWith("Europe/Madrid")) currentCountry = "ES";
+  else if (tz.startsWith("America/New_York") || tz.startsWith("America/Chicago") || tz.startsWith("America/Los_Angeles") || tz.startsWith("America/Denver")) currentCountry = "US";
+} catch(e) {}
+
+// Init language from path > URL param > localStorage > country detect
 const pathLangMatch = window.location.pathname.match(/^\/(en|ar|ru|es|pt|tr|fr)\//);
 const urlLangParam = new URLSearchParams(window.location.search).get("lang");
 if (pathLangMatch && i18n[pathLangMatch[1]]) {
