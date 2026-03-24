@@ -1,0 +1,1148 @@
+<!DOCTYPE html>
+<html lang="pt-BR" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="geo.region" content="BR">
+  <meta name="geo.position" content="-23.55;-46.63">
+  <link rel="alternate" hreflang="pt-BR" href="https://alifindme.com/br/mulheres.html">
+  <title>Ofertas Femininas - Moda, Beleza & Acessórios | Ali Find Me</title>
+  <meta name="description" content="Ofertas exclusivas para mulheres no AliExpress Brasil. Moda, maquiagem, bolsas, joias, cabelo e acessórios com até 68% OFF. Frete grátis e preços em Real!">
+  <link rel="icon" href="/favicon.ico">
+  <link rel="preconnect" href="https://ali-findme-api.ohadf1976.workers.dev" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0f0f0f; color: #fff; }
+
+    /* Header */
+    .header {
+      background: linear-gradient(135deg, #ff6b9d 0%, #ff8a5c 100%);
+      padding: 24px 20px;
+      text-align: center;
+      min-height: 100px;
+      contain: layout;
+    }
+    .header h1 { font-size: 1.5rem; font-weight: 900; margin-bottom: 5px; }
+    .header p { font-size: 0.9rem; opacity: 0.9; }
+    .header .flag { font-size: 1.5rem; }
+
+    /* Search Bar */
+    .search-section {
+      background: #1a1a2e;
+      padding: 16px 15px;
+      border-bottom: 1px solid #2a2a4e;
+    }
+    .search-form {
+      max-width: 600px;
+      margin: 0 auto;
+      display: flex;
+      gap: 8px;
+    }
+    .search-input {
+      flex: 1;
+      padding: 12px 16px;
+      border: 2px solid #2a2a4e;
+      border-radius: 25px;
+      background: #0f0f0f;
+      color: #fff;
+      font-size: 0.9rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .search-input:focus { border-color: #ff6b9d; }
+    .search-input::placeholder { color: #666; }
+    .search-btn {
+      padding: 12px 24px;
+      background: linear-gradient(135deg, #ff6b9d, #ff8a5c);
+      color: #fff;
+      border: none;
+      border-radius: 25px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    /* Categories */
+    .categories {
+      display: flex;
+      gap: 8px;
+      padding: 12px 15px;
+      overflow-x: auto;
+      background: #0d1117;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    .categories::-webkit-scrollbar { display: none; }
+    .cat-pill {
+      flex-shrink: 0;
+      padding: 8px 16px;
+      background: #1a1a2e;
+      border: 1px solid #2a2a4e;
+      border-radius: 20px;
+      color: #ccc;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: all 0.2s;
+      cursor: pointer;
+    }
+    .cat-pill:hover, .cat-pill.active {
+      background: linear-gradient(135deg, #ff6b9d, #ff8a5c);
+      color: #fff;
+      border-color: transparent;
+    }
+
+    /* Live visitors */
+    .live-bar {
+      background: #0d1117;
+      padding: 8px;
+      text-align: center;
+      font-size: 0.8rem;
+      color: #ff6b9d;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      height: 34px;
+      contain: layout;
+    }
+    .live-dot {
+      width: 8px; height: 8px;
+      background: #ff6b9d;
+      border-radius: 50%;
+      animation: blink 1.5s infinite;
+    }
+    @keyframes blink { 0%,100% { opacity: 1; } 50% { opacity: 0.3; } }
+
+    /* Timer bar */
+    .timer-bar {
+      background: #1a1a2e;
+      padding: 10px;
+      text-align: center;
+      font-size: 0.85rem;
+      color: #ff6b9d;
+      font-weight: 700;
+      border-bottom: 2px solid #ff6b9d;
+    }
+    .timer-bar span { color: #fff; }
+
+    /* Recent purchases ticker */
+    .ticker {
+      background: #0d1117;
+      overflow: hidden;
+      padding: 8px 0;
+      border-bottom: 1px solid #1a1a2e;
+      height: 32px;
+      contain: layout;
+    }
+    .ticker-inner {
+      display: flex;
+      gap: 40px;
+      animation: scroll-left 25s linear infinite;
+      white-space: nowrap;
+    }
+    .ticker-item {
+      font-size: 0.75rem;
+      color: #aaa;
+      flex-shrink: 0;
+    }
+    .ticker-item strong { color: #ff6b9d; }
+    @keyframes scroll-left { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+    /* Products Grid */
+    .products {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 15px;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+    @media (min-width: 768px) {
+      .products { grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    }
+    @media (min-width: 1024px) {
+      .products { grid-template-columns: repeat(4, 1fr); }
+    }
+
+    /* Product Card */
+    .card {
+      background: #1a1a2e;
+      border-radius: 12px;
+      overflow: hidden;
+      transition: transform 0.2s;
+      position: relative;
+    }
+    .card:hover { transform: translateY(-3px); }
+    .card a { text-decoration: none; color: inherit; display: block; }
+
+    .card-badge {
+      position: absolute;
+      top: 8px;
+      left: 8px;
+      background: #ff0040;
+      color: #fff;
+      padding: 3px 8px;
+      border-radius: 6px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      z-index: 2;
+    }
+    .card-orders {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      background: rgba(0,0,0,0.7);
+      color: #ffd700;
+      padding: 3px 7px;
+      border-radius: 6px;
+      font-size: 0.65rem;
+      font-weight: 700;
+      z-index: 2;
+    }
+
+    .card-img {
+      width: 100%;
+      aspect-ratio: 1;
+      object-fit: cover;
+      background: #2a2a3e;
+      display: block;
+      content-visibility: auto;
+    }
+
+    .card-body { padding: 10px; }
+    .card-title {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: #e0e0e0;
+      line-height: 1.3;
+      height: 2.6em;
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      margin-bottom: 8px;
+    }
+
+    .card-price {
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+      margin-bottom: 6px;
+    }
+    .price-now {
+      font-size: 1.1rem;
+      font-weight: 900;
+      color: #ff6b9d;
+    }
+    .price-was {
+      font-size: 0.75rem;
+      color: #666;
+      text-decoration: line-through;
+    }
+
+    .card-rating {
+      font-size: 0.7rem;
+      color: #ffd700;
+      margin-bottom: 4px;
+    }
+
+    .card-social {
+      font-size: 0.65rem;
+      color: #888;
+      margin-bottom: 8px;
+    }
+
+    .shipping {
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+      font-size: 0.65rem;
+      color: #4caf50;
+      margin-bottom: 6px;
+    }
+
+    .card-btn {
+      display: block;
+      width: 100%;
+      padding: 8px;
+      background: linear-gradient(135deg, #ff6b9d, #ff8a5c);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-align: center;
+      cursor: pointer;
+    }
+
+    /* Section Title */
+    .section-title {
+      text-align: center;
+      padding: 25px 15px 10px;
+      font-size: 1.2rem;
+      font-weight: 700;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .section-title span { color: #ff6b9d; }
+
+    /* CTA Banner */
+    .cta-banner {
+      max-width: 1170px;
+      margin: 20px auto;
+      padding: 25px 20px;
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+      border-radius: 12px;
+      text-align: center;
+      border: 1px solid #ff6b9d33;
+      width: calc(100% - 30px);
+    }
+    .cta-banner h3 { font-size: 1.1rem; margin-bottom: 8px; }
+    .cta-banner p { font-size: 0.85rem; color: #aaa; margin-bottom: 12px; }
+
+    .cta-search {
+      max-width: 500px;
+      margin: 15px auto 0;
+      display: flex;
+      gap: 8px;
+    }
+    .cta-search .search-input { font-size: 0.85rem; padding: 10px 16px; }
+    .cta-search .search-btn { padding: 10px 20px; }
+
+    .cta-btn {
+      display: inline-block;
+      padding: 12px 30px;
+      background: linear-gradient(135deg, #ff6b9d, #ff8a5c);
+      color: #fff;
+      text-decoration: none;
+      border-radius: 25px;
+      font-weight: 700;
+      font-size: 0.9rem;
+    }
+
+    /* Sale Banner */
+    .sale-banner {
+      max-width: 1170px;
+      margin: 20px auto;
+      padding: 20px;
+      background: linear-gradient(135deg, #ff6b9d 0%, #ff8a5c 50%, #ffd700 100%);
+      border-radius: 12px;
+      text-align: center;
+      width: calc(100% - 30px);
+    }
+    .sale-banner h3 { font-size: 1.3rem; font-weight: 900; margin-bottom: 8px; }
+    .sale-banner p { font-size: 0.9rem; opacity: 0.9; margin-bottom: 12px; }
+    .sale-btn {
+      display: inline-block;
+      padding: 12px 30px;
+      background: #fff;
+      color: #ff6b9d;
+      text-decoration: none;
+      border-radius: 25px;
+      font-weight: 900;
+      font-size: 0.9rem;
+    }
+
+    /* Reviews */
+    .reviews {
+      max-width: 1200px;
+      margin: 25px auto;
+      padding: 0 15px;
+    }
+    .reviews-title {
+      text-align: center;
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 15px;
+    }
+    .reviews-title span { color: #ff6b9d; }
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+    @media (min-width: 768px) {
+      .reviews-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (min-width: 1024px) {
+      .reviews-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+    .review-card {
+      background: #1a1a2e;
+      border-radius: 12px;
+      padding: 16px;
+      border: 1px solid #2a2a4e;
+    }
+    .review-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+    .review-avatar {
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #ff6b9d, #ff8a5c);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #fff;
+      flex-shrink: 0;
+    }
+    .review-name { font-size: 0.85rem; font-weight: 700; }
+    .review-location { font-size: 0.7rem; color: #888; }
+    .review-stars { color: #ffd700; font-size: 0.8rem; margin-bottom: 8px; }
+    .review-text { font-size: 0.8rem; color: #ccc; line-height: 1.5; }
+    .review-product { font-size: 0.7rem; color: #ff6b9d; margin-top: 8px; font-weight: 700; }
+    .review-verified {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 0.65rem;
+      color: #4caf50;
+      margin-top: 6px;
+      font-weight: 700;
+    }
+
+    /* Footer */
+    .footer {
+      text-align: center;
+      padding: 25px 15px;
+      background: #0a0a14;
+      border-top: 1px solid #1a1a2e;
+    }
+    .footer a { color: #ff6b9d; text-decoration: none; }
+
+    @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.7; } }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Ofertas Femininas - Moda, Beleza & Acessórios",
+    "description": "Ofertas exclusivas para mulheres no AliExpress Brasil. Moda, maquiagem, bolsas, joias e acessórios com frete grátis.",
+    "url": "https://alifindme.com/br/mulheres.html",
+    "inLanguage": "pt-BR",
+    "publisher": {
+      "@type": "Organization",
+      "name": "Ali Find Me",
+      "url": "https://alifindme.com"
+    }
+  }
+  </script>
+</head>
+<body>
+
+  <!-- Header -->
+  <div class="header">
+    <div class="flag">👩</div>
+    <h1>Ofertas Exclusivas para Mulheres</h1>
+    <p>Moda, Beleza & Acessórios com até 68% OFF + Frete Grátis 🇧🇷</p>
+  </div>
+
+  <!-- Search Bar -->
+  <div class="search-section">
+    <form class="search-form" id="main-search" onsubmit="doSearch(event, this)">
+      <input type="text" class="search-input" placeholder="Buscar produtos... (ex: vestido, maquiagem, bolsa)" aria-label="Buscar produtos">
+      <button type="submit" class="search-btn">Buscar</button>
+    </form>
+  </div>
+
+  <!-- Categories -->
+  <div class="categories">
+    <a class="cat-pill active" href="#moda">Moda</a>
+    <a class="cat-pill" href="#beleza">Beleza</a>
+    <a class="cat-pill" href="#bolsas">Bolsas & Acessórios</a>
+    <a class="cat-pill" href="#bikini" onclick="doSearch(event,null,'bikini feminino')">Bikini</a>
+    <a class="cat-pill" href="#cabelo">Cabelo</a>
+    <a class="cat-pill" href="#joias" onclick="doSearch(event,null,'joias femininas')">Joias</a>
+    <a class="cat-pill" href="#capas" onclick="doSearch(event,null,'capa celular feminina')">Capas de Celular</a>
+  </div>
+
+  <!-- Live visitors -->
+  <div class="live-bar">
+    <div class="live-dot"></div>
+    <span id="live-count">34</span> mulheres vendo agora &bull; <span id="recent-buy">8</span> compraram na última hora
+  </div>
+
+  <!-- Timer -->
+  <div class="timer-bar">
+    ⏰ Ofertas por tempo limitado! <span id="timer">Carregando...</span>
+  </div>
+
+  <!-- Recent purchases ticker -->
+  <div class="ticker">
+    <div class="ticker-inner">
+      <div class="ticker-item">🛒 <strong>Camila S.</strong> comprou Skin Tint Stick - SP &bull; há 2 min</div>
+      <div class="ticker-item">🛒 <strong>Fernanda L.</strong> comprou Vestido Elegante - RJ &bull; há 5 min</div>
+      <div class="ticker-item">🛒 <strong>Ana P.</strong> comprou Bear Cosmetic Bag - MG &bull; há 9 min</div>
+      <div class="ticker-item">🛒 <strong>Juliana M.</strong> comprou Extensão Franja - BA &bull; há 14 min</div>
+      <div class="ticker-item">🛒 <strong>Mariana R.</strong> comprou Creme Dragon Blood - PR &bull; há 19 min</div>
+      <div class="ticker-item">🛒 <strong>Beatriz F.</strong> comprou Bikini High Waist - CE &bull; há 23 min</div>
+      <!-- Duplicated for seamless scroll -->
+      <div class="ticker-item">🛒 <strong>Camila S.</strong> comprou Skin Tint Stick - SP &bull; há 2 min</div>
+      <div class="ticker-item">🛒 <strong>Fernanda L.</strong> comprou Vestido Elegante - RJ &bull; há 5 min</div>
+      <div class="ticker-item">🛒 <strong>Ana P.</strong> comprou Bear Cosmetic Bag - MG &bull; há 9 min</div>
+      <div class="ticker-item">🛒 <strong>Juliana M.</strong> comprou Extensão Franja - BA &bull; há 14 min</div>
+      <div class="ticker-item">🛒 <strong>Mariana R.</strong> comprou Creme Dragon Blood - PR &bull; há 19 min</div>
+      <div class="ticker-item">🛒 <strong>Beatriz F.</strong> comprou Bikini High Waist - CE &bull; há 23 min</div>
+    </div>
+  </div>
+
+
+  <!-- Moda Feminina Section -->
+  <div class="section-title" id="moda">👗 <span>Moda Feminina</span> - Mais Vendidos</div>
+  <div class="products">
+
+    <div class="card">
+      <a href="https://s.click.aliexpress.com/e/_c3vcceGn" target="_blank" rel="nofollow">
+        <span class="card-badge">-57%</span>
+        <span class="card-orders">🔥 7.0K vendidos</span>
+        <img class="card-img" src="https://ali-findme-api.ohadf1976.workers.dev/img?url=https://ae-pic-a1.aliexpress-media.com/kf/Sc2aba95de99c41819af798d96e6d44b0y.png" alt="Presilhas Decorativas com Laço e Flor - 10 Peças" width="300" height="300" loading="lazy">
+        <div class="card-body">
+          <div class="card-title">Presilhas Decorativas com Laço e Flor - Kit 10 Peças</div>
+          <div class="shipping">🚚 Frete Grátis para o Brasil</div>
+          <div class="card-price">
+            <span class="price-now">R$ 8,69</span>
+            <span class="price-was">R$ 20,21</span>
+          </div>
+          <div class="card-rating">⭐⭐⭐⭐⭐ (7.022 vendidos)</div>
+          <div class="card-social">👥 312 pessoas compraram esta semana</div>
+          <div class="card-btn">🛒 COMPRAR AGORA</div>
+        </div>
+      </a>
+    </div>
+
+    <div class="card">
+      <a href="https://s.click.aliexpress.com/e/_c36UVIwT" target="_blank" rel="nofollow">
+        <span class="card-badge">-50%</span>
+        <span class="card-orders">🔥 5.8K vendidos</span>
+        <img class="card-img" src="https://ali-findme-api.ohadf1976.workers.dev/img?url=https://ae-pic-a1.aliexpress-media.com/kf/Sb94803f416b94edaaeaec7f7970bdf85O.jpg" alt="Camiseta Feminina Manga Longa Fashion" width="300" height="300" loading="lazy">
+        <div class="card-body">
+          <div class="card-title">Camiseta Feminina Manga Longa - Fashion Casual</div>
+          <div class="shipping">🚚 Frete Grátis para o Brasil</div>
+          <div class="card-price">
+            <span class="price-now">R$ 22,07</span>
+            <span class="price-was">R$ 44,14</span>
+          </div>
+          <div class="card-rating">⭐⭐⭐⭐⭐ (5.839 vendidos)</div>
+          <div class="card-social">👥 245 pessoas compraram esta semana</div>
+          <div class="card-btn">🛒 COMPRAR AGORA</div>
+        </div>
+      </a>
+    </div>
+
+    <div class="card">
+      <a href="https://s.click.aliexpress.com/e/_c3jFJSuf" target="_blank" rel="nofollow">
+        <span class="card-badge">-50%</span>
+        <span class="card-orders">🔥 332 vendidos</span>
+        <img class="card-img" src="https://ali-findme-api.ohadf1976.workers.dev/img?url=https://ae-pic-a1.aliexpress-media.com/kf/S6882f558ea5e4a72bd033e28045f88b0Q.jpg" alt="Vestido Clássico Elegante Verão" width="300" height="300" loading="lazy">
+        <div class="card-body">
+          <div class="card-title">Vestido Clássico Elegante - Verão, Feminino</div>
+          <div class="shipping">🚚 Frete Grátis para o Brasil</div>
+          <div class="card-price">
+            <span class="price-now">R$ 96,39</span>
+            <span class="price-was">R$ 192,78</span>
+          </div>
+          <div class="card-rating">⭐⭐⭐⭐⭐ (332 vendidos)</div>
+          <div class="card-social">👥 89 pessoas compraram esta semana</div>
+          <div class="card-btn">🛒 COMPRAR AGORA</div>
+        </div>
+      </a>
+    </div>
+
+    <div class="card">
+      <a href="https://s.click.aliexpress.com/e/_c3p7Al8b" target="_blank" rel="nofollow">
+        <span class="card-badge">-49%</span>
+        <span class="card-orders">🔥 312 vendidos</span>
+        <img class="card-img" src="https://ali-findme-api.ohadf1976.workers.dev/img?url=https://ae-pic-a1.aliexpress-media.com/kf/S454f2b67fb814c5a81e2367a661b9e93S.jpg" alt="Vestido Princesa Wendy Feminino" width="300" height="300" loading="lazy">
+        <div class="card-body">
+          <div class="card-title">Vestido Princesa Wendy - Elegante, Feminino</div>
+          <div class="shipping">🚚 Frete Grátis para o Brasil</div>
+          <div class="card-price">
+            <span class="price-now">R$ 97,99</span>
+            <span class="price-was">R$ 192,14</span>
+          </div>
+          <div class="card-rating">⭐⭐⭐⭐⭐ (312 vendidos)</div>
+          <div class="card-social">👥 74 pessoas compraram esta semana</div>
+          <div class="card-btn">🛒 COMPRAR AGORA</div>
+        </div>
+      </a>
+    </div>
+
+  </div>
+
+
+  <!-- Beleza & Maquiagem Section -->
+  <div class="section-title" id="beleza">💄 <span>Beleza & Maquiagem</span> - Ofertas Imperdíveis</div>
+  <div class="products">
+
+    <div class="card">
+      <a href="https://s.click.aliexpress.com/e/_c3YHDlWn" target="_blank" rel="nofollow">
+        <span class="card-badge">-55%</span>
+        <span class="card-orders">🔥 9.0K vendidos</span>
+        <img class="card-img" src="https://ali-findme-api.ohadf1976.workers.dev/img?url=https://ae-pic-a1.aliexpress-media.com/kf/S44ea6c94b7014d9e98540c2ed4a0da5a4.png" alt="Skin Tint Stick à Prova d'Água" width="300" height="300" loading="lazy">
+        <div class="card-body">
+          <div class="card-title">Skin Tint Stick à Prova d'Água - Maquiagem</div>
+          <div class="shipping">🚚 Frete Grátis para o Brasil</div>
+          <div class="card-price">
+            <span class="price-now">R$ 9,10</span>
+            <span class="price-was">R$ 20,22</span>
+          </div>
+          <div class="card-rating">⭐⭐⭐⭐⭐ (8.954 vendidos)</div>
+          <div class="card-social">👥 489 pessoas compraram esta semana</div>
+          <div class="card-btn">🛒 COMPRAR AGORA</div>
+        </div>
+      </a>
+    </div>
+
+    <div class="card">
+      <a href="https://s.click.aliexpress.com/e/_c3V0Z1Cj" target="_blank" rel="nofollow">
+        <span class="card-badge">-52%</span>
+        <span class="card-orders">🔥 6.4K vendidos</span>
+        <img class="card-img" src="https://ali-findme-api.ohadf1976.workers.dev/img?url=https://ae-pic-a1.aliexpress-media.com/kf/Sc434636a3e864bce93d9a5c86b52bd65X.jpg" alt="Spray Fixador de Maquiagem 100ml" width="300" height="300" loading="lazy">
+        <div class="card-body">
+          <div class="card-title">Spray Fixador de Maquiagem 100ml - Longa Duração</div>
+          <div class="shipping">🚚 Frete Grátis para o Brasil</div>
+          <div class="card-price">
+            <span class="price-now">R$ 19,89</span>
+            <span class="price-was">R$ 41,44</span>
+          </div>
+          <div class="card-rating">⭐⭐⭐⭐⭐ (6.358 vendidos)</div>
+          <div class="card-social">👥 367 pessoas compraram esta semana</div>
+          <div class="card-btn">🛒 COMPRAR AGORA</div>
+        </div>
+      </a>
+    </div>
+
+    <div class="card">
+      <a href="https://s.click.aliexpress.com/e/_c3vu353D" target="_blank" rel="nofollow">
+        <span class="card-badge">-57%</span>
+        <span class="card-orders">🔥 5.1K vendidos</span>
+        <img class="card-img" src="https://ali-findme-api.ohadf1976.workers.dev/img?url=https://ae-pic-a1.aliexpress-media.com/kf/S96ab5c2be9714cf387ed11576f2e083ay.jpg" alt="Papel Matificante Facial 100 Folhas" width="300" height="300" loading="lazy">
+        <div class="card-body">
+          <div class="card-title">Papel Matificante Facial - 100 Folhas, Controle de Oleosidade</div>
+          <div class="shipping">🚚 Frete Grátis para o Brasil</div>
+          <div class="card-price">
+            <span class="price-now">R$ 5,18</span>
+            <span class="price-was">R$ 12,05</span>
+          </div>
+          <div class="card-rating">⭐⭐⭐⭐⭐ (5.069 vendidos)</div>
+          <div class="card-social">👥 278 pessoas compraram esta semana</div>
+          <div class="card-btn">🛒 COMPRAR AGORA</div>
+        </div>
+      </a>
+    </div>
+
+    <div class="card">
+      <a href="https://s.click.aliexpress.com/e/_c4dT7zUx" target="_blank" rel="nofollow">
+        <span class="card-badge">-61%</span>
+        <span class="card-orders">🔥 4.9K vendidos</span>
+        <img class="card-img" src="https://ali-findme-api.ohadf1976.workers.dev/img?url=https://ae-pic-a1.aliexpress-media.com/kf/Sa3626e5091f34350bcc141a1019b20afI.jpg" alt="Creme Facial Dragon Blood com Retinol" width="300" height="300" loading="lazy">
+        <div class="card-body">
+          <div class="card-title">Creme Facial Dragon Blood com Retinol - Anti-Idade</div>
+          <div class="shipping">🚚 Frete Grátis para o Brasil</div>
+          <div class="card-price">
+            <span class="price-now">R$ 10,79</span>
+            <span class="price-was">R$ 27,67</span>
+          </div>
+          <div class="card-rating">⭐⭐⭐⭐⭐ (4.863 vendidos)</div>
+          <div class="card-social">👥 215 pessoas compraram esta semana</div>
+          <div class="card-btn">🛒 COMPRAR AGORA</div>
+        </div>
+      </a>
+    </div>
+
+  </div>
+
+
+  <!-- Bolsas & Acessórios Section -->
+  <div class="section-title" id="bolsas">👜 <span>Bolsas & Acessórios</span> - Mais Populares</div>
+  <div class="products">
+
+    <div class="card">
+      <a href="https://s.click.aliexpress.com/e/_c3lA6Ikn" target="_blank" rel="nofollow">
+        <span class="card-badge">-51%</span>
+        <span class="card-orders">🔥 23.1K vendidos</span>
+        <img class="card-img" src="https://ali-findme-api.ohadf1976.workers.dev/img?url=https://ae-pic-a1.aliexpress-media.com/kf/Sd380047732514bf69ea484b0354f5d26I.jpg" alt="Necessaire Urso Cosmética" width="300" height="300" loading="lazy">
+        <div class="card-body">
+          <div class="card-title">Necessaire Urso Cosmética - Fofa, Organizadora</div>
+          <div class="shipping">🚚 Frete Grátis para o Brasil</div>
+          <div class="card-price">
+            <span class="price-now">R$ 20,69</span>
+            <span class="price-was">R$ 42,22</span>
+          </div>
+          <div class="card-rating">⭐⭐⭐⭐⭐ (23.111 vendidos)</div>
+          <div class="card-social">👥 1.024 pessoas compraram esta semana</div>
+          <div class="card-btn">🛒 COMPRAR AGORA</div>
+        </div>
+      </a>
+    </div>
+
+    <div class="card">
+      <a href="https://s.click.aliexpress.com/e/_c3lHMMfN" target="_blank" rel="nofollow">
+        <span class="card-badge">-50%</span>
+        <span class="card-orders">🔥 15.0K vendidos</span>
+        <img class="card-img" src="https://ali-findme-api.ohadf1976.workers.dev/img?url=https://ae-pic-a1.aliexpress-media.com/kf/S69a96b9495f6443db335d6376f034d5eu.jpg" alt="Bolsa Sacola Leopardo - Shopping Bag" width="300" height="300" loading="lazy">
+        <div class="card-body">
+          <div class="card-title">Bolsa Sacola Estampa Leopardo - Shopping Bag</div>
+          <div class="shipping">🚚 Frete Grátis para o Brasil</div>
+          <div class="card-price">
+            <span class="price-now">R$ 11,18</span>
+            <span class="price-was">R$ 22,36</span>
+          </div>
+          <div class="card-rating">⭐⭐⭐⭐⭐ (14.990 vendidos)</div>
+          <div class="card-social">👥 687 pessoas compraram esta semana</div>
+          <div class="card-btn">🛒 COMPRAR AGORA</div>
+        </div>
+      </a>
+    </div>
+
+    <div class="card">
+      <a href="https://s.click.aliexpress.com/e/_c37EW0MX" target="_blank" rel="nofollow">
+        <span class="card-badge">-67%</span>
+        <span class="card-orders">🔥 84.7K vendidos</span>
+        <img class="card-img" src="https://ali-findme-api.ohadf1976.workers.dev/img?url=https://ae-pic-a1.aliexpress-media.com/kf/Se70f5e64fe3642ed96f5b347e169b6f9Y.jpg" alt="Capa MagSafe para iPhone" width="300" height="300" loading="lazy">
+        <div class="card-body">
+          <div class="card-title">Capa MagSafe para iPhone - Transparente, Premium</div>
+          <div class="shipping">🚚 Frete Grátis para o Brasil</div>
+          <div class="card-price">
+            <span class="price-now">R$ 9,38</span>
+            <span class="price-was">R$ 28,42</span>
+          </div>
+          <div class="card-rating">⭐⭐⭐⭐⭐ (84.744 vendidos)</div>
+          <div class="card-social">👥 3.456 pessoas compraram esta semana</div>
+          <div class="card-btn">🛒 COMPRAR AGORA</div>
+        </div>
+      </a>
+    </div>
+
+    <div class="card">
+      <a href="https://s.click.aliexpress.com/e/_c3WYLP5d" target="_blank" rel="nofollow">
+        <span class="card-badge">-55%</span>
+        <span class="card-orders">🔥 72.8K vendidos</span>
+        <img class="card-img" src="https://ali-findme-api.ohadf1976.workers.dev/img?url=https://ae-pic-a1.aliexpress-media.com/kf/S5f689b7734af41b39533b59d8205aa0d2.jpg" alt="Capa Silicone para iPhone" width="300" height="300" loading="lazy">
+        <div class="card-body">
+          <div class="card-title">Capa Silicone para iPhone - Várias Cores</div>
+          <div class="shipping">🚚 Frete Grátis para o Brasil</div>
+          <div class="card-price">
+            <span class="price-now">R$ 7,99</span>
+            <span class="price-was">R$ 17,76</span>
+          </div>
+          <div class="card-rating">⭐⭐⭐⭐⭐ (72.848 vendidos)</div>
+          <div class="card-social">👥 2.891 pessoas compraram esta semana</div>
+          <div class="card-btn">🛒 COMPRAR AGORA</div>
+        </div>
+      </a>
+    </div>
+
+  </div>
+
+
+  <!-- Cabelo & Extensões Section -->
+  <div class="section-title" id="cabelo">💇‍♀️ <span>Cabelo & Extensões</span> - Transforme seu Visual</div>
+  <div class="products">
+
+    <div class="card">
+      <a href="https://s.click.aliexpress.com/e/_c4FYhx5V" target="_blank" rel="nofollow">
+        <span class="card-badge">-68%</span>
+        <span class="card-orders">🔥 9.1K vendidos</span>
+        <img class="card-img" src="https://ali-findme-api.ohadf1976.workers.dev/img?url=https://ae-pic-a1.aliexpress-media.com/kf/S6465544dbca2460b94de07d74acdb553J.jpg" alt="Extensão de Franja Invisível Natural" width="300" height="300" loading="lazy">
+        <div class="card-body">
+          <div class="card-title">Extensão de Franja Invisível - Natural, Clip-in</div>
+          <div class="shipping">🚚 Frete Grátis para o Brasil</div>
+          <div class="card-price">
+            <span class="price-now">R$ 6,69</span>
+            <span class="price-was">R$ 20,91</span>
+          </div>
+          <div class="card-rating">⭐⭐⭐⭐⭐ (9.066 vendidos)</div>
+          <div class="card-social">👥 412 pessoas compraram esta semana</div>
+          <div class="card-btn">🛒 COMPRAR AGORA</div>
+        </div>
+      </a>
+    </div>
+
+    <div class="card">
+      <a href="https://s.click.aliexpress.com/e/_c2z2hTZl" target="_blank" rel="nofollow">
+        <span class="card-badge">TOP</span>
+        <span class="card-orders">🔥 6.9K vendidos</span>
+        <img class="card-img" src="https://ali-findme-api.ohadf1976.workers.dev/img?url=https://ae-pic-a1.aliexpress-media.com/kf/S1c2cf17cc7d544929c34156afab3909fa.jpg" alt="Rabo de Cavalo Trançado Roxo" width="300" height="300" loading="lazy">
+        <div class="card-body">
+          <div class="card-title">Rabo de Cavalo Trançado Roxo - Extensão, Fashion</div>
+          <div class="shipping">🚚 Frete Grátis para o Brasil</div>
+          <div class="card-price">
+            <span class="price-now">R$ 14,59</span>
+          </div>
+          <div class="card-rating">⭐⭐⭐⭐⭐ (6.933 vendidos)</div>
+          <div class="card-social">👥 298 pessoas compraram esta semana</div>
+          <div class="card-btn">🛒 COMPRAR AGORA</div>
+        </div>
+      </a>
+    </div>
+
+    <div class="card">
+      <a href="https://s.click.aliexpress.com/e/_c4Mx1C1v" target="_blank" rel="nofollow">
+        <span class="card-badge">NOVO</span>
+        <span class="card-orders">🔥 1.7K vendidos</span>
+        <img class="card-img" src="https://ali-findme-api.ohadf1976.workers.dev/img?url=https://ae-pic-a1.aliexpress-media.com/kf/S06cc758524c74ec689c66f24f19ba5dcr.jpg" alt="Pulseira Bolas Prata 925" width="300" height="300" loading="lazy">
+        <div class="card-body">
+          <div class="card-title">Pulseira Bolas Prata 925 - Elegante, Feminina</div>
+          <div class="shipping">🚚 Frete Grátis para o Brasil</div>
+          <div class="card-price">
+            <span class="price-now">R$ 9,70</span>
+          </div>
+          <div class="card-rating">⭐⭐⭐⭐⭐ (1.710 vendidos)</div>
+          <div class="card-social">👥 156 pessoas compraram esta semana</div>
+          <div class="card-btn">🛒 COMPRAR AGORA</div>
+        </div>
+      </a>
+    </div>
+
+    <div class="card">
+      <a href="https://s.click.aliexpress.com/e/_c3XxUrQf" target="_blank" rel="nofollow">
+        <span class="card-badge">-40%</span>
+        <span class="card-orders">🔥 197 vendidos</span>
+        <img class="card-img" src="https://ali-findme-api.ohadf1976.workers.dev/img?url=https://ae-pic-a1.aliexpress-media.com/kf/S1481c7be15d34e55a1dccfd03f9b9de6C.jpg" alt="Biquíni Cintura Alta 2026" width="300" height="300" loading="lazy">
+        <div class="card-body">
+          <div class="card-title">Biquíni Cintura Alta 2026 - Verão, Feminino</div>
+          <div class="shipping">🚚 Frete Grátis para o Brasil</div>
+          <div class="card-price">
+            <span class="price-now">R$ 81,39</span>
+            <span class="price-was">R$ 135,65</span>
+          </div>
+          <div class="card-rating">⭐⭐⭐⭐⭐ (197 vendidos)</div>
+          <div class="card-social">👥 43 pessoas compraram esta semana</div>
+          <div class="card-btn">🛒 COMPRAR AGORA</div>
+        </div>
+      </a>
+    </div>
+
+  </div>
+
+
+  <!-- Reviews Section -->
+  <div class="reviews">
+    <div class="reviews-title">⭐ <span>Avaliações</span> de Compradoras Brasileiras</div>
+    <div class="reviews-grid">
+
+      <div class="review-card">
+        <div class="review-header">
+          <div class="review-avatar">C</div>
+          <div>
+            <div class="review-name">Camila Oliveira</div>
+            <div class="review-location">São Paulo, SP</div>
+          </div>
+        </div>
+        <div class="review-stars">⭐⭐⭐⭐⭐</div>
+        <div class="review-text">O skin tint é maravilhoso! Cobertura leve e natural, dura o dia todo. Pelo preço, é melhor que muito produto de marca. Já pedi mais 2 cores!</div>
+        <div class="review-product">📦 Skin Tint Stick à Prova d'Água</div>
+        <div class="review-verified">✅ Compra verificada</div>
+      </div>
+
+      <div class="review-card">
+        <div class="review-header">
+          <div class="review-avatar">F</div>
+          <div>
+            <div class="review-name">Fernanda Santos</div>
+            <div class="review-location">Rio de Janeiro, RJ</div>
+          </div>
+        </div>
+        <div class="review-stars">⭐⭐⭐⭐⭐</div>
+        <div class="review-text">A necessaire do urso é linda demais! Cabe tudo, material resistente. Todas as minhas amigas perguntaram onde comprei. Frete grátis e chegou rápido!</div>
+        <div class="review-product">📦 Necessaire Urso Cosmética</div>
+        <div class="review-verified">✅ Compra verificada</div>
+      </div>
+
+      <div class="review-card">
+        <div class="review-header">
+          <div class="review-avatar">A</div>
+          <div>
+            <div class="review-name">Ana Carolina Lima</div>
+            <div class="review-location">Belo Horizonte, MG</div>
+          </div>
+        </div>
+        <div class="review-stars">⭐⭐⭐⭐⭐</div>
+        <div class="review-text">A extensão de franja ficou super natural! Ninguém percebe que não é meu cabelo. Fácil de colocar e o preço é incrível. Super recomendo!</div>
+        <div class="review-product">📦 Extensão de Franja Invisível</div>
+        <div class="review-verified">✅ Compra verificada</div>
+      </div>
+
+      <div class="review-card">
+        <div class="review-header">
+          <div class="review-avatar">J</div>
+          <div>
+            <div class="review-name">Juliana Costa</div>
+            <div class="review-location">Salvador, BA</div>
+          </div>
+        </div>
+        <div class="review-stars">⭐⭐⭐⭐</div>
+        <div class="review-text">O vestido chegou lindo, tecido de qualidade e caimento perfeito. Demorou 15 dias mas valeu a pena pelo preço. Vou pedir mais modelos!</div>
+        <div class="review-product">📦 Vestido Clássico Elegante</div>
+        <div class="review-verified">✅ Compra verificada</div>
+      </div>
+
+      <div class="review-card">
+        <div class="review-header">
+          <div class="review-avatar">M</div>
+          <div>
+            <div class="review-name">Mariana Souza</div>
+            <div class="review-location">Curitiba, PR</div>
+          </div>
+        </div>
+        <div class="review-stars">⭐⭐⭐⭐⭐</div>
+        <div class="review-text">O creme Dragon Blood é surreal! Minha pele ficou mais firme em 2 semanas. Por R$11, é o melhor custo-benefício de skincare. Já estou no segundo pote!</div>
+        <div class="review-product">📦 Creme Dragon Blood Retinol</div>
+        <div class="review-verified">✅ Compra verificada</div>
+      </div>
+
+      <div class="review-card">
+        <div class="review-header">
+          <div class="review-avatar">B</div>
+          <div>
+            <div class="review-name">Beatriz Almeida</div>
+            <div class="review-location">Recife, PE</div>
+          </div>
+        </div>
+        <div class="review-stars">⭐⭐⭐⭐⭐</div>
+        <div class="review-text">A capa MagSafe ficou perfeita no meu iPhone! Transparente, bonita e funcional. Paguei R$10 e é igual às de R$150. Melhor compra que fiz!</div>
+        <div class="review-product">📦 Capa MagSafe iPhone</div>
+        <div class="review-verified">✅ Compra verificada</div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- Search CTA Section -->
+  <div class="cta-banner" style="background: linear-gradient(135deg, #ff6b9d22 0%, #ff8a5c22 100%); border-color: #ff6b9d55;">
+    <h3>🔍 Não encontrou o que procura? Busque com IA!</h3>
+    <p>Nosso buscador inteligente encontra qualquer produto feminino no AliExpress - em português!</p>
+    <form class="cta-search" onsubmit="doSearch(event, this)">
+      <input type="text" class="search-input" placeholder="Buscar vestidos, bolsas, maquiagem..." aria-label="Buscar produtos femininos">
+      <button type="submit" class="search-btn">Buscar</button>
+    </form>
+  </div>
+
+
+  <!-- Anniversary Sale Banner -->
+  <div class="sale-banner">
+    <h3>🎉 Anniversary Sale - Até 70% OFF!</h3>
+    <p>Milhares de produtos femininos com descontos incríveis por tempo limitado</p>
+    <a href="https://s.click.aliexpress.com/e/_c3vcceGn" target="_blank" rel="nofollow" class="sale-btn">VER OFERTAS →</a>
+  </div>
+
+
+  <!-- Trust Section -->
+  <div class="cta-banner" style="border-color: #4caf5033;">
+    <h3 style="font-size: 1.1rem; margin-bottom: 12px;">🛡️ Compra Segura</h3>
+    <div style="display: flex; justify-content: center; gap: 25px; flex-wrap: wrap; font-size: 0.85rem; color: #ccc;">
+      <span>✅ Frete Grátis</span>
+      <span>✅ Preços em R$</span>
+      <span>✅ PIX, Boleto, Cartão</span>
+      <span>✅ Devolução Grátis</span>
+    </div>
+    <p style="margin-top: 12px; font-size: 0.8rem; color: #888;">
+      Todos os produtos são do AliExpress oficial. Programa Remessa Conforme 🇧🇷
+    </p>
+  </div>
+
+
+  <!-- Footer -->
+  <div class="footer">
+    <p style="font-size: 0.8rem; color: #888;">© 2026 <a href="https://alifindme.com">Ali Find Me</a> - Buscador inteligente de ofertas</p>
+    <p style="margin-top: 6px; font-size: 0.7rem; color: #555;">
+      <a href="/br/ofertas.html" style="color: #888; text-decoration: none;">Todas as Ofertas</a> &bull;
+      <a href="/br/" style="color: #888; text-decoration: none;">Buscar Produtos</a>
+    </p>
+    <p style="margin-top: 8px; font-size: 0.7rem; color: #555;">Este site contém links de afiliado. Ao comprar, você nos ajuda sem custo extra.</p>
+  </div>
+
+
+  <!-- Search Function -->
+  <script>
+    function doSearch(e, form, query) {
+      e.preventDefault();
+      const q = query || (form && form.querySelector('.search-input')?.value) || '';
+      if (!q.trim() && !query) return;
+      const searchQuery = encodeURIComponent(q.trim());
+      window.open('https://alifindme.com/pt?country=BR&currency=BRL&q=' + searchQuery, '_blank');
+    }
+  </script>
+
+  <!-- Timer + Live count Script -->
+  <script>
+    function updateTimer() {
+      const now = new Date();
+      const end = new Date();
+      end.setHours(23, 59, 59, 0);
+      const diff = end - now;
+      const h = Math.floor(diff / 3600000);
+      const m = Math.floor((diff % 3600000) / 60000);
+      const s = Math.floor((diff % 60000) / 1000);
+      document.getElementById('timer').textContent =
+        'Termina em ' + h + 'h ' + m + 'm ' + s + 's';
+    }
+    updateTimer();
+    setInterval(updateTimer, 1000);
+
+    // Live visitor count
+    setInterval(function() {
+      var el = document.getElementById('live-count');
+      var current = parseInt(el.textContent);
+      var change = Math.random() > 0.5 ? 1 : -1;
+      var newVal = Math.max(20, Math.min(55, current + change));
+      el.textContent = newVal;
+    }, 5000);
+
+    // Recent purchases count
+    setInterval(function() {
+      var el = document.getElementById('recent-buy');
+      var current = parseInt(el.textContent);
+      if (Math.random() > 0.7) el.textContent = current + 1;
+    }, 15000);
+  </script>
+
+  <script>
+  // === ADVANCED TRACKING FOR BRAZIL WOMEN LANDING PAGE ===
+
+  // 1. Track page load with source info
+  (function() {
+    var urlParams = new URLSearchParams(window.location.search);
+    var source = urlParams.get('utm_source') || document.referrer || 'direct';
+    var medium = urlParams.get('utm_medium') || 'none';
+    var campaign = urlParams.get('utm_campaign') || 'none';
+
+    if (typeof gtag !== 'undefined') {
+      gtag('event', 'mulheres_page_view', {
+        event_category: 'brazil_women_landing',
+        event_label: source,
+        utm_source: source,
+        utm_medium: medium,
+        utm_campaign: campaign,
+        referrer: document.referrer || 'direct'
+      });
+    }
+  })();
+
+  // 2. Track scroll depth
+  var scrollTracked = {};
+  window.addEventListener('scroll', function() {
+    var scrollPercent = Math.round((window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100);
+    [25, 50, 75, 100].forEach(function(threshold) {
+      if (scrollPercent >= threshold && !scrollTracked[threshold]) {
+        scrollTracked[threshold] = true;
+        if (typeof gtag !== 'undefined') {
+          gtag('event', 'mulheres_scroll', {
+            event_category: 'brazil_women_engagement',
+            event_label: threshold + '%',
+            value: threshold
+          });
+        }
+      }
+    });
+  });
+
+  // 3. Track time on page
+  [10, 30, 60, 120].forEach(function(seconds) {
+    setTimeout(function() {
+      if (typeof gtag !== 'undefined') {
+        gtag('event', 'mulheres_time_on_page', {
+          event_category: 'brazil_women_engagement',
+          event_label: seconds + 's',
+          value: seconds
+        });
+      }
+    }, seconds * 1000);
+  });
+
+  // 4. Track product clicks with product details
+  document.querySelectorAll('.card a').forEach(function(link, index) {
+    link.addEventListener('click', function(e) {
+      e.preventDefault();
+      var originalUrl = this.href;
+      var productTitle = this.querySelector('.card-title')?.textContent || 'unknown';
+      var productPrice = this.querySelector('.price-now')?.textContent || 'unknown';
+      var productNumber = index + 1;
+
+      if (typeof gtag !== 'undefined') {
+        gtag('event', 'mulheres_product_click', {
+          event_category: 'brazil_women_affiliate',
+          event_label: productTitle,
+          product_name: productTitle,
+          product_price: productPrice,
+          product_position: productNumber,
+          destination_url: originalUrl,
+          transport_type: 'beacon'
+        });
+      }
+
+      if (typeof fbq !== 'undefined') {
+        fbq('track', 'ViewContent', {
+          content_name: productTitle,
+          content_type: 'product',
+          value: parseFloat(productPrice.replace(/[^\d.,]/g, '').replace(',', '.')) || 0,
+          currency: 'BRL'
+        });
+      }
+
+      // Ensure link opens on Brazilian AliExpress
+      var brUrl = originalUrl;
+      try {
+        var u = new URL(originalUrl);
+        if (u.hostname === 'www.aliexpress.com') {
+          u.hostname = 'pt.aliexpress.com';
+          u.searchParams.set('gatewayAdapt', 'glo2bra');
+          brUrl = u.toString();
+        } else if (u.hostname === 's.click.aliexpress.com') {
+          brUrl = originalUrl + (originalUrl.includes('?') ? '&' : '?') + 'gatewayAdapt=glo2bra';
+        }
+      } catch(err) {}
+      window.open(brUrl, '_blank', 'noopener');
+    });
+  });
+
+  // 5. Track bounce
+  var hasInteracted = false;
+  document.addEventListener('click', function() { hasInteracted = true; });
+  window.addEventListener('beforeunload', function() {
+    if (!hasInteracted && typeof gtag !== 'undefined') {
+      gtag('event', 'mulheres_bounce', {
+        event_category: 'brazil_women_engagement',
+        event_label: 'left_without_click',
+        transport_type: 'beacon'
+      });
+    }
+  });
+  </script>
+
+  <!-- GA + FB Pixel - deferred -->
+  <script>
+  setTimeout(function(){
+    var g=document.createElement('script');g.async=true;
+    g.src='https://www.googletagmanager.com/gtag/js?id=G-18NLX6KS89';
+    document.head.appendChild(g);
+    g.onload=function(){
+      window.dataLayer=window.dataLayer||[];
+      function gtag(){dataLayer.push(arguments);}
+      window.gtag=gtag;
+      gtag('js',new Date());gtag('config','G-18NLX6KS89');
+    };
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+    document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init','1558484941881754');fbq('track','PageView');
+  }, 2000);
+  </script>
+
+</body>
+</html>
