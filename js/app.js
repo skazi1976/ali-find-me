@@ -1513,6 +1513,7 @@ async function loadDailyDeals() {
 
 function renderDailyDeals(products) {
   document.getElementById("dealsGrid").innerHTML = products.map(p => buildProductCard(p)).join("");
+  if (currentLang === 'he') translateTitlesInBackground(products);
 }
 
 function startCountdown() {
@@ -1778,7 +1779,10 @@ function renderCategories(categories) {
 }
 
 function renderTrending(products) {
-  document.getElementById("trendingGrid").innerHTML = products.slice(0, 18).map(p => buildProductCard(p)).join("");
+  const batch = products.slice(0, 18);
+  document.getElementById("trendingGrid").innerHTML = batch.map(p => buildProductCard(p)).join("");
+  // Translate trending titles to Hebrew in background
+  if (currentLang === 'he') translateTitlesInBackground(batch);
 }
 
 function renderRelatedSearches(related) {
