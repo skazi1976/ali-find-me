@@ -1831,30 +1831,42 @@ function buildProductCard(p) {
   const favClass = isFav ? "fav-btn active" : "fav-btn";
   const alertActive = hasAlert(p.id);
 
+  // Multilingual enhanced labels
+  const langLabels = {
+    he: { cta: '🛒 לרכישה ב-', save: 'חוסכים', hot: 'מחיר מטורף', freeShip: 'משלוח חינם', topPick: 'בחירת המערכת', viewing: 'אנשים צופים עכשיו' },
+    en: { cta: '🛒 Buy Now - ', save: 'Save', hot: 'HOT DEAL', freeShip: 'Free Shipping', topPick: 'Top Pick', viewing: 'people viewing now' },
+    ar: { cta: '🛒 اشتري الآن - ', save: 'وفّر', hot: 'عرض ساخن', freeShip: 'شحن مجاني', topPick: 'اختيار مميز', viewing: 'يشاهدون الآن' },
+    ru: { cta: '🛒 Купить за ', save: 'Скидка', hot: 'ГОРЯЧАЯ ЦЕНА', freeShip: 'Бесплатная доставка', topPick: 'Лучший выбор', viewing: 'смотрят сейчас' },
+    es: { cta: '🛒 Comprar por ', save: 'Ahorra', hot: 'OFERTA', freeShip: 'Envío gratis', topPick: 'Top ventas', viewing: 'personas viendo ahora' },
+    pt: { cta: '🛒 Comprar por ', save: 'Economize', hot: 'OFERTA QUENTE', freeShip: 'Frete grátis', topPick: 'Mais vendido', viewing: 'pessoas vendo agora' },
+    tr: { cta: '🛒 Satın al - ', save: 'Tasarruf', hot: 'FIRSATI KAÇIRMA', freeShip: 'Ücretsiz kargo', topPick: 'En çok satan', viewing: 'kişi şu an bakıyor' },
+    fr: { cta: '🛒 Acheter pour ', save: 'Économisez', hot: 'OFFRE CHAUDE', freeShip: 'Livraison gratuite', topPick: 'Meilleure vente', viewing: 'personnes regardent' },
+  };
+  const lb = langLabels[currentLang] || langLabels.en;
+
   // Enhanced CTA with price
-  const isHebrew = currentLang === 'he';
-  const ctaLabel = isHebrew ? `🛒 לרכישה ב-${currentCurrencySymbol}${p.price}` : `🛒 Buy Now - ${currentCurrencySymbol}${p.price}`;
+  const ctaLabel = `${lb.cta}${currentCurrencySymbol}${p.price}`;
 
   // Savings badge
   const savings = p.discount > 0 ? parseFloat(p.original_price) - parseFloat(p.price) : 0;
-  const savingsBadge = savings > 0 ? `<span class="savings-badge">${isHebrew ? 'חוסכים' : 'Save'} ${currentCurrencySymbol}${savings.toFixed(0)}</span>` : "";
+  const savingsBadge = savings > 0 ? `<span class="savings-badge">${lb.save} ${currentCurrencySymbol}${savings.toFixed(0)}</span>` : "";
 
   // Hot deal badge (discount > 40%)
-  const hotDeal = p.discount >= 40 ? `<div class="hot-deal-badge">🔥 ${isHebrew ? 'מחיר מטורף' : 'HOT DEAL'}</div>` : "";
+  const hotDeal = p.discount >= 40 ? `<div class="hot-deal-badge">🔥 ${lb.hot}</div>` : "";
 
   // Free shipping badge
-  const freeShip = p.free_shipping ? `<span class="free-ship-badge">🚚 ${isHebrew ? 'משלוח חינם' : 'Free Shipping'}</span>` : "";
+  const freeShip = p.free_shipping ? `<span class="free-ship-badge">🚚 ${lb.freeShip}</span>` : "";
 
   // Social proof - orders badge
   const ordersNum = p.orders || 0;
   const hotOrders = ordersNum >= 1000 ? `<span class="hot-orders">🔥 ${ordersNum.toLocaleString()} ${ordersLabel}</span>` : `<span>${ordersNum.toLocaleString()} ${ordersLabel}</span>`;
 
   // Top pick badge
-  const topPick = (p.rating >= 4.5 && ordersNum >= 500) ? `<div class="top-pick-badge">🏆 ${isHebrew ? 'בחירת המערכת' : 'Top Pick'}</div>` : "";
+  const topPick = (p.rating >= 4.5 && ordersNum >= 500) ? `<div class="top-pick-badge">🏆 ${lb.topPick}</div>` : "";
 
   // Urgency
   const viewers = Math.floor(Math.random() * 20) + 5;
-  const urgency = p.discount > 0 ? `<div class="urgency-bar">👀 ${viewers} ${isHebrew ? 'אנשים צופים עכשיו' : 'people viewing now'}</div>` : "";
+  const urgency = p.discount > 0 ? `<div class="urgency-bar">👀 ${viewers} ${lb.viewing}</div>` : "";
 
   const pJson = JSON.stringify({
     id: p.id, title: p.title, price: p.price, image: p.image,
