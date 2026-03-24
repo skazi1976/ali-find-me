@@ -1464,7 +1464,7 @@ async function loadCategories() {
 
 async function loadTrending() {
   try {
-    const resp = await fetch(`${API_BASE}/trending`);
+    const resp = await fetch(`${API_BASE}/trending?lang=${currentLang}&currency=${currentCurrency}&country=${currentCountry}`);
     const data = await resp.json();
     if (data.products && data.products.length > 0) {
       renderTrending(data.products);
