@@ -2282,7 +2282,7 @@ async function sendMessage() {
         `${currentQuery} (${data.total || data.products.length})
         <button class="share-search-btn" onclick="shareSearch('${currentQuery.replace(/'/g,"\\'")}')" title="\u05e9\u05ea\u05e3 \u05d7\u05d9\u05e4\u05d5\u05e9">\ud83d\udce4 \u05e9\u05ea\u05e3</button>`;
       document.getElementById("resultsSection").style.display = "block";
-      document.getElementById("loadMore").style.display = (data.total || 0) > currentPage * 50 ? "block" : "none";
+      document.getElementById("loadMore").style.display = (data.total || 0) > currentPage * 20 ? "block" : "none";
       // Auto-scroll to results
       setTimeout(() => {
         document.getElementById('resultsSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -2336,7 +2336,7 @@ async function applySort() {
       document.getElementById("resultsTitle").innerHTML =
         `${currentQuery} (${data.total || data.products.length})
         <button class="share-search-btn" onclick="shareSearch('${currentQuery.replace(/'/g,"\\'")}')" title="\u05e9\u05ea\u05e3 \u05d7\u05d9\u05e4\u05d5\u05e9">\ud83d\udce4 \u05e9\u05ea\u05e3</button>`;
-      document.getElementById("loadMore").style.display = (data.total || 0) > currentPage * 50 ? "block" : "none";
+      document.getElementById("loadMore").style.display = (data.total || 0) > currentPage * 20 ? "block" : "none";
     }
   } catch {}
 }
@@ -2356,7 +2356,7 @@ async function applyPriceFilter() {
     const data = await doSearch(q, 1);
     if (data.products && data.products.length > 0) {
       renderProducts(data.products);
-      document.getElementById("loadMore").style.display = (data.total || 0) > currentPage * 50 ? "block" : "none";
+      document.getElementById("loadMore").style.display = (data.total || 0) > currentPage * 20 ? "block" : "none";
     } else {
       document.getElementById("productGrid").innerHTML = `
         <div class="no-results" style="grid-column:1/-1">
@@ -2375,23 +2375,13 @@ async function loadMore() {
     const data = await doSearch(currentQuery, currentPage);
     if (data.products && data.products.length > 0) {
       renderProducts(data.products, true);
-      document.getElementById("loadMore").style.display = (data.total || 0) > currentPage * 50 ? "block" : "none";
+      document.getElementById("loadMore").style.display = (data.total || 0) > currentPage * 20 ? "block" : "none";
     } else { document.getElementById("loadMore").style.display = "none"; }
   } catch { currentPage--; }
   isLoading = false;
 }
 
-// Infinite scroll - auto-load more when near bottom
-let infiniteScrollEnabled = true;
-window.addEventListener('scroll', () => {
-  if (!infiniteScrollEnabled || isLoading || !currentQuery) return;
-  const loadMoreBtn = document.getElementById("loadMore");
-  if (!loadMoreBtn || loadMoreBtn.style.display === "none") return;
-  const rect = loadMoreBtn.getBoundingClientRect();
-  if (rect.top < window.innerHeight + 500) {
-    loadMore();
-  }
-});
+// Load more button stays visible - no infinite scroll (faster page load)
 
 function clearResults() {
   document.getElementById("resultsSection").style.display = "none";
