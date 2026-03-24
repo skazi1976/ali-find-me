@@ -2651,14 +2651,22 @@ if (urlQuery) {
   setTimeout(() => sendMessage(), 500);
 }
 
-// Detect country from Cloudflare (fast, no API call)
+// Detect country from Cloudflare trace (IP-based, accurate)
 try {
-  const tz = Intl.DateTimeFormat().resolvedOptions().timeZone || "";
-  if (tz.startsWith("Asia/Jerusalem") || tz.startsWith("Asia/Tel_Aviv")) currentCountry = "IL";
-  else if (tz.startsWith("America/Sao_Paulo") || tz.startsWith("America/Fortaleza") || tz.startsWith("America/Recife") || tz.startsWith("America/Bahia")) currentCountry = "BR";
-  else if (tz.startsWith("Europe/Madrid")) currentCountry = "ES";
-  else if (tz.startsWith("America/New_York") || tz.startsWith("America/Chicago") || tz.startsWith("America/Los_Angeles") || tz.startsWith("America/Denver")) currentCountry = "US";
-} catch(e) {}
+  const xhr = new XMLHttpRequest();
+  xhr.open("GET", "https://www.cloudflare.com/cdn-cgi/trace", false);
+  xhr.send();
+  if (xhr.status === 200) {
+    const locMatch = xhr.responseText.match(/loc=([A-Z]{2})/);
+    if (locMatch) currentCountry = locMatch[1];
+  }
+} catch(e) {
+  try {
+    const tz = Intl.DateTimeFormat().resolvedOptions().timeZone || "";
+    if (tz.includes("Jerusalem") || tz.includes("Tel_Aviv")) currentCountry = "IL";
+    else if (tz.includes("Sao_Paulo") || tz.includes("Fortaleza") || tz.includes("Bahia")) currentCountry = "BR";
+  } catch(e2) {}
+}
 
 // Init language from path > URL param > localStorage > country detect
 const pathLangMatch = window.location.pathname.match(/^\/(en|ar|ru|es|pt|tr|fr)\//);
