@@ -831,7 +831,7 @@ function showFavorites() {
           <img src="${p.image}" alt="${p.title}" loading="lazy">
         </a>
         <div class="fav-info">
-          <div class="fav-title">${p.title}</div>
+          <div class="fav-title">${p.title_he || p.title}</div>
           <div class="fav-price">${currentCurrencySymbol}${p.price}</div>
           <div class="fav-actions">
             <a href="${p.affiliate_url}" target="_blank" rel="noopener" class="fav-buy-btn">${i18n[currentLang].viewProduct}</a>
@@ -1039,7 +1039,7 @@ function showAlerts() {
           <img src="${a.image}" alt="${a.title}" loading="lazy">
         </a>
         <div class="fav-info">
-          <div class="fav-title">${a.title}</div>
+          <div class="fav-title">${a.title_he || a.title}</div>
           <div class="fav-price">
             ${currentCurrencySymbol}${a.currentPrice}
             ${a.triggered ? `<span class="price-drop-label">\u2193 ${i18n[currentLang].priceDropped}</span>` : ''}
@@ -1892,7 +1892,7 @@ function buildProductCard(p) {
         </button>
       </div>
       <div class="product-info">
-        <div class="product-title">${p.title}</div>
+        <div class="product-title">${p.title_he || p.title}</div>
         <div class="product-price-row">
           <span class="product-price">${currentCurrencySymbol}${p.price}</span>
           ${originalPrice}
