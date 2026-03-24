@@ -951,16 +951,12 @@ body {
   font-size: 0.65rem;
   font-weight: 700;
   z-index: 5;
-  max-width: 45%;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 
 .top-pick-badge {
   position: absolute;
-  top: 8px;
-  right: 8px;
+  top: 38px;
+  left: 8px;
   background: linear-gradient(135deg, #191919, #333333);
   color: #fff;
   padding: 3px 8px;
@@ -968,17 +964,17 @@ body {
   font-size: 0.65rem;
   font-weight: 700;
   z-index: 5;
-  max-width: 45%;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 
 @media (max-width: 480px) {
-  .hot-deal-badge, .top-pick-badge {
+  .hot-deal-badge {
     font-size: 0.58rem;
-    padding: 2px 5px;
-    max-width: 42%;
+    padding: 2px 6px;
+  }
+  .top-pick-badge {
+    top: 32px;
+    font-size: 0.58rem;
+    padding: 2px 6px;
   }
 }
 
