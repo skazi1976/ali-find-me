@@ -831,7 +831,7 @@ function showFavorites() {
           <img src="${p.image}" alt="${p.title}" loading="lazy">
         </a>
         <div class="fav-info">
-          <div class="fav-title">${p.title_he || p.title}</div>
+          <div class="fav-title" data-en="${(p.title||'').replace(/"/g,'&quot;')}">${p.title_he || p.title}</div>
           <div class="fav-price">${currentCurrencySymbol}${p.price}</div>
           <div class="fav-actions">
             <a href="${p.affiliate_url}" target="_blank" rel="noopener" class="fav-buy-btn">${i18n[currentLang].viewProduct}</a>
@@ -1892,7 +1892,7 @@ function buildProductCard(p) {
         </button>
       </div>
       <div class="product-info">
-        <div class="product-title">${p.title_he || p.title}</div>
+        <div class="product-title" data-en="${(p.title||'').replace(/"/g,'&quot;')}">${p.title_he || p.title}</div>
         <div class="product-price-row">
           <span class="product-price">${currentCurrencySymbol}${p.price}</span>
           ${originalPrice}
@@ -2248,11 +2248,13 @@ async function sendMessage() {
         `${currentQuery} (${data.total || data.products.length})
         <button class="share-search-btn" onclick="shareSearch('${currentQuery.replace(/'/g,"\\'")}')" title="\u05e9\u05ea\u05e3 \u05d7\u05d9\u05e4\u05d5\u05e9">\ud83d\udce4 \u05e9\u05ea\u05e3</button>`;
       document.getElementById("resultsSection").style.display = "block";
-      document.getElementById("loadMore").style.display = (data.total || 0) > currentPage * 50 ? "block" : "none";
+      document.getElementById("loadMore").style.display = (data.products && data.products.length >= 8) ? "block" : "none";
       // Auto-scroll to results
       setTimeout(() => {
         document.getElementById('resultsSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
       }, 100);
+      // Background translate titles to Hebrew
+      if (currentLang === "he") translateTitlesBackground(data.products);
       loadRelated(query);
 
       // Update context and show quick replies
@@ -2302,7 +2304,7 @@ async function applySort() {
       document.getElementById("resultsTitle").innerHTML =
         `${currentQuery} (${data.total || data.products.length})
         <button class="share-search-btn" onclick="shareSearch('${currentQuery.replace(/'/g,"\\'")}')" title="\u05e9\u05ea\u05e3 \u05d7\u05d9\u05e4\u05d5\u05e9">\ud83d\udce4 \u05e9\u05ea\u05e3</button>`;
-      document.getElementById("loadMore").style.display = (data.total || 0) > currentPage * 50 ? "block" : "none";
+      document.getElementById("loadMore").style.display = (data.products && data.products.length >= 8) ? "block" : "none";
     }
   } catch {}
 }
@@ -2322,7 +2324,7 @@ async function applyPriceFilter() {
     const data = await doSearch(q, 1);
     if (data.products && data.products.length > 0) {
       renderProducts(data.products);
-      document.getElementById("loadMore").style.display = (data.total || 0) > currentPage * 50 ? "block" : "none";
+      document.getElementById("loadMore").style.display = (data.products && data.products.length >= 8) ? "block" : "none";
     } else {
       document.getElementById("productGrid").innerHTML = `
         <div class="no-results" style="grid-column:1/-1">
@@ -2333,17 +2335,54 @@ async function applyPriceFilter() {
   } catch {}
 }
 
+async function translateTitlesBackground(products) {
+  try {
+    const untranslated = products.filter(p => !p.title_he && p.title).map(p => p.title);
+    if (untranslated.length === 0) return;
+    const resp = await fetch(API_BASE + "/translate-titles", {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({titles: untranslated.slice(0, 20)})
+    });
+    const data = await resp.json();
+    const translations = data.translations || {};
+    document.querySelectorAll(".product-title").forEach(el => {
+      const en = el.getAttribute("data-en");
+      if (en && translations[en]) el.textContent = translations[en];
+    });
+    document.querySelectorAll(".fav-title").forEach(el => {
+      const en = el.getAttribute("data-en");
+      if (en && translations[en]) el.textContent = translations[en];
+    });
+  } catch(e) {}
+}
+
 async function loadMore() {
   if (isLoading || !currentQuery) return;
   isLoading = true;
   currentPage++;
+  const btn = document.querySelector('.load-more-btn');
+  if (btn) {
+    btn.dataset.origText = btn.textContent;
+    btn.textContent = '⏳ ' + (i18n[currentLang]?.loading || 'טוען...');
+    btn.disabled = true;
+    btn.style.opacity = '0.7';
+    btn.classList.add('loading-pulse');
+  }
   try {
     const data = await doSearch(currentQuery, currentPage);
     if (data.products && data.products.length > 0) {
       renderProducts(data.products, true);
-      document.getElementById("loadMore").style.display = (data.total || 0) > currentPage * 50 ? "block" : "none";
+      if (currentLang === "he") translateTitlesBackground(data.products);
+      document.getElementById("loadMore").style.display = (data.products && data.products.length >= 8) ? "block" : "none";
     } else { document.getElementById("loadMore").style.display = "none"; }
   } catch { currentPage--; }
+  if (btn) {
+    btn.textContent = btn.dataset.origText || i18n[currentLang]?.loadMore || 'טען עוד מוצרים';
+    btn.disabled = false;
+    btn.style.opacity = '1';
+    btn.classList.remove('loading-pulse');
+  }
   isLoading = false;
 }
 
