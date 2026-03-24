@@ -459,7 +459,7 @@ async function loadAnalytics() {
     const pct = Math.max((d.views / maxDaily) * 100, 2);
     const dayLabel = d.date.slice(5); // MM-DD
     const isToday = d.date === new Date().toISOString().slice(0, 10);
-    const color = isToday ? "#6C5CE7" : "#a29bfe";
+    const color = isToday ? "#FF6B00" : "#FF9A3C";
     return `<div style="flex:1;min-width:20px;display:flex;flex-direction:column;align-items:center;gap:4px;">
       <span style="font-size:0.75rem;font-weight:700;color:${color};">${d.views}</span>
       <div style="width:100%;height:${pct}%;background:${color};border-radius:4px 4px 0 0;min-height:4px;transition:height 0.5s;"></div>
@@ -468,7 +468,7 @@ async function loadAnalytics() {
   }).join("");
 
   // Countries chart
-  renderBarList("countriesChart", data.range?.countries || {}, COUNTRY_NAMES, "#6C5CE7");
+  renderBarList("countriesChart", data.range?.countries || {}, COUNTRY_NAMES, "#FF6B00");
 
   // Languages chart
   renderBarList("langsChart", data.range?.langs || {}, LANG_NAMES, "#00B894");
@@ -542,7 +542,7 @@ async function loadSearchLogs() {
   let chartHtml = "";
   sorted.forEach(([query, count]) => {
     const pct = Math.round((count / maxCount) * 100);
-    const color = query.startsWith("[image]") ? "#1976d2" : "#6C5CE7";
+    const color = query.startsWith("[image]") ? "#1976d2" : "#FF6B00";
     chartHtml += `<div style="display:flex;align-items:center;gap:12px;margin-bottom:8px;">
       <div style="width:180px;font-size:0.9rem;text-align:right;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="${query}">${query}</div>
       <div style="flex:1;height:24px;background:#f0ecff;border-radius:6px;overflow:hidden;">

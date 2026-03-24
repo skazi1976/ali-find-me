@@ -25,13 +25,13 @@ let currentCurrencySymbol = "₪";
 
 const i18n = {
   he: {
-    heroTitle: "\u2728 \u05de\u05e6\u05d0\u05d9 \u05d0\u05ea \u05d4\u05de\u05d5\u05e6\u05e8 \u05d4\u05de\u05d5\u05e9\u05dc\u05dd",
-    heroSubtitle: "\u05d7\u05e4\u05e9\u05d9 \u05de\u05d5\u05e6\u05e8\u05d9 \u05d0\u05d5\u05e4\u05e0\u05d4 \u05d5\u05dc\u05d9\u05d9\u05e4\u05e1\u05d8\u05d9\u05d9\u05dc \u05d1\u05de\u05d7\u05d9\u05e8\u05d9\u05dd \u05d4\u05db\u05d9 \u05d8\u05d5\u05d1\u05d9\u05dd \u05de\u05d0\u05dc\u05d9 \u05d0\u05e7\u05e1\u05e4\u05e8\u05e1",
-    welcome: "\u05d4\u05d9\u05d9! \u05d0\u05e0\u05d9 \u05db\u05d0\u05df \u05dc\u05e2\u05d6\u05d5\u05e8 \u05dc\u05da \u05dc\u05de\u05e6\u05d5\u05d0 \u05de\u05d5\u05e6\u05e8\u05d9\u05dd \u05de\u05d3\u05d4\u05d9\u05de\u05d9\u05dd \u05d1\u05d0\u05dc\u05d9 \u05d0\u05e7\u05e1\u05e4\u05e8\u05e1.\n\u05e1\u05e4\u05e8\u05d9 \u05dc\u05d9 \u05de\u05d4 \u05d0\u05ea \u05de\u05d7\u05e4\u05e9\u05ea \u05d5\u05d0\u05e0\u05d9 \u05d0\u05de\u05e6\u05d0 \u05dc\u05da \u05d0\u05ea \u05d4\u05d3\u05d9\u05dc\u05d9\u05dd \u05d4\u05db\u05d9 \u05d8\u05d5\u05d1\u05d9\u05dd! \ud83d\udecd\ufe0f",
-    inputPlaceholder: "\u05de\u05d4 \u05d0\u05ea \u05de\u05d7\u05e4\u05e9\u05ea? (\u05dc\u05de\u05e9\u05dc: \u05e9\u05de\u05dc\u05ea \u05e2\u05e8\u05d1, \u05d8\u05d9\u05d9\u05e5 \u05e1\u05e4\u05d5\u05e8\u05d8...)",
-    searching: "\u05de\u05d7\u05e4\u05e9\u05ea...",
-    foundResults: "\u05de\u05e6\u05d0\u05ea\u05d9 {count} \u05de\u05d5\u05e6\u05e8\u05d9\u05dd! \u05d4\u05e0\u05d4 \u05d4\u05d3\u05d9\u05dc\u05d9\u05dd \u05d4\u05db\u05d9 \u05d8\u05d5\u05d1\u05d9\u05dd:",
-    noResults: "\u05dc\u05d0 \u05de\u05e6\u05d0\u05ea\u05d9 \u05ea\u05d5\u05e6\u05d0\u05d5\u05ea \u05dc\u05de\u05d9\u05dc\u05d4 \u05d4\u05d6\u05d5. \u05e0\u05e1\u05d9 \u05de\u05d9\u05dc\u05d4 \u05d0\u05d7\u05e8\u05ea \u05d0\u05d5 \u05d1\u05d7\u05e8\u05d9 \u05de\u05d4\u05d4\u05e6\u05e2\u05d5\u05ea:",
+    heroTitle: "\u2728 \u05de\u05e6\u05d0\u05d5 \u05d0\u05ea \u05d4\u05de\u05d5\u05e6\u05e8 \u05d4\u05de\u05d5\u05e9\u05dc\u05dd",
+    heroSubtitle: "\u05d7\u05e4\u05e9\u05d5 \u05de\u05d5\u05e6\u05e8\u05d9 \u05d0\u05d5\u05e4\u05e0\u05d4 \u05d5\u05dc\u05d9\u05d9\u05e4\u05e1\u05d8\u05d9\u05d9\u05dc \u05d1\u05de\u05d7\u05d9\u05e8\u05d9\u05dd \u05d4\u05db\u05d9 \u05d8\u05d5\u05d1\u05d9\u05dd \u05de\u05d0\u05dc\u05d9 \u05d0\u05e7\u05e1\u05e4\u05e8\u05e1",
+    welcome: "\u05d4\u05d9\u05d9! \u05d0\u05e0\u05d9 \u05db\u05d0\u05df \u05dc\u05e2\u05d6\u05d5\u05e8 \u05dc\u05db\u05dd \u05dc\u05de\u05e6\u05d5\u05d0 \u05de\u05d5\u05e6\u05e8\u05d9\u05dd \u05de\u05d3\u05d4\u05d9\u05de\u05d9\u05dd \u05d1\u05d0\u05dc\u05d9 \u05d0\u05e7\u05e1\u05e4\u05e8\u05e1.\n\u05e1\u05e4\u05e8\u05d5 \u05dc\u05d9 \u05de\u05d4 \u05d0\u05ea\u05dd \u05de\u05d7\u05e4\u05e9\u05d9\u05dd \u05d5\u05d0\u05e0\u05d9 \u05d0\u05de\u05e6\u05d0 \u05dc\u05db\u05dd \u05d0\u05ea \u05d4\u05d3\u05d9\u05dc\u05d9\u05dd \u05d4\u05db\u05d9 \u05d8\u05d5\u05d1\u05d9\u05dd! \ud83d\udecd\ufe0f",
+    inputPlaceholder: "\u05de\u05d4 \u05d0\u05ea\u05dd \u05de\u05d7\u05e4\u05e9\u05d9\u05dd? (\u05dc\u05de\u05e9\u05dc: \u05e9\u05de\u05dc\u05ea \u05e2\u05e8\u05d1, \u05d8\u05d9\u05d9\u05e5 \u05e1\u05e4\u05d5\u05e8\u05d8...)",
+    searching: "\u05de\u05d7\u05e4\u05e9\u05d9\u05dd...",
+    foundResults: "\u05de\u05e6\u05d0\u05e0\u05d5 {count} \u05de\u05d5\u05e6\u05e8\u05d9\u05dd! \u05d4\u05e0\u05d4 \u05d4\u05d3\u05d9\u05dc\u05d9\u05dd \u05d4\u05db\u05d9 \u05d8\u05d5\u05d1\u05d9\u05dd:",
+    noResults: "\u05dc\u05d0 \u05de\u05e6\u05d0\u05e0\u05d5 \u05ea\u05d5\u05e6\u05d0\u05d5\u05ea \u05dc\u05de\u05d9\u05dc\u05d4 \u05d4\u05d6\u05d5. \u05e0\u05e1\u05d5 \u05de\u05d9\u05dc\u05d4 \u05d0\u05d7\u05e8\u05ea \u05d0\u05d5 \u05d1\u05d7\u05e8\u05d5 \u05de\u05d4\u05d4\u05e6\u05e2\u05d5\u05ea:",
     viewProduct: "\u05dc\u05e6\u05e4\u05d9\u05d9\u05d4 \u05d5\u05e8\u05db\u05d9\u05e9\u05d4 \u2192",
     orders: "\u05d4\u05d6\u05de\u05e0\u05d5\u05ea",
     clearResults: "\u05e0\u05e7\u05d4 \u05ea\u05d5\u05e6\u05d0\u05d5\u05ea",
@@ -39,12 +39,12 @@ const i18n = {
     categoriesTitle: "\ud83c\udff7\ufe0f \u05e7\u05d8\u05d2\u05d5\u05e8\u05d9\u05d5\u05ea \u05e4\u05d5\u05e4\u05d5\u05dc\u05e8\u05d9\u05d5\u05ea",
     trendingTitle: "\ud83d\udd25 \u05de\u05d5\u05e6\u05e8\u05d9\u05dd \u05d8\u05e8\u05e0\u05d3\u05d9\u05d9\u05dd \u05e2\u05db\u05e9\u05d9\u05d5",
     howTitle: "\ud83d\udca1 \u05d0\u05d9\u05da \u05d6\u05d4 \u05e2\u05d5\u05d1\u05d3?",
-    step1Title: "\u05d7\u05e4\u05e9\u05d9 \u05de\u05d5\u05e6\u05e8",
-    step1Desc: "\u05db\u05ea\u05d1\u05d9 \u05d1\u05e2\u05d1\u05e8\u05d9\u05ea \u05d0\u05d5 \u05d1\u05d0\u05e0\u05d2\u05dc\u05d9\u05ea \u05de\u05d4 \u05d0\u05ea \u05de\u05d7\u05e4\u05e9\u05ea",
-    step2Title: "\u05e7\u05d1\u05dc\u05d9 \u05ea\u05d5\u05e6\u05d0\u05d5\u05ea",
+    step1Title: "\u05d7\u05e4\u05e9\u05d5 \u05de\u05d5\u05e6\u05e8",
+    step1Desc: "\u05db\u05ea\u05d1\u05d5 \u05d1\u05e2\u05d1\u05e8\u05d9\u05ea \u05d0\u05d5 \u05d1\u05d0\u05e0\u05d2\u05dc\u05d9\u05ea \u05de\u05d4 \u05d0\u05ea\u05dd \u05de\u05d7\u05e4\u05e9\u05d9\u05dd",
+    step2Title: "\u05e7\u05d1\u05dc\u05d5 \u05ea\u05d5\u05e6\u05d0\u05d5\u05ea",
     step2Desc: "\u05d4\u05de\u05e2\u05e8\u05db\u05ea \u05de\u05d7\u05e4\u05e9\u05ea \u05d0\u05ea \u05d4\u05d3\u05d9\u05dc\u05d9\u05dd \u05d4\u05db\u05d9 \u05d8\u05d5\u05d1\u05d9\u05dd",
-    step3Title: "\u05e7\u05e0\u05d9 \u05d1\u05d6\u05d5\u05dc",
-    step3Desc: "\u05dc\u05d7\u05e6\u05d9 \u05e2\u05dc \u05d4\u05de\u05d5\u05e6\u05e8 \u05d5\u05ea\u05d5\u05e2\u05d1\u05e8\u05d9 \u05d9\u05e9\u05d9\u05e8\u05d5\u05ea \u05dc\u05d0\u05dc\u05d9 \u05d0\u05e7\u05e1\u05e4\u05e8\u05e1",
+    step3Title: "\u05e7\u05e0\u05d5 \u05d1\u05d6\u05d5\u05dc",
+    step3Desc: "\u05dc\u05d7\u05e6\u05d5 \u05e2\u05dc \u05d4\u05de\u05d5\u05e6\u05e8 \u05d5\u05ea\u05d5\u05e2\u05d1\u05e8\u05d5 \u05d9\u05e9\u05d9\u05e8\u05d5\u05ea \u05dc\u05d0\u05dc\u05d9 \u05d0\u05e7\u05e1\u05e4\u05e8\u05e1",
     disclaimer: "\u05d4\u05d0\u05ea\u05e8 \u05de\u05e9\u05ea\u05de\u05e9 \u05d1\u05e7\u05d9\u05e9\u05d5\u05e8\u05d9 \u05e9\u05d5\u05ea\u05e4\u05d9\u05dd (affiliate). \u05d4\u05e8\u05db\u05d9\u05e9\u05d4 \u05e9\u05dc\u05da \u05dc\u05d0 \u05ea\u05d4\u05d9\u05d4 \u05d9\u05e7\u05e8\u05d4 \u05d9\u05d5\u05ea\u05e8, \u05d0\u05da \u05d0\u05e0\u05d5 \u05e2\u05e9\u05d5\u05d9\u05d9\u05dd \u05dc\u05e7\u05d1\u05dc \u05e2\u05de\u05dc\u05d4 \u05e7\u05d8\u05e0\u05d4.",
     recentSearches: "\u05d7\u05d9\u05e4\u05d5\u05e9\u05d9\u05dd \u05d0\u05d7\u05e8\u05d5\u05e0\u05d9\u05dd:",
     alsoSearch: "\u05de\u05d7\u05e4\u05e9\u05d9\u05dd \u05d2\u05dd:",
@@ -59,8 +59,8 @@ const i18n = {
     sortNew: "\u05d7\u05d3\u05e9",
     sortRating: "\u05d3\u05d9\u05e8\u05d5\u05d2",
     myFavorites: "\u05d4\u05de\u05d5\u05e2\u05d3\u05e4\u05d9\u05dd \u05e9\u05dc\u05d9",
-    noFavorites: "\u05e2\u05d3\u05d9\u05d9\u05df \u05dc\u05d0 \u05d4\u05d5\u05e1\u05e4\u05ea \u05de\u05d5\u05e6\u05e8\u05d9\u05dd \u05dc\u05de\u05d5\u05e2\u05d3\u05e4\u05d9\u05dd",
-    shareText: "\u05ea\u05e8\u05d0\u05d9 \u05de\u05d4 \u05de\u05e6\u05d0\u05ea\u05d9 \u05d1\u05d0\u05dc\u05d9 \u05d0\u05e7\u05e1\u05e4\u05e8\u05e1!",
+    noFavorites: "\u05e2\u05d3\u05d9\u05d9\u05df \u05dc\u05d0 \u05e0\u05d5\u05e1\u05e4\u05d5 \u05de\u05d5\u05e6\u05e8\u05d9\u05dd \u05dc\u05de\u05d5\u05e2\u05d3\u05e4\u05d9\u05dd",
+    shareText: "\u05ea\u05e8\u05d0\u05d5 \u05de\u05d4 \u05de\u05e6\u05d0\u05ea\u05d9 \u05d1\u05d0\u05dc\u05d9 \u05d0\u05e7\u05e1\u05e4\u05e8\u05e1!",
     recentlyViewedTitle: "\ud83d\udc41\ufe0f \u05e6\u05e4\u05d9\u05ea \u05dc\u05d0\u05d7\u05e8\u05d5\u05e0\u05d4",
     clearViewed: "\u05e0\u05e7\u05d4",
     myAlerts: "\u05d4\u05ea\u05e8\u05d0\u05d5\u05ea \u05de\u05d7\u05d9\u05e8",
@@ -74,22 +74,22 @@ const i18n = {
     dealsEndsIn: "\u05de\u05e1\u05ea\u05d9\u05d9\u05dd \u05d1\u05e2\u05d5\u05d3",
     spinTitle: "\ud83c\udfb0 \u05e1\u05d5\u05d1\u05d1 \u05d5\u05d6\u05db\u05d4!",
     spinBtn: "\u05e1\u05d5\u05d1\u05d1!",
-    spinAlreadyUsed: "\u05db\u05d1\u05e8 \u05e1\u05d5\u05d1\u05d1\u05ea \u05d4\u05d9\u05d5\u05dd! \u05d7\u05d6\u05e8\u05d9 \u05de\u05d7\u05e8 \ud83d\ude0a",
+    spinAlreadyUsed: "\u05db\u05d1\u05e8 \u05e1\u05d5\u05d1\u05d1\u05ea\u05dd \u05d4\u05d9\u05d5\u05dd! \u05d7\u05d6\u05e8\u05d5 \u05de\u05d7\u05e8 \ud83d\ude0a",
     spinCongrats: "\u05de\u05d6\u05dc \u05d8\u05d5\u05d1! \ud83c\udf89",
-    spinTryAgain: "\u05e0\u05e1\u05d4 \u05e9\u05d5\u05d1 \u05de\u05d7\u05e8",
+    spinTryAgain: "\u05e0\u05e1\u05d5 \u05e9\u05d5\u05d1 \u05de\u05d7\u05e8",
     spinGetPrize: "\u05dc\u05e7\u05d1\u05dc\u05ea \u05d4\u05e4\u05e8\u05e1",
-    chatHelp: "\u05d0\u05e0\u05d9 \u05d9\u05db\u05d5\u05dc\u05d4 \u05dc\u05e2\u05d6\u05d5\u05e8 \u05dc\u05da \u05dc\u05de\u05e6\u05d5\u05d0 \u05de\u05d5\u05e6\u05e8\u05d9\u05dd \u05d1\u05d0\u05dc\u05d9 \u05d0\u05e7\u05e1\u05e4\u05e8\u05e1! \u05db\u05ea\u05d1\u05d9 \u05de\u05d4 \u05d0\u05ea \u05de\u05d7\u05e4\u05e9\u05ea, \u05ea\u05d1\u05e7\u05e9\u05d9 \u05d4\u05de\u05dc\u05e6\u05d5\u05ea, \u05d0\u05d5 \u05ea\u05e9\u05d0\u05dc\u05d9 \u05de\u05d4 \u05db\u05d3\u05d0\u05d9 \u05dc\u05e7\u05e0\u05d5\u05ea \ud83d\uded2",
-    chatRecommending: "\u05d1\u05d5\u05d3\u05e7\u05ea \u05d4\u05de\u05dc\u05e6\u05d5\u05ea...",
-    chatRefining: "\u05de\u05d7\u05e4\u05e9\u05ea {query}...",
+    chatHelp: "\u05d0\u05e0\u05d9 \u05d9\u05db\u05d5\u05dc\u05d4 \u05dc\u05e2\u05d6\u05d5\u05e8 \u05dc\u05db\u05dd \u05dc\u05de\u05e6\u05d5\u05d0 \u05de\u05d5\u05e6\u05e8\u05d9\u05dd \u05d1\u05d0\u05dc\u05d9 \u05d0\u05e7\u05e1\u05e4\u05e8\u05e1! \u05db\u05ea\u05d1\u05d5 \u05de\u05d4 \u05d0\u05ea\u05dd \u05de\u05d7\u05e4\u05e9\u05d9\u05dd, \u05d1\u05e7\u05e9\u05d5 \u05d4\u05de\u05dc\u05e6\u05d5\u05ea, \u05d0\u05d5 \u05e9\u05d0\u05dc\u05d5 \u05de\u05d4 \u05db\u05d3\u05d0\u05d9 \u05dc\u05e7\u05e0\u05d5\u05ea \ud83d\uded2",
+    chatRecommending: "\u05d1\u05d5\u05d3\u05e7\u05d9\u05dd \u05d4\u05de\u05dc\u05e6\u05d5\u05ea...",
+    chatRefining: "\u05de\u05d7\u05e4\u05e9\u05d9\u05dd {query}...",
     quickCheapest: "\ud83d\udd3d \u05d4\u05db\u05d9 \u05d6\u05d5\u05dc",
     quickRated: "\u2b50 \u05d4\u05db\u05d9 \u05de\u05d3\u05d5\u05e8\u05d2",
     quickNewest: "\ud83c\udd95 \u05d4\u05db\u05d9 \u05d7\u05d3\u05e9",
     quickSimilar: "\ud83d\udca1 \u05d4\u05de\u05dc\u05e6\u05d5\u05ea",
-    installTitle: "\u05d4\u05ea\u05e7\u05d9\u05e0\u05d9 \u05d0\u05ea \u05d4\u05d0\u05e4\u05dc\u05d9\u05e7\u05e6\u05d9\u05d4!",
+    installTitle: "\u05d4\u05ea\u05e7\u05d9\u05e0\u05d5 \u05d0\u05ea \u05d4\u05d0\u05e4\u05dc\u05d9\u05e7\u05e6\u05d9\u05d4!",
     installDesc: "\u05d2\u05d9\u05e9\u05d4 \u05de\u05d4\u05d9\u05e8\u05d4 \u05dc\u05d3\u05d9\u05dc\u05d9\u05dd \u05d9\u05e9\u05d9\u05e8\u05d5\u05ea \u05de\u05d4\u05de\u05e1\u05da",
     installBtn: "\u05d4\u05ea\u05e7\u05df",
     pointsTitle: "\u05d4\u05e0\u05e7\u05d5\u05d3\u05d5\u05ea \u05e9\u05dc\u05d9", pointsBalance: "\u05e0\u05e7\u05d5\u05d3\u05d5\u05ea",
-    pointsEarn: "\u05e6\u05d1\u05e8\u05ea +{pts} \u05e0\u05e7\u05d5\u05d3\u05d5\u05ea!",
+    pointsEarn: "\u05e6\u05d1\u05e8\u05ea\u05dd +{pts} \u05e0\u05e7\u05d5\u05d3\u05d5\u05ea!",
     pointsRedeem: "\u05e4\u05d3\u05d9\u05d5\u05df \u05e0\u05e7\u05d5\u05d3\u05d5\u05ea", pointsHistory: "\u05d4\u05d9\u05e1\u05d8\u05d5\u05e8\u05d9\u05d4",
     pointsDaily: "\u05d1\u05d5\u05e0\u05d5\u05e1 \u05d9\u05d5\u05de\u05d9!", pointsSearch: "\u05d7\u05d9\u05e4\u05d5\u05e9",
     pointsClick: "\u05e6\u05e4\u05d9\u05d9\u05d4 \u05d1\u05de\u05d5\u05e6\u05e8", pointsShare: "\u05e9\u05d9\u05ea\u05d5\u05e3",
@@ -99,10 +99,10 @@ const i18n = {
     pointsRedeemed: "\u05e0\u05e4\u05d3\u05d4 \u05d1\u05d4\u05e6\u05dc\u05d7\u05d4!", pointsNotEnough: "\u05d0\u05d9\u05df \u05de\u05e1\u05e4\u05d9\u05e7 \u05e0\u05e7\u05d5\u05d3\u05d5\u05ea",
     pointsToday: "\u05d4\u05d9\u05d5\u05dd", pointsYesterday: "\u05d0\u05ea\u05de\u05d5\u05dc",
     imgSearching: "\u05de\u05d6\u05d4\u05d4 \u05d0\u05ea \u05d4\u05de\u05d5\u05e6\u05e8...",
-    imgResult: "\u05d6\u05d9\u05d4\u05d9\u05ea\u05d9: {desc}", imgError: "\u05dc\u05d0 \u05d4\u05e6\u05dc\u05d7\u05ea\u05d9 \u05dc\u05d6\u05d4\u05d5\u05ea. \u05e0\u05e1\u05d4 \u05ea\u05de\u05d5\u05e0\u05d4 \u05d0\u05d7\u05e8\u05ea",
+    imgResult: "\u05d6\u05d9\u05d4\u05d9\u05ea\u05d9: {desc}", imgError: "\u05dc\u05d0 \u05d4\u05e6\u05dc\u05d7\u05ea\u05d9 \u05dc\u05d6\u05d4\u05d5\u05ea. \u05e0\u05e1\u05d5 \u05ea\u05de\u05d5\u05e0\u05d4 \u05d0\u05d7\u05e8\u05ea",
     imgTakePhoto: "\u05e6\u05dc\u05dd", imgUpload: "\u05d4\u05e2\u05dc\u05d4",
-    findCheaper: "מצא זול יותר 💰",
-    comparing: "מחפש חלופות זולות יותר...",
+    findCheaper: "מצאו זול יותר 💰",
+    comparing: "מחפשים חלופות זולות יותר...",
     cheaperAlts: "חלופות זולות יותר 💰",
     savingsLabel: "חיסכון",
     noAlternatives: "לא נמצאו חלופות זולות יותר למוצר זה",
@@ -753,7 +753,7 @@ function updateThemeIcon() {
   btn.textContent = isDark ? "\u2600\ufe0f" : "\ud83c\udf19";
   // Update meta theme-color
   const meta = document.querySelector('meta[name="theme-color"]');
-  if (meta) meta.content = isDark ? "#1a1a2e" : "#6C5CE7";
+  if (meta) meta.content = isDark ? "#1a1a2e" : "#FF6B00";
 }
 
 // ============================================================
@@ -1404,6 +1404,15 @@ async function doSearch(query, page = 1) {
   const params = new URLSearchParams({
     q: translatedQ, lang: currentLang, currency: currentCurrency, country: currentCountry, page: String(page),
   });
+  // Add active filters
+  if (freeShipActive) params.set("free_shipping", "1");
+  const catSel = document.getElementById("categorySelect");
+  if (catSel && catSel.value) params.set("category", catSel.value);
+  const priceMin = document.getElementById("priceMin");
+  const priceMax = document.getElementById("priceMax");
+  if (priceMin && priceMin.value) params.set("min_price", priceMin.value);
+  if (priceMax && priceMax.value) params.set("max_price", priceMax.value);
+  if (dealsActive) params.set("deals", "1");
   const resp = await fetch(`${API_BASE}/search?${params}`);
   const data = await resp.json();
 
@@ -1537,10 +1546,10 @@ function startCountdown() {
 // ============================================================
 
 const SPIN_PRIZES = [
-  { labelKey: "coupon2",    icon: "🎁", color: "#6C5CE7", link: "https://s.click.aliexpress.com/e/_oBbNzoG" },
-  { labelKey: "freeShip",   icon: "🚚", color: "#FD79A8", link: "https://s.click.aliexpress.com/e/_oBbNzoG" },
+  { labelKey: "coupon2",    icon: "🎁", color: "#FF6B00", link: "https://s.click.aliexpress.com/e/_oBbNzoG" },
+  { labelKey: "freeShip",   icon: "🚚", color: "#FF9A3C", link: "https://s.click.aliexpress.com/e/_oBbNzoG" },
   { labelKey: "tryAgain",   icon: "😅", color: "#DFE6E9", link: null },
-  { labelKey: "coupon3",    icon: "🎁", color: "#A29BFE", link: "https://s.click.aliexpress.com/e/_oBbNzoG" },
+  { labelKey: "coupon3",    icon: "🎁", color: "#E65C00", link: "https://s.click.aliexpress.com/e/_oBbNzoG" },
   { labelKey: "deal",       icon: "🔥", color: "#FDCB6E", link: null, action: "deals" },
   { labelKey: "tryAgain2",  icon: "😅", color: "#DFE6E9", link: null },
   { labelKey: "coupon5",    icon: "🎁", color: "#00B894", link: "https://s.click.aliexpress.com/e/_oBbNzoG" },
@@ -1619,11 +1628,11 @@ function drawWheel(canvas) {
   ctx.arc(cx, cy, 20, 0, 2 * Math.PI);
   ctx.fillStyle = "#fff";
   ctx.fill();
-  ctx.strokeStyle = "#6C5CE7";
+  ctx.strokeStyle = "#FF6B00";
   ctx.lineWidth = 3;
   ctx.stroke();
 
-  ctx.fillStyle = "#6C5CE7";
+  ctx.fillStyle = "#FF6B00";
   ctx.font = "bold 14px sans-serif";
   ctx.textAlign = "center";
   ctx.textBaseline = "middle";
@@ -1726,14 +1735,102 @@ function showSpinResult(prize) {
   result.style.display = "block";
 }
 
+function generateRelatedSearches(query) {
+  // Client-side related search generation as fallback
+  const q = query.trim().toLowerCase();
+  const related = [];
+
+  // Language-specific modifiers
+  const modifiers = {
+    he: {
+      prefixes: ["זול", "איכותי", "מומלץ", "קטן", "גדול"],
+      suffixes: ["לנשים", "לגברים", "לילדים", "2026", "משלוח חינם"],
+      categories: ["שמלה", "נעליים", "תיק", "שעון", "אוזניות", "צעצוע", "גאדג'ט"]
+    },
+    en: {
+      prefixes: ["cheap", "best", "top rated", "mini", "premium"],
+      suffixes: ["for women", "for men", "for kids", "2026", "free shipping"],
+      categories: ["dress", "shoes", "bag", "watch", "earbuds", "toy", "gadget"]
+    },
+    ar: {
+      prefixes: ["رخيص", "أفضل", "ممتاز"],
+      suffixes: ["للنساء", "للرجال", "للأطفال", "2026", "شحن مجاني"],
+      categories: ["فستان", "حذاء", "حقيبة", "ساعة"]
+    },
+    ru: {
+      prefixes: ["дешевый", "лучший", "топ"],
+      suffixes: ["для женщин", "для мужчин", "для детей", "2026"],
+      categories: ["платье", "кроссовки", "сумка", "часы"]
+    },
+    es: {
+      prefixes: ["barato", "mejor", "top"],
+      suffixes: ["para mujer", "para hombre", "para niños", "2026", "envío gratis"],
+      categories: ["vestido", "zapatos", "bolso", "reloj"]
+    },
+    pt: {
+      prefixes: ["barato", "melhor", "top"],
+      suffixes: ["feminino", "masculino", "infantil", "2026", "frete grátis"],
+      categories: ["vestido", "tênis", "bolsa", "relógio"]
+    },
+    tr: {
+      prefixes: ["ucuz", "en iyi", "kaliteli"],
+      suffixes: ["kadın", "erkek", "çocuk", "2026", "ücretsiz kargo"],
+      categories: ["elbise", "ayakkabı", "çanta", "saat"]
+    },
+    fr: {
+      prefixes: ["pas cher", "meilleur", "top"],
+      suffixes: ["femme", "homme", "enfant", "2026", "livraison gratuite"],
+      categories: ["robe", "chaussures", "sac", "montre"]
+    }
+  };
+
+  const lang = modifiers[currentLang] || modifiers.en;
+
+  // Add prefix + query combinations
+  const shuffledPrefixes = lang.prefixes.sort(() => Math.random() - 0.5);
+  for (let i = 0; i < 2 && i < shuffledPrefixes.length; i++) {
+    related.push(`${shuffledPrefixes[i]} ${q}`);
+  }
+
+  // Add query + suffix combinations
+  const shuffledSuffixes = lang.suffixes.sort(() => Math.random() - 0.5);
+  for (let i = 0; i < 2 && i < shuffledSuffixes.length; i++) {
+    related.push(`${q} ${shuffledSuffixes[i]}`);
+  }
+
+  // Add a related category if query is short
+  if (q.split(" ").length <= 2) {
+    const shuffledCats = lang.categories.filter(c => c !== q).sort(() => Math.random() - 0.5);
+    if (shuffledCats.length > 0) related.push(shuffledCats[0]);
+  }
+
+  return related.slice(0, 5);
+}
+
 async function loadRelated(query) {
   try {
     const resp = await fetch(`${API_BASE}/related?q=${encodeURIComponent(query)}`);
     const data = await resp.json();
     if (data.related && data.related.length > 0) {
       renderRelatedSearches(data.related);
-    } else { document.getElementById("relatedSearches").style.display = "none"; }
-  } catch { document.getElementById("relatedSearches").style.display = "none"; }
+    } else {
+      // Fallback: generate related searches client-side
+      const fallback = generateRelatedSearches(query);
+      if (fallback.length > 0) {
+        renderRelatedSearches(fallback);
+      } else {
+        document.getElementById("relatedSearches").style.display = "none";
+      }
+    }
+  } catch {
+    // Fallback on error too
+    const fallback = generateRelatedSearches(query);
+    if (fallback.length > 0) {
+      renderRelatedSearches(fallback);
+    } else {
+      document.getElementById("relatedSearches").style.display = "none";
+    }
+  }
 }
 
 // ============================================================
@@ -1952,9 +2049,24 @@ function onAlertClick(productJson) {
   }
 }
 
+function boostByCommission(products) {
+  // Score products: higher commission_rate gets a boost in ordering
+  // This is transparent to the user (shown as "recommended")
+  return products.slice().sort((a, b) => {
+    const commA = parseFloat(a.commission_rate) || 0;
+    const commB = parseFloat(b.commission_rate) || 0;
+    // Secondary: orders and rating as tiebreakers
+    const scoreA = commA * 100 + (a.orders || 0) * 0.001 + (a.rating || 0) * 2;
+    const scoreB = commB * 100 + (b.orders || 0) * 0.001 + (b.rating || 0) * 2;
+    return scoreB - scoreA;
+  });
+}
+
 function renderProducts(products, append = false) {
   const grid = document.getElementById("productGrid");
-  const html = products.map(p => buildProductCard(p)).join("");
+  // Apply commission boost when sort is "popular" (default/recommended)
+  const sorted = (currentSort === "popular" && !append) ? boostByCommission(products) : products;
+  const html = sorted.map(p => buildProductCard(p)).join("");
   if (append) grid.innerHTML += html;
   else grid.innerHTML = html;
 
@@ -2331,6 +2443,81 @@ async function applyPriceFilter() {
           <div class="no-results-icon">\ud83d\udd0d</div>
           <h3>${i18n[currentLang].noResults}</h3>
         </div>`;
+    }
+  } catch {}
+}
+
+// ---- New Filter Functions ----
+let freeShipActive = false;
+let dealsActive = false;
+let activeQuickPrice = null;
+
+function toggleFreeShip() {
+  freeShipActive = !freeShipActive;
+  const el = document.getElementById("freeShipToggle");
+  const icon = document.getElementById("freeShipIcon");
+  if (freeShipActive) {
+    el.classList.add("active");
+    icon.textContent = "☑";
+  } else {
+    el.classList.remove("active");
+    icon.textContent = "☐";
+  }
+  if (currentQuery) reSearch();
+}
+
+function applyCategory() {
+  if (currentQuery) reSearch();
+}
+
+function quickPrice(min, max) {
+  const key = `${min}-${max}`;
+  const btns = document.querySelectorAll(".quick-filter-btn:not(.deals-btn)");
+  if (activeQuickPrice === key) {
+    activeQuickPrice = null;
+    btns.forEach(b => b.classList.remove("active"));
+    document.getElementById("priceMin").value = "";
+    document.getElementById("priceMax").value = "";
+  } else {
+    activeQuickPrice = key;
+    btns.forEach(b => b.classList.remove("active"));
+    event.target.classList.add("active");
+    document.getElementById("priceMin").value = min || "";
+    document.getElementById("priceMax").value = max || "";
+  }
+  if (currentQuery) reSearch();
+}
+
+function toggleDeals() {
+  dealsActive = !dealsActive;
+  const btn = document.querySelector(".deals-btn");
+  if (dealsActive) {
+    btn.classList.add("active");
+  } else {
+    btn.classList.remove("active");
+  }
+  if (currentQuery) reSearch();
+}
+
+async function reSearch() {
+  if (!currentQuery) return;
+  currentPage = 1;
+  showSkeletons();
+  try {
+    const data = await doSearch(currentQuery, 1);
+    if (data.products && data.products.length > 0) {
+      renderProducts(data.products);
+      document.getElementById("resultsTitle").innerHTML =
+        `${currentQuery} (${data.total || data.products.length})
+        <button class="share-search-btn" onclick="shareSearch('${currentQuery.replace(/'/g,"\\'")}')" title="שתף חיפוש">📤 שתף</button>`;
+      document.getElementById("loadMore").style.display = (data.products.length >= 8) ? "block" : "none";
+    } else {
+      document.getElementById("productGrid").innerHTML = `
+        <div class="no-results" style="grid-column:1/-1">
+          <div class="no-results-icon">🔍</div>
+          <h3>${i18n[currentLang].noResults}</h3>
+        </div>`;
+      document.getElementById("loadMore").style.display = "none";
     }
   } catch {}
 }
@@ -2803,9 +2990,9 @@ function toggleAiChat() {
   fab.classList.toggle('hidden', aiChatOpen);
   if (aiChatOpen && aiChatFirstOpen) {
     aiChatFirstOpen = false;
-    addAiChatMsg('היי! 👋 אני העוזר/ת החכם/ה של עלי תמצא לי.\nספרו לי מה אתם מחפשים ואני אמצא לכם את הדילים הכי טובים! 🛍️', false);
+    addAiChatMsg('היי! 👋 אני העוזר החכם של עלי תמצא לי.\nספרו לי מה אתם מחפשים ואני אמצא לכם את הדילים הכי טובים! 🛍️', false);
     renderAiChatChips([
-      { label: '👗 שמלת ערב', query: 'אני מחפשת שמלת ערב יפה' },
+      { label: '👗 שמלת ערב', query: 'שמלת ערב יפה' },
       { label: '⌚ שעון יד', query: 'שעון יד לגבר' },
       { label: '💎 תכשיטים', query: 'תכשיטים במחיר טוב' },
       { label: '🏠 לבית', query: 'מוצרים שימושיים לבית' },

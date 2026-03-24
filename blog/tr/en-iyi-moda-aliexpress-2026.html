@@ -65,7 +65,7 @@
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { font-family: 'Assistant', 'Segoe UI', sans-serif; background: #f8f9fa; color: #2d3436; line-height: 1.8; }
-    .blog-nav { background: linear-gradient(135deg, #E84393 0%, #d63384 100%); padding: 12px 0; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 20px rgba(232,67,147,0.3); }
+    .blog-nav { background: linear-gradient(135deg, #FF6B00 0%, #d63384 100%); padding: 12px 0; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 20px rgba(232,67,147,0.3); }
     .blog-nav-inner { max-width: 900px; margin: 0 auto; padding: 0 20px; display: flex; align-items: center; justify-content: space-between; }
     .blog-nav a { color: #fff; text-decoration: none; font-weight: 600; font-size: 1.1rem; }
     .blog-nav .logo-link { display: flex; align-items: center; gap: 10px; }
@@ -73,27 +73,27 @@
     .blog-nav .nav-links { display: flex; gap: 20px; }
     .blog-nav .nav-links a { font-size: 0.95rem; opacity: 0.9; }
     .breadcrumb { max-width: 900px; margin: 20px auto 0; padding: 0 20px; font-size: 0.85rem; color: #636e72; }
-    .breadcrumb a { color: #E84393; text-decoration: none; }
+    .breadcrumb a { color: #FF6B00; text-decoration: none; }
     .article-container { max-width: 900px; margin: 20px auto 40px; padding: 0 20px; }
     .article-header { margin-bottom: 30px; }
     .article-header h1 { font-family: 'Heebo', sans-serif; font-size: 2rem; font-weight: 900; color: #2d3436; line-height: 1.3; margin-bottom: 12px; }
     .article-meta { display: flex; gap: 20px; color: #636e72; font-size: 0.9rem; flex-wrap: wrap; }
     .article-body { background: #fff; border-radius: 16px; padding: 40px; box-shadow: 0 2px 20px rgba(0,0,0,0.06); }
-    .article-body h2 { font-family: 'Heebo', sans-serif; font-size: 1.4rem; font-weight: 700; color: #E84393; margin: 35px 0 15px; padding-bottom: 8px; border-bottom: 2px solid #fce4f0; }
+    .article-body h2 { font-family: 'Heebo', sans-serif; font-size: 1.4rem; font-weight: 700; color: #FF6B00; margin: 35px 0 15px; padding-bottom: 8px; border-bottom: 2px solid #fce4f0; }
     .article-body h2:first-child { margin-top: 0; }
     .article-body p { margin-bottom: 16px; font-size: 1.05rem; }
     .article-body ul, .article-body ol { margin: 10px 0 20px 24px; }
     .article-body li { margin-bottom: 8px; font-size: 1.02rem; }
-    .tip-box { background: linear-gradient(135deg, #fce4f0 0%, #f8d7e8 100%); border-left: 4px solid #E84393; border-radius: 0 12px 12px 0; padding: 20px 24px; margin: 24px 0; }
-    .tip-box strong { color: #E84393; }
-    .cta-box { background: linear-gradient(135deg, #E84393 0%, #d63384 100%); color: #fff; border-radius: 16px; padding: 30px; margin: 35px 0; text-align: center; }
+    .tip-box { background: linear-gradient(135deg, #fce4f0 0%, #f8d7e8 100%); border-left: 4px solid #FF6B00; border-radius: 0 12px 12px 0; padding: 20px 24px; margin: 24px 0; }
+    .tip-box strong { color: #FF6B00; }
+    .cta-box { background: linear-gradient(135deg, #FF6B00 0%, #d63384 100%); color: #fff; border-radius: 16px; padding: 30px; margin: 35px 0; text-align: center; }
     .cta-box h3 { color: #fff; font-size: 1.4rem; margin-bottom: 12px; }
     .cta-box p { color: rgba(255,255,255,0.9); margin-bottom: 20px; }
-    .cta-btn { display: inline-block; background: #fff; color: #E84393; padding: 14px 36px; border-radius: 30px; text-decoration: none; font-weight: 700; font-size: 1.1rem; transition: transform 0.2s, box-shadow 0.2s; }
+    .cta-btn { display: inline-block; background: #fff; color: #FF6B00; padding: 14px 36px; border-radius: 30px; text-decoration: none; font-weight: 700; font-size: 1.1rem; transition: transform 0.2s, box-shadow 0.2s; }
     .cta-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.2); }
-    .price-tag { display: inline-block; background: #fce4f0; color: #E84393; padding: 4px 12px; border-radius: 20px; font-weight: 700; font-size: 0.95rem; margin-left: 8px; }
-    .product-card { background: #fafafa; border-radius: 12px; padding: 20px; margin: 16px 0; border-left: 4px solid #E84393; }
-    .product-card h3 { margin-top: 0; color: #E84393; }
+    .price-tag { display: inline-block; background: #fce4f0; color: #FF6B00; padding: 4px 12px; border-radius: 20px; font-weight: 700; font-size: 0.95rem; margin-left: 8px; }
+    .product-card { background: #fafafa; border-radius: 12px; padding: 20px; margin: 16px 0; border-left: 4px solid #FF6B00; }
+    .product-card h3 { margin-top: 0; color: #FF6B00; }
     .warning-box { background: #fff3e0; border-left: 4px solid #ff9800; border-radius: 0 12px 12px 0; padding: 20px 24px; margin: 24px 0; }
     .warning-box strong { color: #e65100; }
     .blog-footer { background: #2d3436; color: #fff; padding: 40px 20px; text-align: center; }
@@ -107,7 +107,7 @@
     .related-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 20px; }
     .related-card { background: #f8f9fa; border-radius: 12px; padding: 20px; text-decoration: none; color: #2d3436; transition: transform 0.2s, box-shadow 0.2s; }
     .related-card:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(0,0,0,0.1); }
-    .related-card h3 { font-size: 1rem; color: #E84393; margin-bottom: 8px; }
+    .related-card h3 { font-size: 1rem; color: #FF6B00; margin-bottom: 8px; }
     .related-card p { font-size: 0.9rem; color: #636e72; }
     @media (max-width: 768px) { .article-header h1 { font-size: 1.5rem; } .article-body { padding: 24px 18px; } }
   </style>
@@ -125,7 +125,7 @@
     <div class="article-body">
       <h2>2026'da AliExpress Neden Moda İçin En İyi Yer</h2>
       <p>Trend kıyafetler, şık aksesuarlar ve tasarımcı ilhamlı parçalar arıyorsanız — tasarımcı fiyatı ödemeden? AliExpress, dünya genelinde akıllı alışverişçilerin favori adresi haline geldi. Binlerce satıcının rekabet etmesiyle fiyatlar inanılmaz derecede uygun — genellikle mağaza fiyatlarından %50-80 daha ucuz.</p>
-      <p><a href="../../tr/?utm_source=blog&utm_medium=article&utm_campaign=fashion2026" style="color:#E84393;font-weight:600;">Ali Find Me</a> ile binlerce ürünü araştırarak şu anda trend olan en iyi 10 moda kategorisini sizin için derledik.</p>
+      <p><a href="../../tr/?utm_source=blog&utm_medium=article&utm_campaign=fashion2026" style="color:#FF6B00;font-weight:600;">Ali Find Me</a> ile binlerce ürünü araştırarak şu anda trend olan en iyi 10 moda kategorisini sizin için derledik.</p>
 
       <div class="product-card"><h3>1. Trend Elbiseler ve Tulumlar <span class="price-tag">$8 - $25</span></h3><p>Yazlık elbiselerden zarif gece kıyafetlerine kadar AliExpress'te inanılmaz çeşitlilik var. Çiçekli midi elbiseler, saten elbiseler ve günlük pamuklu elbiseler arayın. Düz renk tulumlar 2026'nın en büyük trendi.</p><ul><li>Çiçekli yazlık elbiseler $8'den başlayan</li><li>Saten gece elbiseleri $15'ten başlayan</li><li>Geniş paça günlük tulumlar $12'den başlayan</li></ul></div>
 
@@ -133,7 +133,7 @@
 
       <div class="product-card"><h3>3. Crossbody ve El Çantaları <span class="price-tag">$6 - $30</span></h3><p>Mini crossbody çantalar hâlâ olmazsa olmaz aksesuar. Deri görünümlü çantalar, zincirli kapitone çantalar ve trend clutch'lar arayın. Minimalist tasarımlı tote çantalar günlük kullanım için mükemmel.</p><ul><li>Zincirli crossbody çantalar $8'den başlayan</li><li>Deri görünümlü tote çantalar $12'den başlayan</li><li>Gece clutch çantaları $6'dan başlayan</li></ul></div>
 
-      <div class="tip-box"><strong>💡 Pro İpucu:</strong> <a href="../../tr/?utm_source=blog&utm_medium=article&utm_campaign=fashion2026" style="color:#E84393;">Ali Find Me görsel arama</a> özelliğini kullanarak benzer ürünleri daha iyi fiyatlarla bulun. Beğendiğiniz herhangi bir kıyafetin fotoğrafını yükleyin!</div>
+      <div class="tip-box"><strong>💡 Pro İpucu:</strong> <a href="../../tr/?utm_source=blog&utm_medium=article&utm_campaign=fashion2026" style="color:#FF6B00;">Ali Find Me görsel arama</a> özelliğini kullanarak benzer ürünleri daha iyi fiyatlarla bulun. Beğendiğiniz herhangi bir kıyafetin fotoğrafını yükleyin!</div>
 
       <div class="product-card"><h3>4. Minimalist Takılar <span class="price-tag">$1 - $12</span></h3><p>İnce altın tonlu kolyeler, katmanlı zincirler, huggie küpeler ve yığılabilir yüzükler. Paslanmaz çelik ve titanyum parçalar mükemmel dayanıklılık sunuyor. Günlük kullanım için suya dayanıklı takılar arayın.</p><ul><li>Katmanlı kolyeler $2'den başlayan</li><li>Paslanmaz çelik huggie küpeler $1'den başlayan</li><li>Minimalist yığılabilir yüzükler $1'den başlayan</li><li>İnci sallantılı küpeler $3'ten başlayan</li></ul></div>
 

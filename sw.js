@@ -1,4 +1,4 @@
-const CACHE_NAME = 'ali-findme-v42';
+const CACHE_NAME = 'ali-findme-v43';
 
 // Install: skip waiting + delete ALL old caches immediately
 self.addEventListener('install', event => {
@@ -18,32 +18,18 @@ self.addEventListener('activate', event => {
   );
 });
 
-// Fetch: HTML pages = NETWORK ONLY (never serve stale HTML)
-// Images/fonts = network-first with cache fallback
+// Fetch: network first, cache fallback
 self.addEventListener('fetch', event => {
+  if (event.request.method !== 'GET') return;
   const url = new URL(event.request.url);
-
-  // API calls, analytics, external: let browser handle
-  if (!url.origin.includes('alifindme') && !url.origin.includes('github.io')) {
-    return;
-  }
-
-  // HTML pages: ALWAYS fetch from network, never cache
-  if (event.request.mode === 'navigate' || url.pathname.endsWith('.html') || url.pathname.endsWith('/')) {
-    event.respondWith(
-      fetch(event.request).catch(() => caches.match(event.request))
-    );
-    return;
-  }
-
-  // Everything else (images, CSS, JS): network-first with cache
+  if (url.origin !== location.origin) return;
   event.respondWith(
-    fetch(event.request).then(resp => {
-      if (resp.status === 200 && event.request.method === 'GET') {
-        const clone = resp.clone();
+    fetch(event.request).then(response => {
+      if (response && response.status === 200) {
+        const clone = response.clone();
         caches.open(CACHE_NAME).then(cache => cache.put(event.request, clone));
       }
-      return resp;
+      return response;
     }).catch(() => caches.match(event.request))
   );
 });

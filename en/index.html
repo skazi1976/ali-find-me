@@ -31,7 +31,7 @@
   <meta name="twitter:title" content="Ali Find Me - Smart AliExpress Product Search">
   <meta name="twitter:description" content="Smart search engine for AliExpress. Find best deals with AI image search in 8 languages.">
   <meta name="twitter:image" content="https://alifindme.com/icons/icon-512.png">
-  <meta name="theme-color" content="#6C5CE7">
+  <meta name="theme-color" content="#FF6B00">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <link rel="canonical" href="https://alifindme.com/en/">
@@ -296,6 +296,33 @@
           <input type="number" id="priceMax" placeholder="To" class="price-input" min="0">
           <button class="filter-apply-btn" onclick="applyPriceFilter()" data-i18n="apply">Filter</button>
         </div>
+        <div class="filter-group">
+          <label class="toggle-filter" id="freeShipToggle" onclick="toggleFreeShip()">
+            <span class="toggle-icon" id="freeShipIcon">☐</span> 🚚 <span data-i18n="freeShipOnly">Free Shipping</span>
+          </label>
+        </div>
+        <div class="filter-group">
+          <select id="categorySelect" onchange="applyCategory()">
+            <option value="" data-i18n-option="allCategories">All Categories</option>
+            <option value="200003482,200003494">👟 Shoes</option>
+            <option value="200000532,200003498,200003500">👕 Clothing</option>
+            <option value="200003490">👜 Bags</option>
+            <option value="200003354">💎 Jewelry</option>
+            <option value="200003297">⌚ Watches</option>
+            <option value="200003332,200003406">📱 Electronics</option>
+            <option value="200003502,200003470">👶 Baby</option>
+            <option value="200003398">💄 Beauty</option>
+            <option value="200003444">🏠 Home & Garden</option>
+            <option value="200003484">⚽ Sports</option>
+          </select>
+        </div>
+      </div>
+      <!-- Quick Price Filters -->
+      <div class="quick-filters" id="quickFilters">
+        <button class="quick-filter-btn" onclick="quickPrice(0,50)">💰 Under $15</button>
+        <button class="quick-filter-btn" onclick="quickPrice(50,200)">💵 $15-$50</button>
+        <button class="quick-filter-btn" onclick="quickPrice(200,0)">💎 $50+</button>
+        <button class="quick-filter-btn deals-btn" onclick="toggleDeals()">🔥 <span data-i18n="dealsOnly">Deals</span></button>
       </div>
       <div class="related-searches" id="relatedSearches" style="display:none">
         <span class="related-label" data-i18n="alsoSearch">Also searched:</span>

@@ -7,8 +7,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700&family=Assistant:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --primary: #6C5CE7;
-      --primary-dark: #5A4BD1;
+      --primary: #FF6B00;
+      --primary-dark: #E65C00;
       --success: #00B894;
       --danger: #D63031;
       --warning: #FDCB6E;
@@ -340,7 +340,7 @@
           <h2>📊 סטטיסטיקות חיפוש</h2>
           <div class="stats-grid" id="searchStatsGrid" style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:20px;">
             <div class="stat-card" style="background:#f0ecff;border-radius:12px;padding:16px;text-align:center;">
-              <div style="font-size:2rem;font-weight:900;color:#6C5CE7;" id="statTotalSearches">0</div>
+              <div style="font-size:2rem;font-weight:900;color:#FF6B00;" id="statTotalSearches">0</div>
               <div style="font-size:0.85rem;color:#636e72;">סה"כ חיפושים</div>
             </div>
             <div class="stat-card" style="background:#e3f2fd;border-radius:12px;padding:16px;text-align:center;">
@@ -375,7 +375,7 @@
           <div class="toolbar">
             <h2>📋 כל החיפושים (אחרונים)</h2>
             <div>
-              <input type="text" class="filter-input" id="searchLogFilter" placeholder="🔍 חפש בלוג..." oninput="filterSearchLogs()">
+              <input type="text" class="filter-input" id="searchLogFilter" placeholder="🔍 חפשו בלוג..." oninput="filterSearchLogs()">
               <button class="btn btn-outline btn-sm" onclick="exportSearchLogs()">📥 ייצוא CSV</button>
               <button class="btn btn-outline btn-sm" onclick="clearSearchLogs()" style="color:#e74c3c;border-color:#e74c3c;">🗑️ נקה</button>
             </div>
@@ -401,7 +401,7 @@
 
         <!-- Main Stats -->
         <div id="analyticsStatsGrid" style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:24px;">
-          <div style="background:linear-gradient(135deg,#6C5CE7,#a29bfe);border-radius:12px;padding:20px;text-align:center;color:#fff;">
+          <div style="background:linear-gradient(135deg,#FF6B00,#a29bfe);border-radius:12px;padding:20px;text-align:center;color:#fff;">
             <div style="font-size:2.2rem;font-weight:900;" id="anTotalViews">—</div>
             <div style="font-size:0.85rem;opacity:0.9;">סה"כ כניסות (כל הזמנים)</div>
           </div>
