@@ -930,6 +930,13 @@ body {
   color: #FF6B00 !important;
 }
 
+.product-price-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px;
+}
+
 .savings-badge {
   background: #FF6B00;
   color: #fff;
@@ -937,7 +944,19 @@ body {
   border-radius: 4px;
   font-size: 0.7rem;
   font-weight: 600;
-  margin-right: 4px;
+}
+
+@media (max-width: 480px) {
+  .product-price-row {
+    gap: 2px;
+  }
+  .savings-badge {
+    font-size: 0.6rem;
+    padding: 1px 4px;
+  }
+  .product-price {
+    font-size: 1rem !important;
+  }
 }
 
 .hot-deal-badge {
