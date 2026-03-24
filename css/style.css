@@ -946,17 +946,15 @@ body {
   left: 8px;
   background: linear-gradient(135deg, #FF6B00, #FF9A3C);
   color: #fff;
-  padding: 4px 10px;
+  padding: 3px 8px;
   border-radius: 6px;
-  font-size: 0.75rem;
+  font-size: 0.65rem;
   font-weight: 700;
   z-index: 5;
-  animation: hotPulse 1.5s infinite;
-}
-
-@keyframes hotPulse {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.05); }
+  max-width: 45%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .top-pick-badge {
@@ -965,11 +963,23 @@ body {
   right: 8px;
   background: linear-gradient(135deg, #191919, #333333);
   color: #fff;
-  padding: 4px 8px;
+  padding: 3px 8px;
   border-radius: 6px;
-  font-size: 0.7rem;
+  font-size: 0.65rem;
   font-weight: 700;
   z-index: 5;
+  max-width: 45%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@media (max-width: 480px) {
+  .hot-deal-badge, .top-pick-badge {
+    font-size: 0.58rem;
+    padding: 2px 5px;
+    max-width: 42%;
+  }
 }
 
 .free-ship-badge {
