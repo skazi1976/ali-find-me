@@ -1827,10 +1827,34 @@ function buildProductCard(p) {
   const discount = p.discount > 0 ? `<span class="product-discount">-${p.discount}%</span>` : "";
   const originalPrice = p.discount > 0 ? `<span class="product-original-price">${currentCurrencySymbol}${p.original_price}</span>` : "";
   const ordersLabel = i18n[currentLang].orders;
-  const ctaLabel = i18n[currentLang].viewProduct;
   const isFav = isFavorite(p.id);
   const favClass = isFav ? "fav-btn active" : "fav-btn";
   const alertActive = hasAlert(p.id);
+
+  // Enhanced CTA with price
+  const isHebrew = currentLang === 'he';
+  const ctaLabel = isHebrew ? `🛒 לרכישה ב-${currentCurrencySymbol}${p.price}` : `🛒 Buy Now - ${currentCurrencySymbol}${p.price}`;
+
+  // Savings badge
+  const savings = p.discount > 0 ? parseFloat(p.original_price) - parseFloat(p.price) : 0;
+  const savingsBadge = savings > 0 ? `<span class="savings-badge">${isHebrew ? 'חוסכים' : 'Save'} ${currentCurrencySymbol}${savings.toFixed(0)}</span>` : "";
+
+  // Hot deal badge (discount > 40%)
+  const hotDeal = p.discount >= 40 ? `<div class="hot-deal-badge">🔥 ${isHebrew ? 'מחיר מטורף' : 'HOT DEAL'}</div>` : "";
+
+  // Free shipping badge
+  const freeShip = p.free_shipping ? `<span class="free-ship-badge">🚚 ${isHebrew ? 'משלוח חינם' : 'Free Shipping'}</span>` : "";
+
+  // Social proof - orders badge
+  const ordersNum = p.orders || 0;
+  const hotOrders = ordersNum >= 1000 ? `<span class="hot-orders">🔥 ${ordersNum.toLocaleString()} ${ordersLabel}</span>` : `<span>${ordersNum.toLocaleString()} ${ordersLabel}</span>`;
+
+  // Top pick badge
+  const topPick = (p.rating >= 4.5 && ordersNum >= 500) ? `<div class="top-pick-badge">🏆 ${isHebrew ? 'בחירת המערכת' : 'Top Pick'}</div>` : "";
+
+  // Urgency
+  const viewers = Math.floor(Math.random() * 20) + 5;
+  const urgency = p.discount > 0 ? `<div class="urgency-bar">👀 ${viewers} ${isHebrew ? 'אנשים צופים עכשיו' : 'people viewing now'}</div>` : "";
 
   const pJson = JSON.stringify({
     id: p.id, title: p.title, price: p.price, image: p.image,
@@ -1843,6 +1867,8 @@ function buildProductCard(p) {
         <a href="${p.affiliate_url}" target="_blank" rel="noopener" onclick="onProductClick('${pJson}')">
           <img class="product-image" src="${p.image}" alt="${p.title}" loading="lazy" onerror="retryImg(this,'${(p.image_alt||'').replace(/'/g,"\\'")}')">
         </a>
+        ${hotDeal}
+        ${topPick}
         <button class="${favClass}" onclick="onFavClick(this, '${pJson}')" title="\u05d4\u05d5\u05e1\u05e3 \u05dc\u05de\u05d5\u05e2\u05d3\u05e4\u05d9\u05dd">
           ${isFav ? "\u2764\ufe0f" : "\ud83e\udd0d"}
         </button>
@@ -1859,15 +1885,18 @@ function buildProductCard(p) {
           <span class="product-price">${currentCurrencySymbol}${p.price}</span>
           ${originalPrice}
           ${discount}
+          ${savingsBadge}
         </div>
+        ${freeShip}
         <div class="product-meta">
-          <span class="product-rating">${stars}</span>
-          <span>${(p.orders || 0).toLocaleString()} ${ordersLabel}</span>
+          <span class="product-rating">${stars} ${p.rating ? p.rating.toFixed(1) : ''}</span>
+          ${hotOrders}
         </div>
+        ${urgency}
         <button class="compare-btn" onclick="event.stopPropagation();onCompareClick('${pJson}')" title="${i18n[currentLang].findCheaper || 'Find Cheaper'}">
           💰 ${i18n[currentLang].findCheaper || 'Find Cheaper'}
         </button>
-        <a href="${p.affiliate_url}" target="_blank" rel="noopener" class="product-cta" onclick="onProductClick('${pJson}')">${ctaLabel}</a>
+        <a href="${p.affiliate_url}" target="_blank" rel="noopener" class="product-cta product-cta-enhanced" onclick="onProductClick('${pJson}')">${ctaLabel}</a>
       </div>
     </div>`;
 }

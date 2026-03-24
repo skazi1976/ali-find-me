@@ -836,7 +836,104 @@ body {
   transition: opacity 0.2s;
 }
 
+.product-cta-enhanced {
+  background: linear-gradient(135deg, #ff6b35, #e63946) !important;
+  padding: 12px 10px;
+  font-size: 1rem;
+  border-radius: 8px;
+  animation: ctaPulse 2s infinite;
+  box-shadow: 0 4px 15px rgba(230, 57, 70, 0.4);
+}
+
+@keyframes ctaPulse {
+  0%, 100% { box-shadow: 0 4px 15px rgba(230, 57, 70, 0.4); }
+  50% { box-shadow: 0 4px 25px rgba(230, 57, 70, 0.7); }
+}
+
 .product-cta:hover { opacity: 0.9; }
+
+/* Enhanced product badges */
+.product-price {
+  font-size: 1.2em !important;
+  font-weight: 700 !important;
+  color: #00b894 !important;
+}
+
+.savings-badge {
+  background: #00b894;
+  color: #fff;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  margin-right: 4px;
+}
+
+.hot-deal-badge {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  background: linear-gradient(135deg, #ff6b35, #e63946);
+  color: #fff;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  z-index: 5;
+  animation: hotPulse 1.5s infinite;
+}
+
+@keyframes hotPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+.top-pick-badge {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: linear-gradient(135deg, #f39c12, #e67e22);
+  color: #fff;
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  z-index: 5;
+}
+
+.free-ship-badge {
+  display: inline-block;
+  background: #e8f8f5;
+  color: #00b894;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.hot-orders {
+  color: #e63946;
+  font-weight: 600;
+}
+
+.urgency-bar {
+  background: #fff3e0;
+  color: #e65100;
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-size: 0.7rem;
+  text-align: center;
+  margin-bottom: 6px;
+  font-weight: 500;
+}
+
+[data-theme="dark"] .free-ship-badge {
+  background: rgba(0,184,148,0.15);
+}
+[data-theme="dark"] .urgency-bar {
+  background: rgba(230,81,0,0.15);
+}
 
 /* Skeleton loading */
 .skeleton-card {
