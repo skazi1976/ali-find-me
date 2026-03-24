@@ -1960,6 +1960,40 @@ function renderProducts(products, append = false) {
 
   // Check price alerts against displayed products
   checkPriceAlerts(products);
+
+  // Translate titles to Hebrew in background (non-blocking)
+  if (currentLang === 'he' && products.length > 0) {
+    translateTitlesInBackground(products);
+  }
+}
+
+async function translateTitlesInBackground(products) {
+  try {
+    const titles = products.map(p => p.title);
+    const resp = await fetch(`${API_BASE}/translate-titles`, {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({titles})
+    });
+    const data = await resp.json();
+    const translations = data.translations || {};
+
+    // Update DOM with translated titles
+    products.forEach(p => {
+      if (translations[p.title]) {
+        const card = document.getElementById(`product-${p.id}`);
+        if (card) {
+          const titleEl = card.querySelector('.product-title');
+          if (titleEl) {
+            titleEl.textContent = translations[p.title];
+            titleEl.style.direction = 'rtl';
+          }
+        }
+      }
+    });
+  } catch (e) {
+    // Silent fail - titles stay in English
+  }
 }
 
 // ============================================================
