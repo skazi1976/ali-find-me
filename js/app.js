@@ -1781,6 +1781,7 @@ function renderCategories(categories) {
 function renderTrending(products) {
   const batch = products.slice(0, 18);
   document.getElementById("trendingGrid").innerHTML = batch.map(p => buildProductCard(p)).join("");
+  if (currentLang === 'he') translateTitlesInBackground(batch);
 }
 
 function renderRelatedSearches(related) {
