@@ -1464,7 +1464,7 @@ async function loadCategories() {
 
 async function loadTrending() {
   try {
-    const resp = await fetch(`${API_BASE}/trending?lang=${currentLang}&currency=${currentCurrencyCode}&country=${currentCountry}`);
+    const resp = await fetch(`${API_BASE}/trending`);
     const data = await resp.json();
     if (data.products && data.products.length > 0) {
       renderTrending(data.products);
@@ -1513,7 +1513,6 @@ async function loadDailyDeals() {
 
 function renderDailyDeals(products) {
   document.getElementById("dealsGrid").innerHTML = products.map(p => buildProductCard(p)).join("");
-  if (currentLang === 'he') translateTitlesInBackground(products);
 }
 
 function startCountdown() {
@@ -1779,9 +1778,7 @@ function renderCategories(categories) {
 }
 
 function renderTrending(products) {
-  const batch = products.slice(0, 18);
-  document.getElementById("trendingGrid").innerHTML = batch.map(p => buildProductCard(p)).join("");
-  if (currentLang === 'he') translateTitlesInBackground(batch);
+  document.getElementById("trendingGrid").innerHTML = products.slice(0, 18).map(p => buildProductCard(p)).join("");
 }
 
 function renderRelatedSearches(related) {
@@ -1963,44 +1960,6 @@ function renderProducts(products, append = false) {
 
   // Check price alerts against displayed products
   checkPriceAlerts(products);
-
-  // Translate titles to Hebrew in background (non-blocking)
-  if (currentLang === 'he' && products.length > 0) {
-    translateTitlesInBackground(products);
-  }
-}
-
-async function translateTitlesInBackground(products) {
-  try {
-    // Send titles with IDs for reliable matching
-    const items = products.slice(0, 20).map(p => ({id: p.id, title: p.title}));
-    const titles = items.map(p => p.title);
-    const resp = await fetch(`${API_BASE}/translate-titles`, {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({titles})
-    });
-    const data = await resp.json();
-    const translations = data.translations || {};
-
-    // Update DOM using product IDs
-    items.forEach(p => {
-      const translated = translations[p.title];
-      if (translated && !translated.startsWith('_')) {
-        const card = document.getElementById(`product-${p.id}`);
-        if (card) {
-          const titleEl = card.querySelector('.product-title');
-          if (titleEl) {
-            titleEl.textContent = translated;
-            titleEl.style.direction = 'rtl';
-            titleEl.style.textAlign = 'right';
-          }
-        }
-      }
-    });
-  } catch (e) {
-    // Silent fail - titles stay in English
-  }
 }
 
 // ============================================================
@@ -2289,7 +2248,7 @@ async function sendMessage() {
         `${currentQuery} (${data.total || data.products.length})
         <button class="share-search-btn" onclick="shareSearch('${currentQuery.replace(/'/g,"\\'")}')" title="\u05e9\u05ea\u05e3 \u05d7\u05d9\u05e4\u05d5\u05e9">\ud83d\udce4 \u05e9\u05ea\u05e3</button>`;
       document.getElementById("resultsSection").style.display = "block";
-      document.getElementById("loadMore").style.display = (data.total || 0) > currentPage * 20 ? "block" : "none";
+      document.getElementById("loadMore").style.display = (data.total || 0) > currentPage * 50 ? "block" : "none";
       // Auto-scroll to results
       setTimeout(() => {
         document.getElementById('resultsSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -2343,7 +2302,7 @@ async function applySort() {
       document.getElementById("resultsTitle").innerHTML =
         `${currentQuery} (${data.total || data.products.length})
         <button class="share-search-btn" onclick="shareSearch('${currentQuery.replace(/'/g,"\\'")}')" title="\u05e9\u05ea\u05e3 \u05d7\u05d9\u05e4\u05d5\u05e9">\ud83d\udce4 \u05e9\u05ea\u05e3</button>`;
-      document.getElementById("loadMore").style.display = (data.total || 0) > currentPage * 20 ? "block" : "none";
+      document.getElementById("loadMore").style.display = (data.total || 0) > currentPage * 50 ? "block" : "none";
     }
   } catch {}
 }
@@ -2363,7 +2322,7 @@ async function applyPriceFilter() {
     const data = await doSearch(q, 1);
     if (data.products && data.products.length > 0) {
       renderProducts(data.products);
-      document.getElementById("loadMore").style.display = (data.total || 0) > currentPage * 20 ? "block" : "none";
+      document.getElementById("loadMore").style.display = (data.total || 0) > currentPage * 50 ? "block" : "none";
     } else {
       document.getElementById("productGrid").innerHTML = `
         <div class="no-results" style="grid-column:1/-1">
@@ -2382,13 +2341,11 @@ async function loadMore() {
     const data = await doSearch(currentQuery, currentPage);
     if (data.products && data.products.length > 0) {
       renderProducts(data.products, true);
-      document.getElementById("loadMore").style.display = (data.total || 0) > currentPage * 20 ? "block" : "none";
+      document.getElementById("loadMore").style.display = (data.total || 0) > currentPage * 50 ? "block" : "none";
     } else { document.getElementById("loadMore").style.display = "none"; }
   } catch { currentPage--; }
   isLoading = false;
 }
-
-// Load more button stays visible - no infinite scroll (faster page load)
 
 function clearResults() {
   document.getElementById("resultsSection").style.display = "none";
