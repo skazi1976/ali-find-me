@@ -2349,12 +2349,48 @@ async function sendMessage() {
   showSkeletons();
 
   try {
-    const data = await doSearch(searchQuery, 1);
+    // FAST: First fetch only 6 results for instant display
+    const fastParams = new URLSearchParams({
+      q: translateQuery(searchQuery), lang: currentLang, currency: currentCurrency, country: currentCountry, page: "1", fast: "1",
+    });
+    if (freeShipActive) fastParams.set("free_shipping", "1");
+    const catSel2 = document.getElementById("categorySelect");
+    if (catSel2 && catSel2.value) fastParams.set("category", catSel2.value);
+    if (dealsActive) fastParams.set("deals", "1");
+
+    // Start full search in background
+    const fullSearchPromise = doSearch(searchQuery, 1);
+
+    // Fetch fast results (6 products)
+    let fastData = null;
+    try {
+      const fastResp = await fetch(`${API_BASE}/search?${fastParams}`);
+      fastData = await fastResp.json();
+    } catch(e) {}
+
+    // Show fast results immediately if available
+    if (fastData && fastData.products && fastData.products.length > 0) {
+      hideTyping();
+      const msg = i18n[currentLang].foundResults.replace("{count}", fastData.products.length + "+");
+      addMessage(msg);
+      renderProducts(fastData.products);
+      document.getElementById("resultsSection").style.display = "block";
+      document.getElementById("resultsTitle").innerHTML =
+        `${currentQuery} <span style="font-size:0.8em;color:#999">\u2728 \u05d8\u05d5\u05e2\u05df \u05e2\u05d5\u05d3...</span>`;
+      // Scroll to results
+      document.getElementById("resultsSection").scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+
+    // Wait for full results
+    const data = await fullSearchPromise;
     hideTyping();
 
     if (data.products && data.products.length > 0) {
-      const msg = i18n[currentLang].foundResults.replace("{count}", data.total || data.products.length);
-      addMessage(msg);
+      const msg2 = i18n[currentLang].foundResults.replace("{count}", data.total || data.products.length);
+      // Update chat message only if we didn't show fast results
+      if (!fastData || !fastData.products || fastData.products.length === 0) {
+        addMessage(msg2);
+      }
       renderProducts(data.products);
       document.getElementById("resultsTitle").innerHTML =
         `${currentQuery} (${data.total || data.products.length})
