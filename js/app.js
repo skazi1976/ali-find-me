@@ -1969,7 +1969,9 @@ function renderProducts(products, append = false) {
 
 async function translateTitlesInBackground(products) {
   try {
-    const titles = products.map(p => p.title);
+    // Send titles with IDs for reliable matching
+    const items = products.slice(0, 20).map(p => ({id: p.id, title: p.title}));
+    const titles = items.map(p => p.title);
     const resp = await fetch(`${API_BASE}/translate-titles`, {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
@@ -1978,15 +1980,17 @@ async function translateTitlesInBackground(products) {
     const data = await resp.json();
     const translations = data.translations || {};
 
-    // Update DOM with translated titles
-    products.forEach(p => {
-      if (translations[p.title]) {
+    // Update DOM using product IDs
+    items.forEach(p => {
+      const translated = translations[p.title];
+      if (translated && !translated.startsWith('_')) {
         const card = document.getElementById(`product-${p.id}`);
         if (card) {
           const titleEl = card.querySelector('.product-title');
           if (titleEl) {
-            titleEl.textContent = translations[p.title];
+            titleEl.textContent = translated;
             titleEl.style.direction = 'rtl';
+            titleEl.style.textAlign = 'right';
           }
         }
       }
