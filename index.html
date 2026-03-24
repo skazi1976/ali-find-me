@@ -52,7 +52,7 @@
   <meta name="twitter:title" content="עלי תמצא לי - חיפוש מוצרים חכם באלי אקספרס">
   <meta name="twitter:description" content="מנוע חיפוש חכם למוצרי אופנה ולייפסטייל באלי אקספרס. חיפוש טקסט + תמונה AI">
   <meta name="twitter:image" content="https://alifindme.com/icons/icon-512.png">
-  <meta name="theme-color" content="#6C5CE7">
+  <meta name="theme-color" content="#FF6B00">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <link rel="manifest" href="manifest.json">
@@ -249,9 +249,9 @@
     <div class="hero-content">
       <h1 class="hero-title" data-i18n="heroTitle">
         <span class="hero-icon">✨</span>
-        מצאי את המוצר המושלם
+        מצאו את המוצר המושלם
       </h1>
-      <p class="hero-subtitle" data-i18n="heroSubtitle">חפשי מוצרי אופנה ולייפסטייל במחירים הכי טובים מאלי אקספרס</p>
+      <p class="hero-subtitle" data-i18n="heroSubtitle">חפשו מוצרי אופנה ולייפסטייל במחירים הכי טובים מאלי אקספרס</p>
     </div>
   </section>
 
@@ -261,9 +261,9 @@
       <!-- Input area - FIRST -->
       <div class="input-area input-area-top">
         <div class="input-wrapper">
-          <input type="text" id="chatInput" data-i18n-placeholder="inputPlaceholder" placeholder="🔍 מה את מחפשת? (למשל: שמלת ערב, טייץ ספורט...)" autocomplete="off">
+          <input type="text" id="chatInput" data-i18n-placeholder="inputPlaceholder" placeholder="🔍 מה אתם מחפשים? (למשל: שמלת ערב, טייץ ספורט, אוזניות...)" autocomplete="off">
           <div class="image-search-wrap">
-            <button class="image-search-btn" id="imageSearchBtn" onclick="showImageOptions()" title="חפש בתמונה">📷</button>
+            <button class="image-search-btn" id="imageSearchBtn" onclick="showImageOptions()" title="חפשו בתמונה">📷</button>
             <div class="image-options-dropdown" id="imageOptions" style="display:none">
               <button onclick="document.getElementById('cameraInput').click();hideImageOptions()">📸 <span data-i18n="imgTakePhoto">צלם</span></button>
               <button onclick="document.getElementById('imageInput').click();hideImageOptions()">📁 <span data-i18n="imgUpload">העלה</span></button>
@@ -292,8 +292,8 @@
         <div class="message bot-message">
           <div class="message-avatar">🤖</div>
           <div class="message-bubble" id="welcomeMsg" data-i18n="welcome">
-            היי! אני כאן לעזור לך למצוא מוצרים מדהימים באלי אקספרס.
-            ספרי לי מה את מחפשת ואני אמצא לך את הדילים הכי טובים! 🛍️
+            היי! אני כאן לעזור לכם למצוא מוצרים מדהימים באלי אקספרס.
+            ספרו לי מה אתם מחפשים ואני אמצא לכם את הדילים הכי טובים! 🛍️
           </div>
         </div>
       </div>
@@ -336,6 +336,34 @@
           <input type="number" id="priceMax" placeholder="עד" class="price-input" min="0">
           <button class="filter-apply-btn" onclick="applyPriceFilter()" data-i18n="apply">סנן</button>
         </div>
+        <div class="filter-group">
+          <label class="toggle-filter" id="freeShipToggle" onclick="toggleFreeShip()">
+            <span class="toggle-icon" id="freeShipIcon">☐</span> 🚚 <span data-i18n="freeShipOnly">משלוח חינם</span>
+          </label>
+        </div>
+        <div class="filter-group">
+          <select id="categorySelect" onchange="applyCategory()">
+            <option value="" data-i18n-option="allCategories">כל הקטגוריות</option>
+            <option value="200003482,200003494">👟 נעליים</option>
+            <option value="200000532,200003498,200003500">👕 בגדים</option>
+            <option value="200003490">👜 תיקים</option>
+            <option value="200003354">💎 תכשיטים</option>
+            <option value="200003297">⌚ שעונים</option>
+            <option value="200003332,200003406">📱 אלקטרוניקה</option>
+            <option value="200003502,200003470">👶 אמא ותינוק</option>
+            <option value="200003398">💄 יופי ובריאות</option>
+            <option value="200003444">🏠 בית וגן</option>
+            <option value="200003484">⚽ ספורט</option>
+            <option value="200003488">💇 שיער</option>
+          </select>
+        </div>
+      </div>
+      <!-- Quick Price Filters -->
+      <div class="quick-filters" id="quickFilters">
+        <button class="quick-filter-btn" onclick="quickPrice(0,50)">💰 עד ₪50</button>
+        <button class="quick-filter-btn" onclick="quickPrice(50,200)">💵 ₪50-₪200</button>
+        <button class="quick-filter-btn" onclick="quickPrice(200,0)">💎 ₪200+</button>
+        <button class="quick-filter-btn deals-btn" onclick="toggleDeals()">🔥 <span data-i18n="dealsOnly">דילים</span></button>
       </div>
 
       <!-- Related searches -->
@@ -388,18 +416,18 @@
     <div class="steps-grid">
       <div class="step">
         <div class="step-number">1</div>
-        <h3 data-i18n="step1Title">חפשי מוצר</h3>
-        <p data-i18n="step1Desc">כתבי בעברית או אנגלית מה את מחפשת</p>
+        <h3 data-i18n="step1Title">חפשו מוצר</h3>
+        <p data-i18n="step1Desc">כתבו בעברית או אנגלית מה אתם מחפשים</p>
       </div>
       <div class="step">
         <div class="step-number">2</div>
-        <h3 data-i18n="step2Title">קבלי תוצאות</h3>
+        <h3 data-i18n="step2Title">קבלו תוצאות</h3>
         <p data-i18n="step2Desc">המערכת מחפשת את הדילים הכי טובים</p>
       </div>
       <div class="step">
         <div class="step-number">3</div>
-        <h3 data-i18n="step3Title">קני בזול</h3>
-        <p data-i18n="step3Desc">לחצי על המוצר ותועברי ישירות לאלי אקספרס</p>
+        <h3 data-i18n="step3Title">קנו בזול</h3>
+        <p data-i18n="step3Desc">לחצו על המוצר ותועברו ישירות לאלי אקספרס</p>
       </div>
     </div>
   </section>
@@ -434,7 +462,7 @@
   <div class="modal-overlay" id="shareModal" style="display:none" onclick="if(event.target===this)closeShareModal()">
     <div class="share-modal">
       <button class="modal-close" onclick="closeShareModal()">✕</button>
-      <h3 class="share-modal-title" data-i18n="shareTitle">📤 שתפי את הדיל!</h3>
+      <h3 class="share-modal-title" data-i18n="shareTitle">📤 שתפו את הדיל!</h3>
       <div class="share-buttons">
         <button class="share-platform-btn whatsapp-btn" id="shareWhatsApp"><span class="share-icon">💬</span> WhatsApp</button>
         <button class="share-platform-btn telegram-btn" id="shareTelegram"><span class="share-icon">✈️</span> Telegram</button>
@@ -481,18 +509,18 @@
   <section class="newsletter-section" id="newsletterSection">
     <div class="newsletter-content">
       <div class="newsletter-icon">📬</div>
-      <h2 class="newsletter-title" data-i18n="nlTitle">קבלי דילים חמים לאימייל!</h2>
-      <p class="newsletter-desc" data-i18n="nlDesc">הירשמי לניוזלטר השבועי וקבלי את המבצעים הכי שווים ישירות למייל</p>
+      <h2 class="newsletter-title" data-i18n="nlTitle">קבלו דילים חמים לאימייל!</h2>
+      <p class="newsletter-desc" data-i18n="nlDesc">הירשמו לניוזלטר השבועי וקבלו את המבצעים הכי שווים ישירות למייל</p>
       <form class="newsletter-form" id="newsletterForm" onsubmit="subscribeNewsletter(event)">
         <div class="newsletter-input-wrap">
-          <input type="email" id="nlEmail" class="newsletter-input" placeholder="הכניסי את האימייל שלך" data-i18n-placeholder="nlPlaceholder" required>
+          <input type="email" id="nlEmail" class="newsletter-input" placeholder="הכניסו את האימייל שלכם" data-i18n-placeholder="nlPlaceholder" required>
           <button type="submit" class="newsletter-btn" data-i18n="nlBtn">הרשמה</button>
         </div>
       </form>
       <p class="newsletter-privacy" data-i18n="nlPrivacy">🔒 לא נשלח ספאם. ביטול בכל עת.</p>
       <div class="newsletter-success" id="nlSuccess" style="display:none">
         <span class="newsletter-success-icon">✅</span>
-        <span data-i18n="nlSuccess">נרשמת בהצלחה! נשלח לך את הדילים הכי טובים</span>
+        <span data-i18n="nlSuccess">נרשמתם בהצלחה! נשלח לכם את הדילים הכי טובים</span>
       </div>
     </div>
   </section>
@@ -503,7 +531,7 @@
       <button class="nl-popup-close" onclick="closeNlPopup()">&times;</button>
       <div class="nl-popup-icon">🎁</div>
       <h3 class="nl-popup-title" data-i18n="nlPopupTitle">אל תפספסי דילים!</h3>
-      <p class="nl-popup-desc" data-i18n="nlPopupDesc">הצטרפי לאלפי מנויים שמקבלים את המבצעים הכי חמים כל שבוע</p>
+      <p class="nl-popup-desc" data-i18n="nlPopupDesc">הצטרפו לאלפי מנויים שמקבלים את המבצעים הכי חמים כל שבוע</p>
       <form class="nl-popup-form" onsubmit="subscribeNewsletter(event, true)">
         <input type="email" id="nlPopupEmail" class="newsletter-input" placeholder="הכניסי את האימייל" data-i18n-placeholder="nlPlaceholder" required>
         <button type="submit" class="newsletter-btn nl-popup-btn" data-i18n="nlBtn">הרשמה</button>

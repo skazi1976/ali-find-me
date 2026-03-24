@@ -98,7 +98,7 @@
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { font-family: 'Assistant', 'Segoe UI', sans-serif; background: #f8f9fa; color: #2d3436; line-height: 1.8; }
-    .blog-nav { background: linear-gradient(135deg, #6C5CE7 0%, #5a4bd1 100%); padding: 12px 0; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 20px rgba(108,92,231,0.3); }
+    .blog-nav { background: linear-gradient(135deg, #FF6B00 0%, #5a4bd1 100%); padding: 12px 0; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 20px rgba(255,107,0,0.3); }
     .blog-nav-inner { max-width: 900px; margin: 0 auto; padding: 0 20px; display: flex; align-items: center; justify-content: space-between; }
     .blog-nav a { color: #fff; text-decoration: none; font-weight: 600; font-size: 1.1rem; }
     .blog-nav .logo-link { display: flex; align-items: center; gap: 10px; }
@@ -107,7 +107,7 @@
     .blog-nav .nav-links a { font-size: 0.95rem; opacity: 0.9; transition: opacity 0.2s; }
     .blog-nav .nav-links a:hover { opacity: 1; }
     .breadcrumb { max-width: 900px; margin: 20px auto 0; padding: 0 20px; font-size: 0.85rem; color: #636e72; }
-    .breadcrumb a { color: #6C5CE7; text-decoration: none; }
+    .breadcrumb a { color: #FF6B00; text-decoration: none; }
     .breadcrumb a:hover { text-decoration: underline; }
     .article-container { max-width: 900px; margin: 20px auto 40px; padding: 0 20px; }
     .article-header { margin-bottom: 30px; }
@@ -115,18 +115,18 @@
     .article-meta { display: flex; gap: 20px; color: #636e72; font-size: 0.9rem; flex-wrap: wrap; }
     .article-meta span { display: flex; align-items: center; gap: 5px; }
     .article-body { background: #fff; border-radius: 16px; padding: 40px; box-shadow: 0 2px 20px rgba(0,0,0,0.06); }
-    .article-body h2 { font-family: 'Heebo', sans-serif; font-size: 1.5rem; font-weight: 700; color: #6C5CE7; margin: 35px 0 15px; padding-bottom: 8px; border-bottom: 2px solid #f0ecff; }
+    .article-body h2 { font-family: 'Heebo', sans-serif; font-size: 1.5rem; font-weight: 700; color: #FF6B00; margin: 35px 0 15px; padding-bottom: 8px; border-bottom: 2px solid #f0ecff; }
     .article-body h2:first-child { margin-top: 0; }
     .article-body h3 { font-size: 1.2rem; font-weight: 600; color: #2d3436; margin: 25px 0 10px; }
     .article-body p { margin-bottom: 16px; font-size: 1.05rem; }
     .article-body ul, .article-body ol { margin: 10px 0 20px 24px; }
     .article-body li { margin-bottom: 8px; font-size: 1.02rem; }
-    .tip-box { background: linear-gradient(135deg, #f0ecff 0%, #e8e4ff 100%); border-left: 4px solid #6C5CE7; border-radius: 0 12px 12px 0; padding: 20px 24px; margin: 24px 0; }
-    .tip-box strong { color: #6C5CE7; }
-    .cta-box { background: linear-gradient(135deg, #6C5CE7 0%, #5a4bd1 100%); color: #fff; border-radius: 16px; padding: 30px; margin: 35px 0; text-align: center; }
+    .tip-box { background: linear-gradient(135deg, #f0ecff 0%, #e8e4ff 100%); border-left: 4px solid #FF6B00; border-radius: 0 12px 12px 0; padding: 20px 24px; margin: 24px 0; }
+    .tip-box strong { color: #FF6B00; }
+    .cta-box { background: linear-gradient(135deg, #FF6B00 0%, #5a4bd1 100%); color: #fff; border-radius: 16px; padding: 30px; margin: 35px 0; text-align: center; }
     .cta-box h3 { color: #fff; font-size: 1.4rem; margin-bottom: 12px; }
     .cta-box p { color: rgba(255,255,255,0.9); margin-bottom: 20px; }
-    .cta-btn { display: inline-block; background: #fff; color: #6C5CE7; padding: 14px 36px; border-radius: 30px; text-decoration: none; font-weight: 700; font-size: 1.1rem; transition: transform 0.2s, box-shadow 0.2s; }
+    .cta-btn { display: inline-block; background: #fff; color: #FF6B00; padding: 14px 36px; border-radius: 30px; text-decoration: none; font-weight: 700; font-size: 1.1rem; transition: transform 0.2s, box-shadow 0.2s; }
     .cta-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.2); }
     .warning-box { background: #fff3e0; border-left: 4px solid #ff9800; border-radius: 0 12px 12px 0; padding: 20px 24px; margin: 24px 0; }
     .warning-box strong { color: #e65100; }
@@ -146,7 +146,7 @@
     .related-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 20px; }
     .related-card { background: #f8f9fa; border-radius: 12px; padding: 20px; text-decoration: none; color: #2d3436; transition: transform 0.2s, box-shadow 0.2s; }
     .related-card:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(0,0,0,0.1); }
-    .related-card h3 { font-size: 1rem; color: #6C5CE7; margin-bottom: 8px; }
+    .related-card h3 { font-size: 1rem; color: #FF6B00; margin-bottom: 8px; }
     .related-card p { font-size: 0.9rem; color: #636e72; }
     @media (max-width: 768px) {
       .article-header h1 { font-size: 1.6rem; }
@@ -187,7 +187,7 @@
     <div class="article-body">
 
       <h2>Why Smart Shoppers Use Search Tools for AliExpress</h2>
-      <p>AliExpress has over 100 million products from thousands of sellers worldwide. Finding the best deal among all these options can feel overwhelming. That's exactly why smart shoppers use dedicated search tools like <a href="../en/" style="color:#6C5CE7;font-weight:600;">Ali Find Me</a> — to cut through the noise and find exactly what they need at the best price.</p>
+      <p>AliExpress has over 100 million products from thousands of sellers worldwide. Finding the best deal among all these options can feel overwhelming. That's exactly why smart shoppers use dedicated search tools like <a href="../en/" style="color:#FF6B00;font-weight:600;">Ali Find Me</a> — to cut through the noise and find exactly what they need at the best price.</p>
       <p>Whether you're shopping for trendy fashion, cool gadgets, home decor, or gifts, this guide will teach you how to shop smarter and save more in 2026.</p>
 
       <h2>1. Use a Smart Search Engine</h2>
@@ -245,7 +245,7 @@
       </ul>
 
       <h2>8. Use Image Search to Find Products</h2>
-      <p>Saw something you like on Instagram or Pinterest? Use <a href="../en/" style="color:#6C5CE7;font-weight:600;">Ali Find Me's image search</a> to find it on AliExpress. Just upload a photo and the AI will find matching products at the best prices.</p>
+      <p>Saw something you like on Instagram or Pinterest? Use <a href="../en/" style="color:#FF6B00;font-weight:600;">Ali Find Me's image search</a> to find it on AliExpress. Just upload a photo and the AI will find matching products at the best prices.</p>
 
       <h2>9. Set Price Alerts for Wishlist Items</h2>
       <p>Don't buy impulsively. Add items to your favorites and wait for price drops. Many products go on sale during weekly promotions. Ali Find Me lets you set price alerts so you get notified the moment an item drops in price.</p>
