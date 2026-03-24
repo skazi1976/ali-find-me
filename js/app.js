@@ -1952,9 +1952,51 @@ function onAlertClick(productJson) {
   }
 }
 
+// Quick English-to-Hebrew product title translations (common words)
+const TITLE_TRANSLATIONS = {
+  // Clothing
+  'women':'נשים','men':'גברים','kids':'ילדים','baby':'תינוק','dress':'שמלה','shirt':'חולצה','pants':'מכנסיים',
+  'shoes':'נעליים','sneakers':'סניקרס','jacket':'ז\'קט','coat':'מעיל','shorts':'מכנסיים קצרים','socks':'גרביים',
+  'underwear':'תחתונים','bra':'חזייה','swimsuit':'בגד ים','hat':'כובע','scarf':'צעיף','gloves':'כפפות',
+  // Electronics
+  'wireless':'אלחוטי','bluetooth':'בלוטות\'','earbuds':'אוזניות','headphones':'אוזניות','charger':'מטען',
+  'cable':'כבל','phone':'טלפון','case':'כיסוי','screen':'מסך','protector':'מגן','smart':'חכם','watch':'שעון',
+  'camera':'מצלמה','speaker':'רמקול','keyboard':'מקלדת','mouse':'עכבר','laptop':'מחשב נייד',
+  // Beauty & Nails
+  'nail':'ציפורן','nails':'ציפורניים','gel':'ג\'ל','polish':'לק','glitter':'נצנצים','sticker':'מדבקה',
+  'brush':'מברשת','makeup':'איפור','lipstick':'שפתון','mascara':'מסקרה','cream':'קרם','serum':'סרום',
+  'face':'פנים','skin':'עור','hair':'שיער','beauty':'יופי','mirror':'מראה',
+  // Home & Kitchen
+  'home':'בית','kitchen':'מטבח','bathroom':'אמבטיה','towel':'מגבת','lamp':'מנורה','light':'אור',
+  'led':'לד','solar':'סולארי','garden':'גן','tool':'כלי','storage':'אחסון','organizer':'מארגן',
+  'cup':'כוס','mug':'ספל','bottle':'בקבוק','plate':'צלחת','bowl':'קערה','spoon':'כף',
+  // Baby
+  'toy':'צעצוע','toys':'צעצועים','educational':'חינוכי','montessori':'מונטסורי','puzzle':'פאזל',
+  'stroller':'עגלה','diaper':'חיתול','feeding':'האכלה','silicone':'סיליקון','teether':'נשכן',
+  'romper':'אוברול','newborn':'יילוד','infant':'תינוק','toddler':'פעוט',
+  // Materials & Features
+  'leather':'עור','cotton':'כותנה','silk':'משי','stainless':'נירוסטה','steel':'פלדה',
+  'waterproof':'עמיד למים','portable':'נייד','mini':'מיני','large':'גדול','small':'קטן',
+  'set':'סט','pack':'חבילה','pcs':'יחידות','new':'חדש','original':'מקורי','genuine':'מקורי',
+  'free':'חינם','shipping':'משלוח','hot':'חם','sale':'מבצע','color':'צבע','black':'שחור','white':'לבן','red':'אדום','blue':'כחול','pink':'ורוד','gold':'זהב','silver':'כסף',
+};
+
+function translateTitle(title) {
+  if (currentLang !== 'he' || !title) return title;
+  // Split title, translate known words, keep unknown as-is
+  const words = title.split(/[\s,\-\/]+/);
+  const translated = words.map(w => {
+    const lower = w.toLowerCase().replace(/[^a-z]/g, '');
+    return TITLE_TRANSLATIONS[lower] || w;
+  });
+  return translated.join(' ');
+}
+
 function renderProducts(products, append = false) {
   const grid = document.getElementById("productGrid");
-  const html = products.map(p => buildProductCard(p)).join("");
+  // Translate titles for Hebrew users
+  const translatedProducts = products.map(p => ({...p, title: translateTitle(p.title)}));
+  const html = translatedProducts.map(p => buildProductCard(p)).join("");
   if (append) grid.innerHTML += html;
   else grid.innerHTML = html;
 
@@ -2346,6 +2388,18 @@ async function loadMore() {
   } catch { currentPage--; }
   isLoading = false;
 }
+
+// Infinite scroll - auto-load more when near bottom
+let infiniteScrollEnabled = true;
+window.addEventListener('scroll', () => {
+  if (!infiniteScrollEnabled || isLoading || !currentQuery) return;
+  const loadMoreBtn = document.getElementById("loadMore");
+  if (!loadMoreBtn || loadMoreBtn.style.display === "none") return;
+  const rect = loadMoreBtn.getBoundingClientRect();
+  if (rect.top < window.innerHeight + 500) {
+    loadMore();
+  }
+});
 
 function clearResults() {
   document.getElementById("resultsSection").style.display = "none";
