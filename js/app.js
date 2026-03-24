@@ -1464,7 +1464,7 @@ async function loadCategories() {
 
 async function loadTrending() {
   try {
-    const resp = await fetch(`${API_BASE}/trending`);
+    const resp = await fetch(`${API_BASE}/trending?lang=${currentLang}&currency=${currentCurrencyCode}&country=${currentCountry}`);
     const data = await resp.json();
     if (data.products && data.products.length > 0) {
       renderTrending(data.products);
@@ -1781,8 +1781,6 @@ function renderCategories(categories) {
 function renderTrending(products) {
   const batch = products.slice(0, 18);
   document.getElementById("trendingGrid").innerHTML = batch.map(p => buildProductCard(p)).join("");
-  // Translate trending titles to Hebrew in background
-  if (currentLang === 'he') translateTitlesInBackground(batch);
 }
 
 function renderRelatedSearches(related) {
