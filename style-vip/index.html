@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>הצטרפות לקבוצת VIP</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #fdf2f8 0%, #f3e8ff 100%);
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: #333;
+        }
+        
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            max-width: 500px;
+            width: 100%;
+            border: 2px solid #e0e7ff;
+        }
+        
+        .icon { 
+            font-size: 60px; 
+            margin-bottom: 20px;
+            animation: pulse 2s infinite;
+        }
+        
+        h1 { 
+            color: #8b5cf6; 
+            margin-bottom: 10px;
+            font-size: 28px;
+        }
+        
+        h2 {
+            color: #6b7280;
+            font-weight: normal;
+            margin-bottom: 30px;
+        }
+        
+        .loading-text { 
+            font-size: 16px; 
+            margin-top: 20px;
+            color: #6b7280;
+        }
+        
+        .spinner {
+            border: 4px solid rgba(139, 92, 246, 0.1);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border-left-color: #8b5cf6;
+            animation: spin 1s ease infinite;
+            margin: 20px auto;
+        }
+        
+        .status {
+            background: #dcfce7;
+            color: #166534;
+            padding: 10px 20px;
+            border-radius: 25px;
+            display: inline-block;
+            margin: 15px 0;
+            font-weight: bold;
+        }
+        
+        .backup-link {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #e5e7eb;
+        }
+        
+        .backup-btn {
+            background: #25D366;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 25px;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+        
+        .backup-btn:hover {
+            background: #20b85a;
+            transform: translateY(-2px);
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        
+        @media (max-width: 480px) {
+            .container { 
+                padding: 30px 20px; 
+                margin: 10px;
+            }
+            h1 { font-size: 24px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="icon">🚀</div>
+        <h1>מיד מצטרפת לקבוצה!</h1>
+        <h2>פותחות לך את וואטסאפ...</h2>
+        
+        <div class="status">✅ מעבדות את הבקשה</div>
+        
+        <div class="spinner"></div>
+        <p class="loading-text">מעבירות אותך אוטומטית תוך שניות ספורות</p>
+        
+        <!-- קישור גיבוי למקרה שהאוטומטי לא עובד -->
+        <div class="backup-link">
+            <p><small>לא עובד? לחצי כאן:</small></p>
+            <a href="#" class="backup-btn">
+                📱 הצטרפי לקבוצה ידנית
+            </a>
+        </div>
+    </div>
+
+    <script>
+        // רשימת הקודים של הקבוצות שסיפקת
+        const GROUP_CODES = [
+            'GhtWmGgcjL7J8p6x9xuDTe',
+            'FgK3Fw0JJpXFHUfOgScGtn',
+            'Bf1yLboVOXxHUs3ra2exx9',
+            'EHxcFlT6e8IGe6lcBujcxu'
+        ];
+
+        // בחירת קוד רנדומלי מהרשימה
+        const randomIndex = Math.floor(Math.random() * GROUP_CODES.length);
+        const WHATSAPP_GROUP_CODE = GROUP_CODES[randomIndex];
+
+        // בניית הקישורים לפי הקוד שנבחר
+        const webLink = `https://chat.whatsapp.com/${WHATSAPP_GROUP_CODE}`;
+        const appLink = `whatsapp://chat?code=${WHATSAPP_GROUP_CODE}`;
+
+        // עדכון הקישור הידני בכפתור הגיבוי
+        document.querySelector('.backup-btn').href = webLink;
+
+        function attemptToOpenApp() {
+            console.log('מנסה לפתוח קבוצה:', WHATSAPP_GROUP_CODE);
+            
+            // ניסיון ראשון - פתיחת האפליקציה ישירות (עובד מצוין בנייד)
+            window.location.href = appLink;
+
+            // המתנה קצרה - אם המשתמש עדיין בדף, כנראה הוא בדסקטופ או שאין לו וואטסאפ מותקן
+            setTimeout(() => {
+                window.location.href = webLink;
+            }, 1500);
+        }
+
+        // עדכון סטטוס ויזואלי למשתמשת
+        function updateStatus() {
+            const statusElement = document.querySelector('.status');
+            const loadingTextElement = document.querySelector('.loading-text');
+            
+            setTimeout(() => {
+                statusElement.innerHTML = '🔄 מתחברות לוואטסאפ';
+                loadingTextElement.innerHTML = 'פותחות את האפליקציה עבורך...';
+            }, 800);
+            
+            setTimeout(() => {
+                statusElement.innerHTML = '📱 מפעילות וואטסאפ';
+            }, 1500);
+        }
+
+        // הפעלה אוטומטית לאחר השהיה קלה של 1.5 שניות (בשביל חווית המשתמש)
+        window.onload = () => {
+            setTimeout(() => {
+                updateStatus();
+                attemptToOpenApp();
+            }, 1500);
+        };
+    </script>
+</body>
+</html>
