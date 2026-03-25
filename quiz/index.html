@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>מה השם שלך אומר עלייך? 🔮 | Ali Find Me</title>
+    <meta name="description" content="הכנס/י את השם שלך וגלה/י מה הוא אומר על האישיות שלך! קוויז ויראלי בעברית 🔮">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="מה השם שלך אומר עלייך? 🔮">
+    <meta property="og:description" content="הכנס/י את השם שלך וגלה/י מה הוא אומר על האישיות שלך! התוצאות מטורפות 😍">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://alifindme.com/quiz/">
+    <meta property="og:image" content="https://alifindme.com/icons/icon-512x512.png">
+    <meta property="og:locale" content="he_IL">
+    <meta property="og:site_name" content="Ali Find Me">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="מה השם שלך אומר עלייך? 🔮">
+    <meta name="twitter:description" content="הכנס/י את השם שלך וגלה/י מה הוא אומר על האישיות שלך! 😍">
+    <meta name="twitter:image" content="https://alifindme.com/icons/icon-512x512.png">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;600;700;800;900&family=Assistant:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-18NLX6KS89"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-18NLX6KS89');
+    </script>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #0f0f0f;
+            color: #fff;
+            font-family: 'Assistant', 'Heebo', sans-serif;
+            direction: rtl;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Heebo', sans-serif;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px 16px;
+        }
+
+        /* Landing Section */
+        #landing {
+            text-align: center;
+            padding: 60px 0 40px;
+            animation: fadeIn 0.6s ease;
+        }
+
+        .crystal-ball {
+            font-size: 80px;
+            margin-bottom: 20px;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        #landing h1 {
+            font-size: 2.2rem;
+            font-weight: 900;
+            line-height: 1.3;
+            margin-bottom: 12px;
+            background: linear-gradient(135deg, #ff6b00, #ff9a44);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        #landing .subtitle {
+            font-size: 1.2rem;
+            color: #aaa;
+            margin-bottom: 40px;
+        }
+
+        .input-group {
+            position: relative;
+            margin-bottom: 24px;
+        }
+
+        .name-input {
+            width: 100%;
+            padding: 18px 24px;
+            font-size: 1.3rem;
+            font-family: 'Heebo', sans-serif;
+            font-weight: 600;
+            border: 2px solid #333;
+            border-radius: 16px;
+            background: #1a1a1a;
+            color: #fff;
+            text-align: center;
+            outline: none;
+            transition: border-color 0.3s, box-shadow 0.3s;
+            direction: rtl;
+        }
+
+        .name-input::placeholder {
+            color: #666;
+        }
+
+        .name-input:focus {
+            border-color: #ff6b00;
+            box-shadow: 0 0 20px rgba(255, 107, 0, 0.2);
+        }
+
+        .cta-btn {
+            display: inline-block;
+            width: 100%;
+            padding: 18px 40px;
+            font-size: 1.4rem;
+            font-family: 'Heebo', sans-serif;
+            font-weight: 800;
+            color: #fff;
+            background: linear-gradient(135deg, #ff6b00, #ff8c33);
+            border: none;
+            border-radius: 16px;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 20px rgba(255, 107, 0, 0.4);
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 30px rgba(255, 107, 0, 0.5);
+        }
+
+        .cta-btn:active {
+            transform: translateY(0);
+        }
+
+        /* Analysis Section */
+        #analysis {
+            display: none;
+            text-align: center;
+            padding: 80px 0;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .spinner-container {
+            position: relative;
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 30px;
+        }
+
+        .spinner {
+            width: 120px;
+            height: 120px;
+            border: 4px solid #222;
+            border-top: 4px solid #ff6b00;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        .spinner-emoji {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 40px;
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); }
+            50% { transform: translate(-50%, -50%) scale(1.2); }
+        }
+
+        #analysis h2 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: #ff6b00;
+        }
+
+        .analysis-sub {
+            color: #888;
+            font-size: 1rem;
+            margin-bottom: 30px;
+        }
+
+        .progress-bar {
+            width: 80%;
+            max-width: 300px;
+            height: 8px;
+            background: #222;
+            border-radius: 10px;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #ff6b00, #ff9a44);
+            border-radius: 10px;
+            width: 0%;
+            transition: width 0.1s linear;
+        }
+
+        /* Results Section */
+        #results {
+            display: none;
+            animation: fadeIn 0.6s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .results-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .results-header h2 {
+            font-size: 1.8rem;
+            font-weight: 900;
+            margin-bottom: 8px;
+        }
+
+        .results-name {
+            font-size: 2.5rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #ff6b00, #ff9a44);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 24px;
+        }
+
+        .traits-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 30px;
+        }
+
+        .trait-card {
+            background: #1a1a1a;
+            border: 1px solid #2a2a2a;
+            border-radius: 14px;
+            padding: 16px 20px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            animation: slideIn 0.4s ease backwards;
+        }
+
+        .trait-card:nth-child(1) { animation-delay: 0.1s; }
+        .trait-card:nth-child(2) { animation-delay: 0.2s; }
+        .trait-card:nth-child(3) { animation-delay: 0.3s; }
+        .trait-card:nth-child(4) { animation-delay: 0.4s; }
+        .trait-card:nth-child(5) { animation-delay: 0.5s; }
+        .trait-card:nth-child(6) { animation-delay: 0.6s; }
+        .trait-card:nth-child(7) { animation-delay: 0.7s; }
+        .trait-card:nth-child(8) { animation-delay: 0.8s; }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(30px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .trait-letter {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #ff6b00, #ff8c33);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 900;
+            font-family: 'Heebo', sans-serif;
+            flex-shrink: 0;
+        }
+
+        .trait-text {
+            font-size: 1.05rem;
+            font-weight: 600;
+            line-height: 1.4;
+        }
+
+        .trait-emoji {
+            margin-left: 6px;
+        }
+
+        .summary-card {
+            background: linear-gradient(135deg, #1a1200, #1a0f00);
+            border: 2px solid #ff6b00;
+            border-radius: 20px;
+            padding: 24px;
+            text-align: center;
+            margin-bottom: 40px;
+            animation: fadeIn 0.6s ease 0.5s backwards;
+        }
+
+        .summary-card p {
+            font-size: 1.3rem;
+            font-weight: 700;
+            line-height: 1.6;
+        }
+
+        /* Share Section */
+        .share-section {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .share-section h3 {
+            font-size: 1.4rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+        }
+
+        .share-buttons {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .share-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 20px;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 700;
+            font-family: 'Heebo', sans-serif;
+            text-decoration: none;
+            color: #fff;
+            transition: transform 0.2s, opacity 0.2s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .share-btn:hover {
+            transform: translateY(-2px);
+            opacity: 0.9;
+        }
+
+        .share-btn.whatsapp { background: #25D366; }
+        .share-btn.telegram { background: #0088cc; }
+        .share-btn.facebook { background: #1877F2; }
+        .share-btn.twitter { background: #1DA1F2; }
+
+        .share-btn svg {
+            width: 20px;
+            height: 20px;
+            fill: #fff;
+        }
+
+        /* Products Section */
+        .products-section {
+            margin-bottom: 40px;
+        }
+
+        .products-section h3 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 16px;
+        }
+
+        .product-card {
+            background: #1a1a1a;
+            border: 1px solid #2a2a2a;
+            border-radius: 16px;
+            overflow: hidden;
+            transition: transform 0.2s, border-color 0.2s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-4px);
+            border-color: #ff6b00;
+        }
+
+        .product-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            background: #222;
+        }
+
+        .product-info {
+            padding: 16px;
+        }
+
+        .product-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .product-price {
+            font-size: 1.4rem;
+            font-weight: 900;
+            color: #ff6b00;
+            margin-bottom: 12px;
+        }
+
+        .product-btn {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(135deg, #ff6b00, #ff8c33);
+            color: #fff;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 700;
+            font-family: 'Heebo', sans-serif;
+            transition: opacity 0.2s;
+        }
+
+        .product-btn:hover {
+            opacity: 0.9;
+        }
+
+        /* Bottom CTA */
+        .bottom-cta {
+            display: block;
+            background: linear-gradient(135deg, #ff6b00, #ff8c33);
+            border-radius: 20px;
+            padding: 24px;
+            text-align: center;
+            text-decoration: none;
+            color: #fff;
+            margin-bottom: 30px;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 20px rgba(255, 107, 0, 0.3);
+        }
+
+        .bottom-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(255, 107, 0, 0.5);
+        }
+
+        .bottom-cta h3 {
+            font-size: 1.4rem;
+            font-weight: 800;
+        }
+
+        .bottom-cta p {
+            font-size: 0.95rem;
+            opacity: 0.9;
+            margin-top: 6px;
+        }
+
+        /* Counter */
+        .counter {
+            text-align: center;
+            padding: 20px;
+            color: #666;
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+        }
+
+        .counter span {
+            color: #ff6b00;
+            font-weight: 700;
+        }
+
+        /* Try Again */
+        .try-again-btn {
+            display: block;
+            width: 100%;
+            padding: 16px;
+            font-size: 1.1rem;
+            font-family: 'Heebo', sans-serif;
+            font-weight: 700;
+            color: #ff6b00;
+            background: transparent;
+            border: 2px solid #ff6b00;
+            border-radius: 14px;
+            cursor: pointer;
+            margin-bottom: 20px;
+            transition: background 0.2s, color 0.2s;
+        }
+
+        .try-again-btn:hover {
+            background: #ff6b00;
+            color: #fff;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 20px;
+            color: #444;
+            font-size: 0.85rem;
+        }
+
+        .footer a {
+            color: #ff6b00;
+            text-decoration: none;
+        }
+
+        /* Tablet+ */
+        @media (min-width: 500px) {
+            .products-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .product-img {
+                height: 160px;
+            }
+        }
+
+        /* Error shake */
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            20%, 60% { transform: translateX(-8px); }
+            40%, 80% { transform: translateX(8px); }
+        }
+
+        .shake {
+            animation: shake 0.4s ease;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <!-- Counter -->
+    <div class="counter">
+        <span id="counter-num">12,847</span> כבר גילו מה השם שלהם אומר!
+    </div>
+
+    <!-- Landing -->
+    <div id="landing">
+        <div class="crystal-ball">🔮</div>
+        <h1>מה השם שלך אומר עלייך?</h1>
+        <p class="subtitle">הכנס/י את השם ותגלה/י!</p>
+        <div class="input-group">
+            <input type="text" class="name-input" id="nameInput" placeholder="הקלד/י את השם שלך..." autocomplete="off" maxlength="20">
+        </div>
+        <button class="cta-btn" id="startBtn" onclick="startQuiz()">גלה עכשיו! 🔮</button>
+    </div>
+
+    <!-- Analysis -->
+    <div id="analysis">
+        <div class="spinner-container">
+            <div class="spinner"></div>
+            <div class="spinner-emoji">🔮</div>
+        </div>
+        <h2>מנתח את השם שלך...</h2>
+        <p class="analysis-sub" id="analysisText">בודק את האותיות...</p>
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressFill"></div>
+        </div>
+    </div>
+
+    <!-- Results -->
+    <div id="results">
+        <div class="results-header">
+            <h2>התוצאות של ✨</h2>
+            <div class="results-name" id="resultsName"></div>
+        </div>
+
+        <div class="traits-grid" id="traitsGrid"></div>
+
+        <div class="summary-card">
+            <p id="summaryText"></p>
+        </div>
+
+        <!-- Share -->
+        <div class="share-section">
+            <h3>שתף/י עם חברים! 📲</h3>
+            <div class="share-buttons">
+                <a class="share-btn whatsapp" id="shareWhatsapp" href="#" target="_blank" rel="noopener">
+                    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                    WhatsApp
+                </a>
+                <a class="share-btn telegram" id="shareTelegram" href="#" target="_blank" rel="noopener">
+                    <svg viewBox="0 0 24 24"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.479.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+                    Telegram
+                </a>
+                <a class="share-btn facebook" id="shareFacebook" href="#" target="_blank" rel="noopener">
+                    <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                    Facebook
+                </a>
+                <a class="share-btn twitter" id="shareTwitter" href="#" target="_blank" rel="noopener">
+                    <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                    Twitter
+                </a>
+            </div>
+        </div>
+
+        <!-- Try Again -->
+        <button class="try-again-btn" onclick="resetQuiz()">🔄 רוצה לנסות שם אחר?</button>
+
+        <!-- Products -->
+        <div class="products-section">
+            <h3>בזמן שאתה כאן... 🔥</h3>
+            <div class="products-grid">
+                <div class="product-card">
+                    <img class="product-img" src="https://ae01.alicdn.com/kf/S5c3b3e0e88c742809fff5c3dc83f9de5M.jpg" alt="אוזניות אלחוטיות" loading="lazy" onerror="this.style.background='#333';this.alt='🎧'">
+                    <div class="product-info">
+                        <div class="product-title">🎧 אוזניות אלחוטיות</div>
+                        <div class="product-price">₪65</div>
+                        <a class="product-btn" href="https://alifindme.com/go/ppyeti" target="_blank" rel="noopener">לצפייה בדיל →</a>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img class="product-img" src="https://ae01.alicdn.com/kf/Sba7cbb6e85e34eb09c40e59d98fdab42B.jpg" alt="תיק עור אמיתי" loading="lazy" onerror="this.style.background='#333';this.alt='👜'">
+                    <div class="product-info">
+                        <div class="product-title">👜 תיק עור אמיתי</div>
+                        <div class="product-price">₪113</div>
+                        <a class="product-btn" href="https://alifindme.com/go/bag1" target="_blank" rel="noopener">לצפייה בדיל →</a>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img class="product-img" src="https://ae01.alicdn.com/kf/S0b8f8e4c1e5a47e0a0f9d3e2c4b6a8d0N.jpg" alt="תכשיטים" loading="lazy" onerror="this.style.background='#333';this.alt='💎'">
+                    <div class="product-info">
+                        <div class="product-title">💎 תכשיטים</div>
+                        <div class="product-price">₪31</div>
+                        <a class="product-btn" href="https://alifindme.com" target="_blank" rel="noopener">לצפייה בדיל →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom CTA -->
+        <a class="bottom-cta" href="https://alifindme.com" target="_blank" rel="noopener">
+            <h3>מצאו דילים מטורפים באלי אקספרס 🔍</h3>
+            <p>חיפוש חכם בעברית עם בינה מלאכותית</p>
+        </a>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <a href="https://alifindme.com">Ali Find Me</a> — חיפוש חכם באלי אקספרס 🇮🇱
+    </div>
+
+</div>
+
+<script>
+    // Hebrew letter traits
+    const letterTraits = {
+        'א': { trait: 'אמביציוזי/ת', emoji: '💪' },
+        'ב': { trait: 'בעל/ת כריזמה', emoji: '✨' },
+        'ג': { trait: 'גאון/ית בהסתרה', emoji: '🧠' },
+        'ד': { trait: 'דייקן/ית ומדויק/ת', emoji: '🎯' },
+        'ה': { trait: 'הכי נאמן/ה בחבורה', emoji: '💎' },
+        'ו': { trait: 'ותיק/ה ומנוסה', emoji: '🏆' },
+        'ז': { trait: 'זוהר/ת מבפנים', emoji: '☀️' },
+        'ח': { trait: 'חכם/ה ברגע האמת', emoji: '🔥' },
+        'ט': { trait: 'טוב/ה לב ברמות', emoji: '💕' },
+        'י': { trait: 'יצירתי/ת בטירוף', emoji: '🎨' },
+        'כ': { trait: 'כוכב/ת בלי ספק', emoji: '⭐' },
+        'ך': { trait: 'כוכב/ת בלי ספק', emoji: '⭐' },
+        'ל': { trait: 'לב זהב אמיתי', emoji: '💛' },
+        'מ': { trait: 'מגנט/ית של אנשים', emoji: '🧲' },
+        'ם': { trait: 'מגנט/ית של אנשים', emoji: '🧲' },
+        'נ': { trait: 'נחוש/ה ועקשן/ית (בטוב!)', emoji: '💪' },
+        'ן': { trait: 'נחוש/ה ועקשן/ית (בטוב!)', emoji: '💪' },
+        'ס': { trait: 'סטייליסט/ית מלידה', emoji: '👗' },
+        'ע': { trait: 'עוצמתי/ת ומשפיע/ה', emoji: '🌟' },
+        'פ': { trait: 'פותר/ת בעיות מספר 1', emoji: '🔧' },
+        'ף': { trait: 'פותר/ת בעיות מספר 1', emoji: '🔧' },
+        'צ': { trait: 'צוחק/ת בדרך להצלחה', emoji: '😄' },
+        'ץ': { trait: 'צוחק/ת בדרך להצלחה', emoji: '😄' },
+        'ק': { trait: 'קסום/ה ומלא/ת הפתעות', emoji: '🎁' },
+        'ר': { trait: 'רומנטי/ת אמיתי/ת', emoji: '🌹' },
+        'ש': { trait: 'שובר/ת שיאים', emoji: '🏅' },
+        'ת': { trait: 'תמיד צעד אחד קדימה', emoji: '🚀' }
+    };
+
+    const summaries = [
+        'וואו {name}! אתה/את פשוט מדהים/ה! לא סתם כולם אוהבים אותך 😍',
+        '{name}, יש בך שילוב נדיר של כוח וחן! 💎',
+        'השם {name} לא ניתן סתם - יש בך משהו מיוחד! ✨',
+        '{name}, אתה/את מהאנשים שמשנים את העולם! 🌍',
+        'אם היו יותר אנשים כמו {name}, העולם היה מקום טוב יותר! 🌟'
+    ];
+
+    const analysisTexts = [
+        'בודק את האותיות...',
+        'מחשב תכונות אישיות...',
+        'מנתח משמעות נסתרת...',
+        'מכין את התוצאות...'
+    ];
+
+    // Counter
+    let counterBase = 12000 + Math.floor(Math.random() * 3000);
+    const counterEl = document.getElementById('counter-num');
+    counterEl.textContent = counterBase.toLocaleString('he-IL');
+
+    setInterval(() => {
+        counterBase += Math.floor(Math.random() * 3) + 1;
+        counterEl.textContent = counterBase.toLocaleString('he-IL');
+    }, 8000 + Math.random() * 7000);
+
+    // Enter key
+    document.getElementById('nameInput').addEventListener('keydown', function(e) {
+        if (e.key === 'Enter') startQuiz();
+    });
+
+    function startQuiz() {
+        const name = document.getElementById('nameInput').value.trim();
+        if (!name) {
+            const input = document.getElementById('nameInput');
+            input.classList.add('shake');
+            input.placeholder = 'חובה להכניס שם! 😊';
+            setTimeout(() => input.classList.remove('shake'), 400);
+            return;
+        }
+
+        // GA event
+        if (typeof gtag === 'function') {
+            gtag('event', 'quiz_start', { event_category: 'quiz', event_label: name });
+        }
+
+        document.getElementById('landing').style.display = 'none';
+        document.getElementById('analysis').style.display = 'block';
+
+        // Progress animation
+        const progressFill = document.getElementById('progressFill');
+        const analysisTextEl = document.getElementById('analysisText');
+        let progress = 0;
+        let textIndex = 0;
+
+        const progressInterval = setInterval(() => {
+            progress += Math.random() * 8 + 2;
+            if (progress > 100) progress = 100;
+            progressFill.style.width = progress + '%';
+
+            const newIndex = Math.min(Math.floor(progress / 25), 3);
+            if (newIndex !== textIndex) {
+                textIndex = newIndex;
+                analysisTextEl.textContent = analysisTexts[textIndex];
+            }
+
+            if (progress >= 100) {
+                clearInterval(progressInterval);
+                setTimeout(() => showResults(name), 300);
+            }
+        }, 100);
+    }
+
+    function showResults(name) {
+        document.getElementById('analysis').style.display = 'none';
+        document.getElementById('results').style.display = 'block';
+        document.getElementById('resultsName').textContent = name;
+
+        // Get unique letters
+        const letters = [];
+        const seen = new Set();
+        for (const char of name) {
+            const baseLetter = getBaseLetter(char);
+            if (baseLetter && letterTraits[baseLetter] && !seen.has(baseLetter)) {
+                seen.add(baseLetter);
+                letters.push({ char: char, trait: letterTraits[baseLetter] });
+            }
+        }
+
+        // Build traits
+        const grid = document.getElementById('traitsGrid');
+        grid.innerHTML = '';
+        letters.forEach(item => {
+            const card = document.createElement('div');
+            card.className = 'trait-card';
+            card.innerHTML = `
+                <div class="trait-letter">${item.char}</div>
+                <div class="trait-text"><span class="trait-emoji">${item.trait.emoji}</span> ${item.trait.trait}</div>
+            `;
+            grid.appendChild(card);
+        });
+
+        // Summary
+        const summary = summaries[Math.floor(Math.random() * summaries.length)].replace('{name}', name);
+        document.getElementById('summaryText').textContent = summary;
+
+        // Share links
+        const quizUrl = 'https://alifindme.com/quiz/';
+        const whatsappText = encodeURIComponent(`עשיתי את הקוויז "מה השם שלך אומר עלייך" 😍 התוצאה שלי מטורפת! תנסו גם 👉 ${quizUrl}`);
+        const shareText = encodeURIComponent(`מה השם שלך אומר עלייך? 🔮 גלו עכשיו! ${quizUrl}`);
+
+        document.getElementById('shareWhatsapp').href = `https://wa.me/?text=${whatsappText}`;
+        document.getElementById('shareTelegram').href = `https://t.me/share/url?url=${encodeURIComponent(quizUrl)}&text=${shareText}`;
+        document.getElementById('shareFacebook').href = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(quizUrl)}`;
+        document.getElementById('shareTwitter').href = `https://twitter.com/intent/tweet?text=${shareText}`;
+
+        // GA event
+        if (typeof gtag === 'function') {
+            gtag('event', 'quiz_complete', { event_category: 'quiz', event_label: name });
+        }
+
+        // Increment counter
+        counterBase++;
+        counterEl.textContent = counterBase.toLocaleString('he-IL');
+
+        // Scroll to top
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function getBaseLetter(char) {
+        // Map final letters to their base form for lookup; both work in the dictionary
+        const finals = { 'ך': 'ך', 'ם': 'ם', 'ן': 'ן', 'ף': 'ף', 'ץ': 'ץ' };
+        if (finals[char]) return char;
+        return char;
+    }
+
+    function resetQuiz() {
+        document.getElementById('results').style.display = 'none';
+        document.getElementById('landing').style.display = 'block';
+        document.getElementById('nameInput').value = '';
+        document.getElementById('nameInput').focus();
+        document.getElementById('progressFill').style.width = '0%';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+</script>
+
+</body>
+</html>
