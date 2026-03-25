@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+var path = window.location.pathname;
+if (path.startsWith('/go/')) {
+  var slug = path.replace('/go/', '').replace('/', '');
+  if (slug && slug !== 'admin.html' && slug !== 'admin') {
+    window.location.replace('https://ali-findme-api.ohadf1976.workers.dev/go/' + slug);
+  }
+}
+</script>
+<title>404</title>
+</head>
+<body>
+<h1>Page not found</h1>
+<p><a href="/">Go home</a></p>
+</body>
+</html>
