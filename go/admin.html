@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ניהול קישורים קצרים - Ali Find Me</title>
+  <meta name="robots" content="noindex, nofollow">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+      background: #f0f2f5;
+      color: #1a1a2e;
+      min-height: 100vh;
+      direction: rtl;
+    }
+    .header {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: #fff;
+      padding: 20px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .header h1 { font-size: 22px; font-weight: 600; }
+    .header .logout { background: rgba(255,255,255,0.2); border: none; color: #fff; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-size: 14px; }
+    .header .logout:hover { background: rgba(255,255,255,0.3); }
+
+    .container { max-width: 900px; margin: 24px auto; padding: 0 16px; }
+
+    /* Login */
+    .login-wrap {
+      display: flex; justify-content: center; align-items: center;
+      min-height: 80vh;
+    }
+    .login-box {
+      background: #fff; border-radius: 12px; padding: 40px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.1); width: 100%; max-width: 380px;
+      text-align: center;
+    }
+    .login-box h2 { margin-bottom: 24px; color: #667eea; }
+    .login-box input {
+      width: 100%; padding: 12px 16px; border: 2px solid #e0e0e0; border-radius: 8px;
+      font-size: 16px; margin-bottom: 16px; text-align: center;
+    }
+    .login-box input:focus { outline: none; border-color: #667eea; }
+    .login-box button {
+      width: 100%; padding: 12px; background: #667eea; color: #fff; border: none;
+      border-radius: 8px; font-size: 16px; font-weight: 600; cursor: pointer;
+    }
+    .login-box button:hover { background: #5a6fd6; }
+    .login-error { color: #e74c3c; margin-top: 8px; font-size: 14px; display: none; }
+
+    /* Add form */
+    .add-form {
+      background: #fff; border-radius: 12px; padding: 24px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06); margin-bottom: 24px;
+    }
+    .add-form h3 { margin-bottom: 16px; font-size: 18px; color: #333; }
+    .form-row { display: flex; gap: 12px; align-items: flex-end; flex-wrap: wrap; }
+    .form-group { flex: 1; min-width: 200px; }
+    .form-group label { display: block; margin-bottom: 6px; font-size: 14px; color: #555; font-weight: 500; }
+    .form-group input {
+      width: 100%; padding: 10px 14px; border: 2px solid #e0e0e0; border-radius: 8px;
+      font-size: 14px; direction: ltr; text-align: left;
+    }
+    .form-group input:focus { outline: none; border-color: #667eea; }
+    .form-group input::placeholder { color: #aaa; }
+    .btn-add {
+      padding: 10px 24px; background: #667eea; color: #fff; border: none;
+      border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer;
+      white-space: nowrap; height: 42px;
+    }
+    .btn-add:hover { background: #5a6fd6; }
+    .btn-add:disabled { opacity: 0.6; cursor: not-allowed; }
+
+    /* Stats bar */
+    .stats-bar {
+      display: flex; gap: 16px; margin-bottom: 20px; flex-wrap: wrap;
+    }
+    .stat-card {
+      background: #fff; border-radius: 10px; padding: 16px 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05); flex: 1; min-width: 120px; text-align: center;
+    }
+    .stat-card .num { font-size: 28px; font-weight: 700; color: #667eea; }
+    .stat-card .label { font-size: 13px; color: #888; margin-top: 4px; }
+
+    /* Links table */
+    .links-table {
+      background: #fff; border-radius: 12px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06); overflow: hidden;
+    }
+    .links-table h3 { padding: 20px 24px 0; font-size: 18px; color: #333; }
+    table { width: 100%; border-collapse: collapse; margin-top: 12px; }
+    th { background: #f8f9fa; padding: 12px 16px; text-align: right; font-size: 13px; color: #666; font-weight: 600; border-bottom: 2px solid #e8e8e8; }
+    td { padding: 12px 16px; border-bottom: 1px solid #f0f0f0; font-size: 14px; }
+    tr:hover td { background: #f8f9fb; }
+    .slug-cell { font-family: monospace; font-weight: 600; color: #667eea; direction: ltr; text-align: left; }
+    .url-cell { max-width: 280px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; direction: ltr; text-align: left; font-size: 13px; color: #555; }
+    .clicks-cell { text-align: center; font-weight: 600; color: #333; }
+    .date-cell { font-size: 12px; color: #888; white-space: nowrap; }
+    .actions-cell { white-space: nowrap; }
+    .btn-copy {
+      padding: 5px 12px; background: #e8f0fe; color: #667eea; border: none;
+      border-radius: 6px; cursor: pointer; font-size: 13px; font-weight: 500;
+      margin-left: 6px;
+    }
+    .btn-copy:hover { background: #d0e0fc; }
+    .btn-delete {
+      padding: 5px 12px; background: #fde8e8; color: #e74c3c; border: none;
+      border-radius: 6px; cursor: pointer; font-size: 13px; font-weight: 500;
+    }
+    .btn-delete:hover { background: #fad0d0; }
+    .empty-state { text-align: center; padding: 48px; color: #999; font-size: 16px; }
+    .toast {
+      position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%);
+      background: #333; color: #fff; padding: 12px 24px; border-radius: 8px;
+      font-size: 14px; opacity: 0; transition: opacity 0.3s; pointer-events: none; z-index: 999;
+    }
+    .toast.show { opacity: 1; }
+    @media (max-width: 600px) {
+      .form-row { flex-direction: column; }
+      .form-group { min-width: 100%; }
+      .stats-bar { flex-direction: column; }
+      th, td { padding: 10px 12px; font-size: 13px; }
+      .url-cell { max-width: 160px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Login Screen -->
+<div id="loginScreen" class="login-wrap">
+  <div class="login-box">
+    <h2>ניהול קישורים</h2>
+    <input type="password" id="passInput" placeholder="סיסמה" autofocus>
+    <button onclick="doLogin()">כניסה</button>
+    <div class="login-error" id="loginError">סיסמה שגויה</div>
+  </div>
+</div>
+
+<!-- Admin Panel -->
+<div id="adminPanel" style="display:none;">
+  <div class="header">
+    <h1>ניהול קישורים קצרים</h1>
+    <button class="logout" onclick="doLogout()">יציאה</button>
+  </div>
+
+  <div class="container">
+    <!-- Stats -->
+    <div class="stats-bar">
+      <div class="stat-card">
+        <div class="num" id="totalLinks">0</div>
+        <div class="label">קישורים</div>
+      </div>
+      <div class="stat-card">
+        <div class="num" id="totalClicks">0</div>
+        <div class="label">קליקים</div>
+      </div>
+    </div>
+
+    <!-- Add New Link -->
+    <div class="add-form">
+      <h3>הוספת קישור חדש</h3>
+      <div class="form-row">
+        <div class="form-group">
+          <label>כתובת יעד (URL)</label>
+          <input type="url" id="newUrl" placeholder="https://s.click.aliexpress.com/e/...">
+        </div>
+        <div class="form-group" style="max-width: 200px;">
+          <label>סלאג (אופציונלי)</label>
+          <input type="text" id="newSlug" placeholder="auto-generated">
+        </div>
+        <button class="btn-add" id="addBtn" onclick="addLink()">הוספה</button>
+      </div>
+    </div>
+
+    <!-- Links Table -->
+    <div class="links-table">
+      <h3>כל הקישורים</h3>
+      <div id="linksContainer">
+        <div class="empty-state">טוען...</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const API_BASE = "https://ali-findme-api.ohadf1976.workers.dev";
+let token = localStorage.getItem("go_admin_token") || "";
+
+// Check if already logged in
+if (token) {
+  checkAuth();
+} else {
+  document.getElementById("loginScreen").style.display = "flex";
+}
+
+document.getElementById("passInput").addEventListener("keydown", (e) => {
+  if (e.key === "Enter") doLogin();
+});
+
+async function doLogin() {
+  const pass = document.getElementById("passInput").value;
+  if (!pass) return;
+  try {
+    const resp = await fetch(API_BASE + "/admin/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ password: pass }),
+    });
+    const data = await resp.json();
+    if (data.token) {
+      token = data.token;
+      localStorage.setItem("go_admin_token", token);
+      showAdmin();
+    } else {
+      document.getElementById("loginError").style.display = "block";
+    }
+  } catch (e) {
+    document.getElementById("loginError").style.display = "block";
+  }
+}
+
+function doLogout() {
+  token = "";
+  localStorage.removeItem("go_admin_token");
+  document.getElementById("adminPanel").style.display = "none";
+  document.getElementById("loginScreen").style.display = "flex";
+  document.getElementById("passInput").value = "";
+  document.getElementById("loginError").style.display = "none";
+}
+
+async function checkAuth() {
+  try {
+    const resp = await fetch(API_BASE + "/go/api/links", {
+      headers: { "Authorization": "Bearer " + token },
+    });
+    if (resp.ok) {
+      showAdmin();
+    } else {
+      doLogout();
+    }
+  } catch {
+    doLogout();
+  }
+}
+
+function showAdmin() {
+  document.getElementById("loginScreen").style.display = "none";
+  document.getElementById("adminPanel").style.display = "block";
+  loadLinks();
+}
+
+async function apiCall(method, body = null) {
+  const opts = {
+    method,
+    headers: {
+      "Authorization": "Bearer " + token,
+      "Content-Type": "application/json",
+    },
+  };
+  if (body) opts.body = JSON.stringify(body);
+  const resp = await fetch(API_BASE + "/go/api/links", opts);
+  return resp.json();
+}
+
+async function loadLinks() {
+  try {
+    const data = await apiCall("GET");
+    const links = data.links || [];
+    document.getElementById("totalLinks").textContent = links.length;
+    document.getElementById("totalClicks").textContent = links.reduce((sum, l) => sum + (l.clicks || 0), 0);
+
+    if (links.length === 0) {
+      document.getElementById("linksContainer").innerHTML = '<div class="empty-state">אין קישורים עדיין. הוסף את הקישור הראשון!</div>';
+      return;
+    }
+
+    let html = '<table><thead><tr><th>סלאג</th><th>יעד</th><th>קליקים</th><th>נוצר</th><th>פעולות</th></tr></thead><tbody>';
+    for (const link of links) {
+      const shortUrl = "https://alifindme.com/go/" + link.slug;
+      const created = link.created ? new Date(link.created).toLocaleDateString("he-IL") : "-";
+      html += `<tr>
+        <td class="slug-cell">${escHtml(link.slug)}</td>
+        <td class="url-cell" title="${escHtml(link.url)}">${escHtml(link.url)}</td>
+        <td class="clicks-cell">${link.clicks || 0}</td>
+        <td class="date-cell">${created}</td>
+        <td class="actions-cell">
+          <button class="btn-copy" onclick="copyLink('${escHtml(shortUrl)}')">העתק</button>
+          <button class="btn-delete" onclick="deleteLink('${escHtml(link.slug)}')">מחק</button>
+        </td>
+      </tr>`;
+    }
+    html += '</tbody></table>';
+    document.getElementById("linksContainer").innerHTML = html;
+  } catch (e) {
+    document.getElementById("linksContainer").innerHTML = '<div class="empty-state">שגיאה בטעינה: ' + e.message + '</div>';
+  }
+}
+
+async function addLink() {
+  const urlInput = document.getElementById("newUrl");
+  const slugInput = document.getElementById("newSlug");
+  const btn = document.getElementById("addBtn");
+  const url = urlInput.value.trim();
+  if (!url) { urlInput.focus(); return; }
+
+  btn.disabled = true;
+  btn.textContent = "...";
+  try {
+    const data = await apiCall("POST", { url, slug: slugInput.value.trim() });
+    if (data.success) {
+      showToast("הקישור נוצר: " + data.shortUrl);
+      urlInput.value = "";
+      slugInput.value = "";
+      loadLinks();
+    } else {
+      showToast(data.error || "שגיאה");
+    }
+  } catch (e) {
+    showToast("שגיאה: " + e.message);
+  }
+  btn.disabled = false;
+  btn.textContent = "הוספה";
+}
+
+async function deleteLink(slug) {
+  if (!confirm("למחוק את הקישור " + slug + "?")) return;
+  try {
+    const data = await apiCall("DELETE", { slug });
+    if (data.success) {
+      showToast("הקישור נמחק");
+      loadLinks();
+    } else {
+      showToast(data.error || "שגיאה");
+    }
+  } catch (e) {
+    showToast("שגיאה: " + e.message);
+  }
+}
+
+function copyLink(url) {
+  navigator.clipboard.writeText(url).then(() => {
+    showToast("הקישור הועתק!");
+  }).catch(() => {
+    // Fallback
+    const tmp = document.createElement("input");
+    tmp.value = url;
+    document.body.appendChild(tmp);
+    tmp.select();
+    document.execCommand("copy");
+    document.body.removeChild(tmp);
+    showToast("הקישור הועתק!");
+  });
+}
+
+function showToast(msg) {
+  const t = document.getElementById("toast");
+  t.textContent = msg;
+  t.classList.add("show");
+  setTimeout(() => t.classList.remove("show"), 2500);
+}
+
+function escHtml(str) {
+  return String(str).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
+}
+
+// Enter key on URL input
+document.getElementById("newUrl").addEventListener("keydown", (e) => {
+  if (e.key === "Enter") addLink();
+});
+document.getElementById("newSlug").addEventListener("keydown", (e) => {
+  if (e.key === "Enter") addLink();
+});
+</script>
+</body>
+</html>
