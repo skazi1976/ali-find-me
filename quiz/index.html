@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>מה השם שלך אומר עלייך? 🔮 | Ali Find Me</title>
-    <meta name="description" content="הכנס/י את השם שלך וגלה/י מה הוא אומר על האישיות שלך! קוויז ויראלי בעברית 🔮">
+    <title>איזה חיה היית בגלגול הקודם? 🐾 | Ali Find Me</title>
+    <meta name="description" content="ענו על 7 שאלות מצחיקות וגלו איזה חיה הייתם בגלגול הקודם! 🐾">
 
     <!-- Open Graph -->
-    <meta property="og:title" content="מה השם שלך אומר עלייך? 🔮">
-    <meta property="og:description" content="הכנס/י את השם שלך וגלה/י מה הוא אומר על האישיות שלך! התוצאות מטורפות 😍">
+    <meta property="og:title" content="איזה חיה היית בגלגול הקודם? 🐾">
+    <meta property="og:description" content="ענו על 7 שאלות מצחיקות וגלו!">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://alifindme.com/quiz/">
     <meta property="og:image" content="https://alifindme.com/icons/icon-512x512.png">
@@ -17,836 +17,689 @@
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="מה השם שלך אומר עלייך? 🔮">
-    <meta name="twitter:description" content="הכנס/י את השם שלך וגלה/י מה הוא אומר על האישיות שלך! 😍">
-    <meta name="twitter:image" content="https://alifindme.com/icons/icon-512x512.png">
-
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;600;700;800;900&family=Assistant:wght@400;600;700&display=swap" rel="stylesheet">
+    <meta name="twitter:title" content="איזה חיה היית בגלגול הקודם? 🐾">
+    <meta name="twitter:description" content="ענו על 7 שאלות מצחיקות וגלו!">
 
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-18NLX6KS89"></script>
     <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-18NLX6KS89');
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-18NLX6KS89');
     </script>
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;600;700&family=Heebo:wght@700;800;900&display=swap" rel="stylesheet">
+
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            background-color: #0f0f0f;
-            color: #fff;
-            font-family: 'Assistant', 'Heebo', sans-serif;
-            direction: rtl;
+            font-family: 'Assistant', sans-serif;
+            background: #0f0f0f;
+            color: #f5f5f5;
             min-height: 100vh;
             overflow-x: hidden;
+            direction: rtl;
         }
 
-        h1, h2, h3, h4 {
-            font-family: 'Heebo', sans-serif;
-        }
+        h1, h2, h3, h4 { font-family: 'Heebo', sans-serif; }
 
         .container {
             max-width: 600px;
             margin: 0 auto;
             padding: 20px 16px;
-        }
-
-        /* Landing Section */
-        #landing {
-            text-align: center;
-            padding: 60px 0 40px;
-            animation: fadeIn 0.6s ease;
-        }
-
-        .crystal-ball {
-            font-size: 80px;
-            margin-bottom: 20px;
-            animation: float 3s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-15px); }
-        }
-
-        #landing h1 {
-            font-size: 2.2rem;
-            font-weight: 900;
-            line-height: 1.3;
-            margin-bottom: 12px;
-            background: linear-gradient(135deg, #ff6b00, #ff9a44);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        #landing .subtitle {
-            font-size: 1.2rem;
-            color: #aaa;
-            margin-bottom: 40px;
-        }
-
-        .input-group {
+            min-height: 100vh;
             position: relative;
-            margin-bottom: 24px;
         }
 
-        .name-input {
-            width: 100%;
-            padding: 18px 24px;
-            font-size: 1.3rem;
-            font-family: 'Heebo', sans-serif;
-            font-weight: 600;
-            border: 2px solid #333;
-            border-radius: 16px;
+        /* Progress Bar */
+        .progress-bar-wrap {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            height: 5px;
             background: #1a1a1a;
-            color: #fff;
-            text-align: center;
-            outline: none;
-            transition: border-color 0.3s, box-shadow 0.3s;
-            direction: rtl;
-        }
-
-        .name-input::placeholder {
-            color: #666;
-        }
-
-        .name-input:focus {
-            border-color: #ff6b00;
-            box-shadow: 0 0 20px rgba(255, 107, 0, 0.2);
-        }
-
-        .cta-btn {
-            display: inline-block;
-            width: 100%;
-            padding: 18px 40px;
-            font-size: 1.4rem;
-            font-family: 'Heebo', sans-serif;
-            font-weight: 800;
-            color: #fff;
-            background: linear-gradient(135deg, #ff6b00, #ff8c33);
-            border: none;
-            border-radius: 16px;
-            cursor: pointer;
-            transition: transform 0.2s, box-shadow 0.2s;
-            box-shadow: 0 4px 20px rgba(255, 107, 0, 0.4);
-        }
-
-        .cta-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 30px rgba(255, 107, 0, 0.5);
-        }
-
-        .cta-btn:active {
-            transform: translateY(0);
-        }
-
-        /* Analysis Section */
-        #analysis {
+            z-index: 100;
             display: none;
-            text-align: center;
-            padding: 80px 0;
-            animation: fadeIn 0.5s ease;
         }
-
-        .spinner-container {
-            position: relative;
-            width: 120px;
-            height: 120px;
-            margin: 0 auto 30px;
-        }
-
-        .spinner {
-            width: 120px;
-            height: 120px;
-            border: 4px solid #222;
-            border-top: 4px solid #ff6b00;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-
-        .spinner-emoji {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 40px;
-            animation: pulse 1.5s ease-in-out infinite;
-        }
-
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-
-        @keyframes pulse {
-            0%, 100% { transform: translate(-50%, -50%) scale(1); }
-            50% { transform: translate(-50%, -50%) scale(1.2); }
-        }
-
-        #analysis h2 {
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 8px;
-            color: #ff6b00;
-        }
-
-        .analysis-sub {
-            color: #888;
-            font-size: 1rem;
-            margin-bottom: 30px;
-        }
-
-        .progress-bar {
-            width: 80%;
-            max-width: 300px;
-            height: 8px;
-            background: #222;
-            border-radius: 10px;
-            margin: 0 auto;
-            overflow: hidden;
-        }
-
-        .progress-fill {
+        .progress-bar-fill {
             height: 100%;
-            background: linear-gradient(90deg, #ff6b00, #ff9a44);
-            border-radius: 10px;
+            background: linear-gradient(90deg, #ff6b00, #7c3aed);
+            border-radius: 0 3px 3px 0;
+            transition: width 0.5s ease;
             width: 0%;
-            transition: width 0.1s linear;
         }
-
-        /* Results Section */
-        #results {
-            display: none;
-            animation: fadeIn 0.6s ease;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .results-header {
+        .progress-text {
             text-align: center;
-            margin-bottom: 30px;
+            font-size: 14px;
+            color: #888;
+            margin-top: 12px;
+            display: none;
         }
 
-        .results-header h2 {
-            font-size: 1.8rem;
-            font-weight: 900;
-            margin-bottom: 8px;
+        /* Screens */
+        .screen {
+            display: none;
+            animation: slideIn 0.4s ease;
         }
-
-        .results-name {
-            font-size: 2.5rem;
-            font-weight: 900;
-            background: linear-gradient(135deg, #ff6b00, #ff9a44);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 24px;
-        }
-
-        .traits-grid {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            margin-bottom: 30px;
-        }
-
-        .trait-card {
-            background: #1a1a1a;
-            border: 1px solid #2a2a2a;
-            border-radius: 14px;
-            padding: 16px 20px;
-            display: flex;
-            align-items: center;
-            gap: 14px;
-            animation: slideIn 0.4s ease backwards;
-        }
-
-        .trait-card:nth-child(1) { animation-delay: 0.1s; }
-        .trait-card:nth-child(2) { animation-delay: 0.2s; }
-        .trait-card:nth-child(3) { animation-delay: 0.3s; }
-        .trait-card:nth-child(4) { animation-delay: 0.4s; }
-        .trait-card:nth-child(5) { animation-delay: 0.5s; }
-        .trait-card:nth-child(6) { animation-delay: 0.6s; }
-        .trait-card:nth-child(7) { animation-delay: 0.7s; }
-        .trait-card:nth-child(8) { animation-delay: 0.8s; }
+        .screen.active { display: block; }
 
         @keyframes slideIn {
-            from { opacity: 0; transform: translateX(30px); }
+            from { opacity: 0; transform: translateX(-40px); }
             to { opacity: 1; transform: translateX(0); }
         }
 
-        .trait-letter {
-            width: 50px;
-            height: 50px;
-            background: linear-gradient(135deg, #ff6b00, #ff8c33);
-            border-radius: 12px;
+        /* Landing */
+        .landing {
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
-            font-size: 1.5rem;
-            font-weight: 900;
-            font-family: 'Heebo', sans-serif;
-            flex-shrink: 0;
-        }
-
-        .trait-text {
-            font-size: 1.05rem;
-            font-weight: 600;
-            line-height: 1.4;
-        }
-
-        .trait-emoji {
-            margin-left: 6px;
-        }
-
-        .summary-card {
-            background: linear-gradient(135deg, #1a1200, #1a0f00);
-            border: 2px solid #ff6b00;
-            border-radius: 20px;
-            padding: 24px;
+            min-height: 85vh;
             text-align: center;
-            margin-bottom: 40px;
-            animation: fadeIn 0.6s ease 0.5s backwards;
         }
-
-        .summary-card p {
-            font-size: 1.3rem;
-            font-weight: 700;
-            line-height: 1.6;
-        }
-
-        /* Share Section */
-        .share-section {
-            text-align: center;
-            margin-bottom: 50px;
-        }
-
-        .share-section h3 {
-            font-size: 1.4rem;
-            font-weight: 800;
+        .landing-emoji {
+            font-size: 80px;
+            animation: bounce 1.5s infinite;
             margin-bottom: 20px;
         }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+        .landing h1 {
+            font-size: 32px;
+            font-weight: 900;
+            margin-bottom: 12px;
+            background: linear-gradient(135deg, #ff6b00, #7c3aed);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.4;
+        }
+        .landing .subtitle {
+            font-size: 20px;
+            color: #bbb;
+            margin-bottom: 24px;
+        }
+        .counter {
+            font-size: 15px;
+            color: #888;
+            margin-bottom: 32px;
+        }
+        .counter span { color: #ff6b00; font-weight: 700; }
 
+        .btn-primary {
+            background: linear-gradient(135deg, #ff6b00, #e85d00);
+            color: #fff;
+            border: none;
+            padding: 16px 48px;
+            border-radius: 50px;
+            font-size: 22px;
+            font-weight: 700;
+            font-family: 'Heebo', sans-serif;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 20px rgba(255,107,0,0.4);
+        }
+        .btn-primary:hover { transform: scale(1.05); box-shadow: 0 6px 30px rgba(255,107,0,0.5); }
+        .btn-primary:active { transform: scale(0.97); }
+
+        /* Question Screen */
+        .question-title {
+            font-size: 24px;
+            font-weight: 800;
+            text-align: center;
+            margin: 20px 0 24px;
+            line-height: 1.4;
+        }
+        .answers-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .answer-card {
+            background: #1a1a1a;
+            border: 2px solid #2a2a2a;
+            border-radius: 16px;
+            padding: 18px 20px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            font-size: 17px;
+            line-height: 1.4;
+        }
+        .answer-card:hover {
+            border-color: #ff6b00;
+            transform: scale(1.02);
+            background: #1f1f1f;
+        }
+        .answer-card:active { transform: scale(0.98); }
+        .answer-card .emoji {
+            font-size: 32px;
+            flex-shrink: 0;
+        }
+        .answer-card.selected {
+            border-color: #22c55e;
+            background: rgba(34,197,94,0.15);
+        }
+
+        /* Analysis Screen */
+        .analysis {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 80vh;
+            text-align: center;
+        }
+        .analysis-emoji {
+            font-size: 70px;
+            animation: spin 2s linear infinite;
+        }
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        .analysis h2 {
+            font-size: 24px;
+            margin-top: 24px;
+            margin-bottom: 16px;
+            color: #ff6b00;
+        }
+        .analysis-bar-wrap {
+            width: 80%;
+            max-width: 300px;
+            height: 8px;
+            background: #1a1a1a;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+        .analysis-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #ff6b00, #7c3aed);
+            border-radius: 4px;
+            width: 0%;
+            transition: width 0.3s;
+        }
+        .analysis-text {
+            font-size: 16px;
+            color: #888;
+            min-height: 24px;
+        }
+
+        /* Results Screen */
+        .result-card {
+            border-radius: 24px;
+            padding: 32px 24px;
+            text-align: center;
+            margin-bottom: 24px;
+            position: relative;
+            overflow: hidden;
+        }
+        .result-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: inherit;
+            opacity: 0.15;
+            z-index: 0;
+        }
+        .result-card > * { position: relative; z-index: 1; }
+        .result-emoji { font-size: 80px; margin-bottom: 16px; }
+        .result-title {
+            font-size: 28px;
+            font-weight: 900;
+            margin-bottom: 16px;
+            line-height: 1.3;
+        }
+        .result-desc {
+            font-size: 17px;
+            line-height: 1.7;
+            color: #ddd;
+        }
+
+        /* Share */
+        .share-section {
+            text-align: center;
+            margin: 32px 0;
+        }
+        .share-section h3 {
+            font-size: 22px;
+            margin-bottom: 16px;
+        }
         .share-buttons {
             display: flex;
             gap: 12px;
             justify-content: center;
             flex-wrap: wrap;
         }
-
         .share-btn {
+            padding: 12px 20px;
+            border-radius: 12px;
+            border: none;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform 0.2s;
+            color: #fff;
+            font-family: 'Assistant', sans-serif;
+            text-decoration: none;
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            padding: 12px 20px;
-            border-radius: 12px;
-            font-size: 1rem;
-            font-weight: 700;
-            font-family: 'Heebo', sans-serif;
-            text-decoration: none;
-            color: #fff;
-            transition: transform 0.2s, opacity 0.2s;
-            border: none;
-            cursor: pointer;
         }
-
-        .share-btn:hover {
-            transform: translateY(-2px);
-            opacity: 0.9;
-        }
-
-        .share-btn.whatsapp { background: #25D366; }
+        .share-btn:hover { transform: scale(1.05); }
+        .share-btn.whatsapp { background: #25d366; }
         .share-btn.telegram { background: #0088cc; }
-        .share-btn.facebook { background: #1877F2; }
-        .share-btn.twitter { background: #1DA1F2; }
+        .share-btn.facebook { background: #1877f2; }
+        .share-btn.twitter { background: #1da1f2; }
 
-        .share-btn svg {
-            width: 20px;
-            height: 20px;
-            fill: #fff;
+        .btn-retry {
+            display: block;
+            margin: 24px auto;
+            background: #1a1a1a;
+            border: 2px solid #7c3aed;
+            color: #7c3aed;
+            padding: 14px 40px;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            font-family: 'Heebo', sans-serif;
+            transition: all 0.2s;
         }
+        .btn-retry:hover { background: #7c3aed; color: #fff; }
 
-        /* Products Section */
+        /* Products */
         .products-section {
-            margin-bottom: 40px;
+            margin: 40px 0 24px;
         }
-
         .products-section h3 {
-            font-size: 1.5rem;
-            font-weight: 800;
+            font-size: 22px;
             text-align: center;
-            margin-bottom: 24px;
+            margin-bottom: 16px;
         }
-
-        .products-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 16px;
+        .product-cards {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
         }
-
         .product-card {
             background: #1a1a1a;
             border: 1px solid #2a2a2a;
             border-radius: 16px;
-            overflow: hidden;
-            transition: transform 0.2s, border-color 0.2s;
+            padding: 18px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            text-decoration: none;
+            color: #f5f5f5;
+            transition: all 0.2s;
         }
-
-        .product-card:hover {
-            transform: translateY(-4px);
-            border-color: #ff6b00;
-        }
-
-        .product-img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            background: #222;
-        }
-
-        .product-info {
-            padding: 16px;
-        }
-
-        .product-title {
-            font-size: 1.1rem;
-            font-weight: 700;
-            margin-bottom: 8px;
-        }
-
+        .product-card:hover { border-color: #ff6b00; transform: translateY(-2px); }
+        .product-info { display: flex; align-items: center; gap: 12px; }
+        .product-emoji { font-size: 32px; }
+        .product-name { font-size: 16px; font-weight: 600; }
         .product-price {
-            font-size: 1.4rem;
-            font-weight: 900;
-            color: #ff6b00;
-            margin-bottom: 12px;
-        }
-
-        .product-btn {
-            display: block;
-            width: 100%;
-            padding: 12px;
-            background: linear-gradient(135deg, #ff6b00, #ff8c33);
-            color: #fff;
-            text-align: center;
-            text-decoration: none;
-            border-radius: 10px;
-            font-size: 1rem;
-            font-weight: 700;
-            font-family: 'Heebo', sans-serif;
-            transition: opacity 0.2s;
-        }
-
-        .product-btn:hover {
-            opacity: 0.9;
-        }
-
-        /* Bottom CTA */
-        .bottom-cta {
-            display: block;
-            background: linear-gradient(135deg, #ff6b00, #ff8c33);
-            border-radius: 20px;
-            padding: 24px;
-            text-align: center;
-            text-decoration: none;
-            color: #fff;
-            margin-bottom: 30px;
-            transition: transform 0.2s, box-shadow 0.2s;
-            box-shadow: 0 4px 20px rgba(255, 107, 0, 0.3);
-        }
-
-        .bottom-cta:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 30px rgba(255, 107, 0, 0.5);
-        }
-
-        .bottom-cta h3 {
-            font-size: 1.4rem;
-            font-weight: 800;
-        }
-
-        .bottom-cta p {
-            font-size: 0.95rem;
-            opacity: 0.9;
-            margin-top: 6px;
-        }
-
-        /* Counter */
-        .counter {
-            text-align: center;
-            padding: 20px;
-            color: #666;
-            font-size: 0.95rem;
-            margin-bottom: 20px;
-        }
-
-        .counter span {
-            color: #ff6b00;
-            font-weight: 700;
-        }
-
-        /* Try Again */
-        .try-again-btn {
-            display: block;
-            width: 100%;
-            padding: 16px;
-            font-size: 1.1rem;
-            font-family: 'Heebo', sans-serif;
-            font-weight: 700;
-            color: #ff6b00;
-            background: transparent;
-            border: 2px solid #ff6b00;
-            border-radius: 14px;
-            cursor: pointer;
-            margin-bottom: 20px;
-            transition: background 0.2s, color 0.2s;
-        }
-
-        .try-again-btn:hover {
             background: #ff6b00;
             color: #fff;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 15px;
+            font-weight: 700;
+            white-space: nowrap;
         }
 
-        /* Footer */
-        .footer {
+        .bottom-cta {
+            display: block;
+            background: linear-gradient(135deg, #ff6b00, #7c3aed);
             text-align: center;
-            padding: 20px;
-            color: #444;
-            font-size: 0.85rem;
-        }
-
-        .footer a {
-            color: #ff6b00;
+            padding: 18px;
+            border-radius: 16px;
+            margin: 32px 0;
             text-decoration: none;
+            color: #fff;
+            font-size: 20px;
+            font-weight: 700;
+            font-family: 'Heebo', sans-serif;
+            transition: transform 0.2s;
         }
+        .bottom-cta:hover { transform: scale(1.02); }
 
-        /* Tablet+ */
-        @media (min-width: 500px) {
-            .products-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-
-            .product-img {
-                height: 160px;
-            }
+        /* Confetti */
+        .confetti-piece {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            top: -10px;
+            z-index: 200;
+            border-radius: 2px;
+            animation: confettiFall linear forwards;
+            pointer-events: none;
         }
-
-        /* Error shake */
-        @keyframes shake {
-            0%, 100% { transform: translateX(0); }
-            20%, 60% { transform: translateX(-8px); }
-            40%, 80% { transform: translateX(8px); }
-        }
-
-        .shake {
-            animation: shake 0.4s ease;
+        @keyframes confettiFall {
+            to { top: 105vh; transform: rotate(720deg); }
         }
     </style>
 </head>
 <body>
 
+<div class="progress-bar-wrap" id="progressBarWrap">
+    <div class="progress-bar-fill" id="progressBarFill"></div>
+</div>
+
 <div class="container">
 
-    <!-- Counter -->
-    <div class="counter">
-        <span id="counter-num">12,847</span> כבר גילו מה השם שלהם אומר!
-    </div>
-
-    <!-- Landing -->
-    <div id="landing">
-        <div class="crystal-ball">🔮</div>
-        <h1>מה השם שלך אומר עלייך?</h1>
-        <p class="subtitle">הכנס/י את השם ותגלה/י!</p>
-        <div class="input-group">
-            <input type="text" class="name-input" id="nameInput" placeholder="הקלד/י את השם שלך..." autocomplete="off" maxlength="20">
-        </div>
-        <button class="cta-btn" id="startBtn" onclick="startQuiz()">גלה עכשיו! 🔮</button>
-    </div>
-
-    <!-- Analysis -->
-    <div id="analysis">
-        <div class="spinner-container">
-            <div class="spinner"></div>
-            <div class="spinner-emoji">🔮</div>
-        </div>
-        <h2>מנתח את השם שלך...</h2>
-        <p class="analysis-sub" id="analysisText">בודק את האותיות...</p>
-        <div class="progress-bar">
-            <div class="progress-fill" id="progressFill"></div>
+    <!-- LANDING -->
+    <div class="screen active" id="screenLanding">
+        <div class="landing">
+            <div class="landing-emoji">🐾</div>
+            <h1>איזה חיה היית בגלגול הקודם?</h1>
+            <p class="subtitle">ענו על 7 שאלות קצרות וגלו! 🔮</p>
+            <p class="counter">כבר <span id="counterNum">47,832</span> אנשים גילו!</p>
+            <button class="btn-primary" onclick="startQuiz()">בואו נגלה! 🐾</button>
         </div>
     </div>
 
-    <!-- Results -->
-    <div id="results">
-        <div class="results-header">
-            <h2>התוצאות של ✨</h2>
-            <div class="results-name" id="resultsName"></div>
+    <!-- QUESTIONS -->
+    <div class="screen" id="screenQuestion">
+        <p class="progress-text" id="progressText"></p>
+        <h2 class="question-title" id="questionTitle"></h2>
+        <div class="answers-grid" id="answersGrid"></div>
+    </div>
+
+    <!-- ANALYSIS -->
+    <div class="screen" id="screenAnalysis">
+        <div class="analysis">
+            <div class="analysis-emoji">🐾</div>
+            <h2>מנתחים את הגלגול הקודם שלך...</h2>
+            <div class="analysis-bar-wrap"><div class="analysis-bar-fill" id="analysisBar"></div></div>
+            <p class="analysis-text" id="analysisText"></p>
+        </div>
+    </div>
+
+    <!-- RESULTS -->
+    <div class="screen" id="screenResult">
+        <div class="result-card" id="resultCard">
+            <div class="result-emoji" id="resultEmoji"></div>
+            <h2 class="result-title" id="resultTitle"></h2>
+            <p class="result-desc" id="resultDesc"></p>
         </div>
 
-        <div class="traits-grid" id="traitsGrid"></div>
-
-        <div class="summary-card">
-            <p id="summaryText"></p>
-        </div>
-
-        <!-- Share -->
         <div class="share-section">
-            <h3>שתף/י עם חברים! 📲</h3>
+            <h3>שתפו את התוצאה! 📢</h3>
             <div class="share-buttons">
-                <a class="share-btn whatsapp" id="shareWhatsapp" href="#" target="_blank" rel="noopener">
-                    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-                    WhatsApp
-                </a>
-                <a class="share-btn telegram" id="shareTelegram" href="#" target="_blank" rel="noopener">
-                    <svg viewBox="0 0 24 24"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.479.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
-                    Telegram
-                </a>
-                <a class="share-btn facebook" id="shareFacebook" href="#" target="_blank" rel="noopener">
-                    <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-                    Facebook
-                </a>
-                <a class="share-btn twitter" id="shareTwitter" href="#" target="_blank" rel="noopener">
-                    <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-                    Twitter
-                </a>
+                <a class="share-btn whatsapp" id="shareWA" href="#" target="_blank">WhatsApp 💬</a>
+                <a class="share-btn telegram" id="shareTG" href="#" target="_blank">Telegram ✈️</a>
+                <a class="share-btn facebook" id="shareFB" href="#" target="_blank">Facebook 👍</a>
+                <a class="share-btn twitter" id="shareTW" href="#" target="_blank">Twitter 🐦</a>
             </div>
         </div>
 
-        <!-- Try Again -->
-        <button class="try-again-btn" onclick="resetQuiz()">🔄 רוצה לנסות שם אחר?</button>
+        <button class="btn-retry" onclick="resetQuiz()">נסו שוב! 🔄</button>
 
-        <!-- Products -->
         <div class="products-section">
-            <h3>בזמן שאתה כאן... 🔥</h3>
-            <div class="products-grid">
-                <div class="product-card">
-                    <img class="product-img" src="https://ae01.alicdn.com/kf/S5c3b3e0e88c742809fff5c3dc83f9de5M.jpg" alt="אוזניות אלחוטיות" loading="lazy" onerror="this.style.background='#333';this.alt='🎧'">
+            <h3>בזמן שאתם כאן... 🔥 דילים שאתם חייבים לראות!</h3>
+            <div class="product-cards">
+                <a class="product-card" href="https://alifindme.com/go/ppyeti" target="_blank">
                     <div class="product-info">
-                        <div class="product-title">🎧 אוזניות אלחוטיות</div>
-                        <div class="product-price">₪65</div>
-                        <a class="product-btn" href="https://alifindme.com/go/ppyeti" target="_blank" rel="noopener">לצפייה בדיל →</a>
+                        <span class="product-emoji">🎧</span>
+                        <span class="product-name">אוזניות אלחוטיות Bluetooth</span>
                     </div>
-                </div>
-                <div class="product-card">
-                    <img class="product-img" src="https://ae01.alicdn.com/kf/Sba7cbb6e85e34eb09c40e59d98fdab42B.jpg" alt="תיק עור אמיתי" loading="lazy" onerror="this.style.background='#333';this.alt='👜'">
+                    <span class="product-price">₪65</span>
+                </a>
+                <a class="product-card" href="https://alifindme.com/go/bag1" target="_blank">
                     <div class="product-info">
-                        <div class="product-title">👜 תיק עור אמיתי</div>
-                        <div class="product-price">₪113</div>
-                        <a class="product-btn" href="https://alifindme.com/go/bag1" target="_blank" rel="noopener">לצפייה בדיל →</a>
+                        <span class="product-emoji">👜</span>
+                        <span class="product-name">תיק עור אמיתי</span>
                     </div>
-                </div>
-                <div class="product-card">
-                    <img class="product-img" src="https://ae01.alicdn.com/kf/S0b8f8e4c1e5a47e0a0f9d3e2c4b6a8d0N.jpg" alt="תכשיטים" loading="lazy" onerror="this.style.background='#333';this.alt='💎'">
+                    <span class="product-price">₪113</span>
+                </a>
+                <a class="product-card" href="https://alifindme.com" target="_blank">
                     <div class="product-info">
-                        <div class="product-title">💎 תכשיטים</div>
-                        <div class="product-price">₪31</div>
-                        <a class="product-btn" href="https://alifindme.com" target="_blank" rel="noopener">לצפייה בדיל →</a>
+                        <span class="product-emoji">🔍</span>
+                        <span class="product-name">חפשו עוד דילים!</span>
                     </div>
-                </div>
+                    <span class="product-price">🔥</span>
+                </a>
             </div>
         </div>
 
-        <!-- Bottom CTA -->
-        <a class="bottom-cta" href="https://alifindme.com" target="_blank" rel="noopener">
-            <h3>מצאו דילים מטורפים באלי אקספרס 🔍</h3>
-            <p>חיפוש חכם בעברית עם בינה מלאכותית</p>
-        </a>
-    </div>
-
-    <!-- Footer -->
-    <div class="footer">
-        <a href="https://alifindme.com">Ali Find Me</a> — חיפוש חכם באלי אקספרס 🇮🇱
+        <a class="bottom-cta" href="https://alifindme.com" target="_blank">🔍 מצאו דילים מטורפים באלי אקספרס</a>
     </div>
 
 </div>
 
 <script>
-    // Hebrew letter traits
-    const letterTraits = {
-        'א': { trait: 'אמביציוזי/ת', emoji: '💪' },
-        'ב': { trait: 'בעל/ת כריזמה', emoji: '✨' },
-        'ג': { trait: 'גאון/ית בהסתרה', emoji: '🧠' },
-        'ד': { trait: 'דייקן/ית ומדויק/ת', emoji: '🎯' },
-        'ה': { trait: 'הכי נאמן/ה בחבורה', emoji: '💎' },
-        'ו': { trait: 'ותיק/ה ומנוסה', emoji: '🏆' },
-        'ז': { trait: 'זוהר/ת מבפנים', emoji: '☀️' },
-        'ח': { trait: 'חכם/ה ברגע האמת', emoji: '🔥' },
-        'ט': { trait: 'טוב/ה לב ברמות', emoji: '💕' },
-        'י': { trait: 'יצירתי/ת בטירוף', emoji: '🎨' },
-        'כ': { trait: 'כוכב/ת בלי ספק', emoji: '⭐' },
-        'ך': { trait: 'כוכב/ת בלי ספק', emoji: '⭐' },
-        'ל': { trait: 'לב זהב אמיתי', emoji: '💛' },
-        'מ': { trait: 'מגנט/ית של אנשים', emoji: '🧲' },
-        'ם': { trait: 'מגנט/ית של אנשים', emoji: '🧲' },
-        'נ': { trait: 'נחוש/ה ועקשן/ית (בטוב!)', emoji: '💪' },
-        'ן': { trait: 'נחוש/ה ועקשן/ית (בטוב!)', emoji: '💪' },
-        'ס': { trait: 'סטייליסט/ית מלידה', emoji: '👗' },
-        'ע': { trait: 'עוצמתי/ת ומשפיע/ה', emoji: '🌟' },
-        'פ': { trait: 'פותר/ת בעיות מספר 1', emoji: '🔧' },
-        'ף': { trait: 'פותר/ת בעיות מספר 1', emoji: '🔧' },
-        'צ': { trait: 'צוחק/ת בדרך להצלחה', emoji: '😄' },
-        'ץ': { trait: 'צוחק/ת בדרך להצלחה', emoji: '😄' },
-        'ק': { trait: 'קסום/ה ומלא/ת הפתעות', emoji: '🎁' },
-        'ר': { trait: 'רומנטי/ת אמיתי/ת', emoji: '🌹' },
-        'ש': { trait: 'שובר/ת שיאים', emoji: '🏅' },
-        'ת': { trait: 'תמיד צעד אחד קדימה', emoji: '🚀' }
-    };
+const questions = [
+    {
+        q: "איך את/ה קם/ה בבוקר?",
+        answers: [
+            { text: "קופץ/ת מהמיטה מלא/ת אנרגיה!", emoji: "💪", scores: { lion: 2, monkey: 1 } },
+            { text: "15 דריקות על נודניק...", emoji: "😴", scores: { panda: 2, cat: 1 } },
+            { text: "מי בכלל קם בבוקר?!", emoji: "🌙", scores: { owl: 2, fox: 1 } },
+            { text: "רק אחרי קפה", emoji: "☕", scores: { cat: 2, dolphin: 1 } }
+        ]
+    },
+    {
+        q: "מישהו אכל לך את האוכל מהמקרר:",
+        answers: [
+            { text: "מתפוצץ/ת! מי נגע באוכל שלי?!", emoji: "🤬", scores: { lion: 2, monkey: 1 } },
+            { text: "בוכה בשקט בפינה", emoji: "😢", scores: { dog: 2, panda: 1 } },
+            { text: "אוכל/ת את שלהם בחזרה", emoji: "😈", scores: { fox: 2, cat: 1 } },
+            { text: "לא נורא, מזמין/ה עוד", emoji: "🤷", scores: { panda: 2, dolphin: 1 } }
+        ]
+    },
+    {
+        q: "איך את/ה בקניות?",
+        answers: [
+            { text: "קונה הכל! YOLO!", emoji: "💸", scores: { monkey: 2, lion: 1 } },
+            { text: "משווה מחירים שעתיים", emoji: "🔍", scores: { owl: 2, fox: 1 } },
+            { text: "רק מה שצריך, תודה", emoji: "😌", scores: { cat: 2, panda: 1 } },
+            { text: "רק דילים ומבצעים", emoji: "🏷️", scores: { fox: 2, owl: 1 } }
+        ]
+    },
+    {
+        q: "מה את/ה עושה במסיבה?",
+        answers: [
+            { text: "רוקד/ת על השולחן!", emoji: "💃", scores: { monkey: 2, dolphin: 1 } },
+            { text: "בפינה עם הטלפון", emoji: "📱", scores: { cat: 2, owl: 1 } },
+            { text: "מדבר/ת עם כל אחד", emoji: "🗣️", scores: { dolphin: 2, dog: 1 } },
+            { text: "ליד האוכל. תמיד ליד האוכל.", emoji: "🍕", scores: { panda: 2, dog: 1 } }
+        ]
+    },
+    {
+        q: "בחר/י סופר פאוור:",
+        answers: [
+            { text: "להיות בלתי נראה", emoji: "👻", scores: { cat: 2, owl: 1 } },
+            { text: "לעוף!", emoji: "🦸", scores: { lion: 2, monkey: 1 } },
+            { text: "לקרוא מחשבות", emoji: "🧠", scores: { owl: 2, fox: 1 } },
+            { text: "כוח על-טבעי", emoji: "💪", scores: { lion: 2, dog: 1 } }
+        ]
+    },
+    {
+        q: "החברים שלך חושבים שאת/ה:",
+        answers: [
+            { text: "הכי מצחיק/ה בחבורה", emoji: "😂", scores: { monkey: 2, dolphin: 1 } },
+            { text: "הכי חכם/ה פה", emoji: "🤓", scores: { owl: 2, fox: 1 } },
+            { text: "הכי נאמן/ה שיש", emoji: "❤️", scores: { dog: 2, panda: 1 } },
+            { text: "הכי מטורף/ת (בטוב!)", emoji: "🤪", scores: { fox: 2, monkey: 1 } }
+        ]
+    },
+    {
+        q: "אם היית אי בודד, מה לוקח/ת?",
+        answers: [
+            { text: "טלפון עם WiFi, ברור!", emoji: "📱", scores: { monkey: 2, fox: 1 } },
+            { text: "ספר ענק ומעניין", emoji: "📚", scores: { owl: 2, cat: 1 } },
+            { text: "אוכל לשנה 🍔🍕🍗", emoji: "🍔", scores: { panda: 2, dog: 1 } },
+            { text: "את החבר/ה הכי טוב/ה", emoji: "🤝", scores: { dog: 2, dolphin: 1 } }
+        ]
+    }
+];
 
-    const summaries = [
-        'וואו {name}! אתה/את פשוט מדהים/ה! לא סתם כולם אוהבים אותך 😍',
-        '{name}, יש בך שילוב נדיר של כוח וחן! 💎',
-        'השם {name} לא ניתן סתם - יש בך משהו מיוחד! ✨',
-        '{name}, אתה/את מהאנשים שמשנים את העולם! 🌍',
-        'אם היו יותר אנשים כמו {name}, העולם היה מקום טוב יותר! 🌟'
-    ];
+const animals = {
+    lion:    { emoji: "🦁", title: "אריה - מלך/ת הג'ונגל!", desc: "בגלגול הקודם היית אריה! מוביל/ה, חזק/ה, וכולם מסתכלים עליך בהערצה. כשאת/ה נכנס/ת לחדר, כולם שמים לב. יש לך כריזמה טבעית ואנרגיה שמושכת אנשים אליך.", color: "#f59e0b" },
+    fox:     { emoji: "🦊", title: "שועל - הגאון/ית הערמומי/ת!", desc: "בגלגול הקודם היית שועל! ערמומי/ת בטוב, תמיד יודע/ת לצאת מכל מצב עם חיוך. אנשים חושבים שאת/ה צעד אחד לפניהם - וזה כי את/ה באמת כזה!", color: "#ea580c" },
+    dolphin: { emoji: "🐬", title: "דולפין - נשמה חברותית!", desc: "בגלגול הקודם היית דולפין! חכם/ה, חברותי/ת, ותמיד עם חיוך. אנשים נמשכים אליך כי את/ה פשוט משדר/ת אנרגיה חיובית. כולם רוצים להיות החבר/ה שלך!", color: "#0ea5e9" },
+    owl:     { emoji: "🦉", title: "ינשוף - החכם/ה מכולם!", desc: "בגלגול הקודם היית ינשוף! רואה הכל, יודע/ת הכל, ותמיד שומר/ת את הקלפים קרוב לחזה. אנשים באים אליך לעצות כי הם יודעים שאת/ה תמיד צודק/ת.", color: "#8b5cf6" },
+    monkey:  { emoji: "🐒", title: "קוף - מלך/ת ההרפתקאות!", desc: "בגלגול הקודם היית קוף! מצחיק/ה, אנרגטי/ת, ולא יכול/ה לשבת רגע! החיים שלך הם הרפתקה אחת גדולה ואת/ה גורם/ת לכולם סביבך לחייך.", color: "#84cc16" },
+    panda:   { emoji: "🐼", title: "פנדה - הצ'יל מאסטר!", desc: "בגלגול הקודם היית פנדה! רגוע/ה, אוהב/ת את החיים הטובים, ומלא/ת אהבה. למה לרוץ כשאפשר לאכול ולהתכרבל? אנשים אוהבים להיות לידך כי את/ה משרה/ת שלווה.", color: "#6b7280" },
+    cat:     { emoji: "🐈", title: "חתול - עצמאי/ת ומסתורי/ת!", desc: "בגלגול הקודם היית חתול! עושה מה שבא לך, מתי שבא לך. לא מתנצל/ת על זה ולא צריך/ה אישור מאף אחד. יש בך משהו מסתורי שמושך אנשים.", color: "#ec4899" },
+    dog:     { emoji: "🐶", title: "כלב - הנאמן/ה ביותר!", desc: "בגלגול הקודם היית כלב! לב ענק שלא נגמר, נאמנות עד הסוף, ואהבה בלי תנאים. אתם החברים הכי טובים שאפשר לבקש, ואנשים יודעים שתמיד אפשר לסמוך עליך.", color: "#f97316" }
+};
 
-    const analysisTexts = [
-        'בודק את האותיות...',
-        'מחשב תכונות אישיות...',
-        'מנתח משמעות נסתרת...',
-        'מכין את התוצאות...'
-    ];
+let currentQ = 0;
+let scores = {};
 
-    // Counter
-    let counterBase = 12000 + Math.floor(Math.random() * 3000);
-    const counterEl = document.getElementById('counter-num');
-    counterEl.textContent = counterBase.toLocaleString('he-IL');
-
+// Init counter
+(function() {
+    const n = Math.floor(Math.random() * 5000) + 45000;
+    document.getElementById('counterNum').textContent = n.toLocaleString();
     setInterval(() => {
-        counterBase += Math.floor(Math.random() * 3) + 1;
-        counterEl.textContent = counterBase.toLocaleString('he-IL');
-    }, 8000 + Math.random() * 7000);
+        const el = document.getElementById('counterNum');
+        const cur = parseInt(el.textContent.replace(/,/g, ''));
+        el.textContent = (cur + Math.floor(Math.random() * 3) + 1).toLocaleString();
+    }, 8000);
+})();
 
-    // Enter key
-    document.getElementById('nameInput').addEventListener('keydown', function(e) {
-        if (e.key === 'Enter') startQuiz();
+function showScreen(id) {
+    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function startQuiz() {
+    currentQ = 0;
+    scores = { lion: 0, fox: 0, dolphin: 0, owl: 0, monkey: 0, panda: 0, cat: 0, dog: 0 };
+    document.getElementById('progressBarWrap').style.display = 'block';
+    document.getElementById('progressText').style.display = 'block';
+    renderQuestion();
+    showScreen('screenQuestion');
+}
+
+function renderQuestion() {
+    const q = questions[currentQ];
+    const pct = ((currentQ) / questions.length) * 100;
+    document.getElementById('progressBarFill').style.width = pct + '%';
+    document.getElementById('progressText').textContent = `שאלה ${currentQ + 1} מתוך ${questions.length}`;
+    document.getElementById('questionTitle').textContent = q.q;
+
+    const grid = document.getElementById('answersGrid');
+    grid.innerHTML = '';
+    q.answers.forEach((a, i) => {
+        const card = document.createElement('div');
+        card.className = 'answer-card';
+        card.innerHTML = `<span class="emoji">${a.emoji}</span><span>${a.text}</span>`;
+        card.onclick = () => selectAnswer(card, i);
+        grid.appendChild(card);
     });
+}
 
-    function startQuiz() {
-        const name = document.getElementById('nameInput').value.trim();
-        if (!name) {
-            const input = document.getElementById('nameInput');
-            input.classList.add('shake');
-            input.placeholder = 'חובה להכניס שם! 😊';
-            setTimeout(() => input.classList.remove('shake'), 400);
-            return;
-        }
-
-        // GA event
-        if (typeof gtag === 'function') {
-            gtag('event', 'quiz_start', { event_category: 'quiz', event_label: name });
-        }
-
-        document.getElementById('landing').style.display = 'none';
-        document.getElementById('analysis').style.display = 'block';
-
-        // Progress animation
-        const progressFill = document.getElementById('progressFill');
-        const analysisTextEl = document.getElementById('analysisText');
-        let progress = 0;
-        let textIndex = 0;
-
-        const progressInterval = setInterval(() => {
-            progress += Math.random() * 8 + 2;
-            if (progress > 100) progress = 100;
-            progressFill.style.width = progress + '%';
-
-            const newIndex = Math.min(Math.floor(progress / 25), 3);
-            if (newIndex !== textIndex) {
-                textIndex = newIndex;
-                analysisTextEl.textContent = analysisTexts[textIndex];
-            }
-
-            if (progress >= 100) {
-                clearInterval(progressInterval);
-                setTimeout(() => showResults(name), 300);
-            }
-        }, 100);
+function selectAnswer(card, idx) {
+    // Highlight
+    card.classList.add('selected');
+    // Add scores
+    const answer = questions[currentQ].answers[idx];
+    for (const [animal, pts] of Object.entries(answer.scores)) {
+        scores[animal] += pts;
     }
-
-    function showResults(name) {
-        document.getElementById('analysis').style.display = 'none';
-        document.getElementById('results').style.display = 'block';
-        document.getElementById('resultsName').textContent = name;
-
-        // Get unique letters
-        const letters = [];
-        const seen = new Set();
-        for (const char of name) {
-            const baseLetter = getBaseLetter(char);
-            if (baseLetter && letterTraits[baseLetter] && !seen.has(baseLetter)) {
-                seen.add(baseLetter);
-                letters.push({ char: char, trait: letterTraits[baseLetter] });
-            }
+    // Advance
+    setTimeout(() => {
+        currentQ++;
+        if (currentQ < questions.length) {
+            renderQuestion();
+            showScreen('screenQuestion');
+        } else {
+            document.getElementById('progressBarFill').style.width = '100%';
+            showAnalysis();
         }
+    }, 350);
+}
 
-        // Build traits
-        const grid = document.getElementById('traitsGrid');
-        grid.innerHTML = '';
-        letters.forEach(item => {
-            const card = document.createElement('div');
-            card.className = 'trait-card';
-            card.innerHTML = `
-                <div class="trait-letter">${item.char}</div>
-                <div class="trait-text"><span class="trait-emoji">${item.trait.emoji}</span> ${item.trait.trait}</div>
-            `;
-            grid.appendChild(card);
-        });
-
-        // Summary
-        const summary = summaries[Math.floor(Math.random() * summaries.length)].replace('{name}', name);
-        document.getElementById('summaryText').textContent = summary;
-
-        // Share links
-        const quizUrl = 'https://alifindme.com/quiz/';
-        const whatsappText = encodeURIComponent(`עשיתי את הקוויז "מה השם שלך אומר עלייך" 😍 התוצאה שלי מטורפת! תנסו גם 👉 ${quizUrl}`);
-        const shareText = encodeURIComponent(`מה השם שלך אומר עלייך? 🔮 גלו עכשיו! ${quizUrl}`);
-
-        document.getElementById('shareWhatsapp').href = `https://wa.me/?text=${whatsappText}`;
-        document.getElementById('shareTelegram').href = `https://t.me/share/url?url=${encodeURIComponent(quizUrl)}&text=${shareText}`;
-        document.getElementById('shareFacebook').href = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(quizUrl)}`;
-        document.getElementById('shareTwitter').href = `https://twitter.com/intent/tweet?text=${shareText}`;
-
-        // GA event
-        if (typeof gtag === 'function') {
-            gtag('event', 'quiz_complete', { event_category: 'quiz', event_label: name });
+function showAnalysis() {
+    showScreen('screenAnalysis');
+    const bar = document.getElementById('analysisBar');
+    const txt = document.getElementById('analysisText');
+    const msgs = [
+        "סורקים DNA רוחני...",
+        "בודקים חיות קודמות...",
+        "כמעט מוכן!"
+    ];
+    let step = 0;
+    txt.textContent = msgs[0];
+    const iv = setInterval(() => {
+        step++;
+        if (step < msgs.length) {
+            bar.style.width = (step / msgs.length * 100) + '%';
+            txt.textContent = msgs[step];
         }
+    }, 900);
+    setTimeout(() => {
+        clearInterval(iv);
+        bar.style.width = '100%';
+        showResult();
+    }, 3000);
+}
 
-        // Increment counter
-        counterBase++;
-        counterEl.textContent = counterBase.toLocaleString('he-IL');
+function showResult() {
+    document.getElementById('progressBarWrap').style.display = 'none';
+    document.getElementById('progressText').style.display = 'none';
 
-        // Scroll to top
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+    // Find winner
+    let winner = 'lion';
+    let max = 0;
+    for (const [a, s] of Object.entries(scores)) {
+        if (s > max) { max = s; winner = a; }
     }
+    const animal = animals[winner];
 
-    function getBaseLetter(char) {
-        // Map final letters to their base form for lookup; both work in the dictionary
-        const finals = { 'ך': 'ך', 'ם': 'ם', 'ן': 'ן', 'ף': 'ף', 'ץ': 'ץ' };
-        if (finals[char]) return char;
-        return char;
-    }
+    // Render
+    const card = document.getElementById('resultCard');
+    card.style.background = `linear-gradient(135deg, ${animal.color}22, ${animal.color}11)`;
+    card.style.border = `2px solid ${animal.color}`;
+    document.getElementById('resultEmoji').textContent = animal.emoji;
+    document.getElementById('resultTitle').textContent = animal.title;
+    document.getElementById('resultTitle').style.color = animal.color;
+    document.getElementById('resultDesc').textContent = animal.desc;
 
-    function resetQuiz() {
-        document.getElementById('results').style.display = 'none';
-        document.getElementById('landing').style.display = 'block';
-        document.getElementById('nameInput').value = '';
-        document.getElementById('nameInput').focus();
-        document.getElementById('progressFill').style.width = '0%';
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+    // Share links
+    const shareText = encodeURIComponent(`בגלגול הקודם הייתי ${animal.emoji} ${animal.title.split(' - ')[0]}! 😱 מה יצא לכם? 👉 alifindme.com/quiz/`);
+    const shareUrl = encodeURIComponent('https://alifindme.com/quiz/');
+    document.getElementById('shareWA').href = `https://api.whatsapp.com/send?text=${shareText}`;
+    document.getElementById('shareTG').href = `https://t.me/share/url?url=${shareUrl}&text=${shareText}`;
+    document.getElementById('shareFB').href = `https://www.facebook.com/sharer/sharer.php?u=${shareUrl}`;
+    document.getElementById('shareTW').href = `https://twitter.com/intent/tweet?text=${shareText}`;
+
+    showScreen('screenResult');
+    launchConfetti();
+}
+
+function launchConfetti() {
+    const colors = ['#ff6b00','#7c3aed','#22c55e','#f59e0b','#ec4899','#0ea5e9'];
+    for (let i = 0; i < 60; i++) {
+        const piece = document.createElement('div');
+        piece.className = 'confetti-piece';
+        piece.style.left = Math.random() * 100 + 'vw';
+        piece.style.background = colors[Math.floor(Math.random() * colors.length)];
+        piece.style.width = (Math.random() * 8 + 6) + 'px';
+        piece.style.height = (Math.random() * 8 + 6) + 'px';
+        piece.style.animationDuration = (Math.random() * 2 + 2) + 's';
+        piece.style.animationDelay = (Math.random() * 1.5) + 's';
+        piece.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
+        document.body.appendChild(piece);
+        setTimeout(() => piece.remove(), 5000);
     }
+}
+
+function resetQuiz() {
+    startQuiz();
+}
 </script>
 
 </body>
