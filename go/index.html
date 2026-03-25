@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+// Redirect /go/SLUG to Worker
+const slug = window.location.pathname.replace('/go/', '').replace('/', '');
+if (slug && slug !== 'admin.html' && slug !== 'admin') {
+  window.location.href = 'https://ali-findme-api.ohadf1976.workers.dev/go/' + slug;
+} else if (slug === 'admin' || slug === 'admin.html') {
+  // admin page loads normally
+} else {
+  window.location.href = '/';
+}
+</script>
+</head>
+<body>Redirecting...</body>
+</html>
