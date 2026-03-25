@@ -315,16 +315,16 @@ async function loadLinks() {
       return;
     }
 
-    let html = '<table><thead><tr><th>סלאג</th><th>יעד</th><th>קליקים</th><th>נוצר</th><th>קליק אחרון</th><th>פעולות</th></tr></thead><tbody>';
+    let html = '<table><thead><tr><th>סלאג</th><th>יעד</th><th>קליקים</th><th>פרסום</th><th>קליק אחרון</th><th>פעולות</th></tr></thead><tbody>';
     for (const link of links) {
       const shortUrl = "https://alifindme.com/go/" + link.slug;
-      const created = link.created ? new Date(link.created).toLocaleDateString("he-IL") : "-";
+      const firstClick = link.firstClick ? new Date(link.firstClick).toLocaleString("he-IL", {hour:"2-digit",minute:"2-digit",day:"2-digit",month:"2-digit"}) : "-";
       const lastClick = link.lastClick ? new Date(link.lastClick).toLocaleString("he-IL", {hour:"2-digit",minute:"2-digit",day:"2-digit",month:"2-digit"}) : "-";
       html += `<tr>
         <td class="slug-cell">${escHtml(link.slug)}</td>
         <td class="url-cell" title="${escHtml(link.url)}">${escHtml(link.url)}</td>
         <td class="clicks-cell">${link.clicks || 0}</td>
-        <td class="date-cell">${created}</td>
+        <td class="date-cell">${firstClick}</td>
         <td class="date-cell">${lastClick}</td>
         <td class="actions-cell">
           <button class="btn-copy" onclick="copyLink('${escHtml(shortUrl)}')">העתק</button>
