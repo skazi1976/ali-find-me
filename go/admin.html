@@ -175,6 +175,12 @@
       </div>
     </div>
 
+    <!-- Click Hours Chart -->
+    <div class="links-table" id="hoursSection" style="display:none">
+      <h3>🕐 שעות קליקים (24 שעות אחרונות)</h3>
+      <div id="hoursChart" style="display:flex;align-items:flex-end;gap:4px;height:120px;padding:10px 0;direction:ltr"></div>
+    </div>
+
     <!-- Links Table -->
     <div class="links-table">
       <h3>כל הקישורים</h3>
@@ -252,6 +258,7 @@ function showAdmin() {
   document.getElementById("loginScreen").style.display = "none";
   document.getElementById("adminPanel").style.display = "block";
   loadLinks();
+  loadHoursChart();
 }
 
 async function apiCall(method, body = null) {
@@ -265,6 +272,35 @@ async function apiCall(method, body = null) {
   if (body) opts.body = JSON.stringify(body);
   const resp = await fetch(API_BASE + "/go/api/links", opts);
   return resp.json();
+}
+
+async function loadHoursChart() {
+  try {
+    const resp = await fetch(API_BASE + "/go/api/hours", {
+      headers: { "Authorization": "Bearer " + token }
+    });
+    const data = await resp.json();
+    const hours = data.hours || {};
+    const container = document.getElementById("hoursChart");
+    const section = document.getElementById("hoursSection");
+
+    const vals = [];
+    for (let h = 0; h < 24; h++) vals.push(hours[String(h)] || 0);
+    const max = Math.max(...vals, 1);
+
+    if (vals.some(v => v > 0)) {
+      section.style.display = "block";
+      container.innerHTML = vals.map((v, h) => {
+        const pct = Math.max((v / max) * 100, 2);
+        const bg = v > 0 ? "#667eea" : "#ddd";
+        return `<div style="flex:1;display:flex;flex-direction:column;align-items:center">
+          <div style="font-size:10px;color:#667eea;font-weight:bold">${v > 0 ? v : ''}</div>
+          <div style="width:100%;height:${pct}%;background:${bg};border-radius:3px 3px 0 0;min-height:2px"></div>
+          <div style="font-size:9px;color:#888;margin-top:2px">${h}</div>
+        </div>`;
+      }).join("");
+    }
+  } catch(e) {}
 }
 
 async function loadLinks() {
