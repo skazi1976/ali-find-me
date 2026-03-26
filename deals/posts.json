@@ -5,23 +5,28 @@
       "date": "2026-03-26",
       "type": "daily",
       "brand": "NIKE",
-      "title": "נעלי Air Jordan 1 Retro High",
-      "price": 234,
+      "title": "נעלי נייק Air Jordan",
+      "price": 202,
       "link": "https://store.flylinking.com/g/94SI9KCMXX",
       "images": [
-        "https://photo.yupoo.com/xuxuxuxux/6f190836/origin.jpg"
+        "https://pub-0ad199860b5a4ce0b3fb483660b8a4ca.r2.dev/xuxu/6f190836_0.jpg",
+        "https://pub-0ad199860b5a4ce0b3fb483660b8a4ca.r2.dev/xuxu/02003156_1.jpg",
+        "https://pub-0ad199860b5a4ce0b3fb483660b8a4ca.r2.dev/xuxu/f5939171_2.jpg"
       ]
     },
     {
       "id": "2026-03-26-2",
       "date": "2026-03-26",
       "type": "daily",
-      "brand": "DIOR",
-      "title": "תיק Dior Saddle Bag קלאסי",
-      "price": 290,
-      "link": "https://store.flylinking.com/g/NE6W4AW34T",
+      "brand": "ADIDAS",
+      "title": "נעלי אדידס Samba קלאסיות",
+      "price": 127,
+      "link": "https://store.flylinking.com/g/23F30S4WUQ",
       "images": [
-        "https://photo.yupoo.com/xuxuxuxux/d9e59beb/origin.jpg"
+        "https://pub-0ad199860b5a4ce0b3fb483660b8a4ca.r2.dev/xuxu/a73b6102_0.jpg",
+        "https://pub-0ad199860b5a4ce0b3fb483660b8a4ca.r2.dev/xuxu/a3a8add9_1.jpg",
+        "https://pub-0ad199860b5a4ce0b3fb483660b8a4ca.r2.dev/xuxu/71e5296c_2.jpg",
+        "https://pub-0ad199860b5a4ce0b3fb483660b8a4ca.r2.dev/xuxu/c7f9c2ea_3.jpg"
       ]
     },
     {
@@ -29,35 +34,148 @@
       "date": "2026-03-26",
       "type": "daily",
       "brand": "UGG",
-      "title": "נעלי UGG Classic Mini חורף",
-      "price": 178,
-      "link": "https://store.flylinking.com/g/NAAIWNRU8A",
+      "title": "מגפי UGG Classic Mini",
+      "price": 206,
+      "link": "https://store.flylinking.com/g/N8LADFMJLK",
       "images": [
-        "https://photo.yupoo.com/xuxuxuxux/13e83891/origin.jpg"
+        "https://pub-0ad199860b5a4ce0b3fb483660b8a4ca.r2.dev/xuxu/53695f21_0.jpg",
+        "https://pub-0ad199860b5a4ce0b3fb483660b8a4ca.r2.dev/xuxu/29b6e7cd_1.jpg",
+        "https://pub-0ad199860b5a4ce0b3fb483660b8a4ca.r2.dev/xuxu/d6069400_2.jpg",
+        "https://pub-0ad199860b5a4ce0b3fb483660b8a4ca.r2.dev/xuxu/c840f179_3.jpg"
       ]
     },
     {
       "id": "2026-03-26-4",
       "date": "2026-03-26",
-      "type": "brand",
-      "brand": "GUCCI",
-      "title": "חגורת Gucci GG Supreme",
-      "price": 87,
-      "link": "https://store.flylinking.com/g/48OICS58F9",
+      "type": "daily",
+      "brand": "NB",
+      "title": "נעלי ניו באלאנס 550",
+      "price": 229,
+      "link": "https://store.flylinking.com/g/LKV5FRNSUS",
       "images": [
-        "https://photo.yupoo.com/xuxuxuxux/39dd9b43/origin.jpg"
+        "https://pub-0ad199860b5a4ce0b3fb483660b8a4ca.r2.dev/xuxu/9ec9d581_0.jpg",
+        "https://pub-0ad199860b5a4ce0b3fb483660b8a4ca.r2.dev/xuxu/b6f07804_1.jpg",
+        "https://pub-0ad199860b5a4ce0b3fb483660b8a4ca.r2.dev/xuxu/72dd64f0_2.jpg",
+        "https://pub-0ad199860b5a4ce0b3fb483660b8a4ca.r2.dev/xuxu/d0df3a24_3.jpg"
       ]
     },
     {
       "id": "2026-03-26-5",
       "date": "2026-03-26",
-      "type": "brand",
-      "brand": "LV",
-      "title": "ארנק Louis Vuitton Monogram",
-      "price": 276,
-      "link": "https://store.flylinking.com/g/I6G7ZR1WQG",
+      "type": "daily",
+      "brand": "CONVERSE",
+      "title": "נעלי קונברס All Star",
+      "price": 175,
+      "link": "https://store.flylinking.com/g/D1W2LFPTLX",
       "images": [
-        "https://photo.yupoo.com/xuxuxuxux/049950dd/origin.jpg"
+        "https://pub-0ad199860b5a4ce0b3fb483660b8a4ca.r2.dev/xuxu/bb464ce9_0.jpg",
+        "https://pub-0ad199860b5a4ce0b3fb483660b8a4ca.r2.dev/xuxu/5b28413a_1.jpg",
+        "https://pub-0ad199860b5a4ce0b3fb483660b8a4ca.r2.dev/xuxu/75fd879b_2.jpg",
+        "https://pub-0ad199860b5a4ce0b3fb483660b8a4ca.r2.dev/xuxu/a83d3e84_3.jpg"
+      ]
+    },
+    {
+      "id": "2026-03-26-6",
+      "date": "2026-03-26",
+      "type": "daily",
+      "brand": "POLO",
+      "title": "חולצת פולו ראלף לורן",
+      "price": 207,
+      "link": "https://store.flylinking.com/g/QIB68BYNX9",
+      "images": [
+        "https://pub-0ad199860b5a4ce0b3fb483660b8a4ca.r2.dev/xuxu/54c76321_0.jpg",
+        "https://pub-0ad199860b5a4ce0b3fb483660b8a4ca.r2.dev/xuxu/7553d946_1.jpg",
+        "https://pub-0ad199860b5a4ce0b3fb483660b8a4ca.r2.dev/xuxu/682a3980_2.jpg",
+        "https://pub-0ad199860b5a4ce0b3fb483660b8a4ca.r2.dev/xuxu/34d10efb_3.jpg"
+      ]
+    },
+    {
+      "id": "2026-03-26-7",
+      "date": "2026-03-26",
+      "type": "daily",
+      "brand": "HERMES",
+      "title": "חגורת הרמס H Belt",
+      "price": 125,
+      "link": "https://store.flylinking.com/g/SO2TVBXCTN",
+      "images": [
+        "https://pub-0ad199860b5a4ce0b3fb483660b8a4ca.r2.dev/xuxu/049950dd_0.jpg",
+        "https://pub-0ad199860b5a4ce0b3fb483660b8a4ca.r2.dev/xuxu/9b42b2e2_1.jpg",
+        "https://pub-0ad199860b5a4ce0b3fb483660b8a4ca.r2.dev/xuxu/b6fc1b8d_2.jpg",
+        "https://pub-0ad199860b5a4ce0b3fb483660b8a4ca.r2.dev/xuxu/a12cd079_3.jpg"
+      ]
+    },
+    {
+      "id": "2026-03-26-8",
+      "date": "2026-03-26",
+      "type": "brand",
+      "brand": "DIOR",
+      "title": "תיק דיור Saddle Bag",
+      "price": 251,
+      "link": "https://store.flylinking.com/g/NE6W4AW34T",
+      "images": [
+        "https://pub-0ad199860b5a4ce0b3fb483660b8a4ca.r2.dev/xuxu/9b7b39bb_0.jpg",
+        "https://pub-0ad199860b5a4ce0b3fb483660b8a4ca.r2.dev/xuxu/689b627f_1.jpg",
+        "https://pub-0ad199860b5a4ce0b3fb483660b8a4ca.r2.dev/xuxu/654d036f_2.jpg"
+      ]
+    },
+    {
+      "id": "2026-03-26-9",
+      "date": "2026-03-26",
+      "type": "brand",
+      "brand": "GUCCI",
+      "title": "חגורת גוצ'י GG Supreme",
+      "price": 75,
+      "link": "https://store.flylinking.com/g/G0V5K6BIKR",
+      "images": [
+        "https://pub-0ad199860b5a4ce0b3fb483660b8a4ca.r2.dev/xuxu/39dd9b43_0.jpg",
+        "https://pub-0ad199860b5a4ce0b3fb483660b8a4ca.r2.dev/xuxu/71225493_1.jpg",
+        "https://pub-0ad199860b5a4ce0b3fb483660b8a4ca.r2.dev/xuxu/e92d8631_2.jpg",
+        "https://pub-0ad199860b5a4ce0b3fb483660b8a4ca.r2.dev/xuxu/2b64c7d0_3.jpg"
+      ]
+    },
+    {
+      "id": "2026-03-26-10",
+      "date": "2026-03-26",
+      "type": "brand",
+      "brand": "CHANEL",
+      "title": "תיק שאנל Classic Flap",
+      "price": 75,
+      "link": "https://store.flylinking.com/g/U7UW01PK2J",
+      "images": [
+        "https://pub-0ad199860b5a4ce0b3fb483660b8a4ca.r2.dev/xuxu/8a97c0df_0.jpg",
+        "https://pub-0ad199860b5a4ce0b3fb483660b8a4ca.r2.dev/xuxu/cbf7ead7_1.jpg",
+        "https://pub-0ad199860b5a4ce0b3fb483660b8a4ca.r2.dev/xuxu/60f60066_2.jpg",
+        "https://pub-0ad199860b5a4ce0b3fb483660b8a4ca.r2.dev/xuxu/1d41f82f_3.jpg"
+      ]
+    },
+    {
+      "id": "2026-03-26-11",
+      "date": "2026-03-26",
+      "type": "brand",
+      "brand": "BURBERRY",
+      "title": "צעיף ברברי Nova Check",
+      "price": 160,
+      "link": "https://store.flylinking.com/g/DU5TK25AZU",
+      "images": [
+        "https://pub-0ad199860b5a4ce0b3fb483660b8a4ca.r2.dev/xuxu/7c0269de_0.jpg",
+        "https://pub-0ad199860b5a4ce0b3fb483660b8a4ca.r2.dev/xuxu/35cc0954_1.jpg",
+        "https://pub-0ad199860b5a4ce0b3fb483660b8a4ca.r2.dev/xuxu/554c2643_2.jpg",
+        "https://pub-0ad199860b5a4ce0b3fb483660b8a4ca.r2.dev/xuxu/a0ec1188_3.jpg"
+      ]
+    },
+    {
+      "id": "2026-03-26-12",
+      "date": "2026-03-26",
+      "type": "brand",
+      "brand": "PRADA",
+      "title": "תיק פראדה Re-Edition",
+      "price": 69,
+      "link": "https://store.flylinking.com/g/RMSFGEKYJY",
+      "images": [
+        "https://pub-0ad199860b5a4ce0b3fb483660b8a4ca.r2.dev/xuxu/339cb5a7_0.jpg",
+        "https://pub-0ad199860b5a4ce0b3fb483660b8a4ca.r2.dev/xuxu/42108bd3_1.jpg",
+        "https://pub-0ad199860b5a4ce0b3fb483660b8a4ca.r2.dev/xuxu/9b02787f_2.jpg",
+        "https://pub-0ad199860b5a4ce0b3fb483660b8a4ca.r2.dev/xuxu/18fa0853_3.jpg"
       ]
     }
   ]
