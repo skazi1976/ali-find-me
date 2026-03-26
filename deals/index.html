@@ -1154,6 +1154,8 @@ const SHARE_TEXT = 'דילים מטורפים על מותגים כמו Nike, Guc
 
 function trackEvent(action, category, label) {
   if (typeof gtag === 'function') gtag('event', action, { event_category: category, event_label: label });
+  // Send to Worker analytics
+  fetch(WORKER_URL + '/deals/track', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({ event: action }) }).catch(() => {});
 }
 
 function shareWA() {
@@ -1215,6 +1217,9 @@ async function submitRequest() {
   if (phone.startsWith('+972')) normalizedPhone = phone.slice(1);
 
   trackEvent('product_request', 'engagement', message.substring(0, 50));
+
+  // Save request to Worker KV
+  fetch(WORKER_URL + '/deals/requests', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({ name: name || 'אנונימי', phone: normalizedPhone, message }) }).catch(() => {});
 
   // Build WhatsApp message
   const waNumber = '972507483316';
@@ -1310,6 +1315,7 @@ document.addEventListener('keydown', function(e) {
 
 // Init
 loadPosts();
+trackEvent('page_view', 'engagement', 'deals_page');
 </script>
 
 <div id="lightbox" class="lightbox" onclick="if(event.target===this)closeLightbox()">

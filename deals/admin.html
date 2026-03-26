@@ -436,6 +436,18 @@
 
     <div class="status-bar" id="statusBar">טוען...</div>
 
+    <!-- Analytics Dashboard -->
+    <div class="form-card" id="analyticsCard" style="margin:15px auto;max-width:800px">
+      <h2 style="text-align:center;margin-bottom:15px">📊 סטטיסטיקות</h2>
+      <div id="analyticsContent" style="text-align:center;color:#888">טוען נתונים...</div>
+    </div>
+
+    <!-- Product Requests -->
+    <div class="form-card" id="requestsCard" style="margin:15px auto;max-width:800px">
+      <h2 style="text-align:center;margin-bottom:15px">📩 בקשות מלקוחות <span id="requestsBadge" style="background:#FF6B00;color:#fff;border-radius:50%;padding:2px 8px;font-size:14px;display:none">0</span></h2>
+      <div id="requestsContent" style="text-align:center;color:#888">טוען...</div>
+    </div>
+
     <div class="form-section">
 
       <!-- New Post Form -->
@@ -545,6 +557,89 @@ function showAdmin() {
 
   loadPosts();
   loadRequests();
+  loadAnalytics();
+  loadKVRequests();
+}
+
+// === ANALYTICS ===
+async function loadAnalytics() {
+  try {
+    const resp = await fetch(`${R2_UPLOAD_WORKER}/deals/analytics?password=deals2026&days=7&t=${Date.now()}`);
+    if (!resp.ok) throw new Error('Failed');
+    const data = await resp.json();
+
+    const labels = { page_view: '👁 צפיות', purchase_click: '🛒 רכישות', share: '📤 שיתופים', search: '🔍 חיפושים', broadcast_join: '📱 הצטרפויות', product_request: '📩 בקשות' };
+
+    const today = todayStr();
+    const yesterday = (() => { const d = new Date(); d.setDate(d.getDate()-1); return d.toISOString().slice(0,10); })();
+
+    // Sum weekly
+    const weekly = {};
+    Object.values(data).forEach(day => {
+      Object.entries(day).forEach(([k, v]) => { weekly[k] = (weekly[k] || 0) + v; });
+    });
+
+    const todayData = data[today] || {};
+    const yesterdayData = data[yesterday] || {};
+
+    const makeRow = (label, d) => Object.entries(labels).map(([k, emoji]) => d[k] ? `<span style="margin:0 8px">${emoji} ${d[k]}</span>` : '').filter(Boolean).join('') || '<span style="color:#555">אין נתונים</span>';
+
+    document.getElementById('analyticsContent').innerHTML = `
+      <div style="display:grid;gap:10px;text-align:right">
+        <div style="background:#1a1a2e;padding:12px;border-radius:8px">
+          <strong style="color:#FF6B00">היום</strong><br>${makeRow('today', todayData)}
+        </div>
+        <div style="background:#1a1a2e;padding:12px;border-radius:8px">
+          <strong style="color:#888">אתמול</strong><br>${makeRow('yesterday', yesterdayData)}
+        </div>
+        <div style="background:#1a1a2e;padding:12px;border-radius:8px">
+          <strong style="color:#4CAF50">7 ימים אחרונים</strong><br>${makeRow('week', weekly)}
+        </div>
+      </div>
+    `;
+  } catch (e) {
+    document.getElementById('analyticsContent').innerHTML = '<span style="color:#ef4444">שגיאה בטעינת נתונים</span>';
+  }
+}
+
+// === KV REQUESTS ===
+async function loadKVRequests() {
+  try {
+    const resp = await fetch(`${R2_UPLOAD_WORKER}/deals/requests?password=deals2026&t=${Date.now()}`);
+    if (!resp.ok) throw new Error('Failed');
+    const requests = await resp.json();
+
+    const badge = document.getElementById('requestsBadge');
+    const undone = requests.filter(r => !r.done).length;
+    if (undone > 0) { badge.textContent = undone; badge.style.display = 'inline'; }
+    else { badge.style.display = 'none'; }
+
+    if (requests.length === 0) {
+      document.getElementById('requestsContent').innerHTML = '<span style="color:#555">אין בקשות</span>';
+      return;
+    }
+
+    document.getElementById('requestsContent').innerHTML = requests.map(r => `
+      <div style="background:#1a1a2e;padding:12px;border-radius:8px;margin-bottom:8px;text-align:right;display:flex;align-items:center;gap:10px">
+        <div style="flex:1">
+          <div><strong>${r.name || 'אנונימי'}</strong> ${r.phone ? `<span style="color:#888">📱 ${r.phone}</span>` : ''}</div>
+          <div style="color:#ccc;margin-top:4px">${r.message}</div>
+          <div style="color:#555;font-size:12px;margin-top:4px">${new Date(r.date).toLocaleString('he-IL')}</div>
+        </div>
+        ${r.phone ? `<a href="https://wa.me/${r.phone}?text=${encodeURIComponent('היי! לגבי הבקשה שלך - ')}" target="_blank" style="background:#25D366;color:#fff;padding:6px 12px;border-radius:8px;text-decoration:none;font-size:13px;white-space:nowrap">💬 השב</a>` : ''}
+        <button onclick="deleteKVRequest('${r.id}')" style="background:#ef4444;color:#fff;border:none;padding:6px 10px;border-radius:8px;cursor:pointer;font-size:13px">🗑</button>
+      </div>
+    `).join('');
+  } catch (e) {
+    document.getElementById('requestsContent').innerHTML = '<span style="color:#ef4444">שגיאה בטעינה</span>';
+  }
+}
+
+async function deleteKVRequest(id) {
+  if (!confirm('למחוק את הבקשה?')) return;
+  await fetch(`${R2_UPLOAD_WORKER}/deals/requests?password=deals2026`, { method: 'DELETE', headers: {'Content-Type':'application/json'}, body: JSON.stringify({ id }) });
+  loadKVRequests();
+  showToast('הבקשה נמחקה');
 }
 
 // === HELPERS ===
