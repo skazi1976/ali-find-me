@@ -617,6 +617,74 @@
       text-decoration: none;
     }
 
+    /* Share Banner */
+    .share-banner {
+      margin: 24px 16px;
+      padding: 20px;
+      background: linear-gradient(135deg, rgba(37,211,102,0.08), rgba(0,136,204,0.06));
+      border: 1px solid rgba(37,211,102,0.15);
+      border-radius: 16px;
+      text-align: center;
+    }
+
+    .share-banner h3 {
+      font-size: 18px;
+      font-weight: 800;
+      margin-bottom: 6px;
+    }
+
+    .share-banner p {
+      font-size: 13px;
+      color: rgba(255,255,255,0.4);
+      margin-bottom: 14px;
+    }
+
+    .share-buttons {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .share-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 10px 18px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-family: 'Heebo', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .share-btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .share-btn.wa {
+      background: linear-gradient(135deg, #25D366, #128C7E);
+      box-shadow: 0 4px 15px rgba(37,211,102,0.25);
+    }
+
+    .share-btn.tg {
+      background: linear-gradient(135deg, #0088cc, #006daa);
+      box-shadow: 0 4px 15px rgba(0,136,204,0.25);
+    }
+
+    .share-btn.copy {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.12);
+    }
+
+    .share-btn.copy:hover { background: rgba(255,255,255,0.12); }
+
+    .share-btn .share-icon { font-size: 18px; }
+
     /* Loading */
     .loading {
       text-align: center;
@@ -678,6 +746,17 @@
 
   <!-- Archive -->
   <div id="archiveSection"></div>
+
+  <!-- Share Banner -->
+  <section class="share-banner">
+    <h3>&#x1F381; חברה שלך תודה לך!</h3>
+    <p>שתפו את הדילים עם חברים ומשפחה</p>
+    <div class="share-buttons">
+      <a class="share-btn wa" onclick="shareWA()"><span class="share-icon">&#x1F4AC;</span> וואטסאפ</a>
+      <a class="share-btn tg" onclick="shareTG()"><span class="share-icon">&#x2708;&#xFE0F;</span> טלגרם</a>
+      <button class="share-btn copy" onclick="copyLink()"><span class="share-icon">&#x1F517;</span> העתיקו קישור</button>
+    </div>
+  </section>
 
   <!-- Search Section -->
   <section class="search-section">
@@ -1000,6 +1079,27 @@ document.addEventListener('touchend', function(e) {
   }
   gallery._touchX = null;
 }, { passive: true });
+
+// === Share ===
+const SHARE_URL = 'https://alifindme.com/deals/';
+const SHARE_TEXT = 'דילים מטורפים על מותגים כמו Nike, Gucci, Dior ועוד במחירי רצפה! 🔥';
+
+function shareWA() {
+  window.open(`https://wa.me/?text=${encodeURIComponent(SHARE_TEXT + '\n\n' + SHARE_URL)}`, '_blank');
+}
+
+function shareTG() {
+  window.open(`https://t.me/share/url?url=${encodeURIComponent(SHARE_URL)}&text=${encodeURIComponent(SHARE_TEXT)}`, '_blank');
+}
+
+function copyLink() {
+  navigator.clipboard.writeText(SHARE_URL).then(() => {
+    const btn = document.querySelector('.share-btn.copy');
+    const orig = btn.innerHTML;
+    btn.innerHTML = '<span class="share-icon">&#x2705;</span> הועתק!';
+    setTimeout(() => btn.innerHTML = orig, 2000);
+  });
+}
 
 // === Product Requests ===
 let reqImageFile = null;
