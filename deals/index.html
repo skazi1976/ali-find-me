@@ -711,6 +711,17 @@
     }
 
     @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* Lightbox */
+    .lightbox { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.95); z-index:9999; align-items:center; justify-content:center; flex-direction:column; }
+    .lightbox.active { display:flex; }
+    .lightbox-close { position:absolute; top:15px; right:20px; font-size:32px; color:#fff; cursor:pointer; z-index:10001; background:none; border:none; }
+    .lightbox-media { max-width:90vw; max-height:75vh; object-fit:contain; border-radius:8px; }
+    .lightbox-nav { position:absolute; top:50%; transform:translateY(-50%); font-size:36px; color:#fff; background:rgba(255,255,255,0.15); border:none; border-radius:50%; width:50px; height:50px; cursor:pointer; display:flex; align-items:center; justify-content:center; }
+    .lightbox-nav:hover { background:rgba(255,255,255,0.3); }
+    .lightbox-prev { left:10px; }
+    .lightbox-next { right:10px; }
+    .lightbox-counter { color:#fff; margin-top:12px; font-size:14px; }
   </style>
 </head>
 <body>
@@ -1226,9 +1237,70 @@ async function submitRequest() {
   }, 4000);
 }
 
+// Lightbox
+let lbImages = [], lbIdx = 0;
+
+function openLightbox(gallery) {
+  lbImages = JSON.parse(gallery.dataset.images);
+  lbIdx = parseInt(gallery.dataset.index) || 0;
+  updateLightbox();
+  document.getElementById('lightbox').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('active');
+  document.body.style.overflow = '';
+  // Pause any video
+  const v = document.querySelector('.lightbox video');
+  if (v) v.pause();
+}
+
+function lbNav(dir) {
+  lbIdx = (lbIdx + dir + lbImages.length) % lbImages.length;
+  updateLightbox();
+}
+
+function updateLightbox() {
+  const src = lbImages[lbIdx];
+  const isVideo = src.startsWith('video:');
+  const url = isVideo ? src.slice(6) : src;
+  const container = document.getElementById('lbMedia');
+  if (isVideo) {
+    container.innerHTML = `<video src="${url}" class="lightbox-media" controls autoplay playsinline loop></video>`;
+  } else {
+    container.innerHTML = `<img src="${url}" class="lightbox-media" alt="">`;
+  }
+  document.getElementById('lbCounter').textContent = `${lbIdx + 1} / ${lbImages.length}`;
+}
+
+// Click on gallery media opens lightbox
+document.addEventListener('click', function(e) {
+  const media = e.target.closest('.gallery-media');
+  if (media) {
+    const gallery = media.closest('.card-gallery');
+    if (gallery) { e.preventDefault(); openLightbox(gallery); }
+  }
+});
+
+// Close on ESC
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closeLightbox();
+  if (e.key === 'ArrowLeft') lbNav(1);
+  if (e.key === 'ArrowRight') lbNav(-1);
+});
+
 // Init
 loadPosts();
 </script>
+
+<div id="lightbox" class="lightbox" onclick="if(event.target===this)closeLightbox()">
+  <button class="lightbox-close" onclick="closeLightbox()">&#x2715;</button>
+  <button class="lightbox-nav lightbox-prev" onclick="lbNav(-1)">&#x276E;</button>
+  <button class="lightbox-nav lightbox-next" onclick="lbNav(1)">&#x276F;</button>
+  <div id="lbMedia"></div>
+  <div id="lbCounter" class="lightbox-counter"></div>
+</div>
 
 </body>
 </html>
