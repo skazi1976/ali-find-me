@@ -872,7 +872,32 @@ async function loadPosts() {
       document.getElementById('brandGrid').innerHTML = brandCards.map(buildCard).join('');
     }
 
-    if (dailyToShow.length === 0 && allBrands.length === 0) {
+    // === ARCHIVE (older dates) ===
+    const olderPosts = posts.filter(p => p.type === 'daily' && p.date !== (dailyToShow.length > 0 ? dailyToShow[0].date : ''));
+    if (olderPosts.length > 0) {
+      // Group by date
+      const byDate = {};
+      olderPosts.forEach(p => {
+        if (!byDate[p.date]) byDate[p.date] = [];
+        byDate[p.date].push(p);
+      });
+      const dates = Object.keys(byDate).sort((a, b) => b.localeCompare(a));
+
+      let archiveHTML = `
+        <div class="section-header">
+          <div class="section-icon" style="background:rgba(255,255,255,0.08)">&#x1F4C5;</div>
+          <span class="section-title">ארכיון דילים</span>
+          <span class="section-count">${olderPosts.length} מוצרים</span>
+        </div>
+      `;
+      dates.forEach(date => {
+        archiveHTML += `<div class="date-divider">${formatDateHe(date)}</div>`;
+        archiveHTML += `<div class="products-grid">${byDate[date].map(buildCard).join('')}</div>`;
+      });
+      document.getElementById('archiveSection').innerHTML = archiveHTML;
+    }
+
+    if (dailyToShow.length === 0 && allBrands.length === 0 && posts.length === 0) {
       document.getElementById('emptyState').style.display = 'block';
     }
 
