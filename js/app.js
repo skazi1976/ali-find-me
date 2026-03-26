@@ -1312,6 +1312,9 @@ const HE_EN_DICT = {
   "מטבח": "kitchen", "סכין": "knife", "סיר": "pot", "מחבת": "pan",
   "בקבוק": "bottle", "כוס": "cup", "צלחת": "plate",
   "צעצוע": "toy", "צעצועים": "toys", "לגו": "lego", "בובה": "doll",
+  "משחקים לתינוק": "baby toys educational games", "משחקים לתינוקות": "baby toys educational games",
+  "צעצועים לתינוק": "baby toys educational sensory", "צעצועים לתינוקות": "baby toys educational",
+  "צעצוע לתינוק": "baby toy sensory educational", "משחק לתינוק": "baby toy game educational",
   "תינוק": "baby", "עגלה": "stroller", "מוצץ": "pacifier",
   "כלב": "dog", "חתול": "cat", "חיות מחמד": "pets", "כלבים": "dogs", "חתולים": "cats",
   "מכנסיים לכלב": "pet dog costume", "בגדים לכלב": "pet dog clothes", "בגדים לכלבים": "pet dog clothes",
@@ -1335,6 +1338,10 @@ const HE_EN_DICT = {
   "פיג'מה": "pajamas", "פיג׳מה": "pajamas",
   "חגורה": "belt", "כובע": "hat", "משקפיים": "glasses", "משקפי שמש": "sunglasses",
   "מעיל": "jacket", "מעילים": "jackets", "סווטשירט": "sweatshirt",
+  "חליפה לתינוק": "baby outfit clothes set", "חליפת תינוק": "baby outfit clothes set",
+  "בגדי תינוק": "baby clothes romper set", "בגד גוף לתינוק": "baby bodysuit onesie romper", "אוברול לתינוק": "baby romper jumpsuit",
+  "שמלה לתינוקת": "baby girl dress", "שמלת תינוקת": "baby girl dress outfit",
+  "סט בגדים לתינוק": "baby clothes set outfit", "פיג'מה לתינוק": "baby pajamas sleepwear",
   "חליפה": "suit", "חליפת": "suit",
   "רובוטי": "robot", "חשמלי": "electric", "נטען": "rechargeable",
 };
@@ -1409,11 +1416,28 @@ function logSearch(originalQuery, translatedQuery, resultCount) {
   }).catch(() => {});
 }
 
+// Auto-detect context from query to get better AI translation
+function detectContext(query) {
+  const q = query.toLowerCase();
+  const babyWords = ["תינוק", "תינוקת", "תינוקות", "לתינוק", "לתינוקת", "לתינוקות", "בייבי", "יילוד", "פעוט", "פעוטות", "עריסה", "חיתול", "מוצץ", "עגלה", "האכלה", "סינר"];
+  const petWords = ["כלב", "חתול", "כלבים", "חתולים", "לכלב", "לחתול", "לכלבים", "לחתולים", "חיות מחמד"];
+  const homeWords = ["לבית", "לסלון", "למטבח", "לחדר", "לאמבטיה", "עיצוב הבית", "מדף", "מנורה", "וילון", "שטיח"];
+  if (babyWords.some(w => q.includes(w))) return "baby";
+  if (petWords.some(w => q.includes(w))) return "pets";
+  if (homeWords.some(w => q.includes(w))) return "home";
+  return "";
+}
+
 async function doSearch(query, page = 1) {
-  const translatedQ = translateQuery(query);
+  // Auto-detect context for better AI translation
+  const autoContext = detectContext(query);
+  // If baby/pets/home detected, send original Hebrew to Claude (don't use frontend dict)
+  const translatedQ = autoContext ? query : translateQuery(query);
   const params = new URLSearchParams({
     q: translatedQ, lang: currentLang, currency: currentCurrency, country: currentCountry, page: String(page),
   });
+  // Pass auto-detected context so Worker uses the right Claude prompt
+  if (autoContext) params.set("context", autoContext);
   // Add active filters
   if (freeShipActive) params.set("free_shipping", "1");
   const catSel = document.getElementById("categorySelect");
