@@ -561,6 +561,8 @@
 
 <script>
 const POSTS_URL = 'posts.json';
+const BRANDS_URL = 'brands.json';
+const BRANDS_PER_DAY = 6;
 
 // Hebrew date formatting
 function formatDateHe(dateStr) {
@@ -573,6 +575,38 @@ function formatDateHe(dateStr) {
 function todayStr() {
   const d = new Date();
   return d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
+}
+
+// Seeded random based on date string (consistent per day)
+function seededRandom(seed) {
+  let h = 0;
+  for (let i = 0; i < seed.length; i++) {
+    h = ((h << 5) - h + seed.charCodeAt(i)) | 0;
+  }
+  return function() {
+    h = (h * 16807 + 0) % 2147483647;
+    return (h & 0x7fffffff) / 2147483647;
+  };
+}
+
+// Pick N random items from array using seeded random
+function pickRandom(arr, n, dateSeed) {
+  const rng = seededRandom(dateSeed);
+  const shuffled = [...arr];
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor(rng() * (i + 1));
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+  }
+  // Pick from different brands
+  const picked = [];
+  const usedBrands = new Set();
+  for (const item of shuffled) {
+    if (picked.length >= n) break;
+    if (usedBrands.has(item.brand) && picked.length < n - 2) continue; // prefer variety
+    picked.push(item);
+    usedBrands.add(item.brand);
+  }
+  return picked;
 }
 
 // Set header date
@@ -646,81 +680,62 @@ document.getElementById('searchInput').addEventListener('keydown', function(e) {
   if (e.key === 'Enter') doSearch();
 });
 
-// Load and render posts
+// Load daily deals (manual from posts.json) + random brands (from brands.json)
 async function loadPosts() {
   try {
-    const resp = await fetch(POSTS_URL + '?t=' + Date.now());
-    const data = await resp.json();
-    const posts = data.posts || [];
+    // Load both in parallel
+    const [postsResp, brandsResp] = await Promise.all([
+      fetch(POSTS_URL + '?t=' + Date.now()),
+      fetch(BRANDS_URL + '?t=' + Date.now())
+    ]);
+
+    const postsData = await postsResp.json();
+    const allBrands = await brandsResp.json();
+    const posts = postsData.posts || [];
 
     document.getElementById('loadingState').style.display = 'none';
 
-    if (posts.length === 0) {
-      document.getElementById('emptyState').style.display = 'block';
-      return;
-    }
-
-    // Group by date
-    const byDate = {};
-    posts.forEach(p => {
-      if (!byDate[p.date]) byDate[p.date] = [];
-      byDate[p.date].push(p);
-    });
-
-    // Sort dates descending
-    const dates = Object.keys(byDate).sort((a, b) => b.localeCompare(a));
     const today = todayStr();
 
-    // Today's posts
-    const todayPosts = byDate[today] || [];
-    const dailyPosts = todayPosts.filter(p => p.type === 'daily');
-    const brandPosts = todayPosts.filter(p => p.type === 'brand');
+    // === DAILY DEALS (manual, from posts.json) ===
+    const dailyPosts = posts.filter(p => p.type === 'daily');
+    // Show today's or most recent
+    let dailyToShow = dailyPosts.filter(p => p.date === today);
+    if (dailyToShow.length === 0) {
+      // Show most recent daily posts
+      const sorted = [...dailyPosts].sort((a, b) => b.date.localeCompare(a.date));
+      const latestDate = sorted.length > 0 ? sorted[0].date : null;
+      if (latestDate) dailyToShow = sorted.filter(p => p.date === latestDate);
+    }
 
-    // Render daily deals
-    if (dailyPosts.length > 0) {
+    if (dailyToShow.length > 0) {
       document.getElementById('dailySection').style.display = 'block';
-      document.getElementById('dailyCount').textContent = `${dailyPosts.length} מוצרים`;
-      document.getElementById('dailyGrid').innerHTML = dailyPosts.map(buildCard).join('');
+      document.getElementById('dailyCount').textContent = `${dailyToShow.length} מוצרים`;
+      document.getElementById('dailyGrid').innerHTML = dailyToShow.map(buildCard).join('');
     }
 
-    // Render brand posts
-    if (brandPosts.length > 0) {
+    // === HIDDEN BRANDS (auto-rotating from brands.json) ===
+    if (allBrands.length > 0) {
+      const todayBrands = pickRandom(allBrands, BRANDS_PER_DAY, today);
+      // Convert to card format
+      const brandCards = todayBrands.map((b, i) => ({
+        id: `brand-${today}-${i}`,
+        date: today,
+        type: 'brand',
+        brand: b.brand,
+        title: b.title,
+        price: b.price,
+        link: b.link,
+        images: b.images
+      }));
+
       document.getElementById('brandSection').style.display = 'block';
-      document.getElementById('brandCount').textContent = `${brandPosts.length} מוצרים`;
-      document.getElementById('brandGrid').innerHTML = brandPosts.map(buildCard).join('');
+      document.getElementById('brandCount').textContent = `${brandCards.length} מוצרים - מתחלפים כל יום`;
+      document.getElementById('brandGrid').innerHTML = brandCards.map(buildCard).join('');
     }
 
-    // If no today posts, show all as archive
-    if (todayPosts.length === 0 && posts.length > 0) {
-      // Show most recent posts as "today"
-      const latestDate = dates[0];
-      const latest = byDate[latestDate];
-      const latestDaily = latest.filter(p => p.type === 'daily');
-      const latestBrand = latest.filter(p => p.type === 'brand');
-
-      if (latestDaily.length > 0) {
-        document.getElementById('dailySection').style.display = 'block';
-        document.getElementById('dailyCount').textContent = `${latestDaily.length} מוצרים`;
-        document.getElementById('dailyGrid').innerHTML = latestDaily.map(buildCard).join('');
-      }
-      if (latestBrand.length > 0) {
-        document.getElementById('brandSection').style.display = 'block';
-        document.getElementById('brandCount').textContent = `${latestBrand.length} מוצרים`;
-        document.getElementById('brandGrid').innerHTML = latestBrand.map(buildCard).join('');
-      }
-    }
-
-    // Archive (older dates)
-    const archiveDates = dates.filter(d => d !== today && d !== dates[0]);
-    if (archiveDates.length > 0) {
-      const archiveHTML = archiveDates.map(date => {
-        const datePosts = byDate[date];
-        return `
-          <div class="date-divider">${formatDateHe(date)}</div>
-          <div class="products-grid">${datePosts.map(buildCard).join('')}</div>
-        `;
-      }).join('');
-      document.getElementById('archiveSection').innerHTML = archiveHTML;
+    if (dailyToShow.length === 0 && allBrands.length === 0) {
+      document.getElementById('emptyState').style.display = 'block';
     }
 
   } catch (err) {
