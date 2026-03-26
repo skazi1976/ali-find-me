@@ -154,11 +154,31 @@
         padding: 0 10px 10px;
       }
 
-      .card-title { font-size: 13px; }
-      .card-price { font-size: 18px; }
-      .buy-btn { padding: 8px 12px; font-size: 12px; }
-      .brand-name { font-size: 10px; }
-      .card-info { padding: 10px 10px 12px; }
+      .card-info { padding: 8px 8px 10px; }
+      .brand-name { font-size: 9px; letter-spacing: 1px; margin-bottom: 2px; }
+      .card-title { font-size: 12px; line-height: 1.3; margin-bottom: 6px; }
+      .card-bottom {
+        flex-direction: column;
+        align-items: stretch !important;
+        gap: 6px;
+      }
+      .card-price { font-size: 20px; text-align: center; }
+      .card-price small { font-size: 12px; }
+      .buy-btn {
+        padding: 9px 10px;
+        font-size: 13px;
+        justify-content: center;
+        width: 100% !important;
+        display: flex !important;
+        border-radius: 8px;
+        text-align: center;
+      }
+      .product-card { border-radius: 12px; }
+      .gallery-count { font-size: 9px; padding: 2px 6px; top: 6px; right: 6px; }
+      .hero h1 { font-size: 26px; }
+      .hero-badge { font-size: 12px; padding: 4px 12px; }
+      .section-header { padding: 18px 12px 8px; }
+      .section-title { font-size: 17px; }
     }
 
     .product-card {
@@ -296,8 +316,9 @@
     }
 
     .buy-btn {
-      display: inline-flex;
+      display: flex;
       align-items: center;
+      justify-content: center;
       gap: 6px;
       padding: 10px 20px;
       border-radius: 10px;
