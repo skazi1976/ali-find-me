@@ -647,42 +647,56 @@ fileInput.addEventListener('change', (e) => {
 });
 
 async function handleFiles(files) {
-  for (const file of files) {
-    const isImage = file.type.startsWith('image/');
-    const isVideo = file.type.startsWith('video/');
-    if (!isImage && !isVideo) continue;
-    if (isVideo && file.size > 15 * 1024 * 1024) {
-      showToast('וידאו מקסימום 15MB', true);
-      continue;
+  const fileArr = Array.from(files).filter(f => {
+    if (f.type.startsWith('image/') || f.type.startsWith('video/')) {
+      if (f.type.startsWith('video/') && f.size > 15 * 1024 * 1024) {
+        showToast('וידאו מקסימום 15MB', true);
+        return false;
+      }
+      return true;
     }
+    return false;
+  });
 
-    const idx = uploadedImages.length;
-    const mediaType = isVideo ? 'video' : 'image';
-    uploadedImages.push({ url: null, uploading: true, type: mediaType });
-    renderImagePreviews();
+  // Add placeholders for all files
+  const startIdx = uploadedImages.length;
+  fileArr.forEach(f => {
+    uploadedImages.push({ url: null, uploading: true, type: f.type.startsWith('video/') ? 'video' : 'image' });
+  });
+  renderImagePreviews();
 
+  // Upload all in parallel
+  await Promise.all(fileArr.map(async (file, i) => {
+    const idx = startIdx + i;
+    const mediaType = file.type.startsWith('video/') ? 'video' : 'image';
     try {
       const url = await uploadToR2(file);
       uploadedImages[idx] = { url, uploading: false, type: mediaType };
     } catch (err) {
-      console.error('Upload error:', err);
-      if (isImage) {
-        // Fallback for images only
-        const reader = new FileReader();
-        reader.onload = (e) => {
-          uploadedImages[idx] = { url: e.target.result, uploading: false, type: 'image' };
-          renderImagePreviews();
-        };
-        reader.readAsDataURL(file);
-        showToast('שגיאה בהעלאה, משתמש בתמונה מקומית', true);
-        continue;
+      console.error('Upload error:', file.name, err);
+      if (mediaType === 'image') {
+        // Fallback: compress to small JPEG
+        const url = await new Promise(resolve => {
+          const img = new Image();
+          img.onload = () => {
+            const canvas = document.createElement('canvas');
+            const maxW = 600;
+            let w = img.width, h = img.height;
+            if (w > maxW) { h = Math.round(h * maxW / w); w = maxW; }
+            canvas.width = w; canvas.height = h;
+            canvas.getContext('2d').drawImage(img, 0, 0, w, h);
+            resolve(canvas.toDataURL('image/jpeg', 0.6));
+          };
+          img.src = URL.createObjectURL(file);
+        });
+        uploadedImages[idx] = { url, uploading: false, type: 'image' };
       } else {
-        uploadedImages.splice(idx, 1);
-        showToast('שגיאה בהעלאת וידאו', true);
+        uploadedImages[idx] = { url: null, uploading: false, type: 'video' };
+        showToast('שגיאה בהעלאת וידאו: ' + file.name, true);
       }
     }
     renderImagePreviews();
-  }
+  }));
 }
 
 async function uploadToR2(file) {
