@@ -23,6 +23,11 @@
 
     h1, h2, h3, .brand-name { font-family: 'Heebo', sans-serif; }
 
+    .page-container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
     /* Header */
     .header {
       background: rgba(10,10,15,0.95);
@@ -709,6 +714,8 @@
 </head>
 <body>
 
+  <div class="page-container">
+
   <!-- Header -->
   <header class="header">
     <a href="/" class="header-logo">Ali Find Me</a>
@@ -820,6 +827,8 @@
   <footer class="footer">
     <p>Ali Find Me &copy; 2026 | <a href="/">חזרה לחיפוש</a></p>
   </footer>
+
+  </div><!-- /page-container -->
 
 <script>
 const POSTS_URL = 'posts.json';
