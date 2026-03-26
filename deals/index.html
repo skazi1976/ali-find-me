@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>דילים יומיים | Ali Find Me</title>
+  <meta name="description" content="הדילים הכי חמים כל יום - מותגים מובילים במחירים מטורפים. Nike, Adidas, Gucci ועוד">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;800;900&family=Assistant:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Assistant', 'Heebo', sans-serif;
+      background: #0a0a0f;
+      color: #fff;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, .brand-name { font-family: 'Heebo', sans-serif; }
+
+    /* Header */
+    .header {
+      background: rgba(10,10,15,0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .header-logo {
+      font-family: 'Heebo', sans-serif;
+      font-size: 20px;
+      font-weight: 800;
+      background: linear-gradient(135deg, #FF6B00, #FF8C40);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-decoration: none;
+    }
+
+    .header-date {
+      font-size: 13px;
+      color: rgba(255,255,255,0.4);
+    }
+
+    /* Hero */
+    .hero {
+      padding: 40px 20px 30px;
+      text-align: center;
+      background: linear-gradient(135deg, #0f0f1a 0%, #1a1025 50%, #0f0f1a 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -50%; left: -50%;
+      width: 200%; height: 200%;
+      background: radial-gradient(circle, rgba(255,107,0,0.06) 0%, transparent 50%);
+      animation: heroGlow 15s ease-in-out infinite;
+    }
+
+    @keyframes heroGlow {
+      0%, 100% { transform: scale(1); opacity: 0.5; }
+      50% { transform: scale(1.1); opacity: 1; }
+    }
+
+    .hero-content { position: relative; z-index: 1; }
+
+    .hero-badge {
+      display: inline-block;
+      background: rgba(255,107,0,0.15);
+      border: 1px solid rgba(255,107,0,0.3);
+      color: #FF6B00;
+      padding: 5px 14px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 16px;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(255,107,0,0.3); }
+      50% { box-shadow: 0 0 0 8px rgba(255,107,0,0); }
+    }
+
+    .hero h1 {
+      font-size: 32px;
+      font-weight: 900;
+      line-height: 1.3;
+      margin-bottom: 8px;
+    }
+
+    .hero h1 span { color: #FF6B00; }
+
+    .hero-sub {
+      font-size: 16px;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 0;
+    }
+
+    /* Section Headers */
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 24px 20px 12px;
+    }
+
+    .section-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+    }
+
+    .section-icon.daily { background: rgba(255,107,0,0.15); }
+    .section-icon.brand { background: rgba(168,85,247,0.15); }
+
+    .section-title {
+      font-size: 20px;
+      font-weight: 800;
+    }
+
+    .section-count {
+      font-size: 12px;
+      color: rgba(255,255,255,0.35);
+      margin-right: auto;
+    }
+
+    /* Product Cards */
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 16px;
+      padding: 0 16px 16px;
+    }
+
+    @media (max-width: 640px) {
+      .products-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .product-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 16px;
+      overflow: hidden;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .product-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+    }
+
+    /* Image Gallery */
+    .card-gallery {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 1;
+      overflow: hidden;
+      background: #111;
+    }
+
+    .card-gallery img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: opacity 0.3s;
+    }
+
+    .gallery-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: rgba(0,0,0,0.6);
+      border: none;
+      color: #fff;
+      font-size: 16px;
+      cursor: pointer;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 2;
+      backdrop-filter: blur(4px);
+    }
+
+    .card-gallery:hover .gallery-nav { display: flex; }
+    .gallery-prev { right: 8px; }
+    .gallery-next { left: 8px; }
+
+    .gallery-dots {
+      position: absolute;
+      bottom: 8px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 5px;
+      z-index: 2;
+    }
+
+    .gallery-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.4);
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .gallery-dot.active {
+      background: #FF6B00;
+      width: 16px;
+      border-radius: 3px;
+    }
+
+    .gallery-count {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: rgba(0,0,0,0.6);
+      padding: 3px 8px;
+      border-radius: 6px;
+      font-size: 11px;
+      color: rgba(255,255,255,0.7);
+      z-index: 2;
+    }
+
+    /* Card Info */
+    .card-info {
+      padding: 14px 16px 16px;
+    }
+
+    .brand-name {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: #FF6B00;
+      margin-bottom: 4px;
+    }
+
+    .product-card[data-type="brand"] .brand-name {
+      color: #a855f7;
+    }
+
+    .card-title {
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 1.4;
+      margin-bottom: 10px;
+      color: rgba(255,255,255,0.9);
+    }
+
+    .card-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .card-price {
+      font-family: 'Heebo', sans-serif;
+      font-size: 24px;
+      font-weight: 900;
+      color: #25D366;
+    }
+
+    .card-price small {
+      font-size: 14px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.35);
+    }
+
+    .buy-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 10px 20px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, #FF6B00, #FF8C40);
+      color: #fff;
+      text-decoration: none;
+      font-family: 'Heebo', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .product-card[data-type="brand"] .buy-btn {
+      background: linear-gradient(135deg, #8b5cf6, #a855f7);
+    }
+
+    .buy-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 20px rgba(255,107,0,0.3);
+    }
+
+    /* Date Divider */
+    .date-divider {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 20px 20px 8px;
+      color: rgba(255,255,255,0.3);
+      font-size: 13px;
+    }
+
+    .date-divider::before,
+    .date-divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: rgba(255,255,255,0.06);
+    }
+
+    /* Search Section */
+    .search-section {
+      margin: 30px 16px;
+      padding: 24px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 16px;
+      text-align: center;
+    }
+
+    .search-section h2 {
+      font-size: 20px;
+      margin-bottom: 8px;
+    }
+
+    .search-section p {
+      font-size: 14px;
+      color: rgba(255,255,255,0.4);
+      margin-bottom: 16px;
+    }
+
+    .search-bar {
+      display: flex;
+      max-width: 500px;
+      margin: 0 auto;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .search-bar input {
+      flex: 1;
+      padding: 12px 16px;
+      background: none;
+      border: none;
+      color: #fff;
+      font-family: 'Assistant', sans-serif;
+      font-size: 15px;
+      outline: none;
+    }
+
+    .search-bar input::placeholder { color: rgba(255,255,255,0.3); }
+
+    .search-bar button {
+      padding: 12px 20px;
+      background: linear-gradient(135deg, #FF6B00, #FF8C40);
+      border: none;
+      color: #fff;
+      font-family: 'Heebo', sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    /* Empty State */
+    .empty-state {
+      text-align: center;
+      padding: 40px 20px;
+      color: rgba(255,255,255,0.3);
+    }
+
+    .empty-state .icon { font-size: 48px; margin-bottom: 12px; }
+
+    /* Sticky WhatsApp */
+    .sticky-wa {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      z-index: 99;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 20px;
+      background: linear-gradient(135deg, #25D366, #128C7E);
+      border-radius: 50px;
+      color: #fff;
+      text-decoration: none;
+      font-family: 'Heebo', sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      box-shadow: 0 6px 25px rgba(37,211,102,0.4);
+      transition: all 0.3s;
+    }
+
+    .sticky-wa:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 35px rgba(37,211,102,0.5);
+    }
+
+    .sticky-wa .wa-icon { font-size: 20px; }
+
+    /* Footer */
+    .footer {
+      text-align: center;
+      padding: 30px 20px;
+      color: rgba(255,255,255,0.2);
+      font-size: 12px;
+      border-top: 1px solid rgba(255,255,255,0.04);
+      margin-top: 20px;
+    }
+
+    .footer a {
+      color: #FF6B00;
+      text-decoration: none;
+    }
+
+    /* Loading */
+    .loading {
+      text-align: center;
+      padding: 40px;
+      color: rgba(255,255,255,0.3);
+    }
+
+    .spinner {
+      width: 32px; height: 32px;
+      border: 3px solid rgba(255,255,255,0.1);
+      border-top-color: #FF6B00;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      margin: 0 auto 12px;
+    }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="header">
+    <a href="/" class="header-logo">Ali Find Me</a>
+    <span class="header-date" id="headerDate"></span>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-badge">חדש כל יום</div>
+      <h1>הדילים <span>הכי חמים</span> של היום</h1>
+      <p class="hero-sub">מותגים מובילים במחירי רצפה - ישירות אליכם</p>
+    </div>
+  </section>
+
+  <!-- Daily Deals Section -->
+  <div id="dailySection" style="display:none">
+    <div class="section-header">
+      <div class="section-icon daily">&#x1F525;</div>
+      <span class="section-title">דילים יומיים</span>
+      <span class="section-count" id="dailyCount"></span>
+    </div>
+    <div class="products-grid" id="dailyGrid"></div>
+  </div>
+
+  <!-- Brand Posts Section -->
+  <div id="brandSection" style="display:none">
+    <div class="section-header">
+      <div class="section-icon brand">&#x1F48E;</div>
+      <span class="section-title">מותגים מוסתרים</span>
+      <span class="section-count" id="brandCount"></span>
+    </div>
+    <div class="products-grid" id="brandGrid"></div>
+  </div>
+
+  <!-- Archive -->
+  <div id="archiveSection"></div>
+
+  <!-- Search Section -->
+  <section class="search-section">
+    <h2>&#x1F50D; מחפשים משהו ספציפי?</h2>
+    <p>חפשו כל מוצר באלי אקספרס במחירים הכי טובים</p>
+    <div class="search-bar">
+      <input type="text" id="searchInput" placeholder="חפשו מוצר... למשל: נעלי נייק">
+      <button onclick="doSearch()">חפשו</button>
+    </div>
+  </section>
+
+  <!-- Loading -->
+  <div class="loading" id="loadingState">
+    <div class="spinner"></div>
+    <div>טוען דילים...</div>
+  </div>
+
+  <!-- Empty State -->
+  <div class="empty-state" id="emptyState" style="display:none">
+    <div class="icon">&#x1F6D2;</div>
+    <p>אין דילים כרגע, חזרו מאוחר יותר</p>
+  </div>
+
+  <!-- Sticky WhatsApp -->
+  <a href="https://wa.me/972507483316" target="_blank" class="sticky-wa">
+    <span class="wa-icon">&#x1F4AC;</span>
+    <span>הצטרפו לברודקאסט</span>
+  </a>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>Ali Find Me &copy; 2026 | <a href="/">חזרה לחיפוש</a></p>
+  </footer>
+
+<script>
+const POSTS_URL = 'posts.json';
+
+// Hebrew date formatting
+function formatDateHe(dateStr) {
+  const d = new Date(dateStr + 'T00:00:00');
+  const days = ['ראשון','שני','שלישי','רביעי','חמישי','שישי','שבת'];
+  const months = ['ינואר','פברואר','מרץ','אפריל','מאי','יוני','יולי','אוגוסט','ספטמבר','אוקטובר','נובמבר','דצמבר'];
+  return `יום ${days[d.getDay()]}, ${d.getDate()} ב${months[d.getMonth()]} ${d.getFullYear()}`;
+}
+
+function todayStr() {
+  const d = new Date();
+  return d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
+}
+
+// Set header date
+document.getElementById('headerDate').textContent = formatDateHe(todayStr());
+
+// Build product card HTML
+function buildCard(post) {
+  const imgCount = post.images ? post.images.length : 0;
+  const firstImg = imgCount > 0 ? post.images[0] : '';
+
+  return `
+    <div class="product-card" data-type="${post.type}" data-id="${post.id}">
+      <div class="card-gallery" data-images='${JSON.stringify(post.images || [])}' data-index="0">
+        <img src="${firstImg}" alt="${post.title}" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 1 1%22><rect fill=%22%23222%22 width=%221%22 height=%221%22/></svg>'">
+        ${imgCount > 1 ? `
+          <button class="gallery-nav gallery-prev" onclick="galleryNav(this, 1)">&#x276E;</button>
+          <button class="gallery-nav gallery-next" onclick="galleryNav(this, -1)">&#x276F;</button>
+          <div class="gallery-dots">${post.images.map((_, i) => `<span class="gallery-dot${i===0?' active':''}" onclick="galleryGo(this, ${i})"></span>`).join('')}</div>
+        ` : ''}
+        ${imgCount > 1 ? `<span class="gallery-count">1 / ${imgCount}</span>` : ''}
+      </div>
+      <div class="card-info">
+        <span class="brand-name">${post.brand}</span>
+        <h3 class="card-title">${post.title}</h3>
+        <div class="card-bottom">
+          <div class="card-price">${post.price}<small> &#x20AA;</small></div>
+          <a href="${post.link}" target="_blank" rel="noopener" class="buy-btn">
+            &#x1F6D2; קנו עכשיו
+          </a>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+// Gallery navigation
+function galleryNav(btn, dir) {
+  const gallery = btn.closest('.card-gallery');
+  const images = JSON.parse(gallery.dataset.images);
+  let idx = parseInt(gallery.dataset.index) + dir;
+  if (idx < 0) idx = images.length - 1;
+  if (idx >= images.length) idx = 0;
+  galleryGoTo(gallery, images, idx);
+}
+
+function galleryGo(dot, idx) {
+  const gallery = dot.closest('.card-gallery');
+  const images = JSON.parse(gallery.dataset.images);
+  galleryGoTo(gallery, images, idx);
+}
+
+function galleryGoTo(gallery, images, idx) {
+  gallery.dataset.index = idx;
+  gallery.querySelector('img').src = images[idx];
+  const count = gallery.querySelector('.gallery-count');
+  if (count) count.textContent = `${idx + 1} / ${images.length}`;
+  gallery.querySelectorAll('.gallery-dot').forEach((d, i) => {
+    d.classList.toggle('active', i === idx);
+  });
+}
+
+// Search redirect
+function doSearch() {
+  const q = document.getElementById('searchInput').value.trim();
+  if (q) {
+    window.open(`https://alifindme.com/?q=${encodeURIComponent(q)}`, '_blank');
+  }
+}
+
+document.getElementById('searchInput').addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') doSearch();
+});
+
+// Load and render posts
+async function loadPosts() {
+  try {
+    const resp = await fetch(POSTS_URL + '?t=' + Date.now());
+    const data = await resp.json();
+    const posts = data.posts || [];
+
+    document.getElementById('loadingState').style.display = 'none';
+
+    if (posts.length === 0) {
+      document.getElementById('emptyState').style.display = 'block';
+      return;
+    }
+
+    // Group by date
+    const byDate = {};
+    posts.forEach(p => {
+      if (!byDate[p.date]) byDate[p.date] = [];
+      byDate[p.date].push(p);
+    });
+
+    // Sort dates descending
+    const dates = Object.keys(byDate).sort((a, b) => b.localeCompare(a));
+    const today = todayStr();
+
+    // Today's posts
+    const todayPosts = byDate[today] || [];
+    const dailyPosts = todayPosts.filter(p => p.type === 'daily');
+    const brandPosts = todayPosts.filter(p => p.type === 'brand');
+
+    // Render daily deals
+    if (dailyPosts.length > 0) {
+      document.getElementById('dailySection').style.display = 'block';
+      document.getElementById('dailyCount').textContent = `${dailyPosts.length} מוצרים`;
+      document.getElementById('dailyGrid').innerHTML = dailyPosts.map(buildCard).join('');
+    }
+
+    // Render brand posts
+    if (brandPosts.length > 0) {
+      document.getElementById('brandSection').style.display = 'block';
+      document.getElementById('brandCount').textContent = `${brandPosts.length} מוצרים`;
+      document.getElementById('brandGrid').innerHTML = brandPosts.map(buildCard).join('');
+    }
+
+    // If no today posts, show all as archive
+    if (todayPosts.length === 0 && posts.length > 0) {
+      // Show most recent posts as "today"
+      const latestDate = dates[0];
+      const latest = byDate[latestDate];
+      const latestDaily = latest.filter(p => p.type === 'daily');
+      const latestBrand = latest.filter(p => p.type === 'brand');
+
+      if (latestDaily.length > 0) {
+        document.getElementById('dailySection').style.display = 'block';
+        document.getElementById('dailyCount').textContent = `${latestDaily.length} מוצרים`;
+        document.getElementById('dailyGrid').innerHTML = latestDaily.map(buildCard).join('');
+      }
+      if (latestBrand.length > 0) {
+        document.getElementById('brandSection').style.display = 'block';
+        document.getElementById('brandCount').textContent = `${latestBrand.length} מוצרים`;
+        document.getElementById('brandGrid').innerHTML = latestBrand.map(buildCard).join('');
+      }
+    }
+
+    // Archive (older dates)
+    const archiveDates = dates.filter(d => d !== today && d !== dates[0]);
+    if (archiveDates.length > 0) {
+      const archiveHTML = archiveDates.map(date => {
+        const datePosts = byDate[date];
+        return `
+          <div class="date-divider">${formatDateHe(date)}</div>
+          <div class="products-grid">${datePosts.map(buildCard).join('')}</div>
+        `;
+      }).join('');
+      document.getElementById('archiveSection').innerHTML = archiveHTML;
+    }
+
+  } catch (err) {
+    console.error('Error loading posts:', err);
+    document.getElementById('loadingState').style.display = 'none';
+    document.getElementById('emptyState').style.display = 'block';
+  }
+}
+
+// Touch swipe support for galleries
+document.addEventListener('touchstart', function(e) {
+  const gallery = e.target.closest('.card-gallery');
+  if (!gallery) return;
+  gallery._touchX = e.touches[0].clientX;
+}, { passive: true });
+
+document.addEventListener('touchend', function(e) {
+  const gallery = e.target.closest('.card-gallery');
+  if (!gallery || !gallery._touchX) return;
+  const diff = gallery._touchX - e.changedTouches[0].clientX;
+  if (Math.abs(diff) > 40) {
+    const images = JSON.parse(gallery.dataset.images);
+    if (images.length <= 1) return;
+    let idx = parseInt(gallery.dataset.index) + (diff > 0 ? -1 : 1);
+    if (idx < 0) idx = images.length - 1;
+    if (idx >= images.length) idx = 0;
+    galleryGoTo(gallery, images, idx);
+  }
+  gallery._touchX = null;
+}, { passive: true });
+
+// Init
+loadPosts();
+</script>
+
+</body>
+</html>

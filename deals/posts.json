@@ -1,0 +1,64 @@
+{
+  "posts": [
+    {
+      "id": "2026-03-26-1",
+      "date": "2026-03-26",
+      "type": "daily",
+      "brand": "NIKE",
+      "title": "נעלי Air Jordan 1 Retro High",
+      "price": 234,
+      "link": "https://store.flylinking.com/g/94SI9KCMXX",
+      "images": [
+        "https://photo.yupoo.com/xuxuxuxux/6f190836/origin.jpg"
+      ]
+    },
+    {
+      "id": "2026-03-26-2",
+      "date": "2026-03-26",
+      "type": "daily",
+      "brand": "DIOR",
+      "title": "תיק Dior Saddle Bag קלאסי",
+      "price": 290,
+      "link": "https://store.flylinking.com/g/NE6W4AW34T",
+      "images": [
+        "https://photo.yupoo.com/xuxuxuxux/d9e59beb/origin.jpg"
+      ]
+    },
+    {
+      "id": "2026-03-26-3",
+      "date": "2026-03-26",
+      "type": "daily",
+      "brand": "UGG",
+      "title": "נעלי UGG Classic Mini חורף",
+      "price": 178,
+      "link": "https://store.flylinking.com/g/NAAIWNRU8A",
+      "images": [
+        "https://photo.yupoo.com/xuxuxuxux/13e83891/origin.jpg"
+      ]
+    },
+    {
+      "id": "2026-03-26-4",
+      "date": "2026-03-26",
+      "type": "brand",
+      "brand": "GUCCI",
+      "title": "חגורת Gucci GG Supreme",
+      "price": 87,
+      "link": "https://store.flylinking.com/g/48OICS58F9",
+      "images": [
+        "https://photo.yupoo.com/xuxuxuxux/39dd9b43/origin.jpg"
+      ]
+    },
+    {
+      "id": "2026-03-26-5",
+      "date": "2026-03-26",
+      "type": "brand",
+      "brand": "LV",
+      "title": "ארנק Louis Vuitton Monogram",
+      "price": 276,
+      "link": "https://store.flylinking.com/g/I6G7ZR1WQG",
+      "images": [
+        "https://photo.yupoo.com/xuxuxuxux/049950dd/origin.jpg"
+      ]
+    }
+  ]
+}
