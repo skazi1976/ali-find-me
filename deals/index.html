@@ -470,7 +470,7 @@
       padding: 12px;
       border-radius: 10px;
       border: none;
-      background: linear-gradient(135deg, #8b5cf6, #a855f7);
+      background: linear-gradient(135deg, #25D366, #128C7E);
       color: #fff;
       font-family: 'Heebo', sans-serif;
       font-size: 15px;
@@ -627,11 +627,11 @@
       <input type="text" id="reqName" placeholder="השם שלכם" class="req-input">
       <input type="tel" id="reqPhone" placeholder="מספר טלפון (לקבלת תשובה בוואטסאפ)" class="req-input" dir="ltr" style="text-align:right">
       <textarea id="reqMessage" placeholder="מה אתם מחפשים? (למשל: תיק גוצ'י שחור, נעלי נייק 42...)" class="req-input req-textarea"></textarea>
-      <button class="req-submit" onclick="submitRequest()">&#x1F680; שלחו בקשה</button>
+      <button class="req-submit" onclick="submitRequest()">&#x1F4AC; שלחו בקשה בוואטסאפ</button>
     </div>
     <div class="request-success" id="requestSuccess" style="display:none">
       <div class="success-icon">&#x2705;</div>
-      <p>הבקשה נשלחה! נחזור אליכם בהקדם</p>
+      <p>הבקשה נשלחה בוואטסאפ! נחזור אליכם בהקדם</p>
     </div>
   </section>
 
@@ -886,19 +886,15 @@ function submitRequest() {
   if (phone.startsWith('05')) normalizedPhone = '972' + phone.slice(1);
   if (phone.startsWith('+972')) normalizedPhone = phone.slice(1);
 
-  const request = {
-    id: Date.now().toString(36),
-    name: name || 'אנונימי',
-    phone: normalizedPhone,
-    message,
-    date: new Date().toISOString(),
-    status: 'new'
-  };
+  // Build WhatsApp message
+  const waNumber = '972507483316';
+  let waText = `🔍 *בקשת מוצר חדשה*\n\n`;
+  waText += `👤 שם: ${name || 'אנונימי'}\n`;
+  if (normalizedPhone) waText += `📱 טלפון: ${normalizedPhone}\n`;
+  waText += `\n💬 ${message}`;
 
-  // Save to localStorage
-  const requests = JSON.parse(localStorage.getItem('deals_requests') || '[]');
-  requests.unshift(request);
-  localStorage.setItem('deals_requests', JSON.stringify(requests));
+  // Open WhatsApp with pre-filled message
+  window.open(`https://wa.me/${waNumber}?text=${encodeURIComponent(waText)}`, '_blank');
 
   // Show success
   document.getElementById('requestForm').style.display = 'none';
