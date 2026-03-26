@@ -703,15 +703,12 @@ async function uploadToR2(file) {
   const ext = file.name.split('.').pop() || 'jpg';
   const key = `deals/${Date.now()}-${Math.random().toString(36).substr(2,6)}.${ext}`;
 
-  // Try Cloudflare Worker upload
-  const formData = new FormData();
-  formData.append('file', file);
-  formData.append('key', key);
-
+  // Upload raw binary via PUT to avoid FormData encoding issues
   try {
-    const resp = await fetch(`${R2_UPLOAD_WORKER}/upload`, {
-      method: 'POST',
-      body: formData
+    const resp = await fetch(`${R2_UPLOAD_WORKER}/upload?key=${encodeURIComponent(key)}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': file.type || 'image/jpeg' },
+      body: file
     });
     if (resp.ok) {
       return `${R2_PUBLIC_URL}/${key}`;
