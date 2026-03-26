@@ -1384,6 +1384,15 @@ const HE_EN_DICT = {
   "קלאסית": "classic", "קלאסי": "classic", "צמודה": "slim fit", "צמוד": "slim fit",
   "רחבה": "loose", "רחב": "wide", "שרוול": "sleeve",
   "ליום יום": "everyday casual", "יום יום": "everyday casual", "יציאה": "going out", "מסיבה": "party", "עבודה": "work office", "יום": "daily",
+  "גבוהים": "high waist", "נמוכים": "low waist", "גבוה": "high waist", "נמוך": "low waist",
+  "מכנסי": "pants", "מכנסי נשים": "women pants trousers",
+  // Masculine plural forms (for pants/shoes etc)
+  "שחורים": "black", "לבנים": "white", "אדומים": "red", "כחולים": "blue", "ירוקים": "green",
+  "ורודים": "pink", "סגולים": "purple", "אפורים": "gray", "חומים": "brown",
+  "קצרים": "short", "ארוכים": "long", "רחבים": "wide", "צמודים": "slim fit",
+  "אלגנטיים": "elegant", "אופנתיים": "fashion", "טרנדיים": "trendy",
+  "יוקרתיים": "luxury", "קלאסיים": "classic", "סקסיים": "sexy",
+  // Feminine+masculine singular
   "קצר": "short", "קצרה": "short", "ארוך": "long", "ארוכה": "long",
   "פיג'מה": "pajamas", "פיג׳מה": "pajamas",
   "חגורה": "belt", "כובע": "hat", "משקפיים": "glasses", "משקפי שמש": "sunglasses",
