@@ -518,14 +518,12 @@
 <script>
 // === CONFIG ===
 const ADMIN_PASSWORD = 'deals2026';
-const GITHUB_REPO = 'skazi1976/ali-find-me';
-const POSTS_PATH = 'deals/posts.json';
+const POSTS_JSON_URL = 'posts.json';
 const R2_PUBLIC_URL = 'https://pub-0ad199860b5a4ce0b3fb483660b8a4ca.r2.dev';
 const R2_UPLOAD_WORKER = 'https://ali-findme-api.ohadf1976.workers.dev';
 
 let posts = [];
 let uploadedImages = [];
-let githubToken = localStorage.getItem('deals_github_token') || '';
 
 // === AUTH ===
 function doLogin() {
@@ -541,12 +539,6 @@ function doLogin() {
 function showAdmin() {
   document.getElementById('loginScreen').style.display = 'none';
   document.getElementById('adminPanel').style.display = 'block';
-
-  // Check GitHub token
-  if (!githubToken) {
-    githubToken = prompt('הכניסו GitHub Personal Access Token (עם הרשאת repo):');
-    if (githubToken) localStorage.setItem('deals_github_token', githubToken);
-  }
 
   // Set default date to today
   document.getElementById('postDate').value = todayStr();
@@ -575,20 +567,19 @@ function generateId() {
 // === LOAD POSTS ===
 async function loadPosts() {
   try {
-    const resp = await fetch(`https://api.github.com/repos/${GITHUB_REPO}/contents/${POSTS_PATH}`, {
-      headers: { Authorization: `token ${githubToken}` }
-    });
-
-    if (resp.ok) {
-      const data = await resp.json();
-      const content = JSON.parse(atob(data.content));
-      posts = content.posts || [];
-      window._fileSha = data.sha;
+    // First check localStorage
+    const local = localStorage.getItem('deals_posts');
+    if (local) {
+      posts = JSON.parse(local);
     } else {
-      posts = [];
-      window._fileSha = null;
+      // Fallback: load from posts.json file
+      const resp = await fetch(POSTS_JSON_URL + '?t=' + Date.now());
+      if (resp.ok) {
+        const data = await resp.json();
+        posts = data.posts || [];
+        localStorage.setItem('deals_posts', JSON.stringify(posts));
+      }
     }
-
     renderPostsList();
     updateStatus();
   } catch (err) {
@@ -758,75 +749,29 @@ async function publishPost() {
 
   // Add to beginning
   posts.unshift(newPost);
+  savePosts();
 
-  // Save to GitHub
-  const btn = document.getElementById('publishBtn');
-  btn.disabled = true;
-  btn.textContent = 'שומר...';
-
-  try {
-    await saveToGitHub();
-    showToast('הפוסט פורסם בהצלחה!');
-    clearForm();
-    renderPostsList();
-    updateStatus();
-  } catch (err) {
-    console.error('Save error:', err);
-    posts.shift(); // rollback
-    showToast('שגיאה בשמירה: ' + err.message, true);
-  }
-
-  btn.disabled = false;
-  btn.innerHTML = '&#x1F680; פרסמו פוסט';
+  showToast('הפוסט פורסם בהצלחה!');
+  clearForm();
+  renderPostsList();
+  updateStatus();
 }
 
-// === SAVE TO GITHUB ===
-async function saveToGitHub() {
-  const content = btoa(unescape(encodeURIComponent(JSON.stringify({ posts }, null, 2))));
-
-  const body = {
-    message: `Update deals - ${todayStr()}`,
-    content,
-    branch: 'main'
-  };
-
-  if (window._fileSha) {
-    body.sha = window._fileSha;
-  }
-
-  const resp = await fetch(`https://api.github.com/repos/${GITHUB_REPO}/contents/${POSTS_PATH}`, {
-    method: 'PUT',
-    headers: {
-      Authorization: `token ${githubToken}`,
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(body)
-  });
-
-  if (!resp.ok) {
-    const errData = await resp.json();
-    throw new Error(errData.message || 'GitHub API error');
-  }
-
-  const data = await resp.json();
-  window._fileSha = data.content.sha;
+// === SAVE POSTS ===
+function savePosts() {
+  localStorage.setItem('deals_posts', JSON.stringify(posts));
 }
 
 // === DELETE / EDIT ===
-async function deletePost(id) {
+function deletePost(id) {
   if (!confirm('למחוק את הפוסט?')) return;
 
   posts = posts.filter(p => p.id !== id);
+  savePosts();
 
-  try {
-    await saveToGitHub();
-    showToast('הפוסט נמחק');
-    renderPostsList();
-    updateStatus();
-  } catch (err) {
-    showToast('שגיאה במחיקה', true);
-    loadPosts(); // reload
-  }
+  showToast('הפוסט נמחק');
+  renderPostsList();
+  updateStatus();
 }
 
 function editPost(id) {

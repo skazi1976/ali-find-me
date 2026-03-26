@@ -782,15 +782,19 @@ document.getElementById('searchInput').addEventListener('keydown', function(e) {
 // Load daily deals (manual from posts.json) + random brands (from brands.json)
 async function loadPosts() {
   try {
-    // Load both in parallel
-    const [postsResp, brandsResp] = await Promise.all([
-      fetch(POSTS_URL + '?t=' + Date.now()),
-      fetch(BRANDS_URL + '?t=' + Date.now())
-    ]);
-
-    const postsData = await postsResp.json();
+    // Load brands + posts (localStorage first, then fallback to file)
+    const brandsResp = await fetch(BRANDS_URL + '?t=' + Date.now());
     const allBrands = await brandsResp.json();
-    const posts = postsData.posts || [];
+
+    let posts = [];
+    const localPosts = localStorage.getItem('deals_posts');
+    if (localPosts) {
+      posts = JSON.parse(localPosts);
+    } else {
+      const postsResp = await fetch(POSTS_URL + '?t=' + Date.now());
+      const postsData = await postsResp.json();
+      posts = postsData.posts || [];
+    }
 
     document.getElementById('loadingState').style.display = 'none';
 
