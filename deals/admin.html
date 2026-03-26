@@ -888,9 +888,11 @@ function loadRequests() {
           <span class="req-date">${dateStr}</span>
         </div>
         <div class="req-msg">${r.message}</div>
-        <div style="margin-top:8px;display:flex;gap:6px">
-          ${r.status === 'new' ? `<button onclick="markDone('${r.id}')" style="padding:4px 10px;border-radius:6px;border:none;font-size:11px;cursor:pointer;background:rgba(37,211,102,0.15);color:#25D366">&#x2705; טופל</button>` : ''}
-          <button onclick="deleteRequest('${r.id}')" style="padding:4px 10px;border-radius:6px;border:none;font-size:11px;cursor:pointer;background:rgba(239,68,68,0.1);color:#ef4444">&#x1F5D1; מחק</button>
+        ${r.phone ? `<div style="margin-top:4px;font-size:12px;color:rgba(255,255,255,0.4)">&#x1F4F1; ${r.phone}</div>` : ''}
+        <div style="margin-top:8px;display:flex;gap:6px;flex-wrap:wrap">
+          ${r.phone ? `<a href="https://wa.me/${r.phone}?text=${encodeURIComponent('היי ' + r.name + '! לגבי הבקשה שלך: ' + r.message + '\\n\\n')}" target="_blank" style="padding:5px 12px;border-radius:6px;border:none;font-size:12px;cursor:pointer;background:linear-gradient(135deg,#25D366,#128C7E);color:#fff;text-decoration:none;font-weight:700">&#x1F4AC; השב בוואטסאפ</a>` : ''}
+          ${r.status === 'new' ? `<button onclick="markDone('${r.id}')" style="padding:5px 10px;border-radius:6px;border:none;font-size:11px;cursor:pointer;background:rgba(37,211,102,0.15);color:#25D366">&#x2705; טופל</button>` : ''}
+          <button onclick="deleteRequest('${r.id}')" style="padding:5px 10px;border-radius:6px;border:none;font-size:11px;cursor:pointer;background:rgba(239,68,68,0.1);color:#ef4444">&#x1F5D1; מחק</button>
         </div>
       </div>
     `;

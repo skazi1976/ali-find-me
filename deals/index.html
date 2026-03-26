@@ -625,6 +625,7 @@
     <p>כתבו לנו מה אתם מחפשים ונחזור אליכם עם הדיל הכי טוב</p>
     <div class="request-form" id="requestForm">
       <input type="text" id="reqName" placeholder="השם שלכם" class="req-input">
+      <input type="tel" id="reqPhone" placeholder="מספר טלפון (לקבלת תשובה בוואטסאפ)" class="req-input" dir="ltr" style="text-align:right">
       <textarea id="reqMessage" placeholder="מה אתם מחפשים? (למשל: תיק גוצ'י שחור, נעלי נייק 42...)" class="req-input req-textarea"></textarea>
       <button class="req-submit" onclick="submitRequest()">&#x1F680; שלחו בקשה</button>
     </div>
@@ -868,6 +869,7 @@ document.addEventListener('touchend', function(e) {
 // === Product Requests ===
 function submitRequest() {
   const name = document.getElementById('reqName').value.trim();
+  const phone = document.getElementById('reqPhone').value.trim().replace(/[^0-9+]/g, '');
   const message = document.getElementById('reqMessage').value.trim();
 
   if (!message) {
@@ -875,9 +877,15 @@ function submitRequest() {
     return;
   }
 
+  // Normalize Israeli phone: 05x -> 9725x
+  let normalizedPhone = phone;
+  if (phone.startsWith('05')) normalizedPhone = '972' + phone.slice(1);
+  if (phone.startsWith('+972')) normalizedPhone = phone.slice(1);
+
   const request = {
     id: Date.now().toString(36),
     name: name || 'אנונימי',
+    phone: normalizedPhone,
     message,
     date: new Date().toISOString(),
     status: 'new'
@@ -897,6 +905,7 @@ function submitRequest() {
     document.getElementById('requestForm').style.display = 'flex';
     document.getElementById('requestSuccess').style.display = 'none';
     document.getElementById('reqName').value = '';
+    document.getElementById('reqPhone').value = '';
     document.getElementById('reqMessage').value = '';
   }, 4000);
 }
