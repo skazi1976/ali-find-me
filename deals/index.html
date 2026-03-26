@@ -950,27 +950,20 @@ async function submitRequest() {
   if (normalizedPhone) waText += `📱 טלפון: ${normalizedPhone}\n`;
   waText += `\n💬 ${message}`;
 
-  // If image attached, use Web Share API (mobile) to share image + text to WhatsApp
-  if (reqImageFile && navigator.canShare) {
+  // Always open WhatsApp directly first
+  if (reqImageFile && navigator.canShare && navigator.canShare({ files: [reqImageFile] })) {
+    // Has image + Share API supported: share image + text (user picks WhatsApp)
     try {
-      const shareData = {
-        text: waText,
-        files: [reqImageFile]
-      };
-      if (navigator.canShare(shareData)) {
-        await navigator.share(shareData);
-        reqImageFile = null;
-      } else {
-        // Fallback: open WhatsApp without image
-        window.open(`https://wa.me/${waNumber}?text=${encodeURIComponent(waText + '\n\n📎 (יש לי תמונה - אשלח בצ\'אט)')}`, '_blank');
-      }
+      await navigator.share({ text: waText, files: [reqImageFile] });
+      reqImageFile = null;
     } catch (e) {
+      // User cancelled or error - open wa.me as fallback
       if (e.name !== 'AbortError') {
         window.open(`https://wa.me/${waNumber}?text=${encodeURIComponent(waText)}`, '_blank');
       }
     }
   } else {
-    // No image or no Share API - open WhatsApp directly
+    // No image - go straight to WhatsApp, no share picker
     window.open(`https://wa.me/${waNumber}?text=${encodeURIComponent(waText)}`, '_blank');
   }
 
