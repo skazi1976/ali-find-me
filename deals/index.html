@@ -522,6 +522,49 @@
       margin-bottom: 0;
     }
 
+    /* Date Picker Tabs */
+    .date-tabs {
+      display: flex;
+      gap: 8px;
+      padding: 16px 16px 0;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+
+    .date-tabs::-webkit-scrollbar { display: none; }
+
+    .date-tab {
+      flex-shrink: 0;
+      padding: 8px 16px;
+      border-radius: 20px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: rgba(255,255,255,0.5);
+      font-family: 'Heebo', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+      white-space: nowrap;
+    }
+
+    .date-tab:hover { border-color: rgba(255,255,255,0.2); }
+
+    .date-tab.active {
+      background: linear-gradient(135deg, #FF6B00, #FF8C40);
+      border-color: transparent;
+      color: #fff;
+    }
+
+    .date-tab .tab-day {
+      display: block;
+      font-size: 10px;
+      font-weight: 400;
+      opacity: 0.7;
+      margin-top: 1px;
+    }
+
     /* Empty State */
     .empty-state {
       text-align: center;
@@ -609,6 +652,9 @@
       <p class="hero-sub">מותגים מובילים במחירי רצפה - ישירות אליכם</p>
     </div>
   </section>
+
+  <!-- Date Tabs -->
+  <div class="date-tabs" id="dateTabs" style="display:none"></div>
 
   <!-- Daily Deals Section -->
   <div id="dailySection" style="display:none">
@@ -814,97 +860,122 @@ document.getElementById('searchInput').addEventListener('keydown', function(e) {
   if (e.key === 'Enter') doSearch();
 });
 
-// Load daily deals (manual from posts.json) + random brands (from brands.json)
+// Global data
+let allPosts = [];
+let allBrandsData = [];
+let currentDate = todayStr();
+
+// Load all data once, then render by selected date
 async function loadPosts() {
   try {
-    // Load brands + posts (localStorage first, then fallback to file)
     const brandsResp = await fetch(BRANDS_URL + '?t=' + Date.now());
-    const allBrands = await brandsResp.json();
+    allBrandsData = await brandsResp.json();
 
-    let posts = [];
     const localPosts = localStorage.getItem('deals_posts');
     if (localPosts) {
-      posts = JSON.parse(localPosts);
+      allPosts = JSON.parse(localPosts);
     } else {
       const postsResp = await fetch(POSTS_URL + '?t=' + Date.now());
       const postsData = await postsResp.json();
-      posts = postsData.posts || [];
+      allPosts = postsData.posts || [];
     }
 
     document.getElementById('loadingState').style.display = 'none';
 
-    const today = todayStr();
+    // Build date tabs
+    buildDateTabs();
 
-    // === DAILY DEALS (manual, from posts.json) ===
-    const dailyPosts = posts.filter(p => p.type === 'daily');
-    // Show today's or most recent
-    let dailyToShow = dailyPosts.filter(p => p.date === today);
-    if (dailyToShow.length === 0) {
-      // Show most recent daily posts
-      const sorted = [...dailyPosts].sort((a, b) => b.date.localeCompare(a.date));
-      const latestDate = sorted.length > 0 ? sorted[0].date : null;
-      if (latestDate) dailyToShow = sorted.filter(p => p.date === latestDate);
-    }
-
-    if (dailyToShow.length > 0) {
-      document.getElementById('dailySection').style.display = 'block';
-      document.getElementById('dailyCount').textContent = `${dailyToShow.length} מוצרים`;
-      document.getElementById('dailyGrid').innerHTML = dailyToShow.map(buildCard).join('');
-    }
-
-    // === HIDDEN BRANDS (auto-rotating from brands.json) ===
-    if (allBrands.length > 0) {
-      const todayBrands = pickRandom(allBrands, BRANDS_PER_DAY, today);
-      // Convert to card format
-      const brandCards = todayBrands.map((b, i) => ({
-        id: `brand-${today}-${i}`,
-        date: today,
-        type: 'brand',
-        brand: b.brand,
-        title: b.title,
-        price: b.price,
-        link: b.link,
-        images: b.images
-      }));
-
-      document.getElementById('brandSection').style.display = 'block';
-      document.getElementById('brandCount').textContent = `${brandCards.length} מוצרים - מתחלפים כל יום`;
-      document.getElementById('brandGrid').innerHTML = brandCards.map(buildCard).join('');
-    }
-
-    // === ARCHIVE (older dates) ===
-    const olderPosts = posts.filter(p => p.type === 'daily' && p.date !== (dailyToShow.length > 0 ? dailyToShow[0].date : ''));
-    if (olderPosts.length > 0) {
-      // Group by date
-      const byDate = {};
-      olderPosts.forEach(p => {
-        if (!byDate[p.date]) byDate[p.date] = [];
-        byDate[p.date].push(p);
-      });
-      const dates = Object.keys(byDate).sort((a, b) => b.localeCompare(a));
-
-      let archiveHTML = `
-        <div class="section-header">
-          <div class="section-icon" style="background:rgba(255,255,255,0.08)">&#x1F4C5;</div>
-          <span class="section-title">ארכיון דילים</span>
-          <span class="section-count">${olderPosts.length} מוצרים</span>
-        </div>
-      `;
-      dates.forEach(date => {
-        archiveHTML += `<div class="date-divider">${formatDateHe(date)}</div>`;
-        archiveHTML += `<div class="products-grid">${byDate[date].map(buildCard).join('')}</div>`;
-      });
-      document.getElementById('archiveSection').innerHTML = archiveHTML;
-    }
-
-    if (dailyToShow.length === 0 && allBrands.length === 0 && posts.length === 0) {
-      document.getElementById('emptyState').style.display = 'block';
-    }
+    // Render current date
+    renderDate(currentDate);
 
   } catch (err) {
     console.error('Error loading posts:', err);
     document.getElementById('loadingState').style.display = 'none';
     document.getElementById('emptyState').style.display = 'block';
+  }
+}
+
+function formatDateShort(dateStr) {
+  const d = new Date(dateStr + 'T00:00:00');
+  const days = ['א\'','ב\'','ג\'','ד\'','ה\'','ו\'','ש\''];
+  return { day: d.getDate() + '/' + (d.getMonth()+1), weekday: 'יום ' + days[d.getDay()] };
+}
+
+function buildDateTabs() {
+  const today = todayStr();
+  // Collect unique dates from posts
+  const dates = [...new Set(allPosts.map(p => p.date))].sort((a, b) => b.localeCompare(a));
+
+  // Make sure today is included
+  if (!dates.includes(today)) dates.unshift(today);
+
+  if (dates.length <= 1) return; // No tabs needed for single date
+
+  const tabsEl = document.getElementById('dateTabs');
+  tabsEl.style.display = 'flex';
+
+  tabsEl.innerHTML = dates.map(date => {
+    const { day, weekday } = formatDateShort(date);
+    const isToday = date === today;
+    const isActive = date === currentDate;
+    return `<div class="date-tab ${isActive ? 'active' : ''}" onclick="selectDate('${date}')">
+      ${isToday ? 'היום' : day}<span class="tab-day">${weekday}</span>
+    </div>`;
+  }).join('');
+}
+
+function selectDate(date) {
+  currentDate = date;
+  // Update tabs
+  document.querySelectorAll('.date-tab').forEach(tab => {
+    tab.classList.toggle('active', tab.onclick.toString().includes(date));
+  });
+  buildDateTabs(); // Rebuild to update active state
+  renderDate(date);
+}
+
+function renderDate(date) {
+  // === DAILY DEALS for selected date ===
+  const dailyPosts = allPosts.filter(p => p.type === 'daily' && p.date === date);
+
+  if (dailyPosts.length > 0) {
+    document.getElementById('dailySection').style.display = 'block';
+    document.getElementById('dailyCount').textContent = `${dailyPosts.length} מוצרים`;
+    document.getElementById('dailyGrid').innerHTML = dailyPosts.map(buildCard).join('');
+  } else {
+    document.getElementById('dailySection').style.display = 'none';
+  }
+
+  // === HIDDEN BRANDS (auto-rotating based on selected date) ===
+  if (allBrandsData.length > 0) {
+    const dateBrands = pickRandom(allBrandsData, BRANDS_PER_DAY, date);
+    const brandCards = dateBrands.map((b, i) => ({
+      id: `brand-${date}-${i}`,
+      date: date,
+      type: 'brand',
+      brand: b.brand,
+      title: b.title,
+      price: b.price,
+      link: b.link,
+      images: b.images
+    }));
+
+    document.getElementById('brandSection').style.display = 'block';
+    document.getElementById('brandCount').textContent = `${brandCards.length} מוצרים - מתחלפים כל יום`;
+    document.getElementById('brandGrid').innerHTML = brandCards.map(buildCard).join('');
+  }
+
+  // Clear archive (no longer needed)
+  document.getElementById('archiveSection').innerHTML = '';
+
+  // Update header date
+  document.getElementById('headerDate').textContent = formatDateHe(date);
+
+  // Empty state
+  if (dailyPosts.length === 0 && allBrandsData.length === 0) {
+    document.getElementById('emptyState').style.display = 'block';
+  } else {
+    document.getElementById('emptyState').style.display = 'none';
   }
 }
 
