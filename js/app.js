@@ -1271,6 +1271,42 @@ const SORT_API_MAP = {
 
 // Hebrew→English translation dictionary for common search terms
 const HE_EN_DICT = {
+  // === Branded shoes & clothing (from search logs) ===
+  "נעלי נייק": "nike shoes sneakers", "איכותי נעלי נייק": "nike sneakers premium",
+  "נעלי ניו באלאנס 530": "new balance 530 shoes", "ניו באלאנס 530": "new balance 530",
+  "ניו בלאנס 9060 מנומר": "new balance 9060 leopard print",
+  "אדידס סמבה": "adidas samba shoes", "בירקנשטוק": "birkenstock sandals slides",
+  "כפכפי uggs": "ugg slippers fluffy women", "סנדל לואי ויטון": "louis vuitton style sandals",
+  "קבקב נייק לגבר": "nike slides men slippers", "קבקב נייק": "nike slides slippers",
+  "תחתונים קלווין קליין": "calvin klein underwear", "תחתונים קלווין קליין לגברים": "calvin klein men underwear boxer briefs",
+  // === Sportswear & yoga (from search logs) ===
+  "בגדי ספורט": "sportswear fitness set", "בגדי ספורט לנשים": "women sportswear fitness set",
+  "אביזרי ספורט": "sports accessories equipment", "מכנס יוגה": "yoga pants women",
+  "מכנס יוגה רחב": "wide leg yoga pants women", "מכנסיים רחבים": "wide leg pants women",
+  "טייץ וחולצה": "leggings top set women", "טייץ וחולצה שרוול ארוך": "leggings long sleeve top set women",
+  "סוויטשירט": "sweatshirt hoodie",
+  // === Electronics & gadgets (from search logs) ===
+  "מקרן": "mini projector portable", "מקרן עם רמקול": "projector bluetooth speaker portable",
+  "גאדג'טים למטבח": "kitchen gadgets tools accessories",
+  // === Fashion accessories (from search logs) ===
+  "קלאץ": "clutch bag evening", "קלאץ'": "clutch bag evening",
+  "קלאץ שחור לבן": "clutch bag black white women", "קלאץ שחור לבן לנשים": "clutch bag black white women evening",
+  "תיק זרה": "zara style bag women",
+  "שמלת גינס": "denim dress women casual", "שמלת ג'ינס": "denim dress women casual",
+  // === Home & garden (from search logs) ===
+  "פרחים ועציצים": "artificial flowers plants vase", "פרחים מלאכותיים": "artificial flowers decorative",
+  "עציצים": "plant pots planters",
+  // === Nail care (from search logs) ===
+  "לק לציפורניים": "nail polish color", "מסיר לק": "nail polish remover",
+  "מנקה ציפורניים": "nail cleaner brush tool", "מנקה לק": "nail polish remover cleanser",
+  // === Baby (from search logs - detected by detectContext) ===
+  "כובע לתינוק": "baby hat cap beanie", "כיסא לתינוק": "baby high chair seat portable",
+  "צעצועי תינוק התפתחותיים": "baby developmental sensory toys", "צעצוע לתינוק": "baby toy educational sensory",
+  // === Clothing extras (from search logs) ===
+  "חולצה ללא שרוולים": "sleeveless shirt top women", "חולצות נשים בצבע צהוב": "yellow women blouse shirt top",
+  "מוצרי טיפוח": "beauty skincare care set", "נעלי מוקסין": "moccasin shoes loafers",
+  "מותגים נסתרים": "hidden brand fashion deals", "משחקים לכלב": "dog toys interactive chew",
+  // === Original dictionary ===
   "תחתונים": "underwear panties", "תחתוני": "underwear panties", "תחתון": "underwear panties",
   "הלבשה תחתונה": "lingerie underwear", "הלבשה תחתונה לנשים": "women lingerie underwear", "הלבשה תחתונה לגברים": "men underwear boxer briefs",
   "תחתוני נשים": "women panties underwear", "תחתוני גברים": "men boxer underwear briefs",
