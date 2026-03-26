@@ -567,17 +567,20 @@ function generateId() {
 // === LOAD POSTS ===
 async function loadPosts() {
   try {
-    // First check localStorage
-    const local = localStorage.getItem('deals_posts');
-    if (local) {
-      posts = JSON.parse(local);
-    } else {
-      // Fallback: load from posts.json file
-      const resp = await fetch(POSTS_JSON_URL + '?t=' + Date.now());
-      if (resp.ok) {
-        const data = await resp.json();
-        posts = data.posts || [];
-        localStorage.setItem('deals_posts', JSON.stringify(posts));
+    // Load from KV via Worker
+    const resp = await fetch(`${R2_UPLOAD_WORKER}/deals/posts?t=${Date.now()}`);
+    if (resp.ok) {
+      posts = await resp.json();
+    }
+    // Fallback: check localStorage for migration
+    if (posts.length === 0) {
+      const local = localStorage.getItem('deals_posts');
+      if (local) {
+        posts = JSON.parse(local);
+        // Auto-migrate to KV
+        await savePostsToKV();
+        localStorage.removeItem('deals_posts');
+        showToast('פוסטים הועברו לענן');
       }
     }
     renderPostsList();
@@ -808,19 +811,20 @@ async function publishPost() {
 
 // === SAVE POSTS ===
 function savePosts() {
+  savePostsToKV();
+}
+
+async function savePostsToKV() {
   try {
-    localStorage.setItem('deals_posts', JSON.stringify(posts));
+    const resp = await fetch(`${R2_UPLOAD_WORKER}/deals/posts`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ password: ADMIN_PASSWORD, posts })
+    });
+    if (!resp.ok) throw new Error('Save failed');
   } catch(e) {
-    if (e.name === 'QuotaExceededError') {
-      showToast('אחסון מלא! מנקה פוסטים ישנים...', true);
-      // Remove oldest posts to free space
-      while (posts.length > 20) posts.pop();
-      try { localStorage.setItem('deals_posts', JSON.stringify(posts)); } catch(e2) {
-        // Last resort: clear all old data
-        localStorage.removeItem('deals_posts');
-        localStorage.setItem('deals_posts', JSON.stringify(posts));
-      }
-    }
+    console.error('KV save error:', e);
+    showToast('שגיאה בשמירה לענן', true);
   }
 }
 

@@ -845,6 +845,7 @@
 <script>
 const POSTS_URL = 'posts.json';
 const BRANDS_URL = 'brands.json';
+const WORKER_URL = 'https://ali-findme-api.ohadf1976.workers.dev';
 const BRANDS_PER_DAY = 6;
 
 // Hebrew date formatting
@@ -999,10 +1000,16 @@ async function loadPosts() {
     const brandsResp = await fetch(BRANDS_URL + '?t=' + Date.now());
     allBrandsData = await brandsResp.json();
 
-    const localPosts = localStorage.getItem('deals_posts');
-    if (localPosts) {
-      allPosts = JSON.parse(localPosts);
-    } else {
+    // Load posts from KV (cloud)
+    try {
+      const kvResp = await fetch(`${WORKER_URL}/deals/posts?t=${Date.now()}`);
+      if (kvResp.ok) {
+        const kvPosts = await kvResp.json();
+        if (kvPosts.length > 0) allPosts = kvPosts;
+      }
+    } catch(e) {}
+    // Fallback to static file
+    if (allPosts.length === 0) {
       const postsResp = await fetch(POSTS_URL + '?t=' + Date.now());
       const postsData = await postsResp.json();
       allPosts = postsData.posts || [];
