@@ -328,6 +328,61 @@
     .post-actions button:hover { background: rgba(255,255,255,0.1); }
     .post-actions .delete-btn:hover { background: rgba(239,68,68,0.2); color: #ef4444; }
 
+    /* Request Items */
+    .req-item {
+      padding: 12px;
+      background: rgba(168,85,247,0.06);
+      border: 1px solid rgba(168,85,247,0.12);
+      border-radius: 10px;
+      margin-bottom: 8px;
+    }
+
+    .req-item .req-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 6px;
+    }
+
+    .req-item .req-name {
+      font-weight: 700;
+      font-size: 14px;
+      color: #a855f7;
+    }
+
+    .req-item .req-date {
+      font-size: 11px;
+      color: rgba(255,255,255,0.3);
+    }
+
+    .req-item .req-msg {
+      font-size: 14px;
+      color: rgba(255,255,255,0.75);
+      line-height: 1.5;
+    }
+
+    .req-item .req-badge {
+      display: inline-block;
+      font-size: 10px;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-weight: 700;
+      margin-right: 8px;
+    }
+
+    .req-badge.new { background: rgba(168,85,247,0.2); color: #a855f7; }
+    .req-badge.done { background: rgba(37,211,102,0.2); color: #25D366; }
+
+    .req-count-badge {
+      background: #a855f7;
+      color: #fff;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 10px;
+      margin-right: 8px;
+    }
+
     /* Toast */
     .toast {
       position: fixed;
@@ -445,6 +500,15 @@
         </div>
       </div>
 
+      <!-- Product Requests -->
+      <div class="form-card">
+        <h2>&#x1F4E9; בקשות מוצרים <span class="req-count-badge" id="reqCountBadge">0</span></h2>
+        <div id="requestsList">
+          <div style="text-align:center;color:rgba(255,255,255,0.3);padding:20px">אין בקשות</div>
+        </div>
+        <button class="btn btn-danger" style="margin-top:12px;width:100%;justify-content:center" onclick="clearRequests()">&#x1F5D1; נקו הכל</button>
+      </div>
+
     </div>
   </div>
 
@@ -488,6 +552,7 @@ function showAdmin() {
   document.getElementById('postDate').value = todayStr();
 
   loadPosts();
+  loadRequests();
 }
 
 // === HELPERS ===
@@ -794,6 +859,63 @@ function clearForm() {
   document.getElementById('postType').value = 'daily';
   uploadedImages = [];
   renderImagePreviews();
+}
+
+// === PRODUCT REQUESTS ===
+function loadRequests() {
+  const requests = JSON.parse(localStorage.getItem('deals_requests') || '[]');
+  const container = document.getElementById('requestsList');
+  const badge = document.getElementById('reqCountBadge');
+
+  const newCount = requests.filter(r => r.status === 'new').length;
+  badge.textContent = newCount;
+
+  if (requests.length === 0) {
+    container.innerHTML = '<div style="text-align:center;color:rgba(255,255,255,0.3);padding:20px">אין בקשות</div>';
+    return;
+  }
+
+  container.innerHTML = requests.map(r => {
+    const d = new Date(r.date);
+    const dateStr = `${d.getDate()}/${d.getMonth()+1} ${d.getHours()}:${String(d.getMinutes()).padStart(2,'0')}`;
+    return `
+      <div class="req-item" data-id="${r.id}">
+        <div class="req-header">
+          <div>
+            <span class="req-badge ${r.status}">${r.status === 'new' ? 'חדש' : 'טופל'}</span>
+            <span class="req-name">${r.name}</span>
+          </div>
+          <span class="req-date">${dateStr}</span>
+        </div>
+        <div class="req-msg">${r.message}</div>
+        <div style="margin-top:8px;display:flex;gap:6px">
+          ${r.status === 'new' ? `<button onclick="markDone('${r.id}')" style="padding:4px 10px;border-radius:6px;border:none;font-size:11px;cursor:pointer;background:rgba(37,211,102,0.15);color:#25D366">&#x2705; טופל</button>` : ''}
+          <button onclick="deleteRequest('${r.id}')" style="padding:4px 10px;border-radius:6px;border:none;font-size:11px;cursor:pointer;background:rgba(239,68,68,0.1);color:#ef4444">&#x1F5D1; מחק</button>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+function markDone(id) {
+  const requests = JSON.parse(localStorage.getItem('deals_requests') || '[]');
+  const req = requests.find(r => r.id === id);
+  if (req) req.status = 'done';
+  localStorage.setItem('deals_requests', JSON.stringify(requests));
+  loadRequests();
+}
+
+function deleteRequest(id) {
+  const requests = JSON.parse(localStorage.getItem('deals_requests') || '[]');
+  localStorage.setItem('deals_requests', JSON.stringify(requests.filter(r => r.id !== id)));
+  loadRequests();
+}
+
+function clearRequests() {
+  if (!confirm('למחוק את כל הבקשות?')) return;
+  localStorage.removeItem('deals_requests');
+  loadRequests();
+  showToast('כל הבקשות נמחקו');
 }
 
 // === INIT ===

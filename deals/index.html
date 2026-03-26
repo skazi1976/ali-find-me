@@ -417,6 +417,86 @@
       cursor: pointer;
     }
 
+    /* Request Section */
+    .request-section {
+      margin: 20px 16px 0;
+      padding: 28px 24px;
+      background: linear-gradient(135deg, rgba(168,85,247,0.08), rgba(139,92,246,0.04));
+      border: 1px solid rgba(168,85,247,0.15);
+      border-radius: 16px;
+      text-align: center;
+    }
+
+    .request-icon { font-size: 36px; margin-bottom: 8px; }
+
+    .request-section h2 {
+      font-size: 20px;
+      font-weight: 800;
+      margin-bottom: 6px;
+    }
+
+    .request-section p {
+      font-size: 14px;
+      color: rgba(255,255,255,0.45);
+      margin-bottom: 16px;
+    }
+
+    .request-form {
+      max-width: 450px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .req-input {
+      width: 100%;
+      padding: 12px 14px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 10px;
+      color: #fff;
+      font-family: 'Assistant', sans-serif;
+      font-size: 14px;
+      outline: none;
+      resize: none;
+    }
+
+    .req-input:focus { border-color: #a855f7; }
+    .req-input::placeholder { color: rgba(255,255,255,0.3); }
+    .req-textarea { min-height: 70px; }
+
+    .req-submit {
+      padding: 12px;
+      border-radius: 10px;
+      border: none;
+      background: linear-gradient(135deg, #8b5cf6, #a855f7);
+      color: #fff;
+      font-family: 'Heebo', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .req-submit:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(139,92,246,0.3);
+    }
+
+    .request-success {
+      padding: 16px;
+    }
+
+    .success-icon { font-size: 40px; margin-bottom: 8px; }
+
+    .request-success p {
+      font-size: 16px;
+      font-weight: 700;
+      color: #a855f7;
+      margin-bottom: 0;
+    }
+
     /* Empty State */
     .empty-state {
       text-align: center;
@@ -535,6 +615,22 @@
     <div class="search-bar">
       <input type="text" id="searchInput" placeholder="חפשו מוצר... למשל: נעלי נייק">
       <button onclick="doSearch()">חפשו</button>
+    </div>
+  </section>
+
+  <!-- Request Section -->
+  <section class="request-section">
+    <div class="request-icon">&#x1F4E9;</div>
+    <h2>לא מצאתם? בקשו ונמצא!</h2>
+    <p>כתבו לנו מה אתם מחפשים ונחזור אליכם עם הדיל הכי טוב</p>
+    <div class="request-form" id="requestForm">
+      <input type="text" id="reqName" placeholder="השם שלכם" class="req-input">
+      <textarea id="reqMessage" placeholder="מה אתם מחפשים? (למשל: תיק גוצ'י שחור, נעלי נייק 42...)" class="req-input req-textarea"></textarea>
+      <button class="req-submit" onclick="submitRequest()">&#x1F680; שלחו בקשה</button>
+    </div>
+    <div class="request-success" id="requestSuccess" style="display:none">
+      <div class="success-icon">&#x2705;</div>
+      <p>הבקשה נשלחה! נחזור אליכם בהקדם</p>
     </div>
   </section>
 
@@ -768,6 +864,42 @@ document.addEventListener('touchend', function(e) {
   }
   gallery._touchX = null;
 }, { passive: true });
+
+// === Product Requests ===
+function submitRequest() {
+  const name = document.getElementById('reqName').value.trim();
+  const message = document.getElementById('reqMessage').value.trim();
+
+  if (!message) {
+    document.getElementById('reqMessage').style.borderColor = '#ef4444';
+    return;
+  }
+
+  const request = {
+    id: Date.now().toString(36),
+    name: name || 'אנונימי',
+    message,
+    date: new Date().toISOString(),
+    status: 'new'
+  };
+
+  // Save to localStorage
+  const requests = JSON.parse(localStorage.getItem('deals_requests') || '[]');
+  requests.unshift(request);
+  localStorage.setItem('deals_requests', JSON.stringify(requests));
+
+  // Show success
+  document.getElementById('requestForm').style.display = 'none';
+  document.getElementById('requestSuccess').style.display = 'block';
+
+  // Reset after 4 seconds
+  setTimeout(() => {
+    document.getElementById('requestForm').style.display = 'flex';
+    document.getElementById('requestSuccess').style.display = 'none';
+    document.getElementById('reqName').value = '';
+    document.getElementById('reqMessage').value = '';
+  }, 4000);
+}
 
 // Init
 loadPosts();
