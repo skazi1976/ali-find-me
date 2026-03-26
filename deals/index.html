@@ -149,8 +149,16 @@
 
     @media (max-width: 640px) {
       .products-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+        padding: 0 10px 10px;
       }
+
+      .card-title { font-size: 13px; }
+      .card-price { font-size: 18px; }
+      .buy-btn { padding: 8px 12px; font-size: 12px; }
+      .brand-name { font-size: 10px; }
+      .card-info { padding: 10px 10px 12px; }
     }
 
     .product-card {
