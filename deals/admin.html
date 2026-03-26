@@ -480,9 +480,9 @@
         <div class="form-group">
           <label>תמונות</label>
           <div class="upload-zone" id="uploadZone">
-            <input type="file" id="fileInput" multiple accept="image/*">
+            <input type="file" id="fileInput" multiple accept="image/*,video/mp4,video/quicktime">
             <div class="icon">&#x1F4F7;</div>
-            <p>גררו תמונות לכאן או לחצו לבחירה</p>
+            <p>גררו תמונות או וידאו לכאן או לחצו לבחירה</p>
           </div>
           <div class="image-previews" id="imagePreviews"></div>
         </div>
@@ -648,28 +648,40 @@ fileInput.addEventListener('change', (e) => {
 
 async function handleFiles(files) {
   for (const file of files) {
-    if (!file.type.startsWith('image/')) continue;
+    const isImage = file.type.startsWith('image/');
+    const isVideo = file.type.startsWith('video/');
+    if (!isImage && !isVideo) continue;
+    if (isVideo && file.size > 15 * 1024 * 1024) {
+      showToast('וידאו מקסימום 15MB', true);
+      continue;
+    }
 
-    // Create preview
-    const reader = new FileReader();
-    reader.onload = async (e) => {
-      const idx = uploadedImages.length;
-      uploadedImages.push({ url: null, uploading: true });
-      renderImagePreviews();
+    const idx = uploadedImages.length;
+    const mediaType = isVideo ? 'video' : 'image';
+    uploadedImages.push({ url: null, uploading: true, type: mediaType });
+    renderImagePreviews();
 
-      // Upload to R2 via direct put
-      try {
-        const url = await uploadToR2(file);
-        uploadedImages[idx] = { url, uploading: false };
-      } catch (err) {
-        console.error('Upload error:', err);
-        // Fallback: use data URL
-        uploadedImages[idx] = { url: e.target.result, uploading: false };
+    try {
+      const url = await uploadToR2(file);
+      uploadedImages[idx] = { url, uploading: false, type: mediaType };
+    } catch (err) {
+      console.error('Upload error:', err);
+      if (isImage) {
+        // Fallback for images only
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          uploadedImages[idx] = { url: e.target.result, uploading: false, type: 'image' };
+          renderImagePreviews();
+        };
+        reader.readAsDataURL(file);
         showToast('שגיאה בהעלאה, משתמש בתמונה מקומית', true);
+        continue;
+      } else {
+        uploadedImages.splice(idx, 1);
+        showToast('שגיאה בהעלאת וידאו', true);
       }
-      renderImagePreviews();
-    };
-    reader.readAsDataURL(file);
+    }
+    renderImagePreviews();
   }
 }
 
@@ -710,15 +722,20 @@ async function uploadToR2(file) {
 
 function renderImagePreviews() {
   const container = document.getElementById('imagePreviews');
-  container.innerHTML = uploadedImages.map((img, i) => `
-    <div class="img-preview" style="position:relative${i === 0 ? ';border:2px solid #FF6B00' : ''}">
-      <img src="${img.url || 'data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 1 1%22><rect fill=%22%23222%22 width=%221%22 height=%221%22/></svg>'}" alt="">
+  container.innerHTML = uploadedImages.map((img, i) => {
+    const isVideo = img.type === 'video';
+    const placeholder = 'data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 1 1%22><rect fill=%22%23222%22 width=%221%22 height=%221%22/></svg>';
+    const media = isVideo && img.url
+      ? `<video src="${img.url}" style="width:100%;height:100%;object-fit:cover" muted></video><div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:24px;opacity:0.8">&#x25B6;</div>`
+      : `<img src="${img.url || placeholder}" alt="">`;
+    return `<div class="img-preview" style="position:relative${i === 0 ? ';border:2px solid #FF6B00' : ''}">
+      ${media}
       ${img.uploading ? '<div class="uploading-overlay"><div class="mini-spinner"></div></div>' : ''}
       ${!img.uploading ? `<button class="remove-img" onclick="removeImage(${i})">&#x2715;</button>` : ''}
       ${!img.uploading && i > 0 ? `<button onclick="setMainImage(${i})" style="position:absolute;bottom:2px;right:2px;width:22px;height:22px;border-radius:50%;background:rgba(255,107,0,0.85);border:none;color:#fff;font-size:11px;cursor:pointer;display:flex;align-items:center;justify-content:center" title="הגדר כראשית">&#x2B50;</button>` : ''}
       ${i === 0 && !img.uploading ? '<div style="position:absolute;bottom:0;left:0;right:0;background:rgba(255,107,0,0.85);color:#fff;font-size:9px;text-align:center;padding:1px;font-weight:700">ראשית</div>' : ''}
-    </div>
-  `).join('');
+    </div>`;
+  }).join('');
 }
 
 function removeImage(idx) {
@@ -752,7 +769,7 @@ async function publishPost() {
     return;
   }
 
-  const images = uploadedImages.filter(img => img.url).map(img => img.url);
+  const images = uploadedImages.filter(img => img.url).map(img => img.type === 'video' ? 'video:' + img.url : img.url);
 
   const newPost = {
     id: generateId(),
@@ -816,7 +833,10 @@ function editPost(id) {
   document.getElementById('postPrice').value = post.price;
   document.getElementById('postLink').value = post.link;
 
-  uploadedImages = (post.images || []).map(url => ({ url, uploading: false }));
+  uploadedImages = (post.images || []).map(url => {
+    const isVideo = url.startsWith('video:');
+    return { url: isVideo ? url.slice(6) : url, uploading: false, type: isVideo ? 'video' : 'image' };
+  });
   renderImagePreviews();
 
   // Remove old post (will be re-added on publish)
