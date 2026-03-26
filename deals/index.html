@@ -466,6 +466,31 @@
     .req-input::placeholder { color: rgba(255,255,255,0.3); }
     .req-textarea { min-height: 70px; }
 
+    .req-image-label {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 10px;
+      background: rgba(255,255,255,0.04);
+      border: 1px dashed rgba(255,255,255,0.15);
+      border-radius: 10px;
+      color: rgba(255,255,255,0.5);
+      font-size: 13px;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .req-image-label:hover {
+      border-color: #a855f7;
+      color: #a855f7;
+    }
+
+    #reqImagePreview {
+      display: flex;
+      align-items: flex-start;
+    }
+
     .req-submit {
       padding: 12px;
       border-radius: 10px;
@@ -627,6 +652,16 @@
       <input type="text" id="reqName" placeholder="השם שלכם" class="req-input">
       <input type="tel" id="reqPhone" placeholder="מספר טלפון (לקבלת תשובה בוואטסאפ)" class="req-input" dir="ltr" style="text-align:right">
       <textarea id="reqMessage" placeholder="מה אתם מחפשים? (למשל: תיק גוצ'י שחור, נעלי נייק 42...)" class="req-input req-textarea"></textarea>
+      <div class="req-image-upload" id="reqImageUpload">
+        <label for="reqImageInput" class="req-image-label">
+          <span>&#x1F4F7; הוסיפו תמונה (אופציונלי)</span>
+          <input type="file" id="reqImageInput" accept="image/*" style="display:none" onchange="previewReqImage(this)">
+        </label>
+        <div id="reqImagePreview" style="display:none">
+          <img id="reqImageThumb" style="width:80px;height:80px;object-fit:cover;border-radius:8px;border:1px solid rgba(255,255,255,0.1)">
+          <button type="button" onclick="removeReqImage()" style="background:rgba(239,68,68,0.8);color:#fff;border:none;border-radius:50%;width:22px;height:22px;font-size:12px;cursor:pointer;position:relative;top:-35px;right:10px">&#x2715;</button>
+        </div>
+      </div>
       <button class="req-submit" onclick="submitRequest()">&#x1F4AC; שלחו בקשה בוואטסאפ</button>
     </div>
     <div class="request-success" id="requestSuccess" style="display:none">
@@ -871,7 +906,29 @@ document.addEventListener('touchend', function(e) {
 }, { passive: true });
 
 // === Product Requests ===
-function submitRequest() {
+let reqImageFile = null;
+
+function previewReqImage(input) {
+  if (input.files && input.files[0]) {
+    reqImageFile = input.files[0];
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      document.getElementById('reqImageThumb').src = e.target.result;
+      document.getElementById('reqImagePreview').style.display = 'flex';
+      document.getElementById('reqImageUpload').querySelector('.req-image-label').style.display = 'none';
+    };
+    reader.readAsDataURL(input.files[0]);
+  }
+}
+
+function removeReqImage() {
+  reqImageFile = null;
+  document.getElementById('reqImagePreview').style.display = 'none';
+  document.getElementById('reqImageUpload').querySelector('.req-image-label').style.display = 'flex';
+  document.getElementById('reqImageInput').value = '';
+}
+
+async function submitRequest() {
   const name = document.getElementById('reqName').value.trim();
   const phone = document.getElementById('reqPhone').value.trim().replace(/[^0-9+]/g, '');
   const message = document.getElementById('reqMessage').value.trim();
@@ -893,8 +950,29 @@ function submitRequest() {
   if (normalizedPhone) waText += `📱 טלפון: ${normalizedPhone}\n`;
   waText += `\n💬 ${message}`;
 
-  // Open WhatsApp with pre-filled message
-  window.open(`https://wa.me/${waNumber}?text=${encodeURIComponent(waText)}`, '_blank');
+  // If image attached, use Web Share API (mobile) to share image + text to WhatsApp
+  if (reqImageFile && navigator.canShare) {
+    try {
+      const shareData = {
+        text: waText,
+        files: [reqImageFile]
+      };
+      if (navigator.canShare(shareData)) {
+        await navigator.share(shareData);
+        reqImageFile = null;
+      } else {
+        // Fallback: open WhatsApp without image
+        window.open(`https://wa.me/${waNumber}?text=${encodeURIComponent(waText + '\n\n📎 (יש לי תמונה - אשלח בצ\'אט)')}`, '_blank');
+      }
+    } catch (e) {
+      if (e.name !== 'AbortError') {
+        window.open(`https://wa.me/${waNumber}?text=${encodeURIComponent(waText)}`, '_blank');
+      }
+    }
+  } else {
+    // No image or no Share API - open WhatsApp directly
+    window.open(`https://wa.me/${waNumber}?text=${encodeURIComponent(waText)}`, '_blank');
+  }
 
   // Show success
   document.getElementById('requestForm').style.display = 'none';
@@ -907,6 +985,7 @@ function submitRequest() {
     document.getElementById('reqName').value = '';
     document.getElementById('reqPhone').value = '';
     document.getElementById('reqMessage').value = '';
+    removeReqImage();
   }, 4000);
 }
 
