@@ -5,6 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>דילים יומיים | Ali Find Me</title>
   <meta name="description" content="הדילים הכי חמים כל יום - מותגים מובילים במחירים מטורפים. Nike, Adidas, Gucci ועוד">
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-18NLX6KS89"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-18NLX6KS89');</script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;800;900&family=Assistant:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
@@ -808,7 +811,7 @@
   </div>
 
   <!-- Sticky WhatsApp -->
-  <a href="https://wa.me/972507483316" target="_blank" class="sticky-wa">
+  <a href="https://wa.me/972507483316" target="_blank" class="sticky-wa" onclick="trackEvent('broadcast_join','engagement','sticky_button')">
     <span class="wa-icon">&#x1F4AC;</span>
     <span>הצטרפו לברודקאסט</span>
   </a>
@@ -892,7 +895,7 @@ function buildCard(post) {
         <h3 class="card-title">${post.title}</h3>
         <div class="card-bottom">
           <div class="card-price">${post.price}<small> &#x20AA;</small></div>
-          <a href="${post.link}" target="_blank" rel="noopener" class="buy-btn">
+          <a href="${post.link}" target="_blank" rel="noopener" class="buy-btn" onclick="trackEvent('purchase_click','deals','${post.brand}')">
             &#x1F6D2; קנו עכשיו
           </a>
         </div>
@@ -931,6 +934,7 @@ function galleryGoTo(gallery, images, idx) {
 function doSearch() {
   const q = document.getElementById('searchInput').value.trim();
   if (q) {
+    trackEvent('search', 'engagement', q);
     window.open(`https://alifindme.com/?q=${encodeURIComponent(q)}`, '_blank');
   }
 }
@@ -1004,6 +1008,7 @@ function buildDateTabs() {
 }
 
 function selectDate(date) {
+  trackEvent('date_switch', 'navigation', date);
   currentDate = date;
   // Update tabs
   document.querySelectorAll('.date-tab').forEach(tab => {
@@ -1084,15 +1089,22 @@ document.addEventListener('touchend', function(e) {
 const SHARE_URL = 'https://alifindme.com/deals/';
 const SHARE_TEXT = 'דילים מטורפים על מותגים כמו Nike, Gucci, Dior ועוד במחירי רצפה! 🔥';
 
+function trackEvent(action, category, label) {
+  if (typeof gtag === 'function') gtag('event', action, { event_category: category, event_label: label });
+}
+
 function shareWA() {
+  trackEvent('share', 'social', 'whatsapp');
   window.open(`https://wa.me/?text=${encodeURIComponent(SHARE_TEXT + '\n\n' + SHARE_URL)}`, '_blank');
 }
 
 function shareTG() {
+  trackEvent('share', 'social', 'telegram');
   window.open(`https://t.me/share/url?url=${encodeURIComponent(SHARE_URL)}&text=${encodeURIComponent(SHARE_TEXT)}`, '_blank');
 }
 
 function copyLink() {
+  trackEvent('share', 'social', 'copy_link');
   navigator.clipboard.writeText(SHARE_URL).then(() => {
     const btn = document.querySelector('.share-btn.copy');
     const orig = btn.innerHTML;
@@ -1138,6 +1150,8 @@ async function submitRequest() {
   let normalizedPhone = phone;
   if (phone.startsWith('05')) normalizedPhone = '972' + phone.slice(1);
   if (phone.startsWith('+972')) normalizedPhone = phone.slice(1);
+
+  trackEvent('product_request', 'engagement', message.substring(0, 50));
 
   // Build WhatsApp message
   const waNumber = '972507483316';
