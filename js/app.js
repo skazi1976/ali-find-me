@@ -1509,8 +1509,11 @@ function detectContext(query) {
 async function doSearch(query, page = 1) {
   // Auto-detect context for better AI translation
   const autoContext = detectContext(query);
-  // If baby/pets/home detected, send original Hebrew to Claude (don't use frontend dict)
-  const translatedQ = autoContext ? query : translateQuery(query);
+  // ALWAYS send original Hebrew to Claude/Haiku for accurate translation
+  // Frontend dict was causing bad multi-word translations (e.g. "women shirt blouse top")
+  // Haiku gives concise, AliExpress-optimized 2-3 word translations
+  const hasHebrew = /[\u0590-\u05FF]/.test(query);
+  const translatedQ = hasHebrew ? query : translateQuery(query);
   const params = new URLSearchParams({
     q: translatedQ, lang: currentLang, currency: currentCurrency, country: currentCountry, page: String(page),
   });
@@ -2463,7 +2466,9 @@ async function sendMessage() {
   try {
     // FAST: First fetch only 6 results for instant display
     const fastContext = detectContext(searchQuery);
-    const fastQ = fastContext ? searchQuery : translateQuery(searchQuery);
+    // Always send Hebrew to Claude/Haiku for accurate translation
+    const hasHebrewFast = /[\u0590-\u05FF]/.test(searchQuery);
+    const fastQ = hasHebrewFast ? searchQuery : translateQuery(searchQuery);
     const fastParams = new URLSearchParams({
       q: fastQ, lang: currentLang, currency: currentCurrency, country: currentCountry, page: "1", fast: "1",
     });
