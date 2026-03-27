@@ -1305,18 +1305,29 @@ body {
 .similar-card-info { padding: 8px 10px; }
 .similar-card-title { font-size: 0.75em; color: #555; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; margin-bottom: 4px; }
 .similar-ship { font-size: 0.7em; color: #4CAF50; margin-top: 3px; }
-.product-actions-row { display: flex; gap: 6px; margin-bottom: 6px; }
+.product-actions-row {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 6px;
+  justify-content: center;
+  align-items: stretch;
+}
 .similar-btn {
   flex: 1;
-  padding: 5px 8px;
+  padding: 6px 4px;
   border: 1.5px solid #ff9500;
   background: #fff;
   color: #ff9500;
   border-radius: 8px;
-  font-size: 0.75em;
+  font-size: 0.7em;
   font-weight: 600;
   cursor: pointer;
   transition: background 0.2s;
+  white-space: nowrap;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .similar-btn:hover { background: #fff5e6; }
 
@@ -3442,13 +3453,14 @@ body {
 /* Compare button on product card */
 .compare-btn {
   background: linear-gradient(135deg, #ff9800, #f57c00); border: none;
-  border-radius: 20px; padding: 6px 10px;
-  font-size: 12px; font-weight: 700; font-family: 'Heebo', 'Assistant', sans-serif;
+  border-radius: 8px; padding: 6px 4px;
+  font-size: 0.7em; font-weight: 700; font-family: 'Heebo', 'Assistant', sans-serif;
   color: #fff; cursor: pointer; display: flex;
-  align-items: center; justify-content: center; gap: 4px;
+  flex: 1;
+  align-items: center; justify-content: center; gap: 2px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.15);
   transition: transform 0.2s, background 0.2s;
-  white-space: nowrap; margin: 6px auto 2px;
+  white-space: nowrap; margin: 0;
 }
 .compare-btn:hover {
   transform: scale(1.05); background: linear-gradient(135deg, #ffa726, #ef6c00);
