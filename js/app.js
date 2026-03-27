@@ -2161,7 +2161,7 @@ function buildProductCard(p) {
         ${urgency}
         <div class="product-actions-row">
           <button class="similar-btn" onclick="event.stopPropagation();showSimilar('${p.id}','${(p.title||'').replace(/'/g,"\\'").substring(0,40)}')" title="${currentLang === 'he' ? 'מוצרים דומים' : 'Similar Products'}">
-            🔗 ${currentLang === 'he' ? 'דומים' : 'Similar'}
+            🔗 ${currentLang === 'he' ? 'מוצרים דומים' : 'Similar Products'}
           </button>
           <button class="compare-btn" onclick="event.stopPropagation();onCompareClick('${pJson}')" title="${i18n[currentLang].findCheaper || 'Find Cheaper'}">
             💰 ${i18n[currentLang].findCheaper || 'Find Cheaper'}
