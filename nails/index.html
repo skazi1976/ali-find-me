@@ -2322,7 +2322,7 @@ function renderProducts(products, append) {
           ${orders > 0 ? `<div class="product-orders">${orders > 999 ? (orders/1000).toFixed(1)+'K' : orders} ${(window.currentTranslation || {}).orders || 'orders'}</div>` : ''}
         </div>
         <button class="compare-btn" onclick="event.preventDefault();event.stopPropagation();onCompareClick(this.dataset.p)" data-p="${pData}" title="מצא זול יותר">💰 מצא זול יותר</button>
-        <a href="${affiliateUrl}" target="_blank" rel="noopener" class="product-cta" onclick="event.stopPropagation()">🛒 לרכישה ב-${(window.currentTranslation || {}).currencySymbol || '₪'}${parseFloat(price).toFixed(0)}</a>
+        <a href="${link}" target="_blank" rel="noopener" class="product-cta" onclick="event.stopPropagation()">🛒 לרכישה ב-${(window.currentTranslation || {}).currencySymbol || '₪'}${parseFloat(price).toFixed(0)}</a>
       </div>
     `;
 
