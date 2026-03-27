@@ -73,7 +73,7 @@
   <link rel="preconnect" href="https://ali-find-me.ohad1.workers.dev">
   <link rel="dns-prefetch" href="https://ae01.alicdn.com">
   <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&family=Assistant:wght@300;400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=20260327c">
+  <link rel="stylesheet" href="css/style.css?v=20260327d">
 
   <script type="application/ld+json">
   {
@@ -311,7 +311,12 @@
         <h2 class="promo-title" id="promoTitle"></h2>
         <p class="promo-subtitle" id="promoSubtitle"></p>
       </div>
-      <div class="promo-products-scroll" id="promoProductsScroll"></div>
+      <div class="promo-scroll-wrapper">
+        <button class="promo-scroll-btn promo-scroll-right" id="promoScrollRight" aria-label="גלול ימינה">‹</button>
+        <div class="promo-products-scroll" id="promoProductsScroll"></div>
+        <button class="promo-scroll-btn promo-scroll-left" id="promoScrollLeft" aria-label="גלול שמאלה">›</button>
+      </div>
+      <div class="promo-scroll-hint" id="promoScrollHint">← החלק לעוד דילים</div>
       <button class="promo-see-all" id="promoSeeAll" style="display:none">הצג את כל המבצעים ←</button>
     </div>
   </section>

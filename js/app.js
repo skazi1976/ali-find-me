@@ -1612,7 +1612,17 @@ async function loadPromos() {
     }).join("");
 
     document.getElementById("promoBannerSection").style.display = "block";
-    document.getElementById("promoSeeAll").style.display = "none"; // No "see all" for hot deals
+    document.getElementById("promoSeeAll").style.display = "none";
+
+    // Scroll buttons
+    const scroll = document.getElementById("promoProductsScroll");
+    document.getElementById("promoScrollLeft").onclick = () => scroll.scrollBy({ left: 320, behavior: "smooth" });
+    document.getElementById("promoScrollRight").onclick = () => scroll.scrollBy({ left: -320, behavior: "smooth" });
+    // Hide hint after first scroll
+    scroll.addEventListener("scroll", () => {
+      const hint = document.getElementById("promoScrollHint");
+      if (hint) hint.style.display = "none";
+    }, { once: true });
   } catch(e) {
     console.log("Hot deals load error:", e);
   }

@@ -1148,16 +1148,52 @@ body {
   opacity: 0.9;
   margin: 0;
 }
+.promo-scroll-wrapper {
+  position: relative;
+}
 .promo-products-scroll {
   display: flex;
   gap: 12px;
   overflow-x: auto;
-  padding: 8px 0 12px;
+  padding: 8px 40px 12px;
   scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
 }
-.promo-products-scroll::-webkit-scrollbar { height: 4px; }
-.promo-products-scroll::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.4); border-radius: 4px; }
+.promo-products-scroll::-webkit-scrollbar { height: 6px; }
+.promo-products-scroll::-webkit-scrollbar-track { background: rgba(255,255,255,0.15); border-radius: 4px; }
+.promo-products-scroll::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.5); border-radius: 4px; }
+.promo-scroll-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  background: rgba(255,255,255,0.3);
+  color: #fff;
+  font-size: 1.4em;
+  font-weight: 700;
+  cursor: pointer;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s, transform 0.2s;
+  backdrop-filter: blur(4px);
+}
+.promo-scroll-btn:hover { background: rgba(255,255,255,0.5); transform: translateY(-50%) scale(1.1); }
+.promo-scroll-right { right: auto; left: 2px; }
+.promo-scroll-left { left: auto; right: 2px; }
+.promo-scroll-hint {
+  text-align: center;
+  color: rgba(255,255,255,0.85);
+  font-size: 0.8em;
+  margin-top: 2px;
+  animation: hintPulse 2s ease-in-out 3;
+}
+@keyframes hintPulse { 0%,100%{opacity:0.85} 50%{opacity:0.4} }
 .promo-card {
   flex: 0 0 140px;
   background: #fff;
