@@ -1587,75 +1587,17 @@ async function loadCategories() {
   } catch { renderCategories([]); }
 }
 
-// Promo banner - auto-loads active AliExpress promotions
-const PROMO_NAMES_HE = {
-  "Anniversary Sale": "🎉 מבצע יום השנה של AliExpress",
-  "Big Save": "💰 חיסכון גדול",
-  "Bestsellers": "⭐ רבי מכר במחירים מיוחדים",
-  "Top Brands": "👑 מותגים מובילים",
-  "Summer": "☀️ מבצעי קיץ",
-  "Spring": "🌸 מבצעי אביב",
-  "11.11": "🔥 11.11 המבצע הגדול",
-  "Black Friday": "🖤 בלאק פריידי",
-  "default": "🎁 מבצע מיוחד ב-AliExpress",
-};
-
+// Hot Deals banner - loads verified affiliate hot products with high commission
 async function loadPromos() {
   try {
-    // First, get active promos
-    const promosResp = await fetch(`${API_BASE}/promos`);
-    const promosData = await promosResp.json();
-    const promos = promosData.promos || [];
-
-    // Find a relevant promo with good product count (not too small, not generic)
-    const goodPromos = promos.filter(p => {
-      const name = (p.promo_name || "").toLowerCase();
-      const num = parseInt(p.product_num || "0");
-      // Prefer sale/event promos with 100-10000 products
-      if (num < 50 || num > 50000) return false;
-      if (name.includes("test") || name.includes("old")) return false;
-      // Prefer event-type promos
-      return name.includes("sale") || name.includes("bestseller") || name.includes("brand")
-        || name.includes("top seller") || name.includes("save") || name.includes("christmas")
-        || name.includes("summer") || name.includes("spring") || name.includes("black friday")
-        || name.includes("11.11") || name.includes("cyber") || name.includes("new year");
-    });
-
-    if (goodPromos.length === 0) return;
-
-    // Pick the best promo (prefer ones with "sale" in name, moderate product count)
-    goodPromos.sort((a, b) => {
-      const aName = (a.promo_name || "").toLowerCase();
-      const bName = (b.promo_name || "").toLowerCase();
-      // Prioritize sale events
-      const aIsSale = aName.includes("sale") ? 1 : 0;
-      const bIsSale = bName.includes("sale") ? 1 : 0;
-      if (bIsSale !== aIsSale) return bIsSale - aIsSale;
-      return parseInt(b.product_num || "0") - parseInt(a.product_num || "0");
-    });
-
-    const selectedPromo = goodPromos[0];
-    const promoName = selectedPromo.promo_name;
-
-    // Fetch promo products
-    const resp = await fetch(`${API_BASE}/promo-products?promo=${encodeURIComponent(promoName)}&currency=${currentCurrency}&country=${currentCountry}&lang=${currentLang}`);
+    const resp = await fetch(`${API_BASE}/hot-deals?currency=${currentCurrency}&country=${currentCountry}&lang=${currentLang}`);
     const data = await resp.json();
     const products = data.products || [];
 
-    if (products.length < 3) return; // Not enough products
+    if (products.length < 3) return;
 
-    // Find Hebrew title
-    let heTitle = PROMO_NAMES_HE.default;
-    for (const [key, val] of Object.entries(PROMO_NAMES_HE)) {
-      if (promoName.toLowerCase().includes(key.toLowerCase())) {
-        heTitle = val;
-        break;
-      }
-    }
-
-    // Render banner
-    document.getElementById("promoTitle").textContent = heTitle;
-    document.getElementById("promoSubtitle").textContent = `${products.length} מוצרים נבחרים במחירים מיוחדים`;
+    document.getElementById("promoTitle").textContent = "🔥 דילים חמים עם הנחות מטורפות";
+    document.getElementById("promoSubtitle").textContent = `${products.length} מוצרים נבחרים עם המחירים הכי טובים`;
 
     const scrollContainer = document.getElementById("promoProductsScroll");
     scrollContainer.innerHTML = products.slice(0, 12).map(p => {
@@ -1669,22 +1611,10 @@ async function loadPromos() {
       </a>`;
     }).join("");
 
-    // Show the section
     document.getElementById("promoBannerSection").style.display = "block";
-
-    // "See all" button - search for this promo
-    const seeAllBtn = document.getElementById("promoSeeAll");
-    seeAllBtn.style.display = "block";
-    seeAllBtn.onclick = () => {
-      const searchInput = document.querySelector('input[type="text"]');
-      if (searchInput) {
-        searchInput.value = heTitle.replace(/[🎁🎉💰⭐👑☀️🌸🔥🖤]/g, "").trim();
-        searchInput.dispatchEvent(new Event("input", { bubbles: true }));
-        searchInput.dispatchEvent(new KeyboardEvent("keydown", { key: "Enter", code: "Enter", keyCode: 13, bubbles: true }));
-      }
-    };
+    document.getElementById("promoSeeAll").style.display = "none"; // No "see all" for hot deals
   } catch(e) {
-    console.log("Promo load error:", e);
+    console.log("Hot deals load error:", e);
   }
 }
 
