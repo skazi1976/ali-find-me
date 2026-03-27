@@ -666,6 +666,8 @@
     .compare-empty,.compare-error { text-align:center;padding:30px;color:#888; }
     .compare-btn { background:linear-gradient(135deg,#ff9800,#f57c00);border:none;border-radius:20px;padding:6px 10px;font-size:12px;font-weight:700;font-family:'Heebo','Assistant',sans-serif;color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:4px;box-shadow:0 2px 8px rgba(0,0,0,0.15);transition:transform 0.2s,background 0.2s;white-space:nowrap;margin:6px auto 2px; }
     .compare-btn:hover { transform:scale(1.05);background:linear-gradient(135deg,#ffa726,#ef6c00); }
+    .product-cta { display:block;text-align:center;background:linear-gradient(135deg,#00b894,#00a381);color:#fff;text-decoration:none;border-radius:20px;padding:8px 12px;font-size:13px;font-weight:700;font-family:'Heebo','Assistant',sans-serif;margin:6px auto 2px;box-shadow:0 2px 8px rgba(0,0,0,0.15);transition:transform 0.2s,background 0.2s; }
+    .product-cta:hover { transform:scale(1.05);background:linear-gradient(135deg,#00d2a0,#00b894); }
 
     /* ===== LOADING ===== */
     .loading {
@@ -2028,6 +2030,7 @@ function renderProducts(products, append) {
           ${orders > 0 ? `<div class="product-orders">${orders > 999 ? (orders/1000).toFixed(1)+'K' : orders} ${(window.currentTranslation || {}).orders || 'orders'}</div>` : ''}
         </div>
         <button class="compare-btn" onclick="event.preventDefault();event.stopPropagation();onCompareClick(this.dataset.p)" data-p="${pData}" title="מצא זול יותר">💰 מצא זול יותר</button>
+        <a href="${affiliateUrl}" target="_blank" rel="noopener" class="product-cta" onclick="event.stopPropagation()">🛒 לרכישה ב-${(window.currentTranslation || {}).currencySymbol || '₪'}${parseFloat(price).toFixed(0)}</a>
       </div>
     `;
 
