@@ -2462,9 +2462,12 @@ async function sendMessage() {
 
   try {
     // FAST: First fetch only 6 results for instant display
+    const fastContext = detectContext(searchQuery);
+    const fastQ = fastContext ? searchQuery : translateQuery(searchQuery);
     const fastParams = new URLSearchParams({
-      q: translateQuery(searchQuery), lang: currentLang, currency: currentCurrency, country: currentCountry, page: "1", fast: "1",
+      q: fastQ, lang: currentLang, currency: currentCurrency, country: currentCountry, page: "1", fast: "1",
     });
+    if (fastContext) fastParams.set("context", fastContext);
     if (freeShipActive) fastParams.set("free_shipping", "1");
     const catSel2 = document.getElementById("categorySelect");
     if (catSel2 && catSel2.value) fastParams.set("category", catSel2.value);
@@ -2488,7 +2491,14 @@ async function sendMessage() {
       renderProducts(fastData.products);
       document.getElementById("resultsSection").style.display = "block";
       document.getElementById("resultsTitle").innerHTML =
-        `${currentQuery} <span style="font-size:0.8em;color:#999">\u2728 \u05d8\u05d5\u05e2\u05df \u05e2\u05d5\u05d3...</span>`;
+        `${currentQuery} <span class="loading-more-badge">⏳ טוען עוד תוצאות...</span>`;
+      // Add loading-more animation style if not exists
+      if (!document.getElementById("loadingMoreStyle")) {
+        const s = document.createElement("style");
+        s.id = "loadingMoreStyle";
+        s.textContent = `.loading-more-badge{font-size:0.75em;color:#fff;background:linear-gradient(90deg,#ff6b00,#ff9500);padding:4px 12px;border-radius:20px;margin-right:8px;animation:loadPulse 1.2s ease-in-out infinite}@keyframes loadPulse{0%,100%{opacity:1}50%{opacity:0.5}}`;
+        document.head.appendChild(s);
+      }
       // Scroll to results
       document.getElementById("resultsSection").scrollIntoView({ behavior: "smooth", block: "start" });
     }
