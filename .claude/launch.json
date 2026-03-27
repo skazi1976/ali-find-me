@@ -3,8 +3,8 @@
   "configurations": [
     {
       "name": "ali-find-me",
-      "runtimeExecutable": "npx",
-      "runtimeArgs": ["http-server", "D:\yupoo\ali-find-me", "-p", "8090", "-c-1"],
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["-m", "http.server", "8090", "--directory", "D:\\yupoo\\ali-find-me"],
       "port": 8090
     }
   ]

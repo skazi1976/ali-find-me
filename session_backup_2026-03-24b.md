@@ -1,122 +1,95 @@
-# Session Backup - 2026-03-24 (Part B) - Major Upgrade
+# Session Backup - 2026-03-24 (Part B)
 
-## Summary
-Major upgrade to Ali Find Me search engine + HaCatalog + Tawk.to chat + Brazil fixes.
+## Critical Fix: Trending Affiliate Cache Bug
+- Cloudflare Cache returned old trending data WITHOUT affiliate filter
+- Fixed: Added s.click filter INSIDE cache handler
+- Cache key: trending-v9-aff (busted old cache)
+- Now ALL trending products guaranteed to have affiliate links
 
-## Ali Find Me - Search Engine Upgrades
+## Commission Filter
+- Products with < 3% commission hidden
+- Fallback: show all with s.click if not enough 3%+
 
-### Color Scheme
-- Changed from purple (#6C5CE7) to warm orange (#FF6B00)
-- All CSS variables, HTML files, JS, manifests updated
-- Dark mode preserved
+## Brazil Women Page (mulheres.html)
+- Built new page for FB ads targeting women 25-40
+- Categories: Moda, Beleza, Bolsas, Cabelo
+- Images on R2 CDN (compressed 15-36KB)
+- Issue: some images don't match products - needs rebuild
 
-### Hebrew Gender-Neutral Text
-- All i18n strings changed from feminine to neutral plural
-- "מצאי" → "מצאו", "חפשי" → "חפשו", "את מחפשת" → "אתם מחפשים"
-- Fixed in app.js i18n object (was overriding HTML)
-- Fixed across all Hebrew HTML/blog pages
+## Facebook Ads Brazil - New Targeting
+- Age 25-40, Women, Brazil
+- AliExpress interest + Engaged shoppers + Cosmetics narrow
+- Audience: 737K-867K (was 11M)
 
-### New Features
-1. **Free Shipping Filter** - toggle button, added to all 8 language pages
-2. **Quick Price Filters** - buttons: Under ₪50, ₪50-200, ₪200+
-3. **Category Dropdown** - filter by category
-4. **Deals Toggle** - show only deals
-5. **Commission-based Sort** - `boostByCommission()` function, higher commission products ranked first (hidden from user)
-6. **Related Searches** - client-side generation with language-specific modifiers
-7. **Load More Button** - with loading animation (pulse + spinner)
-8. **Hebrew Title Translation** - via Claude Haiku 3.5 + KV cache (background, non-blocking)
+## Tawk.to Chat
+- 3 departments: XUJO, TOP-B111, ZAD2025
+- First seller: jiehu7666@gmail.com (Yang)
 
-### Search Improvements
-- **pageSize**: 20 → 50 in Worker API (frontend shows 20 at a time)
-- **Expand threshold**: 10 → 20 (search broadens when <20 results)
-- **Broader keyword search**: removes last word to find more results
-- **Smart category search**: pet queries use product type as mustContain
-- **Fallback keywords**: retries with simpler terms
+## HaCatalog Domain
+- hacatalog.com live with HTTPS
+- Namecheap $25.36/2yr, WHOIS privacy free
 
-### Mobile Fix
-- Badges (hot-deal, top-pick) overlap fixed with max-width: 45%, overflow: hidden
-- Smaller font on mobile (@media max-width: 480px)
+## Open Issues
+1. Brazil women page images need fixing
+2. Language detection for new visitors (English instead of Hebrew)
+3. StyleVault affiliate links for foreign countries
+4. API Keys: Main=517514/kantina2018, Baby/Nails=507948/alifindme
 
-### Service Worker Cache Busting
-- v42 → v43 → v44 (auto-refresh for all users)
-- Network-first strategy with cache fallback
+## Analytics Data (GA - 24 Feb to 23 Mar 2026)
+| Page | Views | Users |
+|---|---|---|
+| / (homepage) | 1,540 | 979 |
+| /pets/ | 1,117 | 459 |
+| /whatsappgroup/ | 586 | 527 |
+| br/ofertas.html | 555 | 466 |
+| /nails/ | 464 | 192 |
+| /baby/ | 390 | 231 |
+| /br/ | 159 | 142 |
+| /en/ | 63 | 59 |
 
-## HaCatalog Updates
+## AliExpress Affiliate Traffic (kantina2018 - 517514)
+- 1-24 Mar: 14,634 clicks, 133,983 pageviews, 5,280 unique visitors
+- 22-24 Mar: 102 clicks, 544 pageviews, 41 visitors
 
-### Domain
-- **hacatalog.com** purchased (Namecheap, $25.36, 2 years)
-- WHOIS Privacy: FREE FOREVER (anonymous)
-- DNS: 4 A records + CNAME → skazi1976.github.io
-- HTTPS enforced via GitHub Pages
+## AliExpress Affiliate Traffic (alifindme - 507948)
+- 23-24 Mar: 39 clicks, 236 pageviews, 15 visitors
+- Before 23 Mar: 0 (Secret was broken!)
 
-### Analytics Dashboard
-- **URL**: hacatalog.com/admin.html (password: admin123)
-- **Worker**: catalog-analytics.ohadf1976.workers.dev
-- Tracks: pageviews, searches, clicks, WhatsApp shares, PWA installs
-- Stats: 75 events, 68 views, 4 clicks, 2 PWA installs
+## Critical Fix: AppKey 507948 Secret Reset
+- Old Secret: mqMmdE3VmiCQWjU3AyKOBLclt4IUryPD (BROKEN - didn't work with API)
+- New Secret: LMBmD6Tl7XmeWfztlqezdX03KIirPtjM (WORKING)
+- Baby + Nails had 854 views with broken affiliate links = lost revenue
+- Now fixed with hardcoded secret in Worker
 
-### WhatsApp Viral Sharing
-- Floating WhatsApp button (bottom-left)
-- Auto-popup after 45 seconds
-- Per-product share buttons
-- Pre-written Hebrew message
+## Account Assignment (Final)
+| Engine | AppKey | Tracking ID | Secret |
+|---|---|---|---|
+| Main (IL) | 517514 | kantina2018 | ALIEXPRESS_APP_SECRET (KV) |
+| Baby | 507948 | alifindme | LMBmD6Tl7XmeWfztlqezdX03KIirPtjM |
+| Nails | 507948 | alifindme | LMBmD6Tl7XmeWfztlqezdX03KIirPtjM |
 
-### Tawk.to Live Chat
-- Widget ID: 69c1918cffb4f81c353b4c5a/1jke213lf
-- 3 Departments: XUJO (1,318 products), TOP-B111 (876), ZAD2025 (513)
-- First seller invited: jiehu7666@gmail.com (Yang, online)
-- Desktop app + mobile app for sellers
+## Brazil Women Page (mulheres.html) - Rebuilt
+- 16 real products from API with s.click affiliate links
+- Images on R2 CDN (compressed 13-34KB)
+- Categories: Moda, Beleza, Acessorios, Casa & Lifestyle
+- FB Pixel + GA tracking active
+- Published to Facebook Ads campaign
 
-## Brazil Landing Page
-- Fixed affiliate links (/s/ → /e/ short links)
-- Confirmed working from Brazil VPN with affiliate tracking
-- Links use afSmartRedirect=y for auto-country detection
+## WhatsApp Marketing Posts Created
+- Cosmetics post with alifindme account short links
+- 6 high-commission products (8%-20%): leather bags, body shapers, hair tools, jewelry
+- Short /e/ links from 507948 account
 
-## Marketing
-- Telegram promo image (Gemini Nano Banana) - Hebrew text perfect
-- Facebook sponsored ad text (primary + headline + description)
-- WhatsApp catalog promotion texts
-- Facebook targeting tip: Interest "Telegram Messenger" + Engaged Shoppers
+## End of Session Notes
+- Trending still showing mixed/bad products
+- promotion_link from API redirects to best.aliexpress.com (NOT product page)
+- /e/ short links via link.generate work but many products not eligible for IL
+- Need to rebuild trending with manually curated products with verified affiliate
+- Cloudflare Workers Paid plan activated ($5/mo) - KV limit removed
+- Next session: build curated trending section with verified products
 
-## FlyLink Discussion
-- FlyLink has no API/embed checkout
-- Works only via payment links
-- User earns commission on all sales through FlyLink
-- Plan: add FlyLink links to catalog products
-
-## Worker Deployments
-- worker_alifindme.js: Haiku translation, KV cache, 50 results, smart pet search, broader keyword expansion
-- Cache key: trending-v6
-
-## Git Commits (ali-find-me)
-- `c72b75e` (dev) - Orange theme + gender-neutral Hebrew + filters + more results
-- `4566c17` (dev) - Fix mobile badges overlap
-- `6f39b6a` (main) - Merge dev: orange theme + filters + SW v43
-- `ccf4624` (main) - Fix mobile badge overlap + SW v44
-
-## Git Commits (my-catalog)
-- `675f723` - Add admin analytics dashboard + search tracking
-- `e0e5888` - Add WhatsApp viral sharing feature
-- `e7b08fd` - Track PWA installs + WhatsApp shares
-- `a2abda2` - Add CNAME for hacatalog.com custom domain
-
-## Dev Workflow
-- **ali-find-me** (main) = production - don't touch directly
-- **ali-find-me-dev** (worktree at D:\yupoo\ali-find-me-dev\) = test here first
-- Worker changes deploy via: `cd pinterest-bot/cloudflare-worker && python deploy_alifindme.py deploy`
-- Frontend: merge dev-improvements → main, bump SW version, git push
-- Local dev server: `cd ali-find-me-dev && python serve.py` (port 3500, no-cache headers)
-
-## Infrastructure
-- **Frontend**: GitHub Pages → alifindme.com
-- **Worker**: ali-findme-api.ohadf1976.workers.dev
-- **AI**: Claude Opus (search/image/chat) + Haiku (title translation)
-- **Cache**: CF Cache API (trending 1hr) + KV (translations 30 days, analytics)
-- **Catalog**: GitHub Pages → hacatalog.com
-- **Chat**: Tawk.to (3 departments)
-- **Domain**: hacatalog.com (Namecheap, WHOIS privacy)
-
-## Facebook Ads Stats
-- 4 campaigns, ~43,000 clicks, ₪400 spent
-- Brazil: 22,249 clicks (links were broken, now fixed)
-- Israel: 21,212 clicks (need conversion optimization)
+## URGENT: Trending broken - needs immediate fix next session
+- Currently showing 8 mixed products instead of 18
+- Some without proper affiliate
+- Looks unprofessional - users are visiting
+- PRIORITY #1 for next session
