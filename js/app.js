@@ -2159,12 +2159,77 @@ function buildProductCard(p) {
           ${hotOrders}
         </div>
         ${urgency}
-        <button class="compare-btn" onclick="event.stopPropagation();onCompareClick('${pJson}')" title="${i18n[currentLang].findCheaper || 'Find Cheaper'}">
-          💰 ${i18n[currentLang].findCheaper || 'Find Cheaper'}
-        </button>
+        <div class="product-actions-row">
+          <button class="similar-btn" onclick="event.stopPropagation();showSimilar('${p.id}','${(p.title||'').replace(/'/g,"\\'").substring(0,40)}')" title="${currentLang === 'he' ? 'מוצרים דומים' : 'Similar Products'}">
+            🔗 ${currentLang === 'he' ? 'דומים' : 'Similar'}
+          </button>
+          <button class="compare-btn" onclick="event.stopPropagation();onCompareClick('${pJson}')" title="${i18n[currentLang].findCheaper || 'Find Cheaper'}">
+            💰 ${i18n[currentLang].findCheaper || 'Find Cheaper'}
+          </button>
+        </div>
         <a href="${p.affiliate_url}" target="_blank" rel="noopener" class="product-cta product-cta-enhanced" onclick="onProductClick('${pJson}')">${ctaLabel}</a>
       </div>
     </div>`;
+}
+
+// Similar Products modal
+async function showSimilar(productId, productTitle) {
+  // Create modal if not exists
+  let modal = document.getElementById("similarModal");
+  if (!modal) {
+    modal = document.createElement("div");
+    modal.id = "similarModal";
+    modal.className = "similar-modal-overlay";
+    modal.innerHTML = `
+      <div class="similar-modal">
+        <div class="similar-modal-header">
+          <h3 id="similarTitle"></h3>
+          <button class="similar-close" onclick="closeSimilarModal()">&times;</button>
+        </div>
+        <div class="similar-modal-body" id="similarBody">
+          <div class="similar-loading">⏳ ${currentLang === "he" ? "מחפש מוצרים דומים..." : "Finding similar products..."}</div>
+        </div>
+      </div>`;
+    document.body.appendChild(modal);
+    modal.addEventListener("click", e => { if (e.target === modal) closeSimilarModal(); });
+  }
+
+  const titleText = currentLang === "he" ? `🔗 מוצרים דומים ל: ${productTitle}...` : `🔗 Similar to: ${productTitle}...`;
+  document.getElementById("similarTitle").textContent = titleText;
+  document.getElementById("similarBody").innerHTML = `<div class="similar-loading">⏳ ${currentLang === "he" ? "מחפש מוצרים דומים..." : "Finding similar..."}</div>`;
+  modal.style.display = "flex";
+
+  try {
+    const resp = await fetch(`${API_BASE}/similar?product_id=${productId}&currency=${currentCurrency}&country=${currentCountry}&lang=${currentLang}`);
+    const data = await resp.json();
+    const products = data.products || [];
+
+    if (products.length === 0) {
+      document.getElementById("similarBody").innerHTML = `<div class="similar-loading">${currentLang === "he" ? "לא נמצאו מוצרים דומים" : "No similar products found"}</div>`;
+      return;
+    }
+
+    document.getElementById("similarBody").innerHTML = products.map(p => {
+      const priceDisplay = `${currentCurrencySymbol}${p.price}`;
+      const discountBadge = p.discount > 0 ? `<span class="promo-card-discount">-${p.discount}%</span>` : "";
+      const shipDays = p.ship_to_days ? `<div class="similar-ship">📦 ${p.ship_to_days}</div>` : "";
+      return `<a href="${p.affiliate_url}" target="_blank" rel="noopener" class="similar-card">
+        <img src="${p.image}" alt="${p.title}" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22150%22 height=%22150%22><rect fill=%22%23f0f0f0%22 width=%22150%22 height=%22150%22/></svg>'">
+        <div class="similar-card-info">
+          <div class="similar-card-title">${p.title}</div>
+          <div>${discountBadge}<strong class="promo-card-price">${priceDisplay}</strong></div>
+          ${shipDays}
+        </div>
+      </a>`;
+    }).join("");
+  } catch(e) {
+    document.getElementById("similarBody").innerHTML = `<div class="similar-loading">${currentLang === "he" ? "שגיאה בטעינה" : "Error loading"}</div>`;
+  }
+}
+
+function closeSimilarModal() {
+  const modal = document.getElementById("similarModal");
+  if (modal) modal.style.display = "none";
 }
 
 function retryImg(img, altUrl) {
