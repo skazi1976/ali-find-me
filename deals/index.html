@@ -1413,9 +1413,7 @@ function closeDealModal() {
   document.getElementById('dealModal').classList.remove('open');
   document.body.style.overflow = '';
 }
-document.getElementById('dealModal').addEventListener('click', function(e) {
-  if (e.target === this) closeDealModal();
-});
+// dealModal close on backdrop click is handled via onclick attribute on the div
 
 // Init
 loadPosts();
