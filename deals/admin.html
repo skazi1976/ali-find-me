@@ -490,6 +490,11 @@
         </div>
 
         <div class="form-group">
+          <label>טקסט מלא של הפוסט (אופציונלי)</label>
+          <textarea id="postDescription" rows="5" placeholder="הכניסו כאן את הטקסט המלא של הפוסט — ייראה ללקוח בלחיצה על 'לצפייה בפרטים'" style="resize:vertical;"></textarea>
+        </div>
+
+        <div class="form-group">
           <label>תמונות</label>
           <div class="upload-zone" id="uploadZone">
             <input type="file" id="fileInput" multiple accept="image/*,video/mp4,video/quicktime">
@@ -867,6 +872,7 @@ async function publishPost() {
   const title = document.getElementById('postTitle').value.trim();
   const price = parseInt(document.getElementById('postPrice').value) || 0;
   const link = document.getElementById('postLink').value.trim();
+  const description = document.getElementById('postDescription').value.trim();
 
   if (!brand || !title || !link) {
     showToast('מלאו את כל השדות', true);
@@ -891,6 +897,7 @@ async function publishPost() {
     title,
     price,
     link,
+    description,
     images
   };
 
@@ -945,6 +952,7 @@ function editPost(id) {
   document.getElementById('postTitle').value = post.title;
   document.getElementById('postPrice').value = post.price;
   document.getElementById('postLink').value = post.link;
+  document.getElementById('postDescription').value = post.description || '';
 
   uploadedImages = (post.images || []).map(url => {
     const isVideo = url.startsWith('video:');
@@ -964,6 +972,7 @@ function clearForm() {
   document.getElementById('postTitle').value = '';
   document.getElementById('postPrice').value = '';
   document.getElementById('postLink').value = '';
+  document.getElementById('postDescription').value = '';
   document.getElementById('postDate').value = todayStr();
   document.getElementById('postType').value = 'daily';
   uploadedImages = [];
