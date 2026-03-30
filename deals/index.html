@@ -1428,7 +1428,9 @@ function openDealModal(postId) {
   renderModalImage();
 
   document.getElementById('modalTitle').textContent = post.title || '';
-  document.getElementById('modalDesc').textContent = post.description || post.title || 'אין מידע נוסף';
+  const descText = post.description || post.title || 'אין מידע נוסף';
+  const descHtml = descText.replace(/https?:\/\/[^\s]+/g, url => `<a href="${url}" target="_blank" rel="noopener" style="color:#25d366;text-decoration:underline;">${url}</a>`);
+  document.getElementById('modalDesc').innerHTML = descHtml;
   document.getElementById('modalBuyBtn').href = post.link || '#';
   document.getElementById('modalPrice').textContent = post.price ? `${post.price} ₪` : '';
 
