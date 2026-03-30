@@ -433,6 +433,15 @@
       white-space: pre-wrap;
       margin-bottom: 20px;
     }
+    .modal-dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.3);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .modal-dot.active { background: #FF6B00; width: 18px; border-radius: 4px; }
+
     .modal-buy-btn {
       display: block;
       text-align: center;
@@ -1396,19 +1405,50 @@ document.addEventListener('keydown', function(e) {
 });
 
 // ── Deal Details Modal ──
+let modalImages = [];
+let modalImgIdx = 0;
+
 function openDealModal(postId) {
   const post = allPosts.find(p => p.id === postId);
   if (!post) return;
-  const modal = document.getElementById('dealModal');
-  const img = post.images && post.images[0] ? post.images[0].replace(/^video:/, '') : '';
-  document.getElementById('modalImg').src = img;
-  document.getElementById('modalImg').style.display = img ? 'block' : 'none';
+
+  modalImages = (post.images || []).map(u => u.replace(/^video:/, ''));
+  modalImgIdx = 0;
+  renderModalImage();
+
   document.getElementById('modalTitle').textContent = post.title || '';
   document.getElementById('modalDesc').textContent = post.description || post.title || 'אין מידע נוסף';
   document.getElementById('modalBuyBtn').href = post.link || '#';
   document.getElementById('modalPrice').textContent = post.price ? `${post.price} ₪` : '';
-  modal.classList.add('open');
+
+  const dots = document.getElementById('modalDots');
+  dots.innerHTML = modalImages.length > 1
+    ? modalImages.map((_, i) => `<span class="modal-dot${i===0?' active':''}" onclick="modalGoTo(${i})"></span>`).join('')
+    : '';
+
+  document.getElementById('modalPrev').style.display = modalImages.length > 1 ? 'flex' : 'none';
+  document.getElementById('modalNext').style.display = modalImages.length > 1 ? 'flex' : 'none';
+
+  document.getElementById('dealModal').classList.add('open');
   document.body.style.overflow = 'hidden';
+}
+
+function renderModalImage() {
+  const el = document.getElementById('modalImg');
+  const src = modalImages[modalImgIdx] || '';
+  el.src = src;
+  el.style.display = src ? 'block' : 'none';
+  document.querySelectorAll('.modal-dot').forEach((d, i) => d.classList.toggle('active', i === modalImgIdx));
+}
+
+function modalNav(dir) {
+  modalImgIdx = (modalImgIdx + dir + modalImages.length) % modalImages.length;
+  renderModalImage();
+}
+
+function modalGoTo(i) {
+  modalImgIdx = i;
+  renderModalImage();
 }
 function closeDealModal() {
   document.getElementById('dealModal').classList.remove('open');
@@ -1424,7 +1464,12 @@ trackEvent('page_view', 'engagement', 'deals_page');
 <div id="dealModal" onclick="if(event.target===this)closeDealModal()">
   <div class="modal-sheet">
     <div class="modal-handle"></div>
-    <img id="modalImg" class="modal-img" src="" alt="">
+    <div style="position:relative;">
+      <img id="modalImg" class="modal-img" src="" alt="">
+      <button id="modalPrev" onclick="modalNav(-1)" style="display:none;position:absolute;top:50%;right:8px;transform:translateY(-50%);background:rgba(0,0,0,0.55);border:none;color:#fff;border-radius:50%;width:32px;height:32px;font-size:16px;cursor:pointer;align-items:center;justify-content:center;">&#x276E;</button>
+      <button id="modalNext" onclick="modalNav(1)" style="display:none;position:absolute;top:50%;left:8px;transform:translateY(-50%);background:rgba(0,0,0,0.55);border:none;color:#fff;border-radius:50%;width:32px;height:32px;font-size:16px;cursor:pointer;align-items:center;justify-content:center;">&#x276F;</button>
+      <div id="modalDots" style="display:flex;justify-content:center;gap:6px;margin-top:8px;"></div>
+    </div>
     <div class="modal-title" id="modalTitle"></div>
     <div class="modal-price" id="modalPrice" style="font-size:22px;font-weight:900;color:#25D366;margin-bottom:12px;"></div>
     <div class="modal-desc" id="modalDesc"></div>
