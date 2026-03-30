@@ -1017,7 +1017,7 @@ function buildCard(post) {
             &#x1F6D2; קנו עכשיו
           </a>
         </div>
-        ${post.description ? `<button class="details-btn" onclick="openDealModal('${post.id}')">👁 לצפייה בפרטים</button>` : ''}
+        <button class="details-btn" onclick="openDealModal('${post.id}')">👁 לצפייה בפרטים</button>
       </div>
     </div>
   `;
@@ -1403,7 +1403,7 @@ function openDealModal(postId) {
   document.getElementById('modalImg').src = img;
   document.getElementById('modalImg').style.display = img ? 'block' : 'none';
   document.getElementById('modalTitle').textContent = post.title || '';
-  document.getElementById('modalDesc').textContent = post.description || post.title || '';
+  document.getElementById('modalDesc').textContent = post.description || post.title || 'אין מידע נוסף';
   document.getElementById('modalBuyBtn').href = post.link || '#';
   document.getElementById('modalPrice').textContent = post.price ? `${post.price} ₪` : '';
   modal.classList.add('open');
