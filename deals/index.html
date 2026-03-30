@@ -364,6 +364,86 @@
       box-shadow: 0 6px 20px rgba(255,107,0,0.3);
     }
 
+    .details-btn {
+      display: block;
+      width: 100%;
+      padding: 7px 0;
+      margin-top: 8px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 8px;
+      color: rgba(255,255,255,0.55);
+      font-family: 'Heebo', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      text-align: center;
+      transition: all 0.2s;
+    }
+    .details-btn:hover { background: rgba(255,255,255,0.1); color: #fff; }
+
+    /* Details Modal */
+    #dealModal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.75);
+      z-index: 9999;
+      align-items: flex-end;
+      justify-content: center;
+      backdrop-filter: blur(4px);
+    }
+    #dealModal.open { display: flex; }
+    .modal-sheet {
+      background: #1a1a2e;
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 20px 20px 0 0;
+      width: 100%;
+      max-width: 560px;
+      max-height: 80vh;
+      overflow-y: auto;
+      padding: 20px 20px 32px;
+      animation: slideUp 0.25s ease;
+    }
+    @keyframes slideUp {
+      from { transform: translateY(100%); }
+      to   { transform: translateY(0); }
+    }
+    .modal-handle {
+      width: 40px; height: 4px;
+      background: rgba(255,255,255,0.2);
+      border-radius: 2px;
+      margin: 0 auto 16px;
+    }
+    .modal-img {
+      width: 100%;
+      max-height: 260px;
+      object-fit: cover;
+      border-radius: 12px;
+      margin-bottom: 16px;
+    }
+    .modal-title {
+      font-size: 18px; font-weight: 800;
+      color: #fff; margin-bottom: 10px;
+    }
+    .modal-desc {
+      font-size: 14px; line-height: 1.7;
+      color: rgba(255,255,255,0.75);
+      white-space: pre-wrap;
+      margin-bottom: 20px;
+    }
+    .modal-buy-btn {
+      display: block;
+      text-align: center;
+      padding: 14px;
+      background: linear-gradient(135deg, #FF6B00, #FF8C40);
+      color: #fff;
+      font-family: 'Heebo', sans-serif;
+      font-size: 16px; font-weight: 700;
+      border-radius: 12px;
+      text-decoration: none;
+    }
+
     /* Date Divider */
     .date-divider {
       display: flex;
@@ -937,6 +1017,7 @@ function buildCard(post) {
             &#x1F6D2; קנו עכשיו
           </a>
         </div>
+        ${post.description ? `<button class="details-btn" onclick="openDealModal('${post.id}')">👁 לצפייה בפרטים</button>` : ''}
       </div>
     </div>
   `;
@@ -1308,15 +1389,49 @@ document.addEventListener('click', function(e) {
 
 // Close on ESC
 document.addEventListener('keydown', function(e) {
-  if (e.key === 'Escape') closeLightbox();
+  if (e.key === 'Escape') { closeLightbox(); closeDealModal(); }
   if (e.key === 'ArrowLeft') lbNav(1);
   if (e.key === 'ArrowRight') lbNav(-1);
+});
+
+// ── Deal Details Modal ──
+function openDealModal(postId) {
+  const post = allPosts.find(p => p.id === postId);
+  if (!post) return;
+  const modal = document.getElementById('dealModal');
+  const img = post.images && post.images[0] ? post.images[0].replace(/^video:/, '') : '';
+  document.getElementById('modalImg').src = img;
+  document.getElementById('modalImg').style.display = img ? 'block' : 'none';
+  document.getElementById('modalTitle').textContent = post.title || '';
+  document.getElementById('modalDesc').textContent = post.description || post.title || '';
+  document.getElementById('modalBuyBtn').href = post.link || '#';
+  document.getElementById('modalPrice').textContent = post.price ? `${post.price} ₪` : '';
+  modal.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeDealModal() {
+  document.getElementById('dealModal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.getElementById('dealModal').addEventListener('click', function(e) {
+  if (e.target === this) closeDealModal();
 });
 
 // Init
 loadPosts();
 trackEvent('page_view', 'engagement', 'deals_page');
 </script>
+
+<div id="dealModal" onclick="if(event.target===this)closeDealModal()">
+  <div class="modal-sheet">
+    <div class="modal-handle"></div>
+    <img id="modalImg" class="modal-img" src="" alt="">
+    <div class="modal-title" id="modalTitle"></div>
+    <div class="modal-price" id="modalPrice" style="font-size:22px;font-weight:900;color:#25D366;margin-bottom:12px;"></div>
+    <div class="modal-desc" id="modalDesc"></div>
+    <a id="modalBuyBtn" href="#" target="_blank" rel="noopener" class="modal-buy-btn">🛒 קנו עכשיו</a>
+  </div>
+</div>
 
 <div id="lightbox" class="lightbox" onclick="if(event.target===this)closeLightbox()">
   <button class="lightbox-close" onclick="closeLightbox()">&#x2715;</button>
