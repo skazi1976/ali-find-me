@@ -1443,9 +1443,11 @@ function openDealModal(postId) {
 
   document.getElementById('modalTitle').textContent = post.title || '';
   const descText = post.description || post.title || 'אין מידע נוסף';
-  const descHtml = descText
-    .replace(/https?:\/\/[^\s]+/g, url => `<a href="${url}" target="_blank" rel="noopener" style="color:#25d366;text-decoration:underline;">${url}</a>`)
-    .replace(/\balifindme\.com\b/g, d => `<a href="https://alifindme.com" target="_blank" rel="noopener" style="color:#25d366;text-decoration:underline;">${d}</a>`);
+  const descHtml = descText.replace(/(https?:\/\/[^\s]+)|((?<![/\w])alifindme\.com(?!\.[a-z]))/g, (match, fullUrl, bare) => {
+    const href = fullUrl || `https://alifindme.com`;
+    const label = match;
+    return `<a href="${href}" target="_blank" rel="noopener" style="color:#25d366;text-decoration:underline;">${label}</a>`;
+  });
   document.getElementById('modalDesc').innerHTML = descHtml;
   document.getElementById('modalBuyBtn').href = post.link || '#';
   document.getElementById('modalPrice').textContent = post.price ? `${post.price} ₪` : '';
