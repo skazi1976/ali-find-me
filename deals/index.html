@@ -871,12 +871,26 @@
   <div id="archiveSection"></div>
 
   <!-- Subscribe Banner -->
-  <section style="margin:0 16px 16px;background:linear-gradient(135deg,rgba(37,211,102,0.12),rgba(37,211,102,0.05));border:1px solid rgba(37,211,102,0.3);border-radius:20px;padding:24px 20px;text-align:center;">
-    <div style="font-size:36px;margin-bottom:10px;">📲</div>
-    <h3 style="font-size:20px;font-weight:800;color:#fff;margin-bottom:8px;">קבלי דילים ישירות לווצאפ!</h3>
-    <p style="font-size:14px;color:rgba(255,255,255,0.65);margin-bottom:18px;line-height:1.6;">פוסט מסודר אחד ביום עם הדילים הכי שווים — ישירות להודעה פרטית 🔥</p>
+  <section style="margin:0 16px 16px;background:linear-gradient(135deg,rgba(37,211,102,0.13),rgba(0,0,0,0.3));border:1px solid rgba(37,211,102,0.35);border-radius:20px;padding:28px 20px 24px;text-align:center;">
+    <div style="font-size:40px;margin-bottom:12px;">📲</div>
+    <h3 style="font-size:22px;font-weight:900;color:#fff;margin-bottom:10px;line-height:1.3;">קבלי דילים ישירות לווצאפ!</h3>
+    <p style="font-size:15px;color:rgba(255,255,255,0.7);margin-bottom:20px;line-height:1.7;">
+      כל הדילים שפורסמו היום בכל הקבוצות —<br>
+      <strong style="color:#fff;">מגיעים אליך בהודעה פרטית אחת מסודרת ביום ✨</strong>
+    </p>
+    <div style="display:flex;flex-direction:column;gap:8px;align-items:center;margin-bottom:20px;">
+      <div style="font-size:13px;color:rgba(255,255,255,0.55);display:flex;align-items:center;gap:6px;">
+        <span style="color:#25d366;">✔</span> לא מפספסים אף דיל
+      </div>
+      <div style="font-size:13px;color:rgba(255,255,255,0.55);display:flex;align-items:center;gap:6px;">
+        <span style="color:#25d366;">✔</span> בלי ספאם — רק הודעה אחת ביום
+      </div>
+      <div style="font-size:13px;color:rgba(255,255,255,0.55);display:flex;align-items:center;gap:6px;">
+        <span style="color:#25d366;">✔</span> ניתן לעזוב בכל רגע
+      </div>
+    </div>
     <a href="https://deals.hacatalog.com/" target="_blank" rel="noopener"
-       style="display:inline-block;background:#25d366;color:#fff;font-family:'Heebo',sans-serif;font-size:16px;font-weight:700;padding:14px 32px;border-radius:50px;text-decoration:none;box-shadow:0 4px 20px rgba(37,211,102,0.35);">
+       style="display:inline-block;background:#25d366;color:#fff;font-family:'Heebo',sans-serif;font-size:17px;font-weight:800;padding:15px 36px;border-radius:50px;text-decoration:none;box-shadow:0 4px 24px rgba(37,211,102,0.4);">
       ✅ הצטרפי בחינם
     </a>
   </section>
@@ -1431,7 +1445,7 @@ function openDealModal(postId) {
   const descText = post.description || post.title || 'אין מידע נוסף';
   const descHtml = descText
     .replace(/https?:\/\/[^\s]+/g, url => `<a href="${url}" target="_blank" rel="noopener" style="color:#25d366;text-decoration:underline;">${url}</a>`)
-    .replace(/(?<!href="|">)(alifindme\.com[^\s<]*)/g, d => `<a href="https://${d}" target="_blank" rel="noopener" style="color:#25d366;text-decoration:underline;">${d}</a>`);
+    .replace(/\balifindme\.com\b/g, d => `<a href="https://alifindme.com" target="_blank" rel="noopener" style="color:#25d366;text-decoration:underline;">${d}</a>`);
   document.getElementById('modalDesc').innerHTML = descHtml;
   document.getElementById('modalBuyBtn').href = post.link || '#';
   document.getElementById('modalPrice').textContent = post.price ? `${post.price} ₪` : '';
