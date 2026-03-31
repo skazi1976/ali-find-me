@@ -1049,7 +1049,7 @@ function buildCard(post) {
         <h3 class="card-title">${post.title}</h3>
         <div class="card-bottom">
           <div class="card-price">${post.price}<small> &#x20AA;</small></div>
-          <a href="${post.link}" target="_blank" rel="noopener" class="buy-btn" onclick="trackEvent('purchase_click','deals','${post.brand}')">
+          <a href="${post.link || 'javascript:void(0)'}" target="${post.link ? '_blank' : '_self'}" rel="noopener" class="buy-btn" onclick="trackEvent('purchase_click','deals','${post.brand}')">
             &#x1F6D2; קנו עכשיו
           </a>
         </div>
