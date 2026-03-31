@@ -1049,9 +1049,10 @@ function buildCard(post) {
         <h3 class="card-title">${post.title}</h3>
         <div class="card-bottom">
           <div class="card-price">${post.price}<small> &#x20AA;</small></div>
-          <a href="${post.link}" target="_blank" rel="noopener" class="buy-btn" onclick="trackEvent('purchase_click','deals','${post.brand}')">
-            &#x1F6D2; קנו עכשיו
-          </a>
+          ${post.link
+            ? `<a href="${post.link}" target="_blank" rel="noopener" class="buy-btn" onclick="trackEvent('purchase_click','deals','${post.brand}')">&#x1F6D2; קנו עכשיו</a>`
+            : `<span class="buy-btn" style="opacity:0.35;cursor:default">&#x1F6D2; קנו עכשיו</span>`
+          }
         </div>
         <button class="details-btn" onclick="openDealModal('${post.id}')">👁 לצפייה בפרטים</button>
       </div>
@@ -1472,7 +1473,16 @@ function openDealModal(postId) {
     return `<a href="${href}" target="_blank" rel="noopener" style="color:#25d366;text-decoration:underline;">${label}</a>`;
   });
   document.getElementById('modalDesc').innerHTML = descHtml;
-  document.getElementById('modalBuyBtn').href = post.link || '#';
+  const buyBtn = document.getElementById('modalBuyBtn');
+  if (post.link) {
+    buyBtn.href = post.link;
+    buyBtn.style.opacity = '1';
+    buyBtn.style.pointerEvents = 'auto';
+  } else {
+    buyBtn.href = '#';
+    buyBtn.style.opacity = '0.35';
+    buyBtn.style.pointerEvents = 'none';
+  }
   document.getElementById('modalPrice').textContent = post.price ? `${post.price} ₪` : '';
 
   const dots = document.getElementById('modalDots');
