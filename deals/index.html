@@ -1049,10 +1049,9 @@ function buildCard(post) {
         <h3 class="card-title">${post.title}</h3>
         <div class="card-bottom">
           <div class="card-price">${post.price}<small> &#x20AA;</small></div>
-          ${post.link
-            ? `<a href="${post.link}" target="_blank" rel="noopener" class="buy-btn" onclick="trackEvent('purchase_click','deals','${post.brand}')">&#x1F6D2; קנו עכשיו</a>`
-            : `<a href="https://alifindme.com/?q=${encodeURIComponent(post.title.replace(/\*/g,'').substring(0,40))}" target="_blank" rel="noopener" class="buy-btn" onclick="trackEvent('purchase_click','deals','search')">&#x1F50D; מצאו דיל</a>`
-          }
+          <a href="${post.link}" target="_blank" rel="noopener" class="buy-btn" onclick="trackEvent('purchase_click','deals','${post.brand}')">
+            &#x1F6D2; קנו עכשיו
+          </a>
         </div>
         <button class="details-btn" onclick="openDealModal('${post.id}')">👁 לצפייה בפרטים</button>
       </div>
@@ -1473,16 +1472,7 @@ function openDealModal(postId) {
     return `<a href="${href}" target="_blank" rel="noopener" style="color:#25d366;text-decoration:underline;">${label}</a>`;
   });
   document.getElementById('modalDesc').innerHTML = descHtml;
-  const buyBtn = document.getElementById('modalBuyBtn');
-  if (post.link) {
-    buyBtn.href = post.link;
-    buyBtn.textContent = '🛒 קנו עכשיו';
-  } else {
-    buyBtn.href = `https://alifindme.com/?q=${encodeURIComponent(post.title.replace(/\*/g,'').substring(0,40))}`;
-    buyBtn.textContent = '🔍 מצאו דיל';
-  }
-  buyBtn.style.opacity = '1';
-  buyBtn.style.pointerEvents = 'auto';
+  document.getElementById('modalBuyBtn').href = post.link || '#';
   document.getElementById('modalPrice').textContent = post.price ? `${post.price} ₪` : '';
 
   const dots = document.getElementById('modalDots');
