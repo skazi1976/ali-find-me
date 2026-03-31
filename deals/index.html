@@ -1051,7 +1051,7 @@ function buildCard(post) {
           <div class="card-price">${post.price}<small> &#x20AA;</small></div>
           ${post.link
             ? `<a href="${post.link}" target="_blank" rel="noopener" class="buy-btn" onclick="trackEvent('purchase_click','deals','${post.brand}')">&#x1F6D2; קנו עכשיו</a>`
-            : `<span class="buy-btn" style="opacity:0.35;cursor:default">&#x1F6D2; קנו עכשיו</span>`
+            : `<span class="buy-btn" style="opacity:0.4;cursor:default;font-size:12px" title="לינק לא זמין">&#x1F6D2; לינק בקרוב</span>`
           }
         </div>
         <button class="details-btn" onclick="openDealModal('${post.id}')">👁 לצפייה בפרטים</button>
