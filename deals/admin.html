@@ -752,8 +752,8 @@ fileInput.addEventListener('change', (e) => {
 async function handleFiles(files) {
   const fileArr = Array.from(files).filter(f => {
     if (f.type.startsWith('image/') || f.type.startsWith('video/')) {
-      if (f.type.startsWith('video/') && f.size > 15 * 1024 * 1024) {
-        showToast('וידאו מקסימום 15MB', true);
+      if (f.type.startsWith('video/') && f.size > 50 * 1024 * 1024) {
+        showToast('וידאו מקסימום 50MB', true);
         return false;
       }
       return true;
