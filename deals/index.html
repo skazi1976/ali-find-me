@@ -1564,5 +1564,106 @@ trackEvent('page_view', 'engagement', 'deals_page');
   <div id="lbCounter" class="lightbox-counter"></div>
 </div>
 
+<!-- PWA Install Popup (mobile only, after 45s) -->
+<div id="pwaPopup" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;padding:16px;animation:pwaSlideUp 0.4s ease-out;">
+  <div style="max-width:400px;margin:0 auto;background:linear-gradient(135deg,#1a1a2e,#16213e);border:1px solid rgba(255,107,0,0.3);border-radius:20px;padding:20px;box-shadow:0 -4px 30px rgba(0,0,0,0.5);">
+    <button onclick="closePwaPopup()" style="position:absolute;top:12px;left:12px;background:none;border:none;color:#666;font-size:20px;cursor:pointer;">&#x2715;</button>
+    <div style="text-align:center;">
+      <div style="font-size:48px;margin-bottom:8px;">📲</div>
+      <h3 style="font-family:'Heebo',sans-serif;font-size:18px;color:#fff;margin-bottom:6px;">הוסיפי לדף הבית!</h3>
+      <p style="color:rgba(255,255,255,0.6);font-size:13px;margin-bottom:16px;line-height:1.5;">
+        קבלי גישה מהירה לדילים — בלחיצה אחת מהמסך הראשי 🔥
+      </p>
+      <div id="pwaInstructIOS" style="display:none;background:rgba(255,255,255,0.06);border-radius:12px;padding:12px;margin-bottom:12px;text-align:right;direction:rtl;">
+        <div style="color:#FF6B00;font-weight:700;font-size:14px;margin-bottom:8px;">📱 iPhone — 3 צעדים:</div>
+        <div style="color:rgba(255,255,255,0.8);font-size:13px;line-height:1.8;">
+          1️⃣ לחצי על <span style="display:inline-block;padding:2px 8px;background:rgba(255,255,255,0.1);border-radius:6px;">⬆️ שיתוף</span> למטה<br>
+          2️⃣ גללי ובחרי <strong>"הוסף למסך הבית"</strong><br>
+          3️⃣ לחצי <strong>"הוסף"</strong> — וזהו! ✅
+        </div>
+      </div>
+      <div id="pwaInstructAndroid" style="display:none;background:rgba(255,255,255,0.06);border-radius:12px;padding:12px;margin-bottom:12px;text-align:right;direction:rtl;">
+        <div style="color:#FF6B00;font-weight:700;font-size:14px;margin-bottom:8px;">📱 Android — קל!</div>
+        <div style="color:rgba(255,255,255,0.8);font-size:13px;line-height:1.8;">
+          1️⃣ לחצי על <span style="display:inline-block;padding:2px 8px;background:rgba(255,255,255,0.1);border-radius:6px;">⋮ תפריט</span> למעלה<br>
+          2️⃣ בחרי <strong>"הוסף למסך הבית"</strong> או <strong>"התקן אפליקציה"</strong><br>
+          3️⃣ אשרי — ואייקון יופיע במסך! ✅
+        </div>
+      </div>
+      <button id="pwaInstallBtn" onclick="installPwa()" style="display:none;width:100%;padding:14px;background:linear-gradient(135deg,#FF6B00,#FF8C40);color:#fff;border:none;border-radius:12px;font-family:'Heebo',sans-serif;font-size:16px;font-weight:700;cursor:pointer;">
+        📲 התקינו עכשיו
+      </button>
+      <div style="margin-top:10px;">
+        <button onclick="closePwaPopup(true)" style="background:none;border:none;color:#666;font-size:12px;cursor:pointer;text-decoration:underline;">לא עכשיו, תודה</button>
+      </div>
+    </div>
+  </div>
+</div>
+<style>
+  @keyframes pwaSlideUp { from{transform:translateY(100%);opacity:0} to{transform:translateY(0);opacity:1} }
+</style>
+<script>
+(function() {
+  // Only on mobile
+  if (window.innerWidth > 768) return;
+  // Don't show if already installed as PWA
+  if (window.matchMedia('(display-mode: standalone)').matches) return;
+  // Don't show if dismissed recently (7 days)
+  var dismissed = localStorage.getItem('pwa_popup_dismissed');
+  if (dismissed && Date.now() - parseInt(dismissed) < 7 * 24 * 60 * 60 * 1000) return;
+
+  var deferredPrompt = null;
+
+  // Capture beforeinstallprompt for Android Chrome
+  window.addEventListener('beforeinstallprompt', function(e) {
+    e.preventDefault();
+    deferredPrompt = e;
+  });
+
+  // Show popup after 45 seconds
+  setTimeout(function() {
+    var popup = document.getElementById('pwaPopup');
+    if (!popup) return;
+    popup.style.display = 'block';
+
+    // Detect OS
+    var isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+    var isAndroid = /Android/.test(navigator.userAgent);
+
+    if (deferredPrompt) {
+      // Chrome Android — show install button
+      document.getElementById('pwaInstallBtn').style.display = 'block';
+    } else if (isIOS) {
+      document.getElementById('pwaInstructIOS').style.display = 'block';
+    } else if (isAndroid) {
+      document.getElementById('pwaInstructAndroid').style.display = 'block';
+    } else {
+      document.getElementById('pwaInstructAndroid').style.display = 'block';
+    }
+
+    if (typeof trackEvent === 'function') trackEvent('pwa_popup_shown', 'engagement', 'mobile');
+  }, 45000);
+})();
+
+function installPwa() {
+  if (window._deferredPrompt) {
+    window._deferredPrompt.prompt();
+    window._deferredPrompt.userChoice.then(function(choice) {
+      if (choice.outcome === 'accepted') {
+        if (typeof trackEvent === 'function') trackEvent('pwa_installed', 'engagement', 'mobile');
+      }
+      window._deferredPrompt = null;
+    });
+  }
+  closePwaPopup();
+}
+
+function closePwaPopup(dismiss) {
+  var popup = document.getElementById('pwaPopup');
+  if (popup) popup.style.display = 'none';
+  if (dismiss) localStorage.setItem('pwa_popup_dismissed', String(Date.now()));
+}
+</script>
+
 </body>
 </html>
