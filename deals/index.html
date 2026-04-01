@@ -844,6 +844,31 @@
     </div>
   </section>
 
+  <!-- WhatsApp Share Bar (mobile only) -->
+  <div id="waShareBar" style="display:none;margin:0 12px 8px;background:linear-gradient(135deg,#25d366,#128c7e);border-radius:14px;padding:12px 16px;text-align:center;cursor:pointer;box-shadow:0 4px 15px rgba(37,211,102,0.3);animation:waSharePulse 3s ease-in-out infinite;" onclick="shareToWhatsApp()">
+    <div style="display:flex;align-items:center;justify-content:center;gap:10px;">
+      <span style="font-size:24px;">💬</span>
+      <div style="text-align:right;">
+        <div style="font-family:'Heebo',sans-serif;font-weight:700;font-size:15px;color:#fff;">שתפי חברה! 🔥</div>
+        <div style="font-size:12px;color:rgba(255,255,255,0.85);">שלחי את הדילים בווצאפ</div>
+      </div>
+      <span style="font-size:20px;margin-right:auto;">&#x276E;</span>
+    </div>
+  </div>
+  <style>
+    @keyframes waSharePulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.02)} }
+    @media (min-width:769px) { #waShareBar { display:none!important; } }
+  </style>
+  <script>
+    // Show share bar only on mobile
+    if (window.innerWidth <= 768) document.getElementById('waShareBar').style.display = 'block';
+    function shareToWhatsApp() {
+      var text = '🔥 דילים מטורפים על מותגים כל יום!\nNike, Adidas, Gucci ועוד במחירי רצפה 🛍️\n\nתכנסי לראות:\nhttps://alifindme.com/deals/';
+      window.open('https://wa.me/?text=' + encodeURIComponent(text), '_blank');
+      if (typeof trackEvent === 'function') trackEvent('share', 'social', 'whatsapp_bar');
+    }
+  </script>
+
   <!-- Date Tabs -->
   <div class="date-tabs" id="dateTabs" style="display:none"></div>
 
