@@ -1485,7 +1485,9 @@ function openDealModal(postId) {
   const post = allPosts.find(p => p.id === postId);
   if (!post) return;
 
-  modalImages = (post.images || []).map(u => u.replace(/^video:/, ''));
+  // Keep track of which are videos
+  window._modalSources = post.images || [];
+  modalImages = window._modalSources.map(u => u.replace(/^video:/, ''));
   modalImgIdx = 0;
   renderModalImage();
 
@@ -1513,10 +1515,31 @@ function openDealModal(postId) {
 }
 
 function renderModalImage() {
-  const el = document.getElementById('modalImg');
+  const container = document.getElementById('modalImg').parentElement;
   const src = modalImages[modalImgIdx] || '';
-  el.src = src;
-  el.style.display = src ? 'block' : 'none';
+  const isVideo = window._modalSources && window._modalSources[modalImgIdx] && window._modalSources[modalImgIdx].startsWith('video:');
+
+  // Remove old media
+  const oldImg = document.getElementById('modalImg');
+  const oldVid = document.getElementById('modalVid');
+  if (oldVid) oldVid.remove();
+
+  if (isVideo) {
+    oldImg.style.display = 'none';
+    let vid = document.createElement('video');
+    vid.id = 'modalVid';
+    vid.src = src;
+    vid.controls = true;
+    vid.autoplay = true;
+    vid.playsinline = true;
+    vid.loop = true;
+    vid.style.cssText = 'width:100%;max-height:340px;object-fit:contain;border-radius:12px;background:#111;';
+    container.insertBefore(vid, oldImg);
+  } else {
+    oldImg.src = src;
+    oldImg.style.display = src ? 'block' : 'none';
+  }
+
   document.querySelectorAll('.modal-dot').forEach((d, i) => d.classList.toggle('active', i === modalImgIdx));
 }
 
