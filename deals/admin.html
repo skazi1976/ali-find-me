@@ -573,7 +573,7 @@ async function loadAnalytics() {
     if (!resp.ok) throw new Error('Failed');
     const data = await resp.json();
 
-    const labels = { page_view: '👁 צפיות', purchase_click: '🛒 רכישות', share: '📤 שיתופים', wa_share_bar: '💬 שיתוף WA', search: '🔍 חיפושים', broadcast_join: '📱 הצטרפויות', product_request: '📩 בקשות' };
+    const labels = { page_view: '👁 צפיות', purchase_click: '🛒 רכישות', share: '📤 שיתופים', wa_share_bar: '💬 שיתוף WA', search: '🔍 חיפושים', broadcast_join: '📱 הצטרפויות', product_request: '📩 בקשות', pwa_popup_shown: '📲 פופאפ התקנה', pwa_installed: '✅ התקינו אפליקציה' };
 
     const today = todayStr();
     const yesterday = (() => { const d = new Date(); d.setDate(d.getDate()-1); return d.toISOString().slice(0,10); })();
