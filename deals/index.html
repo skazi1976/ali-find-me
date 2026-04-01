@@ -865,7 +865,7 @@
     function shareToWhatsApp() {
       var text = '🔥 דילים מטורפים על מותגים כל יום!\nNike, Adidas, Gucci ועוד במחירי רצפה 🛍️\n\nתכנסי לראות:\nhttps://alifindme.com/deals/';
       window.open('https://wa.me/?text=' + encodeURIComponent(text), '_blank');
-      if (typeof trackEvent === 'function') trackEvent('share', 'social', 'whatsapp_bar');
+      if (typeof trackEvent === 'function') { trackEvent('share', 'social', 'whatsapp_bar'); trackEvent('wa_share_bar', 'engagement', 'mobile'); }
     }
   </script>
 
