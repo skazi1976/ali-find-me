@@ -1235,17 +1235,19 @@ function renderDate(date) {
     document.getElementById('dailySection').style.display = 'none';
   }
 
-  // === HIDDEN BRANDS (auto-rotating based on selected date) ===
+  // === HIDDEN BRANDS (auto-rotating every 4 hours) ===
   if (allBrandsData.length > 0) {
-    const dateBrands = pickRandom(allBrandsData, BRANDS_PER_DAY, date);
+    const hoursBlock = Math.floor(Date.now() / (4 * 60 * 60 * 1000)); // changes every 4 hours
+    const seed = date + '-' + hoursBlock;
+    const dateBrands = pickRandom(allBrandsData, BRANDS_PER_DAY, seed);
     const brandCards = dateBrands.map((b, i) => ({
-      id: `brand-${date}-${i}`,
+      id: `brand-${seed}-${i}`,
       date: date,
       type: 'brand',
       brand: b.brand,
       title: b.title,
       price: b.price,
-      link: b.link,
+      link: b.catalogIdx !== undefined ? `https://hacatalog.com/#product=idx${b.catalogIdx}` : b.link,
       images: b.images
     }));
 
