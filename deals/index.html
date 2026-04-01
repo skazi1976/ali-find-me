@@ -1245,9 +1245,14 @@ function renderDate(date) {
       brand: b.brand,
       title: b.title,
       price: b.price,
-      link: 'https://hacatalog.com/',
+      link: b.catalogIdx !== undefined ? `https://hacatalog.com/#product=idx${b.catalogIdx}` : 'https://hacatalog.com/',
       images: b.images
     }));
+
+    // Add brand cards to allPosts so openDealModal can find them
+    brandCards.forEach(bc => {
+      if (!allPosts.find(p => p.id === bc.id)) allPosts.push(bc);
+    });
 
     document.getElementById('brandSection').style.display = 'block';
     document.getElementById('brandCount').textContent = `${brandCards.length} מוצרים - מתחלפים כל יום`;
