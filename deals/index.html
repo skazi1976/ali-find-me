@@ -1078,7 +1078,7 @@ function buildCard(post) {
             &#x1F6D2; קנו עכשיו
           </a>
         </div>
-        <button class="details-btn" onclick="openDealModal('${post.id}')">👁 לצפייה בפרטים</button>
+        <a class="details-btn" href="${post.link || '#'}" target="${post.link ? '_blank' : '_self'}" rel="noopener" style="text-decoration:none;display:block;text-align:center;">👁 לצפייה בפרטים</a>
       </div>
     </div>
   `;
