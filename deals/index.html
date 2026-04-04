@@ -1247,7 +1247,19 @@ function renderDate(date) {
       brand: b.brand,
       title: b.title,
       price: b.price,
-      link: b.catalogIdx !== undefined ? `https://hacatalog.com/#product=idx${b.catalogIdx}` : b.link,
+      link: (() => {
+        // Extract stable product ID from image URL (same logic as HaCatalog index.html)
+        if (b.images && b.images[0]) {
+          const img = b.images[0];
+          // Format: images/{store}/{albumId}/
+          const m1 = img.match(/images\/(?:[^\/]+\/)?(\d+)\//);
+          if (m1) return `https://hacatalog.com/#product=${m1[1]}`;
+          // Format: xuxu/{hash}_ or xuxuxuxux/{hash}
+          const m2 = img.match(/xuxu(?:xuxux)?\/([a-f0-9]+)[_.]/);
+          if (m2) return `https://hacatalog.com/#product=x${m2[1]}`;
+        }
+        return b.link;
+      })(),
       images: b.images
     }));
 
