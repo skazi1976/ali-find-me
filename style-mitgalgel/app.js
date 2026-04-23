@@ -259,11 +259,11 @@ function renderBottomNav(active) {
   const nav = document.createElement("nav");
   nav.className = "bottom-nav";
   const items = [
-    { href: "/",          icon: "🏠", label: "בית",        key: "home" },
-    { href: "/search.html", icon: "🔍", label: "חיפוש",   key: "search" },
-    { href: "/upload.html", icon: "➕", label: "העלאה",   key: "upload" },
-    { href: "/favorites.html", icon: "❤️", label: "מועדפים", key: "favorites" },
-    { href: "/profile.html", icon: "👤", label: "אני",     key: "profile" },
+    { href: "./",          icon: "🏠", label: "בית",        key: "home" },
+    { href: "./search.html", icon: "🔍", label: "חיפוש",   key: "search" },
+    { href: "./upload.html", icon: "➕", label: "העלאה",   key: "upload" },
+    { href: "./favorites.html", icon: "❤️", label: "מועדפים", key: "favorites" },
+    { href: "./profile.html", icon: "👤", label: "אני",     key: "profile" },
   ];
   nav.innerHTML = items.map(i =>
     `<a href="${i.href}" class="${i.key === active ? "active" : ""}">
