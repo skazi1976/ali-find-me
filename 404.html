@@ -1,19 +1,84 @@
 <!DOCTYPE html>
-<html>
+<html lang="he" dir="rtl">
 <head>
-<script>
-var path = window.location.pathname;
-if (path.startsWith('/go/')) {
-  var slug = path.replace('/go/', '').replace('/', '');
-  if (slug && slug !== 'admin.html' && slug !== 'admin') {
-    window.location.replace('https://ali-findme-api.ohadf1976.workers.dev/go/' + slug);
-  }
-}
-</script>
-<title>404</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta property="og:title" content="ali find me — מנוע חיפוש חכם של AliExpress">
+<meta property="og:description" content="מבצעים מטורפים ב-AliExpress עם משלוח חינם לישראל">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://alifindme.com/icons/og-image.png">
+<title>טוען מוצר... · ali find me</title>
+<style>
+  body { margin:0; padding:0; font-family:'Heebo','Assistant',-apple-system,sans-serif; background:#fff; display:flex; align-items:center; justify-content:center; min-height:100vh; }
+  .loader { text-align:center; }
+  .spinner { width:48px; height:48px; border:4px solid #ffe0d6; border-top-color:#ff5722; border-radius:50%; animation:spin 0.8s linear infinite; margin:0 auto 20px; }
+  @keyframes spin { to { transform:rotate(360deg); } }
+  .msg { color:#666; font-size:15px; }
+  .err { display:none; }
+  .err.show { display:block; color:#999; }
+  .err a { color:#ff5722; text-decoration:none; font-weight:600; }
+</style>
 </head>
 <body>
-<h1>Page not found</h1>
-<p><a href="/">Go home</a></p>
+<div class="loader">
+  <div class="spinner" id="spinner"></div>
+  <div class="msg" id="msg">טוען את המוצר...</div>
+  <div class="err" id="err">
+    <h1 style="color:#333;font-size:24px">העמוד לא נמצא</h1>
+    <p><a href="/">חזרה לעמוד הבית</a></p>
+  </div>
+</div>
+
+<script>
+(function() {
+  var path = window.location.pathname;
+
+  // /go/<slug> → redirect to ali-findme-api worker (existing legacy)
+  if (path.startsWith('/go/')) {
+    var slug = path.replace('/go/', '').replace('/', '');
+    if (slug && slug !== 'admin.html' && slug !== 'admin') {
+      window.location.replace('https://ali-findme-api.ohadf1976.workers.dev/go/' + slug);
+      return;
+    }
+  }
+
+  // /c/<productId> → render landing page from ae-cart worker, preserving URL
+  var cartMatch = path.match(/^\/c\/(\d+)\/?$/);
+  if (cartMatch) {
+    var productId = cartMatch[1];
+    fetch('https://ae-cart.ohadf1976.workers.dev/c/' + productId)
+      .then(function(r) {
+        if (!r.ok) throw new Error('Product not found');
+        return r.text();
+      })
+      .then(function(html) {
+        // Replace entire document while preserving the URL
+        document.open();
+        document.write(html);
+        document.close();
+      })
+      .catch(function() {
+        document.getElementById('spinner').style.display = 'none';
+        document.getElementById('msg').style.display = 'none';
+        document.getElementById('err').classList.add('show');
+      });
+    return;
+  }
+
+  // /buy/<productId> → fast 302 redirect through affiliate (alternative short link)
+  var buyMatch = path.match(/^\/buy\/(\d+)\/?$/);
+  if (buyMatch) {
+    window.location.replace('https://ae-cart.ohadf1976.workers.dev/go/' + buyMatch[1]);
+    return;
+  }
+
+  // Default 404 — show friendly error
+  setTimeout(function() {
+    document.getElementById('spinner').style.display = 'none';
+    document.getElementById('msg').style.display = 'none';
+    document.getElementById('err').classList.add('show');
+  }, 200);
+})();
+</script>
 </body>
 </html>
