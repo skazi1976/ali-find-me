@@ -33,11 +33,15 @@
 (function() {
   var path = window.location.pathname;
 
-  // /go/<slug> → redirect to ali-findme-api worker (existing legacy)
+  // /go/<slug> → numeric productId goes to ae-cart, otherwise legacy ali-findme-api
   if (path.startsWith('/go/')) {
     var slug = path.replace('/go/', '').replace('/', '');
     if (slug && slug !== 'admin.html' && slug !== 'admin') {
-      window.location.replace('https://ali-findme-api.ohadf1976.workers.dev/go/' + slug);
+      if (/^\d+$/.test(slug)) {
+        window.location.replace('https://ae-cart.ohadf1976.workers.dev/go/' + slug);
+      } else {
+        window.location.replace('https://ali-findme-api.ohadf1976.workers.dev/go/' + slug);
+      }
       return;
     }
   }
