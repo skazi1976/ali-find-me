@@ -46,26 +46,24 @@
     }
   }
 
-  // /c/<productId> → render landing page from ae-cart worker, preserving URL
+  // /c/<productId> → render landing page from ae-cart worker via full-page iframe (URL preserved)
   var cartMatch = path.match(/^\/c\/(\d+)\/?$/);
   if (cartMatch) {
     var productId = cartMatch[1];
-    fetch('https://ae-cart.ohadf1976.workers.dev/c/' + productId)
-      .then(function(r) {
-        if (!r.ok) throw new Error('Product not found');
-        return r.text();
-      })
-      .then(function(html) {
-        // Replace entire document while preserving the URL
-        document.open();
-        document.write(html);
-        document.close();
-      })
-      .catch(function() {
-        document.getElementById('spinner').style.display = 'none';
-        document.getElementById('msg').style.display = 'none';
-        document.getElementById('err').classList.add('show');
-      });
+    var iframe = document.createElement('iframe');
+    iframe.src = 'https://ae-cart.ohadf1976.workers.dev/c/' + productId;
+    iframe.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;border:0;margin:0;padding:0;z-index:9999;background:#fff;';
+    iframe.setAttribute('allow', 'fullscreen');
+    iframe.onload = function() {
+      var loader = document.querySelector('.loader');
+      if (loader) loader.style.display = 'none';
+    };
+    iframe.onerror = function() {
+      document.getElementById('spinner').style.display = 'none';
+      document.getElementById('msg').style.display = 'none';
+      document.getElementById('err').classList.add('show');
+    };
+    document.body.appendChild(iframe);
     return;
   }
 
