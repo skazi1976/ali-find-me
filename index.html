@@ -645,5 +645,67 @@
   </div>
 
   <script src="js/app.js?v=20260327d"></script>
+
+  <!-- ============================================================
+       AliExpress Affiliate Cookie Warming
+       Plants the affiliate cookie in every visitor's browser.
+       Triggers commission on ANY purchase they make on AliExpress
+       within 30 days, even if they buy something unrelated.
+       ============================================================ -->
+  <div id="aeWarm" style="position:fixed;width:0;height:0;overflow:hidden;opacity:0;pointer-events:none;left:-9999px;top:-9999px" aria-hidden="true"></div>
+  <script>
+  (function() {
+    var WARM_URL = 'https://s.click.aliexpress.com/e/_c4kBQ3qf';
+    var container = document.getElementById('aeWarm');
+    var warmed = false;
+
+    function plantCookie() {
+      if (warmed) return;
+      warmed = true;
+      try {
+        var ifr = document.createElement('iframe');
+        ifr.src = WARM_URL;
+        ifr.referrerPolicy = 'no-referrer-when-downgrade';
+        ifr.setAttribute('sandbox', 'allow-same-origin allow-scripts allow-popups');
+        ifr.style.cssText = 'width:0;height:0;border:0';
+        container.appendChild(ifr);
+
+        // Backup: <img> ping (some browsers set cookies on image requests
+        // even when iframes are blocked)
+        var img = new Image();
+        img.referrerPolicy = 'no-referrer-when-downgrade';
+        img.src = WARM_URL + '?ts=' + Date.now();
+
+        // Optional: track in GA
+        if (window.gtag) gtag('event', 'cookie_warm', { method: 'homepage_visit' });
+      } catch (e) {}
+    }
+
+    // Strategy 1: Delayed planting (3 sec after page is interactive)
+    // — doesn't slow down initial render
+    if (document.readyState === 'complete') {
+      setTimeout(plantCookie, 3000);
+    } else {
+      window.addEventListener('load', function() {
+        setTimeout(plantCookie, 3000);
+      });
+    }
+
+    // Strategy 2: User-gesture fallback (Safari ITP / Chrome 3rd-party blocking)
+    // First click/scroll/keypress = stronger cookie planting
+    var fired = false;
+    function onGesture() {
+      if (fired) return;
+      fired = true;
+      plantCookie();
+      ['click', 'touchstart', 'keydown', 'scroll'].forEach(function(ev) {
+        document.removeEventListener(ev, onGesture, { passive: true });
+      });
+    }
+    ['click', 'touchstart', 'keydown', 'scroll'].forEach(function(ev) {
+      document.addEventListener(ev, onGesture, { passive: true });
+    });
+  })();
+  </script>
 </body>
 </html>
