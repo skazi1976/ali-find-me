@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+
+<title>המרה מאירו לשקל - מחשבון מטבעות לייב | AliFindMe</title>
+<meta name="description" content="ממיר אירו לשקלים בזמן אמת. כמה זה €10 / €50 / €100 בשקלים? כולל מוצרים מאלי אקספרס במחיר המומר.">
+<meta name="keywords" content="המרה מאירו לשקל, כמה זה אירו בשקלים, שער אירו, מחשבון אירו, EUR ILS, euro to shekel">
+<meta name="robots" content="index, follow">
+
+<meta property="og:title" content="המרה מאירו לשקל - מחשבון מטבעות לייב | AliFindMe">
+<meta property="og:description" content="ממיר אירו לשקלים בזמן אמת. כמה זה €10 / €50 / €100 בשקלים? כולל מוצרים מאלי אקספרס במחיר המומר.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://alifindme.com/converter/eur/">
+<meta property="og:locale" content="he_IL">
+<meta property="og:image" content="https://alifindme.com/icons/icon-512.png">
+
+<link rel="canonical" href="https://alifindme.com/converter/eur/">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "מחשבון המרה מאירו לשקל",
+  "url": "https://alifindme.com/converter/eur/",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "ILS" }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "כמה זה אירו אחד בשקלים?",
+      "acceptedAnswer": { "@type": "Answer", "text": "שער אירו משתנה כל יום. בעמוד זה רואים את השער המעודכן ביותר וההמרה מתבצעת מיידית." }
+    },
+    {
+      "@type": "Question",
+      "name": "מה ההפרש בין שער האירו לשער הדולר?",
+      "acceptedAnswer": { "@type": "Answer", "text": "האירו והדולר הם מטבעות נפרדים עם שערים שונים מול השקל. בדרך כלל האירו מעט גבוה מהדולר. השער המדויק משתנה כל יום." }
+    },
+    {
+      "@type": "Question",
+      "name": "כמה זה 100 אירו בשקלים?",
+      "acceptedAnswer": { "@type": "Answer", "text": "100 אירו שווים כ-380-410 שקלים, תלוי בשער היומי. המחשבון מציג את הסכום המדויק לפי השער הנוכחי." }
+    }
+  ]
+}
+</script>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-18NLX6KS89"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-18NLX6KS89');</script>
+
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Heebo','Assistant',-apple-system,BlinkMacSystemFont,sans-serif; background: linear-gradient(135deg,#fff5f0 0%,#fff 50%,#f0f8ff 100%); color: #222; line-height: 1.6; min-height: 100vh; }
+  .container { max-width: 720px; margin: 0 auto; padding: 24px 16px 80px; }
+  .header { text-align: center; padding: 24px 0 16px; }
+  .header .logo { display: inline-block; background: linear-gradient(135deg,#ff6b35,#ff3030); color: #fff; padding: 6px 14px; border-radius: 8px; font-weight: 800; font-size: 14px; margin-bottom: 16px; text-decoration: none; }
+  h1 { font-size: 28px; font-weight: 800; margin-bottom: 8px; color: #1a1a1a; line-height: 1.3; }
+  .subtitle { color: #666; font-size: 15px; margin-bottom: 24px; }
+  .ticker { background: #fff; border-radius: 14px; padding: 14px 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); display: flex; align-items: center; justify-content: center; gap: 12px; margin-bottom: 24px; font-size: 15px; flex-wrap: wrap; }
+  .ticker .live-dot { width: 8px; height: 8px; background: #22c55e; border-radius: 50%; animation: pulse 1.5s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+  .ticker .rate { font-weight: 800; color: #ff3030; font-size: 18px; }
+  .ticker .updated { font-size: 12px; color: #999; }
+  .calc { background: #fff; border-radius: 20px; padding: 28px 24px; box-shadow: 0 8px 24px rgba(0,0,0,0.08); margin-bottom: 24px; }
+  .field { display: flex; align-items: center; background: #f8f8f8; border-radius: 14px; padding: 14px 18px; margin-bottom: 14px; border: 2px solid transparent; transition: border 0.15s; }
+  .field:focus-within { border-color: #ff6b35; background: #fff; }
+  .field .currency-label { font-size: 14px; color: #666; margin-left: 12px; font-weight: 600; }
+  .field .flag { font-size: 24px; margin-left: 8px; }
+  .field input { flex: 1; border: none; background: transparent; font-size: 24px; font-weight: 700; color: #1a1a1a; outline: none; text-align: left; direction: ltr; font-family: inherit; }
+  .swap-btn { display: block; margin: 6px auto; width: 44px; height: 44px; background: #fff5f0; border: 2px solid #ff6b35; border-radius: 50%; cursor: pointer; font-size: 18px; color: #ff6b35; transition: transform 0.2s; }
+  .swap-btn:hover { transform: rotate(180deg); }
+  .quick-row { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; margin-top: 18px; }
+  .quick-btn { padding: 8px 16px; background: #f0f8ff; color: #1976d2; border: 1px solid #cee3f5; border-radius: 20px; cursor: pointer; font-size: 13px; font-weight: 600; transition: all 0.15s; font-family: inherit; }
+  .quick-btn:hover { background: #1976d2; color: #fff; border-color: #1976d2; }
+  .products-section { background: #fff; border-radius: 20px; padding: 24px 20px; box-shadow: 0 4px 16px rgba(0,0,0,0.06); margin-bottom: 24px; }
+  .section-title { font-size: 18px; font-weight: 800; margin-bottom: 6px; color: #1a1a1a; }
+  .section-subtitle { font-size: 13px; color: #888; margin-bottom: 18px; }
+  .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 12px; }
+  .product-card { background: #fafafa; border-radius: 12px; overflow: hidden; text-decoration: none; color: inherit; transition: transform 0.15s,box-shadow 0.15s; }
+  .product-card:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(0,0,0,0.1); }
+  .product-card img { width: 100%; aspect-ratio: 1; object-fit: cover; display: block; }
+  .product-info { padding: 8px 10px 10px; }
+  .product-title { font-size: 12px; color: #555; line-height: 1.4; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; margin-bottom: 6px; min-height: 33px; }
+  .product-price { font-weight: 800; color: #ff3030; font-size: 14px; }
+  .loading-state { text-align: center; color: #999; padding: 40px 20px; font-size: 14px; }
+  .related-currencies { background: #fff; border-radius: 16px; padding: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); margin-bottom: 24px; }
+  .related-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(110px,1fr)); gap: 10px; margin-top: 12px; }
+  .related-link { background: #f8f8f8; padding: 12px 8px; border-radius: 10px; text-align: center; text-decoration: none; color: #1a1a1a; transition: background 0.15s; font-weight: 600; font-size: 13px; }
+  .related-link:hover { background: #ff6b35; color: #fff; }
+  .faq { background: #fff; border-radius: 20px; padding: 24px 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); margin-bottom: 24px; }
+  .faq-item { border-bottom: 1px solid #f0f0f0; padding: 14px 0; }
+  .faq-item:last-child { border-bottom: none; }
+  .faq-q { font-weight: 700; color: #1a1a1a; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-size: 15px; }
+  .faq-q::after { content: "+"; color: #ff6b35; font-size: 22px; font-weight: 300; }
+  .faq-item.open .faq-q::after { content: "−"; }
+  .faq-a { margin-top: 10px; color: #555; font-size: 14px; display: none; }
+  .faq-item.open .faq-a { display: block; }
+  .ftr { text-align: center; color: #888; font-size: 13px; padding: 20px 0; border-top: 1px solid #eee; margin-top: 32px; }
+  .ftr a { color: #ff6b35; text-decoration: none; font-weight: 600; }
+  @media (max-width: 540px) { h1 { font-size: 22px; } .calc { padding: 20px 16px; } .field input { font-size: 20px; } .products-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; } }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <header class="header">
+    <a href="/" class="logo">🔍 AliFindMe</a>
+    <h1>💱 ממיר אירו לשקל</h1>
+    <p class="subtitle">המרה מיידית לפי שער החליפין המעודכן ביותר</p>
+  </header>
+
+  <div class="ticker">
+    <span class="live-dot"></span>
+    <span>שער אירו עכשיו: <span class="rate" id="liveRate">טוען...</span></span>
+    <span class="updated" id="rateUpdated"></span>
+  </div>
+
+  <div class="calc">
+    <div class="field">
+      <span class="flag">🇪🇺</span>
+      <input type="number" id="foreignInput" value="100" min="0" step="0.01" inputmode="decimal" autocomplete="off">
+      <span class="currency-label">EUR · אירו</span>
+    </div>
+    <button class="swap-btn" onclick="swapCurrencies()" aria-label="החלף">⇅</button>
+    <div class="field">
+      <span class="flag">🇮🇱</span>
+      <input type="number" id="ilsInput" value="0" min="0" step="0.01" inputmode="decimal" autocomplete="off">
+      <span class="currency-label">ILS · שקל</span>
+    </div>
+    <div class="quick-row">
+      <button class="quick-btn" onclick="setForeign(10)">€10</button>
+      <button class="quick-btn" onclick="setForeign(25)">€25</button>
+      <button class="quick-btn" onclick="setForeign(50)">€50</button>
+      <button class="quick-btn" onclick="setForeign(100)">€100</button>
+      <button class="quick-btn" onclick="setForeign(250)">€250</button>
+      <button class="quick-btn" onclick="setForeign(500)">€500</button>
+      <button class="quick-btn" onclick="setForeign(1000)">€1000</button>
+    </div>
+  </div>
+
+  <div class="products-section">
+    <div class="section-title">🛍️ מה אפשר לקנות ב-<span id="ilsForProducts">370</span> ש"ח?</div>
+    <div class="section-subtitle">מוצרים נבחרים מ-AliExpress במחיר המומר — משלוח חינם לישראל</div>
+    <div class="products-grid" id="productsGrid">
+      <div class="loading-state">טוען מוצרים...</div>
+    </div>
+  </div>
+
+  <div class="related-currencies">
+    <div class="section-title">💱 ממירי מטבע נוספים</div>
+    <div class="related-grid">
+      <a class="related-link" href="/converter/">🇺🇸 דולר ↔ שקל</a>
+      <a class="related-link" href="/converter/eur/">🇪🇺 אירו ↔ שקל</a>
+      <a class="related-link" href="/converter/gbp/">🇬🇧 פאונד ↔ שקל</a>
+      <a class="related-link" href="/converter/aud/">🇦🇺 דולר אוסטרלי</a>
+      <a class="related-link" href="/converter/cad/">🇨🇦 דולר קנדי</a>
+    </div>
+  </div>
+
+  <div class="faq">
+    <div class="section-title" style="margin-bottom:14px">❓ שאלות נפוצות</div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">כמה זה אירו אחד בשקלים?</div>
+      <div class="faq-a">שער אירו משתנה כל יום. בעמוד זה רואים את השער המעודכן ביותר וההמרה מתבצעת מיידית.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">מה ההפרש בין שער האירו לשער הדולר?</div>
+      <div class="faq-a">האירו והדולר הם מטבעות נפרדים עם שערים שונים מול השקל. בדרך כלל האירו מעט גבוה מהדולר. השער המדויק משתנה כל יום.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">כמה זה 100 אירו בשקלים?</div>
+      <div class="faq-a">100 אירו שווים כ-380-410 שקלים, תלוי בשער היומי. המחשבון מציג את הסכום המדויק לפי השער הנוכחי.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">יש עמלת המרה ב-AliExpress?</div>
+      <div class="faq-a">AliExpress מציג מחירים בשקלים ישירות ללא עמלה נוספת. כרטיס האשראי לעיתים גובה עמלת המרה רק במקרה של עסקה במטבע זר.</div>
+    </div>
+  </div>
+
+  <nav class="ftr">
+    מצאו מוצרים זולים מ-AliExpress דרך
+    <a href="/">מנוע החיפוש</a> ·
+    <a href="/deals/">דילים יומיים</a>
+  </nav>
+</div>
+
+<!-- Cookie Warming -->
+<div id="aeWarmCk" style="position:fixed;width:0;height:0;overflow:hidden;opacity:0;pointer-events:none;left:-9999px;top:-9999px" aria-hidden="true"></div>
+<script>
+(function(){var WARM_URL='https://s.click.aliexpress.com/e/_c4kBQ3qf';var c=document.getElementById('aeWarmCk');if(!c)return;var done=false;function plant(){if(done)return;done=true;try{var ifr=document.createElement('iframe');ifr.src=WARM_URL;ifr.referrerPolicy='no-referrer-when-downgrade';ifr.setAttribute('sandbox','allow-same-origin allow-scripts allow-popups');ifr.style.cssText='width:0;height:0;border:0';c.appendChild(ifr);var img=new Image();img.referrerPolicy='no-referrer-when-downgrade';img.src=WARM_URL+'?t='+Date.now();if(window.gtag)gtag('event','cookie_warm',{method:'converter_eur'});}catch(e){}}if(document.readyState==='complete')setTimeout(plant,3000);else window.addEventListener('load',function(){setTimeout(plant,3000);});var fired=false;function onG(){if(fired)return;fired=true;plant();['click','touchstart','keydown','scroll'].forEach(function(e){document.removeEventListener(e,onG,{passive:true});});}['click','touchstart','keydown','scroll'].forEach(function(e){document.addEventListener(e,onG,{passive:true});});})();
+</script>
+
+<script>
+const CURRENCY_CODE = 'EUR';
+const RATES_URL = 'https://open.er-api.com/v6/latest/' + CURRENCY_CODE;
+const WORKER_URL = 'https://ali-findme-api.ohadf1976.workers.dev';
+const FALLBACK_RATE = {"USD":3.7,"EUR":4.0,"GBP":4.7,"AUD":2.4,"CAD":2.7}[CURRENCY_CODE] || 1;
+let currentRate = FALLBACK_RATE;
+let lastUpdate = null;
+let direction = 'foreign-to-ils';
+
+async function fetchRate(){
+  try {
+    const r = await fetch(RATES_URL);
+    const data = await r.json();
+    if (data && data.rates && data.rates.ILS) {
+      currentRate = data.rates.ILS;
+      lastUpdate = data.time_last_update_utc;
+      localStorage.setItem(CURRENCY_CODE+'_ils_rate', JSON.stringify({rate: currentRate, ts: Date.now(), updated: lastUpdate}));
+    }
+  } catch(e) {
+    try {
+      const cached = JSON.parse(localStorage.getItem(CURRENCY_CODE+'_ils_rate') || 'null');
+      if (cached && cached.rate) { currentRate = cached.rate; lastUpdate = cached.updated; }
+    } catch(_){}
+  }
+}
+
+function updateUI(){
+  document.getElementById('liveRate').textContent = `1 ${CURRENCY_CODE} = ₪${currentRate.toFixed(3)}`;
+  if (lastUpdate) {
+    const updated = new Date(lastUpdate || Date.now());
+    document.getElementById('rateUpdated').textContent = 'עודכן: ' + updated.toLocaleString('he-IL', {hour:'2-digit', minute:'2-digit', day:'2-digit', month:'2-digit'});
+  }
+  recalculate();
+}
+
+function recalculate(){
+  const foreign = parseFloat(document.getElementById('foreignInput').value) || 0;
+  const ils = parseFloat(document.getElementById('ilsInput').value) || 0;
+  if (direction === 'foreign-to-ils') {
+    const newIls = (foreign * currentRate);
+    document.getElementById('ilsInput').value = newIls.toFixed(2);
+    document.getElementById('ilsForProducts').textContent = Math.round(newIls);
+    fetchProducts(newIls);
+  } else {
+    const newForeign = (ils / currentRate);
+    document.getElementById('foreignInput').value = newForeign.toFixed(2);
+    document.getElementById('ilsForProducts').textContent = Math.round(ils);
+    fetchProducts(ils);
+  }
+}
+
+function setForeign(amount){
+  document.getElementById('foreignInput').value = amount;
+  direction = 'foreign-to-ils';
+  recalculate();
+}
+
+function swapCurrencies(){
+  const f = document.getElementById('foreignInput').value;
+  const i = document.getElementById('ilsInput').value;
+  document.getElementById('foreignInput').value = i;
+  document.getElementById('ilsInput').value = f;
+  direction = (direction === 'foreign-to-ils') ? 'ils-to-foreign' : 'foreign-to-ils';
+  recalculate();
+}
+
+document.getElementById('foreignInput').addEventListener('input', () => { direction = 'foreign-to-ils'; recalculate(); });
+document.getElementById('ilsInput').addEventListener('input', () => { direction = 'ils-to-foreign'; recalculate(); });
+
+let productsTimeout;
+const PRODUCT_KEYWORDS = ['fashion', 'gadgets', 'home', 'beauty', 'kitchen', 'jewelry'];
+async function fetchProducts(ilsAmount){
+  clearTimeout(productsTimeout);
+  productsTimeout = setTimeout(() => doFetchProducts(ilsAmount), 600);
+}
+async function doFetchProducts(ilsAmount){
+  if (!ilsAmount || ilsAmount < 1) return;
+  const grid = document.getElementById('productsGrid');
+  grid.innerHTML = '<div class="loading-state">טוען מוצרים בטווח המחיר...</div>';
+  const kw = PRODUCT_KEYWORDS[Math.floor(Math.random()*PRODUCT_KEYWORDS.length)];
+  const minPrice = Math.max(1, Math.round(ilsAmount * 0.6));
+  const maxPrice = Math.round(ilsAmount * 1.2);
+  const params = new URLSearchParams({
+    q: kw, lang: 'he', currency: 'ILS', country: 'IL', page: '1',
+    min_price: String(minPrice), max_price: String(maxPrice)
+  });
+  try {
+    const r = await fetch(`${WORKER_URL}/search?${params}`);
+    if (!r.ok) throw new Error('search failed');
+    const data = await r.json();
+    const products = (data.products || []).slice(0, 6);
+    if (!products.length) {
+      grid.innerHTML = '<div class="loading-state">לא נמצאו מוצרים בטווח המחיר הזה</div>';
+      return;
+    }
+    let html = '';
+    for (const p of products) {
+      const id = p.id || p.product_id;
+      const link = id ? `https://alifindme.com/c/${id}` : (p.url || p.product_detail_url || '#');
+      const img = p.image || p.product_main_image_url;
+      const title = (p.title || p.product_title || '').slice(0, 60);
+      const price = p.price_ils || p.target_sale_price || '';
+      html += `<a class="product-card" href="${link}" target="_blank" rel="noopener"><img src="${img}" alt="${title}" loading="lazy"><div class="product-info"><div class="product-title">${title}</div><div class="product-price">₪${parseFloat(price).toFixed(0)}</div></div></a>`;
+    }
+    grid.innerHTML = html;
+  } catch(e) {
+    grid.innerHTML = '<div class="loading-state">לא הצלחנו לטעון מוצרים כרגע</div>';
+  }
+}
+
+(async function init(){
+  try {
+    const cached = JSON.parse(localStorage.getItem(CURRENCY_CODE+'_ils_rate') || 'null');
+    if (cached && cached.rate && (Date.now() - cached.ts) < 3600000) {
+      currentRate = cached.rate; lastUpdate = cached.updated; updateUI();
+    }
+  } catch(_){}
+  await fetchRate();
+  updateUI();
+})();
+</script>
+
+</body>
+</html>
