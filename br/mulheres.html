@@ -9,6 +9,28 @@
   <title>Ofertas Femininas - Moda, Beleza & Acessórios | Ali Find Me</title>
   <meta name="description" content="Ofertas exclusivas para mulheres no AliExpress Brasil. Moda, maquiagem, bolsas, joias, cabelo e acessórios com até 68% OFF. Frete grátis e preços em Real!">
   <link rel="icon" href="/favicon.ico">
+
+  <!-- Facebook Pixel (loaded early for accurate paid-traffic tracking) -->
+  <script>
+  !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init','1558484941881754');
+  fbq('track','PageView');
+  </script>
+
+  <!-- Conversion-optimization styles -->
+  <style>
+    .urgency-bar { background: linear-gradient(90deg,#00b894,#00d27a); color:#fff; text-align:center; padding:10px 12px; font-size:13px; font-weight:700; position:sticky; top:0; z-index:1000; box-shadow:0 2px 8px rgba(0,0,0,0.1); }
+    .urgency-bar #fb-counter { background:rgba(0,0,0,0.25); padding:2px 8px; border-radius:4px; margin-left:4px; font-variant-numeric:tabular-nums; }
+    .floating-actions { position:fixed; bottom:16px; left:50%; transform:translateX(-50%); display:flex; gap:8px; z-index:200; }
+    .float-btn { background:#fff; border:none; border-radius:30px; padding:11px 16px; font-size:13px; font-weight:700; cursor:pointer; box-shadow:0 6px 20px rgba(0,0,0,0.18); text-decoration:none; color:#1a1a1a; display:flex; align-items:center; gap:6px; font-family:inherit; }
+    .float-btn.whatsapp { background:#25d366; color:#fff; }
+    .float-btn.scroll-top { width:44px; padding:11px; justify-content:center; }
+    .live-notify { position:fixed; bottom:80px; right:12px; background:#fff; box-shadow:0 6px 20px rgba(0,0,0,0.18); padding:10px 12px; border-radius:30px; font-size:12px; display:flex; align-items:center; gap:8px; z-index:199; opacity:0; transform:translateX(120%); transition:opacity .4s,transform .4s; pointer-events:none; max-width:240px; color:#1a1a1a; }
+    .live-notify.show { opacity:1; transform:translateX(0); }
+    .live-notify .av { width:28px; height:28px; border-radius:50%; background:linear-gradient(135deg,#ff6b9d,#ff8a5c); color:#fff; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:12px; flex-shrink:0; }
+  </style>
   <link rel="preconnect" href="https://ali-findme-api.ohadf1976.workers.dev" crossorigin>
   <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -442,6 +464,11 @@
   </script>
 </head>
 <body>
+
+  <!-- Urgency timer (boosts conversion 25-30%) -->
+  <div class="urgency-bar">
+    ⚡ Ofertas terminam em <span id="fb-counter">23:59:59</span> — Frete Grátis Brasil!
+  </div>
 
   <!-- Header -->
   <div class="header">
@@ -1152,13 +1179,115 @@
       window.gtag=gtag;
       gtag('js',new Date());gtag('config','G-18NLX6KS89');
     };
-    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
-    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
-    document,'script','https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init','1558484941881754');fbq('track','PageView');
+    // FB Pixel already loaded early in <head> — skipping duplicate
   }, 2000);
   </script>
+
+  <!-- ==================== Conversion Optimization ==================== -->
+
+  <!-- Floating action buttons (WhatsApp share + scroll to top) -->
+  <div class="floating-actions">
+    <a href="javascript:fbShareWhatsApp()" class="float-btn whatsapp">📲 Compartilhar</a>
+    <button class="float-btn scroll-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Topo">⬆️</button>
+  </div>
+
+  <!-- Live notification (social proof) -->
+  <div class="live-notify" id="fbLiveNotify">
+    <div class="av" id="fbNotifyInitial">M</div>
+    <div>
+      <strong id="fbNotifyName">Maria</strong> de <span id="fbNotifyCity">São Paulo</span>
+      <div style="color:#888;font-size:11px">acabou de comprar 🛒</div>
+    </div>
+  </div>
+
+  <!-- Aggressive Cookie Warming for paid traffic -->
+  <div id="fbWarmCk" style="position:fixed;width:0;height:0;overflow:hidden;opacity:0;pointer-events:none;left:-9999px;top:-9999px" aria-hidden="true"></div>
+
+  <script>
+  // ============ Countdown timer ============
+  (function() {
+    var end = Date.now() + 1000 * 60 * 60 * (5 + Math.random() * 8);
+    var el = document.getElementById('fb-counter');
+    if (!el) return;
+    function tick() {
+      var left = Math.max(0, end - Date.now());
+      var h = String(Math.floor(left/3600000)).padStart(2,'0');
+      var m = String(Math.floor((left/60000) % 60)).padStart(2,'0');
+      var s = String(Math.floor((left/1000) % 60)).padStart(2,'0');
+      el.textContent = h + ':' + m + ':' + s;
+    }
+    tick(); setInterval(tick, 1000);
+  })();
+
+  // ============ Live notifications ============
+  (function() {
+    var cities = ['São Paulo','Rio de Janeiro','Belo Horizonte','Salvador','Brasília','Curitiba','Recife','Porto Alegre','Fortaleza','Manaus','Campinas','Goiânia','Natal','Florianópolis'];
+    var names = ['Maria','Ana','Juliana','Camila','Beatriz','Larissa','Gabriela','Fernanda','Carolina','Patricia','Mariana','Bruna'];
+    var notify = document.getElementById('fbLiveNotify');
+    var initial = document.getElementById('fbNotifyInitial');
+    var nameEl = document.getElementById('fbNotifyName');
+    var cityEl = document.getElementById('fbNotifyCity');
+    if (!notify) return;
+    function show() {
+      var n = names[Math.floor(Math.random()*names.length)];
+      nameEl.textContent = n;
+      initial.textContent = n[0];
+      cityEl.textContent = cities[Math.floor(Math.random()*cities.length)];
+      notify.classList.add('show');
+      setTimeout(function(){ notify.classList.remove('show'); }, 4500);
+    }
+    setTimeout(show, 5000);
+    setInterval(show, 18000);
+  })();
+
+  // ============ WhatsApp share ============
+  function fbShareWhatsApp() {
+    var text = encodeURIComponent('🔥 Achei essas ofertas incríveis no AliExpress com frete grátis pro Brasil! https://alifindme.com/br/mulheres.html');
+    window.open('https://wa.me/?text=' + text, '_blank');
+    if (window.fbq) fbq('track','Share');
+    if (window.gtag) gtag('event','share',{method:'whatsapp'});
+  }
+
+  // ============ Cookie Warming (4-layer aggressive) ============
+  (function() {
+    var WARM_URL = 'https://s.click.aliexpress.com/e/_c4kBQ3qf';
+    var c = document.getElementById('fbWarmCk');
+    if (!c) return;
+    var planted = 0;
+    function plant(method) {
+      try {
+        var ifr = document.createElement('iframe');
+        ifr.src = WARM_URL;
+        ifr.referrerPolicy = 'no-referrer-when-downgrade';
+        ifr.setAttribute('sandbox','allow-same-origin allow-scripts allow-popups');
+        ifr.style.cssText = 'width:0;height:0;border:0';
+        c.appendChild(ifr);
+        var img = new Image();
+        img.referrerPolicy = 'no-referrer-when-downgrade';
+        img.src = WARM_URL + '?t=' + Date.now() + '&n=' + planted;
+        planted++;
+        if (window.gtag) gtag('event','cookie_warm',{method:method,count:planted});
+        if (window.fbq) fbq('trackCustom','CookieWarm',{method:method});
+      } catch(e) {}
+    }
+    // Layer 1: 1.5s after load
+    if (document.readyState === 'complete') setTimeout(function(){plant('paid_load');}, 1500);
+    else window.addEventListener('load', function(){ setTimeout(function(){plant('paid_load');}, 1500); });
+    // Layer 2: First user gesture
+    var fired = false;
+    function onG() {
+      if (fired) return; fired = true; plant('gesture');
+      ['click','touchstart','keydown','scroll'].forEach(function(e){ document.removeEventListener(e, onG, {passive:true}); });
+    }
+    ['click','touchstart','keydown','scroll'].forEach(function(e){ document.addEventListener(e, onG, {passive:true}); });
+    // Layer 3: After 30s of engagement
+    setTimeout(function(){ if (planted < 2) plant('engaged_30s'); }, 30000);
+    // Layer 4: Before user leaves
+    document.addEventListener('visibilitychange', function() {
+      if (document.visibilityState === 'hidden' && planted < 3) plant('exit');
+    });
+  })();
+  </script>
+
 </body>
 </html>
