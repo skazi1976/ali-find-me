@@ -1707,5 +1707,99 @@ function closePwaPopup(dismiss) {
 }
 </script>
 
+<!-- AE_COOKIE_WARM_V2_PLUS — high-intent deals page, 7 trigger points -->
+<div id="aeWarmCk" style="position:fixed;width:0;height:0;overflow:hidden;opacity:0;pointer-events:none;left:-9999px;top:-9999px" aria-hidden="true"></div>
+<script>
+(function() {
+  var WARM_URL = 'https://s.click.aliexpress.com/e/_c4kBQ3qf';
+  var c = document.getElementById('aeWarmCk');
+  if (!c) return;
+  var planted = 0, lastPlantTime = 0;
+  var MAX_PLANTS = 10, MIN_GAP_MS = 5000;
+
+  function plant(method) {
+    var now = Date.now();
+    if (planted >= MAX_PLANTS) return;
+    if (now - lastPlantTime < MIN_GAP_MS) return;
+    lastPlantTime = now;
+    planted++;
+    try {
+      var ifr = document.createElement('iframe');
+      ifr.src = WARM_URL;
+      ifr.referrerPolicy = 'no-referrer-when-downgrade';
+      ifr.setAttribute('sandbox','allow-same-origin allow-scripts allow-popups');
+      ifr.style.cssText = 'width:0;height:0;border:0';
+      c.appendChild(ifr);
+      var img = new Image();
+      img.referrerPolicy = 'no-referrer-when-downgrade';
+      img.src = WARM_URL + '?t=' + now + '&n=' + planted + '&m=' + method;
+      if (window.gtag) gtag('event','cookie_warm',{method:method,count:planted,page:'deals'});
+      setTimeout(function(){ try{ if (ifr.parentNode) ifr.parentNode.removeChild(ifr); }catch(e){} }, 10000);
+    } catch(e){}
+  }
+
+  // 1. Initial load (faster than other pages — high-intent traffic)
+  if (document.readyState === 'complete') setTimeout(function(){ plant('initial'); }, 1500);
+  else window.addEventListener('load', function(){ setTimeout(function(){ plant('initial'); }, 1500); });
+
+  // 2. First user gesture (Safari ITP bypass)
+  var firstGestureFired = false;
+  function onFirstG() {
+    if (firstGestureFired) return; firstGestureFired = true;
+    plant('first_gesture');
+    ['click','touchstart','keydown'].forEach(function(e){ document.removeEventListener(e, onFirstG, {passive:true}); });
+  }
+  ['click','touchstart','keydown'].forEach(function(e){ document.addEventListener(e, onFirstG, {passive:true}); });
+
+  // 3. Scroll milestones (25%, 50%, 75%, 95%)
+  var milestonesHit = {};
+  window.addEventListener('scroll', function() {
+    var pct = (window.scrollY + window.innerHeight) / document.documentElement.scrollHeight * 100;
+    [25, 50, 75, 95].forEach(function(m) {
+      if (pct >= m && !milestonesHit[m]) {
+        milestonesHit[m] = true;
+        plant('scroll_' + m);
+      }
+    });
+  }, { passive: true });
+
+  // 4. Click on any deal card (highest intent signal!)
+  document.addEventListener('click', function(e) {
+    var target = e.target;
+    while (target && target !== document) {
+      // Detect deal card click — common patterns: <a>, .post, .deal-card, .product
+      if (target.tagName === 'A' && target.href) {
+        // Skip nav links & internal anchors
+        if (!/^#|tel:|mailto:/.test(target.href)) {
+          plant('deal_click');
+        }
+        break;
+      }
+      target = target.parentNode;
+    }
+  }, true);
+
+  // 5. After 30s engagement
+  setTimeout(function(){ plant('engaged_30s'); }, 30000);
+
+  // 6. Before exit
+  document.addEventListener('visibilitychange', function() {
+    if (document.visibilityState === 'hidden') plant('exit');
+  });
+
+  // 7. WhatsApp share clicks
+  document.addEventListener('click', function(e) {
+    var target = e.target;
+    while (target && target !== document) {
+      if (target.tagName === 'A' && target.href && /wa\.me|whatsapp\.com\/send/i.test(target.href)) {
+        plant('whatsapp_share');
+        break;
+      }
+      target = target.parentNode;
+    }
+  }, true);
+})();
+</script>
+
 </body>
 </html>
