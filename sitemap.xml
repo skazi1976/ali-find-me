@@ -5,6 +5,14 @@
 
   <!-- ==================== MAIN SITE (8 languages) ==================== -->
 
+  <!-- USD ↔ ILS Converter (SEO magnet) -->
+  <url>
+    <loc>https://alifindme.com/converter/</loc>
+    <lastmod>2026-04-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+
   <!-- Hebrew (default) -->
   <url>
     <loc>https://alifindme.com/</loc>
