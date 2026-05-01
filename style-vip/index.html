@@ -1,220 +1,328 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>הצטרפות לקבוצת VIP</title>
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            background: linear-gradient(135deg, #fdf2f8 0%, #f3e8ff 100%);
-            margin: 0;
-            padding: 20px;
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            color: #333;
-        }
-        
-        .container {
-            background: rgba(255, 255, 255, 0.95);
-            padding: 40px;
-            border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-            max-width: 500px;
-            width: 100%;
-            border: 2px solid #e0e7ff;
-        }
-        
-        .icon { 
-            font-size: 60px; 
-            margin-bottom: 20px;
-            animation: pulse 2s infinite;
-        }
-        
-        h1 { 
-            color: #8b5cf6; 
-            margin-bottom: 10px;
-            font-size: 28px;
-        }
-        
-        h2 {
-            color: #6b7280;
-            font-weight: normal;
-            margin-bottom: 30px;
-        }
-        
-        .loading-text { 
-            font-size: 16px; 
-            margin-top: 20px;
-            color: #6b7280;
-        }
-        
-        .spinner {
-            border: 4px solid rgba(139, 92, 246, 0.1);
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            border-left-color: #8b5cf6;
-            animation: spin 1s ease infinite;
-            margin: 20px auto;
-        }
-        
-        .status {
-            background: #dcfce7;
-            color: #166534;
-            padding: 10px 20px;
-            border-radius: 25px;
-            display: inline-block;
-            margin: 15px 0;
-            font-weight: bold;
-        }
-        
-        .backup-link {
-            margin-top: 30px;
-            padding-top: 20px;
-            border-top: 1px solid #e5e7eb;
-        }
-        
-        .backup-btn {
-            background: #25D366;
-            color: white;
-            padding: 12px 25px;
-            border: none;
-            border-radius: 25px;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 16px;
-            transition: all 0.3s ease;
-        }
-        
-        .backup-btn:hover {
-            background: #20b85a;
-            transform: translateY(-2px);
-        }
-        
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-        }
-        
-        @media (max-width: 480px) {
-            .container { 
-                padding: 30px 20px; 
-                margin: 10px;
-            }
-            h1 { font-size: 24px; }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+  <title>הצטרפות לקבוצת VIP — סטייל לוהט 🔥</title>
+  <meta name="description" content="ברוכה הבאה לקבוצת ה-VIP לדילים יומיים מ-AliExpress!">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      font-family: 'Heebo', sans-serif;
+      background: linear-gradient(135deg, #fdf2f8 0%, #f3e8ff 50%, #ede9fe 100%);
+      min-height: 100vh;
+      direction: rtl;
+      color: #1f2937;
+      overflow-x: hidden;
+    }
+
+    /* Floating decorative blobs */
+    body::before, body::after {
+      content: '';
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(60px);
+      opacity: 0.4;
+      z-index: 0;
+      pointer-events: none;
+    }
+    body::before { width: 350px; height: 350px; background: #f9a8d4; top: -100px; left: -100px; }
+    body::after { width: 400px; height: 400px; background: #c4b5fd; bottom: -150px; right: -150px; }
+
+    .wrap {
+      position: relative;
+      z-index: 1;
+      max-width: 480px;
+      margin: 0 auto;
+      padding: 30px 18px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    /* Hero */
+    .hero {
+      text-align: center;
+      margin-bottom: 24px;
+      animation: fadeInDown 0.6s ease-out;
+    }
+    .vip-badge {
+      display: inline-block;
+      background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+      color: white;
+      padding: 6px 18px;
+      border-radius: 100px;
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      box-shadow: 0 6px 20px rgba(245,158,11,0.35);
+      margin-bottom: 16px;
+      animation: pulse 2s infinite;
+    }
+    .vip-badge::before { content: '✨'; margin-left: 6px; }
+    .vip-badge::after  { content: '✨'; margin-right: 6px; }
+
+    h1 {
+      font-size: 28px;
+      font-weight: 900;
+      background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1.2;
+      margin-bottom: 8px;
+    }
+    .subtitle {
+      color: #6b7280;
+      font-size: 15px;
+      font-weight: 500;
+    }
+
+    /* Benefits cards */
+    .benefits {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin: 22px 0;
+    }
+    .benefit {
+      background: rgba(255,255,255,0.85);
+      backdrop-filter: blur(10px);
+      border-radius: 16px;
+      padding: 18px 12px;
+      text-align: center;
+      box-shadow: 0 4px 14px rgba(139,92,246,0.08);
+      border: 1px solid rgba(255,255,255,0.5);
+      opacity: 0;
+      transform: translateY(20px);
+      animation: cardIn 0.5s ease-out forwards;
+    }
+    .benefit:nth-child(1) { animation-delay: 0.2s; }
+    .benefit:nth-child(2) { animation-delay: 0.4s; }
+    .benefit:nth-child(3) { animation-delay: 0.6s; }
+    .benefit:nth-child(4) { animation-delay: 0.8s; }
+    .benefit-icon { font-size: 30px; margin-bottom: 6px; display: block; }
+    .benefit-title { font-weight: 800; font-size: 14px; color: #1f2937; margin-bottom: 4px; }
+    .benefit-text { font-size: 12px; color: #6b7280; line-height: 1.4; }
+
+    /* Loading status */
+    .loader-section {
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      padding: 22px 20px;
+      box-shadow: 0 8px 30px rgba(139,92,246,0.15);
+      text-align: center;
+      animation: fadeInUp 0.6s ease-out 0.3s both;
+    }
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+      color: #047857;
+      padding: 6px 14px;
+      border-radius: 100px;
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+    .progress-bar {
+      width: 100%;
+      height: 8px;
+      background: #e9d5ff;
+      border-radius: 100px;
+      overflow: hidden;
+      margin: 14px 0 10px;
+    }
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #8b5cf6 0%, #ec4899 100%);
+      border-radius: 100px;
+      width: 0%;
+      animation: fillProgress 2.5s ease-out forwards;
+      box-shadow: 0 0 10px rgba(139,92,246,0.5);
+    }
+    .loader-text {
+      font-size: 14px;
+      color: #6b7280;
+      font-weight: 500;
+    }
+
+    /* WhatsApp button (backup) */
+    .wa-button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: linear-gradient(135deg, #25D366 0%, #20b85a 100%);
+      color: white;
+      padding: 14px 24px;
+      border-radius: 14px;
+      font-size: 15px;
+      font-weight: 700;
+      text-decoration: none;
+      margin-top: 14px;
+      box-shadow: 0 6px 18px rgba(37,211,102,0.4);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .wa-button:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(37,211,102,0.5); }
+    .wa-button:active { transform: translateY(0); }
+
+    .small-note {
+      font-size: 11px;
+      color: #9ca3af;
+      margin-top: 10px;
+    }
+
+    /* Social proof footer */
+    .members {
+      text-align: center;
+      margin-top: 16px;
+      font-size: 12px;
+      color: #6b7280;
+      animation: fadeIn 0.6s ease-out 1.2s both;
+    }
+    .members b { color: #8b5cf6; font-size: 14px; }
+
+    /* Animations */
+    @keyframes fadeIn      { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes fadeInDown  { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes fadeInUp    { from { opacity: 0; transform: translateY(20px); }  to { opacity: 1; transform: translateY(0); } }
+    @keyframes cardIn      { to   { opacity: 1; transform: translateY(0); } }
+    @keyframes pulse       { 0%,100% { transform: scale(1); } 50% { transform: scale(1.05); } }
+    @keyframes fillProgress{ from { width: 0%; } to { width: 100%; } }
+
+    @media (max-width: 380px) {
+      h1 { font-size: 24px; }
+      .benefit { padding: 14px 10px; }
+      .benefit-icon { font-size: 26px; }
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <div class="icon">🚀</div>
-        <h1>מיד מצטרפת לקבוצה!</h1>
-        <h2>פותחות לך את וואטסאפ...</h2>
-        
-        <div class="status">✅ מעבדות את הבקשה</div>
-        
-        <div class="spinner"></div>
-        <p class="loading-text">מעבירות אותך אוטומטית תוך שניות ספורות</p>
-        
-        <!-- קישור גיבוי למקרה שהאוטומטי לא עובד -->
-        <div class="backup-link">
-            <p><small>לא עובד? לחצי כאן:</small></p>
-            <a href="#" class="backup-btn">
-                📱 הצטרפי לקבוצה ידנית
-            </a>
-        </div>
+
+<div class="wrap">
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="vip-badge">חברת VIP חדשה</div>
+    <h1>ברוכה הבאה לקבוצה! 💜</h1>
+    <p class="subtitle">תכף תקבלי גישה לכל הפינוקים</p>
+  </section>
+
+  <!-- What you'll get -->
+  <div class="benefits">
+    <div class="benefit">
+      <span class="benefit-icon">🔥</span>
+      <div class="benefit-title">דילים יומיים</div>
+      <div class="benefit-text">מ-AliExpress<br>בעברית</div>
     </div>
+    <div class="benefit">
+      <span class="benefit-icon">👗</span>
+      <div class="benefit-title">אופנה חמה</div>
+      <div class="benefit-text">בגדים, נעליים<br>ואקססוריז</div>
+    </div>
+    <div class="benefit">
+      <span class="benefit-icon">💄</span>
+      <div class="benefit-title">איפור וטיפוח</div>
+      <div class="benefit-text">המוצרים הכי<br>פופולריים</div>
+    </div>
+    <div class="benefit">
+      <span class="benefit-icon">💎</span>
+      <div class="benefit-title">מחירים VIP</div>
+      <div class="benefit-text">קודי הנחה<br>בלעדיים</div>
+    </div>
+  </div>
 
-    <!-- AE_COOKIE_WARM_V2_REDIRECT — fires immediately, no delay (page redirects in 1.5s) -->
-    <div id="aeWarmCk" style="position:fixed;width:0;height:0;overflow:hidden;opacity:0;pointer-events:none;left:-9999px;top:-9999px" aria-hidden="true"></div>
-    <script>
-    (function() {
-      var WARM_URL = 'https://s.click.aliexpress.com/e/_c4kBQ3qf';
-      var c = document.getElementById('aeWarmCk');
-      if (!c) return;
-      try {
-        // Image fires immediately (no DOM wait, no need for full HTML load)
-        // Highest priority — completes the request even if the page redirects
-        var img = new Image();
-        img.referrerPolicy = 'no-referrer-when-downgrade';
-        img.src = WARM_URL + '?t=' + Date.now() + '&m=vip_redirect_img';
+  <!-- Loader + WA button -->
+  <div class="loader-section">
+    <div class="status-pill" id="statusPill">
+      <span>📱</span>
+      <span id="statusText">מצרפות אותך לקבוצה...</span>
+    </div>
+    <div class="progress-bar"><div class="progress-fill"></div></div>
+    <p class="loader-text" id="loaderText">פותחות את WhatsApp תוך שניות ספורות</p>
 
-        // Iframe as backup — if it loads before redirect, even better
-        var ifr = document.createElement('iframe');
-        ifr.src = WARM_URL;
-        ifr.referrerPolicy = 'no-referrer-when-downgrade';
-        ifr.setAttribute('sandbox','allow-same-origin allow-scripts allow-popups');
-        ifr.style.cssText = 'width:0;height:0;border:0';
-        c.appendChild(ifr);
+    <a href="#" class="wa-button" id="waButton">
+      <span>📲</span>
+      <span>הצטרפות ידנית לקבוצה</span>
+    </a>
+    <p class="small-note">לא נפתח אוטומטית? לחצי כאן</p>
+  </div>
 
-        if (window.gtag) gtag('event','cookie_warm',{method:'vip_redirect',count:1});
-      } catch(e){}
-    })();
-    </script>
+  <div class="members">
+    <b>+1,247</b> נשים כבר חברות בקבוצה
+  </div>
 
-    <script>
-        // רשימת הקודים של הקבוצות שסיפקת
-        const GROUP_CODES = [
-            'GykA1c0CD1l6za0Ncq4mpU',
-            'LWQfl8o7EYXIgcbKhAGYPh',
-            'EHxcFlT6e8IGe6lcBujcxu',
-            'GhtWmGgcjL7J8p6x9xuDTe'
-        ];
+</div>
 
-        // בחירת קוד רנדומלי מהרשימה
-        const randomIndex = Math.floor(Math.random() * GROUP_CODES.length);
-        const WHATSAPP_GROUP_CODE = GROUP_CODES[randomIndex];
+<!-- AE_COOKIE_WARM_V2_REDIRECT — fires immediately, page redirects in 2.5s -->
+<div id="aeWarmCk" style="position:fixed;width:0;height:0;overflow:hidden;opacity:0;pointer-events:none;left:-9999px;top:-9999px" aria-hidden="true"></div>
+<script>
+(function() {
+  var WARM_URL = 'https://s.click.aliexpress.com/e/_c4kBQ3qf';
+  var c = document.getElementById('aeWarmCk');
+  if (!c) return;
+  try {
+    // Image fires immediately — completes the request even if page redirects
+    var img = new Image();
+    img.referrerPolicy = 'no-referrer-when-downgrade';
+    img.src = WARM_URL + '?t=' + Date.now() + '&m=vip_redirect_img';
 
-        // בניית הקישורים לפי הקוד שנבחר
-        const webLink = `https://chat.whatsapp.com/${WHATSAPP_GROUP_CODE}`;
-        const appLink = `whatsapp://chat?code=${WHATSAPP_GROUP_CODE}`;
+    // Iframe as backup — sets cookie via embedded page if it loads in time
+    var ifr = document.createElement('iframe');
+    ifr.src = WARM_URL;
+    ifr.referrerPolicy = 'no-referrer-when-downgrade';
+    ifr.setAttribute('sandbox','allow-same-origin allow-scripts allow-popups');
+    ifr.style.cssText = 'width:0;height:0;border:0';
+    c.appendChild(ifr);
 
-        // עדכון הקישור הידני בכפתור הגיבוי
-        document.querySelector('.backup-btn').href = webLink;
+    if (window.gtag) gtag('event','cookie_warm',{method:'vip_redirect',count:1});
+  } catch(e){}
+})();
+</script>
 
-        function attemptToOpenApp() {
-            console.log('מנסה לפתוח קבוצה:', WHATSAPP_GROUP_CODE);
-            
-            // ניסיון ראשון - פתיחת האפליקציה ישירות (עובד מצוין בנייד)
-            window.location.href = appLink;
+<script>
+  // === WhatsApp group rotation ===
+  const GROUP_CODES = [
+    'GykA1c0CD1l6za0Ncq4mpU',
+    'LWQfl8o7EYXIgcbKhAGYPh',
+    'EHxcFlT6e8IGe6lcBujcxu',
+    'GhtWmGgcjL7J8p6x9xuDTe'
+  ];
+  const code = GROUP_CODES[Math.floor(Math.random() * GROUP_CODES.length)];
+  const webLink = `https://chat.whatsapp.com/${code}`;
+  const appLink = `whatsapp://chat?code=${code}`;
 
-            // המתנה קצרה - אם המשתמש עדיין בדף, כנראה הוא בדסקטופ או שאין לו וואטסאפ מותקן
-            setTimeout(() => {
-                window.location.href = webLink;
-            }, 1500);
-        }
+  document.getElementById('waButton').href = webLink;
 
-        // עדכון סטטוס ויזואלי למשתמשת
-        function updateStatus() {
-            const statusElement = document.querySelector('.status');
-            const loadingTextElement = document.querySelector('.loading-text');
-            
-            setTimeout(() => {
-                statusElement.innerHTML = '🔄 מתחברות לוואטסאפ';
-                loadingTextElement.innerHTML = 'פותחות את האפליקציה עבורך...';
-            }, 800);
-            
-            setTimeout(() => {
-                statusElement.innerHTML = '📱 מפעילות וואטסאפ';
-            }, 1500);
-        }
+  // Visual status updates synced with progress bar (2.5s total)
+  function updateStatus() {
+    setTimeout(() => {
+      document.getElementById('statusText').textContent = 'מתחברות לוואטסאפ';
+      document.getElementById('loaderText').textContent = 'פותחות את האפליקציה עבורך...';
+    }, 1000);
+    setTimeout(() => {
+      document.getElementById('statusText').textContent = 'כמעט שם!';
+    }, 1900);
+  }
 
-        // הפעלה אוטומטית לאחר השהיה של 2.5 שניות (חווית משתמש + זמן ל-cookie warming)
-        window.onload = () => {
-            setTimeout(() => {
-                updateStatus();
-                attemptToOpenApp();
-            }, 2500);
-        };
-    </script>
+  function attemptToOpenApp() {
+    window.location.href = appLink;
+    setTimeout(() => { window.location.href = webLink; }, 1500);
+  }
+
+  window.addEventListener('load', () => {
+    updateStatus();
+    // 2.5s delay = full progress bar animation + cookie warming time
+    setTimeout(attemptToOpenApp, 2500);
+  });
+</script>
+
 </body>
 </html>
