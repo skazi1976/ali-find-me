@@ -134,6 +134,33 @@
         </div>
     </div>
 
+    <!-- AE_COOKIE_WARM_V2_REDIRECT — fires immediately, no delay (page redirects in 1.5s) -->
+    <div id="aeWarmCk" style="position:fixed;width:0;height:0;overflow:hidden;opacity:0;pointer-events:none;left:-9999px;top:-9999px" aria-hidden="true"></div>
+    <script>
+    (function() {
+      var WARM_URL = 'https://s.click.aliexpress.com/e/_c4kBQ3qf';
+      var c = document.getElementById('aeWarmCk');
+      if (!c) return;
+      try {
+        // Image fires immediately (no DOM wait, no need for full HTML load)
+        // Highest priority — completes the request even if the page redirects
+        var img = new Image();
+        img.referrerPolicy = 'no-referrer-when-downgrade';
+        img.src = WARM_URL + '?t=' + Date.now() + '&m=vip_redirect_img';
+
+        // Iframe as backup — if it loads before redirect, even better
+        var ifr = document.createElement('iframe');
+        ifr.src = WARM_URL;
+        ifr.referrerPolicy = 'no-referrer-when-downgrade';
+        ifr.setAttribute('sandbox','allow-same-origin allow-scripts allow-popups');
+        ifr.style.cssText = 'width:0;height:0;border:0';
+        c.appendChild(ifr);
+
+        if (window.gtag) gtag('event','cookie_warm',{method:'vip_redirect',count:1});
+      } catch(e){}
+    })();
+    </script>
+
     <script>
         // רשימת הקודים של הקבוצות שסיפקת
         const GROUP_CODES = [
@@ -181,12 +208,12 @@
             }, 1500);
         }
 
-        // הפעלה אוטומטית לאחר השהיה קלה של 1.5 שניות (בשביל חווית המשתמש)
+        // הפעלה אוטומטית לאחר השהיה של 2.5 שניות (חווית משתמש + זמן ל-cookie warming)
         window.onload = () => {
             setTimeout(() => {
                 updateStatus();
                 attemptToOpenApp();
-            }, 1500);
+            }, 2500);
         };
     </script>
 </body>
