@@ -144,7 +144,7 @@
       background: linear-gradient(90deg, #8b5cf6 0%, #ec4899 100%);
       border-radius: 100px;
       width: 0%;
-      animation: fillProgress 2.5s ease-out forwards;
+      animation: fillProgress 1s ease-out forwards;
       box-shadow: 0 0 10px rgba(139,92,246,0.5);
     }
     .loader-text {
@@ -301,26 +301,25 @@
 
   document.getElementById('waButton').href = webLink;
 
-  // Visual status updates synced with progress bar (2.5s total)
+  // Visual status updates synced with redirect (1s total)
   function updateStatus() {
     setTimeout(() => {
-      document.getElementById('statusText').textContent = 'מתחברות לוואטסאפ';
-      document.getElementById('loaderText').textContent = 'פותחות את האפליקציה עבורך...';
-    }, 1000);
-    setTimeout(() => {
-      document.getElementById('statusText').textContent = 'כמעט שם!';
-    }, 1900);
+      document.getElementById('statusText').textContent = 'פותחות את WhatsApp...';
+    }, 400);
   }
 
+  // Single redirect using WhatsApp Universal Link.
+  // chat.whatsapp.com auto-opens the WhatsApp app on iOS/Android via
+  // Universal Links / App Links. No need for whatsapp:// scheme (deprecated).
+  // On desktop: shows the WhatsApp web "Join group" page.
   function attemptToOpenApp() {
-    window.location.href = appLink;
-    setTimeout(() => { window.location.href = webLink; }, 1500);
+    window.location.href = webLink;
   }
 
   window.addEventListener('load', () => {
     updateStatus();
-    // 2.5s delay = full progress bar animation + cookie warming time
-    setTimeout(attemptToOpenApp, 2500);
+    // 1s delay — gives cookie warming + status text time to flash, then redirects
+    setTimeout(attemptToOpenApp, 1000);
   });
 </script>
 
