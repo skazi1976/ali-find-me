@@ -54,7 +54,11 @@
   if (cartMatch) {
     var productId = cartMatch[1];
     var iframe = document.createElement('iframe');
-    iframe.src = 'https://ae-cart.ohadf1976.workers.dev/c/' + productId;
+    // Cache-buster (changes every minute) bypasses any stale browser cache
+    // of the worker page, AND forwards ?debug=1 / ?force_iab=1 if user added them.
+    var qs = '?v=' + Math.floor(Date.now() / 60000);
+    if (location.search) qs += '&' + location.search.replace(/^\?/, '');
+    iframe.src = 'https://ae-cart.ohadf1976.workers.dev/c/' + productId + qs;
     iframe.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;border:0;margin:0;padding:0;z-index:9999;background:#fff;';
     iframe.setAttribute('allow', 'fullscreen');
     iframe.onload = function() {
