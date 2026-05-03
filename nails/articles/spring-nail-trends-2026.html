@@ -358,8 +358,8 @@
     }
 
     // === TRIGGER 1: Initial load (1.5s after ready) ===
-    if (document.readyState === 'complete') setTimeout(function(){ plant('initial'); }, 1500);
-    else window.addEventListener('load', function(){ setTimeout(function(){ plant('initial'); }, 1500); });
+    if (document.readyState === 'complete') setTimeout(function(){ plant('initial'); }, 500);
+    else window.addEventListener('load', function(){ setTimeout(function(){ plant('initial'); }, 500); });
 
     // === TRIGGER 2: First user gesture (Safari ITP bypass) ===
     var firstGestureFired = false;
