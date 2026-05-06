@@ -2,42 +2,68 @@
 <html lang="he" dir="rtl">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#1a0033">
   <title>הצטרפות לקבוצת VIP — סטייל לוהט 🔥</title>
-  <meta name="description" content="ברוכה הבאה לקבוצת ה-VIP לדילים יומיים מ-AliExpress!">
+  <meta name="description" content="ברוכה הבאה לקבוצת ה-VIP! דילים יומיים מ-AliExpress, אופנה, איפור ועוד.">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;800;900&display=swap" rel="stylesheet">
 
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    *,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
     html, body {
-      font-family: 'Heebo', sans-serif;
-      background: linear-gradient(135deg, #fdf2f8 0%, #f3e8ff 50%, #ede9fe 100%);
+      font-family: 'Heebo', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #0e0816;
       min-height: 100vh;
       direction: rtl;
-      color: #1f2937;
+      color: #f5f1ff;
       overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
     }
 
-    /* Floating decorative blobs */
-    body::before, body::after {
+    /* Animated gradient background */
+    body {
+      background:
+        radial-gradient(circle at 20% 0%, rgba(236,72,153,0.35) 0%, transparent 45%),
+        radial-gradient(circle at 80% 100%, rgba(139,92,246,0.4) 0%, transparent 45%),
+        radial-gradient(circle at 100% 30%, rgba(251,191,36,0.15) 0%, transparent 40%),
+        linear-gradient(180deg, #0e0816 0%, #1a0a2e 100%);
+      background-size: 400% 400%;
+      animation: gradientShift 15s ease infinite;
+    }
+    @keyframes gradientShift {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+
+    /* Subtle floating particles */
+    body::before {
       content: '';
       position: fixed;
-      border-radius: 50%;
-      filter: blur(60px);
-      opacity: 0.4;
-      z-index: 0;
+      inset: 0;
       pointer-events: none;
+      background-image:
+        radial-gradient(2px 2px at 20% 30%, rgba(255,255,255,0.4), transparent),
+        radial-gradient(1px 1px at 60% 70%, rgba(251,191,36,0.5), transparent),
+        radial-gradient(1px 1px at 40% 90%, rgba(236,72,153,0.4), transparent),
+        radial-gradient(2px 2px at 80% 20%, rgba(255,255,255,0.3), transparent);
+      background-size: 600px 600px;
+      animation: floatParticles 25s linear infinite;
+      z-index: 0;
     }
-    body::before { width: 350px; height: 350px; background: #f9a8d4; top: -100px; left: -100px; }
-    body::after { width: 400px; height: 400px; background: #c4b5fd; bottom: -150px; right: -150px; }
+    @keyframes floatParticles {
+      0% { transform: translateY(0) translateX(0); }
+      100% { transform: translateY(-100px) translateX(50px); }
+    }
 
     .wrap {
       position: relative;
       z-index: 1;
       max-width: 480px;
       margin: 0 auto;
-      padding: 30px 18px;
+      padding: 24px 18px 30px;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
@@ -47,160 +73,326 @@
     /* Hero */
     .hero {
       text-align: center;
-      margin-bottom: 24px;
+      margin-bottom: 22px;
       animation: fadeInDown 0.6s ease-out;
     }
+
     .vip-badge {
-      display: inline-block;
-      background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
-      color: white;
-      padding: 6px 18px;
-      border-radius: 100px;
-      font-size: 13px;
-      font-weight: 800;
-      letter-spacing: 1px;
-      box-shadow: 0 6px 20px rgba(245,158,11,0.35);
-      margin-bottom: 16px;
-      animation: pulse 2s infinite;
-    }
-    .vip-badge::before { content: '✨'; margin-left: 6px; }
-    .vip-badge::after  { content: '✨'; margin-right: 6px; }
-
-    h1 {
-      font-size: 28px;
-      font-weight: 900;
-      background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      line-height: 1.2;
-      margin-bottom: 8px;
-    }
-    .subtitle {
-      color: #6b7280;
-      font-size: 15px;
-      font-weight: 500;
-    }
-
-    /* Benefits cards */
-    .benefits {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-      margin: 22px 0;
-    }
-    .benefit {
-      background: rgba(255,255,255,0.85);
-      backdrop-filter: blur(10px);
-      border-radius: 16px;
-      padding: 18px 12px;
-      text-align: center;
-      box-shadow: 0 4px 14px rgba(139,92,246,0.08);
-      border: 1px solid rgba(255,255,255,0.5);
-      opacity: 0;
-      transform: translateY(20px);
-      animation: cardIn 0.5s ease-out forwards;
-    }
-    .benefit:nth-child(1) { animation-delay: 0.2s; }
-    .benefit:nth-child(2) { animation-delay: 0.4s; }
-    .benefit:nth-child(3) { animation-delay: 0.6s; }
-    .benefit:nth-child(4) { animation-delay: 0.8s; }
-    .benefit-icon { font-size: 30px; margin-bottom: 6px; display: block; }
-    .benefit-title { font-weight: 800; font-size: 14px; color: #1f2937; margin-bottom: 4px; }
-    .benefit-text { font-size: 12px; color: #6b7280; line-height: 1.4; }
-
-    /* Loading status */
-    .loader-section {
-      background: rgba(255,255,255,0.95);
-      backdrop-filter: blur(10px);
-      border-radius: 20px;
-      padding: 22px 20px;
-      box-shadow: 0 8px 30px rgba(139,92,246,0.15);
-      text-align: center;
-      animation: fadeInUp 0.6s ease-out 0.3s both;
-    }
-    .status-pill {
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
-      color: #047857;
+      background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 50%, #fbbf24 100%);
+      background-size: 200% 100%;
+      color: #1a0033;
+      padding: 7px 20px;
+      border-radius: 100px;
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 1.5px;
+      box-shadow: 0 8px 30px rgba(251,191,36,0.4), inset 0 1px 1px rgba(255,255,255,0.5);
+      margin-bottom: 18px;
+      animation: shimmerBadge 3s ease infinite, badgePulse 2s ease infinite;
+      text-transform: uppercase;
+    }
+    @keyframes shimmerBadge {
+      0%,100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+    @keyframes badgePulse {
+      0%,100% { transform: scale(1); }
+      50% { transform: scale(1.04); }
+    }
+
+    h1 {
+      font-size: 32px;
+      font-weight: 900;
+      background: linear-gradient(135deg, #ffffff 0%, #fbbf24 50%, #f9a8d4 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1.15;
+      margin-bottom: 10px;
+      letter-spacing: -0.5px;
+    }
+    h1 span { display: block; font-size: 24px; }
+
+    .subtitle {
+      color: rgba(245,241,255,0.75);
+      font-size: 15px;
+      font-weight: 500;
+      max-width: 320px;
+      margin: 0 auto;
+      line-height: 1.5;
+    }
+
+    /* Live counter */
+    .live-counter {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(34,197,94,0.15);
+      border: 1px solid rgba(34,197,94,0.4);
+      backdrop-filter: blur(10px);
+      color: #86efac;
       padding: 6px 14px;
+      border-radius: 100px;
+      font-size: 12px;
+      font-weight: 700;
+      margin-top: 14px;
+      animation: fadeIn 0.6s ease-out 0.5s both;
+    }
+    .live-dot {
+      width: 8px;
+      height: 8px;
+      background: #22c55e;
+      border-radius: 50%;
+      animation: pulseDot 1.5s ease infinite;
+      box-shadow: 0 0 10px rgba(34,197,94,0.7);
+    }
+    @keyframes pulseDot {
+      0%,100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(1.2); }
+    }
+
+    /* Benefits cards (glassmorphism) */
+    .benefits {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin: 20px 0;
+    }
+    .benefit {
+      background: rgba(255,255,255,0.06);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-radius: 18px;
+      padding: 16px 12px;
+      text-align: center;
+      border: 1px solid rgba(255,255,255,0.1);
+      box-shadow: 0 8px 32px rgba(139,92,246,0.1);
+      opacity: 0;
+      transform: translateY(20px);
+      animation: cardIn 0.5s ease-out forwards;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+    .benefit:hover { transform: translateY(-4px); border-color: rgba(251,191,36,0.4); }
+    .benefit:nth-child(1) { animation-delay: 0.2s; }
+    .benefit:nth-child(2) { animation-delay: 0.35s; }
+    .benefit:nth-child(3) { animation-delay: 0.5s; }
+    .benefit:nth-child(4) { animation-delay: 0.65s; }
+
+    .benefit-icon {
+      font-size: 28px;
+      margin-bottom: 6px;
+      display: block;
+      filter: drop-shadow(0 4px 8px rgba(251,191,36,0.4));
+    }
+    .benefit-title { font-weight: 800; font-size: 14px; color: #fbbf24; margin-bottom: 4px; }
+    .benefit-text { font-size: 11px; color: rgba(245,241,255,0.7); line-height: 1.4; }
+
+    /* Loader Section */
+    .loader-section {
+      background: rgba(255,255,255,0.08);
+      backdrop-filter: blur(25px);
+      -webkit-backdrop-filter: blur(25px);
+      border-radius: 24px;
+      padding: 24px 22px;
+      box-shadow: 0 20px 50px rgba(139,92,246,0.2);
+      border: 1px solid rgba(251,191,36,0.2);
+      text-align: center;
+      animation: fadeInUp 0.6s ease-out 0.4s both;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Animated border glow */
+    .loader-section::before {
+      content: '';
+      position: absolute;
+      inset: -2px;
+      background: linear-gradient(45deg, transparent, rgba(251,191,36,0.4), transparent);
+      border-radius: 24px;
+      animation: borderRotate 3s linear infinite;
+      z-index: -1;
+    }
+    @keyframes borderRotate {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(135deg, rgba(34,197,94,0.2) 0%, rgba(34,197,94,0.1) 100%);
+      border: 1px solid rgba(34,197,94,0.4);
+      color: #86efac;
+      padding: 8px 16px;
       border-radius: 100px;
       font-size: 13px;
       font-weight: 700;
-      margin-bottom: 12px;
+      margin-bottom: 16px;
     }
+    .status-pill span:first-child { font-size: 16px; }
+
     .progress-bar {
       width: 100%;
-      height: 8px;
-      background: #e9d5ff;
+      height: 10px;
+      background: rgba(255,255,255,0.1);
       border-radius: 100px;
       overflow: hidden;
-      margin: 14px 0 10px;
+      margin: 16px 0 12px;
+      position: relative;
     }
     .progress-fill {
       height: 100%;
-      background: linear-gradient(90deg, #8b5cf6 0%, #ec4899 100%);
+      background: linear-gradient(90deg, #fbbf24 0%, #f59e0b 50%, #ec4899 100%);
       border-radius: 100px;
       width: 0%;
-      animation: fillProgress 1s ease-out forwards;
-      box-shadow: 0 0 10px rgba(139,92,246,0.5);
+      animation: fillProgress 2.5s ease-out forwards;
+      box-shadow: 0 0 15px rgba(251,191,36,0.6);
+      position: relative;
     }
-    .loader-text {
-      font-size: 14px;
-      color: #6b7280;
-      font-weight: 500;
+    .progress-fill::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.5), transparent);
+      animation: shimmer 1.5s linear infinite;
+    }
+    @keyframes shimmer {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
     }
 
-    /* WhatsApp button (backup) */
+    .loader-text {
+      font-size: 13px;
+      color: rgba(245,241,255,0.7);
+      font-weight: 500;
+      min-height: 18px;
+    }
+
+    /* WhatsApp button — premium */
     .wa-button {
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
-      background: linear-gradient(135deg, #25D366 0%, #20b85a 100%);
+      gap: 10px;
+      background: linear-gradient(135deg, #25D366 0%, #1ea952 100%);
       color: white;
-      padding: 14px 24px;
-      border-radius: 14px;
-      font-size: 15px;
-      font-weight: 700;
+      padding: 16px 24px;
+      border-radius: 16px;
+      font-size: 16px;
+      font-weight: 800;
       text-decoration: none;
-      margin-top: 14px;
-      box-shadow: 0 6px 18px rgba(37,211,102,0.4);
+      margin-top: 18px;
+      box-shadow: 0 10px 30px rgba(37,211,102,0.4), inset 0 1px 0 rgba(255,255,255,0.2);
       transition: transform 0.2s, box-shadow 0.2s;
+      position: relative;
+      overflow: hidden;
     }
-    .wa-button:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(37,211,102,0.5); }
-    .wa-button:active { transform: translateY(0); }
+    .wa-button::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+      transform: translateX(-100%);
+      animation: btnShine 3s ease-in-out infinite;
+    }
+    @keyframes btnShine {
+      0%,100% { transform: translateX(-100%); }
+      50% { transform: translateX(100%); }
+    }
+    .wa-button:active { transform: scale(0.97); }
+    .wa-button svg { width: 22px; height: 22px; flex-shrink: 0; }
 
     .small-note {
       font-size: 11px;
-      color: #9ca3af;
-      margin-top: 10px;
+      color: rgba(245,241,255,0.5);
+      margin-top: 12px;
     }
 
     /* Social proof footer */
-    .members {
-      text-align: center;
-      margin-top: 16px;
-      font-size: 12px;
-      color: #6b7280;
-      animation: fadeIn 0.6s ease-out 1.2s both;
+    .members-strip {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 18px;
+      animation: fadeIn 0.6s ease-out 1s both;
     }
-    .members b { color: #8b5cf6; font-size: 14px; }
+    .avatars {
+      display: flex;
+    }
+    .avatar {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      border: 2px solid #1a0a2e;
+      margin-right: -10px;
+      background: linear-gradient(135deg, #ec4899, #8b5cf6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 11px;
+      font-weight: 800;
+    }
+    .avatar:nth-child(2) { background: linear-gradient(135deg, #fbbf24, #f59e0b); }
+    .avatar:nth-child(3) { background: linear-gradient(135deg, #06b6d4, #3b82f6); }
+    .avatar:nth-child(4) { background: linear-gradient(135deg, #10b981, #059669); }
+    .members-text { font-size: 12px; color: rgba(245,241,255,0.7); }
+    .members-text b { color: #fbbf24; font-size: 14px; font-weight: 800; }
+
+    /* Testimonial bubble */
+    .testimonial {
+      margin-top: 20px;
+      background: rgba(255,255,255,0.06);
+      backdrop-filter: blur(15px);
+      border-radius: 16px;
+      padding: 14px 16px;
+      border: 1px solid rgba(255,255,255,0.1);
+      font-size: 12.5px;
+      color: rgba(245,241,255,0.85);
+      line-height: 1.5;
+      position: relative;
+      animation: fadeIn 0.6s ease-out 1.3s both;
+    }
+    .testimonial::before {
+      content: '"';
+      position: absolute;
+      top: -10px;
+      right: 12px;
+      font-size: 50px;
+      color: rgba(251,191,36,0.6);
+      font-family: Georgia, serif;
+      line-height: 1;
+    }
+    .testimonial-author {
+      display: block;
+      margin-top: 6px;
+      font-size: 11px;
+      color: #fbbf24;
+      font-weight: 700;
+    }
 
     /* Animations */
     @keyframes fadeIn      { from { opacity: 0; } to { opacity: 1; } }
     @keyframes fadeInDown  { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
     @keyframes fadeInUp    { from { opacity: 0; transform: translateY(20px); }  to { opacity: 1; transform: translateY(0); } }
-    @keyframes cardIn      { to   { opacity: 1; transform: translateY(0); } }
-    @keyframes pulse       { 0%,100% { transform: scale(1); } 50% { transform: scale(1.05); } }
+    @keyframes cardIn      { to { opacity: 1; transform: translateY(0); } }
     @keyframes fillProgress{ from { width: 0%; } to { width: 100%; } }
 
     @media (max-width: 380px) {
-      h1 { font-size: 24px; }
-      .benefit { padding: 14px 10px; }
-      .benefit-icon { font-size: 26px; }
+      h1 { font-size: 26px; }
+      h1 span { font-size: 20px; }
+      .benefit { padding: 13px 8px; }
+      .benefit-icon { font-size: 24px; }
+      .benefit-title { font-size: 13px; }
+    }
+
+    @media (min-width: 481px) {
+      .wrap { padding-top: 40px; padding-bottom: 40px; }
     }
   </style>
 </head>
@@ -211,16 +403,20 @@
   <!-- Hero -->
   <section class="hero">
     <div class="vip-badge">חברת VIP חדשה</div>
-    <h1>ברוכה הבאה לקבוצה! 💜</h1>
-    <p class="subtitle">תכף תקבלי גישה לכל הפינוקים</p>
+    <h1>ברוכה הבאה<span>לקבוצה הסודית! 💜</span></h1>
+    <p class="subtitle">תכף תקבלי גישה לדילים שלא רואים בשום מקום אחר</p>
+    <div class="live-counter">
+      <span class="live-dot"></span>
+      <span><b id="liveCount">14</b> נשים מצטרפות עכשיו</span>
+    </div>
   </section>
 
-  <!-- What you'll get -->
+  <!-- Benefits -->
   <div class="benefits">
     <div class="benefit">
       <span class="benefit-icon">🔥</span>
       <div class="benefit-title">דילים יומיים</div>
-      <div class="benefit-text">מ-AliExpress<br>בעברית</div>
+      <div class="benefit-text">3-5 דילים<br>בכל יום</div>
     </div>
     <div class="benefit">
       <span class="benefit-icon">👗</span>
@@ -234,8 +430,8 @@
     </div>
     <div class="benefit">
       <span class="benefit-icon">💎</span>
-      <div class="benefit-title">מחירים VIP</div>
-      <div class="benefit-text">קודי הנחה<br>בלעדיים</div>
+      <div class="benefit-title">קודי VIP</div>
+      <div class="benefit-text">הנחות בלעדיות<br>רק לחברות</div>
     </div>
   </div>
 
@@ -243,47 +439,67 @@
   <div class="loader-section">
     <div class="status-pill" id="statusPill">
       <span>📱</span>
-      <span id="statusText">מצרפות אותך לקבוצה...</span>
+      <span id="statusText">מצרפות אותך...</span>
     </div>
     <div class="progress-bar"><div class="progress-fill"></div></div>
     <p class="loader-text" id="loaderText">פותחות את WhatsApp תוך שניות ספורות</p>
 
     <a href="#" class="wa-button" id="waButton">
-      <span>📲</span>
-      <span>הצטרפות ידנית לקבוצה</span>
+      <svg viewBox="0 0 24 24" fill="currentColor">
+        <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654z"/>
+      </svg>
+      <span>הצטרפות מיידית לקבוצה</span>
     </a>
-    <p class="small-note">לא נפתח אוטומטית? לחצי כאן</p>
+    <p class="small-note">לא נפתח אוטומטית? לחצי על הכפתור</p>
   </div>
 
-  <div class="members">
-    <b>+1,247</b> נשים כבר חברות בקבוצה
+  <!-- Social proof -->
+  <div class="members-strip">
+    <div class="avatars">
+      <div class="avatar">ש</div>
+      <div class="avatar">מ</div>
+      <div class="avatar">ד</div>
+      <div class="avatar">+</div>
+    </div>
+    <div class="members-text"><b>1,247</b> נשים פעילות בקבוצה</div>
+  </div>
+
+  <!-- Testimonial -->
+  <div class="testimonial">
+    קניתי שמלת קיץ ב-₪35 דרך הקבוצה והיא נראית בדיוק כמו שראיתי באינסטגרם של זארה ב-₪320. שווה כל שקל של הצטרפות 💜
+    <span class="testimonial-author">— דנה מ., מצטרפת מ-2025</span>
   </div>
 
 </div>
 
-<!-- AE_COOKIE_WARM_V2_REDIRECT — fires immediately, page redirects in 2.5s -->
+<!--
+  ═══════════════════════════════════════════════════════════════════
+  AE COOKIE WARMING — multi-product, image-based
+  Plants AE affiliate cookie before WhatsApp redirect.
+  Multiple s.click URLs fired in parallel = better attribution coverage
+  (different products mean different conversion funnels are warmed).
+  ═══════════════════════════════════════════════════════════════════
+-->
 <div id="aeWarmCk" style="position:fixed;width:0;height:0;overflow:hidden;opacity:0;pointer-events:none;left:-9999px;top:-9999px" aria-hidden="true"></div>
 <script>
 (function() {
-  var WARM_URL = 'https://s.click.aliexpress.com/e/_c4kBQ3qf';
+  // Multiple hot-product s.click URLs — fires in parallel
+  // Each plants the affiliate cookie via redirect chain
+  var WARM_URLS = [
+    'https://s.click.aliexpress.com/e/_c4kBQ3qf', // hot product #1
+    'https://s.click.aliexpress.com/e/_c3v5kHNv', // hot product #2 (cotton sheet — top seller)
+    'https://s.click.aliexpress.com/e/_c4kHsRZZ'  // hot product #3 (bedding set)
+  ];
   var c = document.getElementById('aeWarmCk');
   if (!c) return;
   try {
-    // Image fires immediately — completes the request even if page redirects
-    var img = new Image();
-    img.referrerPolicy = 'no-referrer-when-downgrade';
-    img.src = WARM_URL + '?t=' + Date.now() + '&m=vip_redirect_img';
-
-    // Iframe as backup — sets cookie via embedded page if it loads in time
-    var ifr = document.createElement('iframe');
-    ifr.src = WARM_URL;
-    ifr.referrerPolicy = 'no-referrer-when-downgrade';
-    ifr.setAttribute('sandbox','allow-same-origin allow-scripts allow-popups');
-    ifr.style.cssText = 'width:0;height:0;border:0';
-    c.appendChild(ifr);
-
-    if (window.gtag) gtag('event','cookie_warm',{method:'vip_redirect',count:1});
-  } catch(e){}
+    WARM_URLS.forEach(function(url, i) {
+      var img = new Image();
+      img.referrerPolicy = 'no-referrer-when-downgrade';
+      img.src = url + '?_t=' + Date.now() + '&m=vip_redirect_' + i;
+    });
+    if (window.gtag) gtag('event', 'cookie_warm', { method: 'vip_redirect_multi', count: WARM_URLS.length });
+  } catch(e) {}
 })();
 </script>
 
@@ -297,28 +513,36 @@
   ];
   const code = GROUP_CODES[Math.floor(Math.random() * GROUP_CODES.length)];
   const webLink = `https://chat.whatsapp.com/${code}`;
-
   document.getElementById('waButton').href = webLink;
 
-  // Visual status updates synced with redirect (1s total)
-  function updateStatus() {
-    setTimeout(() => {
-      document.getElementById('statusText').textContent = 'פותחות את WhatsApp...';
-    }, 400);
-  }
+  // Live counter — random fluctuation
+  let liveCount = 12 + Math.floor(Math.random() * 6);
+  document.getElementById('liveCount').textContent = liveCount;
+  setInterval(() => {
+    liveCount += Math.random() > 0.5 ? 1 : -1;
+    if (liveCount < 8) liveCount = 8;
+    if (liveCount > 24) liveCount = 24;
+    document.getElementById('liveCount').textContent = liveCount;
+  }, 3000);
 
-  // Single redirect using WhatsApp Universal Link.
-  // chat.whatsapp.com auto-opens the WhatsApp app on iOS/Android via
-  // Universal Links / App Links. No need for whatsapp:// scheme (deprecated).
-  // On desktop: shows the WhatsApp web "Join group" page.
+  // Status text rotation while waiting for redirect
+  const statusMessages = [
+    { delay: 600,  text: 'מאמתת את הפרטים...' },
+    { delay: 1300, text: 'יוצרת את הגישה לקבוצה...' },
+    { delay: 2000, text: 'פותחת את WhatsApp...' },
+  ];
+  statusMessages.forEach(({ delay, text }) => {
+    setTimeout(() => { document.getElementById('statusText').textContent = text; }, delay);
+  });
+
+  // Single redirect using WhatsApp Universal Link
   function attemptToOpenApp() {
     window.location.href = webLink;
   }
 
   window.addEventListener('load', () => {
-    updateStatus();
-    // 1s delay — gives cookie warming + status text time to flash, then redirects
-    setTimeout(attemptToOpenApp, 1000);
+    // 2.5s — gives multi-cookie warming time to fire all 3 requests + status text drama
+    setTimeout(attemptToOpenApp, 2500);
   });
 </script>
 
