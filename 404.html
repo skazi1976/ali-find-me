@@ -51,6 +51,25 @@
     }
   }
 
+  // /s/<storeId> → render STORE landing page via full-page iframe
+  var storeMatch = path.match(/^\/s\/(\d+)\/?$/);
+  if (storeMatch) {
+    var storeId = storeMatch[1];
+    if (window.gtag) gtag('event', 'store_view', { store_id: storeId, source: 'bridge_iframe' });
+    var sIframe = document.createElement('iframe');
+    var sQs = '?v=' + Math.floor(Date.now() / 60000);
+    if (location.search) sQs += '&' + location.search.replace(/^\?/, '');
+    sIframe.src = 'https://ae-cart.ohadf1976.workers.dev/s/' + storeId + sQs;
+    sIframe.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;border:0;margin:0;padding:0;z-index:9999;background:#fff;';
+    sIframe.setAttribute('allow', 'fullscreen');
+    sIframe.onload = function() {
+      var loader = document.querySelector('.loader');
+      if (loader) loader.style.display = 'none';
+    };
+    document.body.appendChild(sIframe);
+    return;
+  }
+
   // /c/<productId> → render landing page from ae-cart worker via full-page iframe (URL preserved)
   var cartMatch = path.match(/^\/c\/(\d+)\/?$/);
   if (cartMatch) {
