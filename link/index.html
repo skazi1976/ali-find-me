@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<title>יצירת קישור עם שתילת קוקיז — ali find me</title>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-18NLX6KS89"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-18NLX6KS89');</script>
+<style>
+  *,*::before,*::after { box-sizing:border-box; }
+  body { margin:0; padding:0; font-family:'Heebo','Assistant',-apple-system,BlinkMacSystemFont,sans-serif; background:linear-gradient(135deg,#fff5f0 0%,#ffe8d9 100%); min-height:100vh; color:#222; }
+  .wrap { max-width:560px; margin:0 auto; padding:24px 16px 60px; }
+  .header { text-align:center; margin-bottom:24px; }
+  .logo { font-size:32px; margin-bottom:6px; }
+  h1 { font-size:22px; font-weight:800; margin:0 0 6px; color:#222; }
+  .sub { font-size:14px; color:#666; line-height:1.5; }
+  .card { background:#fff; border-radius:16px; padding:22px 18px; box-shadow:0 8px 32px rgba(255,107,53,0.12); margin-bottom:16px; }
+  label { display:block; font-size:14px; font-weight:600; margin-bottom:8px; color:#333; }
+  textarea { width:100%; min-height:80px; padding:12px 14px; border:2px solid #f0e0d6; border-radius:12px; font-size:14px; font-family:inherit; resize:vertical; direction:ltr; text-align:left; outline:none; transition:border-color 0.2s; }
+  textarea:focus { border-color:#ff5722; }
+  .btn { display:block; width:100%; margin-top:14px; padding:16px; background:linear-gradient(90deg,#ff3030,#ff6b35); color:#fff; border:0; border-radius:12px; font-size:16px; font-weight:800; cursor:pointer; font-family:inherit; box-shadow:0 6px 20px rgba(255,48,48,0.3); transition:transform 0.15s; }
+  .btn:active { transform:scale(0.97); }
+  .btn:disabled { opacity:0.6; cursor:not-allowed; }
+  .hint { font-size:12px; color:#999; margin-top:8px; line-height:1.6; }
+  .result { display:none; }
+  .result.show { display:block; }
+  .resultBox { background:linear-gradient(135deg,#fff8f6,#fff); border:2px solid #ffd9c4; border-radius:12px; padding:16px; margin-top:12px; }
+  .resultLabel { font-size:12px; color:#888; margin-bottom:6px; font-weight:600; }
+  .resultUrl { font-family:'Courier New',monospace; font-size:14px; word-break:break-all; color:#ff3030; font-weight:600; padding:10px 12px; background:#fff; border-radius:8px; border:1px solid #ffe0d3; direction:ltr; text-align:left; user-select:all; }
+  .copyBtn { margin-top:10px; width:100%; padding:12px; background:#fff; color:#ff5722; border:2px solid #ff5722; border-radius:10px; font-size:14px; font-weight:700; cursor:pointer; font-family:inherit; transition:all 0.2s; }
+  .copyBtn:active { transform:scale(0.97); }
+  .copyBtn.copied { background:#22c55e; color:#fff; border-color:#22c55e; }
+  .meta { margin-top:10px; font-size:12px; color:#666; }
+  .meta strong { color:#222; }
+  .typeBadge { display:inline-block; background:#ff5722; color:#fff; padding:3px 10px; border-radius:20px; font-size:11px; font-weight:700; margin-bottom:8px; }
+  .err { background:#fff0f0; color:#c00; padding:12px; border-radius:10px; border:1px solid #ffd0d0; font-size:13px; margin-top:10px; }
+  .spinner { display:none; width:24px; height:24px; border:3px solid #ffe0d3; border-top-color:#ff5722; border-radius:50%; animation:spin 0.8s linear infinite; margin:14px auto 0; }
+  .spinner.show { display:block; }
+  @keyframes spin { to { transform:rotate(360deg); } }
+  .examples { font-size:12px; color:#777; line-height:1.8; margin-top:14px; padding:12px; background:#fafafa; border-radius:10px; }
+  .examples code { background:#fff; padding:1px 6px; border-radius:4px; color:#ff5722; font-size:11px; font-family:'Courier New',monospace; direction:ltr; display:inline-block; }
+  .features { margin-top:18px; display:grid; grid-template-columns:repeat(2,1fr); gap:8px; }
+  .feat { background:#fff; border:1px solid #ffe0d3; border-radius:10px; padding:10px; font-size:12px; color:#555; text-align:center; }
+  .feat .fIcon { display:block; font-size:20px; margin-bottom:4px; }
+  .history { margin-top:20px; }
+  .historyTitle { font-size:13px; font-weight:700; color:#666; margin-bottom:8px; }
+  .histItem { background:#fff; border:1px solid #f0e0d6; border-radius:8px; padding:10px 12px; margin-bottom:6px; font-size:12px; display:flex; align-items:center; justify-content:space-between; gap:8px; }
+  .histItem a { color:#ff3030; text-decoration:none; flex:1; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; font-family:'Courier New',monospace; direction:ltr; }
+  .histItem button { background:#f8f8f8; border:0; padding:6px 10px; border-radius:6px; font-size:11px; cursor:pointer; font-family:inherit; flex-shrink:0; }
+  .ftr { text-align:center; font-size:11px; color:#aaa; margin-top:24px; }
+  .ftr a { color:#888; text-decoration:none; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="header">
+    <div class="logo">🍪</div>
+    <h1>יצירת קישור עם שתילת קוקיז</h1>
+    <div class="sub">הדבק קישור AliExpress → קבל קישור עם שתילת קוקיז מלאה</div>
+  </div>
+
+  <div class="card">
+    <label for="src">קישור AliExpress (כל סוג)</label>
+    <textarea id="src" placeholder="לדוגמה: https://s.click.aliexpress.com/e/_c3SwSArn או https://www.aliexpress.com/item/1005009365785337.html או store/2762011 או רק המספר" autofocus></textarea>
+    <button class="btn" id="goBtn" onclick="resolve()">צור קישור עם שתילת קוקיז</button>
+    <div class="hint">תומך ב: <code>s.click.aliexpress.com</code> · <code>aliexpress.com/item/...</code> · <code>aliexpress.com/store/...</code> · מספר ID ישיר</div>
+    <div class="spinner" id="spinner"></div>
+  </div>
+
+  <div class="result" id="result">
+    <div class="card">
+      <div id="typeBadge" class="typeBadge">מוצר</div>
+      <div class="resultLabel">📎 הקישור שלך (העתק והדבק בכל פלטפורמה)</div>
+      <div class="resultUrl" id="landingUrl">—</div>
+      <button class="copyBtn" id="copyBtn" onclick="copyLanding()">📋 העתק</button>
+
+      <div class="features">
+        <div class="feat"><span class="fIcon">🍪</span>שתילת קוקיז<br>אגרסיבית</div>
+        <div class="feat"><span class="fIcon">📱</span>עובד בכל<br>פלטפורמה</div>
+        <div class="feat"><span class="fIcon">📊</span>מעקב ב-GA<br>(cart_view)</div>
+        <div class="feat"><span class="fIcon">⚡</span>iframe + image<br>במקביל</div>
+      </div>
+
+      <details style="margin-top:14px">
+        <summary style="cursor:pointer;font-size:13px;color:#666">מידע טכני (לחץ להרחבה)</summary>
+        <div class="meta">
+          <div>סוג: <strong id="metaType">—</strong></div>
+          <div>ID: <strong id="metaId">—</strong></div>
+          <div style="margin-top:6px">קישור אפיליאט גולמי:<br><span id="metaAff" style="font-family:monospace;font-size:11px;direction:ltr;display:inline-block;background:#f8f8f8;padding:4px 8px;border-radius:4px;margin-top:2px">—</span></div>
+        </div>
+      </details>
+    </div>
+  </div>
+
+  <div class="history" id="history" style="display:none">
+    <div class="historyTitle">🕒 קישורים אחרונים שיצרת</div>
+    <div id="historyList"></div>
+  </div>
+
+  <div class="ftr">
+    <a href="https://alifindme.com">alifindme.com</a> · המנוע החכם של AliExpress
+  </div>
+
+</div>
+
+<script>
+const API = 'https://ae-cart.ohadf1976.workers.dev/api/resolve';
+const HIST_KEY = 'aelink_history';
+
+function showError(msg) {
+  document.getElementById('result').classList.add('show');
+  document.getElementById('landingUrl').innerHTML = '<span style="color:#c00">⚠️ ' + msg + '</span>';
+  document.getElementById('typeBadge').style.display = 'none';
+  document.querySelectorAll('.feat, details').forEach(e => e.style.display = 'none');
+}
+
+async function resolve() {
+  const src = document.getElementById('src').value.trim();
+  if (!src) {
+    document.getElementById('src').focus();
+    return;
+  }
+  const btn = document.getElementById('goBtn');
+  const spinner = document.getElementById('spinner');
+  btn.disabled = true;
+  btn.textContent = 'מעבד...';
+  spinner.classList.add('show');
+  document.getElementById('result').classList.remove('show');
+
+  try {
+    const r = await fetch(API + '?url=' + encodeURIComponent(src));
+    const data = await r.json();
+    if (data.error) {
+      showError(data.error);
+      gtag('event', 'link_resolve_fail', { reason: data.error });
+      return;
+    }
+
+    // Restore all hidden elements
+    document.getElementById('typeBadge').style.display = '';
+    document.querySelectorAll('.feat, details').forEach(e => e.style.display = '');
+
+    document.getElementById('landingUrl').textContent = data.landing;
+    document.getElementById('typeBadge').textContent = data.type === 'store' ? '🏬 חנות' : '📦 מוצר';
+    document.getElementById('metaType').textContent = data.type;
+    document.getElementById('metaId').textContent = data.id;
+    document.getElementById('metaAff').textContent = data.affiliate || '—';
+    document.getElementById('result').classList.add('show');
+
+    saveToHistory(data);
+    gtag('event', 'link_resolve_ok', { type: data.type, id: data.id });
+  } catch (e) {
+    showError('שגיאת רשת: ' + e.message);
+  } finally {
+    btn.disabled = false;
+    btn.textContent = 'צור קישור עם שתילת קוקיז';
+    spinner.classList.remove('show');
+  }
+}
+
+async function copyLanding() {
+  const url = document.getElementById('landingUrl').textContent;
+  const btn = document.getElementById('copyBtn');
+  try {
+    await navigator.clipboard.writeText(url);
+    btn.textContent = '✅ הועתק!';
+    btn.classList.add('copied');
+    gtag('event', 'link_copied', { url });
+    setTimeout(() => { btn.textContent = '📋 העתק'; btn.classList.remove('copied'); }, 1800);
+  } catch (e) {
+    // Fallback for older browsers
+    const ta = document.createElement('textarea');
+    ta.value = url;
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+    btn.textContent = '✅ הועתק!';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = '📋 העתק'; btn.classList.remove('copied'); }, 1800);
+  }
+}
+
+function saveToHistory(data) {
+  try {
+    let hist = JSON.parse(localStorage.getItem(HIST_KEY) || '[]');
+    hist = hist.filter(h => h.landing !== data.landing);
+    hist.unshift({ landing: data.landing, type: data.type, id: data.id, ts: Date.now() });
+    hist = hist.slice(0, 10);
+    localStorage.setItem(HIST_KEY, JSON.stringify(hist));
+    renderHistory();
+  } catch (e) {}
+}
+
+function renderHistory() {
+  try {
+    const hist = JSON.parse(localStorage.getItem(HIST_KEY) || '[]');
+    const wrap = document.getElementById('history');
+    const list = document.getElementById('historyList');
+    if (!hist.length) { wrap.style.display = 'none'; return; }
+    wrap.style.display = '';
+    list.innerHTML = hist.map(h => {
+      const icon = h.type === 'store' ? '🏬' : '📦';
+      return `<div class="histItem">
+        <span>${icon}</span>
+        <a href="${h.landing}" target="_blank">${h.landing}</a>
+        <button onclick="copyText('${h.landing}', this)">📋</button>
+      </div>`;
+    }).join('');
+  } catch (e) {}
+}
+
+async function copyText(text, btn) {
+  try {
+    await navigator.clipboard.writeText(text);
+    const orig = btn.textContent;
+    btn.textContent = '✅';
+    setTimeout(() => btn.textContent = orig, 1200);
+  } catch (e) {}
+}
+
+// Submit on Enter (without shift)
+document.getElementById('src').addEventListener('keydown', (e) => {
+  if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); resolve(); }
+});
+
+renderHistory();
+</script>
+</body>
+</html>
