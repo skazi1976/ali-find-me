@@ -51,6 +51,25 @@
     }
   }
 
+  // /p/<slug> → ali-landing (Alibaba hidden products) via full-page iframe
+  var aliLandingMatch = path.match(/^\/p\/([a-z2-9]{4,16})\/?$/);
+  if (aliLandingMatch) {
+    var alSlug = aliLandingMatch[1];
+    if (window.gtag) gtag('event', 'ali_landing_view', { slug: alSlug, source: 'bridge_iframe' });
+    var alIframe = document.createElement('iframe');
+    var alQs = '?v=' + Math.floor(Date.now() / 60000);
+    if (location.search) alQs += '&' + location.search.replace(/^\?/, '');
+    alIframe.src = 'https://ali-landing.ohadf1976.workers.dev/p/' + alSlug + alQs;
+    alIframe.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;border:0;margin:0;padding:0;z-index:9999;background:#fff;';
+    alIframe.setAttribute('allow', 'fullscreen');
+    alIframe.onload = function() {
+      var loader = document.querySelector('.loader');
+      if (loader) loader.style.display = 'none';
+    };
+    document.body.appendChild(alIframe);
+    return;
+  }
+
   // /s/<storeId> → render STORE landing page via full-page iframe
   var storeMatch = path.match(/^\/s\/(\d+)\/?$/);
   if (storeMatch) {
