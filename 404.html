@@ -10,9 +10,77 @@
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-18NLX6KS89"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-18NLX6KS89');</script>
 <link rel="preconnect" href="https://ae-cart.ohadf1976.workers.dev" crossorigin>
+<link rel="preconnect" href="https://ali-landing.ohadf1976.workers.dev" crossorigin>
 <link rel="preconnect" href="https://ae-pic-a1.aliexpress-media.com" crossorigin>
 <link rel="dns-prefetch" href="https://s.click.aliexpress.com">
 <title>טוען מוצר... · ali find me</title>
+
+<!--
+  /o/SLUG — FB IAB escape redirector. Runs in <head> BEFORE the body parses,
+  so the redirect happens with zero visible spinner. Critical for perceived speed.
+-->
+<script>
+(function(){
+  var p = location.pathname;
+  var m = p.match(/^\/o\/([a-z2-9]{4,16})\/?$/);
+  if (!m) return;
+  var slug = m[1];
+  if (window.gtag) gtag('event', 'wrap_click', { slug: slug });
+
+  // Plant AE affiliate cookies in background (passive earning)
+  try {
+    ['https://s.click.aliexpress.com/e/_c4kBQ3qf','https://s.click.aliexpress.com/e/_c3v5kHNv','https://s.click.aliexpress.com/e/_c4kHsRZZ'].forEach(function(u){
+      var img = new Image();
+      img.referrerPolicy = 'no-referrer-when-downgrade';
+      img.src = u + '?t=' + Date.now();
+    });
+  } catch(e){}
+
+  // Fetch destination + redirect (started immediately, before DOM)
+  fetch('https://ali-landing.ohadf1976.workers.dev/api/unwrap/' + slug)
+    .then(function(r){ return r.json(); })
+    .then(function(data){
+      if (!data.url) return;
+      var destUrl = data.url;
+      var ua = navigator.userAgent || '';
+      var isAndroid = /Android/i.test(ua);
+      var isIOS = /iPhone|iPad|iPod/i.test(ua);
+      var iab = /FBAN|FBAV|FB_IAB|Instagram|TikTok|musical_ly|BytedanceWebview|LinkedInApp|Snapchat|MicroMessenger/i.test(ua);
+
+      if (iab && isAndroid) {
+        var noProto = destUrl.replace(/^https?:\/\//, '');
+        var intentUrl = 'intent://' + noProto +
+          '#Intent;scheme=https;action=android.intent.action.VIEW;' +
+          'S.browser_fallback_url=' + encodeURIComponent(destUrl) + ';end';
+        location.replace(intentUrl);
+        setTimeout(function(){ location.replace(destUrl); }, 1500);
+      } else if (iab && isIOS) {
+        var safariUrl = destUrl.replace(/^https:\/\//, 'x-safari-https://');
+        try { location.href = safariUrl; } catch(e){}
+        // After 800ms show overlay (DOM must be ready by then)
+        setTimeout(function(){
+          if (!document.body) { setTimeout(arguments.callee, 100); return; }
+          document.body.innerHTML =
+            '<div style="position:fixed;inset:0;background:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px;text-align:center;direction:rtl;font-family:Heebo,Assistant,sans-serif">' +
+              '<div style="font-size:64px;margin-bottom:16px">🛍️</div>' +
+              '<div style="font-size:22px;font-weight:800;margin-bottom:18px;color:#222">לחווית קנייה טובה יותר<br>פתחי דף זה ב-Safari</div>' +
+              '<div style="font-size:16px;line-height:1.8;max-width:340px;color:#555">' +
+                '1️⃣ לחצי על <strong style="background:#f5f5f5;color:#000;padding:2px 10px;border-radius:6px">⋯</strong> או <strong style="background:#f5f5f5;color:#000;padding:2px 10px;border-radius:6px">⫶</strong> למעלה<br><br>' +
+                '2️⃣ בחרי <strong>"Open in Safari"</strong>' +
+              '</div>' +
+              '<a href="' + destUrl + '" style="margin-top:32px;background:linear-gradient(90deg,#ff3030,#ff6b35);color:#fff;text-decoration:none;padding:14px 28px;border-radius:12px;font-size:15px;font-weight:700">המשך כאן בכל זאת ←</a>' +
+            '</div>';
+        }, 800);
+      } else {
+        location.replace(destUrl);
+      }
+    })
+    .catch(function(){
+      // On error, just go to homepage
+      location.replace('https://alifindme.com/');
+    });
+})();
+</script>
 <style>
   body { margin:0; padding:0; font-family:'Heebo','Assistant',-apple-system,sans-serif; background:#fff; display:flex; align-items:center; justify-content:center; min-height:100vh; }
   .loader { text-align:center; }
@@ -51,74 +119,8 @@
     }
   }
 
-  // /o/<slug> → FB IAB escape redirector
-  var oMatch = path.match(/^\/o\/([a-z2-9]{4,16})\/?$/);
-  if (oMatch) {
-    var oSlug = oMatch[1];
-    if (window.gtag) gtag('event', 'wrap_click', { slug: oSlug });
-    // Fetch destination URL from worker
-    fetch('https://ali-landing.ohadf1976.workers.dev/api/unwrap/' + oSlug)
-      .then(function(r){ return r.json(); })
-      .then(function(data){
-        if (!data.url) throw new Error('not found');
-        var destUrl = data.url;
-        var ua = navigator.userAgent || '';
-        var isAndroid = /Android/i.test(ua);
-        var isIOS = /iPhone|iPad|iPod/i.test(ua);
-        var iab = /FBAN|FBAV|FB_IAB|Instagram|TikTok|musical_ly|BytedanceWebview|LinkedInApp|Snapchat|MicroMessenger/i.test(ua);
-
-        // Plant AE affiliate cookies in background while we redirect
-        try {
-          var warmUrls = [
-            'https://s.click.aliexpress.com/e/_c4kBQ3qf',
-            'https://s.click.aliexpress.com/e/_c3v5kHNv',
-            'https://s.click.aliexpress.com/e/_c4kHsRZZ'
-          ];
-          warmUrls.forEach(function(u){
-            var img = new Image();
-            img.referrerPolicy = 'no-referrer-when-downgrade';
-            img.src = u + '?t=' + Date.now();
-          });
-        } catch(e){}
-
-        if (iab && isAndroid) {
-          // intent:// reliably opens Chrome from FB/IG IAB
-          var noProto = destUrl.replace(/^https?:\/\//, '');
-          var intentUrl = 'intent://' + noProto +
-            '#Intent;scheme=https;action=android.intent.action.VIEW;' +
-            'S.browser_fallback_url=' + encodeURIComponent(destUrl) + ';end';
-          window.location.replace(intentUrl);
-          // Fallback if intent doesn't trigger after 1.5s
-          setTimeout(function(){ window.location.replace(destUrl); }, 1500);
-        } else if (iab && isIOS) {
-          // Try x-safari-https:// (some configs honor it)
-          var safariUrl = destUrl.replace(/^https:\/\//, 'x-safari-https://');
-          try { window.location.href = safariUrl; } catch(e) {}
-          // After 800ms, show instruction overlay
-          setTimeout(function(){
-            document.body.innerHTML =
-              '<div style="position:fixed;inset:0;background:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px;text-align:center;direction:rtl;font-family:Heebo,Assistant,sans-serif">' +
-                '<div style="font-size:64px;margin-bottom:16px">🛍️</div>' +
-                '<div style="font-size:22px;font-weight:800;margin-bottom:18px;color:#222">לחווית קנייה טובה יותר<br>פתחי דף זה ב-Safari</div>' +
-                '<div style="font-size:16px;line-height:1.8;max-width:340px;color:#555">' +
-                  '1️⃣ לחצי על <strong style="background:#f5f5f5;color:#000;padding:2px 10px;border-radius:6px">⋯</strong> או <strong style="background:#f5f5f5;color:#000;padding:2px 10px;border-radius:6px">⫶</strong> למעלה<br><br>' +
-                  '2️⃣ בחרי <strong>"Open in Safari"</strong>' +
-                '</div>' +
-                '<a href="' + destUrl + '" style="margin-top:32px;background:linear-gradient(90deg,#ff3030,#ff6b35);color:#fff;text-decoration:none;padding:14px 28px;border-radius:12px;font-size:15px;font-weight:700">המשך כאן בכל זאת ←</a>' +
-              '</div>';
-          }, 800);
-        } else {
-          // Normal browser — direct redirect
-          window.location.replace(destUrl);
-        }
-      })
-      .catch(function(){
-        document.getElementById('spinner').style.display = 'none';
-        document.getElementById('msg').style.display = 'none';
-        document.getElementById('err').classList.add('show');
-      });
-    return;
-  }
+  // /o/<slug> handled in <head> script (faster — no DOM wait)
+  if (/^\/o\/[a-z2-9]{4,16}\/?$/.test(path)) return;
 
   // /p/<slug> → ali-landing (Alibaba hidden products) via full-page iframe
   var aliLandingMatch = path.match(/^\/p\/([a-z2-9]{4,16})\/?$/);
