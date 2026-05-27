@@ -16,10 +16,26 @@
 <title>טוען מוצר... · ali find me</title>
 
 <!--
-  /o/SLUG — FB IAB escape redirector. Runs in <head> BEFORE the body parses,
-  so the redirect happens with zero visible spinner. Critical for perceived speed.
+  Early AE cookie warming + /o/ FB IAB escape. Both run in <head> BEFORE body parses
+  so cookies start planting at the earliest possible moment (critical for revenue).
 -->
 <script>
+// === Shared AE cookie warming — fires for ALL landing-page paths ===
+// /o/ (wrap escape), /p/ (Alibaba landing), /c/ (ae-cart), /s/ (store)
+(function plantAEcookies(){
+  var path = location.pathname;
+  // Only fire on actual landing-page paths (not on bots hitting random 404s)
+  if (!/^\/(o|p|c|s|buy)\/[a-z0-9]{1,}/i.test(path)) return;
+  try {
+    ['https://s.click.aliexpress.com/e/_c4kBQ3qf','https://s.click.aliexpress.com/e/_c3v5kHNv','https://s.click.aliexpress.com/e/_c4kHsRZZ'].forEach(function(u, i){
+      var img = new Image();
+      img.referrerPolicy = 'no-referrer-when-downgrade';
+      img.src = u + '?t=' + Date.now() + '&i=' + i;
+    });
+    if (window.gtag) gtag('event', 'ae_cookie_warm', { path: path, source: 'bridge_head' });
+  } catch(e){}
+})();
+
 (function(){
   var p = location.pathname;
   var m = p.match(/^\/o\/([a-z2-9]{4,16})\/?$/);
@@ -27,14 +43,7 @@
   var slug = m[1];
   if (window.gtag) gtag('event', 'wrap_click', { slug: slug });
 
-  // Plant AE affiliate cookies in background (passive earning)
-  try {
-    ['https://s.click.aliexpress.com/e/_c4kBQ3qf','https://s.click.aliexpress.com/e/_c3v5kHNv','https://s.click.aliexpress.com/e/_c4kHsRZZ'].forEach(function(u){
-      var img = new Image();
-      img.referrerPolicy = 'no-referrer-when-downgrade';
-      img.src = u + '?t=' + Date.now();
-    });
-  } catch(e){}
+  // (Cookies already planted above by plantAEcookies)
 
   // Fetch destination + redirect (started immediately, before DOM)
   fetch('https://ali-landing.ohadf1976.workers.dev/api/unwrap/' + slug)
