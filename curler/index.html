@@ -276,6 +276,40 @@
     document.getElementById('ss').textContent=('0'+s).slice(-2);
   }
   tick();setInterval(tick,1000);
+
+  // ===== AE_COOKIE_WARM_V1 — שתילת קוקי אפילייט =====
+  // מבטיח שתיזקף לך עמלה גם אם הקונה רוכש מאוחר יותר (בתוך חלון הקוקי של AliExpress).
+  // דפוס מוכח: iframe עם sandbox (שומר על origin של AE → קוקי first-party) + img כגיבוי.
+  (function warmAffiliateCookie(){
+    var WARM_URL="https://s.click.aliexpress.com/e/_c4nDMO53";
+    var done=false;
+    var c=document.createElement('div');
+    c.id='aeWarmCk';c.setAttribute('aria-hidden','true');
+    c.style.cssText='position:fixed;width:0;height:0;overflow:hidden;opacity:0;pointer-events:none;left:-9999px;top:-9999px';
+    document.body.appendChild(c);
+    function plant(){
+      if(done)return;done=true;
+      try{
+        var ifr=document.createElement('iframe');
+        ifr.src=WARM_URL;
+        ifr.referrerPolicy='no-referrer-when-downgrade';
+        ifr.setAttribute('sandbox','allow-same-origin allow-scripts allow-popups');
+        ifr.style.cssText='width:0;height:0;border:0';
+        c.appendChild(ifr);
+        var img=new Image();
+        img.referrerPolicy='no-referrer-when-downgrade';
+        img.src=WARM_URL+(WARM_URL.indexOf('?')>-1?'&':'?')+'t='+Date.now();
+      }catch(e){}
+    }
+    if(document.readyState==='complete'){setTimeout(plant,3000);}
+    else{window.addEventListener('load',function(){setTimeout(plant,3000);});}
+    var fired=false;
+    function onGesture(){
+      if(fired)return;fired=true;plant();
+      ['click','touchstart','keydown','scroll'].forEach(function(e){document.removeEventListener(e,onGesture,{passive:true});});
+    }
+    ['click','touchstart','keydown','scroll'].forEach(function(e){document.addEventListener(e,onGesture,{passive:true});});
+  })();
 </script>
 </body>
 </html>
