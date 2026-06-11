@@ -29,7 +29,22 @@ Disallow: /pets/manifest.json
 Disallow: /nails/manifest.json
 Disallow: /baby/manifest.json
 
+# AI assistants & answer engines — explicitly welcome (GEO)
+User-agent: GPTBot
+Allow: /
+User-agent: OAI-SearchBot
+Allow: /
+User-agent: ChatGPT-User
+Allow: /
+User-agent: ClaudeBot
+Allow: /
+User-agent: PerplexityBot
+Allow: /
+User-agent: Google-Extended
+Allow: /
+
 Sitemap: https://alifindme.com/sitemap.xml
+# AI guide: https://alifindme.com/llms.txt
 
 # Ali Find Me - AI-powered multilingual product search engine
 # https://alifindme.com
