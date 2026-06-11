@@ -103,6 +103,30 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://alifindme.com/en/"/>
   </url>
 
+  <!-- Italian -->
+  <url>
+    <loc>https://alifindme.com/it/</loc>
+    <lastmod>2026-06-11</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="he" href="https://alifindme.com/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://alifindme.com/en/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://alifindme.com/it/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://alifindme.com/en/"/>
+  </url>
+
+  <!-- Polish -->
+  <url>
+    <loc>https://alifindme.com/pl/</loc>
+    <lastmod>2026-06-11</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="he" href="https://alifindme.com/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://alifindme.com/en/"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://alifindme.com/pl/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://alifindme.com/en/"/>
+  </url>
+
   <!-- Arabic -->
   <url>
     <loc>https://alifindme.com/ar/</loc>

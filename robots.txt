@@ -9,6 +9,8 @@ Allow: /br/
 Allow: /tr/
 Allow: /fr/
 Allow: /de/
+Allow: /it/
+Allow: /pl/
 Allow: /home/
 Allow: /pets/
 Allow: /pets/articles/
