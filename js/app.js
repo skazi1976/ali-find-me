@@ -588,6 +588,100 @@ const i18n = {
     nlSkip: "Pas maintenant",
     shareTitle: "Partagez cette offre !", shareCopied: "Lien copié !",
     shareNative: "Plus...",
+  },
+  de: {
+    heroTitle: "✨ Finde dein perfektes Produkt",
+    heroSubtitle: "Suche Mode & Lifestyle-Produkte zu den besten Preisen auf AliExpress",
+    welcome: "Hallo! Ich helfe dir, tolle Produkte auf AliExpress zu finden.\nSag mir, wonach du suchst, und ich finde die besten Angebote! 🛍️",
+    inputPlaceholder: "Wonach suchst du? (z.B. Abendkleid, Sportleggings...)",
+    searching: "Suche...",
+    foundResults: "{count} Produkte gefunden! Hier sind die besten Angebote:",
+    noResults: "Keine Ergebnisse für dieses Wort. Versuche ein anderes Wort oder wähle aus den Vorschlägen:",
+    viewProduct: "Ansehen & Kaufen →",
+    orders: "Bestellungen",
+    clearResults: "Ergebnisse löschen",
+    loadMore: "Mehr Produkte laden",
+    categoriesTitle: "🏷️ Beliebte Kategorien",
+    trendingTitle: "🔥 Im Trend",
+    howTitle: "💡 Wie funktioniert es?",
+    step1Title: "Suchen",
+    step1Desc: "Gib ein, wonach du suchst, in jeder Sprache",
+    step2Title: "Ergebnisse erhalten",
+    step2Desc: "Unser System findet die besten Angebote für dich",
+    step3Title: "Günstig kaufen",
+    step3Desc: "Klicke auf ein Produkt und gehe direkt zu AliExpress",
+    disclaimer: "Diese Seite verwendet Affiliate-Links. Dein Kauf kostet nicht mehr, aber wir erhalten möglicherweise eine kleine Provision.",
+    recentSearches: "Letzte Suchen:",
+    alsoSearch: "Andere suchen auch:",
+    sortBy: "Sortieren:",
+    priceRange: "Preis:",
+    priceFrom: "Von",
+    priceTo: "Bis",
+    apply: "Filtern",
+    sortPopular: "Bestseller",
+    sortCheap: "Günstigste",
+    sortExpensive: "Teuerste",
+    sortNew: "Neueste",
+    sortRating: "Bewertung",
+    myFavorites: "Meine Favoriten",
+    noFavorites: "Noch keine Favoriten",
+    shareText: "Schau, was ich auf AliExpress gefunden habe!",
+    recentlyViewedTitle: "👁️ Zuletzt angesehen",
+    clearViewed: "Löschen",
+    myAlerts: "Preisalarme",
+    noAlerts: "Keine aktiven Preisalarme",
+    setAlert: "Benachrichtigen, wenn der Preis fällt unter:",
+    save: "Speichern",
+    cancel: "Abbrechen",
+    priceDropped: "Preis gefallen!",
+    targetPrice: "Zielpreis",
+    dailyDealsTitle: "⏰ Tagesangebote",
+    dealsEndsIn: "Endet in",
+    spinTitle: "🎰 Drehen & Gewinnen!",
+    spinBtn: "Drehen!",
+    spinAlreadyUsed: "Heute schon gedreht! Komm morgen wieder 😊",
+    spinCongrats: "Glückwunsch! 🎉",
+    spinTryAgain: "Versuch es morgen erneut",
+    spinGetPrize: "Preis einlösen",
+    chatHelp: "Ich helfe dir, Produkte auf AliExpress zu finden! Gib ein, wonach du suchst, oder frage nach Empfehlungen 🛒",
+    chatRecommending: "Empfehlungen werden geprüft...",
+    chatRefining: "Suche {query}...",
+    quickCheapest: "🔽 Günstigste",
+    quickRated: "⭐ Top bewertet",
+    quickNewest: "🆕 Neueste",
+    quickSimilar: "💡 Empfehlen",
+    installTitle: "App installieren!", installDesc: "Schneller Zugriff auf Angebote vom Startbildschirm", installBtn: "Installieren",
+    pointsTitle: "Meine Punkte", pointsBalance: "Punkte",
+    pointsEarn: "+{pts} Punkte verdient!",
+    pointsRedeem: "Punkte einlösen", pointsHistory: "Verlauf",
+    pointsDaily: "Täglicher Bonus!", pointsSearch: "Suche",
+    pointsClick: "Produktansicht", pointsShare: "Teilen",
+    pointsFav: "Favorit", pointsSpin: "Drehen",
+    pointsCoupon5: "5% Gutschein", pointsCoupon10: "10% Gutschein",
+    pointsFreeShip: "Kostenloser Versand", pointsCoupon5off: "5$ Gutschein",
+    pointsRedeemed: "Eingelöst!", pointsNotEnough: "Nicht genug Punkte",
+    pointsToday: "Heute", pointsYesterday: "Gestern",
+    imgSearching: "Produkt wird erkannt...", imgResult: "Gefunden: {desc}", imgError: "Konnte nicht erkannt werden. Versuche ein anderes Foto",
+    imgTakePhoto: "Foto aufnehmen", imgUpload: "Hochladen",
+    nlTitle: "Top-Angebote in deinem Posteingang!",
+    nlDesc: "Abonniere unseren wöchentlichen Newsletter und erhalte die besten Angebote per E-Mail",
+    nlPlaceholder: "E-Mail eingeben",
+    nlBtn: "Abonnieren",
+    nlPrivacy: "Kein Spam. Jederzeit abbestellbar.",
+    nlSuccess: "Abonniert! Wir senden dir die besten Angebote",
+    nlPopupTitle: "Verpasse keine Angebote!",
+    nlPopupDesc: "Schließe dich Tausenden Abonnenten an, die jede Woche die heißesten Angebote erhalten",
+    nlSkip: "Jetzt nicht",
+    shareTitle: "Teile dieses Angebot!", shareCopied: "Link kopiert!",
+    shareNative: "Mehr...",
+    findCheaper: "Günstiger finden 💰",
+    comparing: "Suche günstigere Alternativen...",
+    cheaperAlts: "Günstigere Alternativen 💰",
+    savingsLabel: "Ersparnis",
+    noAlternatives: "Keine günstigeren Alternativen gefunden",
+    originalProduct: "Originalprodukt",
+    viewDeal: "Ansehen & Kaufen →",
+    aiSummary: "KI-Zusammenfassung",
   }
 };
 
@@ -604,6 +698,7 @@ const LANG_META = {
   pt: { flag: "\ud83c\udde7\ud83c\uddf7", name: "Portugu\u00eas" },
   tr: { flag: "\ud83c\uddf9\ud83c\uddf7", name: "T\u00fcrk\u00e7e" },
   fr: { flag: "\ud83c\uddeb\ud83c\uddf7", name: "Fran\u00e7ais" },
+  de: { flag: "\ud83c\udde9\ud83c\uddea", name: "Deutsch" },
 };
 
 // Language → Country/Currency mapping for auto-detection
@@ -616,6 +711,7 @@ const LANG_COUNTRY_CURRENCY = {
   pt: { country: "BR", currency: "BRL", symbol: "R$" },
   tr: { country: "TR", currency: "TRY", symbol: "₺" },
   fr: { country: "FR", currency: "EUR", symbol: "€" },
+  de: { country: "DE", currency: "EUR", symbol: "€" },
 };
 
 // ============================================================
@@ -630,8 +726,8 @@ function setLang(lang, skipNav) {
   // Navigate to locale path if user switched language (not during init)
   if (!skipNav) {
     const currentPath = window.location.pathname;
-    const basePath = currentPath.replace(/^\/(en|ar|ru|es|pt|tr|fr)\//, "/");
-    const isSubdir = /^\/(en|ar|ru|es|pt|tr|fr)\//.test(currentPath);
+    const basePath = currentPath.replace(/^\/(en|ar|ru|es|pt|tr|fr|de)\//, "/");
+    const isSubdir = /^\/(en|ar|ru|es|pt|tr|fr|de)\//.test(currentPath);
     const isHebrew = lang === "he";
     if (isHebrew && isSubdir) {
       // Go to root
@@ -1550,6 +1646,7 @@ const LANG_SUGGESTIONS = {
   pt: ["Esmalte gel", "Brinquedos beb\u00ea educativos", "Cuidados com a pele", "Acess\u00f3rios fitness", "J\u00f3ias", "Gadgets cozinha", "Fone bluetooth", "Vestido", "T\u00eanis Nike", "Brinquedo pesca magn\u00e9tico", "Unhas posticas", "L\u00e2mpada UV unhas", "Rel\u00f3gio inteligente", "Kit alimenta\u00e7\u00e3o beb\u00ea", "Brinquedos Montessori"],
   tr: ["Gece elbisesi", "Spor tayt", "El \u00e7antas\u0131", "Kablosuz kulakl\u0131k", "Ak\u0131ll\u0131 saat", "Y\u00fcz kremi", "Spor ayakkab\u0131", "K\u00fcpe", "Airfryer", "Robot s\u00fcp\u00fcrge", "Laptop", "Parf\u00fcm"],
   fr: ["Robe de soir\u00e9e", "Legging sport", "Sac \u00e0 main", "\u00c9couteurs sans fil", "Montre connect\u00e9e", "Cr\u00e8me visage", "Baskets", "Boucles d'oreilles", "Friteuse sans huile", "Robot aspirateur", "Ordinateur portable", "Parfum"],
+  de: ["Abendkleid", "Sport-Leggings", "Handtasche", "Kabellose Kopfh\u00f6rer", "Smartwatch", "Gesichtscreme", "Sneaker", "Ohrringe", "Hei\u00dfluftfritteuse", "Saugroboter", "Laptop", "Parf\u00fcm"],
 };
 
 // Localized site name
@@ -1562,6 +1659,7 @@ const SITE_NAMES = {
   pt: "Ali Encontre-me",
   tr: "Ali Bul Bana",
   fr: "Ali Trouve-moi",
+  de: "Ali Finde Mich",
 };
 
 async function loadSuggestions() {
@@ -1722,6 +1820,7 @@ const SPIN_LABELS = {
   pt: { coupon2: "Cupom $2", freeShip: "Frete grátis!", tryAgain: "Tente amanhã", coupon3: "Cupom $3", deal: "Oferta especial!", tryAgain2: "Tente amanhã", coupon5: "Cupom $5", discount10: "10% Desconto!" },
   tr: { coupon2: "$2 Kupon", freeShip: "Ücretsiz kargo!", tryAgain: "Yarın dene", coupon3: "$3 Kupon", deal: "Özel fırsat!", tryAgain2: "Yarın dene", coupon5: "$5 Kupon", discount10: "%10 İndirim!" },
   fr: { coupon2: "Coupon $2", freeShip: "Livraison gratuite!", tryAgain: "Essaie demain", coupon3: "Coupon $3", deal: "Offre spéciale!", tryAgain2: "Essaie demain", coupon5: "Coupon $5", discount10: "10% de réduction!" },
+  de: { coupon2: "$2 Gutschein", freeShip: "Kostenloser Versand!", tryAgain: "Versuch es morgen", coupon3: "$3 Gutschein", deal: "Sonderangebot!", tryAgain2: "Versuch es morgen", coupon5: "$5 Gutschein", discount10: "10% Rabatt!" },
 };
 
 let spinAngle = 0;
@@ -2095,6 +2194,7 @@ function buildProductCard(p) {
     pt: { cta: '🛒 Comprar por ', save: 'Economize', hot: 'OFERTA QUENTE', freeShip: 'Frete grátis', topPick: 'Mais vendido', viewing: 'pessoas vendo agora' },
     tr: { cta: '🛒 Satın al - ', save: 'Tasarruf', hot: 'FIRSATI KAÇIRMA', freeShip: 'Ücretsiz kargo', topPick: 'En çok satan', viewing: 'kişi şu an bakıyor' },
     fr: { cta: '🛒 Acheter pour ', save: 'Économisez', hot: 'OFFRE CHAUDE', freeShip: 'Livraison gratuite', topPick: 'Meilleure vente', viewing: 'personnes regardent' },
+    de: { cta: '🛒 Jetzt kaufen - ', save: 'Spare', hot: 'TOP-ANGEBOT', freeShip: 'Kostenloser Versand', topPick: 'Top-Wahl', viewing: 'sehen es gerade an' },
   };
   const lb = langLabels[currentLang] || langLabels.en;
 
@@ -2893,7 +2993,7 @@ try {
 }
 
 // Init language from path > URL param > localStorage > country detect
-const pathLangMatch = window.location.pathname.match(/^\/(en|ar|ru|es|pt|tr|fr)\//);
+const pathLangMatch = window.location.pathname.match(/^\/(en|ar|ru|es|pt|tr|fr|de)\//);
 const urlLangParam = new URLSearchParams(window.location.search).get("lang");
 if (pathLangMatch && i18n[pathLangMatch[1]]) {
   currentLang = pathLangMatch[1];

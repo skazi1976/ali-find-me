@@ -8,6 +8,7 @@ Allow: /pt/
 Allow: /br/
 Allow: /tr/
 Allow: /fr/
+Allow: /de/
 Allow: /home/
 Allow: /pets/
 Allow: /pets/articles/

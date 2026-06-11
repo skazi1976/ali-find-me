@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="de" dir="ltr">
+<head>
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-18NLX6KS89"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-18NLX6KS89');</script>
+  <meta charset="UTF-8">
+  <!-- Service Worker with forced update -->
+  <script>
+  if('serviceWorker' in navigator){
+    navigator.serviceWorker.register('/sw.js', {updateViaCache:'none'}).then(function(reg){
+      reg.update();
+    });
+  }
+  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=5">
+  <title>Ali Finde Mich | Intelligente AliExpress Produktsuche</title>
+  <meta name="description" content="Intelligente Produktsuche für Mode & Lifestyle auf AliExpress. Beste Preise mit Versand nach Deutschland und weltweit.">
+  <meta name="keywords" content="AliExpress suche, Produkte suchen, AliExpress Angebote, online shopping, Mode, Schmuck, beste Preise, Bildersuche, KI-Suche, kostenloser Versand">
+  <meta property="og:title" content="Ali Finde Mich - Intelligente AliExpress Produktsuche">
+  <meta property="og:description" content="Finde die besten Angebote auf AliExpress - Mode, Taschen, Schuhe, Schmuck und mehr">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://alifindme.com/de/">
+  <meta property="og:locale" content="de_DE">
+  <meta property="og:site_name" content="Ali Find Me">
+  <meta property="og:image" content="https://alifindme.com/icons/icon-512.png">
+  <meta property="og:image:width" content="512">
+  <meta property="og:image:height" content="512">
+  <meta property="og:image:alt" content="Ali Finde Mich - Intelligente AliExpress Produktsuche">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Ali Finde Mich - Intelligente AliExpress Produktsuche">
+  <meta name="twitter:description" content="Intelligente Suchmaschine für AliExpress. Finde die besten Angebote mit KI-Bildersuche in 9 Sprachen.">
+  <meta name="twitter:image" content="https://alifindme.com/icons/icon-512.png">
+  <meta name="theme-color" content="#FF6B00">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <link rel="canonical" href="https://alifindme.com/de/">
+  <link rel="manifest" href="../manifest.json">
+  <link rel="icon" href="../icons/icon-192.png" type="image/png">
+  <link rel="apple-touch-icon" href="../icons/icon-192.png">
+  <link rel="alternate" hreflang="he" href="https://alifindme.com/">
+  <link rel="alternate" hreflang="en" href="https://alifindme.com/en/">
+  <link rel="alternate" hreflang="ar" href="https://alifindme.com/ar/">
+  <link rel="alternate" hreflang="ru" href="https://alifindme.com/ru/">
+  <link rel="alternate" hreflang="es" href="https://alifindme.com/es/">
+  <link rel="alternate" hreflang="pt" href="https://alifindme.com/pt/">
+  <link rel="alternate" hreflang="tr" href="https://alifindme.com/tr/">
+  <link rel="alternate" hreflang="fr" href="https://alifindme.com/fr/">
+  <link rel="alternate" hreflang="de" href="https://alifindme.com/de/">
+  <link rel="alternate" hreflang="x-default" href="https://alifindme.com/en/">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://ali-findme-api.ohadf1976.workers.dev">
+  <link rel="dns-prefetch" href="https://ae01.alicdn.com">
+  <link rel="dns-prefetch" href="https://ae-pic-a1.aliexpress-media.com">
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&family=Assistant:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css?v=20260319g">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Ali Finde Mich",
+    "url": "https://alifindme.com/de/",
+    "inLanguage": "de",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "https://alifindme.com/de/?q={search_term_string}",
+      "query-input": "required name=search_term_string"
+    }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Ali Find Me",
+    "url": "https://alifindme.com",
+    "logo": "https://alifindme.com/icons/icon-512.png",
+    "description": "Intelligente Suchmaschine für AliExpress-Produkte mit KI-Bildersuche, verfügbar in 9 Sprachen weltweit.",
+    "sameAs": []
+  }
+  </script>
+  <script>localStorage.setItem("ali_lang","de");</script>
+</head>
+<body>
+
+  <nav class="navbar"><div class="nav-container">
+    <a href="../index.html" class="logo"><img src="../icons/logo.png" alt="Ali Find Me" class="logo-img"><span class="logo-text">Ali Finde Mich</span></a>
+    <div class="nav-actions">
+      <button class="nav-icon-btn alert-nav-btn" id="alertNavBtn" onclick="showAlerts()" title="Preisalarme"><span>🔔</span><span class="alert-badge" id="alertBadge" style="display:none">0</span></button>
+      <button class="nav-icon-btn" id="favNavBtn" onclick="showFavorites()" title="Favoriten"><span>❤️</span><span class="fav-badge" id="favBadge" style="display:none">0</span></button>
+      <button class="nav-icon-btn points-nav-btn" id="pointsNavBtn" onclick="showPointsModal()" title="Punkte"><span>⭐</span><span class="points-badge" id="pointsBadge">0</span></button>
+      <button class="theme-toggle-btn" id="themeToggle" onclick="toggleTheme()" title="Dunkelmodus">🌙</button>
+      <div class="lang-dropdown-wrap" id="langDropdownWrap">
+        <button class="lang-flag-btn" id="langFlag" onclick="toggleLangDropdown()" title="Language">🇩🇪</button>
+        <div class="lang-dropdown" id="langDropdown">
+          <button class="lang-option" onclick="setLang('he')">🇮🇱 עברית</button><button class="lang-option" onclick="setLang('en')">🇺🇸 English</button><button class="lang-option" onclick="setLang('de')">🇩🇪 Deutsch</button><button class="lang-option" onclick="setLang('fr')">🇫🇷 Français</button><button class="lang-option" onclick="setLang('es')">🇪🇸 Español</button><button class="lang-option" onclick="setLang('pt')">🇧🇷 Português</button><button class="lang-option" onclick="setLang('ru')">🇷🇺 Русский</button><button class="lang-option" onclick="setLang('tr')">🇹🇷 Türkçe</button><button class="lang-option" onclick="setLang('ar')">🇸🇦 العربية</button>
+        </div>
+      </div>
+      <a href="../admin.html" class="admin-link" title="Admin">⚙️</a>
+    </div>
+  </div></nav>
+
+  <section class="hero"><div class="hero-content">
+    <h1 class="hero-title" data-i18n="heroTitle"><span class="hero-icon">✨</span> Finde dein perfektes Produkt</h1>
+    <p class="hero-subtitle" data-i18n="heroSubtitle">Suche Mode & Lifestyle-Produkte zu den besten Preisen auf AliExpress</p>
+  </div></section>
+
+  <section class="chat-section"><div class="chat-container">
+    <div class="input-area input-area-top"><div class="input-wrapper">
+      <input type="text" id="chatInput" data-i18n-placeholder="🔍 inputPlaceholder" placeholder="Wonach suchst du? (z.B. Abendkleid, Sportleggings...)" autocomplete="off">
+      <div class="image-search-wrap"><button class="image-search-btn" id="imageSearchBtn" onclick="showImageOptions()" title="Bildersuche">📷</button><div class="image-options-dropdown" id="imageOptions" style="display:none"><button onclick="document.getElementById('cameraInput').click();hideImageOptions()">📸 <span data-i18n="imgTakePhoto">Foto aufnehmen</span></button><button onclick="document.getElementById('imageInput').click();hideImageOptions()">📁 <span data-i18n="imgUpload">Hochladen</span></button></div></div>
+      <input type="file" id="imageInput" accept="image/*" style="display:none" onchange="handleImageFile(this)">
+      <input type="file" id="cameraInput" accept="image/*" capture="environment" style="display:none" onchange="handleImageFile(this)">
+      <button id="sendBtn" class="send-btn" onclick="sendMessage()"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13"/><path d="M22 2L15 22L11 13L2 9L22 2Z"/></svg></button>
+      <div class="autocomplete-dropdown" id="autocompleteDropdown"></div>
+    </div></div>
+    <div class="chat-messages" id="chatMessages"><div class="message bot-message"><div class="message-avatar">🤖</div><div class="message-bubble" id="welcomeMsg" data-i18n="welcome">Hallo! Ich helfe dir, tolle Produkte auf AliExpress zu finden. Sag mir, wonach du suchst, und ich finde die besten Angebote! 🛍️</div></div></div>
+    <div class="history-container" id="historyContainer" style="display:none"><div class="history-label">🕐 <span data-i18n="recentSearches">Letzte Suchen:</span></div><div class="history-chips" id="historyChips"></div></div>
+    <div class="chips-container" id="chipsContainer"></div>
+    <div class="quick-replies" id="quickReplies" style="display:none"></div>
+  </div></section>
+
+  <section class="results-section" id="resultsSection" style="display:none"><div class="results-container">
+    <div class="results-header"><h2 class="results-title" id="resultsTitle"></h2><button class="clear-btn" onclick="clearResults()" data-i18n="clearResults">Löschen</button></div>
+    <div class="filters-bar" id="filtersBar"><div class="filter-group"><label data-i18n="sortBy">Sortieren:</label><select id="sortSelect" onchange="applySort()"><option value="popular" data-i18n-option="sortPopular">Bestseller</option><option value="cheap" data-i18n-option="sortCheap">Günstigste</option><option value="expensive" data-i18n-option="sortExpensive">Teuerste</option><option value="new" data-i18n-option="sortNew">Neueste</option><option value="rating" data-i18n-option="sortRating">Bewertung</option></select></div><div class="filter-group"><label data-i18n="priceRange">Preis:</label><input type="number" id="priceMin" placeholder="Von" class="price-input" min="0"><span>-</span><input type="number" id="priceMax" placeholder="Bis" class="price-input" min="0"><button class="filter-apply-btn" onclick="applyPriceFilter()" data-i18n="apply">Filtern</button></div><div class="filter-group"><label class="toggle-filter" id="freeShipToggle" onclick="toggleFreeShip()"><span class="toggle-icon" id="freeShipIcon">☐</span> 🚚 <span data-i18n="freeShipOnly">Kostenloser Versand</span></label></div><div class="filter-group"><select id="categorySelect" onchange="applyCategory()"><option value="">Alle Kategorien</option><option value="200003482,200003494">👟 Schuhe</option><option value="200000532,200003498,200003500">👕 Kleidung</option><option value="200003490">👜 Taschen</option><option value="200003354">💎 Schmuck</option><option value="200003332,200003406">📱 Elektronik</option><option value="200003444">🏠 Zuhause</option></select></div></div>
+    <div class="quick-filters" id="quickFilters"><button class="quick-filter-btn" onclick="quickPrice(0,50)">💰 Unter $15</button><button class="quick-filter-btn" onclick="quickPrice(50,200)">💵 $15-$50</button><button class="quick-filter-btn" onclick="quickPrice(200,0)">💎 $50+</button><button class="quick-filter-btn deals-btn" onclick="toggleDeals()">🔥 Angebote</button></div>
+    <div class="related-searches" id="relatedSearches" style="display:none"><span class="related-label" data-i18n="alsoSearch">Andere suchen auch:</span><div class="related-chips" id="relatedChips"></div></div>
+    <div class="product-grid" id="productGrid"></div>
+    <div class="load-more" id="loadMore" style="display:none"><button class="load-more-btn" onclick="loadMore()" data-i18n="loadMore">Mehr laden</button></div>
+  </div></section>
+
+  <section class="recently-viewed-section" id="recentlyViewed" style="display:none"><div class="recently-viewed-header"><h2 class="section-title" data-i18n="recentlyViewedTitle" style="margin-bottom:0"><span>👁️</span> Zuletzt angesehen</h2><button class="rv-clear-btn" onclick="clearViewed()" data-i18n="clearViewed">Löschen</button></div><div class="recently-viewed-grid" id="recentlyViewedGrid"></div></section>
+  <section class="trending-section" id="trendingSection"><h2 class="section-title" data-i18n="trendingTitle"><span>🔥</span> Im Trend</h2><div class="product-grid trending-grid" id="trendingGrid"></div></section>
+  <section class="daily-deals-section" id="dailyDealsSection" style="display:none"><h2 class="section-title" data-i18n="dailyDealsTitle">⏰ Tagesangebote</h2><div class="deals-countdown" id="dealsCountdown"><span class="deals-ends-label" data-i18n="dealsEndsIn">Endet in</span><span class="countdown-timer" id="countdownTimer">00:00:00</span></div><div class="product-grid deals-grid" id="dealsGrid"></div></section>
+  <section class="categories-section"><h2 class="section-title" data-i18n="categoriesTitle"><span>🏷️</span> Beliebte Kategorien</h2><div class="categories-grid" id="categoriesGrid"></div></section>
+
+  <section class="how-it-works"><h2 class="section-title" data-i18n="howTitle"><span>💡</span> Wie funktioniert es?</h2><div class="steps-grid"><div class="step"><div class="step-number">1</div><h3 data-i18n="step1Title">Produkt suchen</h3><p data-i18n="step1Desc">Gib ein, wonach du suchst, in jeder Sprache</p></div><div class="step"><div class="step-number">2</div><h3 data-i18n="step2Title">Ergebnisse erhalten</h3><p data-i18n="step2Desc">Unser System findet die besten Angebote</p></div><div class="step"><div class="step-number">3</div><h3 data-i18n="step3Title">Günstig kaufen</h3><p data-i18n="step3Desc">Klicke und gehe direkt zu AliExpress</p></div></div></section>
+
+  <div class="modal-overlay" id="favModal" style="display:none" onclick="if(event.target===this)closeFavorites()"><div class="modal-content"><div class="modal-header"><h2>❤️ <span data-i18n="myFavorites">Meine Favoriten</span></h2><button class="modal-close" onclick="closeFavorites()">✕</button></div><div class="modal-body" id="favModalBody"><p class="empty-fav" data-i18n="noFavorites">Noch keine Favoriten</p></div></div></div>
+  <div class="modal-overlay" id="alertModal" style="display:none" onclick="if(event.target===this)closeAlerts()"><div class="modal-content"><div class="modal-header"><h2>🔔 <span data-i18n="myAlerts">Preisalarme</span></h2><button class="modal-close" onclick="closeAlerts()">✕</button></div><div class="modal-body" id="alertModalBody"><p class="empty-fav" data-i18n="noAlerts">Keine aktiven Preisalarme</p></div></div></div>
+
+    <div class="modal-overlay" id="shareModal" style="display:none" onclick="if(event.target===this)closeShareModal()"><div class="share-modal"><button class="modal-close" onclick="closeShareModal()">✕</button><h3 class="share-modal-title" data-i18n="shareTitle">📤 Teile dieses Angebot!</h3><div class="share-buttons"><button class="share-platform-btn whatsapp-btn" id="shareWhatsApp"><span class="share-icon">💬</span> WhatsApp</button><button class="share-platform-btn telegram-btn" id="shareTelegram"><span class="share-icon">✈️</span> Telegram</button><button class="share-platform-btn facebook-btn" id="shareFacebook"><span class="share-icon">👤</span> Facebook</button><button class="share-platform-btn twitter-btn" id="shareTwitter"><span class="share-icon">🐦</span> X / Twitter</button><button class="share-platform-btn copy-btn" id="shareCopy"><span class="share-icon">📋</span> <span data-i18n="shareCopied">Link kopieren</span></button><button class="share-platform-btn native-btn" id="shareNative" style="display:none"><span class="share-icon">📲</span> <span data-i18n="shareNative">Mehr...</span></button></div></div></div>
+  <section class="faq-section" id="faqSection"><h2 class="faq-title">❓ Häufig gestellte Fragen</h2><div class="faq-list"><details class="faq-item"><summary>Was ist Ali Find Me?</summary><p>Ali Find Me ist eine intelligente Produktsuchmaschine für AliExpress mit Preisen, Bewertungen und Versandinformationen. Verfügbar in 9 Sprachen.</p></details><details class="faq-item"><summary>Ist es kostenlos?</summary><p>Ja! Ali Find Me ist völlig kostenlos. Keine Registrierung und keine Kreditkarte erforderlich.</p></details><details class="faq-item"><summary>Wie funktioniert die Bildersuche?</summary><p>Klicke auf das Kamera-Symbol, lade ein Foto des Produkts hoch, und die KI findet ähnliche Produkte auf AliExpress.</p></details><details class="faq-item"><summary>Welche Sprachen sind verfügbar?</summary><p>Die Seite ist in 9 Sprachen verfügbar: Deutsch, Hebräisch, Englisch, Arabisch, Russisch, Spanisch, Portugiesisch, Türkisch und Französisch.</p></details><details class="faq-item"><summary>Liefern sie nach Deutschland?</summary><p>Die meisten Produkte auf AliExpress werden weltweit versendet. Ali Find Me filtert automatisch nach Versand in dein Land.</p></details></div></section>
+  <section class="newsletter-section" id="newsletterSection"><div class="newsletter-content"><div class="newsletter-icon">📬</div><h2 class="newsletter-title" data-i18n="nlTitle">Top-Angebote in deinem Posteingang!</h2><p class="newsletter-desc" data-i18n="nlDesc">Abonniere unseren wöchentlichen Newsletter</p><form class="newsletter-form" id="newsletterForm" onsubmit="subscribeNewsletter(event)"><div class="newsletter-input-wrap"><input type="email" id="nlEmail" class="newsletter-input" placeholder="E-Mail eingeben" data-i18n-placeholder="nlPlaceholder" required><button type="submit" class="newsletter-btn" data-i18n="nlBtn">Abonnieren</button></div></form><p class="newsletter-privacy" data-i18n="nlPrivacy">🔒 Kein Spam. Jederzeit abbestellbar.</p><div class="newsletter-success" id="nlSuccess" style="display:none"><span class="newsletter-success-icon">✅</span><span data-i18n="nlSuccess">Abonniert!</span></div></div></section>
+  <div class="nl-popup-overlay" id="nlPopup" style="display:none" onclick="if(event.target===this)closeNlPopup()"><div class="nl-popup"><button class="nl-popup-close" onclick="closeNlPopup()">&times;</button><div class="nl-popup-icon">🎁</div><h3 class="nl-popup-title" data-i18n="nlPopupTitle">Verpasse keine Angebote!</h3><p class="nl-popup-desc" data-i18n="nlPopupDesc">Schließe dich Tausenden Abonnenten an</p><form class="nl-popup-form" onsubmit="subscribeNewsletter(event, true)"><input type="email" id="nlPopupEmail" class="newsletter-input" placeholder="E-Mail eingeben" data-i18n-placeholder="nlPlaceholder" required><button type="submit" class="newsletter-btn nl-popup-btn" data-i18n="nlBtn">Abonnieren</button></form><button class="nl-popup-skip" onclick="closeNlPopup()" data-i18n="nlSkip">Jetzt nicht</button></div></div>
+
+  <footer class="footer"><div class="footer-content"><p class="footer-brand">Ali Finde Mich &copy; 2026</p><p class="footer-disclaimer" data-i18n="disclaimer">Diese Seite verwendet Affiliate-Links. Dein Kauf kostet nicht mehr, aber wir erhalten möglicherweise eine kleine Provision.</p><p class="footer-links"><a href="../privacy.html" style="color:#a29bfe;text-decoration:none;margin:0 8px;">Privacy</a> | <a href="../terms.html" style="color:#a29bfe;text-decoration:none;margin:0 8px;">Terms</a> | <a href="../blog/" style="color:#a29bfe;text-decoration:none;margin:0 8px;">Blog</a></p></div></footer>
+
+  <div class="install-banner" id="installBanner" style="display:none"><div class="install-banner-content"><span class="install-icon">📲</span><div class="install-text"><strong data-i18n="installTitle">App installieren!</strong><span data-i18n="installDesc">Schneller Zugriff auf Angebote vom Startbildschirm</span></div><button class="install-btn" id="installBtn" onclick="installApp()" data-i18n="installBtn">Installieren</button><button class="install-dismiss" onclick="dismissInstall()">✕</button></div></div>
+
+  <button class="spin-float-btn" id="spinFloatBtn" onclick="showSpinWheel()" title="Spin & Win">🎰</button>
+  <div class="spin-modal-overlay" id="spinModalOverlay" style="display:none" onclick="if(event.target===this)closeSpinModal()"><div class="spin-modal"><button class="spin-modal-close" onclick="closeSpinModal()">&times;</button><h2 class="spin-title" data-i18n="spinTitle">🎰 Drehen & Gewinnen!</h2><div class="spin-wheel-wrap"><div class="spin-pointer">▼</div><canvas id="spinCanvas" width="300" height="300"></canvas></div><button class="spin-btn" id="spinBtn" onclick="spinWheel()" data-i18n="spinBtn">Drehen!</button><div class="spin-result" id="spinResult" style="display:none"></div></div></div>
+
+  <div class="points-toast" id="pointsToast"></div>
+  <div class="modal-overlay" id="pointsModal" style="display:none" onclick="if(event.target===this)closePointsModal()"><div class="modal-content points-modal"><div class="modal-header"><h2 data-i18n="pointsTitle">Meine Punkte</h2><button class="modal-close" onclick="closePointsModal()">&times;</button></div><div class="modal-body" id="pointsModalBody"></div></div></div>
+
+  <script src="../js/app.js?v=20260319g"></script>
+</body>
+</html>
