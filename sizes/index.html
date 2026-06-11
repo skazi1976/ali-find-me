@@ -211,11 +211,23 @@
   .ftr { text-align: center; color: #888; font-size: 13px; padding: 20px 0; border-top: 1px solid #eee; margin-top: 32px; }
   .ftr a { color: #ff6b35; text-decoration: none; font-weight: 600; }
 
+  /* Recommended products */
+  .products-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:12px; }
+  .product-card { background:#fafafa; border-radius:12px; overflow:hidden; text-decoration:none; color:inherit; transition:transform .15s, box-shadow .15s; }
+  .product-card:hover { transform:translateY(-2px); box-shadow:0 6px 16px rgba(0,0,0,.1); }
+  .product-card img { width:100%; aspect-ratio:1; object-fit:cover; display:block; }
+  .product-info { padding:8px 10px 10px; }
+  .product-title { font-size:12px; color:#555; line-height:1.4; overflow:hidden; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; margin-bottom:6px; min-height:33px; }
+  .product-price { font-weight:800; color:#ff3030; font-size:14px; }
+  .loading-state { text-align:center; color:#999; padding:30px 20px; font-size:14px; grid-column:1/-1; }
+  .shop-cta { display:block; text-align:center; background:linear-gradient(90deg,#ff6b35,#ff3030); color:#fff; font-weight:800; font-size:16px; padding:14px; border-radius:12px; text-decoration:none; margin-top:16px; box-shadow:0 6px 18px rgba(255,80,40,.3); }
+
   @media (max-width: 540px) {
     h1 { font-size: 22px; }
     .calc { padding: 18px 16px; }
     .size-table { font-size: 12px; }
     .size-table th, .size-table td { padding: 8px 4px; }
+    .products-grid { grid-template-columns:repeat(2,1fr); gap:10px; }
   }
 </style>
 </head>
@@ -299,6 +311,14 @@
         🛒 <strong>ב-AliExpress:</strong> כדאי להזמין <span id="aeSizeRec">L</span> כדי להיות בטוחים
       </div>
     </div>
+  </div>
+
+  <!-- Recommended fashion products (affiliate) -->
+  <div class="chart-section" id="recoSection">
+    <div class="chart-title">🛍️ פריטים מומלצים מ-AliExpress</div>
+    <p style="font-size:13px;color:#888;margin:-8px 0 14px">מצאת את המידה? הנה פריטים חמים — זכרו: כדאי להזמין מידה אחת גדולה יותר 👆</p>
+    <div class="products-grid" id="prodGrid"><div class="loading-state">טוען מוצרים...</div></div>
+    <a class="shop-cta" id="shopCta" href="/" target="_blank" rel="noopener">🔍 חפשו עוד פריטים במידה שלכם →</a>
   </div>
 
   <!-- Charts -->
@@ -527,6 +547,38 @@ function switchTab(cat){
   const chart = document.getElementById('chart-' + cat);
   if (chart) chart.style.display = '';
   buildOptions();
+  loadFashion(cat);
+}
+
+// Recommended fashion products (affiliate) — contextual to the size category
+const FASHION_KW = { women: 'women dress fashion', men: 'men shirt fashion', shoes: 'sneakers shoes', kids: 'kids clothes' };
+const SHOP_Q = { women: 'שמלה', men: 'חולצת גברים', shoes: 'נעליים', kids: 'בגדי ילדים' };
+async function loadFashion(cat){
+  const grid = document.getElementById('prodGrid');
+  if (!grid) return;
+  const cta = document.getElementById('shopCta');
+  if (cta) cta.href = '/?q=' + encodeURIComponent(SHOP_Q[cat] || '');
+  grid.innerHTML = '<div class="loading-state">טוען מוצרים...</div>';
+  const kw = FASHION_KW[cat] || 'fashion';
+  try {
+    const params = new URLSearchParams({ q: kw, lang: 'he', currency: 'ILS', country: 'IL', page: '1' });
+    const r = await fetch('https://ali-findme-api.ohadf1976.workers.dev/search?' + params);
+    const data = await r.json();
+    const products = (data.products || []).slice(0, 6);
+    if (!products.length) { grid.innerHTML = '<div class="loading-state">לא נמצאו מוצרים כרגע</div>'; return; }
+    let html = '';
+    for (const p of products) {
+      const id = p.id || p.product_id;
+      const link = id ? ('https://alifindme.com/c/' + id) : (p.affiliate_url || p.url || '#');
+      const img = p.image || p.product_main_image_url || '';
+      const title = (p.title || p.product_title || '').slice(0, 50);
+      const price = p.price_ils || p.target_sale_price || p.price || '';
+      html += '<a class="product-card" href="' + link + '" target="_blank" rel="noopener"><img src="' + img + '" alt="' + title + '" loading="lazy"><div class="product-info"><div class="product-title">' + title + '</div><div class="product-price">₪' + (parseFloat(price) || 0).toFixed(0) + '</div></div></a>';
+    }
+    grid.innerHTML = html;
+  } catch (e) {
+    grid.innerHTML = '<div class="loading-state">לא הצלחנו לטעון מוצרים כרגע</div>';
+  }
 }
 
 document.getElementById('fromSystem').addEventListener('change', buildOptions);
@@ -534,6 +586,7 @@ document.getElementById('fromSize').addEventListener('change', convert);
 document.getElementById('toSystem').addEventListener('change', convert);
 
 buildOptions();
+loadFashion(currentCat);
 </script>
 
 </body>
