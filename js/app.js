@@ -1924,7 +1924,7 @@ async function loadPromos() {
 
 async function loadTrending() {
   try {
-    const resp = await fetch(`${API_BASE}/trending?lang=${currentLang}&currency=${currentCurrency}&country=${currentCountry}`);
+    const resp = await fetch(`${API_BASE}/trending?lang=${currentLang}&currency=${currentCurrency}&country=${currentCountry}`, { cache: 'no-store' });
     const data = await resp.json();
     if (data.products && data.products.length > 0) {
       renderTrending(data.products);

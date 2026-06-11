@@ -1,4 +1,4 @@
-const CACHE_NAME = 'ali-findme-v49';
+const CACHE_NAME = 'ali-findme-v50';
 
 // Install: skip waiting + delete ALL old caches immediately
 self.addEventListener('install', event => {
