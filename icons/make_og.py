@@ -1,70 +1,93 @@
 # -*- coding: utf-8 -*-
-# Generates a premium, trustworthy 1200x630 Open Graph card for alifindme.com landing-page links.
-from PIL import Image, ImageDraw, ImageFont
+# Premium 1200x630 Open Graph card for alifindme.com landing-page links.
+# Clean two-panel layout: coral brand panel (left) + content (right, RTL).
+from PIL import Image, ImageDraw, ImageFont, ImageFilter
 from bidi.algorithm import get_display
 
 W, H = 1200, 630
 F = "C:/Windows/Fonts/"
+PANEL = 430  # left coral panel width
 
 def font(name, size):
     return ImageFont.truetype(F + name, size)
 
 def he(s):
-    # PIL renders LTR; bidi reorders Hebrew (and mixed Hebrew+latin/numbers) correctly.
     return get_display(s)
+
+def vgrad(draw, box, c1, c2):
+    x0, y0, x1, y1 = box
+    h = y1 - y0
+    for i in range(h):
+        t = i / max(1, h - 1)
+        r = int(c1[0] + (c2[0] - c1[0]) * t)
+        g = int(c1[1] + (c2[1] - c1[1]) * t)
+        b = int(c1[2] + (c2[2] - c1[2]) * t)
+        draw.line([(x0, y0 + i), (x1, y0 + i)], fill=(r, g, b))
 
 img = Image.new("RGB", (W, H), "#ffffff")
 d = ImageDraw.Draw(img)
 
-# --- Premium warm gradient background (cream -> soft blush) ---
-top = (255, 252, 250)
-bot = (250, 242, 240)
-for y in range(H):
-    t = y / H
-    r = int(top[0] + (bot[0] - top[0]) * t)
-    g = int(top[1] + (bot[1] - top[1]) * t)
-    b = int(top[2] + (bot[2] - top[2]) * t)
-    d.line([(0, y), (W, y)], fill=(r, g, b))
+# --- Right content area: clean soft warm gradient ---
+vgrad(d, (PANEL, 0, W, H), (255, 255, 255), (250, 244, 242))
 
-# --- Coral accent bar down the right edge (RTL side) ---
-d.rectangle([W - 16, 0, W, H], fill="#ff6b6b")
+# --- Left brand panel: coral -> warm pink gradient ---
+vgrad(d, (0, 0, PANEL, H), (255, 107, 107), (255, 138, 120))
 
-# --- Soft decorative circles (depth, premium feel) ---
-d.ellipse([-120, -120, 180, 180], fill="#ffe3e0")
-d.ellipse([W - 260, H - 200, W - 20, H + 40], outline="#ffd0cb", width=18)
+# subtle large translucent circle inside the panel (depth, stays behind icon)
+ov = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+od = ImageDraw.Draw(ov)
+od.ellipse([-90, 280, 250, 620], fill=(255, 255, 255, 28))
+od.ellipse([240, -120, 520, 160], fill=(255, 255, 255, 22))
+img.paste(Image.alpha_composite(img.convert("RGBA"), ov).convert("RGB"), (0, 0))
+d = ImageDraw.Draw(img)
 
-# --- Brand wordmark (top-right, RTL) ---
-brand_f = font("segoeuib.ttf", 40)
-brand = "ali find me"
-bw = d.textlength(brand, font=brand_f)
-d.text((W - 60 - bw, 56), brand, font=brand_f, fill="#ff6b6b")
-# small dot logo
-d.ellipse([W - 60 - bw - 58, 60, W - 60 - bw - 18, 100], fill="#ff6b6b")
+# --- Brand wordmark (white, top of left panel) ---
+brand_f = font("segoeuib.ttf", 38)
+d.ellipse([60, 62, 92, 94], fill="#ffffff")
+d.text((104, 60), "ali find me", font=brand_f, fill="#ffffff")
 
-# --- Main headline (Hebrew, RTL, right-aligned) ---
-h1_f = font("segoeuib.ttf", 84)
-h2_f = font("segoeuib.ttf", 84)
-line1 = he("אופנה ומותגים")
-line2 = he("במחירים מנצחים")
-d.text((W - 60, 175), line1, font=h1_f, fill="#2b2d42", anchor="ra")
-d.text((W - 60, 275), line2, font=h2_f, fill="#2b2d42", anchor="ra")
+# --- Shopping-bag icon (white line art, centered in panel) ---
+cx = PANEL // 2
+by0, by1 = 250, 430          # bag body
+bx0, bx1 = cx - 95, cx + 95
+d.rounded_rectangle([bx0, by0, bx1, by1], radius=26, fill="#ffffff")
+# handle (arc)
+d.arc([cx - 52, by0 - 78, cx + 52, by0 + 52], start=180, end=360, fill="#ffffff", width=16)
+# coral cut-outs to make it look like a bag (smile + handle holes)
+d.arc([cx - 38, by0 + 18, cx + 38, by0 + 86], start=20, end=160, fill="#ff6b6b", width=12)
 
-# --- Trust badges row (checkmark + Hebrew), right-aligned, stacked ---
-badge_f = font("segoeuib.ttf", 38)
+# --- Headline (Hebrew, RTL, right-aligned) ---
+h_f = font("segoeuib.ttf", 80)
+d.text((W - 64, 150), he("אופנה ומותגים"), font=h_f, fill="#1f2233", anchor="ra")
+d.text((W - 64, 248), he("במחירים מנצחים"), font=h_f, fill="#1f2233", anchor="ra")
+# coral accent underline under headline
+d.rounded_rectangle([W - 64 - 150, 360, W - 64, 369], radius=5, fill="#ff6b6b")
+
+# --- Trust badges as clean pill chips (right-aligned, stacked) ---
+badge_f = font("segoeuib.ttf", 34)
 badges = ["משלוח חינם לישראל", "תשלום מאובטח ומוגן", "אלפי לקוחות מרוצים"]
-y = 420
+y = 410
 for b in badges:
     txt = he(b)
     tw = d.textlength(txt, font=badge_f)
-    # text right-aligned
-    d.text((W - 60, y), txt, font=badge_f, fill="#3a3d52", anchor="ra")
-    # green check circle to the LEFT of the text (RTL leading side)
-    cx = W - 60 - tw - 44
-    cy = y + 22
-    d.ellipse([cx - 20, cy - 20, cx + 20, cy + 20], fill="#34c759")
-    d.line([(cx - 9, cy + 1), (cx - 2, cy + 9)], fill="#fff", width=5)
-    d.line([(cx - 2, cy + 9), (cx + 11, cy - 8)], fill="#fff", width=5)
-    y += 62
+    pad = 28
+    gap = 24                          # breathing room between check and text
+    chip_w = pad + 44 + gap + tw + pad
+    chip_h = 60
+    x_right = W - 64
+    x_left = x_right - chip_w
+    # pill background
+    d.rounded_rectangle([x_left, y, x_right, y + chip_h], radius=30, fill="#ffffff",
+                        outline="#ffe0db", width=2)
+    # text (right side of pill)
+    d.text((x_right - pad, y + chip_h / 2), txt, font=badge_f, fill="#33364d", anchor="rm")
+    # green check circle (left side of pill)
+    gcx = x_left + pad + 22
+    gcy = y + chip_h / 2
+    d.ellipse([gcx - 21, gcy - 21, gcx + 21, gcy + 21], fill="#22c55e")
+    d.line([(gcx - 9, gcy + 1), (gcx - 2, gcy + 9)], fill="#fff", width=5)
+    d.line([(gcx - 2, gcy + 9), (gcx + 11, gcy - 9)], fill="#fff", width=5)
+    y += 72
 
 img.save("og-image.png", "PNG")
 print("Saved og-image.png", img.size)
