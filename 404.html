@@ -139,6 +139,13 @@
     }
   }
 
+  // /b/<slug> → short branded buy link → ali-landing worker 302s to the store (with UTM)
+  var buyShortMatch = path.match(/^\/b\/([a-z2-9]{4,16})\/?$/);
+  if (buyShortMatch) {
+    window.location.replace('https://ali-landing.ohadf1976.workers.dev/b/' + buyShortMatch[1]);
+    return;
+  }
+
   // /o/<slug> handled in <head> script (faster — no DOM wait)
   if (/^\/o\/[a-z2-9]{4,16}\/?$/.test(path)) return;
 
