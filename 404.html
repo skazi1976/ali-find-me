@@ -160,10 +160,17 @@
     alIframe.src = 'https://ali-landing.ohadf1976.workers.dev/p/' + alSlug + alQs;
     alIframe.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;border:0;margin:0;padding:0;z-index:9999;background:#fff;';
     alIframe.setAttribute('allow', 'fullscreen');
+    var alLoaded = false;
     alIframe.onload = function() {
+      alLoaded = true;
       var loader = document.querySelector('.loader');
       if (loader) loader.style.display = 'none';
     };
+    // Fallback: if the iframe never loads (slow worker / strict IAB), navigate the top
+    // window directly to the live page so nobody gets stuck on the spinner.
+    setTimeout(function() {
+      if (!alLoaded) window.location.replace('https://ali-landing.ohadf1976.workers.dev/p/' + alSlug + alQs);
+    }, 8000);
     document.body.appendChild(alIframe);
     return;
   }
@@ -200,7 +207,9 @@
     iframe.src = 'https://ae-cart.ohadf1976.workers.dev/c/' + productId + qs;
     iframe.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;border:0;margin:0;padding:0;z-index:9999;background:#fff;';
     iframe.setAttribute('allow', 'fullscreen');
+    var cLoaded = false;
     iframe.onload = function() {
+      cLoaded = true;
       var loader = document.querySelector('.loader');
       if (loader) loader.style.display = 'none';
     };
@@ -209,6 +218,11 @@
       document.getElementById('msg').style.display = 'none';
       document.getElementById('err').classList.add('show');
     };
+    // Fallback: if the iframe never loads, navigate the top window directly to the live
+    // worker page so nobody gets stuck on the spinner.
+    setTimeout(function() {
+      if (!cLoaded) window.location.replace('https://ae-cart.ohadf1976.workers.dev/c/' + productId + qs);
+    }, 8000);
     document.body.appendChild(iframe);
     return;
   }
