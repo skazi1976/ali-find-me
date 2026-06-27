@@ -2433,16 +2433,9 @@ function buildProductCard(p) {
         <a href="${p.affiliate_url}" target="_blank" rel="noopener" onclick="onProductClick('${pJson}')">
           <img class="product-image" src="${p.image}" alt="${p.title}" loading="lazy" onerror="retryImg(this,'${(p.image_alt||'').replace(/'/g,"\\'")}')">
         </a>
-        ${hotDeal}
-        ${topPick}
+        ${topPick || hotDeal}
         <button class="${favClass}" onclick="onFavClick(this, '${pJson}')" title="\u05d4\u05d5\u05e1\u05e3 \u05dc\u05de\u05d5\u05e2\u05d3\u05e4\u05d9\u05dd">
           ${isFav ? "\u2764\ufe0f" : "\ud83e\udd0d"}
-        </button>
-        <button class="share-btn" onclick="shareProduct('${p.title.replace(/'/g,"\\'")}','${p.price}','${p.affiliate_url}')" title="\u05e9\u05ea\u05e3">
-          \ud83d\udce4
-        </button>
-        <button class="alert-btn-card ${alertActive ? 'has-alert' : ''}" onclick="onAlertClick('${pJson}')" title="\u05d4\u05ea\u05e8\u05d0\u05ea \u05de\u05d7\u05d9\u05e8">
-          ${alertActive ? "\ud83d\udd14" : "\ud83d\udd15"}
         </button>
       </div>
       <div class="product-info">
@@ -2451,21 +2444,11 @@ function buildProductCard(p) {
           <span class="product-price">${currentCurrencySymbol}${p.price}</span>
           ${originalPrice}
           ${discount}
-          ${savingsBadge}
         </div>
         ${freeShip}
         <div class="product-meta">
           <span class="product-rating">${stars} ${p.rating ? p.rating.toFixed(1) : ''}</span>
           ${hotOrders}
-        </div>
-        ${urgency}
-        <div class="product-actions-row">
-          <button class="similar-btn" onclick="event.stopPropagation();showSimilar('${p.id}','${(p.title||'').replace(/'/g,"\\'").substring(0,40)}')" title="${currentLang === 'he' ? 'מוצרים דומים' : 'Similar Products'}">
-            🔗 ${currentLang === 'he' ? 'מוצרים דומים' : 'Similar Products'}
-          </button>
-          <button class="compare-btn" onclick="event.stopPropagation();onCompareClick('${pJson}')" title="${i18n[currentLang].findCheaper || 'Find Cheaper'}">
-            💰 ${i18n[currentLang].findCheaper || 'Find Cheaper'}
-          </button>
         </div>
         <a href="${p.affiliate_url}" target="_blank" rel="noopener" class="product-cta product-cta-enhanced" onclick="onProductClick('${pJson}')">${ctaLabel}</a>
       </div>
