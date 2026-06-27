@@ -765,15 +765,16 @@ body {
 
 .product-card {
   background: var(--card-bg);
-  border-radius: var(--radius);
+  border-radius: 18px;
   overflow: hidden;
-  border: 1px solid var(--border);
+  border: 1px solid #f1f1f1;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.06);
   transition: transform 0.2s, box-shadow 0.2s;
 }
 
 .product-card:hover {
   transform: translateY(-4px);
-  box-shadow: var(--shadow-hover);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.13);
 }
 
 .product-img-wrap {
@@ -875,12 +876,12 @@ body {
 }
 
 .product-discount {
-  background: var(--accent);
+  background: #ff2e4d;
   color: #fff;
-  font-size: 0.72rem;
-  font-weight: 700;
-  padding: 2px 8px;
-  border-radius: 10px;
+  font-size: 0.74rem;
+  font-weight: 800;
+  padding: 3px 9px;
+  border-radius: 20px;
 }
 
 .product-meta {
@@ -897,31 +898,27 @@ body {
 .product-cta {
   display: block;
   text-align: center;
-  padding: 10px;
-  background: var(--gradient);
+  padding: 12px;
+  background: linear-gradient(135deg, #FF6B00, #FF9A3C);
   color: #fff;
   text-decoration: none;
-  border-radius: var(--radius-xs);
-  font-weight: 600;
-  font-size: 0.9rem;
-  transition: opacity 0.2s;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  transition: transform 0.15s, box-shadow 0.2s;
+  box-shadow: 0 4px 14px rgba(255,107,0,0.30);
 }
 
 .product-cta-enhanced {
   background: linear-gradient(135deg, #FF6B00, #FF9A3C) !important;
-  padding: 12px 10px;
+  padding: 13px 10px;
   font-size: 1rem;
-  border-radius: 8px;
-  animation: ctaPulse 2s infinite;
-  box-shadow: 0 4px 15px rgba(255, 107, 0, 0.4);
+  border-radius: 14px;
+  box-shadow: 0 5px 16px rgba(255,107,0,0.35);
 }
 
-@keyframes ctaPulse {
-  0%, 100% { box-shadow: 0 4px 15px rgba(255, 107, 0, 0.4); }
-  50% { box-shadow: 0 4px 25px rgba(255, 107, 0, 0.7); }
-}
-
-.product-cta:hover { opacity: 0.9; }
+.product-cta:hover { box-shadow: 0 7px 20px rgba(255,107,0,0.45); }
+.product-cta:active { transform: scale(0.97); }
 
 /* Enhanced product badges */
 .product-price {
@@ -961,27 +958,29 @@ body {
 
 .hot-deal-badge {
   position: absolute;
-  top: 8px;
-  left: 8px;
-  background: linear-gradient(135deg, #FF6B00, #FF9A3C);
+  top: 10px;
+  left: 10px;
+  background: linear-gradient(135deg, #FF3D3D, #FF7A00);
   color: #fff;
-  padding: 3px 8px;
-  border-radius: 6px;
-  font-size: 0.65rem;
-  font-weight: 700;
+  padding: 4px 11px;
+  border-radius: 20px;
+  font-size: 0.66rem;
+  font-weight: 800;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.18);
   z-index: 5;
 }
 
 .top-pick-badge {
   position: absolute;
-  top: 38px;
-  left: 8px;
+  top: 10px;
+  left: 10px;
   background: linear-gradient(135deg, #191919, #333333);
   color: #fff;
-  padding: 3px 8px;
-  border-radius: 6px;
-  font-size: 0.65rem;
-  font-weight: 700;
+  padding: 4px 11px;
+  border-radius: 20px;
+  font-size: 0.66rem;
+  font-weight: 800;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.22);
   z-index: 5;
 }
 
