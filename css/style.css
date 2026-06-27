@@ -2481,6 +2481,7 @@ body {
    PWA Install Banner
    ============================================ */
 .install-banner {
+  display: none; /* disabled — push opt-in banner is the only bottom banner now */
   position: fixed;
   bottom: 0;
   left: 0;
