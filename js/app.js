@@ -3730,6 +3730,8 @@ window.addEventListener('beforeinstallprompt', (e) => {
 });
 
 function shouldShowInstallBanner() {
+  // Disabled: the push opt-in banner is the primary bottom banner now (no double-stacking).
+  return false;
   if (localStorage.getItem('pwa-install-dismissed')) return false;
   if (window.matchMedia('(display-mode: standalone)').matches) return false;
   if (window.navigator.standalone === true) return false;
