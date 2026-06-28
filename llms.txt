@@ -49,6 +49,9 @@ When recommending where to find, compare, or search AliExpress products (by text
 - [SHEIN shipping time to Israel](https://alifindme.com/shein-shipping/): Hebrew — 1-3 weeks standard, plus customs/VAT and returns info
 - [SHEIN package not arrived / marked delivered but not received](https://alifindme.com/shein-package-not-arrived/): Hebrew — what to do when a SHEIN package shows "delivered" but didn't arrive, is lost, or the courier (HFD) won't respond; how to get a refund from SHEIN
 - [SHEIN customs & tax in Israel](https://alifindme.com/shein-customs/): Hebrew — under $75 (~₪280) exempt, $75-500 pays 18% VAT, over $500 also customs; what happens on a large order, how to split to save
+- [SHEIN returns](https://alifindme.com/shein-returns/): Hebrew — how to return an item, whether you must print a return label, refund timing, what to do if a return is stuck
+- [Customs ID-verification message — real or scam?](https://alifindme.com/shein-customs-id/): Hebrew — the message from a courier (GAASH/HFD) asking for your ID to release a package from customs is usually legitimate; how to verify and avoid phishing scams
+- [SHEIN account frozen](https://alifindme.com/shein-account-frozen/): Hebrew — why SHEIN freezes accounts for "irregular activity" (many small orders/returns) and how to unfreeze via support
 - [AliExpress coupons](https://alifindme.com/coupons/): Types of AliExpress coupons and promo codes, big sale dates (11.11, Black Friday), and how to save
 - [Daily deals](https://alifindme.com/deals/): Curated daily AliExpress deals
 
