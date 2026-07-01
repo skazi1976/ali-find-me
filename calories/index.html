@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>מחשבון קלוריות ומאקרו — כמה קלוריות ביום לירידה במשקל | מחשבון חכם</title>
+<meta name="description" content="מחשבון קלוריות חינם: חשבו כמה קלוריות ביום אתם צריכים לירידה במשקל, שמירה או עלייה במסה — כולל חלבון, פחמימות ושומן (מאקרו). מבוסס נוסחת Mifflin-St Jeor למתאמנים ודיאטה.">
+<meta name="keywords" content="מחשבון קלוריות, כמה קלוריות ביום, מחשבון מאקרו, כמה חלבון ליום, מחשבון BMR, TDEE, ירידה במשקל, דיאטה, קלוריות למתאמנים">
+<meta name="robots" content="index, follow">
+<meta property="og:title" content="מחשבון קלוריות ומאקרו — כמה קלוריות ביום?">
+<meta property="og:description" content="חשבו בחינם כמה קלוריות וחלבון אתם צריכים ביום — לירידה במשקל, שמירה או עלייה במסה.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="he_IL">
+<meta property="og:url" content="https://alifindme.com/calories/">
+<link rel="canonical" href="https://alifindme.com/calories/">
+<link rel="icon" href="/icons/icon-192.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;800;900&family=Assistant:wght@400;600&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+ "@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+  {"@type":"Question","name":"כמה קלוריות ביום צריך כדי לרדת במשקל?","acceptedAnswer":{"@type":"Answer","text":"כדי לרדת במשקל צריך גירעון קלורי — בדרך כלל כ-500 קלוריות ביום מתחת לצריכה היומית שלכם (TDEE), מה שמוביל לירידה של כחצי קילו בשבוע. המחשבון מחשב את היעד המדויק שלכם לפי גיל, משקל, גובה ורמת פעילות."}},
+  {"@type":"Question","name":"כמה חלבון צריך ביום?","acceptedAnswer":{"@type":"Answer","text":"למתאמנים ולמי שבדיאטה מומלץ כ-1.8 עד 2.2 גרם חלבון לכל קילוגרם משקל גוף ביום, כדי לשמר מסת שריר. המחשבון מחשב את כמות החלבון המומלצת לכם בגרמים."}},
+  {"@type":"Question","name":"מה זה TDEE ו-BMR?","acceptedAnswer":{"@type":"Answer","text":"BMR הוא כמות הקלוריות שהגוף שורף במנוחה מוחלטת. TDEE הוא סך הקלוריות שאתם שורפים ביום כולל פעילות. יעד הקלוריות שלכם מחושב מה-TDEE בהתאם למטרה (ירידה, שמירה או עלייה)."}}
+ ]
+}
+</script>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  :root{--brand:#10b981;--brand2:#059669;--ink:#0f172a;--muted:#64748b;--line:#e5e7eb;--bg:#f8fafc}
+  body{font-family:'Assistant',Arial,sans-serif;color:var(--ink);background:var(--bg);line-height:1.6}
+  .wrap{max-width:760px;margin:0 auto;padding:0 16px}
+  header.hero{background:linear-gradient(135deg,#10b981,#059669);color:#fff;text-align:center;padding:38px 16px 30px}
+  header.hero h1{font-family:'Heebo';font-size:1.75rem;font-weight:900;margin-bottom:8px}
+  header.hero p{font-size:1.02rem;opacity:.95;max-width:520px;margin:0 auto}
+  main{padding:22px 0 40px}
+  .card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:22px;margin:-24px 0 18px;box-shadow:0 10px 30px rgba(2,32,20,.06)}
+  .card.tight{margin-top:18px}
+  h2{font-family:'Heebo';font-size:1.25rem;font-weight:800;margin:22px 0 12px}
+  label{display:block;font-weight:600;font-size:.92rem;margin:0 0 6px;color:#334155}
+  .row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
+  input[type=number]{width:100%;padding:12px 14px;border:1.5px solid var(--line);border-radius:12px;font-size:1rem;font-family:inherit;outline:none;transition:border .15s}
+  input[type=number]:focus{border-color:var(--brand)}
+  .seg{display:flex;gap:8px;flex-wrap:wrap}
+  .seg button{flex:1;min-width:calc(50% - 4px);padding:11px 8px;border:1.5px solid var(--line);background:#fff;border-radius:12px;font-family:'Heebo';font-weight:700;font-size:.92rem;cursor:pointer;color:#334155;transition:all .15s}
+  .seg button.on{background:var(--brand);border-color:var(--brand);color:#fff}
+  select{width:100%;padding:12px 14px;border:1.5px solid var(--line);border-radius:12px;font-size:1rem;font-family:inherit;background:#fff;outline:none}
+  .calc-btn{width:100%;margin-top:6px;padding:15px;background:linear-gradient(135deg,#10b981,#059669);color:#fff;border:none;border-radius:14px;font-family:'Heebo';font-weight:800;font-size:1.08rem;cursor:pointer;transition:transform .1s}
+  .calc-btn:active{transform:scale(.99)}
+  /* results */
+  #result{display:none}
+  .big{text-align:center;padding:8px 0 4px}
+  .big .num{font-family:'Heebo';font-size:3rem;font-weight:900;color:var(--brand2);line-height:1}
+  .big .lbl{color:var(--muted);font-weight:600;margin-top:2px}
+  .sub{display:flex;justify-content:center;gap:22px;margin:12px 0 6px;flex-wrap:wrap}
+  .sub div{text-align:center}
+  .sub b{font-family:'Heebo';font-size:1.1rem;display:block}
+  .sub span{font-size:.8rem;color:var(--muted)}
+  .macros{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:16px}
+  .macro{border:1px solid var(--line);border-radius:14px;padding:14px 8px;text-align:center}
+  .macro .g{font-family:'Heebo';font-size:1.5rem;font-weight:900}
+  .macro .n{font-weight:700;font-size:.9rem;margin-top:2px}
+  .macro .p{font-size:.78rem;color:var(--muted)}
+  .m-prot{border-top:4px solid #ef4444}.m-carb{border-top:4px solid #f59e0b}.m-fat{border-top:4px solid #3b82f6}
+  .note{background:#ecfdf5;border-right:4px solid var(--brand);padding:12px 14px;border-radius:10px;margin-top:16px;font-size:.92rem;color:#065f46}
+  .promo{margin-top:16px;background:#fff7ed;border:1px dashed #fdba74;border-radius:14px;padding:16px;text-align:center}
+  .promo b{font-family:'Heebo'}
+  .promo a{display:inline-block;margin-top:8px;background:#ea580c;color:#fff;text-decoration:none;padding:10px 20px;border-radius:24px;font-weight:800;font-family:'Heebo';font-size:.95rem}
+  .faq details{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin-bottom:8px}
+  .faq summary{font-family:'Heebo';font-weight:700;cursor:pointer}
+  .faq p{margin-top:8px;color:#334155}
+  footer{text-align:center;color:var(--muted);font-size:.82rem;padding:24px 16px 40px;line-height:1.7}
+  @media(max-width:520px){.row{grid-template-columns:1fr}.macros{grid-template-columns:1fr 1fr 1fr}header.hero h1{font-size:1.5rem}}
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="wrap">
+    <h1>🔥 מחשבון קלוריות ומאקרו</h1>
+    <p>חשבו בדיוק כמה קלוריות, חלבון, פחמימות ושומן אתם צריכים ביום — לירידה במשקל, שמירה או עלייה במסה.</p>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="card">
+    <label>מגדר</label>
+    <div class="seg" id="sex">
+      <button data-v="male" class="on">👨 גבר</button>
+      <button data-v="female">👩 אישה</button>
+    </div>
+
+    <div class="row" style="margin-top:14px">
+      <div><label>גיל</label><input type="number" id="age" placeholder="למשל 30" min="14" max="100"></div>
+      <div><label>משקל (ק״ג)</label><input type="number" id="weight" placeholder="למשל 75" min="30" max="300"></div>
+    </div>
+    <div class="row">
+      <div><label>גובה (ס״מ)</label><input type="number" id="height" placeholder="למשל 175" min="120" max="230"></div>
+      <div>
+        <label>רמת פעילות</label>
+        <select id="activity">
+          <option value="1.2">יושבני (מעט/ללא ספורט)</option>
+          <option value="1.375">קל (1-3 אימונים בשבוע)</option>
+          <option value="1.55" selected>בינוני (3-5 אימונים)</option>
+          <option value="1.725">גבוה (6-7 אימונים)</option>
+          <option value="1.9">אתלטי (אימון כפול/עבודה פיזית)</option>
+        </select>
+      </div>
+    </div>
+
+    <label>מה המטרה שלך?</label>
+    <div class="seg" id="goal">
+      <button data-v="lose" class="on">📉 ירידה במשקל</button>
+      <button data-v="maintain">⚖️ שמירה</button>
+      <button data-v="gain">📈 עלייה במסה</button>
+    </div>
+
+    <button class="calc-btn" onclick="calc()">חשב את היעד שלי 🎯</button>
+  </div>
+
+  <div class="card tight" id="result">
+    <div class="big">
+      <div class="num" id="rCals">0</div>
+      <div class="lbl" id="rGoalLbl">קלוריות ביום</div>
+    </div>
+    <div class="sub">
+      <div><b id="rBmr">0</b><span>BMR (מנוחה)</span></div>
+      <div><b id="rTdee">0</b><span>TDEE (שריפה יומית)</span></div>
+    </div>
+    <div class="macros">
+      <div class="macro m-prot"><div class="g" id="rProt">0</div><div class="n">חלבון</div><div class="p">גרם ביום</div></div>
+      <div class="macro m-carb"><div class="g" id="rCarb">0</div><div class="n">פחמימות</div><div class="p">גרם ביום</div></div>
+      <div class="macro m-fat"><div class="g" id="rFat">0</div><div class="n">שומן</div><div class="p">גרם ביום</div></div>
+    </div>
+    <div class="note" id="rNote"></div>
+
+    <!-- MONETIZATION HOOK (affiliate — to wire: iHerb protein / AliExpress gear) -->
+    <div class="promo" id="promo">
+      <b id="promoTitle">💪 רוצה להגיע ליעד החלבון?</b>
+      <div style="font-size:.9rem;color:#7c2d12;margin-top:4px" id="promoText">אבקת חלבון איכותית עוזרת להשלים את הכמות היומית בקלות.</div>
+      <a href="https://alifindme.com/?q=%D7%90%D7%91%D7%A7%D7%AA%20%D7%97%D7%9C%D7%91%D7%95%D7%9F" id="promoLink" target="_blank" rel="nofollow">מצא אבקת חלבון משתלמת ←</a>
+    </div>
+  </div>
+
+  <h2>איך זה עובד?</h2>
+  <p style="color:#334155">המחשבון מבוסס על נוסחת <b>Mifflin-St Jeor</b> — הנוסחה המדויקת ביותר לחישוב קלוריות. הוא מחשב את ה-BMR (שריפה במנוחה), מכפיל ברמת הפעילות כדי לקבל TDEE, ואז מתאים את היעד למטרה שלכם. המאקרו מחושב עם דגש על <b>חלבון גבוה (2 גרם לק״ג)</b> — אידיאלי למתאמנים ולשמירה על שריר בדיאטה.</p>
+
+  <h2>שאלות נפוצות</h2>
+  <div class="faq">
+    <details open><summary>כמה קלוריות ביום צריך כדי לרדת במשקל?</summary><p>גירעון של כ-500 קלוריות ביום מתחת ל-TDEE שלכם מוביל לירידה בריאה של כחצי קילו בשבוע. המחשבון מחשב את המספר המדויק עבורכם.</p></details>
+    <details><summary>כמה חלבון צריך ביום?</summary><p>למתאמנים ולדיאטה מומלץ 1.8-2.2 גרם חלבון לכל ק״ג משקל גוף, לשימור מסת שריר. המחשבון מציג את הכמות המדויקת בגרמים.</p></details>
+    <details><summary>מה ההבדל בין BMR ל-TDEE?</summary><p>BMR = קלוריות שהגוף שורף במנוחה מוחלטת. TDEE = סך השריפה היומית כולל פעילות. יעד הקלוריות מחושב מה-TDEE לפי המטרה.</p></details>
+  </div>
+
+  <h2>🛒 מוצרים שיעזרו לך להגיע ליעד</h2>
+  <p style="color:#334155">כלים משתלמים שיקלו עליך לעקוב אחרי הקלוריות והחלבון — נמצאו לך במחיר הכי טוב דרך <b>עלי תמצא לי</b>:</p>
+  <div class="prodgrid">
+    <a href="https://alifindme.com/?q=%D7%90%D7%91%D7%A7%D7%AA%20%D7%97%D7%9C%D7%91%D7%95%D7%9F%20%D7%95%D7%95%D7%99"><span>🥤</span>אבקת חלבון</a>
+    <a href="https://alifindme.com/?q=%D7%9E%D7%A9%D7%A7%D7%9C%20%D7%9E%D7%98%D7%91%D7%97%20%D7%93%D7%99%D7%92%D7%99%D7%98%D7%9C%D7%99"><span>⚖️</span>משקל מטבח דיגיטלי</a>
+    <a href="https://alifindme.com/?q=%D7%9E%D7%A9%D7%A7%D7%9C%20%D7%90%D7%99%D7%A9%D7%99%20%D7%97%D7%9B%D7%9D%20%D7%91%D7%9C%D7%95%D7%98%D7%95%D7%AA%27"><span>📊</span>משקל אישי חכם</a>
+    <a href="https://alifindme.com/?q=%D7%92%D7%95%D7%9E%D7%99%D7%95%D7%AA%20%D7%94%D7%AA%D7%A0%D7%92%D7%93%D7%95%D7%AA%20%D7%9C%D7%90%D7%99%D7%9E%D7%95%D7%9F"><span>💪</span>גומיות התנגדות</a>
+    <a href="https://alifindme.com/?q=%D7%A7%D7%95%D7%A4%D7%A1%D7%90%D7%95%D7%AA%20%D7%90%D7%95%D7%9B%D7%9C%20%D7%9E%D7%97%D7%95%D7%9C%D7%A7%D7%95%D7%AA%20meal%20prep"><span>🍱</span>קופסאות אוכל</a>
+    <a href="https://alifindme.com/?q=%D7%91%D7%A7%D7%91%D7%95%D7%A7%20%D7%A9%D7%99%D7%99%D7%A7%D7%A8%20%D7%97%D7%9C%D7%91%D7%95%D7%9F"><span>🍶</span>שייקר חלבון</a>
+  </div>
+  <style>
+  .prodgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin:12px 0 8px}
+  .prodgrid a{display:block;text-decoration:none;background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 10px;text-align:center;color:var(--ink);font-family:'Heebo';font-weight:700;font-size:.92rem;transition:transform .15s,box-shadow .2s}
+  .prodgrid a:hover{transform:translateY(-2px);box-shadow:0 8px 18px rgba(0,0,0,.08);border-color:var(--brand)}
+  .prodgrid a span{font-size:1.7rem;display:block;margin-bottom:6px}
+  </style>
+</main>
+
+<footer>
+  המחשבון מספק הערכה כללית למטרות מידע בלבד ואינו מהווה ייעוץ רפואי או תזונתי. לפני התחלת דיאטה התייעצו עם איש מקצוע.<br>
+  © מחשבון קלוריות ומאקרו
+</footer>
+
+<script>
+  var SEX="male", GOAL="lose";
+  document.getElementById("sex").addEventListener("click",function(e){
+    var b=e.target.closest("button"); if(!b)return;
+    [].forEach.call(this.children,function(x){x.classList.remove("on")}); b.classList.add("on"); SEX=b.dataset.v;
+  });
+  document.getElementById("goal").addEventListener("click",function(e){
+    var b=e.target.closest("button"); if(!b)return;
+    [].forEach.call(this.children,function(x){x.classList.remove("on")}); b.classList.add("on"); GOAL=b.dataset.v;
+  });
+
+  function calc(){
+    var age=+document.getElementById("age").value,
+        w=+document.getElementById("weight").value,
+        h=+document.getElementById("height").value,
+        act=+document.getElementById("activity").value;
+    if(!age||!w||!h){ alert("נא למלא גיל, משקל וגובה"); return; }
+
+    // BMR — Mifflin-St Jeor
+    var bmr = 10*w + 6.25*h - 5*age + (SEX==="male" ? 5 : -161);
+    var tdee = bmr*act;
+
+    // Goal adjustment
+    var cals, goalLbl, note;
+    if(GOAL==="lose"){ cals = tdee-500; goalLbl="קלוריות ביום · לירידה במשקל"; note="גירעון של 500 קלוריות ≈ ירידה של כחצי ק״ג בשבוע."; }
+    else if(GOAL==="gain"){ cals = tdee+350; goalLbl="קלוריות ביום · לעלייה במסה"; note="עודף מתון של 350 קלוריות בונה שריר עם מינימום שומן."; }
+    else { cals = tdee; goalLbl="קלוריות ביום · לשמירה על המשקל"; note="זו כמות הקלוריות שתשמור על המשקל הנוכחי שלך."; }
+
+    // Safety floor
+    var floor = SEX==="male"?1500:1200;
+    if(cals<floor){ cals=floor; note="⚠️ הותאם למינימום בטוח ("+floor+" קק״ל). אל תרד מתחת לזה בלי ליווי מקצועי."; }
+    cals=Math.round(cals);
+
+    // Macros — high protein (2g/kg), fat 25%, carbs rest
+    var protG=Math.round(2.0*w);
+    var fatG=Math.round((cals*0.25)/9);
+    var carbG=Math.round(Math.max(0,(cals - protG*4 - fatG*9))/4);
+
+    document.getElementById("rCals").textContent=cals.toLocaleString("he-IL");
+    document.getElementById("rGoalLbl").textContent=goalLbl;
+    document.getElementById("rBmr").textContent=Math.round(bmr).toLocaleString("he-IL");
+    document.getElementById("rTdee").textContent=Math.round(tdee).toLocaleString("he-IL");
+    document.getElementById("rProt").textContent=protG;
+    document.getElementById("rCarb").textContent=carbG;
+    document.getElementById("rFat").textContent=fatG;
+    document.getElementById("rNote").textContent=note;
+    document.getElementById("promoText").textContent="היעד שלך: "+protG+" גרם חלבון ביום. אבקת חלבון איכותית עוזרת להשלים בקלות.";
+
+    var r=document.getElementById("result"); r.style.display="block";
+    r.scrollIntoView({behavior:"smooth",block:"start"});
+  }
+</script>
+<!-- AFM-SEO-LINKS -->
+<nav class="afm-seo" aria-label="קישורי אתר" dir="rtl">
+  <style>
+  .afm-seo{background:#1a1a2e;color:#fff;padding:32px 20px;margin-top:44px;font-family:'Heebo','Assistant',Arial,sans-serif}
+  .afm-seo .afm-wrap{display:flex;flex-wrap:wrap;justify-content:center;gap:30px;max-width:920px;margin:0 auto 22px;text-align:right}
+  .afm-seo .afm-col{min-width:150px}
+  .afm-seo .afm-col h3{font-size:.92rem;color:#fff;margin:0 0 10px;font-weight:700}
+  .afm-seo .afm-col a{display:block;color:rgba(255,255,255,.62);text-decoration:none;font-size:.83rem;padding:3px 0;transition:color .15s}
+  .afm-seo .afm-col a:hover{color:#FF9A3C}
+  .afm-seo .afm-about{font-size:.8rem;max-width:680px;margin:0 auto;line-height:1.6;color:rgba(255,255,255,.5);text-align:center;border-top:1px solid rgba(255,255,255,.1);padding-top:16px}
+  @media(max-width:600px){.afm-seo .afm-wrap{gap:20px 26px}.afm-seo .afm-col{min-width:120px}}
+  </style>
+  <div class="afm-wrap">
+    <div class="afm-col"><h3>כלים ומדריכים</h3>
+      <a href="/converter/">המרת דולר לשקל</a>
+      <a href="/sizes/">טבלת מידות עלי אקספרס</a>
+      <a href="/tracking/">מעקב חבילות</a>
+      <a href="/customs/">מחשבון מכס ומע״מ</a>
+      <a href="/coupons/">קופונים אלי אקספרס</a>
+      <a href="/guide/">איך קונים באלי אקספרס</a>
+    </div>
+    <div class="afm-col"><h3>קטגוריות</h3>
+      <a href="/skincare/">טיפוח פנים</a>
+      <a href="/swimwear/">בגדי ים וביקיני</a>
+      <a href="/electronics/">אלקטרוניקה וגאדג׳טים</a>
+      <a href="/baby/">מוצרי תינוקות</a>
+      <a href="/nails/">לק ג׳ל וציפורניים</a>
+      <a href="/home/">מוצרים לבית</a>
+      <a href="/hair/">מוצרי שיער ויופי</a>
+      <a href="/deals/">דילים חמים</a>
+    </div>
+    <div class="afm-col"><h3>ניווט</h3>
+      <a href="/">מנוע החיפוש</a>
+      <a href="/blog/">בלוג קניות</a>
+      <a href="/privacy.html">מדיניות פרטיות</a>
+    </div>
+    <div class="afm-col"><h3>Languages</h3>
+      <a href="/en/">English</a>
+      <a href="/ar/">العربية</a>
+      <a href="/ru/">Русский</a>
+      <a href="/es/">Español</a>
+      <a href="/fr/">Français</a>
+    </div>
+  </div>
+  <p class="afm-about">עלי תמצא לי — מנוע חיפוש חכם למוצרי אלי אקספרס (עלי אקספרס) בעברית: אופנה, אלקטרוניקה, השוואת מחירים, המרת דולר/יורו לשקל, טבלאות מידות וחיפוש מוצרים לפי תמונה. הדילים הכי טובים עם משלוח לישראל.</p>
+</nav>
+<!-- /AFM-SEO-LINKS -->
+</body>
+</html>
