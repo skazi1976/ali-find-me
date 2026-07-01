@@ -1017,9 +1017,12 @@ function detectLanguage() {
     "TH": "th", "CN": "zh", "TW": "zh",
   };
   if (countryLangMap[country] && i18n[countryLangMap[country]]) return countryLangMap[country];
-  // Fallback to browser language
+  // Fallback to browser language. A non-Hebrew browser is almost never an
+  // Israeli who wants Hebrew — fall back to English, NOT Hebrew, so foreign
+  // visitors don't get the Israeli (ILS / ship-to-IL) experience.
   const browserLang = (navigator.language || navigator.userLanguage || "en").substring(0, 2).toLowerCase();
-  return i18n[browserLang] ? browserLang : "he";
+  if (i18n[browserLang]) return browserLang;
+  return browserLang === "he" ? "he" : "en";
 }
 
 // ============================================================
@@ -3187,6 +3190,29 @@ if (pathLangMatch && i18n[pathLangMatch[1]]) {
 }
 setLang(currentLang, true);
 updateFavBadge();
+
+// Auto-localize NEW foreign visitors by their REAL country (Cloudflare geo) so
+// a German/US/etc. visitor no longer lands on the default Hebrew/ILS experience
+// with Israeli (ship-to-IL) affiliate links. Runs once per browser; never for
+// Israelis, crawlers, or anyone already on a /lang/ subdir or with an explicit choice.
+async function geoAutoLocalize() {
+  try {
+    if (localStorage.getItem("ali_geo_v1")) return;
+    if (pathLangMatch || urlLangParam) { localStorage.setItem("ali_geo_v1", "1"); return; }
+    const ua = navigator.userAgent || "";
+    if (/bot|crawl|spider|slurp|bing|google|yandex|baidu|duckduck|facebook|whatsapp|telegram|embed|preview|lighthouse|headless/i.test(ua)) return;
+    const r = await fetch(`${API_BASE}/geo`, { cache: "no-store" });
+    const c = (((await r.json()) || {}).country || "").toUpperCase();
+    localStorage.setItem("ali_geo_v1", "1");
+    if (!c || c === "IL" || c === "XX") return; // Israel/unknown → keep Hebrew
+    const map = { BR:"pt", ES:"es", FR:"fr", DE:"de", AT:"de", CH:"de", IT:"it", RU:"ru", BY:"ru",
+                  SA:"ar", AE:"ar", QA:"ar", KW:"ar", EG:"ar", JO:"ar", MA:"ar", TR:"tr", PL:"pl" };
+    const lang = map[c] || "en"; // any other foreign country → English (never Hebrew)
+    if (lang === currentLang || !i18n[lang]) return;
+    setLang(lang); // navigates to /{lang}/ with the correct country + currency
+  } catch (_) { /* best effort — never block the page */ }
+}
+geoAutoLocalize();
 updateAlertBadge();
 renderHistory();
 loadRecentlyViewed();
