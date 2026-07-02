@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calculadora de 1RM — Estima tu Máximo de una Repetición | Ali Find Me</title>
+<meta name="description" content="Calculadora de 1RM gratis: estima tu máximo de una repetición según peso y repeticiones, con tabla de porcentajes para entrenar. Fórmula de Epley."><meta name="keywords" content="calculadora 1RM, máximo una repetición, one rep max, calcular 1RM, porcentajes 1RM, entrenamiento fuerza"><meta name="robots" content="index, follow">
+<meta property="og:title" content="🏋️ Calculadora de 1RM"><meta property="og:description" content="Calculadora de 1RM gratis: estima tu máximo de una repetición según peso y repeticiones, con tabla de porcentajes para entrenar. Fórmula de Epley."><meta property="og:type" content="website">
+<meta property="og:url" content="https://alifindme.com/es/one-rep-max/"><link rel="canonical" href="https://alifindme.com/es/one-rep-max/"><link rel="icon" href="/icons/icon-192.png" type="image/png">
+<link rel="alternate" hreflang="he" href="https://alifindme.com/one-rep-max/">
+<link rel="alternate" hreflang="en" href="https://alifindme.com/en/one-rep-max/">
+<link rel="alternate" hreflang="es" href="https://alifindme.com/es/one-rep-max/">
+<link rel="alternate" hreflang="pt" href="https://alifindme.com/pt/one-rep-max/">
+<link rel="alternate" hreflang="de" href="https://alifindme.com/de/one-rep-max/">
+<link rel="alternate" hreflang="fr" href="https://alifindme.com/fr/one-rep-max/">
+<link rel="alternate" hreflang="it" href="https://alifindme.com/it/one-rep-max/">
+<link rel="alternate" hreflang="ru" href="https://alifindme.com/ru/one-rep-max/">
+<link rel="alternate" hreflang="x-default" href="https://alifindme.com/one-rep-max/">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;800;900&family=Assistant:wght@400;600&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "¿Qué es el 1RM?", "acceptedAnswer": {"@type": "Answer", "text": "El 1RM (máximo de una repetición) es el peso máximo que puedes levantar en una repetición de un ejercicio. Se usa para planificar la intensidad de fuerza."}}, {"@type": "Question", "name": "¿Cómo sé mi 1RM sin ir al máximo?", "acceptedAnswer": {"@type": "Answer", "text": "Levanta un peso submáximo varias repeticiones y la calculadora estima tu 1RM — más seguro que un intento máximo real."}}, {"@type": "Question", "name": "¿Cómo uso la tabla de porcentajes?", "acceptedAnswer": {"@type": "Answer", "text": "Para hipertrofia trabaja al 70-80% del 1RM (8-12 reps); para fuerza al 85-95% (2-5 reps)."}}]}
+</script>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  :root{--brand:#7c3aed;--brand2:#6d28d9;--ink:#0f172a;--muted:#64748b;--line:#e5e7eb;--bg:#f8fafc}
+  body{font-family:'Assistant',Arial,sans-serif;color:var(--ink);background:var(--bg);line-height:1.6}
+  .wrap{max-width:760px;margin:0 auto;padding:0 16px}
+  header.hero{background:linear-gradient(135deg,#7c3aed,#6d28d9);color:#fff;text-align:center;padding:38px 16px 30px}
+  header.hero h1{font-family:'Heebo';font-size:1.75rem;font-weight:900;margin-bottom:8px} header.hero p{font-size:1.02rem;opacity:.95;max-width:520px;margin:0 auto}
+  main{padding:22px 0 40px}
+  .card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:22px;margin:-24px 0 18px;box-shadow:0 10px 30px rgba(16,2,32,.06)} .card.tight{margin-top:18px}
+  h2{font-family:'Heebo';font-size:1.25rem;font-weight:800;margin:22px 0 12px}
+  label{display:block;font-weight:600;font-size:.92rem;margin:0 0 6px;color:#334155}
+  .row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  input[type=number]{width:100%;padding:12px 14px;border:1.5px solid var(--line);border-radius:12px;font-size:1rem;font-family:inherit;outline:none;margin-bottom:14px} input:focus{border-color:var(--brand)}
+  .calc-btn{width:100%;margin-top:6px;padding:15px;background:linear-gradient(135deg,#7c3aed,#6d28d9);color:#fff;border:none;border-radius:14px;font-family:'Heebo';font-weight:800;font-size:1.08rem;cursor:pointer}
+  #result{display:none}
+  .big{text-align:center;padding:8px 0 4px} .big .num{font-family:'Heebo';font-size:3rem;font-weight:900;color:var(--brand2);line-height:1} .big .lbl{color:var(--muted);font-weight:600;margin-top:2px}
+  .pcttbl{margin-top:14px} .pcttbl .th{font-weight:700;font-family:'Heebo';margin-bottom:6px;font-size:.95rem}
+  .pctrow{display:flex;justify-content:space-between;padding:7px 12px;border:1px solid var(--line);border-radius:8px;margin-bottom:5px;font-size:.92rem} .pctrow b{color:var(--brand2)}
+  .note{background:#f5f3ff;border-left:4px solid var(--brand);padding:12px 14px;border-radius:10px;margin-top:14px;font-size:.92rem;color:#4c1d95}
+  .promo{margin-top:16px;background:#fff7ed;border:1px dashed #fdba74;border-radius:14px;padding:16px;text-align:center} .promo a{display:inline-block;margin-top:8px;background:#ea580c;color:#fff;text-decoration:none;padding:10px 20px;border-radius:24px;font-weight:800;font-family:'Heebo';font-size:.95rem}
+  .cross{display:block;text-align:center;margin:10px 0 0;background:#eef2ff;border:1px solid #c7d2fe;border-radius:12px;padding:11px;color:#3730a3;text-decoration:none;font-family:'Heebo';font-weight:700;font-size:.95rem}
+  .prodgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:12px 0 8px}
+  .prodgrid a{display:block;text-decoration:none;background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 10px;text-align:center;color:var(--ink);font-family:'Heebo';font-weight:700;font-size:.86rem} .prodgrid a:hover{border-color:var(--brand)} .prodgrid a span{font-size:1.6rem;display:block;margin-bottom:5px}
+  .faq details{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin-bottom:8px} .faq summary{font-family:'Heebo';font-weight:700;cursor:pointer} .faq p{margin-top:8px;color:#334155}
+  footer{text-align:center;color:var(--muted);font-size:.82rem;padding:24px 16px 40px;line-height:1.7}
+  @media(max-width:520px){header.hero h1{font-size:1.5rem}}
+</style>
+</head>
+<body>
+<header class="hero"><div class="wrap"><h1>🏋️ Calculadora de 1RM</h1><p>Estima tu máximo de una repetición (1RM) según peso y repeticiones — para planificar el entrenamiento de fuerza.</p></div></header>
+<main class="wrap">
+  <div class="card">
+    <div class="row"><div><label>Peso levantado (kg)</label><input type="number" id="weight" placeholder="ej. 80" min="1" max="800"></div><div><label>Repeticiones</label><input type="number" id="reps" placeholder="ej. 5" min="1" max="20"></div></div>
+    <button class="calc-btn" onclick="calc()">Calcular 1RM 🏋️</button>
+  </div>
+  <div class="card tight" id="result">
+    <div class="big"><div class="num" id="rM">0</div><div class="lbl">1RM estimado</div></div>
+    <div class="pcttbl"><div class="th" id="tblTitle"></div><div id="tblBody"></div></div>
+    <div class="note">Es una estimación con la fórmula de Epley. Más precisa para 2-10 repeticiones. Usa la tabla para planificar la intensidad.</div>
+    <div class="promo"><b>💪 ¿Ganando fuerza y músculo?</b><div style="font-size:.9rem;color:#7c2d12;margin-top:4px" id="promoText"></div><a href="https://alifindme.com/es/protein/">Ir a la Calculadora de Proteína ←</a></div>
+    <a class="cross" href="https://alifindme.com/es/protein/">💪 Calculadora de Proteína →</a>
+    <a class="cross" href="https://alifindme.com/es/calories/">🔥 Calculadora de Calorías →</a>
+  </div>
+  <h2>Cómo se calcula</h2><p style="color:#334155">El 1RM se estima con la <b>fórmula de Epley</b>: 1RM = peso × (1 + reps/30). Estima el peso máximo que podrías levantar una vez. La tabla de porcentajes ayuda a planificar (ej. 80% para 5 reps).</p>
+  <h2>🛒 Equipo de levantamiento</h2><p style="color:#334155">Cinturones, correas y guantes al mejor precio:</p>
+  <div class="prodgrid">
+    <a href="https://alifindme.com/es/?q=weight%20lifting%20belt"><span>🎽</span>Cinturón de levantamiento</a>
+    <a href="https://alifindme.com/es/?q=lifting%20straps%20wrist%20wraps"><span>🤝</span>Correas de agarre</a>
+    <a href="https://alifindme.com/es/?q=gym%20gloves"><span>🧤</span>Guantes de gym</a>
+  </div>
+  <h2>Preguntas frecuentes</h2><div class="faq">
+    <details open><summary>¿Qué es el 1RM?</summary><p>El 1RM (máximo de una repetición) es el peso máximo que puedes levantar en una repetición de un ejercicio. Se usa para planificar la intensidad de fuerza.</p></details>
+    <details><summary>¿Cómo sé mi 1RM sin ir al máximo?</summary><p>Levanta un peso submáximo varias repeticiones y la calculadora estima tu 1RM — más seguro que un intento máximo real.</p></details>
+    <details><summary>¿Cómo uso la tabla de porcentajes?</summary><p>Para hipertrofia trabaja al 70-80% del 1RM (8-12 reps); para fuerza al 85-95% (2-5 reps).</p></details>
+  </div>
+</main>
+<footer>Esta calculadora ofrece una estimación general solo con fines informativos y no es consejo médico. Levanta con seguridad y con ayudante.<br>© 🏋️ Calculadora de 1RM</footer>
+<!-- AFM-SEO-LINKS -->
+<nav class="afm-seo" aria-label="קישורי אתר" dir="rtl">
+  <style>
+  .afm-seo{background:#1a1a2e;color:#fff;padding:32px 20px;margin-top:44px;font-family:'Heebo','Assistant',Arial,sans-serif}
+  .afm-seo .afm-wrap{display:flex;flex-wrap:wrap;justify-content:center;gap:30px;max-width:920px;margin:0 auto 22px;text-align:right}
+  .afm-seo .afm-col{min-width:150px}
+  .afm-seo .afm-col h3{font-size:.92rem;color:#fff;margin:0 0 10px;font-weight:700}
+  .afm-seo .afm-col a{display:block;color:rgba(255,255,255,.62);text-decoration:none;font-size:.83rem;padding:3px 0;transition:color .15s}
+  .afm-seo .afm-col a:hover{color:#FF9A3C}
+  .afm-seo .afm-about{font-size:.8rem;max-width:680px;margin:0 auto;line-height:1.6;color:rgba(255,255,255,.5);text-align:center;border-top:1px solid rgba(255,255,255,.1);padding-top:16px}
+  @media(max-width:600px){.afm-seo .afm-wrap{gap:20px 26px}.afm-seo .afm-col{min-width:120px}}
+  </style>
+  <div class="afm-wrap">
+    <div class="afm-col"><h3>כלים ומדריכים</h3>
+      <a href="/converter/">המרת דולר לשקל</a>
+      <a href="/sizes/">טבלת מידות עלי אקספרס</a>
+      <a href="/tracking/">מעקב חבילות</a>
+      <a href="/customs/">מחשבון מכס ומע״מ</a>
+      <a href="/coupons/">קופונים אלי אקספרס</a>
+      <a href="/guide/">איך קונים באלי אקספרס</a>
+      <a href="/calories/">מחשבון קלוריות</a>
+      <a href="/protein/">מחשבון חלבון</a>
+      <a href="/bmi/">מחשבון BMI</a>
+      <a href="/water/">מחשבון מים</a>
+      <a href="/ideal-weight/">משקל אידאלי</a>
+      <a href="/calories-burned/">שריפת קלוריות</a>
+    </div>
+    <div class="afm-col"><h3>קטגוריות</h3>
+      <a href="/skincare/">טיפוח פנים</a>
+      <a href="/swimwear/">בגדי ים וביקיני</a>
+      <a href="/electronics/">אלקטרוניקה וגאדג׳טים</a>
+      <a href="/baby/">מוצרי תינוקות</a>
+      <a href="/nails/">לק ג׳ל וציפורניים</a>
+      <a href="/home/">מוצרים לבית</a>
+      <a href="/hair/">מוצרי שיער ויופי</a>
+      <a href="/deals/">דילים חמים</a>
+    </div>
+    <div class="afm-col"><h3>ניווט</h3>
+      <a href="/">מנוע החיפוש</a>
+      <a href="/blog/">בלוג קניות</a>
+      <a href="/privacy.html">מדיניות פרטיות</a>
+    </div>
+    <div class="afm-col"><h3>Languages</h3>
+      <a href="/en/">English</a>
+      <a href="/ar/">العربية</a>
+      <a href="/ru/">Русский</a>
+      <a href="/es/">Español</a>
+      <a href="/fr/">Français</a>
+    </div>
+  </div>
+  <p class="afm-about">עלי תמצא לי — מנוע חיפוש חכם למוצרי אלי אקספרס (עלי אקספרס) בעברית: אופנה, אלקטרוניקה, השוואת מחירים, המרת דולר/יורו לשקל, טבלאות מידות וחיפוש מוצרים לפי תמונה. הדילים הכי טובים עם משלוח לישראל.</p>
+</nav>
+<!-- /AFM-SEO-LINKS -->
+<script>
+  var T={tbl:"Tabla de porcentajes para planificar:",kg:"kg",promoP:"Tu 1RM: {M} kg. Para ganar músculo, asegúrate de comer suficiente proteína.",alert:"Introduce peso y repeticiones",locale:"es-ES"};
+  function calc(){
+    var w=+document.getElementById("weight").value,reps=+document.getElementById("reps").value;
+    if(!w||!reps){alert(T.alert);return;}
+    var orm=w*(1+reps/30), M=Math.round(orm*10)/10;
+    document.getElementById("rM").textContent=M.toLocaleString(T.locale)+" "+T.kg;
+    document.getElementById("tblTitle").textContent=T.tbl;
+    var pct=[100,95,90,85,80,75,70],reph=[1,2,4,6,8,10,12],out="";
+    for(var i=0;i<pct.length;i++){out+='<div class="pctrow"><span>'+pct[i]+'% · '+reph[i]+' '+(T.locale==="ru-RU"?"повт.":"reps")+'</span><b>'+Math.round(orm*pct[i]/100)+' '+T.kg+'</b></div>';}
+    document.getElementById("tblBody").innerHTML=out;
+    document.getElementById("promoText").textContent=T.promoP.replace("{M}",M.toLocaleString(T.locale));
+    var r=document.getElementById("result");r.style.display="block";r.scrollIntoView({behavior:"smooth",block:"start"});
+  }
+</script>
+</body>
+</html>
