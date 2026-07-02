@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="pt" dir="ltr">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calculadora de Percentual de Gordura Corporal — Método da Marinha dos EUA | Ali Find Me</title>
+<meta name="description" content="Calculadora de gordura corporal grátis: calcule seu percentual de gordura pelo método da Marinha dos EUA (medidas de circunferência), com categoria. Mais preciso que o IMC."><meta name="keywords" content="calculadora gordura corporal, percentual de gordura, método marinha, calcular gordura corporal, percentual de gordura saudável"><meta name="robots" content="index, follow">
+<meta property="og:title" content="📊 Calculadora de Gordura Corporal"><meta property="og:description" content="Calculadora de gordura corporal grátis: calcule seu percentual de gordura pelo método da Marinha dos EUA (medidas de circunferência), com categoria. Mais preciso que o IMC."><meta property="og:type" content="website">
+<meta property="og:url" content="https://alifindme.com/pt/body-fat/"><link rel="canonical" href="https://alifindme.com/pt/body-fat/"><link rel="icon" href="/icons/icon-192.png" type="image/png">
+<link rel="alternate" hreflang="he" href="https://alifindme.com/body-fat/">
+<link rel="alternate" hreflang="en" href="https://alifindme.com/en/body-fat/">
+<link rel="alternate" hreflang="es" href="https://alifindme.com/es/body-fat/">
+<link rel="alternate" hreflang="pt" href="https://alifindme.com/pt/body-fat/">
+<link rel="alternate" hreflang="de" href="https://alifindme.com/de/body-fat/">
+<link rel="alternate" hreflang="fr" href="https://alifindme.com/fr/body-fat/">
+<link rel="alternate" hreflang="it" href="https://alifindme.com/it/body-fat/">
+<link rel="alternate" hreflang="ru" href="https://alifindme.com/ru/body-fat/">
+<link rel="alternate" hreflang="x-default" href="https://alifindme.com/body-fat/">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;800;900&family=Assistant:wght@400;600&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Qual é um percentual de gordura saudável?", "acceptedAnswer": {"@type": "Answer", "text": "Homens: atlético 6-13%, fitness 14-17%, médio 18-24%. Mulheres: atlético 14-20%, fitness 21-24%, médio 25-31%."}}, {"@type": "Question", "name": "O método da Marinha é preciso?", "acceptedAnswer": {"@type": "Answer", "text": "É uma boa estimativa acessível (sem equipamento) mas menos precisa que o DEXA. Meça certo: pescoço abaixo da laringe, cintura no umbigo."}}, {"@type": "Question", "name": "Como reduzir a gordura corporal?", "acceptedAnswer": {"@type": "Answer", "text": "Déficit calórico moderado + treino de força para preservar músculo + proteína alta. Calcule suas calorias e proteína."}}]}
+</script>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  :root{--brand:#10b981;--brand2:#059669;--ink:#0f172a;--muted:#64748b;--line:#e5e7eb;--bg:#f8fafc}
+  body{font-family:'Assistant',Arial,sans-serif;color:var(--ink);background:var(--bg);line-height:1.6}
+  .wrap{max-width:760px;margin:0 auto;padding:0 16px}
+  header.hero{background:linear-gradient(135deg,#10b981,#059669);color:#fff;text-align:center;padding:38px 16px 30px}
+  header.hero h1{font-family:'Heebo';font-size:1.75rem;font-weight:900;margin-bottom:8px} header.hero p{font-size:1.02rem;opacity:.95;max-width:520px;margin:0 auto}
+  main{padding:22px 0 40px}
+  .card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:22px;margin:-24px 0 18px;box-shadow:0 10px 30px rgba(2,32,20,.06)} .card.tight{margin-top:18px}
+  h2{font-family:'Heebo';font-size:1.25rem;font-weight:800;margin:22px 0 12px}
+  label{display:block;font-weight:600;font-size:.92rem;margin:0 0 6px;color:#334155}
+  .row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  input[type=number]{width:100%;padding:12px 14px;border:1.5px solid var(--line);border-radius:12px;font-size:1rem;font-family:inherit;outline:none;margin-bottom:14px} input:focus{border-color:var(--brand)}
+  .seg{display:flex;gap:8px;margin-bottom:14px} .seg button{flex:1;padding:11px 8px;border:1.5px solid var(--line);background:#fff;border-radius:12px;font-family:'Heebo';font-weight:700;font-size:.9rem;cursor:pointer;color:#334155} .seg button.on{background:var(--brand);border-color:var(--brand);color:#fff}
+  .calc-btn{width:100%;margin-top:6px;padding:15px;background:linear-gradient(135deg,#10b981,#059669);color:#fff;border:none;border-radius:14px;font-family:'Heebo';font-weight:800;font-size:1.08rem;cursor:pointer}
+  #result{display:none} #hipWrap{display:none}
+  .big{text-align:center;padding:8px 0 4px} .big .num{font-family:'Heebo';font-size:3rem;font-weight:900;color:var(--brand2);line-height:1} .big .lbl{color:var(--muted);font-weight:600;margin-top:2px}
+  .cat{display:inline-block;margin:8px auto 0;padding:6px 18px;border-radius:20px;font-family:'Heebo';font-weight:800;font-size:1.05rem}
+  .note{background:#ecfdf5;border-left:4px solid var(--brand);padding:12px 14px;border-radius:10px;margin-top:14px;font-size:.92rem;color:#065f46}
+  .promo{margin-top:16px;background:#fff7ed;border:1px dashed #fdba74;border-radius:14px;padding:16px;text-align:center} .promo a{display:inline-block;margin-top:8px;background:#ea580c;color:#fff;text-decoration:none;padding:10px 20px;border-radius:24px;font-weight:800;font-family:'Heebo';font-size:.95rem}
+  .cross{display:block;text-align:center;margin:10px 0 0;background:#eef2ff;border:1px solid #c7d2fe;border-radius:12px;padding:11px;color:#3730a3;text-decoration:none;font-family:'Heebo';font-weight:700;font-size:.95rem}
+  .prodgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:12px 0 8px}
+  .prodgrid a{display:block;text-decoration:none;background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 10px;text-align:center;color:var(--ink);font-family:'Heebo';font-weight:700;font-size:.86rem} .prodgrid a:hover{border-color:var(--brand)} .prodgrid a span{font-size:1.6rem;display:block;margin-bottom:5px}
+  .faq details{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin-bottom:8px} .faq summary{font-family:'Heebo';font-weight:700;cursor:pointer} .faq p{margin-top:8px;color:#334155}
+  footer{text-align:center;color:var(--muted);font-size:.82rem;padding:24px 16px 40px;line-height:1.7}
+  @media(max-width:520px){header.hero h1{font-size:1.5rem}}
+</style>
+</head>
+<body>
+<header class="hero"><div class="wrap"><h1>📊 Calculadora de Gordura Corporal</h1><p>Calcule seu percentual de gordura corporal por medidas de circunferência — o método da Marinha dos EUA.</p></div></header>
+<main class="wrap">
+  <div class="card">
+    <label>Sexo</label>
+    <div class="seg" id="sex"><button data-v="male" class="on">👨 Homem</button><button data-v="female">👩 Mulher</button></div>
+    <div class="row"><div><label>Altura (cm)</label><input type="number" id="height" min="100" max="230"></div><div><label>Circunferência do pescoço (cm)</label><input type="number" id="neck" min="20" max="80"></div></div>
+    <div class="row"><div><label>Circunferência da cintura (cm)</label><input type="number" id="waist" min="40" max="200"></div><div id="hipWrap"><label>Circunferência do quadril (cm)</label><input type="number" id="hip" min="50" max="200"></div></div>
+    <button class="calc-btn" onclick="calc()">Calcular gordura corporal 📊</button>
+  </div>
+  <div class="card tight" id="result">
+    <div class="big"><div class="num" id="rF">0</div><div class="lbl">percentual de gordura corporal</div></div>
+    <div style="text-align:center"><span class="cat" id="rCat"></span></div>
+    <div class="note">O método da Marinha usa medidas de circunferência — meça com a fita justa mas sem apertar. É uma boa estimativa, mais precisa que o IMC.</div>
+    <div class="promo"><b>📊 Quer reduzir sua gordura corporal?</b><div style="font-size:.9rem;color:#7c2d12;margin-top:4px" id="promoText"></div><a href="https://alifindme.com/pt/protein/">Ir para a Calculadora de Proteína ←</a></div>
+    <a class="cross" href="https://alifindme.com/pt/protein/">💪 Calculadora de Proteína →</a>
+    <a class="cross" href="https://alifindme.com/pt/calories/">🔥 Calculadora de Calorias →</a>
+  </div>
+  <h2>Como é calculado</h2><p style="color:#334155">O cálculo usa a <b>fórmula da Marinha dos EUA</b> — usa as circunferências de pescoço, cintura (e quadril nas mulheres) junto com a altura. É um método acessível que dá uma boa estimativa sem equipamento especial, e mais preciso que o IMC por considerar a gordura.</p>
+  <h2>🛒 Ferramentas de composição corporal</h2><p style="color:#334155">Adipômetros e balanças inteligentes pelo melhor preço:</p>
+  <div class="prodgrid">
+    <a href="https://alifindme.com/pt/?q=body%20fat%20caliper"><span>📐</span>Adipômetro</a>
+    <a href="https://alifindme.com/pt/?q=smart%20body%20scale%20bluetooth"><span>📊</span>Balança inteligente</a>
+    <a href="https://alifindme.com/pt/?q=body%20tape%20measure"><span>📏</span>Fita métrica</a>
+  </div>
+  <h2>Perguntas frequentes</h2><div class="faq">
+    <details open><summary>Qual é um percentual de gordura saudável?</summary><p>Homens: atlético 6-13%, fitness 14-17%, médio 18-24%. Mulheres: atlético 14-20%, fitness 21-24%, médio 25-31%.</p></details>
+    <details><summary>O método da Marinha é preciso?</summary><p>É uma boa estimativa acessível (sem equipamento) mas menos precisa que o DEXA. Meça certo: pescoço abaixo da laringe, cintura no umbigo.</p></details>
+    <details><summary>Como reduzir a gordura corporal?</summary><p>Déficit calórico moderado + treino de força para preservar músculo + proteína alta. Calcule suas calorias e proteína.</p></details>
+  </div>
+</main>
+<footer>Esta calculadora fornece uma estimativa geral apenas para fins informativos e não é aconselhamento médico.<br>© 📊 Calculadora de Gordura Corporal</footer>
+<!-- AFM-SEO-LINKS -->
+<nav class="afm-seo" aria-label="קישורי אתר" dir="rtl">
+  <style>
+  .afm-seo{background:#1a1a2e;color:#fff;padding:32px 20px;margin-top:44px;font-family:'Heebo','Assistant',Arial,sans-serif}
+  .afm-seo .afm-wrap{display:flex;flex-wrap:wrap;justify-content:center;gap:30px;max-width:920px;margin:0 auto 22px;text-align:right}
+  .afm-seo .afm-col{min-width:150px}
+  .afm-seo .afm-col h3{font-size:.92rem;color:#fff;margin:0 0 10px;font-weight:700}
+  .afm-seo .afm-col a{display:block;color:rgba(255,255,255,.62);text-decoration:none;font-size:.83rem;padding:3px 0;transition:color .15s}
+  .afm-seo .afm-col a:hover{color:#FF9A3C}
+  .afm-seo .afm-about{font-size:.8rem;max-width:680px;margin:0 auto;line-height:1.6;color:rgba(255,255,255,.5);text-align:center;border-top:1px solid rgba(255,255,255,.1);padding-top:16px}
+  @media(max-width:600px){.afm-seo .afm-wrap{gap:20px 26px}.afm-seo .afm-col{min-width:120px}}
+  </style>
+  <div class="afm-wrap">
+    <div class="afm-col"><h3>כלים ומדריכים</h3>
+      <a href="/converter/">המרת דולר לשקל</a>
+      <a href="/sizes/">טבלת מידות עלי אקספרס</a>
+      <a href="/tracking/">מעקב חבילות</a>
+      <a href="/customs/">מחשבון מכס ומע״מ</a>
+      <a href="/coupons/">קופונים אלי אקספרס</a>
+      <a href="/guide/">איך קונים באלי אקספרס</a>
+      <a href="/calories/">מחשבון קלוריות</a>
+      <a href="/protein/">מחשבון חלבון</a>
+      <a href="/bmi/">מחשבון BMI</a>
+      <a href="/water/">מחשבון מים</a>
+      <a href="/ideal-weight/">משקל אידאלי</a>
+      <a href="/calories-burned/">שריפת קלוריות</a>
+      <a href="/one-rep-max/">מחשבון 1RM</a>
+    </div>
+    <div class="afm-col"><h3>קטגוריות</h3>
+      <a href="/skincare/">טיפוח פנים</a>
+      <a href="/swimwear/">בגדי ים וביקיני</a>
+      <a href="/electronics/">אלקטרוניקה וגאדג׳טים</a>
+      <a href="/baby/">מוצרי תינוקות</a>
+      <a href="/nails/">לק ג׳ל וציפורניים</a>
+      <a href="/home/">מוצרים לבית</a>
+      <a href="/hair/">מוצרי שיער ויופי</a>
+      <a href="/deals/">דילים חמים</a>
+    </div>
+    <div class="afm-col"><h3>ניווט</h3>
+      <a href="/">מנוע החיפוש</a>
+      <a href="/blog/">בלוג קניות</a>
+      <a href="/privacy.html">מדיניות פרטיות</a>
+    </div>
+    <div class="afm-col"><h3>Languages</h3>
+      <a href="/en/">English</a>
+      <a href="/ar/">العربية</a>
+      <a href="/ru/">Русский</a>
+      <a href="/es/">Español</a>
+      <a href="/fr/">Français</a>
+    </div>
+  </div>
+  <p class="afm-about">עלי תמצא לי — מנוע חיפוש חכם למוצרי אלי אקספרס (עלי אקספרס) בעברית: אופנה, אלקטרוניקה, השוואת מחירים, המרת דולר/יורו לשקל, טבלאות מידות וחיפוש מוצרים לפי תמונה. הדילים הכי טובים עם משלוח לישראל.</p>
+</nav>
+<!-- /AFM-SEO-LINKS -->
+<script>
+  var T={cats:["Atlético", "Fitness", "Médio", "Alto"],promoP:"Sua gordura corporal: {F}%. Para definir preservando músculo, proteína alta é a chave.",alert:"Preencha todas as medidas",locale:"pt-BR"};var SEX="male";
+  document.getElementById("sex").addEventListener("click",function(e){var b=e.target.closest("button");if(!b)return;[].forEach.call(this.children,function(x){x.classList.remove("on")});b.classList.add("on");SEX=b.dataset.v;document.getElementById("hipWrap").style.display=(SEX==="female"?"block":"none");});
+  function calc(){
+    var h=+document.getElementById("height").value,n=+document.getElementById("neck").value,wa=+document.getElementById("waist").value,hip=+document.getElementById("hip").value;
+    if(!h||!n||!wa||(SEX==="female"&&!hip)){alert(T.alert);return;}
+    var bf;
+    if(SEX==="male"){bf=495/(1.0324-0.19077*Math.log10(wa-n)+0.15456*Math.log10(h))-450;}
+    else{bf=495/(1.29579-0.35004*Math.log10(wa+hip-n)+0.22100*Math.log10(h))-450;}
+    if(!isFinite(bf)||bf<=0){alert(T.alert);return;}
+    bf=Math.max(2,Math.min(60,bf)); var F=Math.round(bf*10)/10;
+    var idx,col; var m=(SEX==="male");
+    if(bf < (m?14:21)){idx=0;col="#10b981";}else if(bf<(m?18:25)){idx=1;col="#0ea5e9";}else if(bf<(m?25:32)){idx=2;col="#f59e0b";}else{idx=3;col="#ef4444";}
+    document.getElementById("rF").textContent=F.toLocaleString(T.locale)+"%";
+    var ce=document.getElementById("rCat");ce.textContent=T.cats[idx];ce.style.background=col+"22";ce.style.color=col;
+    document.getElementById("promoText").textContent=T.promoP.replace("{F}",F.toLocaleString(T.locale));
+    var r=document.getElementById("result");r.style.display="block";r.scrollIntoView({behavior:"smooth",block:"start"});
+  }
+</script>
+</body>
+</html>
