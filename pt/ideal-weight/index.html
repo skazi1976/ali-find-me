@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="pt" dir="ltr">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calculadora de Peso Ideal — O Peso Perfeito por Altura | Ali Find Me</title>
+<meta name="description" content="Calculadora de peso ideal grátis: descubra seu peso ideal conforme altura e sexo, além da sua faixa de peso saudável. Fórmula de Devine + faixa de IMC normal."><meta name="keywords" content="peso ideal, calculadora de peso ideal, peso perfeito por altura, peso saudável, quanto devo pesar"><meta name="robots" content="index, follow">
+<meta property="og:title" content="🎯 Calculadora de Peso Ideal"><meta property="og:description" content="Calculadora de peso ideal grátis: descubra seu peso ideal conforme altura e sexo, além da sua faixa de peso saudável. Fórmula de Devine + faixa de IMC normal."><meta property="og:type" content="website">
+<meta property="og:url" content="https://alifindme.com/pt/ideal-weight/"><link rel="canonical" href="https://alifindme.com/pt/ideal-weight/"><link rel="icon" href="/icons/icon-192.png" type="image/png">
+<link rel="alternate" hreflang="he" href="https://alifindme.com/ideal-weight/">
+<link rel="alternate" hreflang="en" href="https://alifindme.com/en/ideal-weight/">
+<link rel="alternate" hreflang="es" href="https://alifindme.com/es/ideal-weight/">
+<link rel="alternate" hreflang="pt" href="https://alifindme.com/pt/ideal-weight/">
+<link rel="alternate" hreflang="de" href="https://alifindme.com/de/ideal-weight/">
+<link rel="alternate" hreflang="fr" href="https://alifindme.com/fr/ideal-weight/">
+<link rel="alternate" hreflang="it" href="https://alifindme.com/it/ideal-weight/">
+<link rel="alternate" hreflang="ru" href="https://alifindme.com/ru/ideal-weight/">
+<link rel="alternate" hreflang="x-default" href="https://alifindme.com/ideal-weight/">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;800;900&family=Assistant:wght@400;600&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Qual é o meu peso ideal?", "acceptedAnswer": {"@type": "Answer", "text": "Depende da altura, sexo e estrutura. A calculadora dá uma estimativa mais uma faixa saudável. Não há um único 'número mágico.'"}}, {"@type": "Question", "name": "Peso ideal é o mesmo que IMC normal?", "acceptedAnswer": {"@type": "Answer", "text": "São relacionados — a faixa de IMC normal dá uma faixa de peso saudável ampla, e o peso ideal é um ponto dentro dela."}}, {"@type": "Question", "name": "Como chegar ao meu peso ideal?", "acceptedAnswer": {"@type": "Answer", "text": "Com déficit ou superávit calórico moderado e atividade. Calcule suas calorias na nossa calculadora."}}]}
+</script>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  :root{--brand:#10b981;--brand2:#059669;--ink:#0f172a;--muted:#64748b;--line:#e5e7eb;--bg:#f8fafc}
+  body{font-family:'Assistant',Arial,sans-serif;color:var(--ink);background:var(--bg);line-height:1.6}
+  .wrap{max-width:760px;margin:0 auto;padding:0 16px}
+  header.hero{background:linear-gradient(135deg,#10b981,#059669);color:#fff;text-align:center;padding:38px 16px 30px}
+  header.hero h1{font-family:'Heebo';font-size:1.75rem;font-weight:900;margin-bottom:8px} header.hero p{font-size:1.02rem;opacity:.95;max-width:520px;margin:0 auto}
+  main{padding:22px 0 40px}
+  .card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:22px;margin:-24px 0 18px;box-shadow:0 10px 30px rgba(2,32,20,.06)} .card.tight{margin-top:18px}
+  h2{font-family:'Heebo';font-size:1.25rem;font-weight:800;margin:22px 0 12px}
+  label{display:block;font-weight:600;font-size:.92rem;margin:0 0 6px;color:#334155}
+  input[type=number]{width:100%;padding:12px 14px;border:1.5px solid var(--line);border-radius:12px;font-size:1rem;font-family:inherit;outline:none;margin-bottom:14px} input[type=number]:focus{border-color:var(--brand)}
+  .seg{display:flex;gap:8px} .seg button{flex:1;padding:11px 8px;border:1.5px solid var(--line);background:#fff;border-radius:12px;font-family:'Heebo';font-weight:700;font-size:.9rem;cursor:pointer;color:#334155} .seg button.on{background:var(--brand);border-color:var(--brand);color:#fff}
+  .calc-btn{width:100%;margin-top:14px;padding:15px;background:linear-gradient(135deg,#10b981,#059669);color:#fff;border:none;border-radius:14px;font-family:'Heebo';font-weight:800;font-size:1.08rem;cursor:pointer}
+  #result{display:none}
+  .big{text-align:center;padding:8px 0 4px} .big .num{font-family:'Heebo';font-size:3rem;font-weight:900;color:var(--brand2);line-height:1} .big .lbl{color:var(--muted);font-weight:600;margin-top:2px}
+  .rng{text-align:center;color:#334155;margin-top:8px;font-size:.95rem}
+  .note{background:#ecfdf5;border-left:4px solid var(--brand);padding:12px 14px;border-radius:10px;margin-top:14px;font-size:.92rem;color:#065f46}
+  .promo{margin-top:16px;background:#fff7ed;border:1px dashed #fdba74;border-radius:14px;padding:16px;text-align:center} .promo a{display:inline-block;margin-top:8px;background:#ea580c;color:#fff;text-decoration:none;padding:10px 20px;border-radius:24px;font-weight:800;font-family:'Heebo';font-size:.95rem}
+  .cross{display:block;text-align:center;margin:10px 0 0;background:#eef2ff;border:1px solid #c7d2fe;border-radius:12px;padding:11px;color:#3730a3;text-decoration:none;font-family:'Heebo';font-weight:700;font-size:.95rem}
+  .prodgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:12px 0 8px}
+  .prodgrid a{display:block;text-decoration:none;background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 10px;text-align:center;color:var(--ink);font-family:'Heebo';font-weight:700;font-size:.86rem} .prodgrid a:hover{border-color:var(--brand)} .prodgrid a span{font-size:1.6rem;display:block;margin-bottom:5px}
+  .faq details{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin-bottom:8px} .faq summary{font-family:'Heebo';font-weight:700;cursor:pointer} .faq p{margin-top:8px;color:#334155}
+  footer{text-align:center;color:var(--muted);font-size:.82rem;padding:24px 16px 40px;line-height:1.7}
+  @media(max-width:520px){header.hero h1{font-size:1.5rem}}
+</style>
+</head>
+<body>
+<header class="hero"><div class="wrap"><h1>🎯 Calculadora de Peso Ideal</h1><p>Descubra seu peso ideal — conforme altura e sexo, além de uma faixa saudável.</p></div></header>
+<main class="wrap">
+  <div class="card">
+    <label>Sexo</label>
+    <div class="seg" id="sex"><button data-v="male" class="on">👨 Homem</button><button data-v="female">👩 Mulher</button></div>
+    <div style="margin-top:14px"><label>Altura (cm)</label><input type="number" id="height" placeholder="ex. 175" min="120" max="230"></div>
+    <button class="calc-btn" onclick="calc()">Calcular peso ideal 🎯</button>
+  </div>
+  <div class="card tight" id="result">
+    <div class="big"><div class="num" id="rW">0</div><div class="lbl">Seu peso ideal</div></div>
+    <div class="rng" id="rRange"></div>
+    <div class="note">É uma estimativa — o peso ideal varia com massa muscular, idade e estrutura. A faixa saudável é mais ampla que um único número.</div>
+    <div class="promo"><b>🎯 Quer chegar ao seu peso ideal?</b><div style="font-size:.9rem;color:#7c2d12;margin-top:4px" id="promoText"></div><a href="https://alifindme.com/pt/calories/">Ir para a Calculadora de Calorias ←</a></div>
+    <a class="cross" href="https://alifindme.com/pt/calories/">🔥 Calculadora de Calorias →</a>
+    <a class="cross" href="https://alifindme.com/pt/bmi/">⚖️ Calculadora de IMC →</a>
+  </div>
+  <h2>Como é calculado</h2><p style="color:#334155">O peso ideal é calculado pela <b>fórmula de Devine</b> (muito usada na medicina), junto com sua <b>faixa de peso saudável</b> por um IMC normal (18,5-24,9) para sua altura. Juntos dão uma imagem precisa.</p>
+  <h2>🛒 Itens de acompanhamento</h2><p style="color:#334155">Balanças e ferramentas pelo melhor preço:</p>
+  <div class="prodgrid">
+    <a href="https://alifindme.com/pt/?q=smart%20body%20scale%20bluetooth"><span>📊</span>Balança inteligente</a>
+    <a href="https://alifindme.com/pt/?q=body%20tape%20measure"><span>📏</span>Fita métrica</a>
+    <a href="https://alifindme.com/pt/?q=digital%20bathroom%20scale"><span>⚖️</span>Balança digital</a>
+  </div>
+  <h2>Perguntas frequentes</h2><div class="faq">
+    <details open><summary>Qual é o meu peso ideal?</summary><p>Depende da altura, sexo e estrutura. A calculadora dá uma estimativa mais uma faixa saudável. Não há um único 'número mágico.'</p></details>
+    <details><summary>Peso ideal é o mesmo que IMC normal?</summary><p>São relacionados — a faixa de IMC normal dá uma faixa de peso saudável ampla, e o peso ideal é um ponto dentro dela.</p></details>
+    <details><summary>Como chegar ao meu peso ideal?</summary><p>Com déficit ou superávit calórico moderado e atividade. Calcule suas calorias na nossa calculadora.</p></details>
+  </div>
+</main>
+<footer>Esta calculadora fornece uma estimativa geral apenas para fins informativos e não é aconselhamento médico.<br>© 🎯 Calculadora de Peso Ideal</footer>
+<!-- AFM-SEO-LINKS -->
+<nav class="afm-seo" aria-label="קישורי אתר" dir="rtl">
+  <style>
+  .afm-seo{background:#1a1a2e;color:#fff;padding:32px 20px;margin-top:44px;font-family:'Heebo','Assistant',Arial,sans-serif}
+  .afm-seo .afm-wrap{display:flex;flex-wrap:wrap;justify-content:center;gap:30px;max-width:920px;margin:0 auto 22px;text-align:right}
+  .afm-seo .afm-col{min-width:150px}
+  .afm-seo .afm-col h3{font-size:.92rem;color:#fff;margin:0 0 10px;font-weight:700}
+  .afm-seo .afm-col a{display:block;color:rgba(255,255,255,.62);text-decoration:none;font-size:.83rem;padding:3px 0;transition:color .15s}
+  .afm-seo .afm-col a:hover{color:#FF9A3C}
+  .afm-seo .afm-about{font-size:.8rem;max-width:680px;margin:0 auto;line-height:1.6;color:rgba(255,255,255,.5);text-align:center;border-top:1px solid rgba(255,255,255,.1);padding-top:16px}
+  @media(max-width:600px){.afm-seo .afm-wrap{gap:20px 26px}.afm-seo .afm-col{min-width:120px}}
+  </style>
+  <div class="afm-wrap">
+    <div class="afm-col"><h3>כלים ומדריכים</h3>
+      <a href="/converter/">המרת דולר לשקל</a>
+      <a href="/sizes/">טבלת מידות עלי אקספרס</a>
+      <a href="/tracking/">מעקב חבילות</a>
+      <a href="/customs/">מחשבון מכס ומע״מ</a>
+      <a href="/coupons/">קופונים אלי אקספרס</a>
+      <a href="/guide/">איך קונים באלי אקספרס</a>
+      <a href="/calories/">מחשבון קלוריות</a>
+      <a href="/protein/">מחשבון חלבון</a>
+      <a href="/bmi/">מחשבון BMI</a>
+      <a href="/water/">מחשבון מים</a>
+    </div>
+    <div class="afm-col"><h3>קטגוריות</h3>
+      <a href="/skincare/">טיפוח פנים</a>
+      <a href="/swimwear/">בגדי ים וביקיני</a>
+      <a href="/electronics/">אלקטרוניקה וגאדג׳טים</a>
+      <a href="/baby/">מוצרי תינוקות</a>
+      <a href="/nails/">לק ג׳ל וציפורניים</a>
+      <a href="/home/">מוצרים לבית</a>
+      <a href="/hair/">מוצרי שיער ויופי</a>
+      <a href="/deals/">דילים חמים</a>
+    </div>
+    <div class="afm-col"><h3>ניווט</h3>
+      <a href="/">מנוע החיפוש</a>
+      <a href="/blog/">בלוג קניות</a>
+      <a href="/privacy.html">מדיניות פרטיות</a>
+    </div>
+    <div class="afm-col"><h3>Languages</h3>
+      <a href="/en/">English</a>
+      <a href="/ar/">العربية</a>
+      <a href="/ru/">Русский</a>
+      <a href="/es/">Español</a>
+      <a href="/fr/">Français</a>
+    </div>
+  </div>
+  <p class="afm-about">עלי תמצא לי — מנוע חיפוש חכם למוצרי אלי אקספרס (עלי אקספרס) בעברית: אופנה, אלקטרוניקה, השוואת מחירים, המרת דולר/יורו לשקל, טבלאות מידות וחיפוש מוצרים לפי תמונה. הדילים הכי טובים עם משלוח לישראל.</p>
+</nav>
+<!-- /AFM-SEO-LINKS -->
+<script>
+  var T={range:"Faixa de peso saudável",kg:"kg",promoP:"Seu peso ideal: {W} kg. Para chegar lá, calcule suas calorias diárias.",alert:"Digite sua altura",locale:"pt-BR"};var SEX="male";
+  document.getElementById("sex").addEventListener("click",function(e){var b=e.target.closest("button");if(!b)return;[].forEach.call(this.children,function(x){x.classList.remove("on")});b.classList.add("on");SEX=b.dataset.v;});
+  function calc(){
+    var h=+document.getElementById("height").value; if(!h){alert(T.alert);return;}
+    var inchesOver=(h-152.4)/2.54, base=(SEX==="male"?50:45.5);
+    var ideal=Math.max(base, base+2.3*inchesOver), W=Math.round(ideal*10)/10;
+    var m=h/100, lo=Math.round(18.5*m*m), hi=Math.round(24.9*m*m);
+    document.getElementById("rW").textContent=W.toLocaleString(T.locale);
+    document.getElementById("rRange").textContent=T.range+": "+lo+"–"+hi+" "+T.kg;
+    document.getElementById("promoText").textContent=T.promoP.replace("{W}",W);
+    var r=document.getElementById("result");r.style.display="block";r.scrollIntoView({behavior:"smooth",block:"start"});
+  }
+</script>
+</body>
+</html>
