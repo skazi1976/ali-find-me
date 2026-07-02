@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="pt" dir="ltr">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calculadora de Água — Quanta Água Beber por Dia por Peso | Ali Find Me</title>
+<meta name="description" content="Calculadora de água grátis: quanta água você deve beber por dia conforme peso e nível de atividade — em litros e copos. Guia diário de hidratação."><meta name="keywords" content="calculadora de água, quanta água por dia, quanta água beber, água por peso corporal, litros de água por dia"><meta name="robots" content="index, follow">
+<meta property="og:title" content="💧 Calculadora de Água"><meta property="og:description" content="Calculadora de água grátis: quanta água você deve beber por dia conforme peso e nível de atividade — em litros e copos. Guia diário de hidratação."><meta property="og:type" content="website">
+<meta property="og:url" content="https://alifindme.com/pt/water/"><link rel="canonical" href="https://alifindme.com/pt/water/"><link rel="icon" href="/icons/icon-192.png" type="image/png">
+<link rel="alternate" hreflang="he" href="https://alifindme.com/water/">
+<link rel="alternate" hreflang="en" href="https://alifindme.com/en/water/">
+<link rel="alternate" hreflang="es" href="https://alifindme.com/es/water/">
+<link rel="alternate" hreflang="pt" href="https://alifindme.com/pt/water/">
+<link rel="alternate" hreflang="de" href="https://alifindme.com/de/water/">
+<link rel="alternate" hreflang="fr" href="https://alifindme.com/fr/water/">
+<link rel="alternate" hreflang="it" href="https://alifindme.com/it/water/">
+<link rel="alternate" hreflang="ru" href="https://alifindme.com/ru/water/">
+<link rel="alternate" hreflang="x-default" href="https://alifindme.com/water/">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;800;900&family=Assistant:wght@400;600&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Quanta água devo beber por dia?", "acceptedAnswer": {"@type": "Answer", "text": "Cerca de 33 ml por kg de peso — para 70 kg são ~2,3 L, mais conforme atividade. A calculadora dá a quantidade exata."}}, {"@type": "Question", "name": "Café e chá contam?", "acceptedAnswer": {"@type": "Answer", "text": "Contribuem para os líquidos, mas água é melhor. Bebidas açucaradas não são recomendadas como substituto."}}, {"@type": "Question", "name": "Como sei se bebo o suficiente?", "acceptedAnswer": {"@type": "Answer", "text": "Bom sinal: urina clara. Urina escura = beba mais."}}]}
+</script>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  :root{--brand:#0ea5e9;--brand2:#0284c7;--ink:#0f172a;--muted:#64748b;--line:#e5e7eb;--bg:#f8fafc}
+  body{font-family:'Assistant',Arial,sans-serif;color:var(--ink);background:var(--bg);line-height:1.6}
+  .wrap{max-width:760px;margin:0 auto;padding:0 16px}
+  header.hero{background:linear-gradient(135deg,#0ea5e9,#0284c7);color:#fff;text-align:center;padding:38px 16px 30px}
+  header.hero h1{font-family:'Heebo';font-size:1.75rem;font-weight:900;margin-bottom:8px} header.hero p{font-size:1.02rem;opacity:.95;max-width:520px;margin:0 auto}
+  main{padding:22px 0 40px}
+  .card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:22px;margin:-24px 0 18px;box-shadow:0 10px 30px rgba(2,20,32,.06)} .card.tight{margin-top:18px}
+  h2{font-family:'Heebo';font-size:1.25rem;font-weight:800;margin:22px 0 12px}
+  label{display:block;font-weight:600;font-size:.92rem;margin:0 0 6px;color:#334155}
+  input[type=number]{width:100%;padding:12px 14px;border:1.5px solid var(--line);border-radius:12px;font-size:1rem;font-family:inherit;outline:none;margin-bottom:14px} input[type=number]:focus{border-color:var(--brand)}
+  .seg{display:flex;gap:8px} .seg button{flex:1;padding:11px 8px;border:1.5px solid var(--line);background:#fff;border-radius:12px;font-family:'Heebo';font-weight:700;font-size:.9rem;cursor:pointer;color:#334155} .seg button.on{background:var(--brand);border-color:var(--brand);color:#fff}
+  .calc-btn{width:100%;margin-top:14px;padding:15px;background:linear-gradient(135deg,#0ea5e9,#0284c7);color:#fff;border:none;border-radius:14px;font-family:'Heebo';font-weight:800;font-size:1.08rem;cursor:pointer}
+  #result{display:none}
+  .big{text-align:center;padding:8px 0 4px} .big .num{font-family:'Heebo';font-size:3rem;font-weight:900;color:var(--brand2);line-height:1} .big .lbl{color:var(--muted);font-weight:600;margin-top:2px}
+  .sub{text-align:center;margin:8px 0 4px} .sub b{font-family:'Heebo';font-size:1.3rem;color:var(--brand2)} .sub span{font-size:.85rem;color:var(--muted)}
+  .note{background:#e0f2fe;border-left:4px solid var(--brand);padding:12px 14px;border-radius:10px;margin-top:14px;font-size:.92rem;color:#075985}
+  .promo{margin-top:16px;background:#fff7ed;border:1px dashed #fdba74;border-radius:14px;padding:16px;text-align:center} .promo a{display:inline-block;margin-top:8px;background:#ea580c;color:#fff;text-decoration:none;padding:10px 20px;border-radius:24px;font-weight:800;font-family:'Heebo';font-size:.95rem}
+  .cross{display:block;text-align:center;margin:10px 0 0;background:#eef2ff;border:1px solid #c7d2fe;border-radius:12px;padding:11px;color:#3730a3;text-decoration:none;font-family:'Heebo';font-weight:700;font-size:.95rem}
+  .prodgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:12px 0 8px}
+  .prodgrid a{display:block;text-decoration:none;background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 10px;text-align:center;color:var(--ink);font-family:'Heebo';font-weight:700;font-size:.86rem} .prodgrid a:hover{border-color:var(--brand)} .prodgrid a span{font-size:1.6rem;display:block;margin-bottom:5px}
+  .faq details{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin-bottom:8px} .faq summary{font-family:'Heebo';font-weight:700;cursor:pointer} .faq p{margin-top:8px;color:#334155}
+  footer{text-align:center;color:var(--muted);font-size:.82rem;padding:24px 16px 40px;line-height:1.7}
+  @media(max-width:520px){header.hero h1{font-size:1.5rem}}
+</style>
+</head>
+<body>
+<header class="hero"><div class="wrap"><h1>💧 Calculadora de Água</h1><p>Quanta água você deve beber por dia — conforme seu peso e nível de atividade.</p></div></header>
+<main class="wrap">
+  <div class="card">
+    <label>Peso (kg)</label><input type="number" id="weight" placeholder="ex. 75" min="20" max="400">
+    <label>Nível de atividade</label>
+    <div class="seg" id="act"><button data-v="0" class="on">🪑 Baixo</button><button data-v="0.35">🏃 Moderado</button><button data-v="0.7">💪 Alto</button></div>
+    <button class="calc-btn" onclick="calc()">Calcular minha água 💧</button>
+  </div>
+  <div class="card tight" id="result">
+    <div class="big"><div class="num" id="rL">0</div><div class="lbl">litros/dia</div></div>
+    <div class="sub"><b id="rCups">0</b> <span>copos (250 ml)</span></div>
+    <div class="note">Distribua ao longo do dia. No calor ou treino, beba mais.</div>
+    <div class="promo"><b>💧 Difícil lembrar de beber?</b><div style="font-size:.9rem;color:#7c2d12;margin-top:4px" id="promoText"></div><a href="https://alifindme.com/pt/?q=water%20bottle%20time%20marker" target="_blank" rel="nofollow">Encontrar uma garrafa barata ←</a></div>
+    <a class="cross" href="https://alifindme.com/pt/calories/">🔥 Calculadora de Calorias →</a>
+    <a class="cross" href="https://alifindme.com/pt/bmi/">⚖️ Calculadora de IMC →</a>
+  </div>
+  <h2>Como é calculado</h2><p style="color:#334155">A recomendação geral é <b>~33 ml de água por kg de peso corporal</b>, mais cerca de 0,3-0,7 L conforme a atividade (para repor o líquido perdido no suor). Em dias quentes ou treino intenso, precisa de mais.</p>
+  <h2>🛒 Garrafas que ajudam</h2><p style="color:#334155">Garrafas e lembretes pelo melhor preço:</p>
+  <div class="prodgrid">
+    <a href="https://alifindme.com/pt/?q=insulated%20water%20bottle"><span>🍶</span>Garrafa térmica</a>
+    <a href="https://alifindme.com/pt/?q=water%20bottle%20time%20marker"><span>⏰</span>Garrafa com marcação de tempo</a>
+    <a href="https://alifindme.com/pt/?q=water%20filter%20bottle"><span>💧</span>Garrafa com filtro</a>
+  </div>
+  <h2>Perguntas frequentes</h2><div class="faq">
+    <details open><summary>Quanta água devo beber por dia?</summary><p>Cerca de 33 ml por kg de peso — para 70 kg são ~2,3 L, mais conforme atividade. A calculadora dá a quantidade exata.</p></details>
+    <details><summary>Café e chá contam?</summary><p>Contribuem para os líquidos, mas água é melhor. Bebidas açucaradas não são recomendadas como substituto.</p></details>
+    <details><summary>Como sei se bebo o suficiente?</summary><p>Bom sinal: urina clara. Urina escura = beba mais.</p></details>
+  </div>
+</main>
+<footer>Esta calculadora fornece uma estimativa geral apenas para fins informativos e não é aconselhamento médico.<br>© 💧 Calculadora de Água</footer>
+<!-- AFM-SEO-LINKS -->
+<nav class="afm-seo" aria-label="קישורי אתר" dir="rtl">
+  <style>
+  .afm-seo{background:#1a1a2e;color:#fff;padding:32px 20px;margin-top:44px;font-family:'Heebo','Assistant',Arial,sans-serif}
+  .afm-seo .afm-wrap{display:flex;flex-wrap:wrap;justify-content:center;gap:30px;max-width:920px;margin:0 auto 22px;text-align:right}
+  .afm-seo .afm-col{min-width:150px}
+  .afm-seo .afm-col h3{font-size:.92rem;color:#fff;margin:0 0 10px;font-weight:700}
+  .afm-seo .afm-col a{display:block;color:rgba(255,255,255,.62);text-decoration:none;font-size:.83rem;padding:3px 0;transition:color .15s}
+  .afm-seo .afm-col a:hover{color:#FF9A3C}
+  .afm-seo .afm-about{font-size:.8rem;max-width:680px;margin:0 auto;line-height:1.6;color:rgba(255,255,255,.5);text-align:center;border-top:1px solid rgba(255,255,255,.1);padding-top:16px}
+  @media(max-width:600px){.afm-seo .afm-wrap{gap:20px 26px}.afm-seo .afm-col{min-width:120px}}
+  </style>
+  <div class="afm-wrap">
+    <div class="afm-col"><h3>כלים ומדריכים</h3>
+      <a href="/converter/">המרת דולר לשקל</a>
+      <a href="/sizes/">טבלת מידות עלי אקספרס</a>
+      <a href="/tracking/">מעקב חבילות</a>
+      <a href="/customs/">מחשבון מכס ומע״מ</a>
+      <a href="/coupons/">קופונים אלי אקספרס</a>
+      <a href="/guide/">איך קונים באלי אקספרס</a>
+      <a href="/calories/">מחשבון קלוריות</a>
+      <a href="/protein/">מחשבון חלבון</a>
+      <a href="/bmi/">מחשבון BMI</a>
+    </div>
+    <div class="afm-col"><h3>קטגוריות</h3>
+      <a href="/skincare/">טיפוח פנים</a>
+      <a href="/swimwear/">בגדי ים וביקיני</a>
+      <a href="/electronics/">אלקטרוניקה וגאדג׳טים</a>
+      <a href="/baby/">מוצרי תינוקות</a>
+      <a href="/nails/">לק ג׳ל וציפורניים</a>
+      <a href="/home/">מוצרים לבית</a>
+      <a href="/hair/">מוצרי שיער ויופי</a>
+      <a href="/deals/">דילים חמים</a>
+    </div>
+    <div class="afm-col"><h3>ניווט</h3>
+      <a href="/">מנוע החיפוש</a>
+      <a href="/blog/">בלוג קניות</a>
+      <a href="/privacy.html">מדיניות פרטיות</a>
+    </div>
+    <div class="afm-col"><h3>Languages</h3>
+      <a href="/en/">English</a>
+      <a href="/ar/">العربية</a>
+      <a href="/ru/">Русский</a>
+      <a href="/es/">Español</a>
+      <a href="/fr/">Français</a>
+    </div>
+  </div>
+  <p class="afm-about">עלי תמצא לי — מנוע חיפוש חכם למוצרי אלי אקספרס (עלי אקספרס) בעברית: אופנה, אלקטרוניקה, השוואת מחירים, המרת דולר/יורו לשקל, טבלאות מידות וחיפוש מוצרים לפי תמונה. הדילים הכי טובים עם משלוח לישראל.</p>
+</nav>
+<!-- /AFM-SEO-LINKS -->
+<script>
+  var T={cups:"copos (250 ml)",note:"Distribua ao longo do dia. No calor ou treino, beba mais.",promoP:"Sua meta: {L} L por dia ({U} copos). Uma garrafa com marcação de tempo ajuda.",alert:"Digite seu peso",locale:"pt-BR"};var BONUS=0;
+  document.getElementById("act").addEventListener("click",function(e){var b=e.target.closest("button");if(!b)return;[].forEach.call(this.children,function(x){x.classList.remove("on")});b.classList.add("on");BONUS=parseFloat(b.dataset.v);});
+  function calc(){
+    var w=+document.getElementById("weight").value; if(!w){alert(T.alert);return;}
+    var L=Math.round((w*0.033+BONUS)*10)/10, cups=Math.round(L*1000/250);
+    document.getElementById("rL").textContent=L.toLocaleString(T.locale);
+    document.getElementById("rCups").textContent=cups;
+    document.getElementById("promoText").textContent=T.promoP.replace("{L}",L).replace("{U}",cups);
+    var r=document.getElementById("result");r.style.display="block";r.scrollIntoView({behavior:"smooth",block:"start"});
+  }
+</script>
+</body>
+</html>
