@@ -1798,7 +1798,7 @@ function detectContext(query) {
   return "";
 }
 
-async function doSearch(query, page = 1) {
+async function doSearch(query, page = 1, source = "typed") {
   // Auto-detect context for better AI translation
   const autoContext = detectContext(query);
   // ALWAYS send original Hebrew to Claude/Haiku for accurate translation
@@ -1809,6 +1809,8 @@ async function doSearch(query, page = 1) {
   const params = new URLSearchParams({
     q: translatedQ, lang: currentLang, currency: currentCurrency, country: currentCountry, page: String(page),
   });
+  // Tag the search origin so the worker can exclude auto-fired deals from the demand/trending signal
+  params.set("src", source);
   // Pass auto-detected context so Worker uses the right Claude prompt
   if (autoContext) params.set("context", autoContext);
   // Add active filters
@@ -1955,7 +1957,7 @@ async function loadDailyDeals() {
   try {
     const hour = new Date().getHours();
     const category = DEALS_CATEGORIES[Math.floor(hour / 4) % DEALS_CATEGORIES.length];
-    const data = await doSearch(category, 1);
+    const data = await doSearch(category, 1, "deals");
     if (data.products && data.products.length > 0) {
       const dealsProducts = data.products
         .filter(p => p.discount >= 15)
